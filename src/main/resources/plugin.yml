@@ -1,0 +1,4 @@
+name: ${react.plugin.name}
+version: ${react.plugin.version}
+main: ${react.plugin.main}
+authors: [cyberpwn, Puretie]
