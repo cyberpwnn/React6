@@ -1,7 +1,6 @@
 package com.volmit.react;
 
 import surge.control.AmpedPlugin;
-import surge.util.D;
 import surge.util.Protocol;
 
 public class React extends AmpedPlugin
@@ -13,9 +12,9 @@ public class React extends AmpedPlugin
 	}
 
 	@Override
-	public void onStart(Protocol serverProtocol)
+	public void onStart(Protocol arg0)
 	{
-		D.v("Starting React on " + serverProtocol);
+
 	}
 
 	@Override
