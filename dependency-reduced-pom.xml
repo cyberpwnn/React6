@@ -45,11 +45,77 @@
   <profiles>
     <profile>
       <id>development</id>
-      <build />
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.2</version>
+            <executions>
+              <execution>
+                <id>runbatchfile</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <executable>${script.development}</executable>
+              <arguments>
+                <argument>${react.release.target}</argument>
+              </arguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>release</id>
-      <build />
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.2</version>
+            <executions>
+              <execution>
+                <id>runbatchfile</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <configuration>
+                  <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
+                  <arguments>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6/mapping.txt</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6/React-6-origin.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6/React-6.jar</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+            <configuration>
+              <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
+              <arguments>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6/mapping.txt</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6/React-6-origin.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6/React-6.jar</argument>
+              </arguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
   <repositories>
@@ -64,52 +130,44 @@
   </repositories>
   <dependencies>
     <dependency>
-      <groupId>org.spigotmc</groupId>
-      <artifactId>spigot-api</artifactId>
-      <version>1.12.2-R0.1-SNAPSHOT</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>commons-lang</artifactId>
-          <groupId>commons-lang</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>json-simple</artifactId>
-          <groupId>com.googlecode.json-simple</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>guava</artifactId>
-          <groupId>com.google.guava</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>gson</artifactId>
-          <groupId>com.google.code.gson</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>snakeyaml</artifactId>
-          <groupId>org.yaml</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>bungeecord-chat</artifactId>
-          <groupId>net.md-5</groupId>
-        </exclusion>
-      </exclusions>
+      <groupId>spigot.org</groupId>
+      <artifactId>spigot-1.12.2</artifactId>
+      <version>1.12.1</version>
+      <scope>system</scope>
+      <systemPath>${react.libs}/spigot-1.12.2.jar</systemPath>
     </dependency>
   </dependencies>
   <properties>
-    <react.compile>${project.basedir}/compile</react.compile>
-    <react.release.name>${project.name}-${project.version}</react.release.name>
-    <react.scripts>${project.basedir}/scripts</react.scripts>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <script.development>${react.scripts}/development.bat</script.development>
-    <react.plugin.name>${project.name}</react.plugin.name>
-    <react.util>${project.basedir}/util</react.util>
+    <react.development.location>${user.home}\Documents\development\servers\dynamic\plugins\${project.name}.jar</react.development.location>
     <react.plugin.authors>cyberpwn, Puretie</react.plugin.authors>
-    <react.plugin.main>com.volmit.react.React</react.plugin.main>
-    <react.libs>${project.basedir}/lib</react.libs>
-    <react.plugin.description>${project.description}</react.plugin.description>
-    <script.release>${react.scripts}/release.bat</script.release>
+    <react.release.target>${react.target}/${react.release.name}.jar</react.release.target>
+    <react.target>${project.basedir}/target</react.target>
+    <react.export.out>${project.basedir}/compile/out.jar</react.export.out>
+    <react.release.compile>${react.compile}/in.jar</react.release.compile>
+    <react.export.script>${project.basedir}/compile/obfuscate.bat</react.export.script>
+    <react.plugin.name>${project.name}</react.plugin.name>
     <maven.compiler.source>1.8</maven.compiler.source>
+    <script.release>${react.compile}\release.bat</script.release>
+    <react.release>${project.basedir}/release/${project.version}</react.release>
+    <exp3>${react.compile}/out.jar</exp3>
+    <exp2>${react.compile}/in.jar</exp2>
+    <exp1>${react.compile}/mapping.txt</exp1>
+    <react.plugin.description>${project.description}</react.plugin.description>
+    <react.release.name>${project.name}-${project.version}</react.release.name>
+    <react.plugin.main>com.volmit.react.React</react.plugin.main>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <react.scripts>${project.basedir}\scripts</react.scripts>
+    <script.copy>${react.scripts}\copy.bat</script.copy>
+    <oexp3>${react.release}/${project.name}-${project.version}.jar</oexp3>
+    <react.util>${project.basedir}/util</react.util>
+    <react.plugin.version>${project.version}</react.plugin.version>
+    <react.compile>${project.basedir}/compile</react.compile>
+    <oexp2>${react.release}/${project.name}-${project.version}-origin.jar</oexp2>
+    <script.development>${react.scripts}\development.bat</script.development>
+    <react.export.mapping>${project.basedir}/compile/mapping.txt</react.export.mapping>
+    <oexp1>${react.release}/mapping.txt</oexp1>
+    <react.export.in>${project.basedir}/compile/in.jar</react.export.in>
+    <react.libs>${project.basedir}/lib</react.libs>
   </properties>
 </project>
 

@@ -11,15 +11,32 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<react.libs>${project.basedir}/lib</react.libs>
 		<react.compile>${project.basedir}/compile</react.compile>
+		<react.release>${project.basedir}/release/${project.version}</react.release>
 		<react.util>${project.basedir}/util</react.util>
-		<react.scripts>${project.basedir}/scripts</react.scripts>
+		<react.scripts>${project.basedir}\scripts</react.scripts>
 		<react.plugin.name>${project.name}</react.plugin.name>
+		<react.plugin.version>${project.version}</react.plugin.version>
 		<react.plugin.description>${project.description}</react.plugin.description>
 		<react.plugin.main>com.volmit.react.React</react.plugin.main>
 		<react.plugin.authors>cyberpwn, Puretie</react.plugin.authors>
 		<react.release.name>${project.name}-${project.version}</react.release.name>
-		<script.development>${react.scripts}/development.bat</script.development>
-		<script.release>${react.scripts}/release.bat</script.release>
+		<react.target>${project.basedir}/target</react.target>
+		<react.release.target>${react.target}/${react.release.name}.jar</react.release.target>
+		<react.release.compile>${react.compile}/in.jar</react.release.compile>
+		<react.development.location>${user.home}\Documents\development\servers\dynamic\plugins\${project.name}.jar</react.development.location>
+		<react.export.out>${project.basedir}/compile/out.jar</react.export.out>
+		<react.export.in>${project.basedir}/compile/in.jar</react.export.in>
+		<react.export.mapping>${project.basedir}/compile/mapping.txt</react.export.mapping>
+		<react.export.script>${project.basedir}/compile/obfuscate.bat</react.export.script>
+		<script.copy>${react.scripts}\copy.bat</script.copy>
+		<script.release>${react.compile}\release.bat</script.release>
+		<script.development>${react.scripts}\development.bat</script.development>
+		<exp1>${react.compile}/mapping.txt</exp1>
+		<exp2>${react.compile}/in.jar</exp2>
+		<exp3>${react.compile}/out.jar</exp3>
+		<oexp1>${react.release}/mapping.txt</oexp1>
+		<oexp2>${react.release}/${project.name}-${project.version}-origin.jar</oexp2>
+		<oexp3>${react.release}/${project.name}-${project.version}.jar</oexp3>
 	</properties>
 	<build>
 		<resources>
@@ -62,13 +79,62 @@
 		<profile>
 			<id>development</id>
 			<build>
-
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2</version>
+						<executions>
+							<execution>
+								<id>runbatchfile</id>
+								<phase>package</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<executable>${script.development}</executable>
+							<arguments>
+								<argument>${react.release.target}</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+				</plugins>
 			</build>
 		</profile>
 		<profile>
 			<id>release</id>
 			<build>
-
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2</version>
+						<executions>
+							<execution>
+								<id>runbatchfile</id>
+								<phase>package</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<executable>${script.release}</executable>
+							<arguments>
+								<argument>${react.release.target}</argument>
+								<argument>${react.export.in}</argument>
+								<argument>${exp1}</argument>
+								<argument>${oexp1}</argument>
+								<argument>${exp2}</argument>
+								<argument>${oexp2}</argument>
+								<argument>${exp3}</argument>
+								<argument>${oexp3}</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+				</plugins>
 			</build>
 		</profile>
 	</profiles>
@@ -84,15 +150,16 @@
 	</repositories>
 	<dependencies>
 		<dependency>
-			<groupId>org.spigotmc</groupId>
-			<artifactId>spigot-api</artifactId>
-			<version>1.12.2-R0.1-SNAPSHOT</version>
-			<scope>provided</scope>
+			<groupId>spigot.org</groupId>
+			<artifactId>spigot-1.12.2</artifactId>
+			<scope>system</scope>
+			<systemPath>${react.libs}/spigot-1.12.2.jar</systemPath>
+			<version>1.12.1</version>
 		</dependency>
 		<dependency>
 			<groupId>surge</groupId>
 			<artifactId>Surge</artifactId>
-			<version>1.1</version>
+			<version>1.2</version>
 		</dependency>
 	</dependencies>
 </project>
