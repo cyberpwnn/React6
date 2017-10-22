@@ -1438,7 +1438,8 @@ surge.util.PE -> com.volmit.react.ullamcorper:
     void crm(org.bukkit.entity.LivingEntity) -> ipsum
     void rm(org.bukkit.entity.LivingEntity) -> dolor
     void <clinit>() -> <clinit>
-surge.util.PluginUtil -> com.volmit.react.Integer:
+surge.util.Persist -> com.volmit.react.Integer:
+surge.util.PluginUtil -> com.volmit.react.vehicula:
     void <init>() -> <init>
     void enable(org.bukkit.plugin.Plugin) -> Lorem
     void enableAll() -> penatibus
@@ -1457,7 +1458,7 @@ surge.util.PluginUtil -> com.volmit.react.Integer:
     void reload(org.bukkit.plugin.Plugin) -> consectetur
     void reloadAll() -> dis
     void unload(org.bukkit.plugin.Plugin) -> adipiscing
-surge.util.Protocol -> com.volmit.react.vehicula:
+surge.util.Protocol -> com.volmit.react.risus:
     surge.util.Protocol LATEST -> aG
     surge.util.Protocol R1_12_2 -> aH
     surge.util.Protocol R1_12_2_PRE -> aI
@@ -1527,7 +1528,7 @@ surge.util.Protocol -> com.volmit.react.vehicula:
     int getVersion() -> getVersion
     int getMetaVersion() -> mus
     void <clinit>() -> <clinit>
-surge.util.ProtocolRange -> com.volmit.react.risus:
+surge.util.ProtocolRange -> com.volmit.react.blandit:
     surge.util.Protocol from -> bK
     surge.util.Protocol to -> bL
     void <init>(surge.util.Protocol,surge.util.Protocol) -> <init>
@@ -1535,7 +1536,7 @@ surge.util.ProtocolRange -> com.volmit.react.risus:
     surge.util.Protocol getTo() -> morbi
     boolean contains(surge.util.Protocol) -> dolor
     java.lang.String toString() -> toString
-surge.util.RayTrace -> com.volmit.react.blandit:
+surge.util.RayTrace -> com.volmit.react.ante:
     org.bukkit.Location start -> bM
     org.bukkit.util.Vector direction -> bN
     java.lang.Double maxDistance -> bO
@@ -1556,7 +1557,7 @@ surge.util.RayTrace -> com.volmit.react.blandit:
     void setDistanceCovered(java.lang.Double) -> dolor
     java.lang.Double getStep() -> c
     void setStep(java.lang.Double) -> sit
-surge.util.Shape -> com.volmit.react.ante:
+surge.util.Shape -> com.volmit.react.dapibus:
     org.bukkit.Location location -> pellentesque
     org.bukkit.util.Vector offset -> bS
     org.bukkit.util.Vector size -> bT
@@ -1570,7 +1571,7 @@ surge.util.Shape -> com.volmit.react.ante:
     org.bukkit.Location getLocation() -> getLocation
     org.bukkit.util.Vector getOffset() -> f
     org.bukkit.util.Vector getSize() -> g
-surge.util.VectorMath -> com.volmit.react.dapibus:
+surge.util.VectorMath -> com.volmit.react.consequat:
     int[] $SWITCH_TABLE$surge$util$Axis -> bU
     int[] $SWITCH_TABLE$org$bukkit$block$BlockFace -> bV
     void <init>() -> <init>
@@ -1606,7 +1607,7 @@ surge.util.VectorMath -> com.volmit.react.dapibus:
     org.bukkit.util.Vector triNormalize(org.bukkit.util.Vector) -> nibh
     int[] $SWITCH_TABLE$surge$util$Axis() -> h
     int[] $SWITCH_TABLE$org$bukkit$block$BlockFace() -> i
-surge.util.VectorMath$1 -> com.volmit.react.consequat:
+surge.util.VectorMath$1 -> com.volmit.react.Duis:
     org.bukkit.util.Vector val$vector -> bW
     void <init>(org.bukkit.util.Vector) -> <init>
     org.bukkit.util.Vector onAdapt(org.bukkit.util.Vector) -> quis

@@ -1,8 +1,10 @@
 package com.volmit.react;
 
 import surge.control.AmpedPlugin;
+import surge.util.Persist;
 import surge.util.Protocol;
 
+@Persist
 public class React extends AmpedPlugin
 {
 	@Override
