@@ -64,6 +64,7 @@
               <executable>${script.development}</executable>
               <arguments>
                 <argument>${react.release.target}</argument>
+                <argument>${react.development.location}</argument>
               </arguments>
             </configuration>
           </plugin>
