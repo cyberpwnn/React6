@@ -2,3 +2,41 @@ name: ${react.plugin.name}
 version: ${react.plugin.version}
 main: ${react.plugin.main}
 authors: [cyberpwn, Puretie]
+load: STARTUP
+website: https://www.spigotmc.org/resources/react-smart-server-performance.21057/
+database: false
+prefix: React
+permissions:
+  react.*:
+    description: Gives access to all React permissions
+    default: op
+    children:
+      react.reload: true
+      react.access: true
+      react.monitor: true
+      react.act: true
+  react.act:
+    description: Gives access to use actions (all subtypes included)
+    default: op
+  react.monitor:
+    description: Gives access to monitor (all subtypes included)
+    default: op
+    children:
+      react.monitor.map: true
+      react.monitor.title: true
+      react.monitor.environment: true
+  react.monitor.map:
+    description: Gives access to use the map monitor
+    default: op
+  react.monitor.title:
+    description: Gives access to use the title monitor
+    default: op
+  react.monitor.environment:
+    description: Gives access to use environment commands
+    default: op
+  react.access: 
+    description: Gives access to use react.
+    default: op
+  react.reload: 
+    description: Gives access to reload react.
+    default: op
