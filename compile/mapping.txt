@@ -1,115 +1,217 @@
-com.volmit.react.React -> com.volmit.react.Lorem:
-    com.volmit.react.React instance -> Lorem
+com.volmit.react.React -> com.volmit.react.iifh64059hi:
+    com.volmit.react.React instance -> iifh64059hi
+    com.volmit.react.controller.SampleController sampleController -> yrgc93536dq
     void <init>() -> <init>
     void enable() -> enable
     void disable() -> disable
-surge.Main -> com.volmit.react.ipsum:
-    surge.collection.GList plugins -> ipsum
-    surge.collection.GMap pluginInstances -> dolor
-    surge.collection.GList controllerSet -> sit
+com.volmit.react.api.ISampler -> com.volmit.react.yrgc93536dq:
+    java.lang.String getID() -> getID
+    java.lang.String getName() -> getName
+    java.lang.String getDescription() -> getDescription
+    void setID(java.lang.String) -> setID
+    void setName(java.lang.String) -> setName
+    void setDescription(java.lang.String) -> setDescription
+    surge.util.C getColor() -> iifh64059hi
+    surge.util.C getAltColor() -> yrgc93536dq
+    void setColor(surge.util.C,surge.util.C) -> iifh64059hi
+    int getInterval() -> getInterval
+    void setInterval(int) -> iifh64059hi
+    void sample() -> wamx177398yk
+    java.lang.String get() -> get
+    void construct() -> jais130334gx
+    void setValue(double) -> setValue
+    double getValue() -> getValue
+com.volmit.react.api.Sampler -> com.volmit.react.wamx177398yk:
+    double value -> value
+    java.lang.String id -> id
+    java.lang.String name -> name
+    java.lang.String description -> description
+    surge.util.C color -> wamx177398yk
+    surge.util.C altColor -> jais130334gx
+    int interval -> nqxu196357wv
     void <init>() -> <init>
-    void onControllerRegistry() -> Lorem
-    void onStart(surge.util.Protocol) -> Lorem
-    void onStop() -> ipsum
-    void onPostInit() -> dolor
-    void onPreInit() -> sit
-    void shutDownAmps() -> amet
-    void initializeAmps() -> consectetur
-    void scanForAmps() -> adipiscing
-    void onTick() -> elit
-surge.PluginAmp -> com.volmit.react.dolor:
-    surge.control.AmpedPlugin plugin -> amet
+    java.lang.String getID() -> getID
+    java.lang.String getName() -> getName
+    java.lang.String getDescription() -> getDescription
+    surge.util.C getColor() -> iifh64059hi
+    surge.util.C getAltColor() -> yrgc93536dq
+    int getInterval() -> getInterval
+    void sample() -> wamx177398yk
+    void construct() -> jais130334gx
+    java.lang.String get() -> get
+    void setValue(double) -> setValue
+    double getValue() -> getValue
+    void setID(java.lang.String) -> setID
+    void setName(java.lang.String) -> setName
+    void setDescription(java.lang.String) -> setDescription
+    void setColor(surge.util.C,surge.util.C) -> iifh64059hi
+    void setInterval(int) -> iifh64059hi
+com.volmit.react.controller.SampleController -> com.volmit.react.jais130334gx:
+    surge.collection.GMap samplers -> euwq104639au
+    surge.server.SuperSampler ss -> rsex75607ra
+    void <init>() -> <init>
+    void registerSampler(com.volmit.react.api.ISampler) -> iifh64059hi
+    com.volmit.react.api.ISampler getSampler(java.lang.String) -> iifh64059hi
+    void constructSamplers() -> nqxu196357wv
+    void start() -> start
+    void stop() -> stop
+    void tick() -> tick
+    surge.server.SuperSampler access$0(com.volmit.react.controller.SampleController) -> iifh64059hi
+com.volmit.react.controller.SampleController$1 -> com.volmit.react.nqxu196357wv:
+    com.volmit.react.controller.SampleController this$0 -> rohx185625dm
+    void <init>(com.volmit.react.controller.SampleController) -> <init>
+    void construct() -> jais130334gx
+    void sample() -> wamx177398yk
+    java.lang.String get() -> get
+com.volmit.react.controller.SampleController$2 -> com.volmit.react.euwq104639au:
+    com.volmit.react.controller.SampleController this$0 -> rohx185625dm
+    void <init>(com.volmit.react.controller.SampleController) -> <init>
+    void construct() -> jais130334gx
+    void sample() -> wamx177398yk
+    java.lang.String get() -> get
+com.volmit.react.controller.SampleController$3 -> com.volmit.react.rsex75607ra:
+    com.volmit.react.controller.SampleController this$0 -> rohx185625dm
+    void <init>(com.volmit.react.controller.SampleController) -> <init>
+    void construct() -> jais130334gx
+    void sample() -> wamx177398yk
+    java.lang.String get() -> get
+com.volmit.react.controller.SampleController$4 -> com.volmit.react.rohx185625dm:
+    com.volmit.react.controller.SampleController this$0 -> rohx185625dm
+    void <init>(com.volmit.react.controller.SampleController) -> <init>
+    void construct() -> jais130334gx
+    void sample() -> wamx177398yk
+    java.lang.String get() -> get
+com.volmit.react.controller.SampleController$5 -> com.volmit.react.dskh111417ns:
+    com.volmit.react.controller.SampleController this$0 -> rohx185625dm
+    void <init>(com.volmit.react.controller.SampleController) -> <init>
+    void construct() -> jais130334gx
+    void sample() -> wamx177398yk
+    java.lang.String get() -> get
+com.volmit.react.controller.SampleController$6 -> com.volmit.react.kpsc178172xr:
+    com.volmit.react.controller.SampleController this$0 -> rohx185625dm
+    void <init>(com.volmit.react.controller.SampleController) -> <init>
+    void construct() -> jais130334gx
+    void sample() -> wamx177398yk
+    java.lang.String get() -> get
+com.volmit.react.controller.SampleController$7 -> com.volmit.react.lygn130750fd:
+    com.volmit.react.controller.SampleController this$0 -> rohx185625dm
+    void <init>(com.volmit.react.controller.SampleController) -> <init>
+    void construct() -> jais130334gx
+    void sample() -> wamx177398yk
+    java.lang.String get() -> get
+com.volmit.react.controller.SampleController$8 -> com.volmit.react.tgwu42804si:
+    com.volmit.react.controller.SampleController this$0 -> rohx185625dm
+    void <init>(com.volmit.react.controller.SampleController) -> <init>
+    void construct() -> jais130334gx
+    void sample() -> wamx177398yk
+    java.lang.String get() -> get
+surge.Main -> com.volmit.react.alsm125505oe:
+    surge.collection.GList plugins -> dskh111417ns
+    surge.collection.GMap pluginInstances -> kpsc178172xr
+    surge.collection.GList controllerSet -> lygn130750fd
+    void <init>() -> <init>
+    void onControllerRegistry() -> euwq104639au
+    void onStart(surge.util.Protocol) -> iifh64059hi
+    void onStop() -> rsex75607ra
+    void onPostInit() -> rohx185625dm
+    void onPreInit() -> dskh111417ns
+    void shutDownAmps() -> kpsc178172xr
+    void initializeAmps() -> lygn130750fd
+    void scanForAmps() -> tgwu42804si
+    void onTick() -> alsm125505oe
+surge.PluginAmp -> com.volmit.react.oqof171026an:
+    surge.control.AmpedPlugin plugin -> tgwu42804si
     boolean connected -> connected
-    int masterTask -> consectetur
+    int masterTask -> alsm125505oe
     void <init>(surge.control.AmpedPlugin) -> <init>
-    surge.control.AmpedPlugin getPluginInstance() -> Sed
+    surge.control.AmpedPlugin getPluginInstance() -> oqof171026an
     boolean isConnected() -> isConnected
     void connect() -> connect
-    void masterTick() -> vel
+    void masterTick() -> jhnx187598nc
     void disconnect() -> disconnect
-    int startTask(int,java.lang.Runnable) -> Lorem
-    int startRepeatingTask(int,int,java.lang.Runnable) -> Lorem
-    void stopTask(int) -> Lorem
-    void access$000(surge.PluginAmp) -> Lorem
-surge.PluginAmp$1 -> com.volmit.react.sit:
-    surge.PluginAmp this$0 -> adipiscing
+    int startTask(int,java.lang.Runnable) -> iifh64059hi
+    int startRepeatingTask(int,int,java.lang.Runnable) -> iifh64059hi
+    void stopTask(int) -> yrgc93536dq
+    void access$000(surge.PluginAmp) -> iifh64059hi
+surge.PluginAmp$1 -> com.volmit.react.jhnx187598nc:
+    surge.PluginAmp this$0 -> oqof171026an
     void <init>(surge.PluginAmp) -> <init>
     void run() -> run
-surge.PluginAmp$2 -> com.volmit.react.amet:
-    surge.PluginAmp this$0 -> adipiscing
+surge.PluginAmp$2 -> com.volmit.react.pocr154074ip:
+    surge.PluginAmp this$0 -> oqof171026an
     void <init>(surge.PluginAmp) -> <init>
     void run() -> run
-surge.Surge -> com.volmit.react.consectetur:
-    surge.PluginAmp amp -> elit
-    surge.collection.GList tickComponents -> Sed
-    surge.sched.TaskManager taskmgr -> vel
-    surge.hotload.HotloadManager hotloadmgr -> nibh
-    java.lang.Thread mainThread -> quis
+surge.Surge -> com.volmit.react.mctm31570xt:
+    surge.PluginAmp amp -> jhnx187598nc
+    surge.collection.GList tickComponents -> pocr154074ip
+    surge.sched.TaskManager taskmgr -> mctm31570xt
+    surge.hotload.HotloadManager hotloadmgr -> chrr120560bo
+    java.lang.Thread mainThread -> ujqi164485uq
     void <clinit>() -> <clinit>
     void <init>() -> <init>
-    java.io.File getPluginJarFile() -> nibh
+    java.io.File getPluginJarFile() -> pocr154074ip
     void startup() -> startup
-    java.lang.Thread getServerThread() -> quis
-    surge.collection.GList getTickComponents() -> auctor
-    void registerTicked(surge.sched.IMasterTickComponent) -> Lorem
-    void unregisterTicked(surge.sched.IMasterTickComponent) -> ipsum
-    surge.PluginAmp createAmp(surge.control.AmpedPlugin) -> Lorem
+    java.lang.Thread getServerThread() -> mctm31570xt
+    surge.collection.GList getTickComponents() -> chrr120560bo
+    void registerTicked(surge.sched.IMasterTickComponent) -> iifh64059hi
+    void unregisterTicked(surge.sched.IMasterTickComponent) -> yrgc93536dq
+    surge.PluginAmp createAmp(surge.control.AmpedPlugin) -> iifh64059hi
     boolean isMainThread() -> isMainThread
-    void stopAmp() -> rhoncus
-    boolean hasAmp() -> eu
-    surge.PluginAmp getAmp() -> nec
-    surge.sched.TaskManager getTaskManager() -> est
-    surge.hotload.HotloadManager getHotloadManager() -> Aliquam
-surge.cluster.Cluster -> com.volmit.react.adipiscing:
-    surge.cluster.ClusterType type -> auctor
-    java.lang.Object t -> rhoncus
+    void stopAmp() -> ujqi164485uq
+    boolean hasAmp() -> ptvu82346ei
+    surge.PluginAmp getAmp() -> dlyy17569cp
+    surge.sched.TaskManager getTaskManager() -> xgot116617hi
+    surge.hotload.HotloadManager getHotloadManager() -> fehk172577aq
+surge.cluster.Cluster -> com.volmit.react.chrr120560bo:
+    surge.cluster.ClusterType type -> ptvu82346ei
+    java.lang.Object t -> dlyy17569cp
     void <init>(surge.cluster.ClusterType,java.lang.Object) -> <init>
-    surge.cluster.ClusterType getType() -> posuere
+    surge.cluster.ClusterType getType() -> yqkw5943na
     void set(java.lang.Object) -> set
     java.lang.Object get() -> get
-surge.cluster.ClusterBoolean -> com.volmit.react.elit:
+surge.cluster.ClusterBoolean -> com.volmit.react.ujqi164485uq:
     void <init>(java.lang.Boolean) -> <init>
-surge.cluster.ClusterDouble -> com.volmit.react.Sed:
+surge.cluster.ClusterDouble -> com.volmit.react.ptvu82346ei:
     void <init>(java.lang.Double) -> <init>
-surge.cluster.ClusterInt -> com.volmit.react.vel:
+surge.cluster.ClusterInt -> com.volmit.react.dlyy17569cp:
     void <init>(java.lang.Integer) -> <init>
-surge.cluster.ClusterLong -> com.volmit.react.nibh:
+surge.cluster.ClusterLong -> com.volmit.react.xgot116617hi:
     void <init>(java.lang.Long) -> <init>
-surge.cluster.ClusterString -> com.volmit.react.quis:
+surge.cluster.ClusterString -> com.volmit.react.fehk172577aq:
     void <init>(java.lang.String) -> <init>
-surge.cluster.ClusterStringList -> com.volmit.react.auctor:
+surge.cluster.ClusterStringList -> com.volmit.react.yqkw5943na:
     void <init>(java.util.List) -> <init>
-surge.cluster.ClusterType -> com.volmit.react.rhoncus:
-    surge.cluster.ClusterType INT -> eu
-    surge.cluster.ClusterType BOOLEAN -> nec
-    surge.cluster.ClusterType STRING -> est
-    surge.cluster.ClusterType STRING_LIST -> Aliquam
-    surge.cluster.ClusterType DOUBLE -> posuere
-    surge.cluster.ClusterType LONG -> diam
-    surge.cluster.ClusterType[] $VALUES -> erat
+surge.cluster.ClusterType -> com.volmit.react.fiwx75350rn:
+    surge.cluster.ClusterType INT -> xgot116617hi
+    surge.cluster.ClusterType BOOLEAN -> fehk172577aq
+    surge.cluster.ClusterType STRING -> yqkw5943na
+    surge.cluster.ClusterType STRING_LIST -> fiwx75350rn
+    surge.cluster.ClusterType DOUBLE -> xybc8061pc
+    surge.cluster.ClusterType LONG -> fold76472fm
+    surge.cluster.ClusterType[] $VALUES -> ixit59488ge
     surge.cluster.ClusterType[] values() -> values
     surge.cluster.ClusterType valueOf(java.lang.String) -> valueOf
     void <init>(java.lang.String,int) -> <init>
     void <clinit>() -> <clinit>
-surge.cluster.ConfigurationDataInput -> com.volmit.react.eu:
-    int[] $SWITCH_TABLE$surge$cluster$ClusterType -> at
+surge.cluster.ConfigurationDataInput -> com.volmit.react.xybc8061pc:
+    int[] $SWITCH_TABLE$surge$cluster$ClusterType -> pkul92410me
     void <init>() -> <init>
-    void read(surge.cluster.IConfigurable,java.io.File) -> Lorem
-    surge.cluster.DataCluster fillDefaults(surge.cluster.IConfigurable) -> Lorem
-    int[] $SWITCH_TABLE$surge$cluster$ClusterType() -> diam
-surge.cluster.ConfigurationDataOutput -> com.volmit.react.nec:
+    void read(surge.cluster.IConfigurable,java.io.File) -> iifh64059hi
+    surge.cluster.DataCluster fillDefaults(surge.cluster.IConfigurable) -> iifh64059hi
+    int[] $SWITCH_TABLE$surge$cluster$ClusterType() -> fiwx75350rn
+surge.cluster.ConfigurationDataOutput -> com.volmit.react.fold76472fm:
     void <init>() -> <init>
-    void write(surge.cluster.IConfigurable,java.io.File) -> ipsum
-surge.cluster.DataCluster -> com.volmit.react.est:
-    surge.collection.GMap clusters -> laoreet
+    void write(surge.cluster.IConfigurable,java.io.File) -> yrgc93536dq
+surge.cluster.DataCluster -> com.volmit.react.ixit59488ge:
+    surge.collection.GMap clusters -> gejb111926sn
     void <init>() -> <init>
-    surge.collection.GList keys() -> erat
-    void fromJson(surge.json.JSONObject) -> Lorem
-    surge.json.JSONObject toJson() -> at
-    org.bukkit.configuration.file.FileConfiguration toFileConfiguration() -> laoreet
-    void fromFileConfiguration(org.bukkit.configuration.file.FileConfiguration) -> Lorem
+    surge.collection.GList keys() -> xybc8061pc
+    void fromJson(surge.json.JSONObject) -> iifh64059hi
+    surge.json.JSONObject toJson() -> fold76472fm
+    org.bukkit.configuration.file.FileConfiguration toFileConfiguration() -> ixit59488ge
+    void fromFileConfiguration(org.bukkit.configuration.file.FileConfiguration) -> iifh64059hi
     boolean contains(java.lang.String) -> contains
-    surge.cluster.ClusterType getType(java.lang.String) -> Lorem
+    surge.cluster.ClusterType getType(java.lang.String) -> yrgc93536dq
     int getInt(java.lang.String) -> getInt
     java.lang.Object get(java.lang.String) -> get
     long getLong(java.lang.String) -> getLong
@@ -117,194 +219,194 @@ surge.cluster.DataCluster -> com.volmit.react.est:
     double getDouble(java.lang.String) -> getDouble
     boolean getBoolean(java.lang.String) -> getBoolean
     java.util.List getStringList(java.lang.String) -> getStringList
-    void trySet(java.lang.String,java.lang.Object) -> Lorem
-    void set(java.lang.String,int) -> Lorem
-    void set(java.lang.String,boolean) -> Lorem
-    void set(java.lang.String,double) -> Lorem
-    void set(java.lang.String,long) -> Lorem
+    void trySet(java.lang.String,java.lang.Object) -> iifh64059hi
+    void set(java.lang.String,int) -> iifh64059hi
+    void set(java.lang.String,boolean) -> iifh64059hi
+    void set(java.lang.String,double) -> iifh64059hi
+    void set(java.lang.String,long) -> iifh64059hi
     void set(java.lang.String,java.lang.String) -> set
-    void set(java.lang.String,java.util.List) -> Lorem
-surge.cluster.ICluster -> com.volmit.react.Aliquam:
-    surge.cluster.ClusterType getType() -> posuere
+    void set(java.lang.String,java.util.List) -> iifh64059hi
+surge.cluster.ICluster -> com.volmit.react.pkul92410me:
+    surge.cluster.ClusterType getType() -> yqkw5943na
     void set(java.lang.Object) -> set
     java.lang.Object get() -> get
-surge.cluster.IConfigurable -> com.volmit.react.posuere:
-surge.cluster.IDataInput -> com.volmit.react.diam:
-    surge.cluster.DataCluster read(java.io.File) -> Lorem
-surge.cluster.IDataOutput -> com.volmit.react.erat:
-    void write(surge.cluster.DataCluster,java.io.File) -> Lorem
-surge.cluster.Key -> com.volmit.react.at:
+surge.cluster.IConfigurable -> com.volmit.react.gejb111926sn:
+surge.cluster.IDataInput -> com.volmit.react.yvfy188279xj:
+    surge.cluster.DataCluster read(java.io.File) -> iifh64059hi
+surge.cluster.IDataOutput -> com.volmit.react.einy39770xh:
+    void write(surge.cluster.DataCluster,java.io.File) -> iifh64059hi
+surge.cluster.Key -> com.volmit.react.jgtm58582ao:
     java.lang.String value() -> value
-surge.cluster.ReflectedConfigurationException -> com.volmit.react.laoreet:
+surge.cluster.ReflectedConfigurationException -> com.volmit.react.yaqo128910rw:
     long serialVersionUID -> serialVersionUID
     void <init>() -> <init>
-surge.cluster.YamlDataInput -> com.volmit.react.leo:
+surge.cluster.YamlDataInput -> com.volmit.react.coyp97191ej:
     void <init>() -> <init>
-    surge.cluster.DataCluster read(java.io.File) -> Lorem
-surge.cluster.YamlDataOutput -> com.volmit.react.congue:
+    surge.cluster.DataCluster read(java.io.File) -> iifh64059hi
+surge.cluster.YamlDataOutput -> com.volmit.react.qmqu111722ul:
     void <init>() -> <init>
-    void write(surge.cluster.DataCluster,java.io.File) -> Lorem
-surge.collection.GBiset -> com.volmit.react.Class:
-    java.lang.Object a -> leo
-    java.lang.Object b -> congue
+    void write(surge.cluster.DataCluster,java.io.File) -> iifh64059hi
+surge.collection.GBiset -> com.volmit.react.epqn35822rq:
+    java.lang.Object a -> yvfy188279xj
+    java.lang.Object b -> einy39770xh
     void <init>(java.lang.Object,java.lang.Object) -> <init>
-    java.lang.Object getA() -> leo
-    void setA(java.lang.Object) -> Lorem
-    java.lang.Object getB() -> congue
-    void setB(java.lang.Object) -> ipsum
-surge.collection.GList -> com.volmit.react.aptent:
+    java.lang.Object getA() -> pkul92410me
+    void setA(java.lang.Object) -> iifh64059hi
+    java.lang.Object getB() -> gejb111926sn
+    void setB(java.lang.Object) -> yrgc93536dq
+surge.collection.GList -> com.volmit.react.rasc194364bv:
     long serialVersionUID -> serialVersionUID
     void <init>() -> <init>
     void <init>(java.lang.Object[]) -> <init>
     void <init>(java.util.List) -> <init>
-    java.lang.Object mostCommon() -> Class
-    void remove(surge.collection.GList) -> Lorem
-    surge.collection.GList shuffle() -> aptent
-    surge.collection.GList split() -> taciti
-    boolean hasIndex(int) -> ipsum
-    java.lang.Object pickRandom() -> sociosqu
+    java.lang.Object mostCommon() -> yvfy188279xj
+    void remove(surge.collection.GList) -> iifh64059hi
+    surge.collection.GList shuffle() -> einy39770xh
+    surge.collection.GList split() -> jgtm58582ao
+    boolean hasIndex(int) -> wamx177398yk
+    java.lang.Object pickRandom() -> yaqo128910rw
     void <init>(java.util.Set) -> <init>
     void <init>(java.util.Collection) -> <init>
     void <init>(surge.collection.GList) -> <init>
-    surge.collection.GList stringList() -> ad
-    surge.collection.GList removeDuplicates() -> litora
-    boolean hasDuplicates() -> torquent
+    surge.collection.GList stringList() -> coyp97191ej
+    surge.collection.GList removeDuplicates() -> qmqu111722ul
+    boolean hasDuplicates() -> epqn35822rq
     void sort() -> sort
-    void push(java.lang.Object,int) -> Lorem
+    void push(java.lang.Object,int) -> iifh64059hi
     void addFirst(java.lang.Object) -> addFirst
     void add(java.lang.Object[]) -> add
-    surge.collection.GList qadd(java.lang.Object) -> dolor
-    void add(java.util.List) -> Lorem
+    surge.collection.GList qadd(java.lang.Object) -> wamx177398yk
+    void add(java.util.List) -> iifh64059hi
     java.lang.String toString(java.lang.String) -> toString
-    surge.collection.GList reverse() -> per
+    surge.collection.GList reverse() -> rasc194364bv
     java.lang.String toString() -> toString
-    surge.collection.GList copy() -> conubia
-    surge.collection.GList qdel(java.lang.Object) -> sit
+    surge.collection.GList copy() -> ehat86585ky
+    surge.collection.GList qdel(java.lang.Object) -> jais130334gx
     java.lang.Object pop() -> pop
-surge.collection.GList$1 -> com.volmit.react.taciti:
-    surge.collection.GList this$0 -> Class
+surge.collection.GList$1 -> com.volmit.react.ehat86585ky:
+    surge.collection.GList this$0 -> jgtm58582ao
     void <init>(surge.collection.GList) -> <init>
     int compare(java.lang.Object,java.lang.Object) -> compare
-surge.collection.GMap -> com.volmit.react.sociosqu:
+surge.collection.GMap -> com.volmit.react.cdro17756to:
     long serialVersionUID -> serialVersionUID
     void <init>() -> <init>
-    surge.collection.GMap copy() -> nostra
-    java.lang.Object findKey(java.lang.Object) -> amet
-    surge.collection.GMap qput(java.lang.Object,java.lang.Object) -> Lorem
-    surge.collection.GMap flip() -> inceptos
+    surge.collection.GMap copy() -> cdro17756to
+    java.lang.Object findKey(java.lang.Object) -> nqxu196357wv
+    surge.collection.GMap qput(java.lang.Object,java.lang.Object) -> iifh64059hi
+    surge.collection.GMap flip() -> gpfc195975lf
     java.lang.String toString() -> toString
-    surge.collection.GMap append(surge.collection.GMap) -> Lorem
-    surge.collection.GList k() -> himenaeos
-    surge.collection.GList v() -> Aenean
-    void putNVD(java.lang.Object,java.lang.Object) -> ipsum
-    surge.collection.GList get(surge.collection.GList) -> ipsum
-    surge.collection.GMap removeDuplicateKeys() -> quam
-    surge.collection.GMap removeDuplicateValues() -> vestibulum
-    void put(surge.collection.GList,surge.collection.GList) -> Lorem
-    void put(surge.collection.GMap) -> ipsum
-surge.collection.GQuadraset -> com.volmit.react.ad:
+    surge.collection.GMap append(surge.collection.GMap) -> iifh64059hi
+    surge.collection.GList k() -> huda156689ym
+    surge.collection.GList v() -> ixqj103981dq
+    void putNVD(java.lang.Object,java.lang.Object) -> yrgc93536dq
+    surge.collection.GList get(surge.collection.GList) -> yrgc93536dq
+    surge.collection.GMap removeDuplicateKeys() -> xpvn79073uo
+    surge.collection.GMap removeDuplicateValues() -> hygq169956ge
+    void put(surge.collection.GList,surge.collection.GList) -> iifh64059hi
+    void put(surge.collection.GMap) -> yrgc93536dq
+surge.collection.GQuadraset -> com.volmit.react.gpfc195975lf:
     long serialVersionUID -> serialVersionUID
-    java.lang.Object a -> leo
-    java.lang.Object b -> congue
-    java.lang.Object c -> aptent
-    java.lang.Object d -> taciti
+    java.lang.Object a -> yvfy188279xj
+    java.lang.Object b -> einy39770xh
+    java.lang.Object c -> yaqo128910rw
+    java.lang.Object d -> coyp97191ej
     void <init>(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) -> <init>
-    java.lang.Object getA() -> leo
-    void setA(java.lang.Object) -> Lorem
-    java.lang.Object getB() -> congue
-    void setB(java.lang.Object) -> ipsum
-    java.lang.Object getC() -> lorem
-    void setC(java.lang.Object) -> consectetur
-    java.lang.Object getD() -> scelerisque
-    void setD(java.lang.Object) -> adipiscing
-surge.collection.GSound -> com.volmit.react.litora:
-    java.lang.String sound -> sociosqu
-    org.bukkit.Sound iSound -> ad
-    java.lang.Float volume -> litora
-    java.lang.Float pitch -> torquent
+    java.lang.Object getA() -> pkul92410me
+    void setA(java.lang.Object) -> iifh64059hi
+    java.lang.Object getB() -> gejb111926sn
+    void setB(java.lang.Object) -> yrgc93536dq
+    java.lang.Object getC() -> mrrs49729ic
+    void setC(java.lang.Object) -> euwq104639au
+    java.lang.Object getD() -> vpqf174568ku
+    void setD(java.lang.Object) -> rsex75607ra
+surge.collection.GSound -> com.volmit.react.huda156689ym:
+    java.lang.String sound -> qmqu111722ul
+    org.bukkit.Sound iSound -> epqn35822rq
+    java.lang.Float volume -> rasc194364bv
+    java.lang.Float pitch -> ehat86585ky
     void <init>(java.lang.String,java.lang.Float,java.lang.Float) -> <init>
     void <init>(java.lang.String) -> <init>
     void <init>(org.bukkit.Sound,java.lang.Float,java.lang.Float) -> <init>
     void <init>(org.bukkit.Sound) -> <init>
-    void play(org.bukkit.entity.Player) -> Lorem
-    void play(org.bukkit.Location) -> Lorem
-    void play(org.bukkit.entity.Player,org.bukkit.util.Vector) -> Lorem
-    java.lang.String getSound() -> sollicitudin
-    void setSound(java.lang.String) -> ipsum
-    org.bukkit.Sound getiSound() -> lacus
-    void setiSound(org.bukkit.Sound) -> Lorem
-    java.lang.Float getVolume() -> Vestibulum
-    void setVolume(java.lang.Float) -> Lorem
-    java.lang.Float getPitch() -> turpis
-    void setPitch(java.lang.Float) -> ipsum
-surge.collection.GTriset -> com.volmit.react.torquent:
-    java.lang.Object a -> leo
-    java.lang.Object b -> congue
-    java.lang.Object c -> aptent
+    void play(org.bukkit.entity.Player) -> iifh64059hi
+    void play(org.bukkit.Location) -> iifh64059hi
+    void play(org.bukkit.entity.Player,org.bukkit.util.Vector) -> iifh64059hi
+    java.lang.String getSound() -> djpw27768xo
+    void setSound(java.lang.String) -> wamx177398yk
+    org.bukkit.Sound getiSound() -> qlvm83673os
+    void setiSound(org.bukkit.Sound) -> iifh64059hi
+    java.lang.Float getVolume() -> vpkj154163gv
+    void setVolume(java.lang.Float) -> iifh64059hi
+    java.lang.Float getPitch() -> xybv60305wt
+    void setPitch(java.lang.Float) -> yrgc93536dq
+surge.collection.GTriset -> com.volmit.react.ixqj103981dq:
+    java.lang.Object a -> yvfy188279xj
+    java.lang.Object b -> einy39770xh
+    java.lang.Object c -> yaqo128910rw
     void <init>(java.lang.Object,java.lang.Object,java.lang.Object) -> <init>
-    java.lang.Object getA() -> leo
-    void setA(java.lang.Object) -> Lorem
-    java.lang.Object getB() -> congue
-    void setB(java.lang.Object) -> ipsum
-    java.lang.Object getC() -> lorem
-    void setC(java.lang.Object) -> consectetur
-surge.control.AmpedPlugin -> com.volmit.react.per:
-    surge.collection.GList controllers -> per
-    surge.pool.ParallelPoolManager pp -> conubia
+    java.lang.Object getA() -> pkul92410me
+    void setA(java.lang.Object) -> iifh64059hi
+    java.lang.Object getB() -> gejb111926sn
+    void setB(java.lang.Object) -> yrgc93536dq
+    java.lang.Object getC() -> mrrs49729ic
+    void setC(java.lang.Object) -> euwq104639au
+surge.control.AmpedPlugin -> com.volmit.react.xpvn79073uo:
+    surge.collection.GList controllers -> cdro17756to
+    surge.pool.ParallelPoolManager pp -> gpfc195975lf
     void <init>() -> <init>
     void onLoad() -> onLoad
     void onEnable() -> onEnable
     void onDisable() -> onDisable
-    surge.collection.GList getControllers() -> mattis
-    void registerController(surge.control.IController) -> Lorem
-    void onTick() -> elit
-    java.lang.String getTickName() -> mollis
-    surge.pool.ParallelPoolManager getThreadPool() -> nisl
-    void onControllerRegistry() -> Lorem
-    void onStart(surge.util.Protocol) -> Lorem
-    void onStop() -> ipsum
-    void onPostInit() -> dolor
-    void onPreInit() -> sit
-surge.control.Control -> com.volmit.react.conubia:
-surge.control.Controller -> com.volmit.react.nostra:
+    surge.collection.GList getControllers() -> rpvl119344rb
+    void registerController(surge.control.IController) -> iifh64059hi
+    void onTick() -> alsm125505oe
+    java.lang.String getTickName() -> wret15687hj
+    surge.pool.ParallelPoolManager getThreadPool() -> papu96466xi
+    void onControllerRegistry() -> euwq104639au
+    void onStart(surge.util.Protocol) -> iifh64059hi
+    void onStop() -> rsex75607ra
+    void onPostInit() -> rohx185625dm
+    void onPreInit() -> dskh111417ns
+surge.control.Control -> com.volmit.react.hygq169956ge:
+surge.control.Controller -> com.volmit.react.mrrs49729ic:
     void <init>() -> <init>
-surge.control.Disable -> com.volmit.react.inceptos:
-surge.control.Enable -> com.volmit.react.himenaeos:
-surge.control.IController -> com.volmit.react.Aenean:
+surge.control.Disable -> com.volmit.react.vpqf174568ku:
+surge.control.Enable -> com.volmit.react.djpw27768xo:
+surge.control.IController -> com.volmit.react.qlvm83673os:
     void start() -> start
     void stop() -> stop
     void tick() -> tick
-surge.control.Instance -> com.volmit.react.quam:
-surge.control.Plugin -> com.volmit.react.vestibulum:
-surge.control.SurgePlugin -> com.volmit.react.lorem:
-    void onStart(surge.util.Protocol) -> Lorem
-    void onStop() -> ipsum
-    void onPostInit() -> dolor
-    void onPreInit() -> sit
-    void onControllerRegistry() -> Lorem
-    void registerController(surge.control.IController) -> Lorem
-    surge.collection.GList getControllers() -> mattis
-    surge.pool.ParallelPoolManager getThreadPool() -> nisl
-surge.hotload.HotloadManager -> com.volmit.react.scelerisque:
-    surge.collection.GMap filemods -> nostra
-    surge.collection.GMap filesizes -> inceptos
-    surge.collection.GMap fileacts -> himenaeos
+surge.control.Instance -> com.volmit.react.vpkj154163gv:
+surge.control.Plugin -> com.volmit.react.xybv60305wt:
+surge.control.SurgePlugin -> com.volmit.react.rpvl119344rb:
+    void onStart(surge.util.Protocol) -> iifh64059hi
+    void onStop() -> rsex75607ra
+    void onPostInit() -> rohx185625dm
+    void onPreInit() -> dskh111417ns
+    void onControllerRegistry() -> euwq104639au
+    void registerController(surge.control.IController) -> iifh64059hi
+    surge.collection.GList getControllers() -> rpvl119344rb
+    surge.pool.ParallelPoolManager getThreadPool() -> papu96466xi
+surge.hotload.HotloadManager -> com.volmit.react.wret15687hj:
+    surge.collection.GMap filemods -> huda156689ym
+    surge.collection.GMap filesizes -> ixqj103981dq
+    surge.collection.GMap fileacts -> xpvn79073uo
     void <init>() -> <init>
-    void track(java.io.File,java.lang.Runnable) -> Lorem
-    void untrack(java.io.File) -> ipsum
-    void untrackall() -> purus
-    void onTick() -> elit
-    java.lang.String getTickName() -> mollis
-surge.json.HTTP -> com.volmit.react.sollicitudin:
-    java.lang.String CRLF -> Aenean
+    void track(java.io.File,java.lang.Runnable) -> iifh64059hi
+    void untrack(java.io.File) -> yrgc93536dq
+    void untrackall() -> rlho70738xa
+    void onTick() -> alsm125505oe
+    java.lang.String getTickName() -> wret15687hj
+surge.json.HTTP -> com.volmit.react.papu96466xi:
+    java.lang.String CRLF -> hygq169956ge
     void <init>() -> <init>
-    surge.json.JSONObject toJSONObject(java.lang.String) -> dolor
-    java.lang.String toString(surge.json.JSONObject) -> ipsum
-surge.json.HTTPTokener -> com.volmit.react.lacus:
+    surge.json.JSONObject toJSONObject(java.lang.String) -> jais130334gx
+    java.lang.String toString(surge.json.JSONObject) -> yrgc93536dq
+surge.json.HTTPTokener -> com.volmit.react.rlho70738xa:
     void <init>(java.lang.String) -> <init>
     java.lang.String nextToken() -> nextToken
-surge.json.JSONArray -> com.volmit.react.Vestibulum:
-    java.util.ArrayList myArrayList -> quam
+surge.json.JSONArray -> com.volmit.react.wabr110996qy:
+    java.util.ArrayList myArrayList -> mrrs49729ic
     void <init>() -> <init>
     void <init>(surge.json.JSONTokener) -> <init>
     void <init>(java.lang.String) -> <init>
@@ -314,73 +416,73 @@ surge.json.JSONArray -> com.volmit.react.Vestibulum:
     java.lang.Object get(int) -> get
     boolean getBoolean(int) -> getBoolean
     double getDouble(int) -> getDouble
-    java.lang.Enum getEnum(java.lang.Class,int) -> Lorem
+    java.lang.Enum getEnum(java.lang.Class,int) -> iifh64059hi
     java.math.BigDecimal getBigDecimal(int) -> getBigDecimal
-    java.math.BigInteger getBigInteger(int) -> dolor
+    java.math.BigInteger getBigInteger(int) -> jais130334gx
     int getInt(int) -> getInt
-    surge.json.JSONArray getJSONArray(int) -> sit
-    surge.json.JSONObject getJSONObject(int) -> amet
+    surge.json.JSONArray getJSONArray(int) -> nqxu196357wv
+    surge.json.JSONObject getJSONObject(int) -> euwq104639au
     long getLong(int) -> getLong
     java.lang.String getString(int) -> getString
     boolean isNull(int) -> isNull
-    java.lang.String join(java.lang.String) -> sit
+    java.lang.String join(java.lang.String) -> nqxu196357wv
     int length() -> length
-    java.lang.Object opt(int) -> consectetur
-    boolean optBoolean(int) -> adipiscing
-    boolean optBoolean(int,boolean) -> Lorem
-    double optDouble(int) -> elit
-    double optDouble(int,double) -> Lorem
-    int optInt(int) -> Sed
-    int optInt(int,int) -> Lorem
-    java.lang.Enum optEnum(java.lang.Class,int) -> ipsum
-    java.lang.Enum optEnum(java.lang.Class,int,java.lang.Enum) -> Lorem
-    java.math.BigInteger optBigInteger(int,java.math.BigInteger) -> Lorem
-    java.math.BigDecimal optBigDecimal(int,java.math.BigDecimal) -> Lorem
-    surge.json.JSONArray optJSONArray(int) -> vel
-    surge.json.JSONObject optJSONObject(int) -> nibh
-    long optLong(int) -> quis
-    long optLong(int,long) -> Lorem
-    java.lang.String optString(int) -> auctor
-    java.lang.String optString(int,java.lang.String) -> Lorem
-    surge.json.JSONArray put(boolean) -> Lorem
-    surge.json.JSONArray put(java.util.Collection) -> Lorem
-    surge.json.JSONArray put(double) -> Lorem
-    surge.json.JSONArray put(int) -> rhoncus
-    surge.json.JSONArray put(long) -> Lorem
-    surge.json.JSONArray put(java.util.Map) -> Lorem
-    surge.json.JSONArray put(java.lang.Object) -> elit
-    surge.json.JSONArray put(int,boolean) -> ipsum
-    surge.json.JSONArray put(int,java.util.Collection) -> Lorem
-    surge.json.JSONArray put(int,double) -> ipsum
-    surge.json.JSONArray put(int,int) -> ipsum
-    surge.json.JSONArray put(int,long) -> ipsum
-    surge.json.JSONArray put(int,java.util.Map) -> Lorem
-    surge.json.JSONArray put(int,java.lang.Object) -> Lorem
+    java.lang.Object opt(int) -> rsex75607ra
+    boolean optBoolean(int) -> rohx185625dm
+    boolean optBoolean(int,boolean) -> iifh64059hi
+    double optDouble(int) -> dskh111417ns
+    double optDouble(int,double) -> iifh64059hi
+    int optInt(int) -> kpsc178172xr
+    int optInt(int,int) -> iifh64059hi
+    java.lang.Enum optEnum(java.lang.Class,int) -> yrgc93536dq
+    java.lang.Enum optEnum(java.lang.Class,int,java.lang.Enum) -> iifh64059hi
+    java.math.BigInteger optBigInteger(int,java.math.BigInteger) -> iifh64059hi
+    java.math.BigDecimal optBigDecimal(int,java.math.BigDecimal) -> iifh64059hi
+    surge.json.JSONArray optJSONArray(int) -> lygn130750fd
+    surge.json.JSONObject optJSONObject(int) -> tgwu42804si
+    long optLong(int) -> alsm125505oe
+    long optLong(int,long) -> iifh64059hi
+    java.lang.String optString(int) -> oqof171026an
+    java.lang.String optString(int,java.lang.String) -> iifh64059hi
+    surge.json.JSONArray put(boolean) -> iifh64059hi
+    surge.json.JSONArray put(java.util.Collection) -> iifh64059hi
+    surge.json.JSONArray put(double) -> iifh64059hi
+    surge.json.JSONArray put(int) -> jhnx187598nc
+    surge.json.JSONArray put(long) -> iifh64059hi
+    surge.json.JSONArray put(java.util.Map) -> iifh64059hi
+    surge.json.JSONArray put(java.lang.Object) -> rohx185625dm
+    surge.json.JSONArray put(int,boolean) -> yrgc93536dq
+    surge.json.JSONArray put(int,java.util.Collection) -> iifh64059hi
+    surge.json.JSONArray put(int,double) -> yrgc93536dq
+    surge.json.JSONArray put(int,int) -> yrgc93536dq
+    surge.json.JSONArray put(int,long) -> yrgc93536dq
+    surge.json.JSONArray put(int,java.util.Map) -> iifh64059hi
+    surge.json.JSONArray put(int,java.lang.Object) -> iifh64059hi
     java.lang.Object remove(int) -> remove
-    boolean similar(java.lang.Object) -> Sed
-    surge.json.JSONObject toJSONObject(surge.json.JSONArray) -> Lorem
+    boolean similar(java.lang.Object) -> dskh111417ns
+    surge.json.JSONObject toJSONObject(surge.json.JSONArray) -> iifh64059hi
     java.lang.String toString() -> toString
     java.lang.String toString(int) -> toString
-    java.io.Writer write(java.io.Writer) -> Lorem
-    java.io.Writer write(java.io.Writer,int,int) -> Lorem
-surge.json.JSONException -> com.volmit.react.turpis:
+    java.io.Writer write(java.io.Writer) -> iifh64059hi
+    java.io.Writer write(java.io.Writer,int,int) -> iifh64059hi
+surge.json.JSONException -> com.volmit.react.pjvp156019lh:
     long serialVersionUID -> serialVersionUID
-    java.lang.Throwable cause -> vestibulum
+    java.lang.Throwable cause -> vpqf174568ku
     void <init>(java.lang.String) -> <init>
     void <init>(java.lang.Throwable) -> <init>
     java.lang.Throwable getCause() -> getCause
-surge.json.JSONML -> com.volmit.react.mattis:
+surge.json.JSONML -> com.volmit.react.keyr135754bk:
     void <init>() -> <init>
-    java.lang.Object parse(surge.json.XMLTokener,boolean,surge.json.JSONArray) -> Lorem
-    surge.json.JSONArray toJSONArray(java.lang.String) -> amet
-    surge.json.JSONArray toJSONArray(surge.json.XMLTokener) -> Lorem
-    surge.json.JSONObject toJSONObject(surge.json.XMLTokener) -> ipsum
-    surge.json.JSONObject toJSONObject(java.lang.String) -> dolor
-    java.lang.String toString(surge.json.JSONArray) -> ipsum
-    java.lang.String toString(surge.json.JSONObject) -> ipsum
-surge.json.JSONObject -> com.volmit.react.mollis:
+    java.lang.Object parse(surge.json.XMLTokener,boolean,surge.json.JSONArray) -> iifh64059hi
+    surge.json.JSONArray toJSONArray(java.lang.String) -> euwq104639au
+    surge.json.JSONArray toJSONArray(surge.json.XMLTokener) -> iifh64059hi
+    surge.json.JSONObject toJSONObject(surge.json.XMLTokener) -> yrgc93536dq
+    surge.json.JSONObject toJSONObject(java.lang.String) -> jais130334gx
+    java.lang.String toString(surge.json.JSONArray) -> yrgc93536dq
+    java.lang.String toString(surge.json.JSONObject) -> yrgc93536dq
+surge.json.JSONObject -> com.volmit.react.rtom44013op:
     java.util.Map map -> map
-    java.lang.Object NULL -> lorem
+    java.lang.Object NULL -> djpw27768xo
     void <init>() -> <init>
     void <init>(surge.json.JSONObject,java.lang.String[]) -> <init>
     void <init>(surge.json.JSONTokener) -> <init>
@@ -389,1056 +491,1056 @@ surge.json.JSONObject -> com.volmit.react.mollis:
     void <init>(java.lang.Object,java.lang.String[]) -> <init>
     void <init>(java.lang.String) -> <init>
     void <init>(java.lang.String,java.util.Locale) -> <init>
-    surge.json.JSONObject accumulate(java.lang.String,java.lang.Object) -> ipsum
-    surge.json.JSONObject append(java.lang.String,java.lang.Object) -> dolor
-    java.lang.String doubleToString(double) -> ipsum
+    surge.json.JSONObject accumulate(java.lang.String,java.lang.Object) -> yrgc93536dq
+    surge.json.JSONObject append(java.lang.String,java.lang.Object) -> wamx177398yk
+    java.lang.String doubleToString(double) -> yrgc93536dq
     java.lang.Object get(java.lang.String) -> get
     java.lang.Enum getEnum(java.lang.Class,java.lang.String) -> getEnum
     boolean getBoolean(java.lang.String) -> getBoolean
-    java.math.BigInteger getBigInteger(java.lang.String) -> consectetur
+    java.math.BigInteger getBigInteger(java.lang.String) -> rsex75607ra
     java.math.BigDecimal getBigDecimal(java.lang.String) -> getBigDecimal
     double getDouble(java.lang.String) -> getDouble
     int getInt(java.lang.String) -> getInt
-    surge.json.JSONArray getJSONArray(java.lang.String) -> adipiscing
-    surge.json.JSONObject getJSONObject(java.lang.String) -> elit
+    surge.json.JSONArray getJSONArray(java.lang.String) -> rohx185625dm
+    surge.json.JSONObject getJSONObject(java.lang.String) -> dskh111417ns
     long getLong(java.lang.String) -> getLong
-    java.lang.String[] getNames(surge.json.JSONObject) -> dolor
-    java.lang.String[] getNames(java.lang.Object) -> vel
+    java.lang.String[] getNames(surge.json.JSONObject) -> wamx177398yk
+    java.lang.String[] getNames(java.lang.Object) -> kpsc178172xr
     java.lang.String getString(java.lang.String) -> getString
     boolean has(java.lang.String) -> has
-    surge.json.JSONObject increment(java.lang.String) -> Sed
-    boolean isNull(java.lang.String) -> vel
+    surge.json.JSONObject increment(java.lang.String) -> kpsc178172xr
+    boolean isNull(java.lang.String) -> lygn130750fd
     java.util.Iterator keys() -> keys
     java.util.Set keySet() -> keySet
     int length() -> length
-    surge.json.JSONArray names() -> malesuada
-    java.lang.String numberToString(java.lang.Number) -> Lorem
-    java.lang.Object opt(java.lang.String) -> nibh
-    java.lang.Enum optEnum(java.lang.Class,java.lang.String) -> Lorem
-    java.lang.Enum optEnum(java.lang.Class,java.lang.String,java.lang.Enum) -> Lorem
-    boolean optBoolean(java.lang.String) -> quis
-    boolean optBoolean(java.lang.String,boolean) -> ipsum
-    double optDouble(java.lang.String) -> auctor
-    java.math.BigInteger optBigInteger(java.lang.String,java.math.BigInteger) -> Lorem
-    java.math.BigDecimal optBigDecimal(java.lang.String,java.math.BigDecimal) -> Lorem
-    double optDouble(java.lang.String,double) -> ipsum
-    int optInt(java.lang.String) -> rhoncus
-    int optInt(java.lang.String,int) -> ipsum
-    surge.json.JSONArray optJSONArray(java.lang.String) -> eu
-    surge.json.JSONObject optJSONObject(java.lang.String) -> nec
-    long optLong(java.lang.String) -> est
-    long optLong(java.lang.String,long) -> ipsum
-    java.lang.String optString(java.lang.String) -> Aliquam
-    java.lang.String optString(java.lang.String,java.lang.String) -> Lorem
-    void populateMap(java.lang.Object) -> nibh
-    surge.json.JSONObject put(java.lang.String,boolean) -> dolor
-    surge.json.JSONObject put(java.lang.String,java.util.Collection) -> Lorem
-    surge.json.JSONObject put(java.lang.String,double) -> dolor
-    surge.json.JSONObject put(java.lang.String,int) -> dolor
-    surge.json.JSONObject put(java.lang.String,long) -> dolor
-    surge.json.JSONObject put(java.lang.String,java.util.Map) -> Lorem
-    surge.json.JSONObject put(java.lang.String,java.lang.Object) -> sit
-    surge.json.JSONObject putOnce(java.lang.String,java.lang.Object) -> amet
-    surge.json.JSONObject putOpt(java.lang.String,java.lang.Object) -> consectetur
+    surge.json.JSONArray names() -> wabr110996qy
+    java.lang.String numberToString(java.lang.Number) -> iifh64059hi
+    java.lang.Object opt(java.lang.String) -> tgwu42804si
+    java.lang.Enum optEnum(java.lang.Class,java.lang.String) -> iifh64059hi
+    java.lang.Enum optEnum(java.lang.Class,java.lang.String,java.lang.Enum) -> iifh64059hi
+    boolean optBoolean(java.lang.String) -> alsm125505oe
+    boolean optBoolean(java.lang.String,boolean) -> yrgc93536dq
+    double optDouble(java.lang.String) -> oqof171026an
+    java.math.BigInteger optBigInteger(java.lang.String,java.math.BigInteger) -> iifh64059hi
+    java.math.BigDecimal optBigDecimal(java.lang.String,java.math.BigDecimal) -> iifh64059hi
+    double optDouble(java.lang.String,double) -> yrgc93536dq
+    int optInt(java.lang.String) -> jhnx187598nc
+    int optInt(java.lang.String,int) -> yrgc93536dq
+    surge.json.JSONArray optJSONArray(java.lang.String) -> pocr154074ip
+    surge.json.JSONObject optJSONObject(java.lang.String) -> mctm31570xt
+    long optLong(java.lang.String) -> chrr120560bo
+    long optLong(java.lang.String,long) -> yrgc93536dq
+    java.lang.String optString(java.lang.String) -> ujqi164485uq
+    java.lang.String optString(java.lang.String,java.lang.String) -> iifh64059hi
+    void populateMap(java.lang.Object) -> lygn130750fd
+    surge.json.JSONObject put(java.lang.String,boolean) -> wamx177398yk
+    surge.json.JSONObject put(java.lang.String,java.util.Collection) -> iifh64059hi
+    surge.json.JSONObject put(java.lang.String,double) -> wamx177398yk
+    surge.json.JSONObject put(java.lang.String,int) -> wamx177398yk
+    surge.json.JSONObject put(java.lang.String,long) -> wamx177398yk
+    surge.json.JSONObject put(java.lang.String,java.util.Map) -> iifh64059hi
+    surge.json.JSONObject put(java.lang.String,java.lang.Object) -> jais130334gx
+    surge.json.JSONObject putOnce(java.lang.String,java.lang.Object) -> nqxu196357wv
+    surge.json.JSONObject putOpt(java.lang.String,java.lang.Object) -> euwq104639au
     java.lang.String quote(java.lang.String) -> quote
-    java.io.Writer quote(java.lang.String,java.io.Writer) -> Lorem
-    java.lang.Object remove(java.lang.String) -> posuere
-    boolean similar(java.lang.Object) -> Sed
+    java.io.Writer quote(java.lang.String,java.io.Writer) -> iifh64059hi
+    java.lang.Object remove(java.lang.String) -> ptvu82346ei
+    boolean similar(java.lang.Object) -> dskh111417ns
     java.lang.Object stringToValue(java.lang.String) -> stringToValue
-    void testValidity(java.lang.Object) -> quis
-    surge.json.JSONArray toJSONArray(surge.json.JSONArray) -> dolor
+    void testValidity(java.lang.Object) -> tgwu42804si
+    surge.json.JSONArray toJSONArray(surge.json.JSONArray) -> wamx177398yk
     java.lang.String toString() -> toString
     java.lang.String toString(int) -> toString
     java.lang.String valueToString(java.lang.Object) -> valueToString
     java.lang.Object wrap(java.lang.Object) -> wrap
-    java.io.Writer write(java.io.Writer) -> Lorem
-    java.io.Writer writeValue(java.io.Writer,java.lang.Object,int,int) -> Lorem
-    void indent(java.io.Writer,int) -> Lorem
-    java.io.Writer write(java.io.Writer,int,int) -> Lorem
+    java.io.Writer write(java.io.Writer) -> iifh64059hi
+    java.io.Writer writeValue(java.io.Writer,java.lang.Object,int,int) -> iifh64059hi
+    void indent(java.io.Writer,int) -> iifh64059hi
+    java.io.Writer write(java.io.Writer,int,int) -> iifh64059hi
     void <clinit>() -> <clinit>
-surge.json.JSONObject$1 -> com.volmit.react.nisl:
-surge.json.JSONObject$Null -> com.volmit.react.purus:
+surge.json.JSONObject$1 -> com.volmit.react.funw171148vf:
+surge.json.JSONObject$Null -> com.volmit.react.aqxw47350bf:
     void <init>() -> <init>
     java.lang.Object clone() -> clone
     boolean equals(java.lang.Object) -> equals
     java.lang.String toString() -> toString
     void <init>(surge.json.JSONObject$1) -> <init>
-surge.json.JSONString -> com.volmit.react.malesuada:
+surge.json.JSONString -> com.volmit.react.jchv75893gv:
     java.lang.String toJSONString() -> toJSONString
-surge.json.JSONStringer -> com.volmit.react.dui:
+surge.json.JSONStringer -> com.volmit.react.ayft76486wo:
     void <init>() -> <init>
     java.lang.String toString() -> toString
-surge.json.JSONTokener -> com.volmit.react.facilisis:
-    long character -> scelerisque
+surge.json.JSONTokener -> com.volmit.react.hksk76417qn:
+    long character -> qlvm83673os
     boolean eof -> eof
-    long index -> sollicitudin
-    long line -> lacus
-    char previous -> Vestibulum
+    long index -> vpkj154163gv
+    long line -> xybv60305wt
+    char previous -> rpvl119344rb
     java.io.Reader reader -> reader
-    boolean usePrevious -> turpis
+    boolean usePrevious -> wret15687hj
     void <init>(java.io.Reader) -> <init>
     void <init>(java.io.InputStream) -> <init>
     void <init>(java.lang.String) -> <init>
-    void back() -> dui
-    int dehexchar(char) -> Lorem
-    boolean end() -> facilisis
-    boolean more() -> suscipit
+    void back() -> pjvp156019lh
+    int dehexchar(char) -> iifh64059hi
+    boolean end() -> keyr135754bk
+    boolean more() -> rtom44013op
     char next() -> next
-    char next(char) -> ipsum
-    java.lang.String next(int) -> eu
-    char nextClean() -> sapien
-    java.lang.String nextString(char) -> dolor
-    java.lang.String nextTo(char) -> sit
-    java.lang.String nextTo(java.lang.String) -> diam
-    java.lang.Object nextValue() -> et
-    char skipTo(char) -> amet
-    surge.json.JSONException syntaxError(java.lang.String) -> erat
+    char next(char) -> yrgc93536dq
+    java.lang.String next(int) -> pocr154074ip
+    char nextClean() -> funw171148vf
+    java.lang.String nextString(char) -> wamx177398yk
+    java.lang.String nextTo(char) -> jais130334gx
+    java.lang.String nextTo(java.lang.String) -> dlyy17569cp
+    java.lang.Object nextValue() -> aqxw47350bf
+    char skipTo(char) -> nqxu196357wv
+    surge.json.JSONException syntaxError(java.lang.String) -> xgot116617hi
     java.lang.String toString() -> toString
-surge.json.JSONWriter -> com.volmit.react.suscipit:
-    int maxdepth -> mattis
-    boolean comma -> mollis
-    char mode -> nisl
-    surge.json.JSONObject[] stack -> purus
+surge.json.JSONWriter -> com.volmit.react.acmi7158nv:
+    int maxdepth -> papu96466xi
+    boolean comma -> rlho70738xa
+    char mode -> wabr110996qy
+    surge.json.JSONObject[] stack -> pjvp156019lh
     int top -> top
     java.io.Writer writer -> writer
     void <init>(java.io.Writer) -> <init>
-    surge.json.JSONWriter append(java.lang.String) -> at
-    surge.json.JSONWriter array() -> Nam
-    surge.json.JSONWriter end(char,char) -> Lorem
-    surge.json.JSONWriter endArray() -> enim
-    surge.json.JSONWriter endObject() -> sed
-    surge.json.JSONWriter key(java.lang.String) -> laoreet
-    surge.json.JSONWriter object() -> libero
-    void pop(char) -> consectetur
-    void push(surge.json.JSONObject) -> sit
-    surge.json.JSONWriter value(boolean) -> ipsum
-    surge.json.JSONWriter value(double) -> dolor
-    surge.json.JSONWriter value(long) -> ipsum
-    surge.json.JSONWriter value(java.lang.Object) -> auctor
-surge.json.XML -> com.volmit.react.sapien:
-    java.lang.Character AMP -> malesuada
-    java.lang.Character APOS -> dui
-    java.lang.Character BANG -> facilisis
-    java.lang.Character EQ -> suscipit
-    java.lang.Character GT -> sapien
-    java.lang.Character LT -> et
-    java.lang.Character QUEST -> Nam
-    java.lang.Character QUOT -> enim
-    java.lang.Character SLASH -> sed
+    surge.json.JSONWriter append(java.lang.String) -> fehk172577aq
+    surge.json.JSONWriter array() -> jchv75893gv
+    surge.json.JSONWriter end(char,char) -> iifh64059hi
+    surge.json.JSONWriter endArray() -> ayft76486wo
+    surge.json.JSONWriter endObject() -> hksk76417qn
+    surge.json.JSONWriter key(java.lang.String) -> yqkw5943na
+    surge.json.JSONWriter object() -> acmi7158nv
+    void pop(char) -> euwq104639au
+    void push(surge.json.JSONObject) -> jais130334gx
+    surge.json.JSONWriter value(boolean) -> yrgc93536dq
+    surge.json.JSONWriter value(double) -> wamx177398yk
+    surge.json.JSONWriter value(long) -> yrgc93536dq
+    surge.json.JSONWriter value(java.lang.Object) -> alsm125505oe
+surge.json.XML -> com.volmit.react.yvwj103764mb:
+    java.lang.Character AMP -> keyr135754bk
+    java.lang.Character APOS -> rtom44013op
+    java.lang.Character BANG -> funw171148vf
+    java.lang.Character EQ -> aqxw47350bf
+    java.lang.Character GT -> jchv75893gv
+    java.lang.Character LT -> ayft76486wo
+    java.lang.Character QUEST -> hksk76417qn
+    java.lang.Character QUOT -> acmi7158nv
+    java.lang.Character SLASH -> yvwj103764mb
     void <clinit>() -> <clinit>
     void <init>() -> <init>
     java.lang.String escape(java.lang.String) -> escape
-    void noSpace(java.lang.String) -> leo
-    boolean parse(surge.json.XMLTokener,surge.json.JSONObject,java.lang.String) -> Lorem
+    void noSpace(java.lang.String) -> fiwx75350rn
+    boolean parse(surge.json.XMLTokener,surge.json.JSONObject,java.lang.String) -> iifh64059hi
     java.lang.Object stringToValue(java.lang.String) -> stringToValue
-    surge.json.JSONObject toJSONObject(java.lang.String) -> dolor
+    surge.json.JSONObject toJSONObject(java.lang.String) -> jais130334gx
     java.lang.String toString(java.lang.Object) -> toString
     java.lang.String toString(java.lang.Object,java.lang.String) -> toString
-surge.json.XMLTokener -> com.volmit.react.et:
-    java.util.HashMap entity -> libero
+surge.json.XMLTokener -> com.volmit.react.yien82059mp:
+    java.util.HashMap entity -> yien82059mp
     void <clinit>() -> <clinit>
     void <init>(java.lang.String) -> <init>
-    java.lang.String nextCDATA() -> lobortis
-    java.lang.Object nextContent() -> accumsan
-    java.lang.Object nextEntity(char) -> adipiscing
-    java.lang.Object nextMeta() -> In
-    java.lang.Object nextToken() -> non
-    boolean skipPast(java.lang.String) -> congue
-surge.math.ArrayUtils -> com.volmit.react.Nam:
+    java.lang.String nextCDATA() -> yvwj103764mb
+    java.lang.Object nextContent() -> yien82059mp
+    java.lang.Object nextEntity(char) -> rsex75607ra
+    java.lang.Object nextMeta() -> cavi140560sr
+    java.lang.Object nextToken() -> jawe164165su
+    boolean skipPast(java.lang.String) -> xybc8061pc
+surge.math.ArrayUtils -> com.volmit.react.cavi140560sr:
     void <init>() -> <init>
-    void shiftRight(double[],double) -> Lorem
-    void wrapRight(double[]) -> Lorem
+    void shiftRight(double[],double) -> iifh64059hi
+    void wrapRight(double[]) -> iifh64059hi
     void fill(double[],double) -> fill
-surge.math.Average -> com.volmit.react.enim:
-    double[] values -> lobortis
-    double average -> accumsan
-    boolean dirty -> In
+surge.math.Average -> com.volmit.react.jawe164165su:
+    double[] values -> cavi140560sr
+    double average -> jawe164165su
+    boolean dirty -> rnhm136281db
     void <init>(int) -> <init>
-    void put(double) -> sit
+    void put(double) -> jais130334gx
     double getAverage() -> getAverage
-    void calculateAverage() -> felis
-surge.math.M -> com.volmit.react.sed:
+    void calculateAverage() -> rnhm136281db
+surge.math.M -> com.volmit.react.rnhm136281db:
     void <init>() -> <init>
-    double maxSafeRadius(org.bukkit.Location) -> ipsum
-    double clip(double,double,double) -> Lorem
-    double maxSafeRadius(org.bukkit.Location,double,double) -> Lorem
-    boolean isLoaded(org.bukkit.Location,double) -> Lorem
-    surge.collection.GList cradShift(org.bukkit.Location,double) -> ipsum
-    int chunkShift(int) -> nec
-    boolean isLoaded(org.bukkit.World,int,int) -> Lorem
-    boolean isLoaded(org.bukkit.Location) -> dolor
-    double dof(double,double) -> Lorem
-    double tps(long,int) -> Lorem
-    int ticksFromNS(long) -> dolor
-    long ns() -> id
-    long ms() -> mi
-    double avg(surge.collection.GList) -> dolor
-    void lim(surge.collection.GList,int) -> Lorem
-    surge.collection.GList getChunks(org.bukkit.Chunk,int) -> Lorem
-surge.math.Profiler -> com.volmit.react.libero:
-    long nanos -> non
-    long startNano -> felis
-    long millis -> mi
-    long startMillis -> lacinia
-    double time -> semper
-    boolean profiling -> sagittis
+    double maxSafeRadius(org.bukkit.Location) -> yrgc93536dq
+    double clip(double,double,double) -> iifh64059hi
+    double maxSafeRadius(org.bukkit.Location,double,double) -> iifh64059hi
+    boolean isLoaded(org.bukkit.Location,double) -> iifh64059hi
+    surge.collection.GList cradShift(org.bukkit.Location,double) -> yrgc93536dq
+    int chunkShift(int) -> mctm31570xt
+    boolean isLoaded(org.bukkit.World,int,int) -> iifh64059hi
+    boolean isLoaded(org.bukkit.Location) -> wamx177398yk
+    double dof(double,double) -> iifh64059hi
+    double tps(long,int) -> iifh64059hi
+    int ticksFromNS(long) -> wamx177398yk
+    long ns() -> hqbr126569eq
+    long ms() -> crvj99800fy
+    double avg(surge.collection.GList) -> wamx177398yk
+    void lim(surge.collection.GList,int) -> iifh64059hi
+    surge.collection.GList getChunks(org.bukkit.Chunk,int) -> iifh64059hi
+surge.math.Profiler -> com.volmit.react.hqbr126569eq:
+    long nanos -> hqbr126569eq
+    long startNano -> crvj99800fy
+    long millis -> vlnk61568fm
+    long startMillis -> lcyj180039cr
+    double time -> dtob124048sd
+    boolean profiling -> dxbh62935wq
     void <init>() -> <init>
     void begin() -> begin
     void end() -> end
     void reset() -> reset
-    java.lang.String getTime(int) -> est
-    double getTicks() -> lacinia
+    java.lang.String getTime(int) -> chrr120560bo
+    double getTicks() -> vlnk61568fm
     double getSeconds() -> getSeconds
-    double getMinutes() -> semper
-    double getHours() -> sagittis
-    double getMilliseconds() -> euismod
-    long getNanoseconds() -> justo
-    long getNanos() -> in
-    long getStartNano() -> Curabitur
+    double getMinutes() -> lcyj180039cr
+    double getHours() -> dtob124048sd
+    double getMilliseconds() -> dxbh62935wq
+    long getNanoseconds() -> fbdr176837ok
+    long getNanos() -> hmxl168669du
+    long getStartNano() -> xoec179166fg
     long getMillis() -> getMillis
-    long getStartMillis() -> porttitor
-    double getTime() -> velit
-    boolean isProfiling() -> interdum
-surge.nms.NMSClass -> com.volmit.react.lobortis:
-    boolean init -> euismod
+    long getStartMillis() -> aebb117654mp
+    double getTime() -> smfq14025tn
+    boolean isProfiling() -> fmck136145pi
+surge.nms.NMSClass -> com.volmit.react.crvj99800fy:
+    boolean init -> fbdr176837ok
     int version -> version
-    java.lang.Class PacketPlayOutPlayerListHeaderFooter -> justo
-    java.lang.Class IChatBaseComponent -> in
-    java.lang.Class ChatSerializer -> Curabitur
-    java.lang.Class PacketPlayOutPlayerInfo -> porttitor
-    java.lang.Class PlayerInfoData -> velit
-    java.lang.Class EnumPlayerInfoAction -> interdum
-    java.lang.Class GameProfile -> Nullam
-    java.lang.Class EnumGamemode -> mauris
-    java.lang.Class TileEntitySkull -> vitae
-    java.lang.Class LoadingCache -> aliquet
+    java.lang.Class PacketPlayOutPlayerListHeaderFooter -> hmxl168669du
+    java.lang.Class IChatBaseComponent -> xoec179166fg
+    java.lang.Class ChatSerializer -> aebb117654mp
+    java.lang.Class PacketPlayOutPlayerInfo -> smfq14025tn
+    java.lang.Class PlayerInfoData -> fmck136145pi
+    java.lang.Class EnumPlayerInfoAction -> ftjj10299yk
+    java.lang.Class GameProfile -> gilq24096pp
+    java.lang.Class EnumGamemode -> iulg76039ee
+    java.lang.Class TileEntitySkull -> vpqo2711et
+    java.lang.Class LoadingCache -> ytjn7022ol
     void <clinit>() -> <clinit>
     void <init>() -> <init>
-surge.nms.NMSX -> com.volmit.react.accumsan:
-    surge.nms.NMSX bountifulAPI -> Cras
-    boolean useOldMethods -> pretium
-    java.lang.String nmsver -> faucibus
-    java.lang.Object eTimes -> aliquam
-    java.lang.Object eTitle -> iaculis
-    java.lang.Object eSubtitle -> eget
+surge.nms.NMSX -> com.volmit.react.vlnk61568fm:
+    surge.nms.NMSX bountifulAPI -> vneo29329kk
+    boolean useOldMethods -> cgea92167kn
+    java.lang.String nmsver -> yyif129696sn
+    java.lang.Object eTimes -> ldvw142941fu
+    java.lang.Object eTitle -> ciej73550vg
+    java.lang.Object eSubtitle -> cfjn82847uw
     void <clinit>() -> <clinit>
     void <init>() -> <init>
     java.lang.String getVersion() -> getVersion
-    void setAi(org.bukkit.entity.LivingEntity,boolean) -> Lorem
-    java.lang.Class getCBNMSClass(java.lang.String) -> Class
-    java.lang.Class getCBClass(java.lang.String) -> aptent
-    java.lang.Object serializeChat(java.lang.String) -> taciti
-    java.lang.reflect.Field setAccessible(java.lang.reflect.Field) -> Lorem
-    java.lang.reflect.Method setAccessible(java.lang.reflect.Method) -> Lorem
+    void setAi(org.bukkit.entity.LivingEntity,boolean) -> iifh64059hi
+    java.lang.Class getCBNMSClass(java.lang.String) -> fold76472fm
+    java.lang.Class getCBClass(java.lang.String) -> ixit59488ge
+    java.lang.Object serializeChat(java.lang.String) -> pkul92410me
+    java.lang.reflect.Field setAccessible(java.lang.reflect.Field) -> iifh64059hi
+    java.lang.reflect.Method setAccessible(java.lang.reflect.Method) -> iifh64059hi
     java.lang.String getBukkitVersion() -> getBukkitVersion
-    java.lang.String nmsPackage() -> Nullam
-    java.lang.String craftPackage() -> mauris
-    void showPickup(org.bukkit.entity.Player,org.bukkit.entity.Entity,org.bukkit.entity.Entity) -> Lorem
-    void sendPacket(org.bukkit.entity.Player,java.lang.Object) -> Lorem
-    java.lang.Class getNMSClass(java.lang.String) -> sociosqu
-    void sendTitle(org.bukkit.entity.Player,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.String,java.lang.String) -> Lorem
-    void clearTitle(org.bukkit.entity.Player) -> ipsum
-    void sendTabTitle(org.bukkit.entity.Player,java.lang.String,java.lang.String) -> Lorem
-    void sendActionBar(org.bukkit.entity.Player,java.lang.String) -> Lorem
-    void sendActionBar(org.bukkit.entity.Player,java.lang.String,int) -> Lorem
-    void sendActionBarToAllPlayers(java.lang.String) -> ad
-    void sendActionBarToAllPlayers(java.lang.String,int) -> sit
-    java.lang.String getEntityName(org.bukkit.entity.Entity) -> Lorem
-    int ping(org.bukkit.entity.Player) -> dolor
-surge.nms.NMSX$1 -> com.volmit.react.In:
-    org.bukkit.entity.Player val$player -> dictum
+    java.lang.String nmsPackage() -> ftjj10299yk
+    java.lang.String craftPackage() -> gilq24096pp
+    void showPickup(org.bukkit.entity.Player,org.bukkit.entity.Entity,org.bukkit.entity.Entity) -> iifh64059hi
+    void sendPacket(org.bukkit.entity.Player,java.lang.Object) -> iifh64059hi
+    java.lang.Class getNMSClass(java.lang.String) -> gejb111926sn
+    void sendTitle(org.bukkit.entity.Player,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.String,java.lang.String) -> iifh64059hi
+    void clearTitle(org.bukkit.entity.Player) -> yrgc93536dq
+    void sendTabTitle(org.bukkit.entity.Player,java.lang.String,java.lang.String) -> iifh64059hi
+    void sendActionBar(org.bukkit.entity.Player,java.lang.String) -> iifh64059hi
+    void sendActionBar(org.bukkit.entity.Player,java.lang.String,int) -> iifh64059hi
+    void sendActionBarToAllPlayers(java.lang.String) -> yvfy188279xj
+    void sendActionBarToAllPlayers(java.lang.String,int) -> jais130334gx
+    java.lang.String getEntityName(org.bukkit.entity.Entity) -> iifh64059hi
+    int ping(org.bukkit.entity.Player) -> wamx177398yk
+surge.nms.NMSX$1 -> com.volmit.react.lcyj180039cr:
+    org.bukkit.entity.Player val$player -> fyst180240wj
     void <init>(org.bukkit.entity.Player) -> <init>
     void run() -> run
-surge.nms.NMSX$2 -> com.volmit.react.non:
-    org.bukkit.entity.Player val$player -> dictum
-    java.lang.String val$message -> orci
+surge.nms.NMSX$2 -> com.volmit.react.dtob124048sd:
+    org.bukkit.entity.Player val$player -> fyst180240wj
+    java.lang.String val$message -> svkb24914ya
     void <init>(org.bukkit.entity.Player,java.lang.String) -> <init>
     void run() -> run
-surge.nms.PacketUtil -> com.volmit.react.felis:
+surge.nms.PacketUtil -> com.volmit.react.dxbh62935wq:
     void <init>() -> <init>
-    surge.nms.PacketUtil$V getVersion() -> vitae
-    void sendTitle(org.bukkit.entity.Player,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.String,java.lang.String) -> Lorem
-    void clearTitle(org.bukkit.entity.Player) -> ipsum
-    void sendActionBar(org.bukkit.entity.Player,java.lang.String) -> Lorem
-surge.nms.PacketUtil$V -> com.volmit.react.id:
-    surge.nms.PacketUtil$V R17 -> eros
-    surge.nms.PacketUtil$V R18 -> imperdiet
-    surge.nms.PacketUtil$V R19 -> venenatis
-    surge.nms.PacketUtil$V R111 -> ex
-    surge.nms.PacketUtil$V R110 -> Etiam
-    surge.nms.PacketUtil$V R112 -> a
-    surge.nms.PacketUtil$V[] ENUM$VALUES -> tincidunt
+    surge.nms.PacketUtil$V getVersion() -> iulg76039ee
+    void sendTitle(org.bukkit.entity.Player,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.String,java.lang.String) -> iifh64059hi
+    void clearTitle(org.bukkit.entity.Player) -> yrgc93536dq
+    void sendActionBar(org.bukkit.entity.Player,java.lang.String) -> iifh64059hi
+surge.nms.PacketUtil$V -> com.volmit.react.fbdr176837ok:
+    surge.nms.PacketUtil$V R17 -> ocnh154288km
+    surge.nms.PacketUtil$V R18 -> yver144511rq
+    surge.nms.PacketUtil$V R19 -> haqd114135uu
+    surge.nms.PacketUtil$V R111 -> phgo42364ti
+    surge.nms.PacketUtil$V R110 -> kgrk104230dy
+    surge.nms.PacketUtil$V R112 -> kbwy139036rk
+    surge.nms.PacketUtil$V[] ENUM$VALUES -> evag68098yx
     void <clinit>() -> <clinit>
     void <init>(java.lang.String,int) -> <init>
     surge.nms.PacketUtil$V[] values() -> values
     surge.nms.PacketUtil$V valueOf(java.lang.String) -> valueOf
-surge.nms.Title -> com.volmit.react.mi:
+surge.nms.Title -> com.volmit.react.hmxl168669du:
     java.lang.String title -> title
-    java.lang.String subTitle -> nulla
+    java.lang.String subTitle -> pyai93600so
     java.lang.String action -> action
-    java.lang.Integer fadeIn -> tellus
-    java.lang.Integer fadeOut -> Nulla
-    java.lang.Integer stayTime -> ac
+    java.lang.Integer fadeIn -> lwds28825jv
+    java.lang.Integer fadeOut -> ptng45413qf
+    java.lang.Integer stayTime -> oynq14339ak
     void <init>() -> <init>
     void <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Integer) -> <init>
     void <init>(java.lang.String,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Integer) -> <init>
     void <init>(java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Integer) -> <init>
-    void send(org.bukkit.entity.Player) -> sit
+    void send(org.bukkit.entity.Player) -> jais130334gx
     java.lang.String getTitle() -> getTitle
     void setTitle(java.lang.String) -> setTitle
-    java.lang.String getSubTitle() -> aliquet
-    void setSubTitle(java.lang.String) -> litora
+    java.lang.String getSubTitle() -> vpqo2711et
+    void setSubTitle(java.lang.String) -> einy39770xh
     java.lang.String getAction() -> getAction
     void setAction(java.lang.String) -> setAction
-    java.lang.Integer getFadeIn() -> Cras
-    void setFadeIn(java.lang.Integer) -> Lorem
-    java.lang.Integer getFadeOut() -> pretium
-    void setFadeOut(java.lang.Integer) -> ipsum
-    java.lang.Integer getStayTime() -> faucibus
-    void setStayTime(java.lang.Integer) -> dolor
-surge.nms.VersionBukkit -> com.volmit.react.lacinia:
-    surge.nms.VersionBukkit VU -> ut
-    surge.nms.VersionBukkit V7 -> tortor
-    surge.nms.VersionBukkit V8 -> tristique
-    surge.nms.VersionBukkit V9 -> bibendum
-    surge.nms.VersionBukkit V11 -> commodo
-    surge.nms.VersionBukkit V111 -> convallis
-    surge.nms.VersionBukkit V112 -> pulvinar
-    surge.nms.VersionBukkit[] ENUM$VALUES -> eleifend
+    java.lang.Integer getFadeIn() -> ytjn7022ol
+    void setFadeIn(java.lang.Integer) -> iifh64059hi
+    java.lang.Integer getFadeOut() -> vneo29329kk
+    void setFadeOut(java.lang.Integer) -> yrgc93536dq
+    java.lang.Integer getStayTime() -> cgea92167kn
+    void setStayTime(java.lang.Integer) -> wamx177398yk
+surge.nms.VersionBukkit -> com.volmit.react.xoec179166fg:
+    surge.nms.VersionBukkit VU -> visx197191ed
+    surge.nms.VersionBukkit V7 -> hppn140970pu
+    surge.nms.VersionBukkit V8 -> cymt61341gm
+    surge.nms.VersionBukkit V9 -> mtmo154969ti
+    surge.nms.VersionBukkit V11 -> ffbk35841fs
+    surge.nms.VersionBukkit V111 -> cgyy38741wx
+    surge.nms.VersionBukkit V112 -> imnk53572uv
+    surge.nms.VersionBukkit[] ENUM$VALUES -> sqrd2455ts
     void <clinit>() -> <clinit>
     void <init>(java.lang.String,int) -> <init>
-    boolean tc() -> aliquam
-    boolean uc() -> iaculis
-    surge.nms.VersionBukkit get() -> eget
+    boolean tc() -> yyif129696sn
+    boolean uc() -> ldvw142941fu
+    surge.nms.VersionBukkit get() -> ciej73550vg
     surge.nms.VersionBukkit[] values() -> values
     surge.nms.VersionBukkit valueOf(java.lang.String) -> valueOf
-surge.pool.A -> com.volmit.react.semper:
+surge.pool.A -> com.volmit.react.aebb117654mp:
     void <init>() -> <init>
-surge.pool.A$1 -> com.volmit.react.sagittis:
-    surge.pool.A this$0 -> Mauris
+surge.pool.A$1 -> com.volmit.react.smfq14025tn:
+    surge.pool.A this$0 -> xbcq116101cv
     void <init>(surge.pool.A) -> <init>
     void run() -> run
-surge.pool.Execution -> com.volmit.react.euismod:
+surge.pool.Execution -> com.volmit.react.fmck136145pi:
     void <init>() -> <init>
-surge.pool.ParallelPoolManager -> com.volmit.react.justo:
-    surge.pool.QueueMode mode -> massa
-    surge.collection.GList threads -> vulputate
-    int next -> Nunc
-    int threadCount -> fermentum
-    java.util.Queue squeue -> elementum
+surge.pool.ParallelPoolManager -> com.volmit.react.ftjj10299yk:
+    surge.pool.QueueMode mode -> rltv137836em
+    surge.collection.GList threads -> opqm124708jn
+    int next -> xdng31725be
+    int threadCount -> nshq124013au
+    java.util.Queue squeue -> oytk102226sd
     java.lang.String key -> key
-    surge.pool.ThreadInformation info -> Fusce
-    void syncQueue(surge.pool.Execution) -> Lorem
-    void tickSyncQueue() -> dictum
+    surge.pool.ThreadInformation info -> eapj152410tr
+    void syncQueue(surge.pool.Execution) -> iifh64059hi
+    void tickSyncQueue() -> cfjn82847uw
     void <init>(java.lang.String,int,surge.pool.QueueMode) -> <init>
     void <init>(int,surge.pool.QueueMode) -> <init>
-    long lock() -> orci
+    long lock() -> fyst180240wj
     void start() -> start
     void shutdown() -> shutdown
     void <init>(int) -> <init>
-    void queue(surge.pool.Execution) -> ipsum
+    void queue(surge.pool.Execution) -> yrgc93536dq
     int getSize() -> getSize
-    int getQueueSize() -> eros
-    surge.pool.ParallelThread[] getThreads() -> imperdiet
-    void updateThreadInformation() -> venenatis
-    surge.pool.ParallelThread nextThread() -> ex
-    void createThreads(int) -> Aliquam
-    surge.pool.QueueMode getMode() -> Etiam
-    int getNext() -> a
+    int getQueueSize() -> svkb24914ya
+    surge.pool.ParallelThread[] getThreads() -> ocnh154288km
+    void updateThreadInformation() -> yver144511rq
+    surge.pool.ParallelThread nextThread() -> haqd114135uu
+    void createThreads(int) -> ujqi164485uq
+    surge.pool.QueueMode getMode() -> phgo42364ti
+    int getNext() -> kgrk104230dy
     int getThreadCount() -> getThreadCount
-    java.util.Queue getSqueue() -> tincidunt
+    java.util.Queue getSqueue() -> kbwy139036rk
     java.lang.String getKey() -> getKey
-    surge.pool.ThreadInformation getAverageInfo() -> nulla
-surge.pool.ParallelPoolManager$1 -> com.volmit.react.in:
-    int[] $SwitchMap$surge$pool$QueueMode -> ornare
+    surge.pool.ThreadInformation getAverageInfo() -> evag68098yx
+surge.pool.ParallelPoolManager$1 -> com.volmit.react.gilq24096pp:
+    int[] $SwitchMap$surge$pool$QueueMode -> pkal130322ko
     void <clinit>() -> <clinit>
-surge.pool.ParallelThread -> com.volmit.react.Curabitur:
-    java.util.Queue queue -> metus
-    surge.pool.ThreadInformation info -> Fusce
+surge.pool.ParallelThread -> com.volmit.react.iulg76039ee:
+    java.util.Queue queue -> kckx163480xh
+    surge.pool.ThreadInformation info -> eapj152410tr
     void <init>(java.lang.String,int) -> <init>
     void run() -> run
-    void conditionallySleep(double) -> amet
-    void execute(surge.pool.Execution) -> dolor
+    void conditionallySleep(double) -> nqxu196357wv
+    void execute(surge.pool.Execution) -> wamx177398yk
     void execute() -> execute
-    void queue(surge.pool.Execution) -> ipsum
-    java.util.Queue getQueue() -> tellus
-    surge.pool.ThreadInformation getInfo() -> Nulla
-surge.pool.QueueMode -> com.volmit.react.porttitor:
-    surge.pool.QueueMode ROUND_ROBIN -> Suspendisse
-    surge.pool.QueueMode SMALLEST -> augue
-    surge.pool.QueueMode[] $VALUES -> pharetra
+    void queue(surge.pool.Execution) -> yrgc93536dq
+    java.util.Queue getQueue() -> pyai93600so
+    surge.pool.ThreadInformation getInfo() -> lwds28825jv
+surge.pool.QueueMode -> com.volmit.react.vpqo2711et:
+    surge.pool.QueueMode ROUND_ROBIN -> imnl171134lv
+    surge.pool.QueueMode SMALLEST -> dmqp198207jo
+    surge.pool.QueueMode[] $VALUES -> xxsq115855ba
     surge.pool.QueueMode[] values() -> values
     surge.pool.QueueMode valueOf(java.lang.String) -> valueOf
     void <init>(java.lang.String,int) -> <init>
     void <clinit>() -> <clinit>
-surge.pool.ThreadInformation -> com.volmit.react.velit:
-    double ticksPerSecond -> ullamcorper
-    int queuedSize -> Integer
-    boolean processing -> vehicula
-    double utilization -> risus
-    surge.math.Average ticksPerSecondAverage -> blandit
-    long tick -> ante
+surge.pool.ThreadInformation -> com.volmit.react.ytjn7022ol:
+    double ticksPerSecond -> tifh189300yl
+    int queuedSize -> dnqm60967tq
+    boolean processing -> kbmj61988so
+    double utilization -> bysb186675qj
+    surge.math.Average ticksPerSecondAverage -> tmal38868rq
+    long tick -> ahlm49694su
     int id -> id
     void <init>(int) -> <init>
-    double getTicksPerSecond() -> ac
-    void setTicksPerSecond(double) -> consectetur
-    int getQueuedSize() -> ut
-    void setQueuedSize(int) -> posuere
-    boolean isProcessing() -> tortor
-    void setProcessing(boolean) -> dolor
-    double getUtilization() -> tristique
-    void setUtilization(double) -> adipiscing
-    double getTicksPerSecondAverage() -> bibendum
+    double getTicksPerSecond() -> ptng45413qf
+    void setTicksPerSecond(double) -> euwq104639au
+    int getQueuedSize() -> oynq14339ak
+    void setQueuedSize(int) -> ptvu82346ei
+    boolean isProcessing() -> visx197191ed
+    void setProcessing(boolean) -> wamx177398yk
+    double getUtilization() -> hppn140970pu
+    void setUtilization(double) -> rsex75607ra
+    double getTicksPerSecondAverage() -> cymt61341gm
     long getTick() -> getTick
     void setTick(long) -> setTick
-    long getTickLag() -> commodo
+    long getTickLag() -> mtmo154969ti
     int getId() -> getId
-surge.sched.IBursterator -> com.volmit.react.interdum:
-    void burst(java.lang.Object) -> rhoncus
-    void setTimeLock(double) -> elit
-    double getEstimatedTimeUse() -> convallis
-    int flush() -> pulvinar
-    int flush(surge.math.Profiler) -> Lorem
-    void queue(java.lang.Object) -> eu
-    void queue(java.util.List) -> ipsum
-    void queue(java.lang.Object[]) -> Lorem
-surge.sched.ICancellable -> com.volmit.react.Nullam:
+surge.sched.IBursterator -> com.volmit.react.vneo29329kk:
+    void burst(java.lang.Object) -> oqof171026an
+    void setTimeLock(double) -> rohx185625dm
+    double getEstimatedTimeUse() -> ffbk35841fs
+    int flush() -> cgyy38741wx
+    int flush(surge.math.Profiler) -> iifh64059hi
+    void queue(java.lang.Object) -> jhnx187598nc
+    void queue(java.util.List) -> yrgc93536dq
+    void queue(java.lang.Object[]) -> iifh64059hi
+surge.sched.ICancellable -> com.volmit.react.cgea92167kn:
     void cancel() -> cancel
-surge.sched.IMasterTickComponent -> com.volmit.react.mauris:
-    void onTick() -> elit
-    java.lang.String getTickName() -> mollis
-surge.sched.ITask -> com.volmit.react.vitae:
+surge.sched.IMasterTickComponent -> com.volmit.react.yyif129696sn:
+    void onTick() -> alsm125505oe
+    java.lang.String getTickName() -> wret15687hj
+surge.sched.ITask -> com.volmit.react.ldvw142941fu:
     int getId() -> getId
     void run() -> run
-    boolean isRepeating() -> eleifend
+    boolean isRepeating() -> imnk53572uv
     java.lang.String getName() -> getName
-    double getComputeTime() -> Mauris
-    double getTotalComputeTime() -> massa
-    double getActiveTime() -> vulputate
-    boolean hasCompleted() -> Nunc
-surge.sched.TICK -> com.volmit.react.aliquet:
-    long tick -> ante
+    double getComputeTime() -> sqrd2455ts
+    double getTotalComputeTime() -> xbcq116101cv
+    double getActiveTime() -> rltv137836em
+    boolean hasCompleted() -> opqm124708jn
+surge.sched.TICK -> com.volmit.react.ciej73550vg:
+    long tick -> ahlm49694su
     void <init>() -> <init>
     void <clinit>() -> <clinit>
-surge.sched.Task -> com.volmit.react.Cras:
+surge.sched.Task -> com.volmit.react.cfjn82847uw:
     int id -> id
     java.lang.String name -> name
-    boolean repeating -> dapibus
-    double computeTime -> consequat
-    double totalComputeTime -> Duis
-    double activeTime -> ligula
+    boolean repeating -> cvqy111827iv
+    double computeTime -> kimy84614ih
+    double totalComputeTime -> qdrm131417vb
+    double activeTime -> ccen190175ud
     boolean completed -> completed
-    surge.math.Profiler profiler -> volutpat
-    surge.math.Profiler activeProfiler -> tempor
-    int ticks -> nunc
+    surge.math.Profiler profiler -> yyxm45825yc
+    surge.math.Profiler activeProfiler -> hlqy41953kf
+    int ticks -> atgs66371ik
     void <init>(java.lang.String) -> <init>
     void <init>(java.lang.String,int) -> <init>
     void <init>(java.lang.String,int,int) -> <init>
-    void setup(java.lang.String,boolean) -> sit
+    void setup(java.lang.String,boolean) -> jais130334gx
     void cancel() -> cancel
     int getId() -> getId
-    boolean isRepeating() -> eleifend
+    boolean isRepeating() -> imnk53572uv
     java.lang.String getName() -> getName
-    double getComputeTime() -> Mauris
-    boolean hasCompleted() -> Nunc
-    double getTotalComputeTime() -> massa
-    double getActiveTime() -> vulputate
-    surge.math.Profiler access$000(surge.sched.Task) -> Lorem
-    boolean access$102(surge.sched.Task,boolean) -> Lorem
-    surge.math.Profiler access$200(surge.sched.Task) -> ipsum
-    double access$302(surge.sched.Task,double) -> Lorem
-    double access$402(surge.sched.Task,double) -> ipsum
-    double access$502(surge.sched.Task,double) -> dolor
-    double access$300(surge.sched.Task) -> dolor
-    int access$608(surge.sched.Task) -> sit
-    double access$500(surge.sched.Task) -> amet
-    double access$400(surge.sched.Task) -> consectetur
-    int access$600(surge.sched.Task) -> adipiscing
-surge.sched.Task$1 -> com.volmit.react.pretium:
-    surge.sched.Task this$0 -> odio
+    double getComputeTime() -> sqrd2455ts
+    boolean hasCompleted() -> opqm124708jn
+    double getTotalComputeTime() -> xbcq116101cv
+    double getActiveTime() -> rltv137836em
+    surge.math.Profiler access$000(surge.sched.Task) -> iifh64059hi
+    boolean access$102(surge.sched.Task,boolean) -> iifh64059hi
+    surge.math.Profiler access$200(surge.sched.Task) -> yrgc93536dq
+    double access$302(surge.sched.Task,double) -> iifh64059hi
+    double access$402(surge.sched.Task,double) -> yrgc93536dq
+    double access$502(surge.sched.Task,double) -> wamx177398yk
+    double access$300(surge.sched.Task) -> wamx177398yk
+    int access$608(surge.sched.Task) -> jais130334gx
+    double access$500(surge.sched.Task) -> nqxu196357wv
+    double access$400(surge.sched.Task) -> euwq104639au
+    int access$600(surge.sched.Task) -> rsex75607ra
+surge.sched.Task$1 -> com.volmit.react.fyst180240wj:
+    surge.sched.Task this$0 -> qlab139264yu
     void <init>(surge.sched.Task) -> <init>
     void run() -> run
-surge.sched.Task$2 -> com.volmit.react.faucibus:
-    surge.sched.Task this$0 -> odio
+surge.sched.Task$2 -> com.volmit.react.svkb24914ya:
+    surge.sched.Task this$0 -> qlab139264yu
     void <init>(surge.sched.Task) -> <init>
     void run() -> run
-surge.sched.Task$3 -> com.volmit.react.aliquam:
-    int val$total -> Quisque
-    surge.sched.Task this$0 -> odio
+surge.sched.Task$3 -> com.volmit.react.ocnh154288km:
+    int val$total -> xuuo112715sd
+    surge.sched.Task this$0 -> qlab139264yu
     void <init>(surge.sched.Task,int) -> <init>
     void run() -> run
-surge.sched.TaskManager -> com.volmit.react.iaculis:
-    surge.collection.GList tasks -> Praesent
-    surge.collection.GMap taskProfiles -> arcu
+surge.sched.TaskManager -> com.volmit.react.yver144511rq:
+    surge.collection.GList tasks -> foem172770we
+    surge.collection.GMap taskProfiles -> tfjw106366ii
     void <init>() -> <init>
-    void onTick() -> elit
-    void putFinishingTask(surge.sched.ITask) -> Lorem
-    void putTask(surge.sched.ITask) -> ipsum
-    java.lang.String getTickName() -> mollis
-surge.sched.TaskProfile -> com.volmit.react.eget:
-    double activeTime -> ligula
-    double computeTickTime -> maximus
-    double computeTime -> consequat
+    void onTick() -> alsm125505oe
+    void putFinishingTask(surge.sched.ITask) -> iifh64059hi
+    void putTask(surge.sched.ITask) -> yrgc93536dq
+    java.lang.String getTickName() -> wret15687hj
+surge.sched.TaskProfile -> com.volmit.react.haqd114135uu:
+    double activeTime -> ccen190175ud
+    double computeTickTime -> qxnq183806ur
+    double computeTime -> kimy84614ih
     void <init>() -> <init>
-    double getActiveTime() -> vulputate
-    void setActiveTime(double) -> Sed
-    double getComputeTickTime() -> fermentum
-    void setComputeTickTime(double) -> vel
-    double getComputeTime() -> Mauris
-    void setComputeTime(double) -> nibh
-surge.server.MemoryMonitor -> com.volmit.react.dictum:
-    long memoryFree -> ultricies
-    long memoryUsed -> feugiat
-    long memoryMax -> molestie
-    long lastMemoryUsed -> Vivamus
-    long memoryUsedAfterGC -> Ut
-    long allocated -> ultrices
-    long collected -> Donec
-    long collections -> neque
-    long sms -> egestas
-    long memoryAllocatedPerTick -> primis
-    long memoryCollectedPerTick -> luctus
-    long memoryFullyAllocatedPerTick -> cubilia
-    long mah -> Curae
-    long mahs -> Phasellus
+    double getActiveTime() -> rltv137836em
+    void setActiveTime(double) -> dskh111417ns
+    double getComputeTickTime() -> xdng31725be
+    void setComputeTickTime(double) -> kpsc178172xr
+    double getComputeTime() -> sqrd2455ts
+    void setComputeTime(double) -> lygn130750fd
+surge.server.MemoryMonitor -> com.volmit.react.phgo42364ti:
+    long memoryFree -> etni190001vf
+    long memoryUsed -> pxov69844wr
+    long memoryMax -> wect104387kc
+    long lastMemoryUsed -> evpa42580qi
+    long memoryUsedAfterGC -> ihxi43475uu
+    long allocated -> ieey5066jm
+    long collected -> utad177276ea
+    long collections -> xney46150ie
+    long sms -> hfbf21004ak
+    long memoryAllocatedPerTick -> jdyg9760sv
+    long memoryCollectedPerTick -> jtvj194410xc
+    long memoryFullyAllocatedPerTick -> stsg129171fg
+    long mah -> jchx169350rn
+    long mahs -> vrgj102427ji
     void <init>() -> <init>
-    void onAllocationSet() -> elementum
+    void onAllocationSet() -> nshq124013au
     void run() -> run
-    long getMemoryFree() -> Fusce
+    long getMemoryFree() -> oytk102226sd
     long getMemoryUsed() -> getMemoryUsed
-    long getMemoryMax() -> ornare
-    long getLastMemoryUsed() -> metus
-    long getMemoryUsedAfterGC() -> Suspendisse
+    long getMemoryMax() -> eapj152410tr
+    long getLastMemoryUsed() -> pkal130322ko
+    long getMemoryUsedAfterGC() -> kckx163480xh
     long getAllocated() -> getAllocated
-    long getCollected() -> augue
-    long getCollections() -> pharetra
-    long getSms() -> ullamcorper
-    long getMemoryAllocatedPerTick() -> Integer
-    long getMemoryCollectedPerTick() -> vehicula
-    long getMemoryFullyAllocatedPerTick() -> risus
-    long getMah() -> blandit
-    long getMahs() -> ante
-surge.server.SuperSampler -> com.volmit.react.orci:
-    surge.math.Average ticksPerSecondL -> dignissim
-    surge.math.Average tickTimeL -> sodales
-    surge.math.Average mahL -> urna
-    double ticksPerSecond -> ullamcorper
-    double ticksPerSecondRaw -> finibus
-    double tickTime -> Pellentesque
-    double tickTimeRaw -> magna
+    long getCollected() -> imnl171134lv
+    long getCollections() -> dmqp198207jo
+    long getSms() -> xxsq115855ba
+    long getMemoryAllocatedPerTick() -> tifh189300yl
+    long getMemoryCollectedPerTick() -> dnqm60967tq
+    long getMemoryFullyAllocatedPerTick() -> kbmj61988so
+    long getMah() -> bysb186675qj
+    long getMahs() -> tmal38868rq
+surge.server.SuperSampler -> com.volmit.react.kgrk104230dy:
+    surge.math.Average ticksPerSecondL -> qeis98276sp
+    surge.math.Average tickTimeL -> dacl1285gr
+    surge.math.Average mahL -> yktf177720rq
+    double ticksPerSecond -> tifh189300yl
+    double ticksPerSecondRaw -> emcn146361gp
+    double tickTime -> slbr19524ol
+    double tickTimeRaw -> whij127588og
     boolean running -> running
-    double tickUtilizationRaw -> fringilla
-    double tickUtilization -> tempus
-    double leftoverTickTime -> sem
-    long memoryUse -> efficitur
-    long memoryAllocated -> condimentum
-    long memoryCollected -> potenti
-    long mahs -> Phasellus
-    surge.server.TPSMonitor tpsMonitor -> gravida
-    surge.server.MemoryMonitor memoryMonitor -> hac
+    double tickUtilizationRaw -> quyt91963ao
+    double tickUtilization -> xyhj162957ol
+    double leftoverTickTime -> gonp184519vw
+    long memoryUse -> ravu172262vs
+    long memoryAllocated -> uaan34619oj
+    long memoryCollected -> tqir38693ci
+    long mahs -> vrgj102427ji
+    surge.server.TPSMonitor tpsMonitor -> sbus50312gj
+    surge.server.MemoryMonitor memoryMonitor -> oush45396dp
     void <init>() -> <init>
     void start() -> start
     void stop() -> stop
-    void onTick() -> elit
-    java.lang.String getTickName() -> mollis
-    surge.math.Average getTicksPerSecondL() -> dapibus
-    double getTicksPerSecond() -> ac
-    double getTicksPerSecondRaw() -> consequat
+    void onTick() -> alsm125505oe
+    java.lang.String getTickName() -> wret15687hj
+    surge.math.Average getTicksPerSecondL() -> ahlm49694su
+    double getTicksPerSecond() -> ptng45413qf
+    double getTicksPerSecondRaw() -> cvqy111827iv
     boolean isRunning() -> isRunning
-    surge.server.TPSMonitor getTpsMonitor() -> Duis
-    surge.math.Average getTickTimeL() -> ligula
-    double getTickTime() -> volutpat
-    double getTickTimeRaw() -> tempor
-    double getTickUtilizationRaw() -> nunc
-    double getTickUtilization() -> odio
-    double getLeftoverTickTime() -> Quisque
-    surge.server.MemoryMonitor getMemoryMonitor() -> Praesent
-    long getMemoryUse() -> arcu
-    long getMemoryAllocated() -> maximus
-    long getMemoryCollected() -> ultricies
-    surge.math.Average getMahL() -> feugiat
-    long getMahs() -> ante
-    void access$0(surge.server.SuperSampler,double) -> Lorem
-    void access$1(surge.server.SuperSampler,double) -> ipsum
-    surge.math.Average access$2(surge.server.SuperSampler) -> Lorem
-    double access$3(surge.server.SuperSampler) -> ipsum
-    surge.math.Average access$4(surge.server.SuperSampler) -> dolor
-    double access$5(surge.server.SuperSampler) -> sit
-    void access$6(surge.server.SuperSampler,double) -> dolor
-    void access$7(surge.server.SuperSampler,double) -> sit
-    void access$8(surge.server.SuperSampler,double) -> amet
-    double access$9(surge.server.SuperSampler) -> amet
-    void access$10(surge.server.SuperSampler,double) -> consectetur
-    double access$11(surge.server.SuperSampler) -> consectetur
-    double access$12(surge.server.SuperSampler) -> adipiscing
-    void access$13(surge.server.SuperSampler,double) -> adipiscing
-    void access$14(surge.server.SuperSampler,long) -> Lorem
-    void access$15(surge.server.SuperSampler,long) -> ipsum
-    void access$16(surge.server.SuperSampler,long) -> dolor
-    surge.math.Average access$17(surge.server.SuperSampler) -> elit
-    void access$18(surge.server.SuperSampler,long) -> sit
-surge.server.SuperSampler$1 -> com.volmit.react.eros:
-    surge.server.SuperSampler this$0 -> habitasse
+    surge.server.TPSMonitor getTpsMonitor() -> kimy84614ih
+    surge.math.Average getTickTimeL() -> qdrm131417vb
+    double getTickTime() -> ccen190175ud
+    double getTickTimeRaw() -> yyxm45825yc
+    double getTickUtilizationRaw() -> hlqy41953kf
+    double getTickUtilization() -> atgs66371ik
+    double getLeftoverTickTime() -> qlab139264yu
+    surge.server.MemoryMonitor getMemoryMonitor() -> xuuo112715sd
+    long getMemoryUse() -> foem172770we
+    long getMemoryAllocated() -> tfjw106366ii
+    long getMemoryCollected() -> qxnq183806ur
+    surge.math.Average getMahL() -> etni190001vf
+    long getMahs() -> tmal38868rq
+    void access$0(surge.server.SuperSampler,double) -> iifh64059hi
+    void access$1(surge.server.SuperSampler,double) -> yrgc93536dq
+    surge.math.Average access$2(surge.server.SuperSampler) -> iifh64059hi
+    double access$3(surge.server.SuperSampler) -> yrgc93536dq
+    surge.math.Average access$4(surge.server.SuperSampler) -> wamx177398yk
+    double access$5(surge.server.SuperSampler) -> jais130334gx
+    void access$6(surge.server.SuperSampler,double) -> wamx177398yk
+    void access$7(surge.server.SuperSampler,double) -> jais130334gx
+    void access$8(surge.server.SuperSampler,double) -> nqxu196357wv
+    double access$9(surge.server.SuperSampler) -> nqxu196357wv
+    void access$10(surge.server.SuperSampler,double) -> euwq104639au
+    double access$11(surge.server.SuperSampler) -> euwq104639au
+    double access$12(surge.server.SuperSampler) -> rsex75607ra
+    void access$13(surge.server.SuperSampler,double) -> rsex75607ra
+    void access$14(surge.server.SuperSampler,long) -> iifh64059hi
+    void access$15(surge.server.SuperSampler,long) -> yrgc93536dq
+    void access$16(surge.server.SuperSampler,long) -> wamx177398yk
+    surge.math.Average access$17(surge.server.SuperSampler) -> rohx185625dm
+    void access$18(surge.server.SuperSampler,long) -> jais130334gx
+surge.server.SuperSampler$1 -> com.volmit.react.kbwy139036rk:
+    surge.server.SuperSampler this$0 -> cndr182634ru
     void <init>(surge.server.SuperSampler) -> <init>
-    void onTicked() -> molestie
-surge.server.SuperSampler$2 -> com.volmit.react.imperdiet:
-    surge.server.SuperSampler this$0 -> habitasse
+    void onTicked() -> pxov69844wr
+surge.server.SuperSampler$2 -> com.volmit.react.evag68098yx:
+    surge.server.SuperSampler this$0 -> cndr182634ru
     void <init>(surge.server.SuperSampler) -> <init>
-    void onAllocationSet() -> elementum
-surge.server.TPSMonitor -> com.volmit.react.venenatis:
-    double tickTimeMS -> platea
-    double rawTicksPerSecond -> dictumst
-    surge.math.Profiler tickProfiler -> placerat
-    surge.math.Profiler tickTimeProfiler -> Maecenas
-    boolean ticked -> rutrum
-    java.lang.Thread$State lastState -> pellentesque
-    double actualTickTimeMS -> Proin
-    double ltt -> nisi
+    void onAllocationSet() -> nshq124013au
+surge.server.TPSMonitor -> com.volmit.react.pyai93600so:
+    double tickTimeMS -> uqxn52328tf
+    double rawTicksPerSecond -> efjj144850my
+    surge.math.Profiler tickProfiler -> kkxw60342sx
+    surge.math.Profiler tickTimeProfiler -> yipv71192fo
+    boolean ticked -> ixym101227do
+    java.lang.Thread$State lastState -> dgwh159094td
+    double actualTickTimeMS -> xesk47562kw
+    double ltt -> diyl182317ds
     void <init>() -> <init>
-    void onTicked() -> molestie
+    void onTicked() -> pxov69844wr
     void run() -> run
-    void processState(java.lang.Thread$State) -> Lorem
-    double getTickTimeMS() -> Vivamus
-    double getRawTicksPerSecond() -> Ut
-    surge.math.Profiler getTickProfiler() -> ultrices
-    boolean isTicked() -> Donec
-    void markTick() -> neque
-    surge.math.Profiler getTickTimeProfiler() -> egestas
-    java.lang.Thread$State getLastState() -> primis
-    double getActualTickTimeMS() -> luctus
-surge.util.Adapter -> com.volmit.react.ex:
-    java.lang.Object adapt(java.lang.Object) -> nec
-    java.lang.Object onAdapt(java.lang.Object) -> est
-surge.util.Area -> com.volmit.react.Etiam:
-    org.bukkit.Location location -> porta
-    java.lang.Double radius -> Interdum
-    boolean within(org.bukkit.Location,org.bukkit.Location,double) -> Lorem
+    void processState(java.lang.Thread$State) -> iifh64059hi
+    double getTickTimeMS() -> wect104387kc
+    double getRawTicksPerSecond() -> evpa42580qi
+    surge.math.Profiler getTickProfiler() -> ihxi43475uu
+    boolean isTicked() -> ieey5066jm
+    void markTick() -> utad177276ea
+    surge.math.Profiler getTickTimeProfiler() -> xney46150ie
+    java.lang.Thread$State getLastState() -> hfbf21004ak
+    double getActualTickTimeMS() -> jdyg9760sv
+surge.util.Adapter -> com.volmit.react.lwds28825jv:
+    java.lang.Object adapt(java.lang.Object) -> pocr154074ip
+    java.lang.Object onAdapt(java.lang.Object) -> mctm31570xt
+surge.util.Area -> com.volmit.react.ptng45413qf:
+    org.bukkit.Location location -> nyxf77103mu
+    java.lang.Double radius -> dcgx61195rx
+    boolean within(org.bukkit.Location,org.bukkit.Location,double) -> iifh64059hi
     void <init>(org.bukkit.Location,java.lang.Double) -> <init>
-    surge.util.Cuboid toCuboid() -> cubilia
+    surge.util.Cuboid toCuboid() -> jtvj194410xc
     void <init>(org.bukkit.Location,java.lang.Integer) -> <init>
-    java.lang.Double distance(org.bukkit.Location) -> sit
-    java.lang.Double slowDistance(org.bukkit.Location) -> amet
-    boolean isWithin(org.bukkit.Location) -> consectetur
+    java.lang.Double distance(org.bukkit.Location) -> jais130334gx
+    java.lang.Double slowDistance(org.bukkit.Location) -> nqxu196357wv
+    boolean isWithin(org.bukkit.Location) -> euwq104639au
     boolean hasEntities() -> hasEntities
-    org.bukkit.entity.Entity[] getNearbyEntities(org.bukkit.entity.EntityType) -> Lorem
-    org.bukkit.entity.Entity[] getNearbyEntities(java.lang.Class) -> Lorem
-    org.bukkit.entity.Entity[] getNearbyEntities() -> Curae
-    org.bukkit.entity.Player[] getNearbyPlayers() -> Phasellus
+    org.bukkit.entity.Entity[] getNearbyEntities(org.bukkit.entity.EntityType) -> iifh64059hi
+    org.bukkit.entity.Entity[] getNearbyEntities(java.lang.Class) -> iifh64059hi
+    org.bukkit.entity.Entity[] getNearbyEntities() -> stsg129171fg
+    org.bukkit.entity.Player[] getNearbyPlayers() -> jchx169350rn
     org.bukkit.Location getLocation() -> getLocation
-    void setLocation(org.bukkit.Location) -> adipiscing
-    java.lang.Double getRadius() -> dignissim
-    void setRadius(java.lang.Double) -> Lorem
-    org.bukkit.Location random() -> sodales
-surge.util.Axis -> com.volmit.react.a:
-    surge.util.Axis X -> fames
-    surge.util.Axis Y -> varius
-    surge.util.Axis Z -> hendrerit
+    void setLocation(org.bukkit.Location) -> rsex75607ra
+    java.lang.Double getRadius() -> vrgj102427ji
+    void setRadius(java.lang.Double) -> iifh64059hi
+    org.bukkit.Location random() -> qeis98276sp
+surge.util.Axis -> com.volmit.react.oynq14339ak:
+    surge.util.Axis X -> hjyj196615uo
+    surge.util.Axis Y -> mqlg117395py
+    surge.util.Axis Z -> ufgb146300sn
     int x -> x
     int y -> y
     int z -> z
-    surge.util.Axis[] $VALUES -> lectus
+    surge.util.Axis[] $VALUES -> cyiy168541dr
     surge.util.Axis[] values() -> values
     surge.util.Axis valueOf(java.lang.String) -> valueOf
     void <init>(java.lang.String,int,int,int,int) -> <init>
-    org.bukkit.util.Vector positive() -> urna
-    org.bukkit.util.Vector negative() -> finibus
+    org.bukkit.util.Vector positive() -> dacl1285gr
+    org.bukkit.util.Vector negative() -> yktf177720rq
     void <clinit>() -> <clinit>
-surge.util.C -> com.volmit.react.tincidunt:
-    surge.util.C BLACK -> viverra
-    surge.util.C DARK_BLUE -> cursus
-    surge.util.C DARK_GREEN -> Morbi
-    surge.util.C DARK_AQUA -> Orci
-    surge.util.C DARK_RED -> natoque
-    surge.util.C DARK_PURPLE -> penatibus
-    surge.util.C GOLD -> magnis
-    surge.util.C GRAY -> dis
-    surge.util.C DARK_GRAY -> parturient
-    surge.util.C BLUE -> montes
-    surge.util.C GREEN -> nascetur
-    surge.util.C AQUA -> ridiculus
-    surge.util.C RED -> mus
-    surge.util.C LIGHT_PURPLE -> habitant
-    surge.util.C YELLOW -> morbi
-    surge.util.C WHITE -> senectus
-    surge.util.C MAGIC -> netus
-    surge.util.C BOLD -> facilisi
-    surge.util.C STRIKETHROUGH -> b
-    surge.util.C UNDERLINE -> c
-    surge.util.C ITALIC -> d
-    surge.util.C RESET -> e
+surge.util.C -> com.volmit.react.visx197191ed:
+    surge.util.C BLACK -> exsn62374ee
+    surge.util.C DARK_BLUE -> rsbe173764rr
+    surge.util.C DARK_GREEN -> dnio116209aj
+    surge.util.C DARK_AQUA -> mawh130897df
+    surge.util.C DARK_RED -> nlbm50160bt
+    surge.util.C DARK_PURPLE -> xyfk70401ll
+    surge.util.C GOLD -> whfu6789wu
+    surge.util.C GRAY -> xwmg89297di
+    surge.util.C DARK_GRAY -> vwhy22590tq
+    surge.util.C BLUE -> yqai180153wf
+    surge.util.C GREEN -> wtnn133924gt
+    surge.util.C AQUA -> ckkt14431ic
+    surge.util.C RED -> fisq168076oy
+    surge.util.C LIGHT_PURPLE -> ievy26611fh
+    surge.util.C YELLOW -> qcja60192yq
+    surge.util.C WHITE -> beyr1520bo
+    surge.util.C MAGIC -> rfal10133eh
+    surge.util.C BOLD -> tdxv114409hl
+    surge.util.C STRIKETHROUGH -> lneq71852jk
+    surge.util.C UNDERLINE -> xsua85873aj
+    surge.util.C ITALIC -> kfra50344rc
+    surge.util.C RESET -> nhnk147763dk
     char COLOR_CHAR -> COLOR_CHAR
     java.util.regex.Pattern STRIP_COLOR_PATTERN -> STRIP_COLOR_PATTERN
-    int intCode -> f
-    char code -> g
-    boolean isFormat -> h
-    java.lang.String toString -> i
-    java.util.Map BY_ID -> j
-    java.util.Map BY_CHAR -> k
-    java.util.Map dyeChatMap -> l
-    java.util.Map chatHexMap -> m
-    java.util.Map dyeHexMap -> n
-    int[] $SWITCH_TABLE$surge$util$C -> o
-    surge.util.C[] ENUM$VALUES -> p
+    int intCode -> msqr98136dm
+    char code -> woad69995ya
+    boolean isFormat -> eamp38055gx
+    java.lang.String toString -> wtlt84876al
+    java.util.Map BY_ID -> hiua133503ki
+    java.util.Map BY_CHAR -> esvy133824dc
+    java.util.Map dyeChatMap -> glvi143906sa
+    java.util.Map chatHexMap -> swxi98914cr
+    java.util.Map dyeHexMap -> nmkf137869ff
+    int[] $SWITCH_TABLE$surge$util$C -> psnh25330oo
+    surge.util.C[] ENUM$VALUES -> xpks9300ac
     void <clinit>() -> <clinit>
     void <init>(java.lang.String,int,char,int) -> <init>
     void <init>(java.lang.String,int,char,int,boolean) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
     char getChar() -> getChar
     java.lang.String toString() -> toString
-    org.bukkit.DyeColor dye() -> Pellentesque
-    java.lang.String hex() -> magna
+    org.bukkit.DyeColor dye() -> emcn146361gp
+    java.lang.String hex() -> slbr19524ol
     boolean isFormat() -> isFormat
     boolean isColor() -> isColor
-    surge.util.C getByChar(char) -> elit
-    surge.util.C getByChar(java.lang.String) -> torquent
+    surge.util.C getByChar(char) -> rohx185625dm
+    surge.util.C getByChar(java.lang.String) -> jgtm58582ao
     java.lang.String stripColor(java.lang.String) -> stripColor
-    surge.util.C dyeToChat(org.bukkit.DyeColor) -> Lorem
-    org.bukkit.DyeColor chatToDye(org.bukkit.ChatColor) -> Lorem
-    java.lang.String chatToHex(org.bukkit.ChatColor) -> ipsum
-    java.lang.String dyeToHex(org.bukkit.DyeColor) -> ipsum
-    org.bukkit.Color hexToColor(java.lang.String) -> per
-    org.bukkit.Color rgbToColor(java.lang.String) -> conubia
-    java.lang.String generateColorTable() -> fringilla
-    org.bukkit.ChatColor chatColor() -> tempus
+    surge.util.C dyeToChat(org.bukkit.DyeColor) -> iifh64059hi
+    org.bukkit.DyeColor chatToDye(org.bukkit.ChatColor) -> iifh64059hi
+    java.lang.String chatToHex(org.bukkit.ChatColor) -> yrgc93536dq
+    java.lang.String dyeToHex(org.bukkit.DyeColor) -> yrgc93536dq
+    org.bukkit.Color hexToColor(java.lang.String) -> yaqo128910rw
+    org.bukkit.Color rgbToColor(java.lang.String) -> coyp97191ej
+    java.lang.String generateColorTable() -> whij127588og
+    org.bukkit.ChatColor chatColor() -> quyt91963ao
     java.lang.String translateAlternateColorCodes(char,java.lang.String) -> translateAlternateColorCodes
-    surge.util.C fromItemMeta(byte) -> Lorem
-    byte getItemMeta() -> sem
+    surge.util.C fromItemMeta(byte) -> iifh64059hi
+    byte getItemMeta() -> xyhj162957ol
     java.lang.String getLastColors(java.lang.String) -> getLastColors
     surge.util.C[] values() -> values
     surge.util.C valueOf(java.lang.String) -> valueOf
     void <init>(java.lang.String,int,char,int,surge.util.C) -> <init>
     void <init>(java.lang.String,int,char,int,boolean,surge.util.C) -> <init>
-    int[] $SWITCH_TABLE$surge$util$C() -> efficitur
-surge.util.C$1 -> com.volmit.react.nulla:
+    int[] $SWITCH_TABLE$surge$util$C() -> gonp184519vw
+surge.util.C$1 -> com.volmit.react.hppn140970pu:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$10 -> com.volmit.react.tellus:
+surge.util.C$10 -> com.volmit.react.cymt61341gm:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$11 -> com.volmit.react.Nulla:
+surge.util.C$11 -> com.volmit.react.mtmo154969ti:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$12 -> com.volmit.react.ac:
+surge.util.C$12 -> com.volmit.react.ffbk35841fs:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$13 -> com.volmit.react.ut:
+surge.util.C$13 -> com.volmit.react.cgyy38741wx:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$14 -> com.volmit.react.tortor:
+surge.util.C$14 -> com.volmit.react.imnk53572uv:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$15 -> com.volmit.react.tristique:
+surge.util.C$15 -> com.volmit.react.sqrd2455ts:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$16 -> com.volmit.react.bibendum:
+surge.util.C$16 -> com.volmit.react.xbcq116101cv:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$17 -> com.volmit.react.commodo:
+surge.util.C$17 -> com.volmit.react.rltv137836em:
     void <init>(java.lang.String,int,char,int,boolean) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$18 -> com.volmit.react.convallis:
+surge.util.C$18 -> com.volmit.react.opqm124708jn:
     void <init>(java.lang.String,int,char,int,boolean) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$19 -> com.volmit.react.pulvinar:
+surge.util.C$19 -> com.volmit.react.xdng31725be:
     void <init>(java.lang.String,int,char,int,boolean) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$2 -> com.volmit.react.eleifend:
+surge.util.C$2 -> com.volmit.react.nshq124013au:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$20 -> com.volmit.react.Mauris:
+surge.util.C$20 -> com.volmit.react.oytk102226sd:
     void <init>(java.lang.String,int,char,int,boolean) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$21 -> com.volmit.react.massa:
+surge.util.C$21 -> com.volmit.react.eapj152410tr:
     void <init>(java.lang.String,int,char,int,boolean) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$22 -> com.volmit.react.vulputate:
+surge.util.C$22 -> com.volmit.react.pkal130322ko:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$3 -> com.volmit.react.Nunc:
+surge.util.C$3 -> com.volmit.react.kckx163480xh:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$4 -> com.volmit.react.fermentum:
+surge.util.C$4 -> com.volmit.react.imnl171134lv:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$5 -> com.volmit.react.elementum:
+surge.util.C$5 -> com.volmit.react.dmqp198207jo:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$6 -> com.volmit.react.Fusce:
+surge.util.C$6 -> com.volmit.react.xxsq115855ba:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$7 -> com.volmit.react.ornare:
+surge.util.C$7 -> com.volmit.react.tifh189300yl:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$8 -> com.volmit.react.metus:
+surge.util.C$8 -> com.volmit.react.dnqm60967tq:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$9 -> com.volmit.react.Suspendisse:
+surge.util.C$9 -> com.volmit.react.kbmj61988so:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.CDou -> com.volmit.react.augue:
-    double number -> q
+surge.util.CDou -> com.volmit.react.bysb186675qj:
+    double number -> bkuq66569lb
     double max -> max
     void <init>(double) -> <init>
-    surge.util.CDou set(double) -> quis
-    surge.util.CDou add(double) -> auctor
-    surge.util.CDou sub(double) -> rhoncus
+    surge.util.CDou set(double) -> tgwu42804si
+    surge.util.CDou add(double) -> alsm125505oe
+    surge.util.CDou sub(double) -> oqof171026an
     double get() -> get
-    void circ() -> condimentum
-surge.util.CNum -> com.volmit.react.pharetra:
+    void circ() -> ravu172262vs
+surge.util.CNum -> com.volmit.react.tmal38868rq:
     int number -> number
     int max -> max
     void <init>(int) -> <init>
-    surge.util.CNum set(int) -> diam
-    surge.util.CNum add(int) -> erat
-    surge.util.CNum sub(int) -> at
+    surge.util.CNum set(int) -> dlyy17569cp
+    surge.util.CNum add(int) -> xgot116617hi
+    surge.util.CNum sub(int) -> fehk172577aq
     int get() -> get
-    void circ() -> condimentum
+    void circ() -> ravu172262vs
     int getMax() -> getMax
-    void setMax(int) -> laoreet
-surge.util.Cuboid -> com.volmit.react.ullamcorper:
-    java.lang.String worldName -> r
-    int x1 -> s
-    int y1 -> t
-    int z1 -> u
-    int x2 -> v
-    int y2 -> w
-    int z2 -> A
+    void setMax(int) -> yqkw5943na
+surge.util.Cuboid -> com.volmit.react.ahlm49694su:
+    java.lang.String worldName -> ppfy42890px
+    int x1 -> jcvp37908vu
+    int y1 -> txlv22823ug
+    int z1 -> xxcx5160mp
+    int x2 -> eksy46988ck
+    int y2 -> bayb181058hn
+    int z2 -> ymvx136380ar
     void <init>(org.bukkit.Location,org.bukkit.Location) -> <init>
-    int depth(surge.util.Axis) -> Lorem
-    void set(org.bukkit.Location,org.bukkit.Location) -> Lorem
-    boolean hasPlayers() -> potenti
-    surge.collection.GList getPlayers() -> gravida
-    surge.collection.GList getEntities() -> hac
+    int depth(surge.util.Axis) -> iifh64059hi
+    void set(org.bukkit.Location,org.bukkit.Location) -> iifh64059hi
+    boolean hasPlayers() -> uaan34619oj
+    surge.collection.GList getPlayers() -> tqir38693ci
+    surge.collection.GList getEntities() -> sbus50312gj
     void <init>(org.bukkit.Location) -> <init>
     void <init>(surge.util.Cuboid) -> <init>
     void <init>(org.bukkit.World,int,int,int,int,int,int) -> <init>
     void <init>(java.lang.String,int,int,int,int,int,int) -> <init>
     void <init>(java.util.Map) -> <init>
     java.util.Map serialize() -> serialize
-    surge.util.Cuboid flatten(int) -> leo
-    org.bukkit.Location getLowerNE() -> habitasse
-    org.bukkit.Location getUpperSW() -> platea
+    surge.util.Cuboid flatten(int) -> fiwx75350rn
+    org.bukkit.Location getLowerNE() -> oush45396dp
+    org.bukkit.Location getUpperSW() -> cndr182634ru
     org.bukkit.Location getCenter() -> getCenter
     org.bukkit.World getWorld() -> getWorld
-    int getSizeX() -> dictumst
-    int getSizeY() -> placerat
-    int getSizeZ() -> Maecenas
-    int getLowerX() -> rutrum
-    int getLowerY() -> pellentesque
-    int getLowerZ() -> Proin
-    int getUpperX() -> nisi
-    int getUpperY() -> porta
-    int getUpperZ() -> Interdum
-    org.bukkit.block.Block[] corners() -> fames
-    surge.util.Cuboid expand(surge.util.Cuboid$CuboidDirection,int) -> Lorem
-    surge.util.Cuboid shift(surge.util.Cuboid$CuboidDirection,int) -> ipsum
-    surge.util.Cuboid outset(surge.util.Cuboid$CuboidDirection,int) -> dolor
-    surge.util.Cuboid inset(surge.util.Cuboid$CuboidDirection,int) -> sit
-    boolean contains(int,int,int) -> Lorem
-    boolean contains(org.bukkit.block.Block) -> Lorem
-    boolean contains(org.bukkit.Location) -> elit
-    int volume() -> varius
-    byte averageLightLevel() -> hendrerit
-    surge.util.Cuboid contract() -> lectus
-    surge.util.Cuboid contract(surge.util.Cuboid$CuboidDirection) -> Lorem
-    surge.util.Cuboid getFace(surge.util.Cuboid$CuboidDirection) -> ipsum
-    boolean containsOnly(org.bukkit.Material) -> Lorem
-    surge.util.Cuboid getBoundingCuboid(surge.util.Cuboid) -> Lorem
-    org.bukkit.block.Block getRelativeBlock(int,int,int) -> ipsum
-    org.bukkit.block.Block getRelativeBlock(org.bukkit.World,int,int,int) -> Lorem
-    java.util.List getChunks() -> viverra
-    void fill(int,byte) -> Lorem
+    int getSizeX() -> uqxn52328tf
+    int getSizeY() -> efjj144850my
+    int getSizeZ() -> kkxw60342sx
+    int getLowerX() -> yipv71192fo
+    int getLowerY() -> ixym101227do
+    int getLowerZ() -> dgwh159094td
+    int getUpperX() -> xesk47562kw
+    int getUpperY() -> diyl182317ds
+    int getUpperZ() -> nyxf77103mu
+    org.bukkit.block.Block[] corners() -> dcgx61195rx
+    surge.util.Cuboid expand(surge.util.Cuboid$CuboidDirection,int) -> iifh64059hi
+    surge.util.Cuboid shift(surge.util.Cuboid$CuboidDirection,int) -> yrgc93536dq
+    surge.util.Cuboid outset(surge.util.Cuboid$CuboidDirection,int) -> wamx177398yk
+    surge.util.Cuboid inset(surge.util.Cuboid$CuboidDirection,int) -> jais130334gx
+    boolean contains(int,int,int) -> iifh64059hi
+    boolean contains(org.bukkit.block.Block) -> iifh64059hi
+    boolean contains(org.bukkit.Location) -> rohx185625dm
+    int volume() -> hjyj196615uo
+    byte averageLightLevel() -> mqlg117395py
+    surge.util.Cuboid contract() -> ufgb146300sn
+    surge.util.Cuboid contract(surge.util.Cuboid$CuboidDirection) -> iifh64059hi
+    surge.util.Cuboid getFace(surge.util.Cuboid$CuboidDirection) -> yrgc93536dq
+    boolean containsOnly(org.bukkit.Material) -> iifh64059hi
+    surge.util.Cuboid getBoundingCuboid(surge.util.Cuboid) -> iifh64059hi
+    org.bukkit.block.Block getRelativeBlock(int,int,int) -> yrgc93536dq
+    org.bukkit.block.Block getRelativeBlock(org.bukkit.World,int,int,int) -> iifh64059hi
+    java.util.List getChunks() -> cyiy168541dr
+    void fill(int,byte) -> iifh64059hi
     java.util.Iterator iterator() -> iterator
-    surge.util.Cuboid clone() -> cursus
+    surge.util.Cuboid clone() -> exsn62374ee
     java.lang.String toString() -> toString
     int hashCode() -> hashCode
     boolean equals(java.lang.Object) -> equals
     java.lang.Object clone() -> clone
-surge.util.Cuboid$1 -> com.volmit.react.Integer:
-    surge.util.Cuboid this$0 -> B
+surge.util.Cuboid$1 -> com.volmit.react.cvqy111827iv:
+    surge.util.Cuboid this$0 -> mspi48142mr
     void <init>(surge.util.Cuboid) -> <init>
-    org.bukkit.entity.Player onAdapt(org.bukkit.entity.Entity) -> ipsum
-    java.lang.Object onAdapt(java.lang.Object) -> est
-surge.util.Cuboid$2 -> com.volmit.react.vehicula:
-    int[] $SwitchMap$surge$util$Axis -> C
-    int[] $SwitchMap$surge$util$Cuboid$CuboidDirection -> D
+    org.bukkit.entity.Player onAdapt(org.bukkit.entity.Entity) -> yrgc93536dq
+    java.lang.Object onAdapt(java.lang.Object) -> mctm31570xt
+surge.util.Cuboid$2 -> com.volmit.react.kimy84614ih:
+    int[] $SwitchMap$surge$util$Axis -> getf84844hc
+    int[] $SwitchMap$surge$util$Cuboid$CuboidDirection -> rvcm108800py
     void <clinit>() -> <clinit>
-surge.util.Cuboid$CuboidDirection -> com.volmit.react.risus:
-    surge.util.Cuboid$CuboidDirection North -> E
-    surge.util.Cuboid$CuboidDirection East -> F
-    surge.util.Cuboid$CuboidDirection South -> G
-    surge.util.Cuboid$CuboidDirection West -> H
-    surge.util.Cuboid$CuboidDirection Up -> I
-    surge.util.Cuboid$CuboidDirection Down -> J
-    surge.util.Cuboid$CuboidDirection Horizontal -> K
-    surge.util.Cuboid$CuboidDirection Vertical -> L
-    surge.util.Cuboid$CuboidDirection Both -> M
-    surge.util.Cuboid$CuboidDirection Unknown -> N
-    surge.util.Cuboid$CuboidDirection[] $VALUES -> O
+surge.util.Cuboid$CuboidDirection -> com.volmit.react.qdrm131417vb:
+    surge.util.Cuboid$CuboidDirection North -> cdyi11083ge
+    surge.util.Cuboid$CuboidDirection East -> wpuf139700km
+    surge.util.Cuboid$CuboidDirection South -> vsie40572ln
+    surge.util.Cuboid$CuboidDirection West -> ttmf156761nd
+    surge.util.Cuboid$CuboidDirection Up -> uggl189133cf
+    surge.util.Cuboid$CuboidDirection Down -> btjy94290wv
+    surge.util.Cuboid$CuboidDirection Horizontal -> mfpw129788vb
+    surge.util.Cuboid$CuboidDirection Vertical -> qvbn39292hn
+    surge.util.Cuboid$CuboidDirection Both -> sqqb73413pl
+    surge.util.Cuboid$CuboidDirection Unknown -> geqw108355dr
+    surge.util.Cuboid$CuboidDirection[] $VALUES -> gjyc50596wb
     surge.util.Cuboid$CuboidDirection[] values() -> values
     surge.util.Cuboid$CuboidDirection valueOf(java.lang.String) -> valueOf
     void <init>(java.lang.String,int) -> <init>
-    surge.util.Cuboid$CuboidDirection opposite() -> Morbi
+    surge.util.Cuboid$CuboidDirection opposite() -> rsbe173764rr
     void <clinit>() -> <clinit>
-surge.util.Cuboid$CuboidIterator -> com.volmit.react.blandit:
-    org.bukkit.World w -> P
-    int baseX -> Q
-    int baseY -> R
-    int baseZ -> S
+surge.util.Cuboid$CuboidIterator -> com.volmit.react.ccen190175ud:
+    org.bukkit.World w -> xgyr152694ha
+    int baseX -> iqbo67254yy
+    int baseY -> lsdm21571qs
+    int baseZ -> aeim82983gh
     int x -> x
     int y -> y
     int z -> z
-    int sizeX -> T
-    int sizeY -> U
-    int sizeZ -> V
-    surge.util.Cuboid this$0 -> B
+    int sizeX -> fjhh149059tb
+    int sizeY -> ooej11683io
+    int sizeZ -> jqjl141886ht
+    surge.util.Cuboid this$0 -> mspi48142mr
     void <init>(surge.util.Cuboid,org.bukkit.World,int,int,int,int,int,int) -> <init>
     boolean hasNext() -> hasNext
     org.bukkit.block.Block next() -> next
     void remove() -> remove
     java.lang.Object next() -> next
-surge.util.CuboidException -> com.volmit.react.ante:
+surge.util.CuboidException -> com.volmit.react.yyxm45825yc:
     long serialVersionUID -> serialVersionUID
     void <init>(java.lang.String) -> <init>
-surge.util.D -> com.volmit.react.dapibus:
-    surge.collection.GList buffer -> W
+surge.util.D -> com.volmit.react.hlqy41953kf:
+    surge.collection.GList buffer -> cwtn112932kp
     void <clinit>() -> <clinit>
     void <init>() -> <init>
     void flush() -> flush
-    void log(java.lang.String,java.lang.String) -> ipsum
-    void l(java.lang.Object,java.lang.String) -> Lorem
-    void s(java.lang.Object,java.lang.String) -> ipsum
-    void v(java.lang.Object,java.lang.String) -> dolor
-    void w(java.lang.Object,java.lang.String) -> sit
-    void f(java.lang.Object,java.lang.String) -> amet
-    void l(java.lang.String) -> nostra
-    void s(java.lang.String) -> inceptos
-    void v(java.lang.String) -> himenaeos
-    void w(java.lang.String) -> Aenean
-    void f(java.lang.String) -> quam
-surge.util.F -> com.volmit.react.consequat:
-    java.text.NumberFormat NF -> X
-    java.text.DecimalFormat DF -> Y
-    java.lang.String[] NAMES -> Z
-    java.math.BigInteger THOUSAND -> aa
-    java.util.NavigableMap MAP -> ab
+    void log(java.lang.String,java.lang.String) -> yrgc93536dq
+    void l(java.lang.Object,java.lang.String) -> iifh64059hi
+    void s(java.lang.Object,java.lang.String) -> yrgc93536dq
+    void v(java.lang.Object,java.lang.String) -> wamx177398yk
+    void w(java.lang.Object,java.lang.String) -> jais130334gx
+    void f(java.lang.Object,java.lang.String) -> nqxu196357wv
+    void l(java.lang.String) -> qmqu111722ul
+    void s(java.lang.String) -> epqn35822rq
+    void v(java.lang.String) -> rasc194364bv
+    void w(java.lang.String) -> ehat86585ky
+    void f(java.lang.String) -> cdro17756to
+surge.util.F -> com.volmit.react.atgs66371ik:
+    java.text.NumberFormat NF -> vgbb163263hi
+    java.text.DecimalFormat DF -> siwy128232lt
+    java.lang.String[] NAMES -> xrwh12998tn
+    java.math.BigInteger THOUSAND -> quqt7276af
+    java.util.NavigableMap MAP -> wtsd30079fu
     void <init>() -> <init>
-    java.lang.String time(double,int) -> Lorem
+    java.lang.String time(double,int) -> iifh64059hi
     java.lang.String b(int) -> b
-    java.lang.String b(long) -> sit
-    java.lang.String b(double) -> eu
-    java.lang.String b(java.math.BigInteger) -> Lorem
-    void instantiate() -> Orci
-    java.lang.String color(java.lang.String) -> vestibulum
-    java.lang.String fileSize(long) -> amet
-    java.lang.String memSize(long) -> consectetur
-    java.lang.String stamp(long) -> adipiscing
-    java.lang.String stamp() -> natoque
-    java.lang.String ofSize(long,int) -> ipsum
-    surge.collection.GList wrap(java.lang.String) -> lorem
-    surge.collection.GList wrap(java.lang.String,int) -> amet
-    java.lang.String trim(java.lang.String,int) -> consectetur
-    java.lang.String cname(java.lang.String) -> scelerisque
-    surge.collection.GList getParameters(java.lang.String,char) -> Lorem
+    java.lang.String b(long) -> jais130334gx
+    java.lang.String b(double) -> jhnx187598nc
+    java.lang.String b(java.math.BigInteger) -> iifh64059hi
+    void instantiate() -> dnio116209aj
+    java.lang.String color(java.lang.String) -> gpfc195975lf
+    java.lang.String fileSize(long) -> nqxu196357wv
+    java.lang.String memSize(long) -> euwq104639au
+    java.lang.String stamp(long) -> rsex75607ra
+    java.lang.String stamp() -> mawh130897df
+    java.lang.String ofSize(long,int) -> yrgc93536dq
+    surge.collection.GList wrap(java.lang.String) -> huda156689ym
+    surge.collection.GList wrap(java.lang.String,int) -> nqxu196357wv
+    java.lang.String trim(java.lang.String,int) -> euwq104639au
+    java.lang.String cname(java.lang.String) -> ixqj103981dq
+    surge.collection.GList getParameters(java.lang.String,char) -> iifh64059hi
     java.lang.String repeat(java.lang.String,int) -> repeat
-    java.lang.String mem(long) -> elit
-    java.lang.String memx(long) -> Sed
-    java.lang.String f(long) -> vel
-    java.lang.String f(int) -> congue
-    java.lang.String f(double,int) -> ipsum
-    java.lang.String fd(double,int) -> dolor
-    java.lang.String f(float,int) -> Lorem
-    java.lang.String f(double) -> nec
-    java.lang.String f(float) -> Lorem
-    java.lang.String pc(double,int) -> sit
-    java.lang.String pc(float,int) -> ipsum
-    java.lang.String pc(double) -> est
-    java.lang.String pc(float) -> ipsum
-    java.lang.String pc(int,int,int) -> dolor
-    java.lang.String pc(int,int) -> dolor
-    java.lang.String pc(long,long,int) -> Lorem
-    java.lang.String pc(long,long) -> Lorem
-    java.lang.String msSeconds(long) -> nibh
-    java.lang.String msSeconds(long,int) -> dolor
-    java.lang.String nsMs(long) -> quis
-    java.lang.String nsMs(long,int) -> sit
-    java.lang.String nsMsd(long,int) -> amet
-    surge.collection.GList color(java.util.List) -> dolor
+    java.lang.String mem(long) -> rohx185625dm
+    java.lang.String memx(long) -> dskh111417ns
+    java.lang.String f(long) -> kpsc178172xr
+    java.lang.String f(int) -> xybc8061pc
+    java.lang.String f(double,int) -> yrgc93536dq
+    java.lang.String fd(double,int) -> wamx177398yk
+    java.lang.String f(float,int) -> iifh64059hi
+    java.lang.String f(double) -> pocr154074ip
+    java.lang.String f(float) -> iifh64059hi
+    java.lang.String pc(double,int) -> jais130334gx
+    java.lang.String pc(float,int) -> yrgc93536dq
+    java.lang.String pc(double) -> mctm31570xt
+    java.lang.String pc(float) -> yrgc93536dq
+    java.lang.String pc(int,int,int) -> wamx177398yk
+    java.lang.String pc(int,int) -> wamx177398yk
+    java.lang.String pc(long,long,int) -> iifh64059hi
+    java.lang.String pc(long,long) -> iifh64059hi
+    java.lang.String msSeconds(long) -> lygn130750fd
+    java.lang.String msSeconds(long,int) -> wamx177398yk
+    java.lang.String nsMs(long) -> tgwu42804si
+    java.lang.String nsMs(long,int) -> jais130334gx
+    java.lang.String nsMsd(long,int) -> nqxu196357wv
+    surge.collection.GList color(java.util.List) -> wamx177398yk
     void <clinit>() -> <clinit>
-surge.util.GListAdapter -> com.volmit.react.Duis:
+surge.util.GListAdapter -> com.volmit.react.qlab139264yu:
     void <init>() -> <init>
-    java.util.List adapt(java.util.List) -> sit
-    java.lang.Object onAdapt(java.lang.Object) -> est
-surge.util.P -> com.volmit.react.ligula:
+    java.util.List adapt(java.util.List) -> jais130334gx
+    java.lang.Object onAdapt(java.lang.Object) -> mctm31570xt
+surge.util.P -> com.volmit.react.xuuo112715sd:
     void <init>() -> <init>
-    boolean isOnline(java.lang.String) -> sollicitudin
+    boolean isOnline(java.lang.String) -> xpvn79073uo
     org.bukkit.entity.Player getPlayer(java.lang.String) -> getPlayer
-    org.bukkit.entity.Player getAnyPlayer() -> penatibus
-    boolean isAnyOnline() -> magnis
-    surge.collection.GList inWorld(org.bukkit.World) -> Lorem
-    surge.collection.GList inChunk(org.bukkit.Chunk) -> Lorem
-    surge.collection.GList inArea(org.bukkit.Location,double) -> dolor
-    surge.collection.GList inArea(org.bukkit.Location,int) -> Lorem
-    void disable(org.bukkit.entity.Player) -> amet
-    void enable(org.bukkit.entity.Player) -> consectetur
-    org.bukkit.Location targetBlock(org.bukkit.entity.Player,int) -> Lorem
-    org.bukkit.entity.Entity targetEntity(org.bukkit.entity.Player,int) -> ipsum
-    boolean hasInventoryOpen(org.bukkit.entity.Player) -> adipiscing
-    org.bukkit.entity.Entity getEntityLookingAt(org.bukkit.entity.Player,double,double) -> Lorem
-    int getTotalExperience(org.bukkit.entity.Player) -> elit
-    void setTotalExperience(org.bukkit.entity.Player,int) -> dolor
-    boolean canFindPlayer(java.lang.String) -> lacus
-    org.bukkit.entity.Player findPlayer(java.lang.String) -> Vestibulum
-    surge.collection.GList onlinePlayers() -> dis
-    org.bukkit.Location getCrotchLocation(org.bukkit.entity.Player) -> Sed
-    void clear(org.bukkit.entity.Player) -> vel
-    void clearEffects(org.bukkit.entity.Player) -> nibh
-    void heal(org.bukkit.entity.Player,double) -> Lorem
-    void heal(org.bukkit.entity.Player) -> quis
-    void resetMaxHeath(org.bukkit.entity.Player) -> auctor
-    void resetHunger(org.bukkit.entity.Player) -> rhoncus
-    void kill(org.bukkit.entity.Player) -> eu
-    surge.util.Shape getShape(org.bukkit.entity.Player) -> nec
-    org.bukkit.Location getHand(org.bukkit.entity.Player) -> est
-    org.bukkit.Location getHand(org.bukkit.entity.Player,float,float) -> Lorem
-surge.util.P$1 -> com.volmit.react.volutpat:
+    org.bukkit.entity.Player getAnyPlayer() -> nlbm50160bt
+    boolean isAnyOnline() -> xyfk70401ll
+    surge.collection.GList inWorld(org.bukkit.World) -> iifh64059hi
+    surge.collection.GList inChunk(org.bukkit.Chunk) -> iifh64059hi
+    surge.collection.GList inArea(org.bukkit.Location,double) -> wamx177398yk
+    surge.collection.GList inArea(org.bukkit.Location,int) -> iifh64059hi
+    void disable(org.bukkit.entity.Player) -> nqxu196357wv
+    void enable(org.bukkit.entity.Player) -> euwq104639au
+    org.bukkit.Location targetBlock(org.bukkit.entity.Player,int) -> iifh64059hi
+    org.bukkit.entity.Entity targetEntity(org.bukkit.entity.Player,int) -> yrgc93536dq
+    boolean hasInventoryOpen(org.bukkit.entity.Player) -> rsex75607ra
+    org.bukkit.entity.Entity getEntityLookingAt(org.bukkit.entity.Player,double,double) -> iifh64059hi
+    int getTotalExperience(org.bukkit.entity.Player) -> rohx185625dm
+    void setTotalExperience(org.bukkit.entity.Player,int) -> wamx177398yk
+    boolean canFindPlayer(java.lang.String) -> hygq169956ge
+    org.bukkit.entity.Player findPlayer(java.lang.String) -> mrrs49729ic
+    surge.collection.GList onlinePlayers() -> whfu6789wu
+    org.bukkit.Location getCrotchLocation(org.bukkit.entity.Player) -> dskh111417ns
+    void clear(org.bukkit.entity.Player) -> kpsc178172xr
+    void clearEffects(org.bukkit.entity.Player) -> lygn130750fd
+    void heal(org.bukkit.entity.Player,double) -> iifh64059hi
+    void heal(org.bukkit.entity.Player) -> tgwu42804si
+    void resetMaxHeath(org.bukkit.entity.Player) -> alsm125505oe
+    void resetHunger(org.bukkit.entity.Player) -> oqof171026an
+    void kill(org.bukkit.entity.Player) -> jhnx187598nc
+    surge.util.Shape getShape(org.bukkit.entity.Player) -> pocr154074ip
+    org.bukkit.Location getHand(org.bukkit.entity.Player) -> mctm31570xt
+    org.bukkit.Location getHand(org.bukkit.entity.Player,float,float) -> iifh64059hi
+surge.util.P$1 -> com.volmit.react.foem172770we:
     void <init>() -> <init>
-    org.bukkit.entity.Player onAdapt(org.bukkit.entity.Entity) -> ipsum
-    java.lang.Object onAdapt(java.lang.Object) -> est
-surge.util.P$2 -> com.volmit.react.tempor:
-    java.lang.Double val$doff -> ae
-    org.bukkit.entity.Player val$e -> af
-    org.bukkit.entity.Entity[] val$result -> ag
+    org.bukkit.entity.Player onAdapt(org.bukkit.entity.Entity) -> yrgc93536dq
+    java.lang.Object onAdapt(java.lang.Object) -> mctm31570xt
+surge.util.P$2 -> com.volmit.react.tfjw106366ii:
+    java.lang.Double val$doff -> odwy98843wc
+    org.bukkit.entity.Player val$e -> giys68735ba
+    org.bukkit.entity.Entity[] val$result -> dqkw140461ng
     void <init>(org.bukkit.Location,org.bukkit.util.Vector,java.lang.Double,java.lang.Double,java.lang.Double,org.bukkit.entity.Player,org.bukkit.entity.Entity[]) -> <init>
-    void onTrace(org.bukkit.Location) -> Sed
-surge.util.PE -> com.volmit.react.nunc:
-    surge.util.PE ABSORPTION -> ah
-    surge.util.PE BLINDNESS -> ai
-    surge.util.PE CONFUSION -> aj
-    surge.util.PE DAMAGE_RESISTANCE -> ak
-    surge.util.PE FAST_DIGGING -> al
-    surge.util.PE FIRE_RESISTANCE -> am
-    surge.util.PE GLOWING -> an
-    surge.util.PE HARM -> ao
-    surge.util.PE HEAL -> ap
-    surge.util.PE HEALTH_BOOST -> aq
-    surge.util.PE HUNGER -> ar
-    surge.util.PE INCREASE_DAMAGE -> as
-    surge.util.PE INVISIBILITY -> au
-    surge.util.PE JUMP -> av
-    surge.util.PE LEVITATION -> aw
-    surge.util.PE LUCK -> ax
-    surge.util.PE NIGHT_VISION -> ay
-    surge.util.PE POISON -> az
-    surge.util.PE REGENERATION -> aA
-    surge.util.PE SATURATION -> aB
-    surge.util.PE SLOW -> aC
-    surge.util.PE SLOW_DIGGING -> aD
-    surge.util.PE SPEED -> aE
-    surge.util.PE UNLUCK -> aF
-    surge.util.PE WATER_BREATHING -> aG
-    surge.util.PE WEAKNESS -> aH
-    surge.util.PE WITHER -> aI
+    void onTrace(org.bukkit.Location) -> dskh111417ns
+surge.util.PE -> com.volmit.react.qxnq183806ur:
+    surge.util.PE ABSORPTION -> bgcu181609bj
+    surge.util.PE BLINDNESS -> wgjc142993oc
+    surge.util.PE CONFUSION -> glhy64667yr
+    surge.util.PE DAMAGE_RESISTANCE -> mfrq12147yt
+    surge.util.PE FAST_DIGGING -> invp152447ck
+    surge.util.PE FIRE_RESISTANCE -> qxbv147597vh
+    surge.util.PE GLOWING -> speq194973ns
+    surge.util.PE HARM -> pcga48719oj
+    surge.util.PE HEAL -> eidw156923my
+    surge.util.PE HEALTH_BOOST -> olgf151517yj
+    surge.util.PE HUNGER -> lxgi105599mp
+    surge.util.PE INCREASE_DAMAGE -> lrfb186568gm
+    surge.util.PE INVISIBILITY -> jcso149991ks
+    surge.util.PE JUMP -> gjek116911sb
+    surge.util.PE LEVITATION -> wyxx43095kc
+    surge.util.PE LUCK -> ycml31399gm
+    surge.util.PE NIGHT_VISION -> uqxa54583do
+    surge.util.PE POISON -> gdsn184581qr
+    surge.util.PE REGENERATION -> ljnl103970mu
+    surge.util.PE SATURATION -> fkuo58430uw
+    surge.util.PE SLOW -> xqup53726ul
+    surge.util.PE SLOW_DIGGING -> bcui126112nk
+    surge.util.PE SPEED -> hqgb69703xe
+    surge.util.PE UNLUCK -> wgse169645yk
+    surge.util.PE WATER_BREATHING -> uuwq77967uo
+    surge.util.PE WEAKNESS -> pihk49897lm
+    surge.util.PE WITHER -> bjan143085dm
     void <clinit>() -> <clinit>
     void <init>(java.util.Map) -> <init>
     void <init>(org.bukkit.potion.PotionEffectType,int,int,boolean,boolean) -> <init>
@@ -1454,184 +1556,184 @@ surge.util.PE -> com.volmit.react.nunc:
     boolean hasParticles() -> hasParticles
     int hashCode() -> hashCode
     java.lang.String toString() -> toString
-    surge.util.PE defaulted(org.bukkit.potion.PotionEffectType) -> Lorem
-    surge.util.PE d(int) -> Class
-    surge.util.PE a(int) -> aptent
-    org.bukkit.potion.PotionEffect c() -> parturient
-    void c(org.bukkit.entity.LivingEntity) -> Lorem
-    void crm(org.bukkit.entity.LivingEntity) -> ipsum
-    void rm(org.bukkit.entity.LivingEntity) -> dolor
-surge.util.Persist -> com.volmit.react.odio:
-surge.util.PluginUtil -> com.volmit.react.Quisque:
+    surge.util.PE defaulted(org.bukkit.potion.PotionEffectType) -> iifh64059hi
+    surge.util.PE d(int) -> fold76472fm
+    surge.util.PE a(int) -> ixit59488ge
+    org.bukkit.potion.PotionEffect c() -> xwmg89297di
+    void c(org.bukkit.entity.LivingEntity) -> iifh64059hi
+    void crm(org.bukkit.entity.LivingEntity) -> yrgc93536dq
+    void rm(org.bukkit.entity.LivingEntity) -> wamx177398yk
+surge.util.Persist -> com.volmit.react.etni190001vf:
+surge.util.PluginUtil -> com.volmit.react.pxov69844wr:
     void <init>() -> <init>
-    void enable(org.bukkit.plugin.Plugin) -> Lorem
-    void enableAll() -> montes
-    void disable(org.bukkit.plugin.Plugin) -> ipsum
-    void disableAll() -> nascetur
-    java.lang.String getFormattedName(org.bukkit.plugin.Plugin) -> dolor
-    java.lang.String getFormattedName(org.bukkit.plugin.Plugin,boolean) -> Lorem
-    org.bukkit.plugin.Plugin getPluginByName(java.lang.String) -> turpis
-    java.util.List getPluginNames(boolean) -> sit
-    java.lang.String getPluginVersion(java.lang.String) -> mattis
-    java.lang.String getUsages(org.bukkit.plugin.Plugin) -> sit
-    java.util.List findByCommand(java.lang.String) -> mollis
-    void load(org.bukkit.plugin.Plugin) -> amet
-    java.lang.String getPluginFileName(java.lang.String) -> nisl
+    void enable(org.bukkit.plugin.Plugin) -> iifh64059hi
+    void enableAll() -> vwhy22590tq
+    void disable(org.bukkit.plugin.Plugin) -> yrgc93536dq
+    void disableAll() -> yqai180153wf
+    java.lang.String getFormattedName(org.bukkit.plugin.Plugin) -> wamx177398yk
+    java.lang.String getFormattedName(org.bukkit.plugin.Plugin,boolean) -> iifh64059hi
+    org.bukkit.plugin.Plugin getPluginByName(java.lang.String) -> vpqf174568ku
+    java.util.List getPluginNames(boolean) -> jais130334gx
+    java.lang.String getPluginVersion(java.lang.String) -> djpw27768xo
+    java.lang.String getUsages(org.bukkit.plugin.Plugin) -> jais130334gx
+    java.util.List findByCommand(java.lang.String) -> qlvm83673os
+    void load(org.bukkit.plugin.Plugin) -> nqxu196357wv
+    java.lang.String getPluginFileName(java.lang.String) -> vpkj154163gv
     void load(java.lang.String) -> load
-    void reload(org.bukkit.plugin.Plugin) -> consectetur
-    void reloadAll() -> ridiculus
-    void unload(org.bukkit.plugin.Plugin) -> adipiscing
-surge.util.Protocol -> com.volmit.react.Praesent:
-    surge.util.Protocol LATEST -> aJ
-    surge.util.Protocol R1_12_2 -> aK
-    surge.util.Protocol R1_12_2_PRE -> aL
-    surge.util.Protocol R1_12_1 -> aM
-    surge.util.Protocol R1_12 -> aN
-    surge.util.Protocol R1_11_2 -> aO
-    surge.util.Protocol R1_11_1 -> aP
-    surge.util.Protocol R1_11 -> aQ
-    surge.util.Protocol R1_10_2 -> aR
-    surge.util.Protocol R1_10_1 -> aS
-    surge.util.Protocol R1_10 -> aT
-    surge.util.Protocol R1_9_4 -> aU
-    surge.util.Protocol R1_9_3 -> aV
-    surge.util.Protocol R1_9_2 -> aW
-    surge.util.Protocol R1_9_1 -> aX
-    surge.util.Protocol R1_9 -> aY
-    surge.util.Protocol R1_8_9 -> aZ
-    surge.util.Protocol R1_8_8 -> ba
-    surge.util.Protocol R1_8_7 -> bb
-    surge.util.Protocol R1_8_6 -> bc
-    surge.util.Protocol R1_8_5 -> bd
-    surge.util.Protocol R1_8_4 -> be
-    surge.util.Protocol R1_8_3 -> bf
-    surge.util.Protocol R1_8_2 -> bg
-    surge.util.Protocol R1_8_1 -> bh
-    surge.util.Protocol R1_8 -> bi
-    surge.util.Protocol R1_7_10 -> bj
-    surge.util.Protocol R1_7_9 -> bk
-    surge.util.Protocol R1_7_8 -> bl
-    surge.util.Protocol R1_7_7 -> bm
-    surge.util.Protocol R1_7_6 -> bn
-    surge.util.Protocol R1_7_5 -> bo
-    surge.util.Protocol R1_7_4 -> bp
-    surge.util.Protocol R1_7_3 -> bq
-    surge.util.Protocol R1_7_2 -> br
-    surge.util.Protocol R1_7_1 -> bs
-    surge.util.Protocol B1_6_4 -> bt
-    surge.util.Protocol B1_6_3 -> bu
-    surge.util.Protocol B1_6_2 -> bv
-    surge.util.Protocol B1_6_1 -> bw
-    surge.util.Protocol B1_5_2 -> bx
-    surge.util.Protocol B1_5_1 -> by
-    surge.util.Protocol B1_5 -> bz
-    surge.util.Protocol B1_4_7 -> bA
-    surge.util.Protocol B1_4_6 -> bB
-    surge.util.Protocol B1_4_5 -> bC
-    surge.util.Protocol B1_4_4 -> bD
-    surge.util.Protocol B1_4_2 -> bE
-    surge.util.Protocol B1_3_2 -> bF
-    surge.util.Protocol B1_3_1 -> bG
-    surge.util.Protocol B1_2_5 -> bH
-    surge.util.Protocol B1_2_4 -> bI
-    surge.util.Protocol EARLIEST -> bJ
-    surge.util.Protocol UNKNOWN -> bK
+    void reload(org.bukkit.plugin.Plugin) -> euwq104639au
+    void reloadAll() -> wtnn133924gt
+    void unload(org.bukkit.plugin.Plugin) -> rsex75607ra
+surge.util.Protocol -> com.volmit.react.wect104387kc:
+    surge.util.Protocol LATEST -> tyug50224fl
+    surge.util.Protocol R1_12_2 -> ciqe23752qn
+    surge.util.Protocol R1_12_2_PRE -> yyuq19274gb
+    surge.util.Protocol R1_12_1 -> vall12547rt
+    surge.util.Protocol R1_12 -> uyno188685sx
+    surge.util.Protocol R1_11_2 -> edxu52009jx
+    surge.util.Protocol R1_11_1 -> akof89513rm
+    surge.util.Protocol R1_11 -> ivuv189459an
+    surge.util.Protocol R1_10_2 -> iyrr193079oo
+    surge.util.Protocol R1_10_1 -> knsw144667yx
+    surge.util.Protocol R1_10 -> rgpc44849wg
+    surge.util.Protocol R1_9_4 -> ykag90548em
+    surge.util.Protocol R1_9_3 -> eutf34105fn
+    surge.util.Protocol R1_9_2 -> cltr111631gy
+    surge.util.Protocol R1_9_1 -> bwyb37890yb
+    surge.util.Protocol R1_9 -> pxey187619jh
+    surge.util.Protocol R1_8_9 -> gokl51308yx
+    surge.util.Protocol R1_8_8 -> fltc179612bf
+    surge.util.Protocol R1_8_7 -> vcvv159986yo
+    surge.util.Protocol R1_8_6 -> krsh17793he
+    surge.util.Protocol R1_8_5 -> pvgf160470ys
+    surge.util.Protocol R1_8_4 -> esmd118760hw
+    surge.util.Protocol R1_8_3 -> iass79494ni
+    surge.util.Protocol R1_8_2 -> osrm114909ek
+    surge.util.Protocol R1_8_1 -> bwmp88531th
+    surge.util.Protocol R1_8 -> cely26923cb
+    surge.util.Protocol R1_7_10 -> xopb54161jn
+    surge.util.Protocol R1_7_9 -> qwls145115vf
+    surge.util.Protocol R1_7_8 -> cses107733iu
+    surge.util.Protocol R1_7_7 -> ejgu76329dp
+    surge.util.Protocol R1_7_6 -> vhtx134769mf
+    surge.util.Protocol R1_7_5 -> jjta34185sy
+    surge.util.Protocol R1_7_4 -> ydvf47jf
+    surge.util.Protocol R1_7_3 -> kicc153225od
+    surge.util.Protocol R1_7_2 -> hkeu84664qd
+    surge.util.Protocol R1_7_1 -> blwm66718ka
+    surge.util.Protocol B1_6_4 -> ggca95331pf
+    surge.util.Protocol B1_6_3 -> yxhi160180am
+    surge.util.Protocol B1_6_2 -> myfm21309ww
+    surge.util.Protocol B1_6_1 -> sxcv149458ra
+    surge.util.Protocol B1_5_2 -> sdhd105132xg
+    surge.util.Protocol B1_5_1 -> rqsa156925tx
+    surge.util.Protocol B1_5 -> padu144772pd
+    surge.util.Protocol B1_4_7 -> nmpm151608dd
+    surge.util.Protocol B1_4_6 -> qbqg29848cb
+    surge.util.Protocol B1_4_5 -> nimf88993pt
+    surge.util.Protocol B1_4_4 -> yobn63577od
+    surge.util.Protocol B1_4_2 -> uxvf181612ly
+    surge.util.Protocol B1_3_2 -> qwxt61364ar
+    surge.util.Protocol B1_3_1 -> sond20611jt
+    surge.util.Protocol B1_2_5 -> tyhy10494pl
+    surge.util.Protocol B1_2_4 -> vcix151522vj
+    surge.util.Protocol EARLIEST -> hnkd100304lj
+    surge.util.Protocol UNKNOWN -> naam109300ba
     int version -> version
-    java.lang.String search -> bL
-    surge.util.Protocol[] $VALUES -> bM
+    java.lang.String search -> iaog93331sm
+    surge.util.Protocol[] $VALUES -> cxeb111241nk
     surge.util.Protocol[] values() -> values
     surge.util.Protocol valueOf(java.lang.String) -> valueOf
     void <init>(java.lang.String,int,int) -> <init>
-    surge.util.Protocol getProtocolVersion() -> mus
-    surge.util.ProtocolRange to(surge.util.Protocol) -> ipsum
-    boolean isServerVersion() -> habitant
+    surge.util.Protocol getProtocolVersion() -> ckkt14431ic
+    surge.util.ProtocolRange to(surge.util.Protocol) -> yrgc93536dq
+    boolean isServerVersion() -> fisq168076oy
     java.lang.String getVersionString() -> getVersionString
-    boolean isNettySupported() -> morbi
-    boolean isActualVersion() -> senectus
+    boolean isNettySupported() -> ievy26611fh
+    boolean isActualVersion() -> qcja60192yq
     int getVersion() -> getVersion
-    int getMetaVersion() -> netus
+    int getMetaVersion() -> beyr1520bo
     void <clinit>() -> <clinit>
-surge.util.ProtocolRange -> com.volmit.react.arcu:
-    surge.util.Protocol from -> bN
-    surge.util.Protocol to -> bO
+surge.util.ProtocolRange -> com.volmit.react.evpa42580qi:
+    surge.util.Protocol from -> mlwn112917yq
+    surge.util.Protocol to -> gecu4829ig
     void <init>(surge.util.Protocol,surge.util.Protocol) -> <init>
-    surge.util.Protocol getFrom() -> facilisi
-    surge.util.Protocol getTo() -> b
-    boolean contains(surge.util.Protocol) -> dolor
+    surge.util.Protocol getFrom() -> rfal10133eh
+    surge.util.Protocol getTo() -> tdxv114409hl
+    boolean contains(surge.util.Protocol) -> wamx177398yk
     java.lang.String toString() -> toString
-surge.util.RayTrace -> com.volmit.react.maximus:
-    org.bukkit.Location start -> bP
-    org.bukkit.util.Vector direction -> bQ
-    java.lang.Double maxDistance -> bR
-    java.lang.Double distanceCovered -> bS
-    java.lang.Double step -> bT
-    java.lang.Boolean stop -> bU
+surge.util.RayTrace -> com.volmit.react.ihxi43475uu:
+    org.bukkit.Location start -> raso121889or
+    org.bukkit.util.Vector direction -> iuni178792ma
+    java.lang.Double maxDistance -> wtil148349bx
+    java.lang.Double distanceCovered -> wifj101979el
+    java.lang.Double step -> weak45046ao
+    java.lang.Boolean stop -> wbcl87603ln
     void <init>(org.bukkit.Location,org.bukkit.util.Vector,java.lang.Double,java.lang.Double) -> <init>
-    void trace() -> c
+    void trace() -> lneq71852jk
     void stop() -> stop
-    void onTrace(org.bukkit.Location) -> Sed
-    org.bukkit.Location getStart() -> d
-    void setStart(org.bukkit.Location) -> vel
+    void onTrace(org.bukkit.Location) -> dskh111417ns
+    org.bukkit.Location getStart() -> xsua85873aj
+    void setStart(org.bukkit.Location) -> kpsc178172xr
     org.bukkit.util.Vector getDirection() -> getDirection
     void setDirection(org.bukkit.util.Vector) -> setDirection
-    java.lang.Double getMaxDistance() -> e
-    void setMaxDistance(java.lang.Double) -> ipsum
-    java.lang.Double getDistanceCovered() -> f
-    void setDistanceCovered(java.lang.Double) -> dolor
-    java.lang.Double getStep() -> g
-    void setStep(java.lang.Double) -> sit
-surge.util.Shape -> com.volmit.react.ultricies:
-    org.bukkit.Location location -> porta
-    org.bukkit.util.Vector offset -> bV
-    org.bukkit.util.Vector size -> bW
+    java.lang.Double getMaxDistance() -> kfra50344rc
+    void setMaxDistance(java.lang.Double) -> yrgc93536dq
+    java.lang.Double getDistanceCovered() -> nhnk147763dk
+    void setDistanceCovered(java.lang.Double) -> wamx177398yk
+    java.lang.Double getStep() -> msqr98136dm
+    void setStep(java.lang.Double) -> jais130334gx
+surge.util.Shape -> com.volmit.react.ieey5066jm:
+    org.bukkit.Location location -> nyxf77103mu
+    org.bukkit.util.Vector offset -> bkce76870ud
+    org.bukkit.util.Vector size -> gian96639ki
     void <init>(org.bukkit.Location,org.bukkit.util.Vector,org.bukkit.util.Vector) -> <init>
     void <init>(org.bukkit.Location,org.bukkit.util.Vector) -> <init>
     void <init>(org.bukkit.Location) -> <init>
-    boolean isWithinShape(org.bukkit.Location) -> nibh
-    org.bukkit.Location randomLocation() -> h
-    org.bukkit.Location randomSurface() -> i
+    boolean isWithinShape(org.bukkit.Location) -> lygn130750fd
+    org.bukkit.Location randomLocation() -> woad69995ya
+    org.bukkit.Location randomSurface() -> eamp38055gx
     org.bukkit.Location getCenter() -> getCenter
     org.bukkit.Location getLocation() -> getLocation
-    org.bukkit.util.Vector getOffset() -> j
-    org.bukkit.util.Vector getSize() -> k
-surge.util.VectorMath -> com.volmit.react.feugiat:
-    int[] $SWITCH_TABLE$surge$util$Axis -> bX
-    int[] $SWITCH_TABLE$org$bukkit$block$BlockFace -> bY
+    org.bukkit.util.Vector getOffset() -> wtlt84876al
+    org.bukkit.util.Vector getSize() -> hiua133503ki
+surge.util.VectorMath -> com.volmit.react.utad177276ea:
+    int[] $SWITCH_TABLE$surge$util$Axis -> wxxc26318sn
+    int[] $SWITCH_TABLE$org$bukkit$block$BlockFace -> vplo193652iq
     void <init>() -> <init>
-    org.bukkit.util.Vector scaleStatic(surge.util.Axis,org.bukkit.util.Vector,double) -> Lorem
-    org.bukkit.util.Vector scaleX(org.bukkit.util.Vector,double) -> Lorem
-    org.bukkit.util.Vector scaleY(org.bukkit.util.Vector,double) -> ipsum
-    org.bukkit.util.Vector scaleZ(org.bukkit.util.Vector,double) -> dolor
-    org.bukkit.util.Vector reverseXZ(org.bukkit.util.Vector) -> Lorem
-    boolean isLookingNear(org.bukkit.Location,org.bukkit.Location,double) -> ipsum
-    org.bukkit.util.Vector rotate90CX(org.bukkit.util.Vector) -> ipsum
-    org.bukkit.util.Vector rotate90CCX(org.bukkit.util.Vector) -> dolor
-    org.bukkit.util.Vector rotate90CY(org.bukkit.util.Vector) -> sit
-    org.bukkit.util.Vector rotate90CCY(org.bukkit.util.Vector) -> amet
-    org.bukkit.util.Vector rotate90CZ(org.bukkit.util.Vector) -> consectetur
-    org.bukkit.util.Vector rotate90CCZ(org.bukkit.util.Vector) -> adipiscing
-    double round(double,int) -> amet
-    org.bukkit.util.Vector clip(org.bukkit.util.Vector,int) -> Lorem
-    org.bukkit.util.Vector rotateVectorCC(org.bukkit.util.Vector,org.bukkit.util.Vector,double) -> Lorem
-    surge.collection.GList split(org.bukkit.block.BlockFace) -> Lorem
-    org.bukkit.util.Vector direction(org.bukkit.Location,org.bukkit.Location) -> ipsum
-    org.bukkit.util.Vector directionNoNormal(org.bukkit.Location,org.bukkit.Location) -> dolor
-    org.bukkit.util.Vector toVector(float,float) -> Lorem
-    void impulse(org.bukkit.entity.Entity,org.bukkit.util.Vector) -> Lorem
-    void impulse(org.bukkit.entity.Entity,org.bukkit.util.Vector,double) -> Lorem
-    org.bukkit.util.Vector reverse(org.bukkit.util.Vector) -> elit
-    double getSpeed(org.bukkit.util.Vector) -> Sed
-    surge.collection.GList shift(org.bukkit.util.Vector,surge.collection.GList) -> Lorem
-    org.bukkit.block.BlockFace getBlockFace(org.bukkit.util.Vector) -> vel
-    org.bukkit.util.Vector angleLeft(org.bukkit.util.Vector,float) -> Lorem
-    org.bukkit.util.Vector angleRight(org.bukkit.util.Vector,float) -> ipsum
-    org.bukkit.util.Vector angleUp(org.bukkit.util.Vector,float) -> dolor
-    org.bukkit.util.Vector angleDown(org.bukkit.util.Vector,float) -> sit
-    org.bukkit.util.Vector triNormalize(org.bukkit.util.Vector) -> nibh
-    int[] $SWITCH_TABLE$surge$util$Axis() -> l
-    int[] $SWITCH_TABLE$org$bukkit$block$BlockFace() -> m
-surge.util.VectorMath$1 -> com.volmit.react.molestie:
-    org.bukkit.util.Vector val$vector -> bZ
+    org.bukkit.util.Vector scaleStatic(surge.util.Axis,org.bukkit.util.Vector,double) -> iifh64059hi
+    org.bukkit.util.Vector scaleX(org.bukkit.util.Vector,double) -> iifh64059hi
+    org.bukkit.util.Vector scaleY(org.bukkit.util.Vector,double) -> yrgc93536dq
+    org.bukkit.util.Vector scaleZ(org.bukkit.util.Vector,double) -> wamx177398yk
+    org.bukkit.util.Vector reverseXZ(org.bukkit.util.Vector) -> iifh64059hi
+    boolean isLookingNear(org.bukkit.Location,org.bukkit.Location,double) -> yrgc93536dq
+    org.bukkit.util.Vector rotate90CX(org.bukkit.util.Vector) -> yrgc93536dq
+    org.bukkit.util.Vector rotate90CCX(org.bukkit.util.Vector) -> wamx177398yk
+    org.bukkit.util.Vector rotate90CY(org.bukkit.util.Vector) -> jais130334gx
+    org.bukkit.util.Vector rotate90CCY(org.bukkit.util.Vector) -> nqxu196357wv
+    org.bukkit.util.Vector rotate90CZ(org.bukkit.util.Vector) -> euwq104639au
+    org.bukkit.util.Vector rotate90CCZ(org.bukkit.util.Vector) -> rsex75607ra
+    double round(double,int) -> nqxu196357wv
+    org.bukkit.util.Vector clip(org.bukkit.util.Vector,int) -> iifh64059hi
+    org.bukkit.util.Vector rotateVectorCC(org.bukkit.util.Vector,org.bukkit.util.Vector,double) -> iifh64059hi
+    surge.collection.GList split(org.bukkit.block.BlockFace) -> iifh64059hi
+    org.bukkit.util.Vector direction(org.bukkit.Location,org.bukkit.Location) -> yrgc93536dq
+    org.bukkit.util.Vector directionNoNormal(org.bukkit.Location,org.bukkit.Location) -> wamx177398yk
+    org.bukkit.util.Vector toVector(float,float) -> iifh64059hi
+    void impulse(org.bukkit.entity.Entity,org.bukkit.util.Vector) -> iifh64059hi
+    void impulse(org.bukkit.entity.Entity,org.bukkit.util.Vector,double) -> iifh64059hi
+    org.bukkit.util.Vector reverse(org.bukkit.util.Vector) -> rohx185625dm
+    double getSpeed(org.bukkit.util.Vector) -> dskh111417ns
+    surge.collection.GList shift(org.bukkit.util.Vector,surge.collection.GList) -> iifh64059hi
+    org.bukkit.block.BlockFace getBlockFace(org.bukkit.util.Vector) -> kpsc178172xr
+    org.bukkit.util.Vector angleLeft(org.bukkit.util.Vector,float) -> iifh64059hi
+    org.bukkit.util.Vector angleRight(org.bukkit.util.Vector,float) -> yrgc93536dq
+    org.bukkit.util.Vector angleUp(org.bukkit.util.Vector,float) -> wamx177398yk
+    org.bukkit.util.Vector angleDown(org.bukkit.util.Vector,float) -> jais130334gx
+    org.bukkit.util.Vector triNormalize(org.bukkit.util.Vector) -> lygn130750fd
+    int[] $SWITCH_TABLE$surge$util$Axis() -> esvy133824dc
+    int[] $SWITCH_TABLE$org$bukkit$block$BlockFace() -> glvi143906sa
+surge.util.VectorMath$1 -> com.volmit.react.xney46150ie:
+    org.bukkit.util.Vector val$vector -> bdxl33617hc
     void <init>(org.bukkit.util.Vector) -> <init>
-    org.bukkit.util.Vector onAdapt(org.bukkit.util.Vector) -> quis
-    java.lang.Object onAdapt(java.lang.Object) -> est
+    org.bukkit.util.Vector onAdapt(org.bukkit.util.Vector) -> tgwu42804si
+    java.lang.Object onAdapt(java.lang.Object) -> mctm31570xt

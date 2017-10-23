@@ -1,5 +1,8 @@
 package com.volmit.react;
 
+import com.volmit.react.controller.SampleController;
+
+import surge.control.Control;
 import surge.control.Disable;
 import surge.control.Enable;
 import surge.control.Instance;
@@ -12,6 +15,9 @@ public class React
 {
 	@Instance
 	public static React instance;
+
+	@Control
+	public SampleController sampleController;
 
 	@Enable
 	public void enable()
