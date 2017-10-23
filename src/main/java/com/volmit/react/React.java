@@ -1,38 +1,26 @@
 package com.volmit.react;
 
-import surge.control.AmpedPlugin;
+import surge.control.Disable;
+import surge.control.Enable;
+import surge.control.Instance;
+import surge.control.Plugin;
 import surge.util.Persist;
-import surge.util.Protocol;
 
 @Persist
-public class React extends AmpedPlugin
+@Plugin
+public class React
 {
-	@Override
-	public void onControllerRegistry()
+	@Instance
+	public static React instance;
+
+	@Enable
+	public void enable()
 	{
 
 	}
 
-	@Override
-	public void onStart(Protocol arg0)
-	{
-
-	}
-
-	@Override
-	public void onStop()
-	{
-
-	}
-
-	@Override
-	public void onPostInit()
-	{
-
-	}
-
-	@Override
-	public void onPreInit()
+	@Disable
+	public void disable()
 	{
 
 	}

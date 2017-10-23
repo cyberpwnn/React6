@@ -1,108 +1,112 @@
 com.volmit.react.React -> com.volmit.react.Lorem:
+    com.volmit.react.React instance -> Lorem
+    void <init>() -> <init>
+    void enable() -> enable
+    void disable() -> disable
+surge.Main -> com.volmit.react.ipsum:
+    surge.collection.GList plugins -> ipsum
+    surge.collection.GMap pluginInstances -> dolor
+    surge.collection.GList controllerSet -> sit
     void <init>() -> <init>
     void onControllerRegistry() -> Lorem
     void onStart(surge.util.Protocol) -> Lorem
     void onStop() -> ipsum
     void onPostInit() -> dolor
     void onPreInit() -> sit
-surge.PluginAmp -> com.volmit.react.ipsum:
-    surge.control.AmpedPlugin plugin -> Lorem
+    void shutDownAmps() -> amet
+    void initializeAmps() -> consectetur
+    void scanForAmps() -> adipiscing
+    void onTick() -> elit
+surge.PluginAmp -> com.volmit.react.dolor:
+    surge.control.AmpedPlugin plugin -> amet
     boolean connected -> connected
-    int masterTask -> ipsum
+    int masterTask -> consectetur
     void <init>(surge.control.AmpedPlugin) -> <init>
-    surge.control.AmpedPlugin getPluginInstance() -> amet
+    surge.control.AmpedPlugin getPluginInstance() -> Sed
     boolean isConnected() -> isConnected
     void connect() -> connect
-    void masterTick() -> consectetur
+    void masterTick() -> vel
     void disconnect() -> disconnect
     int startTask(int,java.lang.Runnable) -> Lorem
     int startRepeatingTask(int,int,java.lang.Runnable) -> Lorem
     void stopTask(int) -> Lorem
     void access$000(surge.PluginAmp) -> Lorem
-surge.PluginAmp$1 -> com.volmit.react.dolor:
-    surge.PluginAmp this$0 -> dolor
+surge.PluginAmp$1 -> com.volmit.react.sit:
+    surge.PluginAmp this$0 -> adipiscing
     void <init>(surge.PluginAmp) -> <init>
     void run() -> run
-surge.PluginAmp$2 -> com.volmit.react.sit:
-    surge.PluginAmp this$0 -> dolor
+surge.PluginAmp$2 -> com.volmit.react.amet:
+    surge.PluginAmp this$0 -> adipiscing
     void <init>(surge.PluginAmp) -> <init>
     void run() -> run
-surge.ReactSamplePlayer -> com.volmit.react.amet:
-    boolean isMonitoring -> sit
-    void <init>() -> <init>
-surge.ShittyController -> com.volmit.react.consectetur:
-    void <init>() -> <init>
-    void start() -> start
-    void stop() -> stop
-    void tick() -> tick
-surge.Surge -> com.volmit.react.adipiscing:
-    surge.PluginAmp amp -> amet
-    surge.collection.GList tickComponents -> consectetur
-    surge.sched.TaskManager taskmgr -> adipiscing
-    surge.hotload.HotloadManager hotloadmgr -> elit
-    java.lang.Thread mainThread -> Sed
+surge.Surge -> com.volmit.react.consectetur:
+    surge.PluginAmp amp -> elit
+    surge.collection.GList tickComponents -> Sed
+    surge.sched.TaskManager taskmgr -> vel
+    surge.hotload.HotloadManager hotloadmgr -> nibh
+    java.lang.Thread mainThread -> quis
     void <clinit>() -> <clinit>
     void <init>() -> <init>
-    java.io.File getPluginJarFile() -> adipiscing
+    java.io.File getPluginJarFile() -> nibh
     void startup() -> startup
-    java.lang.Thread getServerThread() -> elit
-    surge.collection.GList getTickComponents() -> Sed
+    java.lang.Thread getServerThread() -> quis
+    surge.collection.GList getTickComponents() -> auctor
     void registerTicked(surge.sched.IMasterTickComponent) -> Lorem
     void unregisterTicked(surge.sched.IMasterTickComponent) -> ipsum
     surge.PluginAmp createAmp(surge.control.AmpedPlugin) -> Lorem
     boolean isMainThread() -> isMainThread
-    void stopAmp() -> vel
-    boolean hasAmp() -> nibh
-    surge.PluginAmp getAmp() -> quis
-    surge.sched.TaskManager getTaskManager() -> auctor
-    surge.hotload.HotloadManager getHotloadManager() -> rhoncus
-surge.cluster.Cluster -> com.volmit.react.elit:
-    surge.cluster.ClusterType type -> vel
-    java.lang.Object t -> nibh
+    void stopAmp() -> rhoncus
+    boolean hasAmp() -> eu
+    surge.PluginAmp getAmp() -> nec
+    surge.sched.TaskManager getTaskManager() -> est
+    surge.hotload.HotloadManager getHotloadManager() -> Aliquam
+surge.cluster.Cluster -> com.volmit.react.adipiscing:
+    surge.cluster.ClusterType type -> auctor
+    java.lang.Object t -> rhoncus
     void <init>(surge.cluster.ClusterType,java.lang.Object) -> <init>
-    surge.cluster.ClusterType getType() -> eu
+    surge.cluster.ClusterType getType() -> posuere
     void set(java.lang.Object) -> set
     java.lang.Object get() -> get
-surge.cluster.ClusterBoolean -> com.volmit.react.Sed:
+surge.cluster.ClusterBoolean -> com.volmit.react.elit:
     void <init>(java.lang.Boolean) -> <init>
-surge.cluster.ClusterDouble -> com.volmit.react.vel:
+surge.cluster.ClusterDouble -> com.volmit.react.Sed:
     void <init>(java.lang.Double) -> <init>
-surge.cluster.ClusterInt -> com.volmit.react.nibh:
+surge.cluster.ClusterInt -> com.volmit.react.vel:
     void <init>(java.lang.Integer) -> <init>
-surge.cluster.ClusterLong -> com.volmit.react.quis:
+surge.cluster.ClusterLong -> com.volmit.react.nibh:
     void <init>(java.lang.Long) -> <init>
-surge.cluster.ClusterString -> com.volmit.react.auctor:
+surge.cluster.ClusterString -> com.volmit.react.quis:
     void <init>(java.lang.String) -> <init>
-surge.cluster.ClusterStringList -> com.volmit.react.rhoncus:
+surge.cluster.ClusterStringList -> com.volmit.react.auctor:
     void <init>(java.util.List) -> <init>
-surge.cluster.ClusterType -> com.volmit.react.eu:
-    surge.cluster.ClusterType INT -> quis
-    surge.cluster.ClusterType BOOLEAN -> auctor
-    surge.cluster.ClusterType STRING -> rhoncus
-    surge.cluster.ClusterType STRING_LIST -> eu
-    surge.cluster.ClusterType DOUBLE -> nec
-    surge.cluster.ClusterType LONG -> est
-    surge.cluster.ClusterType[] $VALUES -> Aliquam
+surge.cluster.ClusterType -> com.volmit.react.rhoncus:
+    surge.cluster.ClusterType INT -> eu
+    surge.cluster.ClusterType BOOLEAN -> nec
+    surge.cluster.ClusterType STRING -> est
+    surge.cluster.ClusterType STRING_LIST -> Aliquam
+    surge.cluster.ClusterType DOUBLE -> posuere
+    surge.cluster.ClusterType LONG -> diam
+    surge.cluster.ClusterType[] $VALUES -> erat
     surge.cluster.ClusterType[] values() -> values
     surge.cluster.ClusterType valueOf(java.lang.String) -> valueOf
     void <init>(java.lang.String,int) -> <init>
     void <clinit>() -> <clinit>
-surge.cluster.ConfigurationDataInput -> com.volmit.react.nec:
-    int[] $SWITCH_TABLE$surge$cluster$ClusterType -> posuere
+surge.cluster.ConfigurationDataInput -> com.volmit.react.eu:
+    int[] $SWITCH_TABLE$surge$cluster$ClusterType -> at
     void <init>() -> <init>
     void read(surge.cluster.IConfigurable,java.io.File) -> Lorem
     surge.cluster.DataCluster fillDefaults(surge.cluster.IConfigurable) -> Lorem
-    int[] $SWITCH_TABLE$surge$cluster$ClusterType() -> nec
-surge.cluster.ConfigurationDataOutput -> com.volmit.react.est:
+    int[] $SWITCH_TABLE$surge$cluster$ClusterType() -> diam
+surge.cluster.ConfigurationDataOutput -> com.volmit.react.nec:
     void <init>() -> <init>
     void write(surge.cluster.IConfigurable,java.io.File) -> ipsum
-surge.cluster.DataCluster -> com.volmit.react.Aliquam:
-    surge.collection.GMap clusters -> diam
+surge.cluster.DataCluster -> com.volmit.react.est:
+    surge.collection.GMap clusters -> laoreet
     void <init>() -> <init>
-    surge.collection.GList keys() -> est
+    surge.collection.GList keys() -> erat
     void fromJson(surge.json.JSONObject) -> Lorem
-    surge.json.JSONObject toJson() -> Aliquam
-    org.bukkit.configuration.file.FileConfiguration toFileConfiguration() -> posuere
+    surge.json.JSONObject toJson() -> at
+    org.bukkit.configuration.file.FileConfiguration toFileConfiguration() -> laoreet
     void fromFileConfiguration(org.bukkit.configuration.file.FileConfiguration) -> Lorem
     boolean contains(java.lang.String) -> contains
     surge.cluster.ClusterType getType(java.lang.String) -> Lorem
@@ -120,51 +124,51 @@ surge.cluster.DataCluster -> com.volmit.react.Aliquam:
     void set(java.lang.String,long) -> Lorem
     void set(java.lang.String,java.lang.String) -> set
     void set(java.lang.String,java.util.List) -> Lorem
-surge.cluster.ICluster -> com.volmit.react.posuere:
-    surge.cluster.ClusterType getType() -> eu
+surge.cluster.ICluster -> com.volmit.react.Aliquam:
+    surge.cluster.ClusterType getType() -> posuere
     void set(java.lang.Object) -> set
     java.lang.Object get() -> get
-surge.cluster.IConfigurable -> com.volmit.react.diam:
-surge.cluster.IDataInput -> com.volmit.react.erat:
+surge.cluster.IConfigurable -> com.volmit.react.posuere:
+surge.cluster.IDataInput -> com.volmit.react.diam:
     surge.cluster.DataCluster read(java.io.File) -> Lorem
-surge.cluster.IDataOutput -> com.volmit.react.at:
+surge.cluster.IDataOutput -> com.volmit.react.erat:
     void write(surge.cluster.DataCluster,java.io.File) -> Lorem
-surge.cluster.Key -> com.volmit.react.laoreet:
+surge.cluster.Key -> com.volmit.react.at:
     java.lang.String value() -> value
-surge.cluster.ReflectedConfigurationException -> com.volmit.react.leo:
+surge.cluster.ReflectedConfigurationException -> com.volmit.react.laoreet:
     long serialVersionUID -> serialVersionUID
     void <init>() -> <init>
-surge.cluster.YamlDataInput -> com.volmit.react.congue:
+surge.cluster.YamlDataInput -> com.volmit.react.leo:
     void <init>() -> <init>
     surge.cluster.DataCluster read(java.io.File) -> Lorem
-surge.cluster.YamlDataOutput -> com.volmit.react.Class:
+surge.cluster.YamlDataOutput -> com.volmit.react.congue:
     void <init>() -> <init>
     void write(surge.cluster.DataCluster,java.io.File) -> Lorem
-surge.collection.GBiset -> com.volmit.react.aptent:
-    java.lang.Object a -> erat
-    java.lang.Object b -> at
+surge.collection.GBiset -> com.volmit.react.Class:
+    java.lang.Object a -> leo
+    java.lang.Object b -> congue
     void <init>(java.lang.Object,java.lang.Object) -> <init>
-    java.lang.Object getA() -> diam
+    java.lang.Object getA() -> leo
     void setA(java.lang.Object) -> Lorem
-    java.lang.Object getB() -> erat
+    java.lang.Object getB() -> congue
     void setB(java.lang.Object) -> ipsum
-surge.collection.GList -> com.volmit.react.taciti:
+surge.collection.GList -> com.volmit.react.aptent:
     long serialVersionUID -> serialVersionUID
     void <init>() -> <init>
     void <init>(java.lang.Object[]) -> <init>
     void <init>(java.util.List) -> <init>
-    java.lang.Object mostCommon() -> at
+    java.lang.Object mostCommon() -> Class
     void remove(surge.collection.GList) -> Lorem
-    surge.collection.GList shuffle() -> laoreet
-    surge.collection.GList split() -> leo
+    surge.collection.GList shuffle() -> aptent
+    surge.collection.GList split() -> taciti
     boolean hasIndex(int) -> ipsum
-    java.lang.Object pickRandom() -> congue
+    java.lang.Object pickRandom() -> sociosqu
     void <init>(java.util.Set) -> <init>
     void <init>(java.util.Collection) -> <init>
     void <init>(surge.collection.GList) -> <init>
-    surge.collection.GList stringList() -> Class
-    surge.collection.GList removeDuplicates() -> aptent
-    boolean hasDuplicates() -> taciti
+    surge.collection.GList stringList() -> ad
+    surge.collection.GList removeDuplicates() -> litora
+    boolean hasDuplicates() -> torquent
     void sort() -> sort
     void push(java.lang.Object,int) -> Lorem
     void addFirst(java.lang.Object) -> addFirst
@@ -172,52 +176,52 @@ surge.collection.GList -> com.volmit.react.taciti:
     surge.collection.GList qadd(java.lang.Object) -> dolor
     void add(java.util.List) -> Lorem
     java.lang.String toString(java.lang.String) -> toString
-    surge.collection.GList reverse() -> sociosqu
+    surge.collection.GList reverse() -> per
     java.lang.String toString() -> toString
-    surge.collection.GList copy() -> ad
+    surge.collection.GList copy() -> conubia
     surge.collection.GList qdel(java.lang.Object) -> sit
     java.lang.Object pop() -> pop
-surge.collection.GList$1 -> com.volmit.react.sociosqu:
-    surge.collection.GList this$0 -> laoreet
+surge.collection.GList$1 -> com.volmit.react.taciti:
+    surge.collection.GList this$0 -> Class
     void <init>(surge.collection.GList) -> <init>
     int compare(java.lang.Object,java.lang.Object) -> compare
-surge.collection.GMap -> com.volmit.react.ad:
+surge.collection.GMap -> com.volmit.react.sociosqu:
     long serialVersionUID -> serialVersionUID
     void <init>() -> <init>
-    surge.collection.GMap copy() -> litora
+    surge.collection.GMap copy() -> nostra
     java.lang.Object findKey(java.lang.Object) -> amet
     surge.collection.GMap qput(java.lang.Object,java.lang.Object) -> Lorem
-    surge.collection.GMap flip() -> torquent
+    surge.collection.GMap flip() -> inceptos
     java.lang.String toString() -> toString
     surge.collection.GMap append(surge.collection.GMap) -> Lorem
-    surge.collection.GList k() -> per
-    surge.collection.GList v() -> conubia
+    surge.collection.GList k() -> himenaeos
+    surge.collection.GList v() -> Aenean
     void putNVD(java.lang.Object,java.lang.Object) -> ipsum
     surge.collection.GList get(surge.collection.GList) -> ipsum
-    surge.collection.GMap removeDuplicateKeys() -> nostra
-    surge.collection.GMap removeDuplicateValues() -> inceptos
+    surge.collection.GMap removeDuplicateKeys() -> quam
+    surge.collection.GMap removeDuplicateValues() -> vestibulum
     void put(surge.collection.GList,surge.collection.GList) -> Lorem
     void put(surge.collection.GMap) -> ipsum
-surge.collection.GQuadraset -> com.volmit.react.litora:
+surge.collection.GQuadraset -> com.volmit.react.ad:
     long serialVersionUID -> serialVersionUID
-    java.lang.Object a -> erat
-    java.lang.Object b -> at
-    java.lang.Object c -> leo
-    java.lang.Object d -> congue
+    java.lang.Object a -> leo
+    java.lang.Object b -> congue
+    java.lang.Object c -> aptent
+    java.lang.Object d -> taciti
     void <init>(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) -> <init>
-    java.lang.Object getA() -> diam
+    java.lang.Object getA() -> leo
     void setA(java.lang.Object) -> Lorem
-    java.lang.Object getB() -> erat
+    java.lang.Object getB() -> congue
     void setB(java.lang.Object) -> ipsum
-    java.lang.Object getC() -> himenaeos
+    java.lang.Object getC() -> lorem
     void setC(java.lang.Object) -> consectetur
-    java.lang.Object getD() -> Aenean
+    java.lang.Object getD() -> scelerisque
     void setD(java.lang.Object) -> adipiscing
-surge.collection.GSound -> com.volmit.react.torquent:
-    java.lang.String sound -> Class
-    org.bukkit.Sound iSound -> aptent
-    java.lang.Float volume -> taciti
-    java.lang.Float pitch -> sociosqu
+surge.collection.GSound -> com.volmit.react.litora:
+    java.lang.String sound -> sociosqu
+    org.bukkit.Sound iSound -> ad
+    java.lang.Float volume -> litora
+    java.lang.Float pitch -> torquent
     void <init>(java.lang.String,java.lang.Float,java.lang.Float) -> <init>
     void <init>(java.lang.String) -> <init>
     void <init>(org.bukkit.Sound,java.lang.Float,java.lang.Float) -> <init>
@@ -225,77 +229,82 @@ surge.collection.GSound -> com.volmit.react.torquent:
     void play(org.bukkit.entity.Player) -> Lorem
     void play(org.bukkit.Location) -> Lorem
     void play(org.bukkit.entity.Player,org.bukkit.util.Vector) -> Lorem
-    java.lang.String getSound() -> quam
+    java.lang.String getSound() -> sollicitudin
     void setSound(java.lang.String) -> ipsum
-    org.bukkit.Sound getiSound() -> vestibulum
+    org.bukkit.Sound getiSound() -> lacus
     void setiSound(org.bukkit.Sound) -> Lorem
-    java.lang.Float getVolume() -> lorem
+    java.lang.Float getVolume() -> Vestibulum
     void setVolume(java.lang.Float) -> Lorem
-    java.lang.Float getPitch() -> scelerisque
+    java.lang.Float getPitch() -> turpis
     void setPitch(java.lang.Float) -> ipsum
-surge.collection.GTriset -> com.volmit.react.per:
-    java.lang.Object a -> erat
-    java.lang.Object b -> at
-    java.lang.Object c -> leo
+surge.collection.GTriset -> com.volmit.react.torquent:
+    java.lang.Object a -> leo
+    java.lang.Object b -> congue
+    java.lang.Object c -> aptent
     void <init>(java.lang.Object,java.lang.Object,java.lang.Object) -> <init>
-    java.lang.Object getA() -> diam
+    java.lang.Object getA() -> leo
     void setA(java.lang.Object) -> Lorem
-    java.lang.Object getB() -> erat
+    java.lang.Object getB() -> congue
     void setB(java.lang.Object) -> ipsum
-    java.lang.Object getC() -> himenaeos
+    java.lang.Object getC() -> lorem
     void setC(java.lang.Object) -> consectetur
-surge.control.AmpedPlugin -> com.volmit.react.conubia:
-    surge.collection.GList controllers -> ad
-    surge.pool.ParallelPoolManager pp -> litora
+surge.control.AmpedPlugin -> com.volmit.react.per:
+    surge.collection.GList controllers -> per
+    surge.pool.ParallelPoolManager pp -> conubia
     void <init>() -> <init>
     void onLoad() -> onLoad
     void onEnable() -> onEnable
     void onDisable() -> onDisable
-    surge.collection.GList getControllers() -> sollicitudin
+    surge.collection.GList getControllers() -> mattis
     void registerController(surge.control.IController) -> Lorem
-    void onTick() -> lacus
-    java.lang.String getTickName() -> Vestibulum
-    surge.pool.ParallelPoolManager getThreadPool() -> turpis
+    void onTick() -> elit
+    java.lang.String getTickName() -> mollis
+    surge.pool.ParallelPoolManager getThreadPool() -> nisl
     void onControllerRegistry() -> Lorem
     void onStart(surge.util.Protocol) -> Lorem
     void onStop() -> ipsum
     void onPostInit() -> dolor
     void onPreInit() -> sit
+surge.control.Control -> com.volmit.react.conubia:
 surge.control.Controller -> com.volmit.react.nostra:
     void <init>() -> <init>
-surge.control.IController -> com.volmit.react.inceptos:
+surge.control.Disable -> com.volmit.react.inceptos:
+surge.control.Enable -> com.volmit.react.himenaeos:
+surge.control.IController -> com.volmit.react.Aenean:
     void start() -> start
     void stop() -> stop
     void tick() -> tick
-surge.control.SurgePlugin -> com.volmit.react.himenaeos:
+surge.control.Instance -> com.volmit.react.quam:
+surge.control.Plugin -> com.volmit.react.vestibulum:
+surge.control.SurgePlugin -> com.volmit.react.lorem:
     void onStart(surge.util.Protocol) -> Lorem
     void onStop() -> ipsum
     void onPostInit() -> dolor
     void onPreInit() -> sit
     void onControllerRegistry() -> Lorem
     void registerController(surge.control.IController) -> Lorem
-    surge.collection.GList getControllers() -> sollicitudin
-    surge.pool.ParallelPoolManager getThreadPool() -> turpis
-surge.hotload.HotloadManager -> com.volmit.react.Aenean:
-    surge.collection.GMap filemods -> torquent
-    surge.collection.GMap filesizes -> per
-    surge.collection.GMap fileacts -> conubia
+    surge.collection.GList getControllers() -> mattis
+    surge.pool.ParallelPoolManager getThreadPool() -> nisl
+surge.hotload.HotloadManager -> com.volmit.react.scelerisque:
+    surge.collection.GMap filemods -> nostra
+    surge.collection.GMap filesizes -> inceptos
+    surge.collection.GMap fileacts -> himenaeos
     void <init>() -> <init>
     void track(java.io.File,java.lang.Runnable) -> Lorem
     void untrack(java.io.File) -> ipsum
-    void untrackall() -> mattis
-    void onTick() -> lacus
-    java.lang.String getTickName() -> Vestibulum
-surge.json.HTTP -> com.volmit.react.quam:
-    java.lang.String CRLF -> nostra
+    void untrackall() -> purus
+    void onTick() -> elit
+    java.lang.String getTickName() -> mollis
+surge.json.HTTP -> com.volmit.react.sollicitudin:
+    java.lang.String CRLF -> Aenean
     void <init>() -> <init>
     surge.json.JSONObject toJSONObject(java.lang.String) -> dolor
     java.lang.String toString(surge.json.JSONObject) -> ipsum
-surge.json.HTTPTokener -> com.volmit.react.vestibulum:
+surge.json.HTTPTokener -> com.volmit.react.lacus:
     void <init>(java.lang.String) -> <init>
     java.lang.String nextToken() -> nextToken
-surge.json.JSONArray -> com.volmit.react.lorem:
-    java.util.ArrayList myArrayList -> inceptos
+surge.json.JSONArray -> com.volmit.react.Vestibulum:
+    java.util.ArrayList myArrayList -> quam
     void <init>() -> <init>
     void <init>(surge.json.JSONTokener) -> <init>
     void <init>(java.lang.String) -> <init>
@@ -354,13 +363,13 @@ surge.json.JSONArray -> com.volmit.react.lorem:
     java.lang.String toString(int) -> toString
     java.io.Writer write(java.io.Writer) -> Lorem
     java.io.Writer write(java.io.Writer,int,int) -> Lorem
-surge.json.JSONException -> com.volmit.react.scelerisque:
+surge.json.JSONException -> com.volmit.react.turpis:
     long serialVersionUID -> serialVersionUID
-    java.lang.Throwable cause -> himenaeos
+    java.lang.Throwable cause -> vestibulum
     void <init>(java.lang.String) -> <init>
     void <init>(java.lang.Throwable) -> <init>
     java.lang.Throwable getCause() -> getCause
-surge.json.JSONML -> com.volmit.react.sollicitudin:
+surge.json.JSONML -> com.volmit.react.mattis:
     void <init>() -> <init>
     java.lang.Object parse(surge.json.XMLTokener,boolean,surge.json.JSONArray) -> Lorem
     surge.json.JSONArray toJSONArray(java.lang.String) -> amet
@@ -369,9 +378,9 @@ surge.json.JSONML -> com.volmit.react.sollicitudin:
     surge.json.JSONObject toJSONObject(java.lang.String) -> dolor
     java.lang.String toString(surge.json.JSONArray) -> ipsum
     java.lang.String toString(surge.json.JSONObject) -> ipsum
-surge.json.JSONObject -> com.volmit.react.lacus:
+surge.json.JSONObject -> com.volmit.react.mollis:
     java.util.Map map -> map
-    java.lang.Object NULL -> Aenean
+    java.lang.Object NULL -> lorem
     void <init>() -> <init>
     void <init>(surge.json.JSONObject,java.lang.String[]) -> <init>
     void <init>(surge.json.JSONTokener) -> <init>
@@ -402,7 +411,7 @@ surge.json.JSONObject -> com.volmit.react.lacus:
     java.util.Iterator keys() -> keys
     java.util.Set keySet() -> keySet
     int length() -> length
-    surge.json.JSONArray names() -> mollis
+    surge.json.JSONArray names() -> malesuada
     java.lang.String numberToString(java.lang.Number) -> Lorem
     java.lang.Object opt(java.lang.String) -> nibh
     java.lang.Enum optEnum(java.lang.Class,java.lang.String) -> Lorem
@@ -447,75 +456,75 @@ surge.json.JSONObject -> com.volmit.react.lacus:
     void indent(java.io.Writer,int) -> Lorem
     java.io.Writer write(java.io.Writer,int,int) -> Lorem
     void <clinit>() -> <clinit>
-surge.json.JSONObject$1 -> com.volmit.react.Vestibulum:
-surge.json.JSONObject$Null -> com.volmit.react.turpis:
+surge.json.JSONObject$1 -> com.volmit.react.nisl:
+surge.json.JSONObject$Null -> com.volmit.react.purus:
     void <init>() -> <init>
     java.lang.Object clone() -> clone
     boolean equals(java.lang.Object) -> equals
     java.lang.String toString() -> toString
     void <init>(surge.json.JSONObject$1) -> <init>
-surge.json.JSONString -> com.volmit.react.mattis:
+surge.json.JSONString -> com.volmit.react.malesuada:
     java.lang.String toJSONString() -> toJSONString
-surge.json.JSONStringer -> com.volmit.react.mollis:
+surge.json.JSONStringer -> com.volmit.react.dui:
     void <init>() -> <init>
     java.lang.String toString() -> toString
-surge.json.JSONTokener -> com.volmit.react.nisl:
-    long character -> quam
+surge.json.JSONTokener -> com.volmit.react.facilisis:
+    long character -> scelerisque
     boolean eof -> eof
-    long index -> vestibulum
-    long line -> lorem
-    char previous -> scelerisque
+    long index -> sollicitudin
+    long line -> lacus
+    char previous -> Vestibulum
     java.io.Reader reader -> reader
-    boolean usePrevious -> sollicitudin
+    boolean usePrevious -> turpis
     void <init>(java.io.Reader) -> <init>
     void <init>(java.io.InputStream) -> <init>
     void <init>(java.lang.String) -> <init>
-    void back() -> nisl
+    void back() -> dui
     int dehexchar(char) -> Lorem
-    boolean end() -> purus
-    boolean more() -> malesuada
+    boolean end() -> facilisis
+    boolean more() -> suscipit
     char next() -> next
     char next(char) -> ipsum
     java.lang.String next(int) -> eu
-    char nextClean() -> dui
+    char nextClean() -> sapien
     java.lang.String nextString(char) -> dolor
     java.lang.String nextTo(char) -> sit
     java.lang.String nextTo(java.lang.String) -> diam
-    java.lang.Object nextValue() -> facilisis
+    java.lang.Object nextValue() -> et
     char skipTo(char) -> amet
     surge.json.JSONException syntaxError(java.lang.String) -> erat
     java.lang.String toString() -> toString
-surge.json.JSONWriter -> com.volmit.react.purus:
-    int maxdepth -> lacus
-    boolean comma -> Vestibulum
-    char mode -> turpis
-    surge.json.JSONObject[] stack -> mattis
+surge.json.JSONWriter -> com.volmit.react.suscipit:
+    int maxdepth -> mattis
+    boolean comma -> mollis
+    char mode -> nisl
+    surge.json.JSONObject[] stack -> purus
     int top -> top
     java.io.Writer writer -> writer
     void <init>(java.io.Writer) -> <init>
     surge.json.JSONWriter append(java.lang.String) -> at
-    surge.json.JSONWriter array() -> suscipit
+    surge.json.JSONWriter array() -> Nam
     surge.json.JSONWriter end(char,char) -> Lorem
-    surge.json.JSONWriter endArray() -> sapien
-    surge.json.JSONWriter endObject() -> et
+    surge.json.JSONWriter endArray() -> enim
+    surge.json.JSONWriter endObject() -> sed
     surge.json.JSONWriter key(java.lang.String) -> laoreet
-    surge.json.JSONWriter object() -> Nam
+    surge.json.JSONWriter object() -> libero
     void pop(char) -> consectetur
     void push(surge.json.JSONObject) -> sit
     surge.json.JSONWriter value(boolean) -> ipsum
     surge.json.JSONWriter value(double) -> dolor
     surge.json.JSONWriter value(long) -> ipsum
     surge.json.JSONWriter value(java.lang.Object) -> auctor
-surge.json.XML -> com.volmit.react.malesuada:
-    java.lang.Character AMP -> mollis
-    java.lang.Character APOS -> nisl
-    java.lang.Character BANG -> purus
-    java.lang.Character EQ -> malesuada
-    java.lang.Character GT -> dui
-    java.lang.Character LT -> facilisis
-    java.lang.Character QUEST -> suscipit
-    java.lang.Character QUOT -> sapien
-    java.lang.Character SLASH -> et
+surge.json.XML -> com.volmit.react.sapien:
+    java.lang.Character AMP -> malesuada
+    java.lang.Character APOS -> dui
+    java.lang.Character BANG -> facilisis
+    java.lang.Character EQ -> suscipit
+    java.lang.Character GT -> sapien
+    java.lang.Character LT -> et
+    java.lang.Character QUEST -> Nam
+    java.lang.Character QUOT -> enim
+    java.lang.Character SLASH -> sed
     void <clinit>() -> <clinit>
     void <init>() -> <init>
     java.lang.String escape(java.lang.String) -> escape
@@ -525,30 +534,30 @@ surge.json.XML -> com.volmit.react.malesuada:
     surge.json.JSONObject toJSONObject(java.lang.String) -> dolor
     java.lang.String toString(java.lang.Object) -> toString
     java.lang.String toString(java.lang.Object,java.lang.String) -> toString
-surge.json.XMLTokener -> com.volmit.react.dui:
-    java.util.HashMap entity -> Nam
+surge.json.XMLTokener -> com.volmit.react.et:
+    java.util.HashMap entity -> libero
     void <clinit>() -> <clinit>
     void <init>(java.lang.String) -> <init>
-    java.lang.String nextCDATA() -> enim
-    java.lang.Object nextContent() -> sed
+    java.lang.String nextCDATA() -> lobortis
+    java.lang.Object nextContent() -> accumsan
     java.lang.Object nextEntity(char) -> adipiscing
-    java.lang.Object nextMeta() -> libero
-    java.lang.Object nextToken() -> lobortis
+    java.lang.Object nextMeta() -> In
+    java.lang.Object nextToken() -> non
     boolean skipPast(java.lang.String) -> congue
-surge.math.ArrayUtils -> com.volmit.react.facilisis:
+surge.math.ArrayUtils -> com.volmit.react.Nam:
     void <init>() -> <init>
     void shiftRight(double[],double) -> Lorem
     void wrapRight(double[]) -> Lorem
     void fill(double[],double) -> fill
-surge.math.Average -> com.volmit.react.suscipit:
-    double[] values -> enim
-    double average -> sed
-    boolean dirty -> libero
+surge.math.Average -> com.volmit.react.enim:
+    double[] values -> lobortis
+    double average -> accumsan
+    boolean dirty -> In
     void <init>(int) -> <init>
     void put(double) -> sit
     double getAverage() -> getAverage
-    void calculateAverage() -> accumsan
-surge.math.M -> com.volmit.react.sapien:
+    void calculateAverage() -> felis
+surge.math.M -> com.volmit.react.sed:
     void <init>() -> <init>
     double maxSafeRadius(org.bukkit.Location) -> ipsum
     double clip(double,double,double) -> Lorem
@@ -561,57 +570,57 @@ surge.math.M -> com.volmit.react.sapien:
     double dof(double,double) -> Lorem
     double tps(long,int) -> Lorem
     int ticksFromNS(long) -> dolor
-    long ns() -> In
-    long ms() -> non
+    long ns() -> id
+    long ms() -> mi
     double avg(surge.collection.GList) -> dolor
     void lim(surge.collection.GList,int) -> Lorem
     surge.collection.GList getChunks(org.bukkit.Chunk,int) -> Lorem
-surge.math.Profiler -> com.volmit.react.et:
-    long nanos -> lobortis
-    long startNano -> accumsan
-    long millis -> In
-    long startMillis -> non
-    double time -> felis
-    boolean profiling -> mi
+surge.math.Profiler -> com.volmit.react.libero:
+    long nanos -> non
+    long startNano -> felis
+    long millis -> mi
+    long startMillis -> lacinia
+    double time -> semper
+    boolean profiling -> sagittis
     void <init>() -> <init>
     void begin() -> begin
     void end() -> end
     void reset() -> reset
     java.lang.String getTime(int) -> est
-    double getTicks() -> felis
+    double getTicks() -> lacinia
     double getSeconds() -> getSeconds
-    double getMinutes() -> id
-    double getHours() -> mi
-    double getMilliseconds() -> lacinia
-    long getNanoseconds() -> semper
-    long getNanos() -> sagittis
-    long getStartNano() -> euismod
+    double getMinutes() -> semper
+    double getHours() -> sagittis
+    double getMilliseconds() -> euismod
+    long getNanoseconds() -> justo
+    long getNanos() -> in
+    long getStartNano() -> Curabitur
     long getMillis() -> getMillis
-    long getStartMillis() -> justo
-    double getTime() -> in
-    boolean isProfiling() -> Curabitur
-surge.nms.NMSClass -> com.volmit.react.Nam:
-    boolean init -> lacinia
+    long getStartMillis() -> porttitor
+    double getTime() -> velit
+    boolean isProfiling() -> interdum
+surge.nms.NMSClass -> com.volmit.react.lobortis:
+    boolean init -> euismod
     int version -> version
-    java.lang.Class PacketPlayOutPlayerListHeaderFooter -> semper
-    java.lang.Class IChatBaseComponent -> sagittis
-    java.lang.Class ChatSerializer -> euismod
-    java.lang.Class PacketPlayOutPlayerInfo -> justo
-    java.lang.Class PlayerInfoData -> in
-    java.lang.Class EnumPlayerInfoAction -> Curabitur
-    java.lang.Class GameProfile -> porttitor
-    java.lang.Class EnumGamemode -> velit
-    java.lang.Class TileEntitySkull -> interdum
-    java.lang.Class LoadingCache -> Nullam
+    java.lang.Class PacketPlayOutPlayerListHeaderFooter -> justo
+    java.lang.Class IChatBaseComponent -> in
+    java.lang.Class ChatSerializer -> Curabitur
+    java.lang.Class PacketPlayOutPlayerInfo -> porttitor
+    java.lang.Class PlayerInfoData -> velit
+    java.lang.Class EnumPlayerInfoAction -> interdum
+    java.lang.Class GameProfile -> Nullam
+    java.lang.Class EnumGamemode -> mauris
+    java.lang.Class TileEntitySkull -> vitae
+    java.lang.Class LoadingCache -> aliquet
     void <clinit>() -> <clinit>
     void <init>() -> <init>
-surge.nms.NMSX -> com.volmit.react.enim:
-    surge.nms.NMSX bountifulAPI -> mauris
-    boolean useOldMethods -> vitae
-    java.lang.String nmsver -> aliquet
-    java.lang.Object eTimes -> Cras
-    java.lang.Object eTitle -> pretium
-    java.lang.Object eSubtitle -> faucibus
+surge.nms.NMSX -> com.volmit.react.accumsan:
+    surge.nms.NMSX bountifulAPI -> Cras
+    boolean useOldMethods -> pretium
+    java.lang.String nmsver -> faucibus
+    java.lang.Object eTimes -> aliquam
+    java.lang.Object eTitle -> iaculis
+    java.lang.Object eSubtitle -> eget
     void <clinit>() -> <clinit>
     void <init>() -> <init>
     java.lang.String getVersion() -> getVersion
@@ -622,8 +631,8 @@ surge.nms.NMSX -> com.volmit.react.enim:
     java.lang.reflect.Field setAccessible(java.lang.reflect.Field) -> Lorem
     java.lang.reflect.Method setAccessible(java.lang.reflect.Method) -> Lorem
     java.lang.String getBukkitVersion() -> getBukkitVersion
-    java.lang.String nmsPackage() -> porttitor
-    java.lang.String craftPackage() -> velit
+    java.lang.String nmsPackage() -> Nullam
+    java.lang.String craftPackage() -> mauris
     void showPickup(org.bukkit.entity.Player,org.bukkit.entity.Entity,org.bukkit.entity.Entity) -> Lorem
     void sendPacket(org.bukkit.entity.Player,java.lang.Object) -> Lorem
     java.lang.Class getNMSClass(java.lang.String) -> sociosqu
@@ -636,40 +645,40 @@ surge.nms.NMSX -> com.volmit.react.enim:
     void sendActionBarToAllPlayers(java.lang.String,int) -> sit
     java.lang.String getEntityName(org.bukkit.entity.Entity) -> Lorem
     int ping(org.bukkit.entity.Player) -> dolor
-surge.nms.NMSX$1 -> com.volmit.react.sed:
-    org.bukkit.entity.Player val$player -> aliquam
+surge.nms.NMSX$1 -> com.volmit.react.In:
+    org.bukkit.entity.Player val$player -> dictum
     void <init>(org.bukkit.entity.Player) -> <init>
     void run() -> run
-surge.nms.NMSX$2 -> com.volmit.react.libero:
-    org.bukkit.entity.Player val$player -> aliquam
-    java.lang.String val$message -> iaculis
+surge.nms.NMSX$2 -> com.volmit.react.non:
+    org.bukkit.entity.Player val$player -> dictum
+    java.lang.String val$message -> orci
     void <init>(org.bukkit.entity.Player,java.lang.String) -> <init>
     void run() -> run
-surge.nms.PacketUtil -> com.volmit.react.lobortis:
+surge.nms.PacketUtil -> com.volmit.react.felis:
     void <init>() -> <init>
-    surge.nms.PacketUtil$V getVersion() -> interdum
+    surge.nms.PacketUtil$V getVersion() -> vitae
     void sendTitle(org.bukkit.entity.Player,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.String,java.lang.String) -> Lorem
     void clearTitle(org.bukkit.entity.Player) -> ipsum
     void sendActionBar(org.bukkit.entity.Player,java.lang.String) -> Lorem
-surge.nms.PacketUtil$V -> com.volmit.react.accumsan:
-    surge.nms.PacketUtil$V R17 -> eget
-    surge.nms.PacketUtil$V R18 -> dictum
-    surge.nms.PacketUtil$V R19 -> orci
-    surge.nms.PacketUtil$V R111 -> eros
-    surge.nms.PacketUtil$V R110 -> imperdiet
-    surge.nms.PacketUtil$V R112 -> venenatis
-    surge.nms.PacketUtil$V[] ENUM$VALUES -> ex
+surge.nms.PacketUtil$V -> com.volmit.react.id:
+    surge.nms.PacketUtil$V R17 -> eros
+    surge.nms.PacketUtil$V R18 -> imperdiet
+    surge.nms.PacketUtil$V R19 -> venenatis
+    surge.nms.PacketUtil$V R111 -> ex
+    surge.nms.PacketUtil$V R110 -> Etiam
+    surge.nms.PacketUtil$V R112 -> a
+    surge.nms.PacketUtil$V[] ENUM$VALUES -> tincidunt
     void <clinit>() -> <clinit>
     void <init>(java.lang.String,int) -> <init>
     surge.nms.PacketUtil$V[] values() -> values
     surge.nms.PacketUtil$V valueOf(java.lang.String) -> valueOf
-surge.nms.Title -> com.volmit.react.In:
+surge.nms.Title -> com.volmit.react.mi:
     java.lang.String title -> title
-    java.lang.String subTitle -> Etiam
+    java.lang.String subTitle -> nulla
     java.lang.String action -> action
-    java.lang.Integer fadeIn -> a
-    java.lang.Integer fadeOut -> tincidunt
-    java.lang.Integer stayTime -> nulla
+    java.lang.Integer fadeIn -> tellus
+    java.lang.Integer fadeOut -> Nulla
+    java.lang.Integer stayTime -> ac
     void <init>() -> <init>
     void <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Integer) -> <init>
     void <init>(java.lang.String,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Integer) -> <init>
@@ -677,163 +686,163 @@ surge.nms.Title -> com.volmit.react.In:
     void send(org.bukkit.entity.Player) -> sit
     java.lang.String getTitle() -> getTitle
     void setTitle(java.lang.String) -> setTitle
-    java.lang.String getSubTitle() -> Nullam
+    java.lang.String getSubTitle() -> aliquet
     void setSubTitle(java.lang.String) -> litora
     java.lang.String getAction() -> getAction
     void setAction(java.lang.String) -> setAction
-    java.lang.Integer getFadeIn() -> mauris
+    java.lang.Integer getFadeIn() -> Cras
     void setFadeIn(java.lang.Integer) -> Lorem
-    java.lang.Integer getFadeOut() -> vitae
+    java.lang.Integer getFadeOut() -> pretium
     void setFadeOut(java.lang.Integer) -> ipsum
-    java.lang.Integer getStayTime() -> aliquet
+    java.lang.Integer getStayTime() -> faucibus
     void setStayTime(java.lang.Integer) -> dolor
-surge.nms.VersionBukkit -> com.volmit.react.non:
-    surge.nms.VersionBukkit VU -> tellus
-    surge.nms.VersionBukkit V7 -> Nulla
-    surge.nms.VersionBukkit V8 -> ac
-    surge.nms.VersionBukkit V9 -> ut
-    surge.nms.VersionBukkit V11 -> tortor
-    surge.nms.VersionBukkit V111 -> tristique
-    surge.nms.VersionBukkit V112 -> bibendum
-    surge.nms.VersionBukkit[] ENUM$VALUES -> commodo
+surge.nms.VersionBukkit -> com.volmit.react.lacinia:
+    surge.nms.VersionBukkit VU -> ut
+    surge.nms.VersionBukkit V7 -> tortor
+    surge.nms.VersionBukkit V8 -> tristique
+    surge.nms.VersionBukkit V9 -> bibendum
+    surge.nms.VersionBukkit V11 -> commodo
+    surge.nms.VersionBukkit V111 -> convallis
+    surge.nms.VersionBukkit V112 -> pulvinar
+    surge.nms.VersionBukkit[] ENUM$VALUES -> eleifend
     void <clinit>() -> <clinit>
     void <init>(java.lang.String,int) -> <init>
-    boolean tc() -> Cras
-    boolean uc() -> pretium
-    surge.nms.VersionBukkit get() -> faucibus
+    boolean tc() -> aliquam
+    boolean uc() -> iaculis
+    surge.nms.VersionBukkit get() -> eget
     surge.nms.VersionBukkit[] values() -> values
     surge.nms.VersionBukkit valueOf(java.lang.String) -> valueOf
-surge.pool.A -> com.volmit.react.felis:
+surge.pool.A -> com.volmit.react.semper:
     void <init>() -> <init>
-surge.pool.A$1 -> com.volmit.react.id:
-    surge.pool.A this$0 -> convallis
+surge.pool.A$1 -> com.volmit.react.sagittis:
+    surge.pool.A this$0 -> Mauris
     void <init>(surge.pool.A) -> <init>
     void run() -> run
-surge.pool.Execution -> com.volmit.react.mi:
+surge.pool.Execution -> com.volmit.react.euismod:
     void <init>() -> <init>
-surge.pool.ParallelPoolManager -> com.volmit.react.lacinia:
-    surge.pool.QueueMode mode -> pulvinar
-    surge.collection.GList threads -> eleifend
-    int next -> Mauris
-    int threadCount -> massa
-    java.util.Queue squeue -> vulputate
+surge.pool.ParallelPoolManager -> com.volmit.react.justo:
+    surge.pool.QueueMode mode -> massa
+    surge.collection.GList threads -> vulputate
+    int next -> Nunc
+    int threadCount -> fermentum
+    java.util.Queue squeue -> elementum
     java.lang.String key -> key
-    surge.pool.ThreadInformation info -> Nunc
+    surge.pool.ThreadInformation info -> Fusce
     void syncQueue(surge.pool.Execution) -> Lorem
-    void tickSyncQueue() -> aliquam
+    void tickSyncQueue() -> dictum
     void <init>(java.lang.String,int,surge.pool.QueueMode) -> <init>
     void <init>(int,surge.pool.QueueMode) -> <init>
-    long lock() -> iaculis
+    long lock() -> orci
     void start() -> start
     void shutdown() -> shutdown
     void <init>(int) -> <init>
     void queue(surge.pool.Execution) -> ipsum
     int getSize() -> getSize
-    int getQueueSize() -> eget
-    surge.pool.ParallelThread[] getThreads() -> dictum
-    void updateThreadInformation() -> orci
-    surge.pool.ParallelThread nextThread() -> eros
+    int getQueueSize() -> eros
+    surge.pool.ParallelThread[] getThreads() -> imperdiet
+    void updateThreadInformation() -> venenatis
+    surge.pool.ParallelThread nextThread() -> ex
     void createThreads(int) -> Aliquam
-    surge.pool.QueueMode getMode() -> imperdiet
-    int getNext() -> venenatis
+    surge.pool.QueueMode getMode() -> Etiam
+    int getNext() -> a
     int getThreadCount() -> getThreadCount
-    java.util.Queue getSqueue() -> ex
+    java.util.Queue getSqueue() -> tincidunt
     java.lang.String getKey() -> getKey
-    surge.pool.ThreadInformation getAverageInfo() -> Etiam
-surge.pool.ParallelPoolManager$1 -> com.volmit.react.semper:
-    int[] $SwitchMap$surge$pool$QueueMode -> fermentum
+    surge.pool.ThreadInformation getAverageInfo() -> nulla
+surge.pool.ParallelPoolManager$1 -> com.volmit.react.in:
+    int[] $SwitchMap$surge$pool$QueueMode -> ornare
     void <clinit>() -> <clinit>
-surge.pool.ParallelThread -> com.volmit.react.sagittis:
-    java.util.Queue queue -> elementum
-    surge.pool.ThreadInformation info -> Nunc
+surge.pool.ParallelThread -> com.volmit.react.Curabitur:
+    java.util.Queue queue -> metus
+    surge.pool.ThreadInformation info -> Fusce
     void <init>(java.lang.String,int) -> <init>
     void run() -> run
     void conditionallySleep(double) -> amet
     void execute(surge.pool.Execution) -> dolor
     void execute() -> execute
     void queue(surge.pool.Execution) -> ipsum
-    java.util.Queue getQueue() -> a
-    surge.pool.ThreadInformation getInfo() -> tincidunt
-surge.pool.QueueMode -> com.volmit.react.euismod:
-    surge.pool.QueueMode ROUND_ROBIN -> Fusce
-    surge.pool.QueueMode SMALLEST -> ornare
-    surge.pool.QueueMode[] $VALUES -> metus
+    java.util.Queue getQueue() -> tellus
+    surge.pool.ThreadInformation getInfo() -> Nulla
+surge.pool.QueueMode -> com.volmit.react.porttitor:
+    surge.pool.QueueMode ROUND_ROBIN -> Suspendisse
+    surge.pool.QueueMode SMALLEST -> augue
+    surge.pool.QueueMode[] $VALUES -> pharetra
     surge.pool.QueueMode[] values() -> values
     surge.pool.QueueMode valueOf(java.lang.String) -> valueOf
     void <init>(java.lang.String,int) -> <init>
     void <clinit>() -> <clinit>
-surge.pool.ThreadInformation -> com.volmit.react.justo:
-    double ticksPerSecond -> Suspendisse
-    int queuedSize -> augue
-    boolean processing -> pharetra
-    double utilization -> ullamcorper
-    surge.math.Average ticksPerSecondAverage -> Integer
-    long tick -> vehicula
+surge.pool.ThreadInformation -> com.volmit.react.velit:
+    double ticksPerSecond -> ullamcorper
+    int queuedSize -> Integer
+    boolean processing -> vehicula
+    double utilization -> risus
+    surge.math.Average ticksPerSecondAverage -> blandit
+    long tick -> ante
     int id -> id
     void <init>(int) -> <init>
-    double getTicksPerSecond() -> nulla
+    double getTicksPerSecond() -> ac
     void setTicksPerSecond(double) -> consectetur
-    int getQueuedSize() -> tellus
+    int getQueuedSize() -> ut
     void setQueuedSize(int) -> posuere
-    boolean isProcessing() -> Nulla
+    boolean isProcessing() -> tortor
     void setProcessing(boolean) -> dolor
-    double getUtilization() -> ac
+    double getUtilization() -> tristique
     void setUtilization(double) -> adipiscing
-    double getTicksPerSecondAverage() -> ut
+    double getTicksPerSecondAverage() -> bibendum
     long getTick() -> getTick
     void setTick(long) -> setTick
-    long getTickLag() -> tortor
+    long getTickLag() -> commodo
     int getId() -> getId
-surge.sched.IBursterator -> com.volmit.react.in:
+surge.sched.IBursterator -> com.volmit.react.interdum:
     void burst(java.lang.Object) -> rhoncus
     void setTimeLock(double) -> elit
-    double getEstimatedTimeUse() -> tristique
-    int flush() -> bibendum
+    double getEstimatedTimeUse() -> convallis
+    int flush() -> pulvinar
     int flush(surge.math.Profiler) -> Lorem
     void queue(java.lang.Object) -> eu
     void queue(java.util.List) -> ipsum
     void queue(java.lang.Object[]) -> Lorem
-surge.sched.ICancellable -> com.volmit.react.Curabitur:
+surge.sched.ICancellable -> com.volmit.react.Nullam:
     void cancel() -> cancel
-surge.sched.IMasterTickComponent -> com.volmit.react.porttitor:
-    void onTick() -> lacus
-    java.lang.String getTickName() -> Vestibulum
-surge.sched.ITask -> com.volmit.react.velit:
+surge.sched.IMasterTickComponent -> com.volmit.react.mauris:
+    void onTick() -> elit
+    java.lang.String getTickName() -> mollis
+surge.sched.ITask -> com.volmit.react.vitae:
     int getId() -> getId
     void run() -> run
-    boolean isRepeating() -> commodo
+    boolean isRepeating() -> eleifend
     java.lang.String getName() -> getName
-    double getComputeTime() -> convallis
-    double getTotalComputeTime() -> pulvinar
-    double getActiveTime() -> eleifend
-    boolean hasCompleted() -> Mauris
-surge.sched.TICK -> com.volmit.react.interdum:
-    long tick -> vehicula
+    double getComputeTime() -> Mauris
+    double getTotalComputeTime() -> massa
+    double getActiveTime() -> vulputate
+    boolean hasCompleted() -> Nunc
+surge.sched.TICK -> com.volmit.react.aliquet:
+    long tick -> ante
     void <init>() -> <init>
     void <clinit>() -> <clinit>
-surge.sched.Task -> com.volmit.react.Nullam:
+surge.sched.Task -> com.volmit.react.Cras:
     int id -> id
     java.lang.String name -> name
-    boolean repeating -> risus
-    double computeTime -> blandit
-    double totalComputeTime -> ante
-    double activeTime -> dapibus
+    boolean repeating -> dapibus
+    double computeTime -> consequat
+    double totalComputeTime -> Duis
+    double activeTime -> ligula
     boolean completed -> completed
-    surge.math.Profiler profiler -> consequat
-    surge.math.Profiler activeProfiler -> Duis
-    int ticks -> ligula
+    surge.math.Profiler profiler -> volutpat
+    surge.math.Profiler activeProfiler -> tempor
+    int ticks -> nunc
     void <init>(java.lang.String) -> <init>
     void <init>(java.lang.String,int) -> <init>
     void <init>(java.lang.String,int,int) -> <init>
     void setup(java.lang.String,boolean) -> sit
     void cancel() -> cancel
     int getId() -> getId
-    boolean isRepeating() -> commodo
+    boolean isRepeating() -> eleifend
     java.lang.String getName() -> getName
-    double getComputeTime() -> convallis
-    boolean hasCompleted() -> Mauris
-    double getTotalComputeTime() -> pulvinar
-    double getActiveTime() -> eleifend
+    double getComputeTime() -> Mauris
+    boolean hasCompleted() -> Nunc
+    double getTotalComputeTime() -> massa
+    double getActiveTime() -> vulputate
     surge.math.Profiler access$000(surge.sched.Task) -> Lorem
     boolean access$102(surge.sched.Task,boolean) -> Lorem
     surge.math.Profiler access$200(surge.sched.Task) -> ipsum
@@ -845,110 +854,110 @@ surge.sched.Task -> com.volmit.react.Nullam:
     double access$500(surge.sched.Task) -> amet
     double access$400(surge.sched.Task) -> consectetur
     int access$600(surge.sched.Task) -> adipiscing
-surge.sched.Task$1 -> com.volmit.react.mauris:
-    surge.sched.Task this$0 -> volutpat
+surge.sched.Task$1 -> com.volmit.react.pretium:
+    surge.sched.Task this$0 -> odio
     void <init>(surge.sched.Task) -> <init>
     void run() -> run
-surge.sched.Task$2 -> com.volmit.react.vitae:
-    surge.sched.Task this$0 -> volutpat
+surge.sched.Task$2 -> com.volmit.react.faucibus:
+    surge.sched.Task this$0 -> odio
     void <init>(surge.sched.Task) -> <init>
     void run() -> run
-surge.sched.Task$3 -> com.volmit.react.aliquet:
-    int val$total -> tempor
-    surge.sched.Task this$0 -> volutpat
+surge.sched.Task$3 -> com.volmit.react.aliquam:
+    int val$total -> Quisque
+    surge.sched.Task this$0 -> odio
     void <init>(surge.sched.Task,int) -> <init>
     void run() -> run
-surge.sched.TaskManager -> com.volmit.react.Cras:
-    surge.collection.GList tasks -> nunc
-    surge.collection.GMap taskProfiles -> odio
+surge.sched.TaskManager -> com.volmit.react.iaculis:
+    surge.collection.GList tasks -> Praesent
+    surge.collection.GMap taskProfiles -> arcu
     void <init>() -> <init>
-    void onTick() -> lacus
+    void onTick() -> elit
     void putFinishingTask(surge.sched.ITask) -> Lorem
     void putTask(surge.sched.ITask) -> ipsum
-    java.lang.String getTickName() -> Vestibulum
-surge.sched.TaskProfile -> com.volmit.react.pretium:
-    double activeTime -> dapibus
-    double computeTickTime -> Quisque
-    double computeTime -> blandit
+    java.lang.String getTickName() -> mollis
+surge.sched.TaskProfile -> com.volmit.react.eget:
+    double activeTime -> ligula
+    double computeTickTime -> maximus
+    double computeTime -> consequat
     void <init>() -> <init>
-    double getActiveTime() -> eleifend
+    double getActiveTime() -> vulputate
     void setActiveTime(double) -> Sed
-    double getComputeTickTime() -> massa
+    double getComputeTickTime() -> fermentum
     void setComputeTickTime(double) -> vel
-    double getComputeTime() -> convallis
+    double getComputeTime() -> Mauris
     void setComputeTime(double) -> nibh
-surge.server.MemoryMonitor -> com.volmit.react.faucibus:
-    long memoryFree -> Praesent
-    long memoryUsed -> arcu
-    long memoryMax -> maximus
-    long lastMemoryUsed -> ultricies
-    long memoryUsedAfterGC -> feugiat
-    long allocated -> molestie
-    long collected -> Vivamus
-    long collections -> Ut
-    long sms -> ultrices
-    long memoryAllocatedPerTick -> Donec
-    long memoryCollectedPerTick -> neque
-    long memoryFullyAllocatedPerTick -> egestas
-    long mah -> primis
-    long mahs -> luctus
+surge.server.MemoryMonitor -> com.volmit.react.dictum:
+    long memoryFree -> ultricies
+    long memoryUsed -> feugiat
+    long memoryMax -> molestie
+    long lastMemoryUsed -> Vivamus
+    long memoryUsedAfterGC -> Ut
+    long allocated -> ultrices
+    long collected -> Donec
+    long collections -> neque
+    long sms -> egestas
+    long memoryAllocatedPerTick -> primis
+    long memoryCollectedPerTick -> luctus
+    long memoryFullyAllocatedPerTick -> cubilia
+    long mah -> Curae
+    long mahs -> Phasellus
     void <init>() -> <init>
-    void onAllocationSet() -> vulputate
+    void onAllocationSet() -> elementum
     void run() -> run
-    long getMemoryFree() -> Nunc
+    long getMemoryFree() -> Fusce
     long getMemoryUsed() -> getMemoryUsed
-    long getMemoryMax() -> fermentum
-    long getLastMemoryUsed() -> elementum
-    long getMemoryUsedAfterGC() -> Fusce
+    long getMemoryMax() -> ornare
+    long getLastMemoryUsed() -> metus
+    long getMemoryUsedAfterGC() -> Suspendisse
     long getAllocated() -> getAllocated
-    long getCollected() -> ornare
-    long getCollections() -> metus
-    long getSms() -> Suspendisse
-    long getMemoryAllocatedPerTick() -> augue
-    long getMemoryCollectedPerTick() -> pharetra
-    long getMemoryFullyAllocatedPerTick() -> ullamcorper
-    long getMah() -> Integer
-    long getMahs() -> vehicula
-surge.server.SuperSampler -> com.volmit.react.aliquam:
-    surge.math.Average ticksPerSecondL -> cubilia
-    surge.math.Average tickTimeL -> Curae
-    surge.math.Average mahL -> Phasellus
-    double ticksPerSecond -> Suspendisse
-    double ticksPerSecondRaw -> dignissim
-    double tickTime -> sodales
-    double tickTimeRaw -> urna
+    long getCollected() -> augue
+    long getCollections() -> pharetra
+    long getSms() -> ullamcorper
+    long getMemoryAllocatedPerTick() -> Integer
+    long getMemoryCollectedPerTick() -> vehicula
+    long getMemoryFullyAllocatedPerTick() -> risus
+    long getMah() -> blandit
+    long getMahs() -> ante
+surge.server.SuperSampler -> com.volmit.react.orci:
+    surge.math.Average ticksPerSecondL -> dignissim
+    surge.math.Average tickTimeL -> sodales
+    surge.math.Average mahL -> urna
+    double ticksPerSecond -> ullamcorper
+    double ticksPerSecondRaw -> finibus
+    double tickTime -> Pellentesque
+    double tickTimeRaw -> magna
     boolean running -> running
-    double tickUtilizationRaw -> finibus
-    double tickUtilization -> Pellentesque
-    double leftoverTickTime -> magna
-    long memoryUse -> fringilla
-    long memoryAllocated -> tempus
-    long memoryCollected -> sem
-    long mahs -> luctus
-    surge.server.TPSMonitor tpsMonitor -> efficitur
-    surge.server.MemoryMonitor memoryMonitor -> condimentum
+    double tickUtilizationRaw -> fringilla
+    double tickUtilization -> tempus
+    double leftoverTickTime -> sem
+    long memoryUse -> efficitur
+    long memoryAllocated -> condimentum
+    long memoryCollected -> potenti
+    long mahs -> Phasellus
+    surge.server.TPSMonitor tpsMonitor -> gravida
+    surge.server.MemoryMonitor memoryMonitor -> hac
     void <init>() -> <init>
     void start() -> start
     void stop() -> stop
-    void onTick() -> lacus
-    java.lang.String getTickName() -> Vestibulum
-    surge.math.Average getTicksPerSecondL() -> risus
-    double getTicksPerSecond() -> nulla
-    double getTicksPerSecondRaw() -> blandit
+    void onTick() -> elit
+    java.lang.String getTickName() -> mollis
+    surge.math.Average getTicksPerSecondL() -> dapibus
+    double getTicksPerSecond() -> ac
+    double getTicksPerSecondRaw() -> consequat
     boolean isRunning() -> isRunning
-    surge.server.TPSMonitor getTpsMonitor() -> ante
-    surge.math.Average getTickTimeL() -> dapibus
-    double getTickTime() -> consequat
-    double getTickTimeRaw() -> Duis
-    double getTickUtilizationRaw() -> ligula
-    double getTickUtilization() -> volutpat
-    double getLeftoverTickTime() -> tempor
-    surge.server.MemoryMonitor getMemoryMonitor() -> nunc
-    long getMemoryUse() -> odio
-    long getMemoryAllocated() -> Quisque
-    long getMemoryCollected() -> Praesent
-    surge.math.Average getMahL() -> arcu
-    long getMahs() -> vehicula
+    surge.server.TPSMonitor getTpsMonitor() -> Duis
+    surge.math.Average getTickTimeL() -> ligula
+    double getTickTime() -> volutpat
+    double getTickTimeRaw() -> tempor
+    double getTickUtilizationRaw() -> nunc
+    double getTickUtilization() -> odio
+    double getLeftoverTickTime() -> Quisque
+    surge.server.MemoryMonitor getMemoryMonitor() -> Praesent
+    long getMemoryUse() -> arcu
+    long getMemoryAllocated() -> maximus
+    long getMemoryCollected() -> ultricies
+    surge.math.Average getMahL() -> feugiat
+    long getMahs() -> ante
     void access$0(surge.server.SuperSampler,double) -> Lorem
     void access$1(surge.server.SuperSampler,double) -> ipsum
     surge.math.Average access$2(surge.server.SuperSampler) -> Lorem
@@ -968,44 +977,44 @@ surge.server.SuperSampler -> com.volmit.react.aliquam:
     void access$16(surge.server.SuperSampler,long) -> dolor
     surge.math.Average access$17(surge.server.SuperSampler) -> elit
     void access$18(surge.server.SuperSampler,long) -> sit
-surge.server.SuperSampler$1 -> com.volmit.react.iaculis:
-    surge.server.SuperSampler this$0 -> potenti
+surge.server.SuperSampler$1 -> com.volmit.react.eros:
+    surge.server.SuperSampler this$0 -> habitasse
     void <init>(surge.server.SuperSampler) -> <init>
-    void onTicked() -> maximus
-surge.server.SuperSampler$2 -> com.volmit.react.eget:
-    surge.server.SuperSampler this$0 -> potenti
+    void onTicked() -> molestie
+surge.server.SuperSampler$2 -> com.volmit.react.imperdiet:
+    surge.server.SuperSampler this$0 -> habitasse
     void <init>(surge.server.SuperSampler) -> <init>
-    void onAllocationSet() -> vulputate
-surge.server.TPSMonitor -> com.volmit.react.dictum:
-    double tickTimeMS -> gravida
-    double rawTicksPerSecond -> hac
-    surge.math.Profiler tickProfiler -> habitasse
-    surge.math.Profiler tickTimeProfiler -> platea
-    boolean ticked -> dictumst
-    java.lang.Thread$State lastState -> placerat
-    double actualTickTimeMS -> Maecenas
-    double ltt -> rutrum
+    void onAllocationSet() -> elementum
+surge.server.TPSMonitor -> com.volmit.react.venenatis:
+    double tickTimeMS -> platea
+    double rawTicksPerSecond -> dictumst
+    surge.math.Profiler tickProfiler -> placerat
+    surge.math.Profiler tickTimeProfiler -> Maecenas
+    boolean ticked -> rutrum
+    java.lang.Thread$State lastState -> pellentesque
+    double actualTickTimeMS -> Proin
+    double ltt -> nisi
     void <init>() -> <init>
-    void onTicked() -> maximus
+    void onTicked() -> molestie
     void run() -> run
     void processState(java.lang.Thread$State) -> Lorem
-    double getTickTimeMS() -> ultricies
-    double getRawTicksPerSecond() -> feugiat
-    surge.math.Profiler getTickProfiler() -> molestie
-    boolean isTicked() -> Vivamus
-    void markTick() -> Ut
-    surge.math.Profiler getTickTimeProfiler() -> ultrices
-    java.lang.Thread$State getLastState() -> Donec
-    double getActualTickTimeMS() -> neque
-surge.util.Adapter -> com.volmit.react.orci:
+    double getTickTimeMS() -> Vivamus
+    double getRawTicksPerSecond() -> Ut
+    surge.math.Profiler getTickProfiler() -> ultrices
+    boolean isTicked() -> Donec
+    void markTick() -> neque
+    surge.math.Profiler getTickTimeProfiler() -> egestas
+    java.lang.Thread$State getLastState() -> primis
+    double getActualTickTimeMS() -> luctus
+surge.util.Adapter -> com.volmit.react.ex:
     java.lang.Object adapt(java.lang.Object) -> nec
     java.lang.Object onAdapt(java.lang.Object) -> est
-surge.util.Area -> com.volmit.react.eros:
-    org.bukkit.Location location -> pellentesque
-    java.lang.Double radius -> Proin
+surge.util.Area -> com.volmit.react.Etiam:
+    org.bukkit.Location location -> porta
+    java.lang.Double radius -> Interdum
     boolean within(org.bukkit.Location,org.bukkit.Location,double) -> Lorem
     void <init>(org.bukkit.Location,java.lang.Double) -> <init>
-    surge.util.Cuboid toCuboid() -> egestas
+    surge.util.Cuboid toCuboid() -> cubilia
     void <init>(org.bukkit.Location,java.lang.Integer) -> <init>
     java.lang.Double distance(org.bukkit.Location) -> sit
     java.lang.Double slowDistance(org.bukkit.Location) -> amet
@@ -1013,71 +1022,71 @@ surge.util.Area -> com.volmit.react.eros:
     boolean hasEntities() -> hasEntities
     org.bukkit.entity.Entity[] getNearbyEntities(org.bukkit.entity.EntityType) -> Lorem
     org.bukkit.entity.Entity[] getNearbyEntities(java.lang.Class) -> Lorem
-    org.bukkit.entity.Entity[] getNearbyEntities() -> primis
-    org.bukkit.entity.Player[] getNearbyPlayers() -> luctus
+    org.bukkit.entity.Entity[] getNearbyEntities() -> Curae
+    org.bukkit.entity.Player[] getNearbyPlayers() -> Phasellus
     org.bukkit.Location getLocation() -> getLocation
     void setLocation(org.bukkit.Location) -> adipiscing
-    java.lang.Double getRadius() -> cubilia
+    java.lang.Double getRadius() -> dignissim
     void setRadius(java.lang.Double) -> Lorem
-    org.bukkit.Location random() -> Curae
-surge.util.Axis -> com.volmit.react.imperdiet:
-    surge.util.Axis X -> nisi
-    surge.util.Axis Y -> porta
-    surge.util.Axis Z -> Interdum
+    org.bukkit.Location random() -> sodales
+surge.util.Axis -> com.volmit.react.a:
+    surge.util.Axis X -> fames
+    surge.util.Axis Y -> varius
+    surge.util.Axis Z -> hendrerit
     int x -> x
     int y -> y
     int z -> z
-    surge.util.Axis[] $VALUES -> fames
+    surge.util.Axis[] $VALUES -> lectus
     surge.util.Axis[] values() -> values
     surge.util.Axis valueOf(java.lang.String) -> valueOf
     void <init>(java.lang.String,int,int,int,int) -> <init>
-    org.bukkit.util.Vector positive() -> Phasellus
-    org.bukkit.util.Vector negative() -> dignissim
+    org.bukkit.util.Vector positive() -> urna
+    org.bukkit.util.Vector negative() -> finibus
     void <clinit>() -> <clinit>
-surge.util.C -> com.volmit.react.venenatis:
-    surge.util.C BLACK -> varius
-    surge.util.C DARK_BLUE -> hendrerit
-    surge.util.C DARK_GREEN -> lectus
-    surge.util.C DARK_AQUA -> viverra
-    surge.util.C DARK_RED -> cursus
-    surge.util.C DARK_PURPLE -> Morbi
-    surge.util.C GOLD -> Orci
-    surge.util.C GRAY -> natoque
-    surge.util.C DARK_GRAY -> penatibus
-    surge.util.C BLUE -> magnis
-    surge.util.C GREEN -> dis
-    surge.util.C AQUA -> parturient
-    surge.util.C RED -> montes
-    surge.util.C LIGHT_PURPLE -> nascetur
-    surge.util.C YELLOW -> ridiculus
-    surge.util.C WHITE -> mus
-    surge.util.C MAGIC -> habitant
-    surge.util.C BOLD -> morbi
-    surge.util.C STRIKETHROUGH -> senectus
-    surge.util.C UNDERLINE -> netus
-    surge.util.C ITALIC -> facilisi
-    surge.util.C RESET -> b
+surge.util.C -> com.volmit.react.tincidunt:
+    surge.util.C BLACK -> viverra
+    surge.util.C DARK_BLUE -> cursus
+    surge.util.C DARK_GREEN -> Morbi
+    surge.util.C DARK_AQUA -> Orci
+    surge.util.C DARK_RED -> natoque
+    surge.util.C DARK_PURPLE -> penatibus
+    surge.util.C GOLD -> magnis
+    surge.util.C GRAY -> dis
+    surge.util.C DARK_GRAY -> parturient
+    surge.util.C BLUE -> montes
+    surge.util.C GREEN -> nascetur
+    surge.util.C AQUA -> ridiculus
+    surge.util.C RED -> mus
+    surge.util.C LIGHT_PURPLE -> habitant
+    surge.util.C YELLOW -> morbi
+    surge.util.C WHITE -> senectus
+    surge.util.C MAGIC -> netus
+    surge.util.C BOLD -> facilisi
+    surge.util.C STRIKETHROUGH -> b
+    surge.util.C UNDERLINE -> c
+    surge.util.C ITALIC -> d
+    surge.util.C RESET -> e
     char COLOR_CHAR -> COLOR_CHAR
     java.util.regex.Pattern STRIP_COLOR_PATTERN -> STRIP_COLOR_PATTERN
-    int intCode -> c
-    char code -> d
-    boolean isFormat -> e
-    java.lang.String toString -> f
-    java.util.Map BY_ID -> g
-    java.util.Map BY_CHAR -> h
-    java.util.Map dyeChatMap -> i
-    java.util.Map chatHexMap -> j
-    java.util.Map dyeHexMap -> k
-    int[] $SWITCH_TABLE$surge$util$C -> l
-    surge.util.C[] ENUM$VALUES -> m
+    int intCode -> f
+    char code -> g
+    boolean isFormat -> h
+    java.lang.String toString -> i
+    java.util.Map BY_ID -> j
+    java.util.Map BY_CHAR -> k
+    java.util.Map dyeChatMap -> l
+    java.util.Map chatHexMap -> m
+    java.util.Map dyeHexMap -> n
+    int[] $SWITCH_TABLE$surge$util$C -> o
+    surge.util.C[] ENUM$VALUES -> p
     void <clinit>() -> <clinit>
     void <init>(java.lang.String,int,char,int) -> <init>
     void <init>(java.lang.String,int,char,int,boolean) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
     char getChar() -> getChar
     java.lang.String toString() -> toString
-    org.bukkit.DyeColor dye() -> sodales
-    java.lang.String hex() -> urna
+    org.bukkit.DyeColor dye() -> Pellentesque
+    java.lang.String hex() -> magna
     boolean isFormat() -> isFormat
     boolean isColor() -> isColor
     surge.util.C getByChar(char) -> elit
@@ -1089,93 +1098,93 @@ surge.util.C -> com.volmit.react.venenatis:
     java.lang.String dyeToHex(org.bukkit.DyeColor) -> ipsum
     org.bukkit.Color hexToColor(java.lang.String) -> per
     org.bukkit.Color rgbToColor(java.lang.String) -> conubia
-    java.lang.String generateColorTable() -> finibus
-    org.bukkit.ChatColor chatColor() -> Pellentesque
+    java.lang.String generateColorTable() -> fringilla
+    org.bukkit.ChatColor chatColor() -> tempus
     java.lang.String translateAlternateColorCodes(char,java.lang.String) -> translateAlternateColorCodes
     surge.util.C fromItemMeta(byte) -> Lorem
-    byte getItemMeta() -> magna
+    byte getItemMeta() -> sem
     java.lang.String getLastColors(java.lang.String) -> getLastColors
     surge.util.C[] values() -> values
     surge.util.C valueOf(java.lang.String) -> valueOf
     void <init>(java.lang.String,int,char,int,surge.util.C) -> <init>
     void <init>(java.lang.String,int,char,int,boolean,surge.util.C) -> <init>
-    int[] $SWITCH_TABLE$surge$util$C() -> fringilla
-surge.util.C$1 -> com.volmit.react.ex:
+    int[] $SWITCH_TABLE$surge$util$C() -> efficitur
+surge.util.C$1 -> com.volmit.react.nulla:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$10 -> com.volmit.react.Etiam:
+surge.util.C$10 -> com.volmit.react.tellus:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$11 -> com.volmit.react.a:
+surge.util.C$11 -> com.volmit.react.Nulla:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$12 -> com.volmit.react.tincidunt:
+surge.util.C$12 -> com.volmit.react.ac:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$13 -> com.volmit.react.nulla:
+surge.util.C$13 -> com.volmit.react.ut:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$14 -> com.volmit.react.tellus:
+surge.util.C$14 -> com.volmit.react.tortor:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$15 -> com.volmit.react.Nulla:
+surge.util.C$15 -> com.volmit.react.tristique:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$16 -> com.volmit.react.ac:
+surge.util.C$16 -> com.volmit.react.bibendum:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$17 -> com.volmit.react.ut:
+surge.util.C$17 -> com.volmit.react.commodo:
     void <init>(java.lang.String,int,char,int,boolean) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$18 -> com.volmit.react.tortor:
+surge.util.C$18 -> com.volmit.react.convallis:
     void <init>(java.lang.String,int,char,int,boolean) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$19 -> com.volmit.react.tristique:
+surge.util.C$19 -> com.volmit.react.pulvinar:
     void <init>(java.lang.String,int,char,int,boolean) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$2 -> com.volmit.react.bibendum:
+surge.util.C$2 -> com.volmit.react.eleifend:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$20 -> com.volmit.react.commodo:
+surge.util.C$20 -> com.volmit.react.Mauris:
     void <init>(java.lang.String,int,char,int,boolean) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$21 -> com.volmit.react.convallis:
+surge.util.C$21 -> com.volmit.react.massa:
     void <init>(java.lang.String,int,char,int,boolean) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$22 -> com.volmit.react.pulvinar:
+surge.util.C$22 -> com.volmit.react.vulputate:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$3 -> com.volmit.react.eleifend:
+surge.util.C$3 -> com.volmit.react.Nunc:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$4 -> com.volmit.react.Mauris:
+surge.util.C$4 -> com.volmit.react.fermentum:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$5 -> com.volmit.react.massa:
+surge.util.C$5 -> com.volmit.react.elementum:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$6 -> com.volmit.react.vulputate:
+surge.util.C$6 -> com.volmit.react.Fusce:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$7 -> com.volmit.react.Nunc:
+surge.util.C$7 -> com.volmit.react.ornare:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$8 -> com.volmit.react.fermentum:
+surge.util.C$8 -> com.volmit.react.metus:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.C$9 -> com.volmit.react.elementum:
+surge.util.C$9 -> com.volmit.react.Suspendisse:
     void <init>(java.lang.String,int,char,int) -> <init>
     net.md_5.bungee.api.ChatColor asBungee() -> asBungee
-surge.util.CDou -> com.volmit.react.Fusce:
-    double number -> n
+surge.util.CDou -> com.volmit.react.augue:
+    double number -> q
     double max -> max
     void <init>(double) -> <init>
     surge.util.CDou set(double) -> quis
     surge.util.CDou add(double) -> auctor
     surge.util.CDou sub(double) -> rhoncus
     double get() -> get
-    void circ() -> tempus
-surge.util.CNum -> com.volmit.react.ornare:
+    void circ() -> condimentum
+surge.util.CNum -> com.volmit.react.pharetra:
     int number -> number
     int max -> max
     void <init>(int) -> <init>
@@ -1183,23 +1192,23 @@ surge.util.CNum -> com.volmit.react.ornare:
     surge.util.CNum add(int) -> erat
     surge.util.CNum sub(int) -> at
     int get() -> get
-    void circ() -> tempus
+    void circ() -> condimentum
     int getMax() -> getMax
     void setMax(int) -> laoreet
-surge.util.Cuboid -> com.volmit.react.metus:
-    java.lang.String worldName -> o
-    int x1 -> p
-    int y1 -> q
-    int z1 -> r
-    int x2 -> s
-    int y2 -> t
-    int z2 -> u
+surge.util.Cuboid -> com.volmit.react.ullamcorper:
+    java.lang.String worldName -> r
+    int x1 -> s
+    int y1 -> t
+    int z1 -> u
+    int x2 -> v
+    int y2 -> w
+    int z2 -> A
     void <init>(org.bukkit.Location,org.bukkit.Location) -> <init>
     int depth(surge.util.Axis) -> Lorem
     void set(org.bukkit.Location,org.bukkit.Location) -> Lorem
-    boolean hasPlayers() -> sem
-    surge.collection.GList getPlayers() -> efficitur
-    surge.collection.GList getEntities() -> condimentum
+    boolean hasPlayers() -> potenti
+    surge.collection.GList getPlayers() -> gravida
+    surge.collection.GList getEntities() -> hac
     void <init>(org.bukkit.Location) -> <init>
     void <init>(surge.util.Cuboid) -> <init>
     void <init>(org.bukkit.World,int,int,int,int,int,int) -> <init>
@@ -1207,20 +1216,20 @@ surge.util.Cuboid -> com.volmit.react.metus:
     void <init>(java.util.Map) -> <init>
     java.util.Map serialize() -> serialize
     surge.util.Cuboid flatten(int) -> leo
-    org.bukkit.Location getLowerNE() -> potenti
-    org.bukkit.Location getUpperSW() -> gravida
+    org.bukkit.Location getLowerNE() -> habitasse
+    org.bukkit.Location getUpperSW() -> platea
     org.bukkit.Location getCenter() -> getCenter
     org.bukkit.World getWorld() -> getWorld
-    int getSizeX() -> hac
-    int getSizeY() -> habitasse
-    int getSizeZ() -> platea
-    int getLowerX() -> dictumst
-    int getLowerY() -> placerat
-    int getLowerZ() -> Maecenas
-    int getUpperX() -> rutrum
-    int getUpperY() -> pellentesque
-    int getUpperZ() -> Proin
-    org.bukkit.block.Block[] corners() -> nisi
+    int getSizeX() -> dictumst
+    int getSizeY() -> placerat
+    int getSizeZ() -> Maecenas
+    int getLowerX() -> rutrum
+    int getLowerY() -> pellentesque
+    int getLowerZ() -> Proin
+    int getUpperX() -> nisi
+    int getUpperY() -> porta
+    int getUpperZ() -> Interdum
+    org.bukkit.block.Block[] corners() -> fames
     surge.util.Cuboid expand(surge.util.Cuboid$CuboidDirection,int) -> Lorem
     surge.util.Cuboid shift(surge.util.Cuboid$CuboidDirection,int) -> ipsum
     surge.util.Cuboid outset(surge.util.Cuboid$CuboidDirection,int) -> dolor
@@ -1228,71 +1237,71 @@ surge.util.Cuboid -> com.volmit.react.metus:
     boolean contains(int,int,int) -> Lorem
     boolean contains(org.bukkit.block.Block) -> Lorem
     boolean contains(org.bukkit.Location) -> elit
-    int volume() -> porta
-    byte averageLightLevel() -> Interdum
-    surge.util.Cuboid contract() -> fames
+    int volume() -> varius
+    byte averageLightLevel() -> hendrerit
+    surge.util.Cuboid contract() -> lectus
     surge.util.Cuboid contract(surge.util.Cuboid$CuboidDirection) -> Lorem
     surge.util.Cuboid getFace(surge.util.Cuboid$CuboidDirection) -> ipsum
     boolean containsOnly(org.bukkit.Material) -> Lorem
     surge.util.Cuboid getBoundingCuboid(surge.util.Cuboid) -> Lorem
     org.bukkit.block.Block getRelativeBlock(int,int,int) -> ipsum
     org.bukkit.block.Block getRelativeBlock(org.bukkit.World,int,int,int) -> Lorem
-    java.util.List getChunks() -> varius
+    java.util.List getChunks() -> viverra
     void fill(int,byte) -> Lorem
     java.util.Iterator iterator() -> iterator
-    surge.util.Cuboid clone() -> hendrerit
+    surge.util.Cuboid clone() -> cursus
     java.lang.String toString() -> toString
     int hashCode() -> hashCode
     boolean equals(java.lang.Object) -> equals
     java.lang.Object clone() -> clone
-surge.util.Cuboid$1 -> com.volmit.react.Suspendisse:
-    surge.util.Cuboid this$0 -> v
+surge.util.Cuboid$1 -> com.volmit.react.Integer:
+    surge.util.Cuboid this$0 -> B
     void <init>(surge.util.Cuboid) -> <init>
     org.bukkit.entity.Player onAdapt(org.bukkit.entity.Entity) -> ipsum
     java.lang.Object onAdapt(java.lang.Object) -> est
-surge.util.Cuboid$2 -> com.volmit.react.augue:
-    int[] $SwitchMap$surge$util$Axis -> w
-    int[] $SwitchMap$surge$util$Cuboid$CuboidDirection -> A
+surge.util.Cuboid$2 -> com.volmit.react.vehicula:
+    int[] $SwitchMap$surge$util$Axis -> C
+    int[] $SwitchMap$surge$util$Cuboid$CuboidDirection -> D
     void <clinit>() -> <clinit>
-surge.util.Cuboid$CuboidDirection -> com.volmit.react.pharetra:
-    surge.util.Cuboid$CuboidDirection North -> B
-    surge.util.Cuboid$CuboidDirection East -> C
-    surge.util.Cuboid$CuboidDirection South -> D
-    surge.util.Cuboid$CuboidDirection West -> E
-    surge.util.Cuboid$CuboidDirection Up -> F
-    surge.util.Cuboid$CuboidDirection Down -> G
-    surge.util.Cuboid$CuboidDirection Horizontal -> H
-    surge.util.Cuboid$CuboidDirection Vertical -> I
-    surge.util.Cuboid$CuboidDirection Both -> J
-    surge.util.Cuboid$CuboidDirection Unknown -> K
-    surge.util.Cuboid$CuboidDirection[] $VALUES -> L
+surge.util.Cuboid$CuboidDirection -> com.volmit.react.risus:
+    surge.util.Cuboid$CuboidDirection North -> E
+    surge.util.Cuboid$CuboidDirection East -> F
+    surge.util.Cuboid$CuboidDirection South -> G
+    surge.util.Cuboid$CuboidDirection West -> H
+    surge.util.Cuboid$CuboidDirection Up -> I
+    surge.util.Cuboid$CuboidDirection Down -> J
+    surge.util.Cuboid$CuboidDirection Horizontal -> K
+    surge.util.Cuboid$CuboidDirection Vertical -> L
+    surge.util.Cuboid$CuboidDirection Both -> M
+    surge.util.Cuboid$CuboidDirection Unknown -> N
+    surge.util.Cuboid$CuboidDirection[] $VALUES -> O
     surge.util.Cuboid$CuboidDirection[] values() -> values
     surge.util.Cuboid$CuboidDirection valueOf(java.lang.String) -> valueOf
     void <init>(java.lang.String,int) -> <init>
-    surge.util.Cuboid$CuboidDirection opposite() -> lectus
+    surge.util.Cuboid$CuboidDirection opposite() -> Morbi
     void <clinit>() -> <clinit>
-surge.util.Cuboid$CuboidIterator -> com.volmit.react.ullamcorper:
-    org.bukkit.World w -> M
-    int baseX -> N
-    int baseY -> O
-    int baseZ -> P
+surge.util.Cuboid$CuboidIterator -> com.volmit.react.blandit:
+    org.bukkit.World w -> P
+    int baseX -> Q
+    int baseY -> R
+    int baseZ -> S
     int x -> x
     int y -> y
     int z -> z
-    int sizeX -> Q
-    int sizeY -> R
-    int sizeZ -> S
-    surge.util.Cuboid this$0 -> v
+    int sizeX -> T
+    int sizeY -> U
+    int sizeZ -> V
+    surge.util.Cuboid this$0 -> B
     void <init>(surge.util.Cuboid,org.bukkit.World,int,int,int,int,int,int) -> <init>
     boolean hasNext() -> hasNext
     org.bukkit.block.Block next() -> next
     void remove() -> remove
     java.lang.Object next() -> next
-surge.util.CuboidException -> com.volmit.react.Integer:
+surge.util.CuboidException -> com.volmit.react.ante:
     long serialVersionUID -> serialVersionUID
     void <init>(java.lang.String) -> <init>
-surge.util.D -> com.volmit.react.vehicula:
-    surge.collection.GList buffer -> T
+surge.util.D -> com.volmit.react.dapibus:
+    surge.collection.GList buffer -> W
     void <clinit>() -> <clinit>
     void <init>() -> <init>
     void flush() -> flush
@@ -1307,24 +1316,24 @@ surge.util.D -> com.volmit.react.vehicula:
     void v(java.lang.String) -> himenaeos
     void w(java.lang.String) -> Aenean
     void f(java.lang.String) -> quam
-surge.util.F -> com.volmit.react.risus:
-    java.text.NumberFormat NF -> U
-    java.text.DecimalFormat DF -> V
-    java.lang.String[] NAMES -> W
-    java.math.BigInteger THOUSAND -> X
-    java.util.NavigableMap MAP -> Y
+surge.util.F -> com.volmit.react.consequat:
+    java.text.NumberFormat NF -> X
+    java.text.DecimalFormat DF -> Y
+    java.lang.String[] NAMES -> Z
+    java.math.BigInteger THOUSAND -> aa
+    java.util.NavigableMap MAP -> ab
     void <init>() -> <init>
     java.lang.String time(double,int) -> Lorem
     java.lang.String b(int) -> b
     java.lang.String b(long) -> sit
     java.lang.String b(double) -> eu
     java.lang.String b(java.math.BigInteger) -> Lorem
-    void instantiate() -> viverra
+    void instantiate() -> Orci
     java.lang.String color(java.lang.String) -> vestibulum
     java.lang.String fileSize(long) -> amet
     java.lang.String memSize(long) -> consectetur
     java.lang.String stamp(long) -> adipiscing
-    java.lang.String stamp() -> cursus
+    java.lang.String stamp() -> natoque
     java.lang.String ofSize(long,int) -> ipsum
     surge.collection.GList wrap(java.lang.String) -> lorem
     surge.collection.GList wrap(java.lang.String,int) -> amet
@@ -1356,16 +1365,16 @@ surge.util.F -> com.volmit.react.risus:
     java.lang.String nsMsd(long,int) -> amet
     surge.collection.GList color(java.util.List) -> dolor
     void <clinit>() -> <clinit>
-surge.util.GListAdapter -> com.volmit.react.blandit:
+surge.util.GListAdapter -> com.volmit.react.Duis:
     void <init>() -> <init>
     java.util.List adapt(java.util.List) -> sit
     java.lang.Object onAdapt(java.lang.Object) -> est
-surge.util.P -> com.volmit.react.ante:
+surge.util.P -> com.volmit.react.ligula:
     void <init>() -> <init>
     boolean isOnline(java.lang.String) -> sollicitudin
     org.bukkit.entity.Player getPlayer(java.lang.String) -> getPlayer
-    org.bukkit.entity.Player getAnyPlayer() -> Morbi
-    boolean isAnyOnline() -> Orci
+    org.bukkit.entity.Player getAnyPlayer() -> penatibus
+    boolean isAnyOnline() -> magnis
     surge.collection.GList inWorld(org.bukkit.World) -> Lorem
     surge.collection.GList inChunk(org.bukkit.Chunk) -> Lorem
     surge.collection.GList inArea(org.bukkit.Location,double) -> dolor
@@ -1380,7 +1389,7 @@ surge.util.P -> com.volmit.react.ante:
     void setTotalExperience(org.bukkit.entity.Player,int) -> dolor
     boolean canFindPlayer(java.lang.String) -> lacus
     org.bukkit.entity.Player findPlayer(java.lang.String) -> Vestibulum
-    surge.collection.GList onlinePlayers() -> natoque
+    surge.collection.GList onlinePlayers() -> dis
     org.bukkit.Location getCrotchLocation(org.bukkit.entity.Player) -> Sed
     void clear(org.bukkit.entity.Player) -> vel
     void clearEffects(org.bukkit.entity.Player) -> nibh
@@ -1392,44 +1401,44 @@ surge.util.P -> com.volmit.react.ante:
     surge.util.Shape getShape(org.bukkit.entity.Player) -> nec
     org.bukkit.Location getHand(org.bukkit.entity.Player) -> est
     org.bukkit.Location getHand(org.bukkit.entity.Player,float,float) -> Lorem
-surge.util.P$1 -> com.volmit.react.dapibus:
+surge.util.P$1 -> com.volmit.react.volutpat:
     void <init>() -> <init>
     org.bukkit.entity.Player onAdapt(org.bukkit.entity.Entity) -> ipsum
     java.lang.Object onAdapt(java.lang.Object) -> est
-surge.util.P$2 -> com.volmit.react.consequat:
-    java.lang.Double val$doff -> Z
-    org.bukkit.entity.Player val$e -> aa
-    org.bukkit.entity.Entity[] val$result -> ab
+surge.util.P$2 -> com.volmit.react.tempor:
+    java.lang.Double val$doff -> ae
+    org.bukkit.entity.Player val$e -> af
+    org.bukkit.entity.Entity[] val$result -> ag
     void <init>(org.bukkit.Location,org.bukkit.util.Vector,java.lang.Double,java.lang.Double,java.lang.Double,org.bukkit.entity.Player,org.bukkit.entity.Entity[]) -> <init>
     void onTrace(org.bukkit.Location) -> Sed
-surge.util.PE -> com.volmit.react.Duis:
-    surge.util.PE ABSORPTION -> ae
-    surge.util.PE BLINDNESS -> af
-    surge.util.PE CONFUSION -> ag
-    surge.util.PE DAMAGE_RESISTANCE -> ah
-    surge.util.PE FAST_DIGGING -> ai
-    surge.util.PE FIRE_RESISTANCE -> aj
-    surge.util.PE GLOWING -> ak
-    surge.util.PE HARM -> al
-    surge.util.PE HEAL -> am
-    surge.util.PE HEALTH_BOOST -> an
-    surge.util.PE HUNGER -> ao
-    surge.util.PE INCREASE_DAMAGE -> ap
-    surge.util.PE INVISIBILITY -> aq
-    surge.util.PE JUMP -> ar
-    surge.util.PE LEVITATION -> as
-    surge.util.PE LUCK -> au
-    surge.util.PE NIGHT_VISION -> av
-    surge.util.PE POISON -> aw
-    surge.util.PE REGENERATION -> ax
-    surge.util.PE SATURATION -> ay
-    surge.util.PE SLOW -> az
-    surge.util.PE SLOW_DIGGING -> aA
-    surge.util.PE SPEED -> aB
-    surge.util.PE UNLUCK -> aC
-    surge.util.PE WATER_BREATHING -> aD
-    surge.util.PE WEAKNESS -> aE
-    surge.util.PE WITHER -> aF
+surge.util.PE -> com.volmit.react.nunc:
+    surge.util.PE ABSORPTION -> ah
+    surge.util.PE BLINDNESS -> ai
+    surge.util.PE CONFUSION -> aj
+    surge.util.PE DAMAGE_RESISTANCE -> ak
+    surge.util.PE FAST_DIGGING -> al
+    surge.util.PE FIRE_RESISTANCE -> am
+    surge.util.PE GLOWING -> an
+    surge.util.PE HARM -> ao
+    surge.util.PE HEAL -> ap
+    surge.util.PE HEALTH_BOOST -> aq
+    surge.util.PE HUNGER -> ar
+    surge.util.PE INCREASE_DAMAGE -> as
+    surge.util.PE INVISIBILITY -> au
+    surge.util.PE JUMP -> av
+    surge.util.PE LEVITATION -> aw
+    surge.util.PE LUCK -> ax
+    surge.util.PE NIGHT_VISION -> ay
+    surge.util.PE POISON -> az
+    surge.util.PE REGENERATION -> aA
+    surge.util.PE SATURATION -> aB
+    surge.util.PE SLOW -> aC
+    surge.util.PE SLOW_DIGGING -> aD
+    surge.util.PE SPEED -> aE
+    surge.util.PE UNLUCK -> aF
+    surge.util.PE WATER_BREATHING -> aG
+    surge.util.PE WEAKNESS -> aH
+    surge.util.PE WITHER -> aI
     void <clinit>() -> <clinit>
     void <init>(java.util.Map) -> <init>
     void <init>(org.bukkit.potion.PotionEffectType,int,int,boolean,boolean) -> <init>
@@ -1448,17 +1457,17 @@ surge.util.PE -> com.volmit.react.Duis:
     surge.util.PE defaulted(org.bukkit.potion.PotionEffectType) -> Lorem
     surge.util.PE d(int) -> Class
     surge.util.PE a(int) -> aptent
-    org.bukkit.potion.PotionEffect c() -> penatibus
+    org.bukkit.potion.PotionEffect c() -> parturient
     void c(org.bukkit.entity.LivingEntity) -> Lorem
     void crm(org.bukkit.entity.LivingEntity) -> ipsum
     void rm(org.bukkit.entity.LivingEntity) -> dolor
-surge.util.Persist -> com.volmit.react.ligula:
-surge.util.PluginUtil -> com.volmit.react.volutpat:
+surge.util.Persist -> com.volmit.react.odio:
+surge.util.PluginUtil -> com.volmit.react.Quisque:
     void <init>() -> <init>
     void enable(org.bukkit.plugin.Plugin) -> Lorem
-    void enableAll() -> magnis
+    void enableAll() -> montes
     void disable(org.bukkit.plugin.Plugin) -> ipsum
-    void disableAll() -> dis
+    void disableAll() -> nascetur
     java.lang.String getFormattedName(org.bukkit.plugin.Plugin) -> dolor
     java.lang.String getFormattedName(org.bukkit.plugin.Plugin,boolean) -> Lorem
     org.bukkit.plugin.Plugin getPluginByName(java.lang.String) -> turpis
@@ -1470,124 +1479,124 @@ surge.util.PluginUtil -> com.volmit.react.volutpat:
     java.lang.String getPluginFileName(java.lang.String) -> nisl
     void load(java.lang.String) -> load
     void reload(org.bukkit.plugin.Plugin) -> consectetur
-    void reloadAll() -> parturient
+    void reloadAll() -> ridiculus
     void unload(org.bukkit.plugin.Plugin) -> adipiscing
-surge.util.Protocol -> com.volmit.react.tempor:
-    surge.util.Protocol LATEST -> aG
-    surge.util.Protocol R1_12_2 -> aH
-    surge.util.Protocol R1_12_2_PRE -> aI
-    surge.util.Protocol R1_12_1 -> aJ
-    surge.util.Protocol R1_12 -> aK
-    surge.util.Protocol R1_11_2 -> aL
-    surge.util.Protocol R1_11_1 -> aM
-    surge.util.Protocol R1_11 -> aN
-    surge.util.Protocol R1_10_2 -> aO
-    surge.util.Protocol R1_10_1 -> aP
-    surge.util.Protocol R1_10 -> aQ
-    surge.util.Protocol R1_9_4 -> aR
-    surge.util.Protocol R1_9_3 -> aS
-    surge.util.Protocol R1_9_2 -> aT
-    surge.util.Protocol R1_9_1 -> aU
-    surge.util.Protocol R1_9 -> aV
-    surge.util.Protocol R1_8_9 -> aW
-    surge.util.Protocol R1_8_8 -> aX
-    surge.util.Protocol R1_8_7 -> aY
-    surge.util.Protocol R1_8_6 -> aZ
-    surge.util.Protocol R1_8_5 -> ba
-    surge.util.Protocol R1_8_4 -> bb
-    surge.util.Protocol R1_8_3 -> bc
-    surge.util.Protocol R1_8_2 -> bd
-    surge.util.Protocol R1_8_1 -> be
-    surge.util.Protocol R1_8 -> bf
-    surge.util.Protocol R1_7_10 -> bg
-    surge.util.Protocol R1_7_9 -> bh
-    surge.util.Protocol R1_7_8 -> bi
-    surge.util.Protocol R1_7_7 -> bj
-    surge.util.Protocol R1_7_6 -> bk
-    surge.util.Protocol R1_7_5 -> bl
-    surge.util.Protocol R1_7_4 -> bm
-    surge.util.Protocol R1_7_3 -> bn
-    surge.util.Protocol R1_7_2 -> bo
-    surge.util.Protocol R1_7_1 -> bp
-    surge.util.Protocol B1_6_4 -> bq
-    surge.util.Protocol B1_6_3 -> br
-    surge.util.Protocol B1_6_2 -> bs
-    surge.util.Protocol B1_6_1 -> bt
-    surge.util.Protocol B1_5_2 -> bu
-    surge.util.Protocol B1_5_1 -> bv
-    surge.util.Protocol B1_5 -> bw
-    surge.util.Protocol B1_4_7 -> bx
-    surge.util.Protocol B1_4_6 -> by
-    surge.util.Protocol B1_4_5 -> bz
-    surge.util.Protocol B1_4_4 -> bA
-    surge.util.Protocol B1_4_2 -> bB
-    surge.util.Protocol B1_3_2 -> bC
-    surge.util.Protocol B1_3_1 -> bD
-    surge.util.Protocol B1_2_5 -> bE
-    surge.util.Protocol B1_2_4 -> bF
-    surge.util.Protocol EARLIEST -> bG
-    surge.util.Protocol UNKNOWN -> bH
+surge.util.Protocol -> com.volmit.react.Praesent:
+    surge.util.Protocol LATEST -> aJ
+    surge.util.Protocol R1_12_2 -> aK
+    surge.util.Protocol R1_12_2_PRE -> aL
+    surge.util.Protocol R1_12_1 -> aM
+    surge.util.Protocol R1_12 -> aN
+    surge.util.Protocol R1_11_2 -> aO
+    surge.util.Protocol R1_11_1 -> aP
+    surge.util.Protocol R1_11 -> aQ
+    surge.util.Protocol R1_10_2 -> aR
+    surge.util.Protocol R1_10_1 -> aS
+    surge.util.Protocol R1_10 -> aT
+    surge.util.Protocol R1_9_4 -> aU
+    surge.util.Protocol R1_9_3 -> aV
+    surge.util.Protocol R1_9_2 -> aW
+    surge.util.Protocol R1_9_1 -> aX
+    surge.util.Protocol R1_9 -> aY
+    surge.util.Protocol R1_8_9 -> aZ
+    surge.util.Protocol R1_8_8 -> ba
+    surge.util.Protocol R1_8_7 -> bb
+    surge.util.Protocol R1_8_6 -> bc
+    surge.util.Protocol R1_8_5 -> bd
+    surge.util.Protocol R1_8_4 -> be
+    surge.util.Protocol R1_8_3 -> bf
+    surge.util.Protocol R1_8_2 -> bg
+    surge.util.Protocol R1_8_1 -> bh
+    surge.util.Protocol R1_8 -> bi
+    surge.util.Protocol R1_7_10 -> bj
+    surge.util.Protocol R1_7_9 -> bk
+    surge.util.Protocol R1_7_8 -> bl
+    surge.util.Protocol R1_7_7 -> bm
+    surge.util.Protocol R1_7_6 -> bn
+    surge.util.Protocol R1_7_5 -> bo
+    surge.util.Protocol R1_7_4 -> bp
+    surge.util.Protocol R1_7_3 -> bq
+    surge.util.Protocol R1_7_2 -> br
+    surge.util.Protocol R1_7_1 -> bs
+    surge.util.Protocol B1_6_4 -> bt
+    surge.util.Protocol B1_6_3 -> bu
+    surge.util.Protocol B1_6_2 -> bv
+    surge.util.Protocol B1_6_1 -> bw
+    surge.util.Protocol B1_5_2 -> bx
+    surge.util.Protocol B1_5_1 -> by
+    surge.util.Protocol B1_5 -> bz
+    surge.util.Protocol B1_4_7 -> bA
+    surge.util.Protocol B1_4_6 -> bB
+    surge.util.Protocol B1_4_5 -> bC
+    surge.util.Protocol B1_4_4 -> bD
+    surge.util.Protocol B1_4_2 -> bE
+    surge.util.Protocol B1_3_2 -> bF
+    surge.util.Protocol B1_3_1 -> bG
+    surge.util.Protocol B1_2_5 -> bH
+    surge.util.Protocol B1_2_4 -> bI
+    surge.util.Protocol EARLIEST -> bJ
+    surge.util.Protocol UNKNOWN -> bK
     int version -> version
-    java.lang.String search -> bI
-    surge.util.Protocol[] $VALUES -> bJ
+    java.lang.String search -> bL
+    surge.util.Protocol[] $VALUES -> bM
     surge.util.Protocol[] values() -> values
     surge.util.Protocol valueOf(java.lang.String) -> valueOf
     void <init>(java.lang.String,int,int) -> <init>
-    surge.util.Protocol getProtocolVersion() -> montes
+    surge.util.Protocol getProtocolVersion() -> mus
     surge.util.ProtocolRange to(surge.util.Protocol) -> ipsum
-    boolean isServerVersion() -> nascetur
+    boolean isServerVersion() -> habitant
     java.lang.String getVersionString() -> getVersionString
-    boolean isNettySupported() -> ridiculus
-    boolean isActualVersion() -> mus
+    boolean isNettySupported() -> morbi
+    boolean isActualVersion() -> senectus
     int getVersion() -> getVersion
-    int getMetaVersion() -> habitant
+    int getMetaVersion() -> netus
     void <clinit>() -> <clinit>
-surge.util.ProtocolRange -> com.volmit.react.nunc:
-    surge.util.Protocol from -> bK
-    surge.util.Protocol to -> bL
+surge.util.ProtocolRange -> com.volmit.react.arcu:
+    surge.util.Protocol from -> bN
+    surge.util.Protocol to -> bO
     void <init>(surge.util.Protocol,surge.util.Protocol) -> <init>
-    surge.util.Protocol getFrom() -> morbi
-    surge.util.Protocol getTo() -> senectus
+    surge.util.Protocol getFrom() -> facilisi
+    surge.util.Protocol getTo() -> b
     boolean contains(surge.util.Protocol) -> dolor
     java.lang.String toString() -> toString
-surge.util.RayTrace -> com.volmit.react.odio:
-    org.bukkit.Location start -> bM
-    org.bukkit.util.Vector direction -> bN
-    java.lang.Double maxDistance -> bO
-    java.lang.Double distanceCovered -> bP
-    java.lang.Double step -> bQ
-    java.lang.Boolean stop -> bR
+surge.util.RayTrace -> com.volmit.react.maximus:
+    org.bukkit.Location start -> bP
+    org.bukkit.util.Vector direction -> bQ
+    java.lang.Double maxDistance -> bR
+    java.lang.Double distanceCovered -> bS
+    java.lang.Double step -> bT
+    java.lang.Boolean stop -> bU
     void <init>(org.bukkit.Location,org.bukkit.util.Vector,java.lang.Double,java.lang.Double) -> <init>
-    void trace() -> netus
+    void trace() -> c
     void stop() -> stop
     void onTrace(org.bukkit.Location) -> Sed
-    org.bukkit.Location getStart() -> facilisi
+    org.bukkit.Location getStart() -> d
     void setStart(org.bukkit.Location) -> vel
     org.bukkit.util.Vector getDirection() -> getDirection
     void setDirection(org.bukkit.util.Vector) -> setDirection
-    java.lang.Double getMaxDistance() -> b
+    java.lang.Double getMaxDistance() -> e
     void setMaxDistance(java.lang.Double) -> ipsum
-    java.lang.Double getDistanceCovered() -> c
+    java.lang.Double getDistanceCovered() -> f
     void setDistanceCovered(java.lang.Double) -> dolor
-    java.lang.Double getStep() -> d
+    java.lang.Double getStep() -> g
     void setStep(java.lang.Double) -> sit
-surge.util.Shape -> com.volmit.react.Quisque:
-    org.bukkit.Location location -> pellentesque
-    org.bukkit.util.Vector offset -> bS
-    org.bukkit.util.Vector size -> bT
+surge.util.Shape -> com.volmit.react.ultricies:
+    org.bukkit.Location location -> porta
+    org.bukkit.util.Vector offset -> bV
+    org.bukkit.util.Vector size -> bW
     void <init>(org.bukkit.Location,org.bukkit.util.Vector,org.bukkit.util.Vector) -> <init>
     void <init>(org.bukkit.Location,org.bukkit.util.Vector) -> <init>
     void <init>(org.bukkit.Location) -> <init>
     boolean isWithinShape(org.bukkit.Location) -> nibh
-    org.bukkit.Location randomLocation() -> e
-    org.bukkit.Location randomSurface() -> f
+    org.bukkit.Location randomLocation() -> h
+    org.bukkit.Location randomSurface() -> i
     org.bukkit.Location getCenter() -> getCenter
     org.bukkit.Location getLocation() -> getLocation
-    org.bukkit.util.Vector getOffset() -> g
-    org.bukkit.util.Vector getSize() -> h
-surge.util.VectorMath -> com.volmit.react.Praesent:
-    int[] $SWITCH_TABLE$surge$util$Axis -> bU
-    int[] $SWITCH_TABLE$org$bukkit$block$BlockFace -> bV
+    org.bukkit.util.Vector getOffset() -> j
+    org.bukkit.util.Vector getSize() -> k
+surge.util.VectorMath -> com.volmit.react.feugiat:
+    int[] $SWITCH_TABLE$surge$util$Axis -> bX
+    int[] $SWITCH_TABLE$org$bukkit$block$BlockFace -> bY
     void <init>() -> <init>
     org.bukkit.util.Vector scaleStatic(surge.util.Axis,org.bukkit.util.Vector,double) -> Lorem
     org.bukkit.util.Vector scaleX(org.bukkit.util.Vector,double) -> Lorem
@@ -1619,10 +1628,10 @@ surge.util.VectorMath -> com.volmit.react.Praesent:
     org.bukkit.util.Vector angleUp(org.bukkit.util.Vector,float) -> dolor
     org.bukkit.util.Vector angleDown(org.bukkit.util.Vector,float) -> sit
     org.bukkit.util.Vector triNormalize(org.bukkit.util.Vector) -> nibh
-    int[] $SWITCH_TABLE$surge$util$Axis() -> i
-    int[] $SWITCH_TABLE$org$bukkit$block$BlockFace() -> j
-surge.util.VectorMath$1 -> com.volmit.react.arcu:
-    org.bukkit.util.Vector val$vector -> bW
+    int[] $SWITCH_TABLE$surge$util$Axis() -> l
+    int[] $SWITCH_TABLE$org$bukkit$block$BlockFace() -> m
+surge.util.VectorMath$1 -> com.volmit.react.molestie:
+    org.bukkit.util.Vector val$vector -> bZ
     void <init>(org.bukkit.util.Vector) -> <init>
     org.bukkit.util.Vector onAdapt(org.bukkit.util.Vector) -> quis
     java.lang.Object onAdapt(java.lang.Object) -> est
