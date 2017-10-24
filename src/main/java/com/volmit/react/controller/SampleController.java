@@ -1,6 +1,7 @@
 package com.volmit.react.controller;
 
 import com.volmit.react.api.ISampler;
+import com.volmit.react.api.SampledType;
 import com.volmit.react.api.Sampler;
 
 import surge.collection.GMap;
@@ -42,7 +43,7 @@ public class SampleController extends Controller
 			{
 				setName("Ticks Per Second");
 				setDescription("Samples the tps");
-				setID("TPS");
+				setID(SampledType.TPS.toString());
 				setValue(20);
 				setColor(C.GREEN, C.GREEN);
 				setInterval(1);
@@ -57,7 +58,7 @@ public class SampleController extends Controller
 			@Override
 			public String get()
 			{
-				return F.f(getValue() > 19.89 ? 20 : getValue(), 1);
+				return F.f(getValue() > 19.89 ? 20 : getValue(), 0) + "tps";
 			}
 		});
 
@@ -68,7 +69,7 @@ public class SampleController extends Controller
 			{
 				setName("Tick Time");
 				setDescription("Tick time in milliseconds");
-				setID("TICK");
+				setID(SampledType.TICK.toString());
 				setValue(1);
 				setColor(C.GREEN, C.GREEN);
 				setInterval(1);
@@ -94,7 +95,7 @@ public class SampleController extends Controller
 			{
 				setName("Tick Utilization");
 				setDescription("Tick usage via percent");
-				setID("TIU");
+				setID(SampledType.TIU.toString());
 				setValue(1);
 				setColor(C.GREEN, C.GREEN);
 				setInterval(1);
@@ -120,7 +121,7 @@ public class SampleController extends Controller
 			{
 				setName("Used Memory");
 				setDescription("Memory currently used");
-				setID("MEM");
+				setID(SampledType.MEM.toString());
 				setValue(1);
 				setColor(C.GOLD, C.GOLD);
 				setInterval(1);
@@ -146,7 +147,7 @@ public class SampleController extends Controller
 			{
 				setName("Free Memory");
 				setDescription("Memory currently free");
-				setID("FREEMEM");
+				setID(SampledType.FREEMEM.toString());
 				setValue(1);
 				setColor(C.GOLD, C.GOLD);
 				setInterval(1);
@@ -172,7 +173,7 @@ public class SampleController extends Controller
 			{
 				setName("Max Memory");
 				setDescription("Maximum Memory");
-				setID("MAXMEM");
+				setID(SampledType.MAXMEM.toString());
 				setValue(1);
 				setColor(C.GOLD, C.GOLD);
 				setInterval(1);
@@ -198,7 +199,7 @@ public class SampleController extends Controller
 			{
 				setName("Allocated Memory");
 				setDescription("Allocated Memory");
-				setID("ALLOCMEM");
+				setID(SampledType.ALLOCMEM.toString());
 				setValue(1);
 				setColor(C.GOLD, C.GOLD);
 				setInterval(1);
@@ -224,7 +225,7 @@ public class SampleController extends Controller
 			{
 				setName("Memory allocated per second");
 				setDescription("Memory allocated per second");
-				setID("MAHS");
+				setID(SampledType.MAHS.toString());
 				setValue(1);
 				setColor(C.GOLD, C.GOLD);
 				setInterval(1);
