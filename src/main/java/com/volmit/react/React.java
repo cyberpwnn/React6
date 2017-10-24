@@ -1,5 +1,7 @@
 package com.volmit.react;
 
+import com.volmit.react.controller.MonitorController;
+import com.volmit.react.controller.PlayerController;
 import com.volmit.react.controller.SampleController;
 
 import surge.control.Control;
@@ -18,6 +20,12 @@ public class React
 
 	@Control
 	public SampleController sampleController;
+
+	@Control
+	public PlayerController playerController;
+
+	@Control
+	public MonitorController monitorController;
 
 	@Enable
 	public void enable()
