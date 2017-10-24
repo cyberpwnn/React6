@@ -27,11 +27,19 @@ public enum Permissable
 	@Tag("reload")
 	RELOAD;
 
-	private final String node;
+	private String node;
 
 	private Permissable()
 	{
-		node = "react." + getClass().getAnnotation(Tag.class).value();
+		try
+		{
+			node = "react." + Permissable.class.getField(name()).getAnnotation(Tag.class).value();
+		}
+
+		catch(Exception e)
+		{
+
+		}
 	}
 
 	public boolean has(Player p)
