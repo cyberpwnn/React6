@@ -13,9 +13,11 @@ import com.volmit.react.api.SampledType;
 import com.volmit.react.api.TitleMonitor;
 
 import surge.Surge;
+import surge.collection.GSound;
 import surge.control.Controller;
 import surge.nms.NMSX;
 import surge.util.C;
+import surge.util.MSound;
 
 public class MonitorController extends Controller
 {
@@ -57,8 +59,18 @@ public class MonitorController extends Controller
 		MonitorHeading memory = new MonitorHeading("Memory", React.instance.sampleController.getSampler(SampledType.MEM.toString()));
 		memory.addSampler(React.instance.sampleController.getSampler(SampledType.MAHS.toString()));
 
+		MonitorHeading chunks = new MonitorHeading("Chunks", React.instance.sampleController.getSampler(SampledType.CHK.toString()));
+		chunks.addSampler(React.instance.sampleController.getSampler(SampledType.CHKS.toString()));
+
+		MonitorHeading entities = new MonitorHeading("Entities", React.instance.sampleController.getSampler(SampledType.ENT.toString()));
+		entities.addSampler(React.instance.sampleController.getSampler(SampledType.ENTLIV.toString()));
+		entities.addSampler(React.instance.sampleController.getSampler(SampledType.ENTDROP.toString()));
+		entities.addSampler(React.instance.sampleController.getSampler(SampledType.ENTTILE.toString()));
+
 		titleMonitor.addHeading(tick);
 		titleMonitor.addHeading(memory);
+		titleMonitor.addHeading(chunks);
+		titleMonitor.addHeading(entities);
 	}
 
 	public boolean canMonitor(Player p)
@@ -117,7 +129,7 @@ public class MonitorController extends Controller
 		double lheight = i.getLastHeight();
 		i.setHeightMovement(Math.abs(lheight - height) > 0.001);
 		i.setLastHeight(height);
-		boolean sh = i.getP().isSneaking() && !i.isHeightMovement();
+		boolean sh = i.getP().isSneaking() && (!i.isHeightMovement() || !i.getP().isFlying());
 		boolean osh = i.isShifting();
 
 		if(sh != osh)
@@ -125,12 +137,15 @@ public class MonitorController extends Controller
 			if(sh)
 			{
 				i.setMonitorSelection(i.getMonitorLastSelection());
+				i.setSwitchNotification(maxCooldown);
+				new GSound(MSound.HORSE_SADDLE.bukkitSound(), 0.7f, 1.9f).play(i.getP());
 			}
 
 			else
 			{
 				i.setMonitorLastSelection(i.getMonitorSelection());
 				i.setMonitorSelection(-1);
+				new GSound(MSound.HORSE_ARMOR.bukkitSound(), 0.7f, 1.5f).play(i.getP());
 			}
 		}
 
@@ -184,6 +199,7 @@ public class MonitorController extends Controller
 			if(i.getMonitorSelection() != nsel)
 			{
 				i.setSwitchNotification(maxCooldown);
+				new GSound(MSound.HORSE_LAND.bukkitSound(), 0.5f, 1.9f).play(i.getP());
 			}
 
 			i.setMonitorSelection(nsel);
@@ -213,12 +229,31 @@ public class MonitorController extends Controller
 		return C.DARK_GRAY + "";
 	}
 
+	public String prefixForSub(ReactPlayer rp, C color, int cd)
+	{
+		double pct = (double) cd / (double) maxCooldown;
+		pct = 1.0 - pct;
+		String acolor = color + "";
+
+		if(pct > 0.6)
+		{
+			return acolor;
+		}
+
+		if(pct > 0.3)
+		{
+			return acolor + C.BOLD;
+		}
+
+		return C.DARK_GRAY + "" + C.BOLD;
+	}
+
 	public void tickMonitor(ReactPlayer rp)
 	{
 		Player p = rp.getP();
 		int sel = rp.getMonitorSelection();
 		NMSX.sendActionBar(p, titleMonitor.getHotbarFor(sel, rp.isShift()));
-		String k = titleMonitor.getHotbarHeadFor(sel, rp.isShift());
+		String k = titleMonitor.getHotbarHeadFor(sel, rp.isShift(), this, rp, rp.getSwitchNotification());
 		String m = prefixFor(rp, sel, rp.getSwitchNotification());
 		String v = sel != -1 ? (rp.getSwitchNotification() > 0 ? (m + titleMonitor.getHeadFor(sel).getName()) : "  ") : "  ";
 		NMSX.sendTitle(p, 0, 5, 0, v, k);
