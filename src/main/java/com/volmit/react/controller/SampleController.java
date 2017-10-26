@@ -1,11 +1,21 @@
 package com.volmit.react.controller;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
+import org.bukkit.World;
+import org.bukkit.entity.Item;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.world.ChunkLoadEvent;
+import org.bukkit.event.world.ChunkUnloadEvent;
+
 import com.volmit.react.api.ISampler;
 import com.volmit.react.api.SampledType;
 import com.volmit.react.api.Sampler;
 
+import surge.Surge;
 import surge.collection.GMap;
 import surge.control.Controller;
+import surge.math.Average;
 import surge.sched.TICK;
 import surge.server.SuperSampler;
 import surge.util.C;
@@ -16,6 +26,12 @@ public class SampleController extends Controller
 {
 	private GMap<String, ISampler> samplers;
 	private SuperSampler ss;
+	private boolean chunksChanged = false;
+	private int chunksLoaded = 0;
+	private int totalEntities;
+	private int totalDrops;
+	private int totalLivingEntities;
+	private int totalTileEntities;
 
 	public SampleController()
 	{
@@ -58,7 +74,7 @@ public class SampleController extends Controller
 			@Override
 			public String get()
 			{
-				return F.f(getValue() > 19.89 ? 20 : getValue(), 0) + "tps";
+				return F.f(getValue() > 19.89 ? 20 : getValue(), 0) + "\u2126";
 			}
 		});
 
@@ -84,7 +100,7 @@ public class SampleController extends Controller
 			@Override
 			public String get()
 			{
-				return F.f(getValue(), 0) + "ms";
+				return F.f(getValue(), 0) + "ms \u27A4";
 			}
 		});
 
@@ -240,7 +256,178 @@ public class SampleController extends Controller
 			@Override
 			public String get()
 			{
-				return F.memSize((long) getValue());
+				return "\u21AF " + F.memSize((long) getValue());
+			}
+		});
+
+		registerSampler(new Sampler()
+		{
+			@Override
+			public void construct()
+			{
+				setName("Chunks");
+				setDescription("Total loaded chunks");
+				setID(SampledType.CHK.toString());
+				setValue(1);
+				setColor(C.RED, C.RED);
+				setInterval(1);
+			}
+
+			@Override
+			public void sample()
+			{
+				if(chunksChanged)
+				{
+					int c = 0;
+
+					for(World i : Bukkit.getServer().getWorlds())
+					{
+						c += i.getLoadedChunks().length;
+					}
+
+					setValue(c);
+					chunksChanged = false;
+				}
+			}
+
+			@Override
+			public String get()
+			{
+				return F.f((int) getValue()) + "\u2691";
+			}
+		});
+
+		registerSampler(new Sampler()
+		{
+			private Average a = new Average(5);
+
+			@Override
+			public void construct()
+			{
+				setName("Chunks/s");
+				setDescription("Chunks per second");
+				setID(SampledType.CHKS.toString());
+				setValue(1);
+				setColor(C.RED, C.RED);
+				setInterval(20);
+			}
+
+			@Override
+			public void sample()
+			{
+				a.put(chunksLoaded);
+				chunksLoaded = 0;
+				setValue(a.getAverage());
+			}
+
+			@Override
+			public String get()
+			{
+				return "\u29F1 " + F.f((int) getValue()) + "/s";
+			}
+		});
+
+		registerSampler(new Sampler()
+		{
+			@Override
+			public void construct()
+			{
+				setName("Entities");
+				setDescription("Total Entities");
+				setID(SampledType.ENT.toString());
+				setValue(0);
+				setColor(C.AQUA, C.AQUA);
+				setInterval(1);
+			}
+
+			@Override
+			public void sample()
+			{
+				setValue(totalEntities);
+			}
+
+			@Override
+			public String get()
+			{
+				return F.f((int) getValue()) + "\u2618";
+			}
+		});
+
+		registerSampler(new Sampler()
+		{
+			@Override
+			public void construct()
+			{
+				setName("Living");
+				setDescription("Total Living");
+				setID(SampledType.ENTLIV.toString());
+				setValue(0);
+				setColor(C.AQUA, C.AQUA);
+				setInterval(1);
+			}
+
+			@Override
+			public void sample()
+			{
+				setValue(totalLivingEntities);
+			}
+
+			@Override
+			public String get()
+			{
+				return "\u2764" + F.f((int) getValue());
+			}
+		});
+
+		registerSampler(new Sampler()
+		{
+			@Override
+			public void construct()
+			{
+				setName("Drops");
+				setDescription("Total Drops");
+				setID(SampledType.ENTDROP.toString());
+				setValue(0);
+				setColor(C.AQUA, C.AQUA);
+				setInterval(1);
+			}
+
+			@Override
+			public void sample()
+			{
+				setValue(totalDrops);
+			}
+
+			@Override
+			public String get()
+			{
+				return "\u25CF" + F.f((int) getValue());
+			}
+		});
+
+		registerSampler(new Sampler()
+		{
+			@Override
+			public void construct()
+			{
+				setName("Tiles");
+				setDescription("Total Tiles");
+				setID(SampledType.ENTTILE.toString());
+				setValue(0);
+				setColor(C.AQUA, C.AQUA);
+				setInterval(1);
+			}
+
+			@Override
+			public void sample()
+			{
+				setValue(totalTileEntities);
+			}
+
+			@Override
+			public String get()
+			{
+				return "\u2756" + F.f((int) getValue());
 			}
 		});
 
@@ -255,17 +442,52 @@ public class SampleController extends Controller
 	public void start()
 	{
 		ss.start();
+		Surge.register(this);
 	}
 
 	@Override
 	public void stop()
 	{
 		ss.stop();
+		Surge.unregister(this);
+	}
+
+	@EventHandler
+	public void on(ChunkLoadEvent e)
+	{
+		chunksChanged = true;
+		chunksLoaded++;
+	}
+
+	@EventHandler
+	public void on(ChunkUnloadEvent e)
+	{
+		chunksChanged = true;
 	}
 
 	@Override
 	public void tick()
 	{
+		totalEntities = 0;
+		totalDrops = 0;
+		totalLivingEntities = 0;
+		totalTileEntities = 0;
+
+		for(World i : Bukkit.getWorlds())
+		{
+			int k = i.getEntities().size();
+			int l = i.getEntitiesByClass(Item.class).size();
+			totalLivingEntities += k - l;
+			totalEntities += k;
+			totalDrops += l;
+
+			for(Chunk j : i.getLoadedChunks())
+			{
+				totalTileEntities += j.getTileEntities().length;
+				totalEntities += j.getTileEntities().length;
+			}
+		}
+
 		for(ISampler i : samplers.v())
 		{
 			try
