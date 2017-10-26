@@ -1,11 +1,10 @@
-package com.volmit.react.controller;
+package react.controller;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import com.volmit.react.api.ReactPlayer;
-
+import react.api.ReactPlayer;
 import surge.Surge;
 import surge.collection.GList;
 import surge.control.Controller;

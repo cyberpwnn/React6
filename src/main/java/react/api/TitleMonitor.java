@@ -1,7 +1,6 @@
-package com.volmit.react.api;
+package react.api;
 
-import com.volmit.react.controller.MonitorController;
-
+import react.controller.MonitorController;
 import surge.collection.GList;
 import surge.util.C;
 

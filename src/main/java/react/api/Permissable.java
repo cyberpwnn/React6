@@ -1,4 +1,4 @@
-package com.volmit.react.api;
+package react.api;
 
 import org.bukkit.entity.Player;
 

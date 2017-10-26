@@ -1,9 +1,8 @@
-package com.volmit.react;
+package react;
 
-import com.volmit.react.controller.MonitorController;
-import com.volmit.react.controller.PlayerController;
-import com.volmit.react.controller.SampleController;
-
+import react.controller.MonitorController;
+import react.controller.PlayerController;
+import react.controller.SampleController;
 import surge.control.Control;
 import surge.control.Disable;
 import surge.control.Enable;

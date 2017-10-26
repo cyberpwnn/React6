@@ -1,17 +1,16 @@
-package com.volmit.react.controller;
+package react.controller;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import com.volmit.react.React;
-import com.volmit.react.api.MonitorHeading;
-import com.volmit.react.api.Permissable;
-import com.volmit.react.api.ReactPlayer;
-import com.volmit.react.api.SampledType;
-import com.volmit.react.api.TitleMonitor;
-
+import react.React;
+import react.api.MonitorHeading;
+import react.api.Permissable;
+import react.api.ReactPlayer;
+import react.api.SampledType;
+import react.api.TitleMonitor;
 import surge.Surge;
 import surge.collection.GSound;
 import surge.control.Controller;
