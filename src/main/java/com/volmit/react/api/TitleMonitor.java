@@ -1,5 +1,7 @@
 package com.volmit.react.api;
 
+import com.volmit.react.controller.MonitorController;
+
 import surge.collection.GList;
 import surge.util.C;
 
@@ -53,7 +55,7 @@ public class TitleMonitor
 		return headings.get(sel);
 	}
 
-	public String getHotbarHeadFor(int sel, boolean b)
+	public String getHotbarHeadFor(int sel, boolean b, MonitorController mc, ReactPlayer rp, int cd)
 	{
 		String m = "";
 
@@ -64,7 +66,8 @@ public class TitleMonitor
 
 		for(ISampler i : getHeadFor(sel).getChildren())
 		{
-			m += " " + C.RESET + i.getColor() + "" + i.get();
+			String cx = mc.prefixForSub(rp, i.getColor(), cd);
+			m += " " + C.RESET + cx + "" + C.stripColor(i.get());
 		}
 
 		if(m.length() < 2)
