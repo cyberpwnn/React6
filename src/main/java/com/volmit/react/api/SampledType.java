@@ -26,7 +26,25 @@ public enum SampledType
 	ALLOCMEM,
 
 	@Tag("MAHS")
-	MAHS;
+	MAHS,
+
+	@Tag("CHK")
+	CHK,
+
+	@Tag("CHKS")
+	CHKS,
+
+	@Tag("ENT")
+	ENT,
+
+	@Tag("ENTLIV")
+	ENTLIV,
+
+	@Tag("ENTDROP")
+	ENTDROP,
+
+	@Tag("ENTTILE")
+	ENTTILE;
 
 	private String node;
 
