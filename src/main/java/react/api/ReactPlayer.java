@@ -4,48 +4,71 @@ import java.io.File;
 
 import org.bukkit.entity.Player;
 
+import react.Info;
 import surge.Surge;
 import surge.cluster.ConfigurationDataInput;
 import surge.cluster.ConfigurationDataOutput;
 import surge.cluster.IConfigurable;
-import surge.cluster.Key;
+import surge.cluster.KeyPointer;
+import surge.cluster.KeyStore;
+import surge.collection.GMap;
 
 public class ReactPlayer implements IConfigurable
 {
-	@Key("state.monitoring.enabled")
+	@KeyStore
+	public static GMap<Integer, String> keystore;
+
+	static
+	{
+		keystore = new GMap<Integer, String>();
+		keystore.put(-175, Info.STATE_MONITORING_ENABLED);
+		keystore.put(234, Info.STATE_MAPPING_ENABLED);
+		keystore.put(-885, Info.STATE_MONITORING_TAB);
+		keystore.put(343, Info.STATE_SOUND_PLAYS);
+		keystore.put(765, Info.STATE_MONITORING_POSTED); //
+		keystore.put(-112, Info.STATE_MONITORING_LASTTAB);
+		keystore.put(-694, Info.STATE_MONITORING_SWITCHNOTIFICATION);
+		keystore.put(492, Info.STATE_PLAYER_HOTBAR);
+		keystore.put(117, Info.STATE_PLAYER_SHIFT);
+		keystore.put(-592, Info.STATE_PLAYER_SCROLL);
+		keystore.put(841, Info.STATE_PLAYER_HEIGHT_CURRENT);
+		keystore.put(-413, Info.STATE_PLAYER_HEIGHT_CHANGING);
+	}
+
+	@KeyPointer(-175)
 	public boolean monitoring = false;
 
-	@Key("state.mapping.enabled")
+	@KeyPointer(234)
 	public boolean mapping = false;
 
-	@Key("state.monitoring.tab")
+	@KeyPointer(-885)
 	public int monitorSelection = -1;
 
-	@Key("state.sound.plays")
+	@KeyPointer(343)
 	public int plays = 0;
 
-	@Key("state.monitoring.posted")
+	@KeyPointer(765)
 	public boolean monitorPosted = false;
 
-	@Key("state.monitoring.last-tab")
+	@KeyPointer(-112)
 	public int monitorLastSelection = 0;
 
-	@Key("state.monitoring.switch-notification")
+	@KeyPointer(-694)
 	public int switchNotification = 0;
 
-	@Key("state.player.hotbar")
+	@KeyPointer(492)
 	public int hotbarSlot = 0;
 
-	@Key("state.player.shift")
+	@KeyPointer(117)
 	public boolean shift = false;
 
-	@Key("state.player.scroll")
+	@KeyPointer(-592)
 	public int scroll = 0;
 
-	@Key("state.player.height.current")
+	@KeyPointer(841)
 	public double lastHeight = 0;
 
-	@Key("state.player.height.changing")
+	@KeyPointer(-413)
 	public boolean heightMovement = false;
 
 	private Player p;
@@ -60,7 +83,7 @@ public class ReactPlayer implements IConfigurable
 	{
 		try
 		{
-			new ConfigurationDataOutput().write(this, new File(Surge.folder("cache"), p.getUniqueId().toString() + ".yml"));
+			new ConfigurationDataOutput().write(this, new File(Surge.folder(Info.CACHE), p.getUniqueId().toString() + Info.DOTYML));
 		}
 
 		catch(Exception e)
@@ -73,7 +96,7 @@ public class ReactPlayer implements IConfigurable
 	{
 		try
 		{
-			new ConfigurationDataInput().read(this, new File(Surge.folder("cache"), p.getUniqueId().toString() + ".yml"));
+			new ConfigurationDataInput().read(this, new File(Surge.folder(Info.CACHE), p.getUniqueId().toString() + Info.DOTYML));
 		}
 
 		catch(Exception e)
