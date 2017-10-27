@@ -2,38 +2,25 @@ package react.api;
 
 import org.bukkit.entity.Player;
 
-import surge.util.Tag;
+import react.Info;
 
 public enum Permissable
 {
-	@Tag("access")
-	ACCESS,
-
-	@Tag("monitor")
-	MONITOR,
-
-	@Tag("monitor.title")
-	MONITOR_TITLE,
-
-	@Tag("monitor.map")
-	MONITOR_MAP,
-
-	@Tag("monitor.environment")
-	MONITOR_ENVIRONMENT,
-
-	@Tag("act")
-	ACT,
-
-	@Tag("reload")
-	RELOAD;
+	ACCESS(Info.ACCESS),
+	MONITOR(Info.MONITOR),
+	MONITOR_TITLE(Info.MONITOR_TITLE),
+	MONITOR_MAP(Info.MONITOR_MAP),
+	MONITOR_ENVIRONMENT(Info.MONITOR_ENVIRONMENT),
+	ACT(Info.ACT),
+	RELOAD(Info.RELOAD);
 
 	private String node;
 
-	private Permissable()
+	private Permissable(String s)
 	{
 		try
 		{
-			node = "react." + Permissable.class.getField(name()).getAnnotation(Tag.class).value();
+			node = Info.REACT_DOT + s;
 		}
 
 		catch(Exception e)

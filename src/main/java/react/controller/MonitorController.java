@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 
+import react.Info;
 import react.React;
 import react.api.MonitorHeading;
 import react.api.Permissable;
@@ -56,17 +57,17 @@ public class MonitorController extends Controller
 
 	public void constructMonitor()
 	{
-		MonitorHeading tick = new MonitorHeading("Tick", React.instance.sampleController.getSampler(SampledType.TPS.toString()));
+		MonitorHeading tick = new MonitorHeading(Info.NAME_TICK, React.instance.sampleController.getSampler(SampledType.TPS.toString()));
 		tick.addSampler(React.instance.sampleController.getSampler(SampledType.TICK.toString()));
 		tick.addSampler(React.instance.sampleController.getSampler(SampledType.TIU.toString()));
 
-		MonitorHeading memory = new MonitorHeading("Memory", React.instance.sampleController.getSampler(SampledType.MEM.toString()));
+		MonitorHeading memory = new MonitorHeading(Info.NAME_MEMORY, React.instance.sampleController.getSampler(SampledType.MEM.toString()));
 		memory.addSampler(React.instance.sampleController.getSampler(SampledType.MAHS.toString()));
 
-		MonitorHeading chunks = new MonitorHeading("Chunks", React.instance.sampleController.getSampler(SampledType.CHK.toString()));
+		MonitorHeading chunks = new MonitorHeading(Info.NAME_CHUNKS, React.instance.sampleController.getSampler(SampledType.CHK.toString()));
 		chunks.addSampler(React.instance.sampleController.getSampler(SampledType.CHKS.toString()));
 
-		MonitorHeading entities = new MonitorHeading("Entities", React.instance.sampleController.getSampler(SampledType.ENT.toString()));
+		MonitorHeading entities = new MonitorHeading(Info.NAME_ENTITIES, React.instance.sampleController.getSampler(SampledType.ENT.toString()));
 		entities.addSampler(React.instance.sampleController.getSampler(SampledType.ENTLIV.toString()));
 		entities.addSampler(React.instance.sampleController.getSampler(SampledType.ENTDROP.toString()));
 		entities.addSampler(React.instance.sampleController.getSampler(SampledType.ENTTILE.toString()));

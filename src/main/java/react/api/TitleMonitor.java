@@ -1,5 +1,6 @@
 package react.api;
 
+import react.Info;
 import react.controller.MonitorController;
 import surge.collection.GList;
 import surge.util.C;
@@ -87,7 +88,7 @@ public class TitleMonitor
 			String pd = C.DARK_GRAY.toString();
 			String po = i.getHead().getColor().toString();
 			String pc = (sel == -1 || sl == sel) ? po : pd;
-			m += " " + C.RESET + pc + i.getHead().get();
+			m += Info.SPACE + C.RESET + pc + i.getHead().get();
 			sl++;
 		}
 
