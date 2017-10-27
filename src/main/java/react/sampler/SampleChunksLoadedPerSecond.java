@@ -8,8 +8,7 @@ import surge.util.F;
 
 public class SampleChunksLoadedPerSecond extends MSampler
 {
-	private Average a = new Average(20);
-	private Average b = new Average(20);
+	private Average a = new Average(19);
 
 	@Override
 	public void construct()
@@ -26,8 +25,7 @@ public class SampleChunksLoadedPerSecond extends MSampler
 	public void sample()
 	{
 		a.put(ss().getChunksLoaded());
-		b.put(ss().getChunksUnloaded());
-		setValue(a.getAverage() - b.getAverage());
+		setValue(a.getAverage());
 	}
 
 	@Override

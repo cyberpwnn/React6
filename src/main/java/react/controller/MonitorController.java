@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
 
 import react.React;
 import react.api.MonitorHeading;
@@ -12,8 +13,10 @@ import react.api.ReactPlayer;
 import react.api.SampledType;
 import react.api.TitleMonitor;
 import surge.Surge;
+import surge.collection.GMap;
 import surge.collection.GSound;
 import surge.control.Controller;
+import surge.math.M;
 import surge.nms.NMSX;
 import surge.util.C;
 import surge.util.MSound;
@@ -22,9 +25,11 @@ public class MonitorController extends Controller
 {
 	public static int maxCooldown = 4;
 	private TitleMonitor titleMonitor;
+	private GMap<Player, Integer> posts;
 
 	public MonitorController()
 	{
+		posts = new GMap<Player, Integer>();
 		titleMonitor = new TitleMonitor();
 	}
 
@@ -70,6 +75,16 @@ public class MonitorController extends Controller
 		titleMonitor.addHeading(memory);
 		titleMonitor.addHeading(chunks);
 		titleMonitor.addHeading(entities);
+	}
+
+	public float calcVolume(ReactPlayer i)
+	{
+		i.setPlays(i.getPlays() > 20 ? 20 : i.getPlays());
+		float volume = 0.5f;
+		int plays = (int) M.clip(i.getPlays(), 0, 20);
+		volume -= ((float) plays / 20f) * 0.49f;
+
+		return volume;
 	}
 
 	public boolean canMonitor(Player p)
@@ -119,37 +134,56 @@ public class MonitorController extends Controller
 			{
 				tickMonitor(i);
 			}
+
+			i.setPlays(i.getPlays() > 0 ? i.getPlays() - 1 : 0);
 		}
+	}
+
+	private void changePost(ReactPlayer i)
+	{
+		i.setMonitorPosted(!i.getMonitorPosted());
+		new GSound(MSound.HORSE_GALLOP.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+		i.setPlays(i.getPlays() + 3);
 	}
 
 	private void processPlayer(ReactPlayer i)
 	{
-		double height = i.getP().getLocation().getY();
-		double lheight = i.getLastHeight();
-		i.setHeightMovement(Math.abs(lheight - height) > 0.001);
-		i.setLastHeight(height);
-		boolean sh = i.getP().isSneaking() && (!i.isHeightMovement() || !i.getP().isFlying());
-		boolean osh = i.isShifting();
+		handlePosting(i);
+		handleShifting(i);
+		handleScrolling(i);
+		handleTriggers(i);
+	}
 
-		if(sh != osh)
+	private void handleTriggers(ReactPlayer i)
+	{
+		if(i.isShifting())
 		{
-			if(sh)
+			TitleMonitor tm = React.instance.monitorController.getTitleMonitor();
+			int nsel = i.getMonitorSelection();
+
+			if(i.getScroll() == 1)
 			{
-				i.setMonitorSelection(i.getMonitorLastSelection());
+				nsel = tm.right(nsel);
+			}
+
+			if(i.getScroll() == -1)
+			{
+				nsel = tm.left(nsel);
+			}
+
+			if(i.getMonitorSelection() != nsel)
+			{
 				i.setSwitchNotification(maxCooldown);
-				new GSound(MSound.HORSE_SADDLE.bukkitSound(), 0.7f, 1.9f).play(i.getP());
+				new GSound(MSound.HORSE_LAND.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+				i.setPlays(i.getPlays() + 3);
 			}
 
-			else
-			{
-				i.setMonitorLastSelection(i.getMonitorSelection());
-				i.setMonitorSelection(-1);
-				new GSound(MSound.HORSE_ARMOR.bukkitSound(), 0.7f, 1.5f).play(i.getP());
-			}
+			i.setMonitorSelection(nsel);
 		}
+	}
 
-		i.setSwitchNotification(i.getSwitchNotification() > 0 ? i.getSwitchNotification() - 1 : 0);
-		i.setShifting(sh);
+	private void handleScrolling(ReactPlayer i)
+	{
 		int lhot = i.getHotbarSlot();
 		int hot = i.getP().getInventory().getHeldItemSlot();
 		int right = hot - lhot;
@@ -157,7 +191,17 @@ public class MonitorController extends Controller
 
 		if(right != left && right != 0 && left != 0)
 		{
-			if(right == Math.max(left, right))
+			if(right == -8)
+			{
+				i.setScroll(1);
+			}
+
+			else if(left == -8)
+			{
+				i.setScroll(-1);
+			}
+
+			else if(right == Math.max(left, right))
 			{
 				i.setScroll(1);
 			}
@@ -179,29 +223,63 @@ public class MonitorController extends Controller
 		}
 
 		i.setHotbarSlot(hot);
+	}
 
-		if(i.isShifting())
+	private void handleShifting(ReactPlayer i)
+	{
+		double height = i.getP().getLocation().getY();
+		double lheight = i.getLastHeight();
+		i.setHeightMovement(Math.abs(lheight - height) > 0.001);
+		i.setLastHeight(height);
+		boolean sh = i.getP().isSneaking() && (!i.isHeightMovement() || !i.getP().isFlying()) || i.getMonitorPosted();
+		boolean osh = i.isShifting();
+
+		if(sh != osh)
 		{
-			TitleMonitor tm = React.instance.monitorController.getTitleMonitor();
-			int nsel = i.getMonitorSelection();
-
-			if(i.getScroll() == 1)
+			if(sh)
 			{
-				nsel = tm.right(nsel);
-			}
-
-			if(i.getScroll() == -1)
-			{
-				nsel = tm.left(nsel);
-			}
-
-			if(i.getMonitorSelection() != nsel)
-			{
+				i.setMonitorSelection(i.getMonitorLastSelection());
 				i.setSwitchNotification(maxCooldown);
-				new GSound(MSound.HORSE_LAND.bukkitSound(), 0.5f, 1.9f).play(i.getP());
+				new GSound(MSound.HORSE_SADDLE.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+				i.setPlays(i.getPlays() + 3);
 			}
 
-			i.setMonitorSelection(nsel);
+			else
+			{
+				i.setMonitorLastSelection(i.getMonitorSelection());
+				i.setMonitorSelection(-1);
+				new GSound(MSound.HORSE_ARMOR.bukkitSound(), calcVolume(i), 1.5f).play(i.getP());
+				i.setPlays(i.getPlays() + 3);
+			}
+		}
+
+		i.setSwitchNotification(i.getSwitchNotification() > 0 ? i.getSwitchNotification() - 1 : 0);
+		i.setShifting(sh);
+	}
+
+	private void handlePosting(ReactPlayer i)
+	{
+		if(!posts.containsKey(i.getP()))
+		{
+			return;
+		}
+
+		if(!isMonitoring(i.getP()))
+		{
+			return;
+		}
+
+		posts.put(i.getP(), posts.get(i.getP()) - 1);
+
+		if(posts.get(i.getP()) >= 11)
+		{
+			posts.remove(i.getP());
+			changePost(i);
+		}
+
+		else if(posts.get(i.getP()) < 0)
+		{
+			posts.remove(i.getP());
 		}
 	}
 
@@ -269,6 +347,20 @@ public class MonitorController extends Controller
 		if(canMonitor(e.getPlayer()))
 		{
 			React.instance.playerController.getPlayer(e.getPlayer());
+		}
+	}
+
+	@EventHandler
+	public void on(PlayerToggleSneakEvent e)
+	{
+		if(canMonitor(e.getPlayer()) && isMonitoring(e.getPlayer()))
+		{
+			if(!posts.containsKey(e.getPlayer()))
+			{
+				posts.put(e.getPlayer(), 0);
+			}
+
+			posts.put(e.getPlayer(), posts.get(e.getPlayer()) + 5);
 		}
 	}
 }

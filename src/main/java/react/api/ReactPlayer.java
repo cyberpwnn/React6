@@ -21,6 +21,12 @@ public class ReactPlayer implements IConfigurable
 	@Key("state.monitoring.tab")
 	public int monitorSelection = -1;
 
+	@Key("state.sound.plays")
+	public int plays = 0;
+
+	@Key("state.monitoring.posted")
+	public boolean monitorPosted = false;
+
 	@Key("state.monitoring.last-tab")
 	public int monitorLastSelection = 0;
 
@@ -194,5 +200,25 @@ public class ReactPlayer implements IConfigurable
 	public void setSwitchNotification(int switchNotification)
 	{
 		this.switchNotification = switchNotification;
+	}
+
+	public boolean getMonitorPosted()
+	{
+		return monitorPosted;
+	}
+
+	public void setMonitorPosted(boolean monitorPosted)
+	{
+		this.monitorPosted = monitorPosted;
+	}
+
+	public int getPlays()
+	{
+		return plays;
+	}
+
+	public void setPlays(int plays)
+	{
+		this.plays = plays;
 	}
 }
