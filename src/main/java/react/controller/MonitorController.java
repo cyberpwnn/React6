@@ -134,11 +134,13 @@ public class MonitorController extends Controller
 		if(canMonitor(p) && isMonitoring(p))
 		{
 			React.instance.playerController.getPlayer(p).setMonitoring(false);
+			NMSX.sendActionBar(p, "    ");
 		}
 
 		if(React.instance.playerController.has(p) && !canMonitor(p))
 		{
 			React.instance.playerController.getPlayer(p).setMonitoring(false);
+			NMSX.sendActionBar(p, "    ");
 		}
 	}
 

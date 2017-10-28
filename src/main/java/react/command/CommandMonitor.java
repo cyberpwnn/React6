@@ -26,12 +26,7 @@ public class CommandMonitor extends ReactCommand
 	@Override
 	public void fire(CommandSender sender, String[] args)
 	{
-
-	}
-
-	@Override
-	public void fire(Player player, String[] args)
-	{
+		Player player = (Player) sender;
 		React.instance.monitorController.toggleMonitoring(player);
 	}
 }

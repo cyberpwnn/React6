@@ -6,6 +6,9 @@ load: STARTUP
 website: https://www.spigotmc.org/resources/react-smart-server-performance.21057/
 database: false
 prefix: React
+commands: 
+  react: 
+    aliases: [re]
 permissions:
   react.*:
     description: Gives access to all React permissions

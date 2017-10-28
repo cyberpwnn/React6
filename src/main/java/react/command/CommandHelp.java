@@ -1,7 +1,6 @@
 package react.command;
 
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import react.Info;
 import react.api.Permissable;
@@ -25,14 +24,6 @@ public class CommandHelp extends ReactCommand
 	@Override
 	public void fire(CommandSender sender, String[] args)
 	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void fire(Player player, String[] args)
-	{
-		// TODO Auto-generated method stub
-
+		sender.sendMessage("This is the help screen");
 	}
 }
