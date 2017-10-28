@@ -6,7 +6,10 @@ import org.bukkit.entity.Player;
 import react.Info;
 import react.api.Permissable;
 import react.api.ReactCommand;
+import react.api.SideGate;
+import surge.util.Anchor;
 
+@Anchor(0)
 public class CommandHelp extends ReactCommand
 {
 	public CommandHelp()
@@ -16,6 +19,7 @@ public class CommandHelp extends ReactCommand
 		permissions = new String[] {Permissable.ACCESS.getNode()};
 		usage = Info.COMMAND_HELP_USAGE;
 		description = Info.COMMAND_HELP_DESCRIPTION;
+		sideGate = SideGate.ANYTHING;
 	}
 
 	@Override

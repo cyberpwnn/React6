@@ -1,6 +1,6 @@
 package react.api;
 
-import org.bukkit.entity.Player;
+import org.bukkit.command.CommandSender;
 
 import react.Info;
 
@@ -29,7 +29,7 @@ public enum Permissable
 		}
 	}
 
-	public boolean has(Player p)
+	public boolean has(CommandSender p)
 	{
 		return p.hasPermission(getNode());
 	}

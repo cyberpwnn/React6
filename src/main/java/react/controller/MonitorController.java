@@ -49,6 +49,24 @@ public class MonitorController extends Controller
 		}
 	}
 
+	public void toggleMonitoring(Player p)
+	{
+		if(!canMonitor(p))
+		{
+			return;
+		}
+
+		if(isMonitoring(p))
+		{
+			stopMonitoring(p);
+		}
+
+		else
+		{
+			startMonitoring(p);
+		}
+	}
+
 	@Override
 	public void stop()
 	{

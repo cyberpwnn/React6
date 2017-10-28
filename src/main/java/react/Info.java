@@ -1,12 +1,23 @@
 package react;
 
+import surge.util.C;
+
 public class Info
 {
+
+	public static final C COLOR = C.AQUA;
 	public static final String COMMAND_HELP = "help";
 	public static final String COMMAND_HELP_ALIAS_1 = "h";
 	public static final String COMMAND_HELP_ALIAS_2 = "?";
 	public static final String COMMAND_HELP_USAGE = "/react help";
 	public static final String COMMAND_HELP_DESCRIPTION = "Shows a list of commands to use";
+	public static final String COMMAND_MONITOR = "monitor";
+	public static final String COMMAND_MONITOR_ALIAS_1 = "mon";
+	public static final String COMMAND_MONITOR_ALIAS_2 = "m";
+	public static final String COMMAND_MONITOR_USAGE = "/react monitor";
+	public static final String COMMAND_MONITOR_DESCRIPTION = "Toggles the monitor";
+	public static final String COMMAND_REACT = "react";
+	public static final String MSG_PERMISSION = "Insufficient Permission";
 
 	public static final String NAME_TICK = (new Object()
 	{
