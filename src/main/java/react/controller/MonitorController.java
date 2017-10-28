@@ -149,6 +149,11 @@ public class MonitorController extends Controller
 
 	private void processPlayer(ReactPlayer i)
 	{
+		if(!isMonitoring(i.getP()))
+		{
+			return;
+		}
+
 		handlePosting(i);
 		handleShifting(i);
 		handleScrolling(i);

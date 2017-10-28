@@ -2,6 +2,12 @@ package react;
 
 public class Info
 {
+	public static final String COMMAND_HELP = "help";
+	public static final String COMMAND_HELP_ALIAS_1 = "h";
+	public static final String COMMAND_HELP_ALIAS_2 = "?";
+	public static final String COMMAND_HELP_USAGE = "/react help";
+	public static final String COMMAND_HELP_DESCRIPTION = "Shows a list of commands to use";
+
 	public static final String NAME_TICK = (new Object()
 	{
 		int t;

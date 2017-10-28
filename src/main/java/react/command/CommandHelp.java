@@ -1,0 +1,34 @@
+package react.command;
+
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import react.Info;
+import react.api.Permissable;
+import react.api.ReactCommand;
+
+public class CommandHelp extends ReactCommand
+{
+	public CommandHelp()
+	{
+		command = Info.COMMAND_HELP;
+		aliases = new String[] {Info.COMMAND_HELP_ALIAS_1, Info.COMMAND_HELP_ALIAS_2};
+		permissions = new String[] {Permissable.ACCESS.getNode()};
+		usage = Info.COMMAND_HELP_USAGE;
+		description = Info.COMMAND_HELP_DESCRIPTION;
+	}
+
+	@Override
+	public void fire(CommandSender sender, String[] args)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void fire(Player player, String[] args)
+	{
+		// TODO Auto-generated method stub
+
+	}
+}
