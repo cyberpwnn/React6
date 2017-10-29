@@ -18,11 +18,14 @@ import react.sampler.SampleTicksPerSecond;
 import surge.Surge;
 import surge.collection.GMap;
 import surge.control.Controller;
+import surge.sched.IMasterTickComponent;
 import surge.sched.TICK;
+import surge.server.AsyncTick;
 import surge.server.SuperSampler;
 import surge.util.D;
 
-public class SampleController extends Controller
+@AsyncTick
+public class SampleController extends Controller implements IMasterTickComponent
 {
 	private GMap<String, ISampler> samplers;
 	private SuperSampler ss;
@@ -73,6 +76,7 @@ public class SampleController extends Controller
 	{
 		ss.start();
 		Surge.register(this);
+		Surge.registerTicked(this);
 	}
 
 	@Override
@@ -80,10 +84,22 @@ public class SampleController extends Controller
 	{
 		ss.stop();
 		Surge.unregister(this);
+		Surge.unregisterTicked(this);
 	}
 
 	@Override
 	public void tick()
+	{
+
+	}
+
+	public SuperSampler getSuperSampler()
+	{
+		return ss;
+	}
+
+	@Override
+	public void onTick()
 	{
 		for(ISampler i : samplers.v())
 		{
@@ -103,8 +119,9 @@ public class SampleController extends Controller
 		}
 	}
 
-	public SuperSampler getSuperSampler()
+	@Override
+	public String getTickName()
 	{
-		return ss;
+		return "Sampler";
 	}
 }

@@ -20,10 +20,13 @@ import surge.collection.GSound;
 import surge.control.Controller;
 import surge.math.M;
 import surge.nms.NMSX;
+import surge.sched.IMasterTickComponent;
+import surge.server.AsyncTick;
 import surge.util.C;
 import surge.util.MSound;
 
-public class MonitorController extends Controller
+@AsyncTick
+public class MonitorController extends Controller implements IMasterTickComponent
 {
 	public static int maxCooldown = 4;
 	private TitleMonitor titleMonitor;
@@ -40,6 +43,7 @@ public class MonitorController extends Controller
 	{
 		constructMonitor();
 		Surge.register(this);
+		Surge.registerTicked(this);
 
 		for(Player i : Bukkit.getOnlinePlayers())
 		{
@@ -74,6 +78,7 @@ public class MonitorController extends Controller
 	public void stop()
 	{
 		Surge.unregister(this);
+		Surge.unregisterTicked(this);
 	}
 
 	public void constructMonitor()
@@ -150,17 +155,7 @@ public class MonitorController extends Controller
 	@Override
 	public void tick()
 	{
-		for(ReactPlayer i : React.instance.playerController.getPlayers())
-		{
-			processPlayer(i);
 
-			if(i.isMonitoring())
-			{
-				tickMonitor(i);
-			}
-
-			i.setPlays(i.getPlays() > 0 ? i.getPlays() - 1 : 0);
-		}
 	}
 
 	private void changePost(ReactPlayer i)
@@ -391,5 +386,27 @@ public class MonitorController extends Controller
 
 			posts.put(e.getPlayer(), posts.get(e.getPlayer()) + 5);
 		}
+	}
+
+	@Override
+	public void onTick()
+	{
+		for(ReactPlayer i : React.instance.playerController.getPlayers())
+		{
+			processPlayer(i);
+
+			if(i.isMonitoring())
+			{
+				tickMonitor(i);
+			}
+
+			i.setPlays(i.getPlays() > 0 ? i.getPlays() - 1 : 0);
+		}
+	}
+
+	@Override
+	public String getTickName()
+	{
+		return "Monitor";
 	}
 }
