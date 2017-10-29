@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
+import react.Base;
 import react.Info;
 import react.api.ICommand;
 import react.api.Permissable;
@@ -20,7 +21,6 @@ import surge.collection.GList;
 import surge.control.Controller;
 import surge.util.C;
 import surge.util.D;
-import surge.util.TXT;
 
 public class CommandController extends Controller implements Listener, CommandExecutor
 {
@@ -96,14 +96,9 @@ public class CommandController extends Controller implements Listener, CommandEx
 		}
 	}
 
-	public String tag()
-	{
-		return TXT.makeTag(C.DARK_GRAY, Info.COLOR, C.GRAY, Info.NAME);
-	}
-
 	public void msg(CommandSender s, String msg)
 	{
-		s.sendMessage(tag() + msg);
+		Base.msg(s, msg);
 	}
 
 	public void f(CommandSender s, String msg)

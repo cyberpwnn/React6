@@ -83,7 +83,7 @@ public class ReactPlayer implements IConfigurable
 	{
 		try
 		{
-			new ConfigurationDataOutput().write(this, new File(Surge.folder(Info.CACHE), p.getUniqueId().toString() + Info.DOTYML));
+			new ConfigurationDataOutput().write(this, new File(Surge.folder(Info.CORE_CACHE), p.getUniqueId().toString() + Info.CORE_DOTYML));
 		}
 
 		catch(Exception e)
@@ -96,7 +96,7 @@ public class ReactPlayer implements IConfigurable
 	{
 		try
 		{
-			new ConfigurationDataInput().read(this, new File(Surge.folder(Info.CACHE), p.getUniqueId().toString() + Info.DOTYML));
+			new ConfigurationDataInput().read(this, new File(Surge.folder(Info.CORE_CACHE), p.getUniqueId().toString() + Info.CORE_DOTYML));
 		}
 
 		catch(Exception e)

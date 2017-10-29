@@ -6,13 +6,13 @@ import react.Info;
 
 public enum Permissable
 {
-	ACCESS(Info.ACCESS),
-	MONITOR(Info.MONITOR),
-	MONITOR_TITLE(Info.MONITOR_TITLE),
-	MONITOR_MAP(Info.MONITOR_MAP),
-	MONITOR_ENVIRONMENT(Info.MONITOR_ENVIRONMENT),
-	ACT(Info.ACT),
-	RELOAD(Info.RELOAD);
+	ACCESS(Info.PERM_ACCESS),
+	MONITOR(Info.PERM_MONITOR),
+	MONITOR_TITLE(Info.PERM_MONITOR_TITLE),
+	MONITOR_MAP(Info.PERM_MONITOR_MAP),
+	MONITOR_ENVIRONMENT(Info.PERM_MONITOR_ENVIRONMENT),
+	ACT(Info.PERM_ACT),
+	RELOAD(Info.PERM_RELOAD);
 
 	private String node;
 
@@ -20,7 +20,7 @@ public enum Permissable
 	{
 		try
 		{
-			node = Info.REACT_DOT + s;
+			node = Info.CORE_REACT_DOT + s;
 		}
 
 		catch(Exception e)

@@ -1,6 +1,5 @@
 package react.api;
 
-import react.Info;
 import surge.collection.GList;
 import surge.util.C;
 
@@ -39,7 +38,7 @@ public class MonitorHeading
 
 	public String getHeadText()
 	{
-		return getHead().getColor() + getHead().get() + C.RESET + getHead().getColor() + Info.SPACE + getHead().getID();
+		return getHead().getColor() + getHead().get() + C.RESET + getHead().getColor() + " " + getHead().getID();
 	}
 
 	public String getChildText()
@@ -48,8 +47,8 @@ public class MonitorHeading
 
 		for(ISampler i : getChildren())
 		{
-			String p = i.getColor() + i.get() + C.RESET + i.getColor() + Info.SPACE + i.getID();
-			m += Info.SPACE + p;
+			String p = i.getColor() + i.get() + C.RESET + i.getColor() + " " + i.getID();
+			m += " " + p;
 		}
 
 		if(m.length() < 2)
