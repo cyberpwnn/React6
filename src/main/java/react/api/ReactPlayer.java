@@ -25,7 +25,7 @@ public class ReactPlayer implements IConfigurable
 		keystore.put(234, Info.STATE_MAPPING_ENABLED);
 		keystore.put(-885, Info.STATE_MONITORING_TAB);
 		keystore.put(343, Info.STATE_SOUND_PLAYS);
-		keystore.put(765, Info.STATE_MONITORING_POSTED); //
+		keystore.put(765, Info.STATE_MONITORING_POSTED);
 		keystore.put(-112, Info.STATE_MONITORING_LASTTAB);
 		keystore.put(-694, Info.STATE_MONITORING_SWITCHNOTIFICATION);
 		keystore.put(492, Info.STATE_PLAYER_HOTBAR);

@@ -1,5 +1,7 @@
 package react;
 
+import react.api.Lang;
+
 public class Info
 {
 	public static String CORE_REACT_DOT = "react.";
@@ -11,11 +13,15 @@ public class Info
 	public static String COMMAND_HELP_ALIAS_1 = "h";
 	public static String COMMAND_HELP_ALIAS_2 = "?";
 	public static String COMMAND_HELP_USAGE = "/react help";
+
+	@Lang("command-description.help")
 	public static String COMMAND_HELP_DESCRIPTION = "Shows a list of commands to use";
 	public static String COMMAND_MONITOR = "monitor";
 	public static String COMMAND_MONITOR_ALIAS_1 = "mon";
 	public static String COMMAND_MONITOR_ALIAS_2 = "m";
 	public static String COMMAND_MONITOR_USAGE = "/react monitor";
+
+	@Lang("command-description.monitor")
 	public static String COMMAND_MONITOR_DESCRIPTION = "Toggles the monitor";
 	public static String COMMAND_REACT = "react";
 
@@ -23,9 +29,16 @@ public class Info
 	public static String MSG_MONITORING_STARTED = "Monitoring Enabled";
 	public static String MSG_MONITORING_STOPPED = "Monitoring Disabled";
 
+	@Lang("monitor-title.tick")
 	public static String NAME_TICK = "Tick";
+
+	@Lang("monitor-title.memory")
 	public static String NAME_MEMORY = "Memory";
+
+	@Lang("monitor-title.chunks")
 	public static String NAME_CHUNKS = "Chunks";
+
+	@Lang("monitor-title.entities")
 	public static String NAME_ENTITIES = "Entities";
 
 	public static String STATE_MONITORING_TAB = "monitor.tab";
@@ -63,4 +76,10 @@ public class Info
 	public static String SAMPLER_ENTLIV = "ENTLIV";
 	public static String SAMPLER_ENTDROP = "ENTCDROP";
 	public static String SAMPLER_ENTTILE = "ENTTILE";
+
+	@Lang("action.purge-entities.name")
+	public static String ACTION_PURGE_ENTITIES_NAME = "Purge Entities";
+
+	@Lang("action.purge-entities.description")
+	public static String ACTION_PURGE_ENTITIES_DESCRIPTION = "Removes entities in the specified locations and entity types.";
 }

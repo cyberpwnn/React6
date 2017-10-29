@@ -1,7 +1,5 @@
 package react.api;
 
-import surge.util.PositionalSelector;
-
 public interface IAction
 {
 	public String getName();
@@ -10,7 +8,7 @@ public interface IAction
 
 	public ActionHandle getHandleType();
 
-	public void act(IActionSource source, PositionalSelector position);
+	public void act(IActionSource source, ISelector... selectors);
 
 	public ActionState getState();
 
