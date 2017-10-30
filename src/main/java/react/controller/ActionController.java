@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import react.api.ActionType;
 import react.api.IAction;
 import surge.Main;
+import surge.collection.GList;
 import surge.collection.GMap;
 import surge.control.Controller;
 
@@ -76,5 +77,10 @@ public class ActionController extends Controller
 	public void tick()
 	{
 
+	}
+
+	public GList<IAction> getActions()
+	{
+		return actions.v();
 	}
 }

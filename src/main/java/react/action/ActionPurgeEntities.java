@@ -31,6 +31,8 @@ public class ActionPurgeEntities extends Action
 	{
 		super(ActionType.PURGE_ENTITIES);
 
+		setNodes(Info.ACTION_PURGE_ENTITIES_TAGS);
+
 		setDefaultSelector(Chunk.class, new Callback<ISelector>()
 		{
 			@Override

@@ -114,8 +114,6 @@ public class CommandController extends Controller implements Listener, CommandEx
 			boolean plr = s instanceof Player;
 			Player px = plr ? (Player) s : null;
 
-			System.out.println(plr);
-
 			if(!Permissable.ACCESS.has(s))
 			{
 				f(s, Info.MSG_PERMISSION);

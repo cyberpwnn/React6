@@ -9,6 +9,7 @@ public abstract class Action implements IAction
 	private String name;
 	private String description;
 	private String status;
+	private String[] nodes;
 	private ActionHandle handle;
 	private ActionState state;
 	private ActionTargetType target;
@@ -34,6 +35,7 @@ public abstract class Action implements IAction
 		this.type = type;
 		defaultSelectors = new GMap<Class<?>, Callback<ISelector>>();
 		currentSource = null;
+		nodes = new String[0];
 	}
 
 	@Override
@@ -153,6 +155,18 @@ public abstract class Action implements IAction
 	public IActionSource getCurrentSource()
 	{
 		return currentSource;
+	}
+
+	@Override
+	public String[] getNodes()
+	{
+		return nodes;
+	}
+
+	@Override
+	public void setNodes(String... nodes)
+	{
+		this.nodes = nodes;
 	}
 
 	@Override

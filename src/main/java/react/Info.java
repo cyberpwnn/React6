@@ -9,20 +9,26 @@ public class Info
 	public static String CORE_CACHE = "cache";
 	public static String CORE_DOTYML = ".yml";
 
+	@Lang("command-description.action")
+	public static String COMMAND_ACT_DESCRIPTION = "Runs an action";
+	public static String COMMAND_ACT = "action";
+	public static String COMMAND_ACT_ALIAS_1 = "act";
+	public static String COMMAND_ACT_ALIAS_2 = "a";
+	public static String COMMAND_ACT_USAGE = "/react action <action> [options]";
+
+	@Lang("command-description.help")
+	public static String COMMAND_HELP_DESCRIPTION = "Shows a list of commands to use";
 	public static String COMMAND_HELP = "help";
 	public static String COMMAND_HELP_ALIAS_1 = "h";
 	public static String COMMAND_HELP_ALIAS_2 = "?";
 	public static String COMMAND_HELP_USAGE = "/react help";
 
-	@Lang("command-description.help")
-	public static String COMMAND_HELP_DESCRIPTION = "Shows a list of commands to use";
+	@Lang("command-description.monitor")
+	public static String COMMAND_MONITOR_DESCRIPTION = "Toggles the monitor";
 	public static String COMMAND_MONITOR = "monitor";
 	public static String COMMAND_MONITOR_ALIAS_1 = "mon";
 	public static String COMMAND_MONITOR_ALIAS_2 = "m";
 	public static String COMMAND_MONITOR_USAGE = "/react monitor";
-
-	@Lang("command-description.monitor")
-	public static String COMMAND_MONITOR_DESCRIPTION = "Toggles the monitor";
 	public static String COMMAND_REACT = "react";
 
 	public static String MSG_PERMISSION = "Insufficient Permission";
@@ -76,6 +82,8 @@ public class Info
 	public static String SAMPLER_ENTLIV = "ENTLIV";
 	public static String SAMPLER_ENTDROP = "ENTCDROP";
 	public static String SAMPLER_ENTTILE = "ENTTILE";
+
+	public static String[] ACTION_PURGE_ENTITIES_TAGS = new String[] {"purge-entities", "pe"};
 
 	@Lang("action.purge-entities.status")
 	public static String ACTION_PURGE_ENTITIES_STATUS = "Purging $c / $t ($p)";

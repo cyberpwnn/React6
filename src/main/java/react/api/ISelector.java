@@ -1,5 +1,7 @@
 package react.api;
 
+import org.bukkit.command.CommandSender;
+
 import surge.collection.GSet;
 
 public interface ISelector
@@ -13,4 +15,8 @@ public interface ISelector
 	public GSet<Object> getList();
 
 	public GSet<Object> getPossibilities();
+
+	public int parse(CommandSender sender, String input) throws SelectorParseException;
+
+	public String getName();
 }

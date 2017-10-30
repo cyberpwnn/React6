@@ -19,6 +19,10 @@ public interface IAction
 
 	public ActionTargetType getTarget();
 
+	public void setNodes(String... nodes);
+
+	public String[] getNodes();
+
 	public String getStatus();
 
 	public void setStatus(String status);
