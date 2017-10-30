@@ -1,0 +1,5 @@
+NB: Some "static" fields have been trimmed. Compilers can optimize accesses to the values of "static" fields such that the fields are never directly accessed.
+Trimmed field "private static final DEFAULT_BUFFER_SIZE" in class "surge.util.IO"
+Trimmed field "private static final maxdepth" in class "surge.json.JSONWriter"
+Trimmed field "private static final modulus" in class "surge.math.M"
+Trimmed field "private static final precision" in class "surge.math.M"

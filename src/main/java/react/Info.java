@@ -77,6 +77,9 @@ public class Info
 	public static String SAMPLER_ENTDROP = "ENTCDROP";
 	public static String SAMPLER_ENTTILE = "ENTTILE";
 
+	@Lang("action.purge-entities.status")
+	public static String ACTION_PURGE_ENTITIES_STATUS = "Purging $c / $t ($p)";
+
 	@Lang("action.purge-entities.name")
 	public static String ACTION_PURGE_ENTITIES_NAME = "Purge Entities";
 

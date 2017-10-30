@@ -3,9 +3,11 @@ package react.sampler;
 import react.api.MSampler;
 import react.api.SampledType;
 import surge.math.Average;
+import surge.util.Anchor;
 import surge.util.C;
 import surge.util.F;
 
+@Anchor(2)
 public class SampleChunksLoadedPerSecond extends MSampler
 {
 	private Average a = new Average(19);

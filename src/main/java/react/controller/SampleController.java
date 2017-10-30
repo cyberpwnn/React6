@@ -1,20 +1,9 @@
 package react.controller;
 
+import java.lang.reflect.InvocationTargetException;
+
 import react.api.ISampler;
-import react.sampler.SampleChunksLoaded;
-import react.sampler.SampleChunksLoadedPerSecond;
-import react.sampler.SampleEntitiesDrops;
-import react.sampler.SampleEntitiesLiving;
-import react.sampler.SampleEntitiesTiles;
-import react.sampler.SampleEntitiesTotal;
-import react.sampler.SampleMemoryAllocated;
-import react.sampler.SampleMemoryAllocationPerSecond;
-import react.sampler.SampleMemoryFree;
-import react.sampler.SampleMemoryMax;
-import react.sampler.SampleMemoryUse;
-import react.sampler.SampleTickTime;
-import react.sampler.SampleTickUtilization;
-import react.sampler.SampleTicksPerSecond;
+import surge.Main;
 import surge.Surge;
 import surge.collection.GMap;
 import surge.control.Controller;
@@ -49,20 +38,43 @@ public class SampleController extends Controller implements IMasterTickComponent
 
 	private void constructSamplers()
 	{
-		registerSampler(new SampleTicksPerSecond());
-		registerSampler(new SampleTickTime());
-		registerSampler(new SampleTickUtilization());
-		registerSampler(new SampleMemoryUse());
-		registerSampler(new SampleMemoryFree());
-		registerSampler(new SampleMemoryMax());
-		registerSampler(new SampleMemoryAllocated());
-		registerSampler(new SampleMemoryAllocationPerSecond());
-		registerSampler(new SampleChunksLoaded());
-		registerSampler(new SampleChunksLoadedPerSecond());
-		registerSampler(new SampleEntitiesTotal());
-		registerSampler(new SampleEntitiesLiving());
-		registerSampler(new SampleEntitiesDrops());
-		registerSampler(new SampleEntitiesTiles());
+		for(Class<?> i : Main.anchors.get(2))
+		{
+			try
+			{
+				registerSampler((ISampler) i.getConstructor().newInstance());
+			}
+
+			catch(InstantiationException e)
+			{
+				e.printStackTrace();
+			}
+
+			catch(IllegalAccessException e)
+			{
+				e.printStackTrace();
+			}
+
+			catch(IllegalArgumentException e)
+			{
+				e.printStackTrace();
+			}
+
+			catch(InvocationTargetException e)
+			{
+				e.printStackTrace();
+			}
+
+			catch(NoSuchMethodException e)
+			{
+				e.printStackTrace();
+			}
+
+			catch(SecurityException e)
+			{
+				e.printStackTrace();
+			}
+		}
 
 		for(ISampler i : samplers.v())
 		{

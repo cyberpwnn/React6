@@ -2,9 +2,11 @@ package react.sampler;
 
 import react.api.MSampler;
 import react.api.SampledType;
+import surge.util.Anchor;
 import surge.util.C;
 import surge.util.F;
 
+@Anchor(2)
 public class SampleMemoryUse extends MSampler
 {
 	@Override

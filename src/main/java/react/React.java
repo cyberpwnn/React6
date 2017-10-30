@@ -1,5 +1,6 @@
 package react;
 
+import react.controller.ActionController;
 import react.controller.CommandController;
 import react.controller.MonitorController;
 import react.controller.PlayerController;
@@ -29,6 +30,9 @@ public class React
 
 	@Control
 	public CommandController commandController;
+
+	@Control
+	public ActionController actionController;
 
 	@Enable
 	public void enable()
