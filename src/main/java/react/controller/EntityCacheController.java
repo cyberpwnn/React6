@@ -40,8 +40,8 @@ import surge.util.W;
 public class EntityCacheController extends Controller
 {
 	private GMap<World, ICache<Chunk, CachedEntity>> caches;
-	private int cachedEntities = -1;
-	private int cachedDrops = -1;
+	private int cachedEntities = 0;
+	private int cachedDrops = 0;
 
 	public EntityCacheController()
 	{
@@ -75,7 +75,6 @@ public class EntityCacheController extends Controller
 	public void pop(Entity i)
 	{
 		CachedEntity ce;
-		cachedEntities++;
 
 		if(i instanceof Player)
 		{
@@ -85,8 +84,6 @@ public class EntityCacheController extends Controller
 		if(i instanceof Item)
 		{
 			ce = new CachedItemDrop((Item) i);
-			cachedDrops++;
-			cachedEntities--;
 		}
 
 		else if(i instanceof Sheep)
@@ -155,16 +152,6 @@ public class EntityCacheController extends Controller
 					i.apply(e);
 					had.add(i.getUid());
 					k++;
-
-					if(type.equals(EntityType.DROPPED_ITEM))
-					{
-						cachedDrops--;
-					}
-
-					else
-					{
-						cachedEntities--;
-					}
 				}
 
 			}
@@ -209,6 +196,7 @@ public class EntityCacheController extends Controller
 		return caches.containsKey(c.getWorld()) && caches.get(c.getWorld()).has(c);
 	}
 
+	@EventHandler
 	public void on(EntitySpawnEvent e)
 	{
 		if(isCached(e.getLocation().getChunk()))
@@ -234,35 +222,49 @@ public class EntityCacheController extends Controller
 
 		for(Object i : posCache.getPossibilities())
 		{
-			for(Entity j : ((Chunk) i).getEntities())
+			for(int j = 0; j < ((Chunk) i).getEntities().length; j++)
 			{
-				Gate.cacheEntity(j);
-				Gate.removeEntity(j);
+				Entity ee = ((Chunk) i).getEntities()[j];
+
+				if(ee == null)
+				{
+					continue;
+				}
+
+				if(ee instanceof Player)
+				{
+					continue;
+				}
+
+				if(ee.isDead())
+				{
+					continue;
+				}
+
+				Gate.cacheEntity(ee);
+				Gate.removeEntity(ee);
 			}
 		}
 
-		if(cachedDrops < 0 || cachedEntities < 0)
+		cachedDrops = 0;
+		cachedEntities = 0;
+
+		for(World i : Bukkit.getWorlds())
 		{
-			cachedDrops = 0;
-			cachedEntities = 0;
-
-			for(World i : Bukkit.getWorlds())
+			if(caches.containsKey(i))
 			{
-				if(caches.containsKey(i))
+				for(Chunk j : caches.get(i).k())
 				{
-					for(Chunk j : caches.get(i).k())
+					for(CachedEntity k : caches.get(i).get(j))
 					{
-						for(CachedEntity k : caches.get(i).get(j))
+						if(k instanceof CachedItemDrop)
 						{
-							if(k instanceof CachedItemDrop)
-							{
-								cachedDrops++;
-							}
+							cachedDrops++;
+						}
 
-							else
-							{
-								cachedEntities++;
-							}
+						else
+						{
+							cachedEntities++;
 						}
 					}
 				}

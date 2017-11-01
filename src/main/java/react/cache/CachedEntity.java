@@ -174,4 +174,84 @@ public class CachedEntity
 	{
 		return uid;
 	}
+
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(dx);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(dy);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(dz);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ticksLived;
+		result = prime * result + type;
+		result = prime * result + ((uid == null) ? 0 : uid.hashCode());
+		temp = Double.doubleToLongBits(vx);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(vy);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(vz);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((world == null) ? 0 : world.hashCode());
+		temp = Double.doubleToLongBits(x);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(y);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(z);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if(this == obj)
+			return true;
+		if(obj == null)
+			return false;
+		if(getClass() != obj.getClass())
+			return false;
+		CachedEntity other = (CachedEntity) obj;
+		if(Double.doubleToLongBits(dx) != Double.doubleToLongBits(other.dx))
+			return false;
+		if(Double.doubleToLongBits(dy) != Double.doubleToLongBits(other.dy))
+			return false;
+		if(Double.doubleToLongBits(dz) != Double.doubleToLongBits(other.dz))
+			return false;
+		if(ticksLived != other.ticksLived)
+			return false;
+		if(type != other.type)
+			return false;
+		if(uid == null)
+		{
+			if(other.uid != null)
+				return false;
+		}
+		else if(!uid.equals(other.uid))
+			return false;
+		if(Double.doubleToLongBits(vx) != Double.doubleToLongBits(other.vx))
+			return false;
+		if(Double.doubleToLongBits(vy) != Double.doubleToLongBits(other.vy))
+			return false;
+		if(Double.doubleToLongBits(vz) != Double.doubleToLongBits(other.vz))
+			return false;
+		if(world == null)
+		{
+			if(other.world != null)
+				return false;
+		}
+		else if(!world.equals(other.world))
+			return false;
+		if(Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x))
+			return false;
+		if(Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y))
+			return false;
+		if(Double.doubleToLongBits(z) != Double.doubleToLongBits(other.z))
+			return false;
+		return true;
+	}
 }

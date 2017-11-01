@@ -34,4 +34,29 @@ public class CachedEntityColorable extends CachedEntityAgeable
 	{
 		this.dye = dye;
 	}
+
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((dye == null) ? 0 : dye.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if(this == obj)
+			return true;
+		if(!super.equals(obj))
+			return false;
+		if(getClass() != obj.getClass())
+			return false;
+		CachedEntityColorable other = (CachedEntityColorable) obj;
+		if(dye != other.dye)
+			return false;
+		return true;
+	}
+
 }
