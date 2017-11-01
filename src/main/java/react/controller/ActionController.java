@@ -2,20 +2,28 @@ package react.controller;
 
 import java.lang.reflect.InvocationTargetException;
 
+import react.api.ActionAlreadyRunningException;
+import react.api.ActionState;
 import react.api.ActionType;
 import react.api.IAction;
+import react.api.IActionSource;
+import react.api.ISelector;
 import surge.Main;
 import surge.collection.GList;
 import surge.collection.GMap;
+import surge.collection.GTriset;
 import surge.control.Controller;
 
 public class ActionController extends Controller
 {
+	private static int kiv = 0;
 	private GMap<ActionType, IAction> actions;
+	private GMap<Integer, GTriset<ActionType, IActionSource, GList<ISelector>>> pending;
 
 	@Override
 	public void start()
 	{
+		pending = new GMap<Integer, GTriset<ActionType, IActionSource, GList<ISelector>>>();
 		actions = new GMap<ActionType, IAction>();
 
 		for(Class<?> i : Main.anchors.get(1))
@@ -57,6 +65,37 @@ public class ActionController extends Controller
 		}
 	}
 
+	public void fire(ActionType type, IActionSource source, ISelector... selectors)
+	{
+		pending.put(kiv++, new GTriset<ActionType, IActionSource, GList<ISelector>>(type, source, new GList<ISelector>(selectors)));
+	}
+
+	private boolean fireAction(ActionType type, IActionSource source, ISelector... selectors)
+	{
+		IAction a = getAction(type);
+		boolean failed = false;
+
+		if(a.getState().equals(ActionState.IDLE))
+		{
+			try
+			{
+				a.act(source, selectors);
+			}
+
+			catch(ActionAlreadyRunningException e)
+			{
+				failed = true;
+			}
+		}
+
+		else
+		{
+			failed = true;
+		}
+
+		return !failed;
+	}
+
 	public IAction getAction(ActionType type)
 	{
 		return actions.get(type);
@@ -76,7 +115,20 @@ public class ActionController extends Controller
 	@Override
 	public void tick()
 	{
+		for(int d : pending.k())
+		{
+			GTriset<ActionType, IActionSource, GList<ISelector>> i = pending.get(d);
+			IAction action = getAction(i.getA());
+			IActionSource source = i.getB();
+			ISelector[] selectors = i.getC().toArray(new ISelector[i.getC().size()]);
+			boolean running = action.getState().equals(ActionState.IDLE);
+			boolean ran = running ? fireAction(i.getA(), source, selectors) : false;
 
+			if(ran)
+			{
+				pending.remove(d);
+			}
+		}
 	}
 
 	public GList<IAction> getActions()

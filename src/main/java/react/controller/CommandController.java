@@ -9,7 +9,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import react.Base;
 import react.Info;
 import react.api.ICommand;
 import react.api.Permissable;
@@ -98,7 +97,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 
 	public void msg(CommandSender s, String msg)
 	{
-		Base.msg(s, msg);
+		Info.msg(s, msg);
 	}
 
 	public void f(CommandSender s, String msg)

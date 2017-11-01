@@ -1,5 +1,6 @@
 package react.sampler;
 
+import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
 import surge.util.Anchor;
@@ -29,6 +30,7 @@ public class SampleEntitiesLiving extends MSampler
 	@Override
 	public String get()
 	{
-		return "\u2764" + F.f((int) getValue());
+		int ca = React.instance.entityCacheController.getCachedEntities();
+		return "\u2764" + F.f((int) getValue()) + C.LIGHT_PURPLE + "\u21C6" + F.f((int) ca);
 	}
 }

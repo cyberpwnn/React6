@@ -47,6 +47,11 @@ public class SelectorPosition extends Selector
 	{
 		GSet<Chunk> ch = new GSet<Chunk>();
 
+		if(input.contains("&&"))
+		{
+			throw new SelectorParseException("Cannot use \"&&\". This isnt java :P");
+		}
+
 		if(input.contains("&"))
 		{
 			for(String i : input.split("&"))
@@ -135,6 +140,11 @@ public class SelectorPosition extends Selector
 				{
 					chunks.add(i);
 				}
+			}
+
+			else
+			{
+				chunks.add(c);
 			}
 		}
 

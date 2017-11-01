@@ -18,6 +18,7 @@ import surge.math.M;
 import surge.pool.S;
 import surge.sched.Task;
 import surge.util.Anchor;
+import surge.util.C;
 import surge.util.Callback;
 import surge.util.F;
 import surge.util.FinalInteger;
@@ -26,6 +27,7 @@ import surge.util.FinalInteger;
 public class ActionPurgeEntities extends Action
 {
 	private long ms;
+	private int lcd;
 
 	public ActionPurgeEntities()
 	{
@@ -63,8 +65,34 @@ public class ActionPurgeEntities extends Action
 	public void enact(IActionSource source, ISelector... selectors)
 	{
 		FinalInteger total = new FinalInteger(0);
+		FinalInteger totalCulled = new FinalInteger(0);
+		FinalInteger totalChunked = new FinalInteger(0);
 		FinalInteger completed = new FinalInteger(0);
 		ms = M.ms();
+
+		int tchu = 0;
+		int tent = 0;
+
+		for(ISelector i : selectors)
+		{
+			if(i.getType().equals(Chunk.class))
+			{
+				tchu += i.getPossibilities().size();
+			}
+
+			if(i.getType().equals(EntityType.class))
+			{
+				for(Object j : i.getPossibilities())
+				{
+					if(i.can(j))
+					{
+						tent++;
+					}
+				}
+			}
+		}
+
+		source.sendResponse(C.GOLD + "\u26A0 " + C.GRAY + "Purging " + tent + " type" + ((tent == 0 || tent > 1) ? "s" : "") + " of " + ((tent == 0 || tent > 1) ? "entities" : "entity") + " across " + F.f(tchu) + " chunk" + ((tchu > 1 || tchu == 0) ? "s" : ""));
 
 		for(ISelector i : selectors)
 		{
@@ -89,10 +117,17 @@ public class ActionPurgeEntities extends Action
 								s = s.replace("$p", F.pc(getProgress(), 0));
 								setStatus(s);
 								ms = M.ms();
+								totalCulled.add(lcd);
+
+								if(lcd > 0)
+								{
+									totalChunked.add(1);
+								}
 
 								if(completed.get() == total.get())
 								{
 									completeAction();
+									source.sendResponse(C.GREEN + "\u2714 " + C.GRAY + "Purged " + F.f(totalCulled.get()) + " entities in " + F.f(totalChunked.get()) + " chunk" + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : ""));
 								}
 							}
 						}, source, selectors);
@@ -101,23 +136,27 @@ public class ActionPurgeEntities extends Action
 			}
 		}
 
-		new Task("purger-monitor-callback", 10)
+		new Task("purger-monitor-callback", 2)
 		{
+
 			@Override
 			public void run()
 			{
-				if(M.ms() - ms > 1000 && getState().equals(ActionState.RUNNING))
+				if(M.ms() - ms > 100 && getState().equals(ActionState.RUNNING))
 				{
 					cancel();
 					completeAction();
+					source.sendResponse(C.GREEN + "\u2714 " + C.GRAY + "Purged " + F.f(totalCulled.get()) + " entities in " + F.f(totalChunked.get()) + " chunk" + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : ""));
 				}
 			}
+
 		};
 	}
 
 	public void purge(Chunk chunk, Runnable cb, IActionSource source, ISelector... selectors)
 	{
 		boolean nc = false;
+		FinalInteger cu = new FinalInteger(0);
 
 		seeking: for(int f = 0; f < chunk.getEntities().length; f++)
 		{
@@ -143,9 +182,11 @@ public class ActionPurgeEntities extends Action
 				public void run()
 				{
 					Gate.removeEntity(i);
+					cu.add(1);
 
 					if(k == chunk.getEntities().length - 1)
 					{
+						lcd = cu.get();
 						cb.run();
 					}
 				}
@@ -154,6 +195,7 @@ public class ActionPurgeEntities extends Action
 
 		if(!nc)
 		{
+			lcd = cu.get();
 			cb.run();
 		}
 	}

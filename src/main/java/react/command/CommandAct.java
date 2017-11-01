@@ -1,13 +1,10 @@
 package react.command;
 
-import org.bukkit.Chunk;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import react.Base;
 import react.Info;
 import react.React;
-import react.api.ActionAlreadyRunningException;
 import react.api.ActionHandle;
 import react.api.ConsoleActionSource;
 import react.api.IAction;
@@ -41,7 +38,7 @@ public class CommandAct extends ReactCommand
 	{
 		if(args.length == 0)
 		{
-			Base.msg(sender, "Some list of actions should be here.");
+			Info.msg(sender, "Some list of actions should be here.");
 			return;
 		}
 
@@ -64,17 +61,15 @@ public class CommandAct extends ReactCommand
 
 		if(action == null)
 		{
-			Base.msg(sender, "Unknown Action: " + C.RED + tag);
+			Info.msg(sender, "Unknown Action: " + C.RED + tag);
 			return;
 		}
 
 		if(action.getHandleType().equals(ActionHandle.AUTOMATIC))
 		{
-			Base.msg(sender, C.RED + "Action: " + action.getName() + " does not support manual invocations.");
+			Info.msg(sender, C.RED + "Action: " + action.getName() + " does not support manual invocations.");
 			return;
 		}
-
-		int ch = 0;
 
 		if(args.length > 0)
 		{
@@ -84,17 +79,12 @@ public class CommandAct extends ReactCommand
 				{
 					String val = args[i + 1].toLowerCase().trim();
 					selectors[i] = Selector.createSelector(sender, val);
-					int sel = Selector.pop();
+					Selector.pop();
 
 					if(!action.getDefaultSelectors().k().contains(selectors[i].getType()))
 					{
-						Base.msg(sender, C.RED + "Action: " + action.getName() + " does not support the selector: " + selectors[i].getName());
+						Info.msg(sender, C.RED + "Action: " + action.getName() + " does not support the selector: " + selectors[i].getName());
 						return;
-					}
-
-					if(selectors[i].getType().equals(Chunk.class))
-					{
-						ch += sel;
 					}
 				}
 
@@ -115,29 +105,16 @@ public class CommandAct extends ReactCommand
 				source = new PlayerActionSource((Player) sender);
 			}
 
-			try
-			{
-				action.act(source, selectors);
-
-				if(ch > 0)
-				{
-					Base.msg(sender, "-> Selected " + ch + " Chunk" + (ch != 1 ? "s" : ""));
-				}
-			}
-
-			catch(ActionAlreadyRunningException e)
-			{
-				Base.msg(sender, C.RED + action.getName() + ": Already Running -> " + action.getStatus());
-			}
+			React.instance.actionController.fire(action.getType(), source, selectors);
 		}
 
 		else
 		{
-			Base.msg(sender, C.RED + "Action: " + action.getName() + " failed to parse supplied input.");
+			Info.msg(sender, C.RED + "Action: " + action.getName() + " failed to parse supplied input.");
 
 			for(String i : errors)
 			{
-				Base.msg(sender, C.RED + action.getName() + ": " + i);
+				Info.msg(sender, C.RED + action.getName() + ": " + i);
 			}
 		}
 	}

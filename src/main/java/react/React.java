@@ -2,6 +2,8 @@ package react;
 
 import react.controller.ActionController;
 import react.controller.CommandController;
+import react.controller.DropMergeController;
+import react.controller.EntityCacheController;
 import react.controller.MonitorController;
 import react.controller.PlayerController;
 import react.controller.SampleController;
@@ -33,6 +35,12 @@ public class React
 
 	@Control
 	public ActionController actionController;
+
+	@Control
+	public EntityCacheController entityCacheController;
+
+	@Control
+	public DropMergeController dropMergeController;
 
 	@Enable
 	public void enable()

@@ -6,7 +6,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 
-import react.Base;
 import react.Info;
 import react.React;
 import react.api.MonitorHeading;
@@ -64,13 +63,13 @@ public class MonitorController extends Controller implements IMasterTickComponen
 		if(isMonitoring(p))
 		{
 			stopMonitoring(p);
-			Base.msg(p, Info.MSG_MONITORING_STOPPED);
+			Info.msg(p, Info.MSG_MONITORING_STOPPED);
 		}
 
 		else
 		{
 			startMonitoring(p);
-			Base.msg(p, Info.MSG_MONITORING_STARTED);
+			Info.msg(p, Info.MSG_MONITORING_STARTED);
 		}
 	}
 
