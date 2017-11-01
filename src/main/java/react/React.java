@@ -4,6 +4,7 @@ import react.controller.ActionController;
 import react.controller.CommandController;
 import react.controller.DropMergeController;
 import react.controller.EntityCacheController;
+import react.controller.FastDecayController;
 import react.controller.MonitorController;
 import react.controller.PlayerController;
 import react.controller.SampleController;
@@ -41,6 +42,9 @@ public class React
 
 	@Control
 	public DropMergeController dropMergeController;
+
+	@Control
+	public FastDecayController fastDecayController;
 
 	@Enable
 	public void enable()
