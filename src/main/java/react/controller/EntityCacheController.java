@@ -21,7 +21,7 @@ import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.inventory.ItemStack;
 
-import react.Info;
+import react.Config;
 import react.api.Gate;
 import react.api.ICache;
 import react.api.SelectorPosition;
@@ -35,6 +35,7 @@ import surge.Surge;
 import surge.collection.GMap;
 import surge.collection.GSet;
 import surge.control.Controller;
+import surge.sched.TICK;
 import surge.util.W;
 
 public class EntityCacheController extends Controller
@@ -208,63 +209,66 @@ public class EntityCacheController extends Controller
 	@Override
 	public void tick()
 	{
-		SelectorPosition posCache = new SelectorPosition();
-		posCache.addAll();
-
-		for(Player i : Bukkit.getOnlinePlayers())
+		if(TICK.tick % Config.ENTITYCACHE_INTERVAL == 0)
 		{
-			for(Chunk j : W.chunkRadius(i.getLocation().getChunk(), Info.CORE_ENTITY_CACHE_RADIUS))
+			SelectorPosition posCache = new SelectorPosition();
+			posCache.addAll();
+
+			for(Player i : Bukkit.getOnlinePlayers())
 			{
-				Gate.restoreEntities(j);
-				posCache.getPossibilities().remove(j);
+				for(Chunk j : W.chunkRadius(i.getLocation().getChunk(), Config.ENTITYCACHE_CHUNK_RADIUS))
+				{
+					Gate.restoreEntities(j);
+					posCache.getPossibilities().remove(j);
+				}
 			}
-		}
 
-		for(Object i : posCache.getPossibilities())
-		{
-			for(int j = 0; j < ((Chunk) i).getEntities().length; j++)
+			for(Object i : posCache.getPossibilities())
 			{
-				Entity ee = ((Chunk) i).getEntities()[j];
-
-				if(ee == null)
+				for(int j = 0; j < ((Chunk) i).getEntities().length; j++)
 				{
-					continue;
-				}
+					Entity ee = ((Chunk) i).getEntities()[j];
 
-				if(ee instanceof Player)
-				{
-					continue;
-				}
-
-				if(ee.isDead())
-				{
-					continue;
-				}
-
-				Gate.cacheEntity(ee);
-				Gate.removeEntity(ee);
-			}
-		}
-
-		cachedDrops = 0;
-		cachedEntities = 0;
-
-		for(World i : Bukkit.getWorlds())
-		{
-			if(caches.containsKey(i))
-			{
-				for(Chunk j : caches.get(i).k())
-				{
-					for(CachedEntity k : caches.get(i).get(j))
+					if(ee == null)
 					{
-						if(k instanceof CachedItemDrop)
-						{
-							cachedDrops++;
-						}
+						continue;
+					}
 
-						else
+					if(ee instanceof Player)
+					{
+						continue;
+					}
+
+					if(ee.isDead())
+					{
+						continue;
+					}
+
+					Gate.cacheEntity(ee);
+					Gate.removeEntity(ee);
+				}
+			}
+
+			cachedDrops = 0;
+			cachedEntities = 0;
+
+			for(World i : Bukkit.getWorlds())
+			{
+				if(caches.containsKey(i))
+				{
+					for(Chunk j : caches.get(i).k())
+					{
+						for(CachedEntity k : caches.get(i).get(j))
 						{
-							cachedEntities++;
+							if(k instanceof CachedItemDrop)
+							{
+								cachedDrops++;
+							}
+
+							else
+							{
+								cachedEntities++;
+							}
 						}
 					}
 				}

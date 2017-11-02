@@ -12,8 +12,6 @@ public class Info
 		p.sendMessage(TXT.makeTag(C.RED, C.DARK_GRAY, C.GRAY, Info.CORE_NAME) + msg);
 	}
 
-	public static int CORE_ENTITY_CACHE_RADIUS = 3;
-	public static double CORE_DROP_STACK_RADIUS = 1.5;
 	public static String CORE_REACT_DOT = "react.";
 	public static String CORE_NAME = "React";
 	public static String CORE_CACHE = "cache";
