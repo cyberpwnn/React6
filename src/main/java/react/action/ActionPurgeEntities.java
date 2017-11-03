@@ -53,7 +53,6 @@ public class ActionPurgeEntities extends Action
 			public ISelector get()
 			{
 				SelectorEntityType sel = new SelectorEntityType(SelectionMode.BLACKLIST);
-				sel.add(EntityType.DROPPED_ITEM);
 				sel.add(EntityType.PLAYER);
 
 				return sel;

@@ -66,7 +66,7 @@ public abstract class SploogeCounter
 					{
 						int dist = getManhattanDistance(i, j);
 
-						if(dist < min && isValid(i, j))
+						if(dist < min)
 						{
 							min = dist;
 						}
@@ -87,6 +87,8 @@ public abstract class SploogeCounter
 						{
 							clipped(i);
 						}
+
+						finished();
 					}
 				};
 			}
@@ -151,6 +153,8 @@ public abstract class SploogeCounter
 	}
 
 	public abstract void clipped(Location l);
+
+	public abstract void finished();
 
 	public abstract boolean isAllowedSplooge(Location l);
 

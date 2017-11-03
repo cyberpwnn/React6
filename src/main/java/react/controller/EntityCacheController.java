@@ -44,6 +44,11 @@ public class EntityCacheController extends Controller
 	private int cachedEntities = 0;
 	private int cachedDrops = 0;
 
+	public boolean enabled()
+	{
+		return Config.ENTITYCACHE_ENABLED;
+	}
+
 	public EntityCacheController()
 	{
 		caches = new GMap<World, ICache<Chunk, CachedEntity>>();
@@ -51,6 +56,11 @@ public class EntityCacheController extends Controller
 
 	public void push(World w)
 	{
+		if(!enabled())
+		{
+			return;
+		}
+
 		if(caches.containsKey(w))
 		{
 			for(Chunk i : caches.get(w).k())
@@ -64,6 +74,13 @@ public class EntityCacheController extends Controller
 
 	public void pop(Chunk c)
 	{
+		if(!enabled())
+		{
+			return;
+		}
+
+		cworld(c.getWorld());
+
 		if(caches.containsKey(c.getWorld()))
 		{
 			for(Entity i : c.getEntities())
@@ -75,6 +92,13 @@ public class EntityCacheController extends Controller
 
 	public void pop(Entity i)
 	{
+		if(!enabled())
+		{
+			return;
+		}
+
+		cworld(i.getWorld());
+
 		CachedEntity ce;
 
 		if(i instanceof Player)
@@ -132,6 +156,11 @@ public class EntityCacheController extends Controller
 	{
 		int k = 0;
 
+		if(!enabled())
+		{
+			return k;
+		}
+
 		if(caches.containsKey(c.getWorld()))
 		{
 			if(caches.get(c.getWorld()).has(c))
@@ -161,21 +190,44 @@ public class EntityCacheController extends Controller
 		return k;
 	}
 
+	public void cworld(World w)
+	{
+		if(!caches.containsKey(w))
+		{
+			caches.put(w, new EntityCache());
+		}
+	}
+
 	@EventHandler
 	public void on(WorldLoadEvent e)
 	{
-		caches.put(e.getWorld(), new EntityCache());
+		if(!enabled())
+		{
+			return;
+		}
+
+		cworld(e.getWorld());
 	}
 
 	@EventHandler
 	public void on(ChunkUnloadEvent e)
 	{
+		if(!enabled())
+		{
+			return;
+		}
+
 		push(e.getChunk());
 	}
 
 	@EventHandler
 	public void on(WorldUnloadEvent e)
 	{
+		if(!enabled())
+		{
+			return;
+		}
+
 		push(e.getWorld());
 		caches.remove(e.getWorld());
 	}
@@ -200,6 +252,11 @@ public class EntityCacheController extends Controller
 	@EventHandler
 	public void on(EntitySpawnEvent e)
 	{
+		if(!enabled())
+		{
+			return;
+		}
+
 		if(isCached(e.getLocation().getChunk()))
 		{
 			e.setCancelled(true);
@@ -209,6 +266,11 @@ public class EntityCacheController extends Controller
 	@Override
 	public void tick()
 	{
+		if(!enabled())
+		{
+			return;
+		}
+
 		if(TICK.tick % Config.ENTITYCACHE_INTERVAL == 0)
 		{
 			SelectorPosition posCache = new SelectorPosition();

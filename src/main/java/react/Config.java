@@ -36,22 +36,40 @@ public class Config
 	public static final String A_ENTITYCACHE_INTERVAL = "entity-cache.swap-interval";
 
 	@Address(2)
-	public static final String A_DROPSTACK_RADIUS = "drop-stacker.stack-radius";
+	public static final String A_DROPSTACK_RADIUS = "drop-control.stack-radius";
 
 	@Address(3)
-	public static final String A_DROPSTACK_STACKDROPS = "drop-stacker.stack-drops";
+	public static final String A_DROPSTACK_STACKDROPS = "drop-control.stack-drops";
 
 	@Address(4)
-	public static final String A_DROPSTACK_USEDEFAULT = "drop-stacker.use-default";
+	public static final String A_DROPSTACK_USEDEFAULT = "drop-control.use-default";
 
 	@Address(5)
-	public static final String A_DROPSTACK_SMOOTHSTACK = "drop-stacker.smooth-stack";
+	public static final String A_DROPSTACK_SMOOTHSTACK = "drop-control.smooth-stack";
 
 	@Address(6)
 	public static final String A_POOL_MAXTHREADS = "threads.pool-size";
 
 	@Address(7)
 	public static final String A_POOL_SYNC_NANOS = "threads.nano-mitigation";
+
+	@Address(8)
+	public static final String A_ENTITYCACHE_ENABLED = "entity-cache.enable-caching";
+
+	@Address(9)
+	public static final String A_FASTLEAF_ENABLED = "fast-leaf-decay.enabled";
+
+	@Address(10)
+	public static final String A_FASTLEAF_ONDECAY = "fast-leaf-decay.trigger-on-decay";
+
+	@Address(11)
+	public static final String A_FASTLEAF_INSTANT = "fast-leaf-decay.instantaneous";
+
+	@Address(12)
+	public static final String A_FASTLEAF_DECAYPERIOD = "fast-leaf-decay.decay-period";
+
+	@Address(13)
+	public static final String A_DROPSTACK_MINAGE = "drop-control.minimum-age-ticks";
 
 	@Sector(0)
 	@Injection(InjectionMethod.SWAP)
@@ -95,6 +113,32 @@ public class Config
 	@PoolNanoThrottle
 	@Experimental
 	public static long POOL_SYNC_NANOS = 500000;
+
+	@Sector(8)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean ENTITYCACHE_ENABLED = true;
+
+	@Sector(9)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean FASTLEAF_ENABLED = true;
+
+	@Sector(10)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean FASTLEAF_ONDECAY = true;
+
+	@Sector(11)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean FASTLEAF_INSTANT = false;
+
+	@Sector(12)
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 2, max = 200)
+	public static int FASTLEAF_DECAYPERIOD = 20;
+
+	@Sector(13)
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 10, max = 200)
+	public static int DROPSTACK_MINAGE = 70;
 
 	private static boolean hrld = false;
 	private static boolean rns = false;
