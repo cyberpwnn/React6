@@ -13,6 +13,7 @@
         <directory>src/main/resources</directory>
         <includes>
           <include>**/*.yml</include>
+          <include>**/*.json</include>
           <include>**/*.txt</include>
         </includes>
       </resource>
@@ -119,11 +120,23 @@
       <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
     </repository>
     <repository>
-      <id>surge</id>
-      <url>https://raw.githubusercontent.com/cyberpwnn/Surge/master/repository/</url>
+      <id>central</id>
+      <url>https://raw.githubusercontent.com/cyberpwnn/Central/master/</url>
     </repository>
   </repositories>
   <dependencies>
+    <dependency>
+      <groupId>org.cyberpwn</groupId>
+      <artifactId>Surge</artifactId>
+      <version>1.7</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.cyberpwn</groupId>
+      <artifactId>ClassTweaker</artifactId>
+      <version>1.0</version>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>spigot.org</groupId>
       <artifactId>spigot-1.12.2</artifactId>

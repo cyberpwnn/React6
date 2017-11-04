@@ -77,7 +77,7 @@ public class DropMergeController extends Controller
 									{
 										if(!ja.isDead() && !ka.isDead())
 										{
-											if(ja.getTicksLived() > 100 && ka.getTicksLived() > 100)
+											if(ja.getTicksLived() > Config.DROPSTACK_MINAGE && ka.getTicksLived() > Config.DROPSTACK_MINAGE)
 											{
 												if(((Item) ja).getItemStack().getAmount() == 1 || ((Item) ka).getItemStack().getAmount() == 1)
 												{
@@ -152,8 +152,8 @@ public class DropMergeController extends Controller
 			}
 
 			Vector initial = source.getVelocity();
-			Vector dir = VectorMath.direction(source.getLocation(), destination.getLocation().clone()).multiply((distance / Config.DROPSTACK_RADIUS));
-			Vector fi = initial.add(dir.multiply(0.29));
+			Vector dir = VectorMath.direction(source.getLocation(), destination.getLocation().clone()).multiply(1.0 - (distance / Config.DROPSTACK_RADIUS));
+			Vector fi = initial.add(dir.multiply(0.19));
 
 			if(!Config.DROPSTACK_SMOOTHSTACK)
 			{
@@ -174,7 +174,7 @@ public class DropMergeController extends Controller
 
 			}
 
-			if(distance < 0.3325)
+			if(distance < 0.6325)
 			{
 				ItemStack is = destination.getItemStack().clone();
 				is.setAmount(isca + iscb);
@@ -231,8 +231,8 @@ public class DropMergeController extends Controller
 			}
 
 			Vector initial = source.getVelocity();
-			Vector dir = VectorMath.direction(source.getLocation(), destination.getLocation().clone()).multiply((distance / Config.DROPSTACK_RADIUS));
-			Vector fi = initial.add(dir.multiply(0.29));
+			Vector dir = VectorMath.direction(source.getLocation(), destination.getLocation().clone()).multiply(1.0 - (distance / Config.DROPSTACK_RADIUS));
+			Vector fi = initial.add(dir.multiply(0.19));
 
 			if(!Config.DROPSTACK_SMOOTHSTACK)
 			{
@@ -254,7 +254,7 @@ public class DropMergeController extends Controller
 
 			}
 
-			if(distance < 0.3325)
+			if(distance < 0.6325)
 			{
 				ItemStack is = destination.getItemStack().clone();
 				is.setAmount(isca + iscb);

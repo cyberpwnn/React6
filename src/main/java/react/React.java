@@ -4,10 +4,10 @@ import react.controller.ActionController;
 import react.controller.CommandController;
 import react.controller.DropMergeController;
 import react.controller.EntityCacheController;
+import react.controller.EntityStackController;
 import react.controller.FastDecayController;
 import react.controller.MonitorController;
 import react.controller.PlayerController;
-import react.controller.RedstoneController;
 import react.controller.SampleController;
 import surge.control.Control;
 import surge.control.Disable;
@@ -48,7 +48,7 @@ public class React
 	public FastDecayController fastDecayController;
 
 	@Control
-	public RedstoneController redstoneController;
+	public EntityStackController entityStackController;
 
 	@Enable
 	public void enable()
