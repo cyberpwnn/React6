@@ -8,13 +8,13 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
+import org.cyberpwn.glang.GList;
+import org.cyberpwn.glang.GMap;
+import org.cyberpwn.gmath.M;
 
 import react.Config;
 import surge.Surge;
-import surge.collection.GList;
-import surge.collection.GMap;
 import surge.control.Controller;
-import surge.math.M;
 import surge.sched.Task;
 
 public class FastDecayController extends Controller

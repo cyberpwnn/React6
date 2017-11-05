@@ -4,6 +4,7 @@ import java.io.File;
 import java.lang.reflect.Field;
 
 import org.bukkit.plugin.Plugin;
+import org.cyberpwn.gmath.M;
 
 import react.api.Address;
 import react.api.Clip;
@@ -16,7 +17,6 @@ import surge.Surge;
 import surge.cluster.DataCluster;
 import surge.cluster.YamlDataInput;
 import surge.cluster.YamlDataOutput;
-import surge.math.M;
 import surge.util.D;
 import surge.util.DynamicConfiguration;
 import surge.util.DynamicTracker;

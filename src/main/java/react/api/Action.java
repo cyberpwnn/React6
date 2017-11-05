@@ -1,8 +1,8 @@
 package react.api;
 
-import surge.collection.GList;
-import surge.collection.GMap;
-import surge.util.Callback;
+import org.cyberpwn.glang.AccessCallback;
+import org.cyberpwn.glang.GList;
+import org.cyberpwn.glang.GMap;
 
 public abstract class Action implements IAction
 {
@@ -16,7 +16,7 @@ public abstract class Action implements IAction
 	private ActionType type;
 	private IActionSource currentSource;
 	private double progress;
-	private GMap<Class<?>, Callback<ISelector>> defaultSelectors;
+	private GMap<Class<?>, AccessCallback<ISelector>> defaultSelectors;
 
 	public Action(ActionType type)
 	{
@@ -33,7 +33,7 @@ public abstract class Action implements IAction
 		this.state = ActionState.IDLE;
 		this.target = target;
 		this.type = type;
-		defaultSelectors = new GMap<Class<?>, Callback<ISelector>>();
+		defaultSelectors = new GMap<Class<?>, AccessCallback<ISelector>>();
 		currentSource = null;
 		nodes = new String[0];
 	}
@@ -60,7 +60,7 @@ public abstract class Action implements IAction
 	}
 
 	@Override
-	public void setDefaultSelector(Class<?> clazz, Callback<ISelector> selector)
+	public void setDefaultSelector(Class<?> clazz, AccessCallback<ISelector> selector)
 	{
 		defaultSelectors.put(clazz, selector);
 	}
@@ -126,7 +126,7 @@ public abstract class Action implements IAction
 	}
 
 	@Override
-	public GMap<Class<?>, Callback<ISelector>> getDefaultSelectors()
+	public GMap<Class<?>, AccessCallback<ISelector>> getDefaultSelectors()
 	{
 		return defaultSelectors;
 	}

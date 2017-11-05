@@ -1,8 +1,7 @@
 package react.api;
 
 import org.bukkit.command.CommandSender;
-
-import surge.collection.GSet;
+import org.cyberpwn.glang.GSet;
 
 public abstract class Selector implements ISelector
 {

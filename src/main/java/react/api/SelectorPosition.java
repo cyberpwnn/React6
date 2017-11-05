@@ -5,8 +5,8 @@ import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.cyberpwn.glang.GSet;
 
-import surge.collection.GSet;
 import surge.util.W;
 
 public class SelectorPosition extends Selector

@@ -2,6 +2,10 @@ package react.controller;
 
 import java.lang.reflect.InvocationTargetException;
 
+import org.cyberpwn.glang.GList;
+import org.cyberpwn.glang.GMap;
+import org.cyberpwn.glang.GTriset;
+
 import react.api.ActionAlreadyRunningException;
 import react.api.ActionState;
 import react.api.ActionType;
@@ -9,9 +13,6 @@ import react.api.IAction;
 import react.api.IActionSource;
 import react.api.ISelector;
 import surge.Main;
-import surge.collection.GList;
-import surge.collection.GMap;
-import surge.collection.GTriset;
 import surge.control.Controller;
 
 public class ActionController extends Controller

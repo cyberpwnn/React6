@@ -5,11 +5,11 @@ import java.util.Iterator;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.util.Vector;
+import org.cyberpwn.gconcurrent.A;
+import org.cyberpwn.gconcurrent.S;
+import org.cyberpwn.glang.GList;
+import org.cyberpwn.glang.GSet;
 
-import surge.collection.GList;
-import surge.collection.GSet;
-import surge.pool.A;
-import surge.pool.S;
 import surge.util.Cuboid;
 
 public abstract class SploogeCounter

@@ -20,6 +20,9 @@ import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.inventory.ItemStack;
+import org.cyberpwn.gconcurrent.TICK;
+import org.cyberpwn.glang.GMap;
+import org.cyberpwn.glang.GSet;
 
 import react.Config;
 import react.api.Gate;
@@ -32,10 +35,7 @@ import react.cache.CachedEntitySheep;
 import react.cache.CachedItemDrop;
 import react.cache.EntityCache;
 import surge.Surge;
-import surge.collection.GMap;
-import surge.collection.GSet;
 import surge.control.Controller;
-import surge.sched.TICK;
 import surge.util.W;
 
 public class EntityCacheController extends Controller

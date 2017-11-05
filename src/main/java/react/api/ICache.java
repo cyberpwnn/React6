@@ -1,7 +1,7 @@
 package react.api;
 
-import surge.collection.GList;
-import surge.collection.GSet;
+import org.cyberpwn.glang.GList;
+import org.cyberpwn.glang.GSet;
 
 public interface ICache<K, V>
 {

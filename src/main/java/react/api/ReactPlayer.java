@@ -3,6 +3,7 @@ package react.api;
 import java.io.File;
 
 import org.bukkit.entity.Player;
+import org.cyberpwn.glang.GMap;
 
 import react.Info;
 import surge.Surge;
@@ -11,7 +12,6 @@ import surge.cluster.ConfigurationDataOutput;
 import surge.cluster.IConfigurable;
 import surge.cluster.KeyPointer;
 import surge.cluster.KeyStore;
-import surge.collection.GMap;
 
 public class ReactPlayer implements IConfigurable
 {

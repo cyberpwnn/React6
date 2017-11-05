@@ -31,11 +31,8 @@
             <configuration>
               <artifactSet>
                 <includes>
-                  <include>surge:Surge</include>
+                  <include>org.cyberpwn:*</include>
                 </includes>
-                <excludes>
-                  <exclude>org.spigotmc:spigot-api</exclude>
-                </excludes>
               </artifactSet>
             </configuration>
           </execution>
@@ -125,12 +122,6 @@
     </repository>
   </repositories>
   <dependencies>
-    <dependency>
-      <groupId>org.cyberpwn</groupId>
-      <artifactId>Surge</artifactId>
-      <version>1.7</version>
-      <scope>compile</scope>
-    </dependency>
     <dependency>
       <groupId>org.cyberpwn</groupId>
       <artifactId>ClassTweaker</artifactId>

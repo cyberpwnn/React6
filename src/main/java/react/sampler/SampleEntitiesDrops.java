@@ -1,11 +1,12 @@
 package react.sampler;
 
+import org.cyberpwn.gformat.F;
+
 import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
 import surge.util.Anchor;
 import surge.util.C;
-import surge.util.F;
 
 @Anchor(2)
 public class SampleEntitiesDrops extends MSampler

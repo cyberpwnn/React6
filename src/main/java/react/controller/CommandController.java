@@ -8,6 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.cyberpwn.glang.GList;
 
 import react.Info;
 import react.api.ICommand;
@@ -16,7 +17,6 @@ import react.api.Side;
 import react.api.SideGate;
 import surge.Main;
 import surge.Surge;
-import surge.collection.GList;
 import surge.control.Controller;
 import surge.util.C;
 import surge.util.D;

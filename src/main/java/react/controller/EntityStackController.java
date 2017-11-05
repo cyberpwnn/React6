@@ -5,10 +5,10 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
+import org.cyberpwn.glang.GList;
 
 import react.api.StackedEntity;
 import surge.Surge;
-import surge.collection.GList;
 import surge.control.Controller;
 import surge.sched.Task;
 import surge.util.Area;

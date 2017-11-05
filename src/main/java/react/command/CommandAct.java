@@ -2,6 +2,7 @@ package react.command;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.cyberpwn.glang.GList;
 
 import react.Info;
 import react.React;
@@ -16,7 +17,6 @@ import react.api.ReactCommand;
 import react.api.Selector;
 import react.api.SelectorParseException;
 import react.api.SideGate;
-import surge.collection.GList;
 import surge.util.Anchor;
 import surge.util.C;
 

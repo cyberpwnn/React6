@@ -2,13 +2,14 @@ package react.controller;
 
 import java.lang.reflect.InvocationTargetException;
 
+import org.cyberpwn.gconcurrent.TICK;
+import org.cyberpwn.glang.GMap;
+
 import react.api.ISampler;
 import surge.Main;
 import surge.Surge;
-import surge.collection.GMap;
 import surge.control.Controller;
 import surge.sched.IMasterTickComponent;
-import surge.sched.TICK;
 import surge.server.AsyncTick;
 import surge.server.SuperSampler;
 import surge.util.D;

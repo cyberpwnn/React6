@@ -1,7 +1,8 @@
 package react.api;
 
+import org.cyberpwn.glang.GList;
+
 import react.controller.MonitorController;
-import surge.collection.GList;
 import surge.util.C;
 
 public class TitleMonitor

@@ -2,8 +2,7 @@ package react.api;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
-
-import surge.collection.GSet;
+import org.cyberpwn.glang.GSet;
 
 public class SelectorEntityType extends Selector
 {

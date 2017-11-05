@@ -1,8 +1,8 @@
 package react.api;
 
-import surge.collection.GList;
-import surge.collection.GMap;
-import surge.collection.GSet;
+import org.cyberpwn.glang.GList;
+import org.cyberpwn.glang.GMap;
+import org.cyberpwn.glang.GSet;
 
 public class CacheBase<K, V> implements ICache<K, V>
 {

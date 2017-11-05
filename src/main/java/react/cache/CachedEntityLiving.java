@@ -6,8 +6,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
-
-import surge.collection.GList;
+import org.cyberpwn.glang.GList;
 
 public class CachedEntityLiving extends CachedEntity
 {

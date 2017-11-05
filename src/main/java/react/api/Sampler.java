@@ -1,6 +1,7 @@
 package react.api;
 
-import surge.math.M;
+import org.cyberpwn.gmath.M;
+
 import surge.util.C;
 
 public abstract class Sampler implements ISampler

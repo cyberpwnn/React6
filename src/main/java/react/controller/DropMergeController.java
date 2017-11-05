@@ -9,11 +9,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.ItemMergeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
+import org.cyberpwn.gconcurrent.S;
 
 import react.Config;
 import surge.Surge;
 import surge.control.Controller;
-import surge.pool.S;
 import surge.util.Area;
 import surge.util.VectorMath;
 

@@ -3,6 +3,11 @@ package react.action;
 import org.bukkit.Chunk;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.cyberpwn.gconcurrent.S;
+import org.cyberpwn.gformat.F;
+import org.cyberpwn.glang.AccessCallback;
+import org.cyberpwn.glang.FinalInteger;
+import org.cyberpwn.gmath.M;
 
 import react.Info;
 import react.api.Action;
@@ -14,14 +19,9 @@ import react.api.ISelector;
 import react.api.SelectionMode;
 import react.api.SelectorEntityType;
 import react.api.SelectorPosition;
-import surge.math.M;
-import surge.pool.S;
 import surge.sched.Task;
 import surge.util.Anchor;
 import surge.util.C;
-import surge.util.Callback;
-import surge.util.F;
-import surge.util.FinalInteger;
 
 @Anchor(1)
 public class ActionPurgeEntities extends Action
@@ -35,7 +35,7 @@ public class ActionPurgeEntities extends Action
 
 		setNodes(Info.ACTION_PURGE_ENTITIES_TAGS);
 
-		setDefaultSelector(Chunk.class, new Callback<ISelector>()
+		setDefaultSelector(Chunk.class, new AccessCallback<ISelector>()
 		{
 			@Override
 			public ISelector get()
@@ -47,7 +47,7 @@ public class ActionPurgeEntities extends Action
 			}
 		});
 
-		setDefaultSelector(EntityType.class, new Callback<ISelector>()
+		setDefaultSelector(EntityType.class, new AccessCallback<ISelector>()
 		{
 			@Override
 			public ISelector get()

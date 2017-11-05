@@ -64,11 +64,8 @@
 						<configuration>
 							<artifactSet>
 								<includes>
-									<include>surge:Surge</include>
+									<include>org.cyberpwn:*</include>
 								</includes>
-								<excludes>
-									<exclude>org.spigotmc:spigot-api</exclude>
-								</excludes>
 							</artifactSet>
 						</configuration>
 					</execution>
@@ -161,7 +158,7 @@
 		<dependency>
 			<groupId>org.cyberpwn</groupId>
 			<artifactId>Surge</artifactId>
-			<version>1.7</version>
+			<version>1.8</version>
 		</dependency>
 		<dependency>
 			<groupId>org.cyberpwn</groupId>

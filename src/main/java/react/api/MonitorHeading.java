@@ -1,6 +1,7 @@
 package react.api;
 
-import surge.collection.GList;
+import org.cyberpwn.glang.GList;
+
 import surge.util.C;
 
 public class MonitorHeading
