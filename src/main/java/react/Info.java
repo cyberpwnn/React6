@@ -1,22 +1,16 @@
 package react;
 
-import org.bukkit.command.CommandSender;
-
-import surge.util.C;
-import surge.util.TXT;
+import org.bukkit.Color;
+import org.bukkit.DyeColor;
 
 public class Info
 {
-	public static void msg(CommandSender p, String msg)
-	{
-		p.sendMessage(TXT.makeTag(C.RED, C.DARK_GRAY, C.GRAY, Info.CORE_NAME) + msg);
-	}
-
 	public static String CORE_REACT_DOT = "react.";
 	public static String CORE_NAME = "React";
 	public static String CORE_CACHE = "cache";
 	public static String CORE_DOTYML = ".yml";
 
+	public static String COMMAND_REACT = "react";
 	public static String COMMAND_ACT_DESCRIPTION = "Runs an action";
 	public static String COMMAND_ACT = "action";
 	public static String COMMAND_ACT_ALIAS_1 = "act";
@@ -29,16 +23,36 @@ public class Info
 	public static String COMMAND_HELP_ALIAS_2 = "?";
 	public static String COMMAND_HELP_USAGE = "/react help";
 
+	public static String COMMAND_RELOAD_DESCRIPTION = "Reloads React";
+	public static String COMMAND_RELOAD = "reload";
+	public static String COMMAND_RELOAD_ALIAS_1 = "rld";
+	public static String COMMAND_RELOAD_ALIAS_2 = "rl";
+	public static String COMMAND_RELOAD_USAGE = "/react reload";
+
 	public static String COMMAND_MONITOR_DESCRIPTION = "Toggles the monitor";
 	public static String COMMAND_MONITOR = "monitor";
 	public static String COMMAND_MONITOR_ALIAS_1 = "mon";
 	public static String COMMAND_MONITOR_ALIAS_2 = "m";
 	public static String COMMAND_MONITOR_USAGE = "/react monitor";
-	public static String COMMAND_REACT = "react";
+
+	public static String COMMAND_GLASS_DESCRIPTION = "Toggles React Glass";
+	public static String COMMAND_GLASS = "glass";
+	public static String COMMAND_GLASS_ALIAS_1 = "glasses";
+	public static String COMMAND_GLASS_ALIAS_2 = "gg";
+	public static String COMMAND_GLASS_USAGE = "/react glass";
 
 	public static String MSG_PERMISSION = "Insufficient Permission";
 	public static String MSG_MONITORING_STARTED = "Monitoring Enabled";
 	public static String MSG_MONITORING_STOPPED = "Monitoring Disabled";
+	public static String MSG_GLASS_STARTED = "Glass Enabled";
+	public static String MSG_GLASS_STOPPED = "Glass Disabled";
+
+	public static Color COLOR_HOPPER = DyeColor.CYAN.getColor();
+	public static Color COLOR_BLOCK_UPDATE = DyeColor.RED.getColor();
+	public static Color COLOR_BLOCK_FROMTO = DyeColor.GREEN.getColor();
+	public static Color COLOR_BLOCK_BURN = DyeColor.PURPLE.getColor();
+	public static Color COLOR_BLOCK_DECAY = DyeColor.PURPLE.getColor();
+	public static Color COLOR_BLOCK_FORM = DyeColor.PURPLE.getColor();
 
 	public static String NAME_TICK = "Tick";
 	public static String NAME_MEMORY = "Memory";
@@ -51,6 +65,7 @@ public class Info
 	public static String STATE_SOUND_PLAYS = "player.sound-buffer";
 	public static String STATE_MONITORING_POSTED = "monitor.posted";
 	public static String STATE_MONITORING_LASTTAB = "monitor.last-tab";
+	public static String STATE_GLASSES_ENABLED = "glasses.enabled";
 	public static String STATE_MONITORING_SWITCHNOTIFICATION = "monitor.switch-notification";
 	public static String STATE_PLAYER_HOTBAR = "player.hotbar";
 	public static String STATE_PLAYER_SHIFT = "player.shift";
@@ -63,6 +78,7 @@ public class Info
 	public static String PERM_MONITOR_TITLE = PERM_MONITOR + ".title";
 	public static String PERM_MONITOR_MAP = PERM_MONITOR + ".map";
 	public static String PERM_MONITOR_ENVIRONMENT = PERM_MONITOR + ".environment";
+	public static String PERM_MONITOR_GLASSES = PERM_MONITOR + ".glasses";
 	public static String PERM_ACT = "act";
 	public static String PERM_RELOAD = "reload";
 
@@ -85,4 +101,9 @@ public class Info
 	public static String ACTION_PURGE_ENTITIES_STATUS = "Purging $c / $t ($p)";
 	public static String ACTION_PURGE_ENTITIES_NAME = "Purge Entities";
 	public static String ACTION_PURGE_ENTITIES_DESCRIPTION = "Removes entities in the specified locations and entity types.";
+
+	public static String[] ACTION_PURGE_CHUNKS_TAGS = new String[] {"purge-chunks", "pc"};
+	public static String ACTION_PURGE_CHUNKS_STATUS = "Purging $c / $t ($p)";
+	public static String ACTION_PURGE_CHUNKS_NAME = "Purge Chunks";
+	public static String ACTION_PURGE_CHUNKS_DESCRIPTION = "Unloads chunks in the specified locations.";
 }

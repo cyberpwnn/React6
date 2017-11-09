@@ -1,11 +1,11 @@
-[2017.10.30 15:39:07] Zelix KlassMaster (Cracked by CM&N) 8.0.8 - License #Cracked by CM&N
+[2017.11.05 11:26:08] Zelix KlassMaster (Cracked by CM&N) 8.0.8 - License #Cracked by CM&N
                       Unlimited
                       coolman
                       coolman@neth.er
                       Copyright 1997-2016 Zelix Pty Ltd (ABN 47 078 740 093)
                       All rights reserved
-[2017.10.30 15:39:07] Preprocessing ZKM Script file "C:\Users\cyberpwn\Documents\development\workspace\React6\compile\script.zkm"
-[2017.10.30 15:39:07] Parsing ZKM Script file "C:\Users\cyberpwn\Documents\development\workspace\React6\compile\script.zkm"
+[2017.11.05 11:26:08] Preprocessing ZKM Script file "C:\Users\cyberpwn\Documents\development\workspace\React6\compile\script.zkm"
+[2017.11.05 11:26:08] Parsing ZKM Script file "C:\Users\cyberpwn\Documents\development\workspace\React6\compile\script.zkm"
 Zelix KlassMaster encountered "heavy" 
 	after "="
 	at line 36, column 27.

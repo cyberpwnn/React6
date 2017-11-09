@@ -2,8 +2,6 @@ package react.api;
 
 import org.bukkit.command.CommandSender;
 
-import react.Info;
-
 public class CommandSenderActionSource implements IActionSource
 {
 	private CommandSender sender;
@@ -21,6 +19,24 @@ public class CommandSenderActionSource implements IActionSource
 	@Override
 	public void sendResponse(String r)
 	{
-		Info.msg(sender, r);
+		Gate.msg(sender, r);
+	}
+
+	@Override
+	public void sendResponseSuccess(String r)
+	{
+		Gate.msgSuccess(sender, r);
+	}
+
+	@Override
+	public void sendResponseError(String r)
+	{
+		Gate.msgError(sender, r);
+	}
+
+	@Override
+	public void sendResponseActing(String r)
+	{
+		Gate.msgActing(sender, r);
 	}
 }

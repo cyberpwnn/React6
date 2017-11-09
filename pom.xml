@@ -153,18 +153,60 @@
 			<artifactId>spigot-1.12.2</artifactId>
 			<scope>system</scope>
 			<systemPath>${react.libs}/spigot-1.12.2.jar</systemPath>
-			<version>1.12.1</version>
+			<version>1.12.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.cyberpwn</groupId>
 			<artifactId>Surge</artifactId>
-			<version>1.8</version>
+			<version>2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.cyberpwn</groupId>
 			<artifactId>ClassTweaker</artifactId>
 			<version>1.0</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>nms</groupId>
+			<artifactId>nms11</artifactId>
+			<scope>system</scope>
+			<systemPath>${react.libs}/craftbukkit-1.11.2.jar</systemPath>
+			<version>1.11.2</version>
+		</dependency>
+		<dependency>
+			<groupId>nms</groupId>
+			<artifactId>nms10</artifactId>
+			<scope>system</scope>
+			<systemPath>${react.libs}/craftbukkit-1.10.2.jar</systemPath>
+			<version>1.10.2</version>
+		</dependency>
+		<dependency>
+			<groupId>nms</groupId>
+			<artifactId>nms94</artifactId>
+			<scope>system</scope>
+			<systemPath>${react.libs}/craftbukkit-1.9.4.jar</systemPath>
+			<version>1.9.4</version>
+		</dependency>
+		<dependency>
+			<groupId>nms</groupId>
+			<artifactId>nms92</artifactId>
+			<scope>system</scope>
+			<systemPath>${react.libs}/craftbukkit-1.9.2.jar</systemPath>
+			<version>1.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>nms</groupId>
+			<artifactId>nms88</artifactId>
+			<scope>system</scope>
+			<systemPath>${react.libs}/craftbukkit-1.8.8.jar</systemPath>
+			<version>1.8.8</version>
+		</dependency>
+		<dependency>
+			<groupId>nms</groupId>
+			<artifactId>nms12</artifactId>
+			<scope>system</scope>
+			<systemPath>${react.libs}/craftbukkit-1.12.2.jar</systemPath>
+			<version>1.12.2</version>
 		</dependency>
 	</dependencies>
 </project>

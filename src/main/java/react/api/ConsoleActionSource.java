@@ -2,13 +2,29 @@ package react.api;
 
 import org.bukkit.Bukkit;
 
-import react.Info;
-
 public class ConsoleActionSource implements IActionSource
 {
 	@Override
 	public void sendResponse(String r)
 	{
-		Info.msg(Bukkit.getConsoleSender(), r);
+		Gate.msg(Bukkit.getConsoleSender(), r);
+	}
+
+	@Override
+	public void sendResponseSuccess(String r)
+	{
+		Gate.msgSuccess(Bukkit.getConsoleSender(), r);
+	}
+
+	@Override
+	public void sendResponseError(String r)
+	{
+		Gate.msgError(Bukkit.getConsoleSender(), r);
+	}
+
+	@Override
+	public void sendResponseActing(String r)
+	{
+		Gate.msgActing(Bukkit.getConsoleSender(), r);
 	}
 }

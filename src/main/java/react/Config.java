@@ -36,16 +36,16 @@ public class Config
 	public static final String A_ENTITYCACHE_INTERVAL = "entity-cache.swap-interval";
 
 	@Address(2)
-	public static final String A_DROPSTACK_RADIUS = "drop-control.stack-radius";
+	public static final String A_DROPSTACK_RADIUS = "drop-stacker.stack-radius";
 
 	@Address(3)
-	public static final String A_DROPSTACK_STACKDROPS = "drop-control.stack-drops";
+	public static final String A_DROPSTACK_STACKDROPS = "drop-stacker.stack-drops";
 
 	@Address(4)
-	public static final String A_DROPSTACK_USEDEFAULT = "drop-control.use-default";
+	public static final String A_DROPSTACK_USEDEFAULT = "drop-stacker.use-default";
 
 	@Address(5)
-	public static final String A_DROPSTACK_SMOOTHSTACK = "drop-control.smooth-stack";
+	public static final String A_DROPSTACK_SMOOTHSTACK = "drop-stacker.smooth-stack";
 
 	@Address(6)
 	public static final String A_POOL_MAXTHREADS = "threads.pool-size";
@@ -69,7 +69,25 @@ public class Config
 	public static final String A_FASTLEAF_DECAYPERIOD = "fast-leaf-decay.decay-period";
 
 	@Address(13)
-	public static final String A_DROPSTACK_MINAGE = "drop-control.minimum-age-ticks";
+	public static final String A_DROPSTACK_MINAGE = "drop-stacker.minimum-age-ticks";
+
+	@Address(14)
+	public static final String A_ENTITYSTACK_ENABLED = "entity-stacker.enabled";
+
+	@Address(15)
+	public static final String A_ENTITYSTACK_MINIMUM_GROUP = "entity-stacker.minimum-group-size";
+
+	@Address(16)
+	public static final String A_ENTITYSTACK_GROUP_SEARCH_RADIUS = "entity-stacker.search-radius";
+
+	@Address(17)
+	public static final String A_ENTITYSTACK_MAXIMUM_HEALTH = "entity-stacker.max-health";
+
+	@Address(18)
+	public static final String A_GLASS_SHOW_BLOCKS = "glass.display-blocks";
+
+	@Address(19)
+	public static final String A_GLASS_SHOW_PARTICLES = "glass.display-particles";
 
 	@Sector(0)
 	@Injection(InjectionMethod.SWAP)
@@ -116,7 +134,7 @@ public class Config
 
 	@Sector(8)
 	@Injection(InjectionMethod.SWAP)
-	public static boolean ENTITYCACHE_ENABLED = true;
+	public static boolean ENTITYCACHE_ENABLED = false;
 
 	@Sector(9)
 	@Injection(InjectionMethod.SWAP)
@@ -139,6 +157,36 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 10, max = 200)
 	public static int DROPSTACK_MINAGE = 70;
+
+	@Sector(14)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean ENTITYSTACK_ENABLED = true;
+
+	@Sector(15)
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 1, max = 16)
+	public static int ENTITYSTACK_MINIMUM_GROUP = 6;
+
+	@Sector(16)
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 4, max = 16)
+	public static int ENTITYSTACK_GROUP_SEARCH_RADIUS = 6;
+
+	@Sector(17)
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 1, max = 2000)
+	@Experimental
+	public static int ENTITYSTACK_MAXIMUM_HEALTH = 2000;
+
+	@Sector(18)
+	@Injection(InjectionMethod.SWAP)
+	@Experimental
+	public static boolean GLASS_SHOW_BLOCKS = true;
+
+	@Sector(19)
+	@Injection(InjectionMethod.SWAP)
+	@Experimental
+	public static boolean GLASS_SHOW_PARTICLES = false;
 
 	private static boolean hrld = false;
 	private static boolean rns = false;

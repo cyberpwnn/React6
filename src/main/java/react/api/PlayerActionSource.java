@@ -2,8 +2,6 @@ package react.api;
 
 import org.bukkit.entity.Player;
 
-import react.Info;
-
 public class PlayerActionSource implements IActionSource
 {
 	private final Player p;
@@ -21,6 +19,24 @@ public class PlayerActionSource implements IActionSource
 	@Override
 	public void sendResponse(String r)
 	{
-		Info.msg(p, r);
+		Gate.msg(p, r);
+	}
+
+	@Override
+	public void sendResponseSuccess(String r)
+	{
+		Gate.msgSuccess(p, r);
+	}
+
+	@Override
+	public void sendResponseError(String r)
+	{
+		Gate.msgError(p, r);
+	}
+
+	@Override
+	public void sendResponseActing(String r)
+	{
+		Gate.msgActing(p, r);
 	}
 }

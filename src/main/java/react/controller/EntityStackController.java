@@ -1,5 +1,6 @@
 package react.controller;
 
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
@@ -7,6 +8,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.cyberpwn.glang.GList;
 
+import react.Config;
 import react.api.StackedEntity;
 import surge.Surge;
 import surge.control.Controller;
@@ -32,6 +34,12 @@ public class EntityStackController extends Controller
 	@Override
 	public void tick()
 	{
+		if(!Config.ENTITYSTACK_ENABLED)
+		{
+			stacks.clear();
+			return;
+		}
+
 		for(StackedEntity i : stacks.copy())
 		{
 			i.update();
@@ -45,9 +53,19 @@ public class EntityStackController extends Controller
 
 	public void stack(GList<LivingEntity> e)
 	{
-		while(e.size() > StackedEntity.getMaxCount(e.pickRandom()))
+		if(!Config.ENTITYSTACK_ENABLED)
+		{
+			return;
+		}
+
+		while(e.pickRandom().getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() * (e.size()) > Config.ENTITYSTACK_MAXIMUM_HEALTH)
 		{
 			e.pop();
+		}
+
+		if(e.size() < Config.ENTITYSTACK_MINIMUM_GROUP)
+		{
+			return;
 		}
 
 		LivingEntity le = e.pickRandom();
@@ -66,11 +84,21 @@ public class EntityStackController extends Controller
 
 	public boolean isStacked(LivingEntity e)
 	{
+		if(!Config.ENTITYSTACK_ENABLED)
+		{
+			return false;
+		}
+
 		return getStack(e) != null;
 	}
 
 	public StackedEntity getStack(LivingEntity e)
 	{
+		if(!Config.ENTITYSTACK_ENABLED)
+		{
+			return null;
+		}
+
 		for(StackedEntity i : stacks)
 		{
 			if(i.getEntity().getEntityId() == e.getEntityId())
@@ -85,6 +113,11 @@ public class EntityStackController extends Controller
 	@EventHandler
 	public void on(EntityDamageEvent e)
 	{
+		if(!Config.ENTITYSTACK_ENABLED)
+		{
+			return;
+		}
+
 		if(e.getEntity() instanceof LivingEntity)
 		{
 			if(isStacked((LivingEntity) e.getEntity()))
@@ -102,7 +135,9 @@ public class EntityStackController extends Controller
 
 	public void merge(StackedEntity a, StackedEntity b)
 	{
-		if(a.getAbsoluteMaxCount() < a.getCount() + b.getCount())
+		double max = a.getRealMaxHealth();
+
+		if(max * (a.getCount() + b.getCount()) > Config.ENTITYSTACK_MAXIMUM_HEALTH)
 		{
 			return;
 		}
@@ -119,7 +154,12 @@ public class EntityStackController extends Controller
 
 	public void checkNear(LivingEntity e)
 	{
-		Area a = new Area(e.getLocation(), 5);
+		if(!Config.ENTITYSTACK_ENABLED)
+		{
+			return;
+		}
+
+		Area a = new Area(e.getLocation(), Config.ENTITYSTACK_GROUP_SEARCH_RADIUS);
 		GList<LivingEntity> le = new GList<LivingEntity>();
 		GList<StackedEntity> fullStacks = new GList<StackedEntity>();
 
@@ -156,7 +196,7 @@ public class EntityStackController extends Controller
 			merge(fullStacks.pop(), fullStacks.pop());
 		}
 
-		if(le.size() > 5)
+		if(le.size() >= Config.ENTITYSTACK_MINIMUM_GROUP)
 		{
 			stack(le);
 		}
@@ -165,6 +205,11 @@ public class EntityStackController extends Controller
 	@EventHandler
 	public void on(EntitySpawnEvent e)
 	{
+		if(!Config.ENTITYSTACK_ENABLED)
+		{
+			return;
+		}
+
 		if(e.getEntity() instanceof LivingEntity)
 		{
 			new Task("entity-check", 1, 5)

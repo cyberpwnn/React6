@@ -11,6 +11,7 @@ import org.bukkit.event.Listener;
 import org.cyberpwn.glang.GList;
 
 import react.Info;
+import react.api.Gate;
 import react.api.ICommand;
 import react.api.Permissable;
 import react.api.Side;
@@ -97,7 +98,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 
 	public void msg(CommandSender s, String msg)
 	{
-		Info.msg(s, msg);
+		Gate.msg(s, msg);
 	}
 
 	public void f(CommandSender s, String msg)

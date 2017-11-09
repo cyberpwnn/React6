@@ -21,7 +21,6 @@ import react.api.SelectorEntityType;
 import react.api.SelectorPosition;
 import surge.sched.Task;
 import surge.util.Anchor;
-import surge.util.C;
 
 @Anchor(1)
 public class ActionPurgeEntities extends Action
@@ -91,7 +90,7 @@ public class ActionPurgeEntities extends Action
 			}
 		}
 
-		source.sendResponse(C.GOLD + "\u26A0 " + C.GRAY + "Purging " + tent + " type" + ((tent == 0 || tent > 1) ? "s" : "") + " of " + ((tent == 0 || tent > 1) ? "entities" : "entity") + " across " + F.f(tchu) + " chunk" + ((tchu > 1 || tchu == 0) ? "s" : ""));
+		source.sendResponseActing("Purging " + tent + " type" + ((tent == 0 || tent > 1) ? "s" : "") + " of " + ((tent == 0 || tent > 1) ? "entities" : "entity") + " across " + F.f(tchu) + " chunk" + ((tchu > 1 || tchu == 0) ? "s" : ""));
 
 		for(ISelector i : selectors)
 		{
@@ -126,7 +125,7 @@ public class ActionPurgeEntities extends Action
 								if(completed.get() == total.get())
 								{
 									completeAction();
-									source.sendResponse(C.GREEN + "\u2714 " + C.GRAY + "Purged " + F.f(totalCulled.get()) + " entities in " + F.f(totalChunked.get()) + " chunk" + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : ""));
+									source.sendResponseSuccess("Purged " + F.f(totalCulled.get()) + " entities in " + F.f(totalChunked.get()) + " chunk" + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : ""));
 								}
 							}
 						}, source, selectors);
@@ -145,7 +144,7 @@ public class ActionPurgeEntities extends Action
 				{
 					cancel();
 					completeAction();
-					source.sendResponse(C.GREEN + "\u2714 " + C.GRAY + "Purged " + F.f(totalCulled.get()) + " entities in " + F.f(totalChunked.get()) + " chunk" + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : ""));
+					source.sendResponseSuccess("Purged " + F.f(totalCulled.get()) + " entities in " + F.f(totalChunked.get()) + " chunk" + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : ""));
 				}
 			}
 

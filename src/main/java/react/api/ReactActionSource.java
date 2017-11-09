@@ -9,4 +9,22 @@ public class ReactActionSource implements IActionSource
 	{
 		D.v("[RAI]: " + r);
 	}
+
+	@Override
+	public void sendResponseSuccess(String r)
+	{
+		D.v("[RAI]: " + r);
+	}
+
+	@Override
+	public void sendResponseError(String r)
+	{
+		D.v("[RAI]: " + r);
+	}
+
+	@Override
+	public void sendResponseActing(String r)
+	{
+		D.v("[RAI]: " + r);
+	}
 }

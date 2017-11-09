@@ -33,10 +33,14 @@ public class ReactPlayer implements IConfigurable
 		keystore.put(-592, Info.STATE_PLAYER_SCROLL);
 		keystore.put(841, Info.STATE_PLAYER_HEIGHT_CURRENT);
 		keystore.put(-413, Info.STATE_PLAYER_HEIGHT_CHANGING);
+		keystore.put(164, Info.STATE_GLASSES_ENABLED);
 	}
 
 	@KeyPointer(-175)
 	public boolean monitoring = false;
+
+	@KeyPointer(164)
+	public boolean glasses = false;
 
 	@KeyPointer(234)
 	public boolean mapping = false;
@@ -243,5 +247,15 @@ public class ReactPlayer implements IConfigurable
 	public void setPlays(int plays)
 	{
 		this.plays = plays;
+	}
+
+	public boolean isGlasses()
+	{
+		return glasses;
+	}
+
+	public void setGlasses(boolean glasses)
+	{
+		this.glasses = glasses;
 	}
 }

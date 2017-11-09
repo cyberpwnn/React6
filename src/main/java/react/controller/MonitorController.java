@@ -10,6 +10,7 @@ import org.cyberpwn.gmath.M;
 
 import react.Info;
 import react.React;
+import react.api.Gate;
 import react.api.MonitorHeading;
 import react.api.Permissable;
 import react.api.ReactPlayer;
@@ -63,13 +64,13 @@ public class MonitorController extends Controller implements IMasterTickComponen
 		if(isMonitoring(p))
 		{
 			stopMonitoring(p);
-			Info.msg(p, Info.MSG_MONITORING_STOPPED);
+			Gate.msgSuccess(p, Info.MSG_MONITORING_STOPPED);
 		}
 
 		else
 		{
 			startMonitoring(p);
-			Info.msg(p, Info.MSG_MONITORING_STARTED);
+			Gate.msgSuccess(p, Info.MSG_MONITORING_STARTED);
 		}
 	}
 

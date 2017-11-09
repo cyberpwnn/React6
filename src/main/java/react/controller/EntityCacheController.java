@@ -165,6 +165,11 @@ public class EntityCacheController extends Controller
 		{
 			if(caches.get(c.getWorld()).has(c))
 			{
+				if(caches.get(c.getWorld()).get(c).isEmpty())
+				{
+					return k;
+				}
+
 				GSet<CachedEntity> kk = caches.get(c.getWorld()).get(c);
 				GSet<UUID> had = new GSet<UUID>();
 				caches.get(c.getWorld()).clear(c);

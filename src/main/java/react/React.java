@@ -6,7 +6,9 @@ import react.controller.DropMergeController;
 import react.controller.EntityCacheController;
 import react.controller.EntityStackController;
 import react.controller.FastDecayController;
+import react.controller.GlassController;
 import react.controller.MonitorController;
+import react.controller.NMSController;
 import react.controller.PlayerController;
 import react.controller.SampleController;
 import surge.control.Control;
@@ -49,6 +51,12 @@ public class React
 
 	@Control
 	public EntityStackController entityStackController;
+
+	@Control
+	public GlassController glassController;
+
+	@Control
+	public NMSController nmsController;
 
 	@Enable
 	public void enable()

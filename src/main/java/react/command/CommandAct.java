@@ -7,7 +7,9 @@ import org.cyberpwn.glang.GList;
 import react.Info;
 import react.React;
 import react.api.ActionHandle;
+import react.api.ActionState;
 import react.api.ConsoleActionSource;
+import react.api.Gate;
 import react.api.IAction;
 import react.api.IActionSource;
 import react.api.ISelector;
@@ -38,7 +40,7 @@ public class CommandAct extends ReactCommand
 	{
 		if(args.length == 0)
 		{
-			Info.msg(sender, "Some list of actions should be here.");
+			Gate.msg(sender, "Some list of actions should be here.");
 			return;
 		}
 
@@ -61,13 +63,13 @@ public class CommandAct extends ReactCommand
 
 		if(action == null)
 		{
-			Info.msg(sender, "Unknown Action: " + C.RED + tag);
+			Gate.msg(sender, "Unknown Action: " + C.RED + tag);
 			return;
 		}
 
 		if(action.getHandleType().equals(ActionHandle.AUTOMATIC))
 		{
-			Info.msg(sender, C.RED + "Action: " + action.getName() + " does not support manual invocations.");
+			Gate.msg(sender, C.RED + "Action: " + action.getName() + " does not support manual invocations.");
 			return;
 		}
 
@@ -83,7 +85,7 @@ public class CommandAct extends ReactCommand
 
 					if(!action.getDefaultSelectors().k().contains(selectors[i].getType()))
 					{
-						Info.msg(sender, C.RED + "Action: " + action.getName() + " does not support the selector: " + selectors[i].getName());
+						Gate.msg(sender, C.RED + "Action: " + action.getName() + " does not support the selector: " + selectors[i].getName());
 						return;
 					}
 				}
@@ -105,16 +107,22 @@ public class CommandAct extends ReactCommand
 				source = new PlayerActionSource((Player) sender);
 			}
 
+			if(action.getState().equals(ActionState.RUNNING))
+			{
+				Gate.msgError(sender, action.getName() + " " + C.AQUA + action.getStatus());
+				Gate.msgSuccess(sender, "Your action has been queued to run.");
+			}
+
 			React.instance.actionController.fire(action.getType(), source, selectors);
 		}
 
 		else
 		{
-			Info.msg(sender, C.RED + "Action: " + action.getName() + " failed to parse supplied input.");
+			Gate.msg(sender, C.RED + "Action: " + action.getName() + " failed to parse supplied input.");
 
 			for(String i : errors)
 			{
-				Info.msg(sender, C.RED + action.getName() + ": " + i);
+				Gate.msg(sender, C.RED + action.getName() + ": " + i);
 			}
 		}
 	}

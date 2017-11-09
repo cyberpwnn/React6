@@ -19,7 +19,7 @@ public class ActionController extends Controller
 {
 	private static int kiv = 0;
 	private GMap<ActionType, IAction> actions;
-	private GMap<Integer, GTriset<ActionType, IActionSource, GList<ISelector>>> pending;
+	public GMap<Integer, GTriset<ActionType, IActionSource, GList<ISelector>>> pending;
 
 	@Override
 	public void start()

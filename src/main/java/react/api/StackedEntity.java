@@ -4,6 +4,11 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Ageable;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.material.Colorable;
+import org.bukkit.util.Vector;
+import org.cyberpwn.gmath.M;
+
+import react.Config;
+import surge.util.ParticleEffect;
 
 public class StackedEntity
 {
@@ -26,7 +31,7 @@ public class StackedEntity
 
 	public int getAbsoluteMaxCount()
 	{
-		return getEffectiveCount(2000);
+		return getEffectiveCount(Config.ENTITYSTACK_MAXIMUM_HEALTH);
 	}
 
 	public static int getMaxCount(LivingEntity exf)
@@ -37,6 +42,17 @@ public class StackedEntity
 	public void update()
 	{
 		updateHealth();
+		signalSize();
+	}
+
+	private void signalSize()
+	{
+		double rat = (double) getCount() / (double) getAbsoluteMaxCount();
+
+		if(M.r(rat))
+		{
+			ParticleEffect.VILLAGER_HAPPY.display(0.2f * getCount(), 1, entity.getLocation().clone().add(0, 0.5, 0).clone().add(Vector.getRandom().subtract(Vector.getRandom())), 16);
+		}
 	}
 
 	private void updateHealth()
@@ -49,11 +65,16 @@ public class StackedEntity
 			heal(heal);
 		}
 
-		if(getEffectiveCount() > getEffectiveCount(getHealth()) && count > 1)
+		if(getEffectiveCount() > getEffectiveCount(getHealth()) && getCount() > 1)
 		{
 			int oc = count;
 			count = getEffectiveCount(getHealth());
 			int diff = oc - count;
+
+			if(diff > 1)
+			{
+				diff--;
+			}
 
 			for(int i = 0; i < diff; i++)
 			{
@@ -77,9 +98,6 @@ public class StackedEntity
 
 			setMaxHealth(getEffectiveMaxHealth(count));
 		}
-
-		entity.setCustomNameVisible(true);
-		entity.setCustomName((int) getHealth() + "hp (" + getEffectiveCount() + "x)");
 	}
 
 	public void heal(double amt)
