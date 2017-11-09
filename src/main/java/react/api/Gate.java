@@ -59,4 +59,9 @@ public class Gate
 	{
 		return React.instance.entityCacheController.push(chunk);
 	}
+
+	public static void cullEntity(Entity i)
+	{
+		removeEntity(i);
+	}
 }
