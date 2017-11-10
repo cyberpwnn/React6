@@ -8,6 +8,7 @@ import org.cyberpwn.gmath.Average;
 import org.cyberpwn.gmath.M;
 
 import react.Gate;
+import surge.util.C;
 
 public class CPUBenchmark extends Thread
 {
@@ -61,6 +62,7 @@ public class CPUBenchmark extends Thread
 			public void run()
 			{
 				Gate.msgSuccess(sender, "CPU Score: " + score + " (avgms: " + F.f(roll.getAverage(), 2) + " ms)");
+				Gate.msgSuccess(sender, "Looks like it's a " + C.WHITE + CPUResult.c(score) + " CPU");
 			}
 		};
 	}

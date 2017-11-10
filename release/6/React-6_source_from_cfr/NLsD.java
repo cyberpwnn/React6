@@ -1,0 +1,224 @@
+/*
+ * Decompiled with CFR 0_123.
+ * 
+ * Could not load the following classes:
+ *  org.bukkit.Color
+ *  org.bukkit.DyeColor
+ */
+import java.lang.invoke.ConstantCallSite;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
+import java.lang.reflect.Method;
+import org.bukkit.Color;
+import org.bukkit.DyeColor;
+
+public class NLsD {
+    public static String Nwie;
+    public static String VUMv;
+    public static String lfOH;
+    public static String ydCs;
+    public static String bFnS;
+    public static String RkDm;
+    public static String rNNN;
+    public static String jOFy;
+    public static String jqKB;
+    public static String Mkul;
+    public static String qllW;
+    public static String wwNq;
+    public static String HBtO;
+    public static String fmNM;
+    public static String LaDA;
+    public static String lTkh;
+    public static String MlWV;
+    public static String biSA;
+    public static String uVvB;
+    public static String MJTO;
+    public static String vtKx;
+    public static String Cfid;
+    public static String kHxI;
+    public static String FyDo;
+    public static String YfkF;
+    public static String UlAU;
+    public static String LiVY;
+    public static String nSEv;
+    public static String VTqA;
+    public static String rorh;
+    public static String ssVr;
+    public static String AWsr;
+    public static String LrGi;
+    public static String tLGH;
+    public static String XSFr;
+    public static String fvCQ;
+    public static String vRMJ;
+    public static String JbpD;
+    public static String VfRi;
+    public static String WrGR;
+    public static Color xrET;
+    public static Color oUhC;
+    public static Color FpWB;
+    public static Color Vvsp;
+    public static Color PJoH;
+    public static Color rpTB;
+    public static String OHMP;
+    public static String JAMu;
+    public static String leqD;
+    public static String upkX;
+    public static String hruy;
+    public static String qloI;
+    public static String rpSI;
+    public static String AqhT;
+    public static String Wyua;
+    public static String STXE;
+    public static String aCmQ;
+    public static String XJTi;
+    public static String YMXK;
+    public static String eimG;
+    public static String xWpV;
+    public static String NVIs;
+    public static String HBur;
+    public static String Ahus;
+    public static String xGPN;
+    public static String hruU;
+    public static String wncc;
+    public static String FNTl;
+    public static String QFCu;
+    public static String BIwj;
+    public static String VetS;
+    public static String bqhA;
+    public static String pinh;
+    public static String lfSt;
+    public static String NUlR;
+    public static String INmP;
+    public static String rotp;
+    public static String LhxG;
+    public static String qTAY;
+    public static String tLIK;
+    public static String RIGg;
+    public static String AWvK;
+    public static String tSwX;
+    public static String JlDW;
+    public static String ydHl;
+    public static String[] GbYt;
+    public static String PeEO;
+    public static String lndQ;
+    public static String mXUV;
+    public static String[] FVfT;
+    public static String dgLy;
+    public static String yBDs;
+    public static String Xchh;
+    public static String[] fvDH;
+    public static String tBtv;
+    public static String aTpg;
+    public static String ogLP;
+
+    static {
+        yy.K(-1693186082, KDGY$JAHk.Y("\ua24f\u472e\u9bc5\u18fa\u5ff4\u1675"));
+        yy.K(-71505778, KDGY$JAHk.Y("\ua26f\u472e\u9bc5\u18fa\u5ff4"));
+        yy.K(-1470232772, KDGY$JAHk.Y("\ua25e\u472a\u9bc7\u18f1\u5fe5"));
+        yy.K(1582368560, KDGY$JAHk.Y("\ua213\u4732\u9bc9\u18f5"));
+        yy.K(756476815, KDGY$JAHk.Y("\ua24f\u472e\u9bc5\u18fa\u5ff4"));
+        yy.K(-1421605124, KDGY$JAHk.Y("\ua26f\u473e\u9bca\u18ea\u5fa0\u163a\ub24c\u1ae8\u2100\ue4f2\u106a\uf29f\u702a\u4e51"));
+        yy.K(-641595673, KDGY$JAHk.Y("\ua25c\u4728\u9bd0\u18f0\u5fef\u1635"));
+        yy.K(1682900712, KDGY$JAHk.Y("\ua25c\u4728\u9bd0"));
+        yy.K(1983055613, KDGY$JAHk.Y("\ua25c"));
+        yy.K(-1158150405, KDGY$JAHk.Y("\ua212\u4739\u9bc1\u18f8\u5fe3\u162f\ub202\u1aa9\u2102\ue4e5\u1077\uf299\u702b\u4e1f\u3707\u5961\u11aa\u9202\uc958\u02d9\u3f93\u9e74\u715c\u5fa2\u89d9\ua251\ue768\u7303\uffc1\ub589\u3a0c\ubc8f"));
+        yy.K(-2113278948, KDGY$JAHk.Y("\ua26e\u4723\u9bcb\u18ee\u5ff3\u167b\ub243\u1ae8\u210d\ue4f8\u106d\uf282\u7065\u4e50\u375d\u5920\u11aa\u9219\uc95c\u02db\u3f9c\u9e24\u7118\u5f8a\u8996\ua255\ue773\u734a\uffdb\ub594\u3a1a"));
+        yy.K(1914956808, KDGY$JAHk.Y("\ua255\u472e\u9bc8\u18e9"));
+        yy.K(-411898851, KDGY$JAHk.Y("\ua255"));
+        yy.K(-93000682, KDGY$JAHk.Y("\ua202"));
+        yy.K(-1722553317, KDGY$JAHk.Y("\ua212\u4739\u9bc1\u18f8\u5fe3\u162f\ub202\u1aa0\u2104\ue4fd\u106e"));
+        yy.K(1698039487, KDGY$JAHk.Y("\ua27f\u472e\u9bca\u18fa\u5fe8\u1636\ub243\u1aba\u210a\ue4e2\u103e\uf282\u702d\u4e5a\u371b\u5963\u11b9\u9203\uc911\u02c2\u3f92\u9e6a\u711d\u5fd9\u89c5\ua242\ue773\u7318\uffcb"));
+        yy.K(20907723, KDGY$JAHk.Y("\ua25e\u473b\u9bd1\u18b4\u5ff3\u1638\ub24d\u1aba\u2104"));
+        yy.K(819267276, KDGY$JAHk.Y("\ua25e\u473b\u9bd1\u18ea"));
+        yy.K(68814529, KDGY$JAHk.Y("\ua25e\u4738"));
+        yy.K(-768866614, KDGY$JAHk.Y("\ua212\u4739\u9bc1\u18f8\u5fe3\u162f\ub202\u1aab\u2111\ue4e4\u1033\uf285\u7026\u4e50\u3749\u5965"));
+        yy.K(-739513320, KDGY$JAHk.Y("\ua26f\u472e\u9bc8\u18f6\u5fe1\u163f\ub251\u1ae8\u2133\ue4f4\u107f\uf295\u7031"));
+        yy.K(-2016548636, KDGY$JAHk.Y("\ua24f\u472e\u9bc8\u18f6\u5fe1\u163f"));
+        yy.K(1493429273, KDGY$JAHk.Y("\ua24f\u4727\u9bc0"));
+        yy.K(1114761442, KDGY$JAHk.Y("\ua24f\u4727"));
+        yy.K(500821015, KDGY$JAHk.Y("\ua212\u4739\u9bc1\u18f8\u5fe3\u162f\ub202\u1aba\u2104\ue4fd\u1071\uf297\u7021"));
+        yy.K(-620042011, KDGY$JAHk.Y("\ua269\u4724\u9bc3\u18fe\u5fec\u163e\ub251\u1ae8\u2115\ue4f9\u107b\uf2d6\u7028\u4e50\u3755\u5969\u11bd\u9219\uc943"));
+        yy.K(-1485902831, KDGY$JAHk.Y("\ua250\u4724\u9bca\u18f0\u5ff4\u1634\ub250"));
+        yy.K(1820584986, KDGY$JAHk.Y("\ua250\u4724\u9bca"));
+        yy.K(-1317868529, KDGY$JAHk.Y("\ua250"));
+        yy.K(2141121552, KDGY$JAHk.Y("\ua212\u4739\u9bc1\u18f8\u5fe3\u162f\ub202\u1aa5\u210e\ue4ff\u1077\uf282\u702a\u4e4d"));
+        yy.K(-979244023, KDGY$JAHk.Y("\ua269\u4724\u9bc3\u18fe\u5fec\u163e\ub251\u1ae8\u2133\ue4f4\u107f\uf295\u7031\u4e1f\u377c\u596c\u11a8\u9205\uc942"));
+        yy.K(-498734059, KDGY$JAHk.Y("\ua25a\u4727\u9bc5\u18ea\u5ff3"));
+        yy.K(1239477262, KDGY$JAHk.Y("\ua25a\u4727\u9bc5\u18ea\u5ff3\u163e\ub251"));
+        yy.K(640609299, KDGY$JAHk.Y("\ua25a\u472c"));
+        yy.K(-1750602732, KDGY$JAHk.Y("\ua212\u4739\u9bc1\u18f8\u5fe3\u162f\ub202\u1aaf\u210d\ue4f0\u106d\uf285"));
+        yy.K(-956765086, KDGY$JAHk.Y("\ua274\u4725\u9bd7\u18ec\u5fe6\u163d\ub24b\u1aab\u2108\ue4f4\u1070\uf282\u7065\u4e6f\u375e\u5972\u11a4\u921f\uc942\u02c5\u3f94\u9e25\u7112"));
+        yy.K(983361808, KDGY$JAHk.Y("\ua270\u4724\u9bca\u18f0\u5ff4\u1634\ub250\u1aa1\u210f\ue4f6\u103e\uf2b3\u702b\u4e5e\u3759\u596c\u11ac\u9212"));
+        yy.K(1411442959, KDGY$JAHk.Y("\ua270\u4724\u9bca\u18f0\u5ff4\u1634\ub250\u1aa1\u210f\ue4f6\u103e\uf2b2\u702c\u4e4c\u375a\u5962\u11a5\u9213\uc955"));
+        yy.K(-103552064, KDGY$JAHk.Y("\ua27a\u4727\u9bc5\u18ea\u5ff3\u167b\ub267\u1aa6\u2100\ue4f3\u1072\uf293\u7021"));
+        yy.K(513992981, KDGY$JAHk.Y("\ua27a\u4727\u9bc5\u18ea\u5ff3\u167b\ub266\u1aa1\u2112\ue4f0\u107c\uf29a\u7020\u4e5b"));
+        yy.K(1279781137, NLsD.up((DyeColor)yy.p(-2047022954)));
+        yy.K(-612767469, NLsD.up((DyeColor)yy.p(600631452)));
+        yy.K(-513611511, NLsD.up((DyeColor)yy.p(-300816239)));
+        yy.K(710469906, NLsD.up((DyeColor)yy.p(442886298)));
+        yy.K(758311190, NLsD.up((DyeColor)yy.p(442886298)));
+        yy.K(417851656, NLsD.up((DyeColor)yy.p(442886298)));
+        yy.K(32762334, KDGY$JAHk.Y("\ua269\u4722\u9bc7\u18f2"));
+        yy.K(1426581986, KDGY$JAHk.Y("\ua270\u472e\u9bc9\u18f6\u5ff2\u1622"));
+        yy.K(-1242240745, KDGY$JAHk.Y("\ua27e\u4723\u9bd1\u18f7\u5feb\u1628"));
+        yy.K(285534488, KDGY$JAHk.Y("\ua278\u4725\u9bd0\u18f0\u5ff4\u1632\ub247\u1abb"));
+        yy.K(-1499330732, KDGY$JAHk.Y("\ua250\u4724\u9bca\u18f0\u5ff4\u1634\ub250\u1ae6\u2115\ue4f0\u107c"));
+        yy.K(1007748942, KDGY$JAHk.Y("\ua250\u4724\u9bca\u18f0\u5ff4\u1634\ub250\u1ae6\u2104\ue4ff\u107f\uf294\u7029\u4e5a\u375f"));
+        yy.K(1055655763, KDGY$JAHk.Y("\ua250\u472a\u9bd4\u18b7\u5fe5\u1635\ub243\u1aaa\u210d\ue4f4\u107a"));
+        yy.K(1769408329, KDGY$JAHk.Y("\ua24d\u4727\u9bc5\u18e0\u5fe5\u1629\ub20c\u1abb\u210e\ue4e4\u1070\uf292\u7068\u4e5d\u374e\u5966\u11af\u9213\uc943"));
+        yy.K(886835026, KDGY$JAHk.Y("\ua250\u4724\u9bca\u18f0\u5ff4\u1634\ub250\u1ae6\u2111\ue4fe\u106d\uf282\u7020\u4e5b"));
+        yy.K(-231798969, KDGY$JAHk.Y("\ua250\u4724\u9bca\u18f0\u5ff4\u1634\ub250\u1ae6\u210d\ue4f0\u106d\uf282\u7068\u4e4b\u375a\u5962"));
+        yy.K(-730331302, KDGY$JAHk.Y("\ua25a\u4727\u9bc5\u18ea\u5ff3\u163e\ub251\u1ae6\u2104\ue4ff\u107f\uf294\u7029\u4e5a\u375f"));
+        yy.K(-593492152, KDGY$JAHk.Y("\ua250\u4724\u9bca\u18f0\u5ff4\u1634\ub250\u1ae6\u2112\ue4e6\u1077\uf282\u7026\u4e57\u3716\u596e\u11a6\u9202\uc958\u02d0\u3f94\u9e29\u711d\u5f8d\u89df\ua24e\ue772"));
+        yy.K(1388709725, KDGY$JAHk.Y("\ua24d\u4727\u9bc5\u18e0\u5fe5\u1629\ub20c\u1aa0\u210e\ue4e5\u107c\uf297\u7037"));
+        yy.K(1598621526, KDGY$JAHk.Y("\ua24d\u4727\u9bc5\u18e0\u5fe5\u1629\ub20c\u1abb\u2109\ue4f8\u1078\uf282"));
+        yy.K(-1106835621, KDGY$JAHk.Y("\ua24d\u4727\u9bc5\u18e0\u5fe5\u1629\ub20c\u1abb\u2102\ue4e3\u1071\uf29a\u7029"));
+        yy.K(1839859548, KDGY$JAHk.Y("\ua24d\u4727\u9bc5\u18e0\u5fe5\u1629\ub20c\u1aa0\u2104\ue4f8\u1079\uf29e\u7031\u4e12\u3758\u5975\u11bb\u9204\uc954\u02d8\u3f89"));
+        yy.K(1177880401, KDGY$JAHk.Y("\ua24d\u4727\u9bc5\u18e0\u5fe5\u1629\ub20c\u1aa0\u2104\ue4f8\u1079\uf29e\u7031\u4e12\u375f\u5965\u11a5\u9202\uc950"));
+        yy.K(127862756, KDGY$JAHk.Y("\ua25c\u4728\u9bc7\u18fc\u5ff3\u1628"));
+        yy.K(-1939077150, KDGY$JAHk.Y("\ua250\u4724\u9bca\u18f0\u5ff4\u1634\ub250"));
+        yy.K(-1555495144, NLsD.up(NLsD.up(NLsD.up(new StringBuilder(), (String)yy.p(-1939077150)), KDGY$JAHk.Y("\ua213\u473f\u9bcd\u18ed\u5fec\u163e"))));
+        yy.K(-365033498, NLsD.up(NLsD.up(NLsD.up(new StringBuilder(), (String)yy.p(-1939077150)), KDGY$JAHk.Y("\ua213\u4726\u9bc5\u18e9"))));
+        yy.K(-2042296340, NLsD.up(NLsD.up(NLsD.up(new StringBuilder(), (String)yy.p(-1939077150)), KDGY$JAHk.Y("\ua213\u472e\u9bca\u18ef\u5fe9\u1629\ub24d\u1aa6\u210c\ue4f4\u1070\uf282"))));
+        yy.K(-566360086, NLsD.up(NLsD.up(NLsD.up(new StringBuilder(), (String)yy.p(-1939077150)), KDGY$JAHk.Y("\ua213\u472c\u9bc8\u18f8\u5ff3\u1628\ub247\u1abb"))));
+        yy.K(-976091168, KDGY$JAHk.Y("\ua25c\u4728\u9bd0"));
+        yy.K(-1828255954, KDGY$JAHk.Y("\ua24f\u472e\u9bc8\u18f6\u5fe1\u163f"));
+        yy.K(-231274715, KDGY$JAHk.Y("\ua269\u471b\u9bf7"));
+        yy.K(326436643, KDGY$JAHk.Y("\ua269\u4702\u9be7\u18d2"));
+        yy.K(-846067879, KDGY$JAHk.Y("\ua269\u4702\u9bf1"));
+        yy.K(1218905943, KDGY$JAHk.Y("\ua270\u470e\u9be9"));
+        yy.K(-723843283, KDGY$JAHk.Y("\ua27b\u4719\u9be1\u18dc\u5fcd\u161e\ub26f"));
+        yy.K(5900075, KDGY$JAHk.Y("\ua270\u470a\u9bfc\u18d4\u5fc5\u1616"));
+        yy.K(-57342175, KDGY$JAHk.Y("\ua27c\u4707\u9be8\u18d6\u5fc3\u1616\ub267\u1a85"));
+        yy.K(-1059977441, KDGY$JAHk.Y("\ua270\u470a\u9bec\u18ca"));
+        yy.K(853935989, KDGY$JAHk.Y("\ua27e\u4703\u9bef"));
+        yy.K(-1078065293, KDGY$JAHk.Y("\ua27e\u4703\u9bef\u18ca"));
+        yy.K(441124713, KDGY$JAHk.Y("\ua278\u4705\u9bf0"));
+        yy.K(460130151, KDGY$JAHk.Y("\ua278\u4705\u9bf0\u18d5\u5fc9\u160d"));
+        yy.K(-1509750915, KDGY$JAHk.Y("\ua278\u4705\u9bf0\u18da\u5fc4\u1609\ub26d\u1a98"));
+        yy.K(-293533829, KDGY$JAHk.Y("\ua278\u4705\u9bf0\u18cd\u5fc9\u1617\ub267"));
+        yy.K(-123737513, new String[]{KDGY$JAHk.Y("\ua25e\u473e\u9bc8\u18f5\u5fad\u163e\ub24c\u1abc\u2108\ue4e5\u1077\uf293\u7036"), KDGY$JAHk.Y("\ua25e\u472e")});
+        yy.K(-472520181, KDGY$JAHk.Y("\ua27e\u473e\u9bc8\u18f5\u5fe9\u1635\ub245\u1ae8\u2145\ue4f2\u103e\uf2d9\u7065\u4e1b\u374f\u5920\u11e1\u9252\uc941\u029f"));
+        yy.K(-652285558, KDGY$JAHk.Y("\ua27e\u473e\u9bc8\u18f5\u5fa0\u161e\ub24c\u1abc\u2108\ue4e5\u1077\uf293\u7036"));
+        yy.K(-525538945, KDGY$JAHk.Y("\ua27e\u473e\u9bc8\u18f5\u5ff3\u167b\ub247\u1aa6\u2115\ue4f8\u106a\uf29f\u7020\u4e4c\u371b\u5969\u11a7\u9256\uc945\u02de\u3f98\u9e6a\u710f\u5f89\u89d3\ua242\ue775\u730c\uffc7\ub582\u3a1b\ubcf2\ua20c\ub778\u8613\u9592\ucbb8\u74b6\uf22e\u05e5\u7789\ue628\u54d6\uca2c\u4c3d\u43fb\uc581\u08b6\u0aec\ube58\u86ee\uc616\uf1a1\u4172\u8429\u6bb3\u0824\ub07c\u708b"));
+        yy.K(257878626, new String[]{KDGY$JAHk.Y("\ua24d\u473e\u9bd6\u18fe\u5fe5\u1676\ub247\u1aa6\u2115\ue4f8\u106a\uf29f\u7020\u4e4c"), KDGY$JAHk.Y("\ua24d\u472e")});
+        yy.K(-2022053301, KDGY$JAHk.Y("\ua26d\u473e\u9bd6\u18fe\u5fe9\u1635\ub245\u1ae8\u2145\ue4f2\u103e\uf2d9\u7065\u4e1b\u374f\u5920\u11e1\u9252\uc941\u029f"));
+        yy.K(1612573056, KDGY$JAHk.Y("\ua26d\u473e\u9bd6\u18fe\u5fe5\u167b\ub267\u1aa6\u2115\ue4f8\u106a\uf29f\u7020\u4e4c"));
+        yy.K(362801621, KDGY$JAHk.Y("\ua26f\u472e\u9bc9\u18f6\u5ff6\u163e\ub251\u1ae8\u2104\ue4ff\u106a\uf29f\u7031\u4e56\u375e\u5973\u11e9\u921f\uc95f\u0296\u3f89\u9e22\u7119\u5fd9\u89c5\ua251\ue779\u7309\uffc7\ub581\u3a16\ubcb7\ua204\ub737\u861c\u959c\ucbaf\u74be\uf235\u05e2\u7795\ue666\u54c4\uca62\u4c38\u43b5\uc580\u08f8\u0afd\ube5f\u86ee\uc606\uf1f5\u417f\u8470\u6bb7\u0838\ub07f\u70c0\ubfdf\ue61a"));
+        yy.K(585427575, new String[]{KDGY$JAHk.Y("\ua24d\u473e\u9bd6\u18fe\u5fe5\u1676\ub241\u1aa0\u2114\ue4ff\u1075\uf285"), KDGY$JAHk.Y("\ua24d\u4728")});
+        yy.K(-744101266, KDGY$JAHk.Y("\ua26d\u473e\u9bd6\u18fe\u5fe9\u1635\ub245\u1ae8\u2145\ue4f2\u103e\uf2d9\u7065\u4e1b\u374f\u5920\u11e1\u9252\uc941\u029f"));
+        yy.K(1462626766, KDGY$JAHk.Y("\ua26d\u473e\u9bd6\u18fe\u5fe5\u167b\ub261\u1aa0\u2114\ue4ff\u1075\uf285"));
+        yy.K(-937760301, KDGY$JAHk.Y("\ua268\u4725\u9bc8\u18f6\u5fe1\u163f\ub251\u1ae8\u2102\ue4f9\u106b\uf298\u702e\u4e4c\u371b\u5969\u11a7\u9256\uc945\u02de\u3f98\u9e6a\u710f\u5f89\u89d3\ua242\ue775\u730c\uffc7\ub582\u3a1b\ubcf2\ua20c\ub778\u8613\u9592\ucbb8\u74b6\uf22e\u05e5\u7789\ue626"));
+    }
+
+    private static Object up(Object object, Object object2, Object object3) {
+        try {
+            return new ConstantCallSite(((MethodHandles.Lookup)object).unreflect(yy.X(Integer.valueOf((String)object2, 32))).asType((MethodType)object3));
+        }
+        catch (ClassNotFoundException | IllegalAccessException reflectiveOperationException) {
+            throw new BootstrapMethodError(reflectiveOperationException);
+        }
+    }
+}
+
