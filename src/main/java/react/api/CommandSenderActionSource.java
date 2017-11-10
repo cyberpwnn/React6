@@ -2,6 +2,8 @@ package react.api;
 
 import org.bukkit.command.CommandSender;
 
+import react.Gate;
+
 public class CommandSenderActionSource implements IActionSource
 {
 	private CommandSender sender;

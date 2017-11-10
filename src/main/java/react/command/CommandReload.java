@@ -2,8 +2,8 @@ package react.command;
 
 import org.bukkit.command.CommandSender;
 
+import react.Gate;
 import react.Info;
-import react.api.Gate;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;

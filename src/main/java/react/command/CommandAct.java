@@ -4,12 +4,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.cyberpwn.glang.GList;
 
+import react.Gate;
 import react.Info;
 import react.React;
 import react.api.ActionHandle;
 import react.api.ActionState;
 import react.api.ConsoleActionSource;
-import react.api.Gate;
 import react.api.IAction;
 import react.api.IActionSource;
 import react.api.ISelector;

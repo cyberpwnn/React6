@@ -2,8 +2,12 @@ package react;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.util.List;
 
+import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.Plugin;
+import org.cyberpwn.gformat.F;
+import org.cyberpwn.glang.GList;
 import org.cyberpwn.gmath.M;
 
 import react.api.Address;
@@ -88,6 +92,18 @@ public class Config
 
 	@Address(19)
 	public static final String A_GLASS_SHOW_PARTICLES = "glass.display-particles";
+
+	@Address(20)
+	public static final String A_ALLOW_CULL = "entity-types.allow-culling";
+
+	@Address(21)
+	public static final String A_ALLOW_PURGE = "entity-types.allow-purging";
+
+	@Address(22)
+	public static final String A_ALLOW_CACHE = "entity-types.allow-caching";
+
+	@Address(23)
+	public static final String A_CULL_RULES = "entity-culler.rules";
 
 	@Sector(0)
 	@Injection(InjectionMethod.SWAP)
@@ -188,6 +204,22 @@ public class Config
 	@Experimental
 	public static boolean GLASS_SHOW_PARTICLES = false;
 
+	@Sector(20)
+	@Injection(InjectionMethod.SWAP)
+	public static GList<String> ALLOW_CULL = getDefaultEntitiesForCulling();
+
+	@Sector(21)
+	@Injection(InjectionMethod.SWAP)
+	public static GList<String> ALLOW_PURGE = getDefaultEntitiesForRemoval();
+
+	@Sector(22)
+	@Injection(InjectionMethod.SWAP)
+	public static GList<String> ALLOW_CACHE = getDefaultEntitiesForCaching();
+
+	@Sector(23)
+	@Injection(InjectionMethod.SWAP)
+	public static GList<String> CULL_RULES = getDefaultCullRules();
+
 	private static boolean hrld = false;
 	private static boolean rns = false;
 	private static boolean rrl = false;
@@ -275,6 +307,7 @@ public class Config
 		hrld = true;
 	}
 
+	@SuppressWarnings("unchecked")
 	private static DataCluster read(DataCluster in, boolean experimental) throws IllegalArgumentException, IllegalAccessException
 	{
 		DataCluster cc = new DataCluster();
@@ -349,8 +382,17 @@ public class Config
 
 						else
 						{
-							i.set(null, in.get(j));
-							cc.trySet(key, in.get(j));
+							if(in.get(j) instanceof List)
+							{
+								i.set(null, new GList<String>((List<String>) in.get(j)));
+								cc.trySet(key, in.get(j));
+							}
+
+							else
+							{
+								i.set(null, in.get(j));
+								cc.trySet(key, in.get(j));
+							}
 						}
 					}
 				}
@@ -380,6 +422,11 @@ public class Config
 					// }
 				}
 			}
+		}
+
+		if(Surge.hasAmp())
+		{
+			React.instance.entityCullController.repopulateRules();
 		}
 
 		return cc;
@@ -425,5 +472,222 @@ public class Config
 		}
 
 		return cc;
+	}
+
+	private static GList<String> getDefaultEntitiesForCaching()
+	{
+		GList<String> ents = new GList<String>();
+
+		for(EntityType i : EntityType.values())
+		{
+			switch(i)
+			{
+				case PLAYER:
+					continue;
+				case AREA_EFFECT_CLOUD:
+					continue;
+				case BOAT:
+					continue;
+				case ARROW:
+					continue;
+				case ITEM_FRAME:
+					continue;
+				case COMPLEX_PART:
+					continue;
+				case DRAGON_FIREBALL:
+					continue;
+				case EGG:
+					continue;
+				case ENDER_CRYSTAL:
+					continue;
+				case WITHER_SKULL:
+					continue;
+				case ENDER_PEARL:
+					continue;
+				case ENDER_SIGNAL:
+					continue;
+				case WEATHER:
+					continue;
+				case UNKNOWN:
+					continue;
+				case TIPPED_ARROW:
+					continue;
+				case THROWN_EXP_BOTTLE:
+					continue;
+				case SPLASH_POTION:
+					continue;
+				case SPECTRAL_ARROW:
+					continue;
+				case SHULKER_BULLET:
+					continue;
+				case EVOKER_FANGS:
+					continue;
+				case EXPERIENCE_ORB:
+					continue;
+				case SNOWBALL:
+					continue;
+				case FIREBALL:
+					continue;
+				case SMALL_FIREBALL:
+					continue;
+				case FIREWORK:
+					continue;
+				case PRIMED_TNT:
+					continue;
+				case LIGHTNING:
+					continue;
+				case LINGERING_POTION:
+					continue;
+				case LEASH_HITCH:
+					continue;
+				default:
+					ents.add(i.name());
+			}
+		}
+
+		return ents;
+	}
+
+	private static GList<String> getDefaultEntitiesForCulling()
+	{
+		GList<String> ents = new GList<String>();
+
+		for(EntityType i : EntityType.values())
+		{
+			switch(i)
+			{
+				case PLAYER:
+					continue;
+				case AREA_EFFECT_CLOUD:
+					continue;
+				case BOAT:
+					continue;
+				case ARROW:
+					continue;
+				case DROPPED_ITEM:
+					continue;
+				case ITEM_FRAME:
+					continue;
+				case COMPLEX_PART:
+					continue;
+				case DRAGON_FIREBALL:
+					continue;
+				case EGG:
+					continue;
+				case ENDER_CRYSTAL:
+					continue;
+				case WITHER_SKULL:
+					continue;
+				case ENDER_PEARL:
+					continue;
+				case ENDER_SIGNAL:
+					continue;
+				case WEATHER:
+					continue;
+				case UNKNOWN:
+					continue;
+				case TIPPED_ARROW:
+					continue;
+				case THROWN_EXP_BOTTLE:
+					continue;
+				case SPLASH_POTION:
+					continue;
+				case SPECTRAL_ARROW:
+					continue;
+				case SHULKER_BULLET:
+					continue;
+				case EVOKER_FANGS:
+					continue;
+				case EXPERIENCE_ORB:
+					continue;
+				case SNOWBALL:
+					continue;
+				case FIREBALL:
+					continue;
+				case SMALL_FIREBALL:
+					continue;
+				case FIREWORK:
+					continue;
+				case PRIMED_TNT:
+					continue;
+				case LIGHTNING:
+					continue;
+				case LINGERING_POTION:
+					continue;
+				case LEASH_HITCH:
+					continue;
+				default:
+					ents.add(i.name());
+			}
+		}
+
+		return ents;
+	}
+
+	private static GList<String> getDefaultEntitiesForRemoval()
+	{
+		GList<String> ents = new GList<String>();
+
+		for(EntityType i : EntityType.values())
+		{
+			switch(i)
+			{
+				case PLAYER:
+					continue;
+				case DROPPED_ITEM:
+					continue;
+				case ITEM_FRAME:
+					continue;
+				case COMPLEX_PART:
+					continue;
+				case WEATHER:
+					continue;
+				case UNKNOWN:
+					continue;
+				case EXPERIENCE_ORB:
+					continue;
+				case PRIMED_TNT:
+					continue;
+				case LIGHTNING:
+					continue;
+				case LINGERING_POTION:
+					continue;
+				case LEASH_HITCH:
+					continue;
+				default:
+					ents.add(i.name());
+			}
+		}
+
+		return ents;
+	}
+
+	private static GList<String> getDefaultCullRules()
+	{
+		GList<String> ents = getDefaultEntitiesForCulling();
+		GList<String> scrs = new GList<String>();
+
+		scrs.add("@Refuse Tamed");
+		scrs.add("@Defer Named");
+		scrs.add("@Defer Leashed");
+		scrs.add("@Defer Stacked");
+		scrs.add("@Defer Ridden");
+		scrs.add("@Restrict Pig,Cow,Sheep,Chicken = 12");
+		scrs.add("@Restrict Zombie,Spider,Skeleton,Creeper = 12");
+		scrs.add("@Restrict Wolf,Ocelot,Horse = 7");
+
+		for(String i : ents)
+		{
+			int m = 7;
+
+			if(i.toString().equals("VILLAGER"))
+			{
+				m = 10;
+			}
+
+			scrs.add("@Restrict " + F.capitalizeWords(i.toLowerCase().replaceAll("_", " ")) + " = " + m);
+		}
+
+		return scrs;
 	}
 }

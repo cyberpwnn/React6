@@ -4,6 +4,7 @@ import react.controller.ActionController;
 import react.controller.CommandController;
 import react.controller.DropMergeController;
 import react.controller.EntityCacheController;
+import react.controller.EntityCullController;
 import react.controller.EntityStackController;
 import react.controller.FastDecayController;
 import react.controller.GlassController;
@@ -57,6 +58,9 @@ public class React
 
 	@Control
 	public NMSController nmsController;
+
+	@Control
+	public EntityCullController entityCullController;
 
 	@Enable
 	public void enable()

@@ -2,6 +2,8 @@ package react.api;
 
 import org.bukkit.entity.Player;
 
+import react.Gate;
+
 public class PlayerActionSource implements IActionSource
 {
 	private final Player p;

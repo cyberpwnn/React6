@@ -8,9 +8,9 @@ import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.M;
 
+import react.Gate;
 import react.Info;
 import react.React;
-import react.api.Gate;
 import react.api.MonitorHeading;
 import react.api.Permissable;
 import react.api.ReactPlayer;

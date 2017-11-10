@@ -19,9 +19,9 @@ import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
 import react.Config;
+import react.Gate;
 import react.Info;
 import react.React;
-import react.api.Gate;
 import react.api.Permissable;
 import react.api.ReactPlayer;
 import surge.Surge;

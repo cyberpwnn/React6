@@ -25,7 +25,7 @@ import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
 
 import react.Config;
-import react.api.Gate;
+import react.Gate;
 import react.api.ICache;
 import react.api.SelectorPosition;
 import react.cache.CachedEntity;
@@ -312,7 +312,7 @@ public class EntityCacheController extends Controller
 					}
 
 					Gate.cacheEntity(ee);
-					Gate.removeEntity(ee);
+					Gate.cachedEntity(ee);
 				}
 			}
 

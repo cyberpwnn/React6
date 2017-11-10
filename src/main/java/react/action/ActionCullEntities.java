@@ -1,16 +1,14 @@
 package react.action;
 
 import org.bukkit.Chunk;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.gformat.F;
 import org.cyberpwn.glang.AccessCallback;
 import org.cyberpwn.glang.FinalInteger;
 import org.cyberpwn.gmath.M;
 
-import react.Gate;
 import react.Info;
+import react.React;
 import react.api.Action;
 import react.api.ActionState;
 import react.api.ActionType;
@@ -23,16 +21,16 @@ import surge.sched.Task;
 import surge.util.Anchor;
 
 @Anchor(1)
-public class ActionPurgeEntities extends Action
+public class ActionCullEntities extends Action
 {
 	private long ms;
 	private int lcd;
 
-	public ActionPurgeEntities()
+	public ActionCullEntities()
 	{
-		super(ActionType.PURGE_ENTITIES);
+		super(ActionType.CULL_ENTITIES);
 
-		setNodes(Info.ACTION_PURGE_ENTITIES_TAGS);
+		setNodes(Info.ACTION_CULL_ENTITIES_TAGS);
 
 		setDefaultSelector(Chunk.class, new AccessCallback<ISelector>()
 		{
@@ -90,7 +88,7 @@ public class ActionPurgeEntities extends Action
 			}
 		}
 
-		source.sendResponseActing("Purging " + tent + " type" + ((tent == 0 || tent > 1) ? "s" : "") + " of " + ((tent == 0 || tent > 1) ? "entities" : "entity") + " across " + F.f(tchu) + " chunk" + ((tchu > 1 || tchu == 0) ? "s" : ""));
+		source.sendResponseActing("Culling " + tent + " type" + ((tent == 0 || tent > 1) ? "s" : "") + " of " + ((tent == 0 || tent > 1) ? "entities" : "entity") + " across " + F.f(tchu) + " chunk" + ((tchu > 1 || tchu == 0) ? "s" : ""));
 
 		for(ISelector i : selectors)
 		{
@@ -102,13 +100,13 @@ public class ActionPurgeEntities extends Action
 				{
 					if(i.can(j))
 					{
-						purge((Chunk) j, new Runnable()
+						cull((Chunk) j, new Runnable()
 						{
 							@Override
 							public void run()
 							{
 								completed.add(1);
-								String s = Info.ACTION_PURGE_ENTITIES_STATUS;
+								String s = Info.ACTION_CULL_ENTITIES_STATUS;
 								setProgress((double) completed.get() / (double) total.get());
 								s = s.replace("$c", F.f(completed.get()));
 								s = s.replace("$t", F.f(total.get()));
@@ -125,7 +123,7 @@ public class ActionPurgeEntities extends Action
 								if(completed.get() == total.get())
 								{
 									completeAction();
-									source.sendResponseSuccess("Purged " + F.f(totalCulled.get()) + " entities in " + F.f(totalChunked.get()) + " chunk" + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : ""));
+									source.sendResponseSuccess("Culled " + F.f(totalCulled.get()) + " entities in " + F.f(totalChunked.get()) + " chunk" + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : ""));
 								}
 							}
 						}, source, selectors);
@@ -134,9 +132,8 @@ public class ActionPurgeEntities extends Action
 			}
 		}
 
-		new Task("purger-monitor-callback", 2)
+		new Task("culler-monitor-callback", 2)
 		{
-
 			@Override
 			public void run()
 			{
@@ -144,57 +141,16 @@ public class ActionPurgeEntities extends Action
 				{
 					cancel();
 					completeAction();
-					source.sendResponseSuccess("Purged " + F.f(totalCulled.get()) + " entities in " + F.f(totalChunked.get()) + " chunk" + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : ""));
+					source.sendResponseSuccess("Culled " + F.f(totalCulled.get()) + " entities in " + F.f(totalChunked.get()) + " chunk" + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : ""));
 				}
 			}
 
 		};
 	}
 
-	public void purge(Chunk chunk, Runnable cb, IActionSource source, ISelector... selectors)
+	public void cull(Chunk chunk, Runnable cb, IActionSource source, ISelector... selectors)
 	{
-		boolean nc = false;
-		FinalInteger cu = new FinalInteger(0);
-
-		seeking: for(int f = 0; f < chunk.getEntities().length; f++)
-		{
-			final int k = f;
-			Entity i = chunk.getEntities()[f];
-
-			for(ISelector j : selectors)
-			{
-				if(j.getType().equals(EntityType.class))
-				{
-					if(!j.can(i.getType()))
-					{
-						continue seeking;
-					}
-				}
-			}
-
-			nc = true;
-
-			new S()
-			{
-				@Override
-				public void run()
-				{
-					Gate.purgeEntity(i);
-					cu.add(1);
-
-					if(k == chunk.getEntities().length - 1)
-					{
-						lcd = cu.get();
-						cb.run();
-					}
-				}
-			};
-		}
-
-		if(!nc)
-		{
-			lcd = cu.get();
-			cb.run();
-		}
+		lcd = React.instance.entityCullController.cull(chunk);
+		cb.run();
 	}
 }

@@ -2,6 +2,8 @@ package react.api;
 
 import org.bukkit.Bukkit;
 
+import react.Gate;
+
 public class ConsoleActionSource implements IActionSource
 {
 	@Override

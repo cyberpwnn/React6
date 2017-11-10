@@ -5,22 +5,39 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
+import org.cyberpwn.glang.GSet;
 
 public class EntitySample
 {
 	private GMap<EntityType, Integer> counts;
+	private GMap<EntityType, GSet<Entity>> sets;
 
 	public EntitySample()
 	{
 		counts = new GMap<EntityType, Integer>();
+		sets = new GMap<EntityType, GSet<Entity>>();
 	}
 
 	public EntitySample(Chunk c)
 	{
+		this();
+
 		for(Entity i : c.getEntities())
 		{
-			add(i.getType());
+			add(i);
 		}
+	}
+
+	public GList<Entity> getAll()
+	{
+		GList<Entity> ents = new GList<Entity>();
+
+		for(EntityType i : sets.k())
+		{
+			ents.addAll(sets.get(i));
+		}
+
+		return ents;
 	}
 
 	public GList<EntityType> getTypes()
@@ -50,13 +67,31 @@ public class EntitySample
 		return 0;
 	}
 
-	public void add(EntityType i)
+	public GSet<Entity> getSet(EntityType i)
 	{
-		if(!counts.containsKey(i))
+		GSet<Entity> m = new GSet<Entity>();
+
+		if(sets.containsKey(i))
 		{
-			counts.put(i, 0);
+			m.addAll(sets.get(i));
 		}
 
-		counts.put(i, counts.get(i) + 1);
+		return m;
+	}
+
+	public void add(Entity i)
+	{
+		if(!counts.containsKey(i.getType()))
+		{
+			counts.put(i.getType(), 0);
+		}
+
+		if(!sets.containsKey(i.getType()))
+		{
+			sets.put(i.getType(), new GSet<Entity>());
+		}
+
+		sets.get(i.getType()).add(i);
+		counts.put(i.getType(), counts.get(i.getType()) + 1);
 	}
 }

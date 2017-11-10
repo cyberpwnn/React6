@@ -10,8 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.cyberpwn.glang.GList;
 
+import react.Gate;
 import react.Info;
-import react.api.Gate;
 import react.api.ICommand;
 import react.api.Permissable;
 import react.api.Side;

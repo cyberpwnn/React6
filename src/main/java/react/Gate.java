@@ -1,12 +1,11 @@
-package react.api;
+package react;
 
 import org.bukkit.Chunk;
+import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-import react.Info;
-import react.React;
 import surge.util.C;
 import surge.util.TXT;
 
@@ -35,7 +34,17 @@ public class Gate
 		return msg(p, C.GOLD + "\u26A0 " + C.GRAY + msg);
 	}
 
-	public static void removeEntity(Entity e)
+	public static void unloadChunk(Chunk c)
+	{
+		c.unload();
+	}
+
+	public static void unloadChunk(World w, int x, int z)
+	{
+		w.unloadChunk(x, z);
+	}
+
+	private static void removeEntity(Entity e)
 	{
 		if(e instanceof Player)
 		{
@@ -45,9 +54,44 @@ public class Gate
 		e.remove();
 	}
 
+	public static void purgeEntity(Entity e)
+	{
+		if(!Config.ALLOW_PURGE.contains(e.getType().toString()))
+		{
+			return;
+		}
+
+		removeEntity(e);
+	}
+
+	public static void cullEntity(Entity e)
+	{
+		if(!Config.ALLOW_CULL.contains(e.getType().toString()))
+		{
+			return;
+		}
+
+		removeEntity(e);
+	}
+
+	public static void cachedEntity(Entity e)
+	{
+		if(!Config.ALLOW_CACHE.contains(e.getType().toString()))
+		{
+			return;
+		}
+
+		removeEntity(e);
+	}
+
 	public static void cacheEntity(Entity e)
 	{
 		if(e instanceof Player)
+		{
+			return;
+		}
+
+		if(!Config.ALLOW_CACHE.contains(e.getType().toString()))
 		{
 			return;
 		}
@@ -58,10 +102,5 @@ public class Gate
 	public static int restoreEntities(Chunk chunk)
 	{
 		return React.instance.entityCacheController.push(chunk);
-	}
-
-	public static void cullEntity(Entity i)
-	{
-		removeEntity(i);
 	}
 }

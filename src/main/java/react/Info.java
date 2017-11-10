@@ -23,6 +23,12 @@ public class Info
 	public static String COMMAND_HELP_ALIAS_2 = "?";
 	public static String COMMAND_HELP_USAGE = "/react help";
 
+	public static String COMMAND_CPUSCORE_DESCRIPTION = "Benchmarks the cpu to a score";
+	public static String COMMAND_CPUSCORE = "cpu-score";
+	public static String COMMAND_CPUSCORE_ALIAS_1 = "cpus";
+	public static String COMMAND_CPUSCORE_ALIAS_2 = "cs";
+	public static String COMMAND_CPUSCORE_USAGE = "/react cpu-score";
+
 	public static String COMMAND_RELOAD_DESCRIPTION = "Reloads React";
 	public static String COMMAND_RELOAD = "reload";
 	public static String COMMAND_RELOAD_ALIAS_1 = "rld";
@@ -96,6 +102,11 @@ public class Info
 	public static String SAMPLER_ENTLIV = "ENTLIV";
 	public static String SAMPLER_ENTDROP = "ENTCDROP";
 	public static String SAMPLER_ENTTILE = "ENTTILE";
+
+	public static String[] ACTION_CULL_ENTITIES_TAGS = new String[] {"cull-entities", "ce"};
+	public static String ACTION_CULL_ENTITIES_STATUS = "Culling $c / $t ($p)";
+	public static String ACTION_CULL_ENTITIES_NAME = "Cull Entities";
+	public static String ACTION_CULL_ENTITIES_DESCRIPTION = "Culls entities in the specified locations and entity types.";
 
 	public static String[] ACTION_PURGE_ENTITIES_TAGS = new String[] {"purge-entities", "pe"};
 	public static String ACTION_PURGE_ENTITIES_STATUS = "Purging $c / $t ($p)";
