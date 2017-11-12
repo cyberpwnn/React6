@@ -16,11 +16,9 @@ import surge.control.Control;
 import surge.control.Disable;
 import surge.control.Enable;
 import surge.control.Instance;
-import surge.control.Plugin;
 import surge.util.Persist;
 
 @Persist
-@Plugin
 public class React
 {
 	@Instance

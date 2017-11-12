@@ -2,7 +2,6 @@ package react.command;
 
 import org.bukkit.command.CommandSender;
 
-import react.Gate;
 import react.Info;
 import react.api.CPUBenchmark;
 import react.api.Permissable;
@@ -26,7 +25,6 @@ public class CommandCPUScore extends ReactCommand
 	@Override
 	public void fire(CommandSender sender, String[] args)
 	{
-		Gate.msgActing(sender, "Benchmarking Processor...");
 		new CPUBenchmark(sender).start();
 	}
 }
