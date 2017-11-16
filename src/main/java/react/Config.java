@@ -405,21 +405,7 @@ public class Config
 
 				else
 				{
-					// TODO detect what was changed.
-					// if(i.isAnnotationPresent(Injection.class))
-					// {
-					// Injection ii = i.getAnnotation(Injection.class);
-					//
-					// if(ii.value().equals(InjectionMethod.RELOAD))
-					// {
-					// rrl = true;
-					// }
-					//
-					// if(ii.value().equals(InjectionMethod.SUBSTRATE))
-					// {
-					// rns = true;
-					// }
-					// }
+
 				}
 			}
 		}

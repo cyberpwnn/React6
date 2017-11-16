@@ -1,6 +1,7 @@
 package react.sampler;
 
 import org.cyberpwn.gformat.F;
+import org.cyberpwn.gmath.Average;
 
 import react.api.MSampler;
 import react.api.SampledType;
@@ -10,6 +11,8 @@ import surge.util.C;
 @Anchor(2)
 public class SampleTickTime extends MSampler
 {
+	private Average aa = new Average(50);
+
 	@Override
 	public void construct()
 	{
@@ -24,7 +27,8 @@ public class SampleTickTime extends MSampler
 	@Override
 	public void sample()
 	{
-		setValue(ss().getTickTime());
+		aa.put(ss().getTickTime());
+		setValue(aa.getAverage());
 	}
 
 	@Override

@@ -1,7 +1,6 @@
 package react.controller;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -10,11 +9,11 @@ import org.bukkit.event.entity.ItemMergeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 import org.cyberpwn.gconcurrent.S;
+import org.cyberpwn.gconcurrent.TICK;
 
 import react.Config;
 import surge.Surge;
 import surge.control.Controller;
-import surge.util.Area;
 import surge.util.VectorMath;
 
 public class DropMergeController extends Controller
@@ -48,6 +47,11 @@ public class DropMergeController extends Controller
 	@Override
 	public void tick()
 	{
+		if(TICK.tick % 20 != 0)
+		{
+			return;
+		}
+
 		if(Config.DROPSTACK_USEDEFAULT)
 		{
 			return;
@@ -60,34 +64,31 @@ public class DropMergeController extends Controller
 
 		for(World i : Bukkit.getWorlds())
 		{
-			new S()
+			try
 			{
-				@Override
-				public void run()
+				new S()
 				{
-					try
+					@Override
+					public void run()
 					{
-						for(Chunk c : i.getLoadedChunks())
+						for(Entity ja : i.getEntities())
 						{
-							for(Entity ja : c.getEntities())
+							for(Entity ka : i.getEntities())
 							{
-								for(Entity ka : new Area(ja.getLocation(), Config.DROPSTACK_RADIUS).getNearbyEntities())
+								if(ja instanceof Item && ka instanceof Item)
 								{
-									if(ja instanceof Item && ka instanceof Item)
+									if(!ja.isDead() && !ka.isDead())
 									{
-										if(!ja.isDead() && !ka.isDead())
+										if(ja.getTicksLived() > Config.DROPSTACK_MINAGE && ka.getTicksLived() > Config.DROPSTACK_MINAGE)
 										{
-											if(ja.getTicksLived() > Config.DROPSTACK_MINAGE && ka.getTicksLived() > Config.DROPSTACK_MINAGE)
+											if(((Item) ja).getItemStack().getAmount() == 1 || ((Item) ka).getItemStack().getAmount() == 1)
 											{
-												if(((Item) ja).getItemStack().getAmount() == 1 || ((Item) ka).getItemStack().getAmount() == 1)
-												{
-													stack((Item) ja, (Item) ka);
-												}
+												stack((Item) ja, (Item) ka);
+											}
 
-												else
-												{
-													merge((Item) ja, (Item) ka);
-												}
+											else
+											{
+												merge((Item) ja, (Item) ka);
 											}
 										}
 									}
@@ -95,13 +96,13 @@ public class DropMergeController extends Controller
 							}
 						}
 					}
+				};
+			}
 
-					catch(Exception e)
-					{
+			catch(Exception e)
+			{
 
-					}
-				}
-			};
+			}
 		}
 	}
 

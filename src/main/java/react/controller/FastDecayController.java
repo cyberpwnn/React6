@@ -6,8 +6,6 @@ import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockBurnEvent;
-import org.bukkit.event.block.LeavesDecayEvent;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.M;
@@ -33,28 +31,6 @@ public class FastDecayController extends Controller
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void on(BlockBreakEvent e)
-	{
-		if(!Config.FASTLEAF_ENABLED)
-		{
-			return;
-		}
-
-		checkBreak(e.getBlock());
-	}
-
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-	public void on(BlockBurnEvent e)
-	{
-		if(!Config.FASTLEAF_ENABLED)
-		{
-			return;
-		}
-
-		checkBreak(e.getBlock());
-	}
-
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-	public void on(LeavesDecayEvent e)
 	{
 		if(!Config.FASTLEAF_ENABLED)
 		{

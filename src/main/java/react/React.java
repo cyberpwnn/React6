@@ -10,14 +10,22 @@ import react.controller.FastDecayController;
 import react.controller.GlassController;
 import react.controller.MonitorController;
 import react.controller.NMSController;
+import react.controller.PhysicsController;
 import react.controller.PlayerController;
+import react.controller.RAIController;
+import react.controller.RedstoneController;
 import react.controller.SampleController;
+import react.controller.SecurityController;
+import react.controller.SpikeController;
+import react.controller.TickTimeController;
 import surge.control.Control;
 import surge.control.Disable;
 import surge.control.Enable;
 import surge.control.Instance;
+import surge.control.Plugin;
 import surge.util.Persist;
 
+@Plugin
 @Persist
 public class React
 {
@@ -59,6 +67,24 @@ public class React
 
 	@Control
 	public EntityCullController entityCullController;
+
+	@Control
+	public SpikeController spikeController;
+
+	@Control
+	public SecurityController securityController;
+
+	@Control
+	public RedstoneController redstoneController;
+
+	@Control
+	public PhysicsController physicsController;
+
+	@Control
+	public TickTimeController tickTimeController;
+
+	@Control
+	public RAIController raiController;
 
 	@Enable
 	public void enable()

@@ -35,21 +35,29 @@ public abstract class SploogeCounter
 			{
 				while(it.hasNext())
 				{
-					Block bx = it.next();
-
-					if(bx.getLocation().equals(start))
+					try
 					{
-						continue;
+						Block bx = it.next();
+
+						if(bx.getLocation().equals(start))
+						{
+							continue;
+						}
+
+						if(isAllowedSplooge(bx.getLocation()))
+						{
+							splooge.add(bx.getLocation());
+						}
+
+						else if(isAllowedSource(bx.getLocation()))
+						{
+							sources.add(bx.getLocation());
+						}
 					}
 
-					if(isAllowedSplooge(bx.getLocation()))
+					catch(Exception e)
 					{
-						splooge.add(bx.getLocation());
-					}
 
-					else if(isAllowedSource(bx.getLocation()))
-					{
-						sources.add(bx.getLocation());
 					}
 				}
 

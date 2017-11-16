@@ -159,7 +159,12 @@ public class EntityStackController extends Controller
 			return;
 		}
 
-		Area a = new Area(e.getLocation(), Config.ENTITYSTACK_GROUP_SEARCH_RADIUS);
+		if(e.isDead())
+		{
+			return;
+		}
+
+		Area a = new Area(e.getLocation().clone(), Config.ENTITYSTACK_GROUP_SEARCH_RADIUS);
 		GList<LivingEntity> le = new GList<LivingEntity>();
 		GList<StackedEntity> fullStacks = new GList<StackedEntity>();
 

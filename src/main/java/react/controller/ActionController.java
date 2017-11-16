@@ -2,6 +2,7 @@ package react.controller;
 
 import java.lang.reflect.InvocationTargetException;
 
+import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GTriset;
@@ -12,6 +13,7 @@ import react.api.ActionType;
 import react.api.IAction;
 import react.api.IActionSource;
 import react.api.ISelector;
+import react.api.ReactActionSource;
 import surge.Main;
 import surge.control.Controller;
 
@@ -128,6 +130,19 @@ public class ActionController extends Controller
 			if(ran)
 			{
 				pending.remove(d);
+			}
+		}
+
+		if(TICK.tick % 600 == 0)
+		{
+			try
+			{
+				getAction(ActionType.PURGE_CHUNKS).act(new ReactActionSource());
+			}
+
+			catch(ActionAlreadyRunningException e)
+			{
+
 			}
 		}
 	}

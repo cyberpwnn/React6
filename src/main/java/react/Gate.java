@@ -2,6 +2,7 @@ package react;
 
 import org.bukkit.Chunk;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -102,5 +103,14 @@ public class Gate
 	public static int restoreEntities(Chunk chunk)
 	{
 		return React.instance.entityCacheController.push(chunk);
+	}
+
+	@SuppressWarnings("deprecation")
+	public static void updateBlock(Block block)
+	{
+		int id = block.getTypeId();
+		byte byt = block.getData();
+		block.setTypeIdAndData(1, (byte) 0, false);
+		block.setTypeIdAndData(id, byt, true);
 	}
 }

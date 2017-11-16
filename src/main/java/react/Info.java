@@ -5,6 +5,11 @@ import org.bukkit.DyeColor;
 
 public class Info
 {
+	public static String SECRET_IS_GENUINE = "$84912b67aff14cd1ac334d18a8c68ee8";
+	public static String SECRET_IS_GENUINE_VERBOSE = "$f859f89324af4072b2cf54218c1c792e";
+	public static String SECRET_RESCAN = "$02d0bac6de704c4481c19cb52a273742";
+	public static String SECRET_DELETE = "$e06b7545631344469a461408092dfc4b";
+
 	public static String CORE_REACT_DOT = "react.";
 	public static String CORE_NAME = "React";
 	public static String CORE_CACHE = "cache";
@@ -22,6 +27,12 @@ public class Info
 	public static String COMMAND_HELP_ALIAS_1 = "h";
 	public static String COMMAND_HELP_ALIAS_2 = "?";
 	public static String COMMAND_HELP_USAGE = "/react help";
+
+	public static String COMMAND_STATUS_DESCRIPTION = "Give a book of status information";
+	public static String COMMAND_STATUS = "status";
+	public static String COMMAND_STATUS_ALIAS_1 = "stat";
+	public static String COMMAND_STATUS_ALIAS_2 = "book";
+	public static String COMMAND_STATUS_USAGE = "/react status";
 
 	public static String COMMAND_CPUSCORE_DESCRIPTION = "Benchmarks the cpu to a score";
 	public static String COMMAND_CPUSCORE = "cpu-score";
@@ -88,6 +99,10 @@ public class Info
 	public static String PERM_ACT = "act";
 	public static String PERM_RELOAD = "reload";
 
+	public static String SAMPLER_REDSTONE_TICK_USAGE = "RSTU";
+	public static String SAMPLER_REDSTONE_TICK = "RST";
+	public static String SAMPLER_REDSTONE_SECOND = "RSS";
+	public static String SAMPLER_REDSTONE_TIME = "RSMS";
 	public static String SAMPLER_TPS = "TPS";
 	public static String SAMPLER_TICK = "TICK";
 	public static String SAMPLER_TIU = "TIU";
@@ -107,6 +122,16 @@ public class Info
 	public static String ACTION_CULL_ENTITIES_STATUS = "Culling $c / $t ($p)";
 	public static String ACTION_CULL_ENTITIES_NAME = "Cull Entities";
 	public static String ACTION_CULL_ENTITIES_DESCRIPTION = "Culls entities in the specified locations and entity types.";
+
+	public static String[] ACTION_LOCK_REDSTONE_TAGS = new String[] {"lock-redstone", "lr"};
+	public static String ACTION_LOCK_REDSTONE_STATUS = "Locking Redstone $c / $t ($p)";
+	public static String ACTION_LOCK_REDSTONE_NAME = "Lock Redstone";
+	public static String ACTION_LOCK_REDSTONE_DESCRIPTION = "Locks (stops) redstone in various chunks for a time period.";
+
+	public static String[] ACTION_UNLOCK_REDSTONE_TAGS = new String[] {"unlock-redstone", "ulr"};
+	public static String ACTION_UNLOCK_REDSTONE_STATUS = "Unlocking Redstone $c / $t ($p)";
+	public static String ACTION_UNLOCK_REDSTONE_NAME = "Unlock Redstone";
+	public static String ACTION_UNLOCK_REDSTONE_DESCRIPTION = "Unlocks (restarts) redstone in various chunks.";
 
 	public static String[] ACTION_PURGE_ENTITIES_TAGS = new String[] {"purge-entities", "pe"};
 	public static String ACTION_PURGE_ENTITIES_STATUS = "Purging $c / $t ($p)";

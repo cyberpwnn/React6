@@ -73,6 +73,11 @@ public abstract class Selector implements ISelector
 			is = new SelectorPosition();
 		}
 
+		else if(key.equals("t"))
+		{
+			is = new SelectorTime();
+		}
+
 		else if(key.equals("e"))
 		{
 			is = new SelectorEntityType(SelectionMode.WHITELIST);
