@@ -159,6 +159,11 @@ public class RedstoneController extends Controller
 
 	private void flushTickList()
 	{
+		if(lastTick < firstTick)
+		{
+			firstTick = lastTick;
+		}
+
 		aRSMS.put(lastTick - firstTick);
 		firstTickList = false;
 	}

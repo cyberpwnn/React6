@@ -20,6 +20,14 @@ public class Gate
 		return s;
 	}
 
+	public static String msgRAI(CommandSender p, String msg)
+	{
+		String s = TXT.makeTag(C.AQUA, C.DARK_GRAY, C.GRAY, "RAI") + msg;
+		p.sendMessage(s);
+
+		return s;
+	}
+
 	public static String msgSuccess(CommandSender p, String msg)
 	{
 		return msg(p, C.GREEN + "\u2714 " + C.GRAY + msg);

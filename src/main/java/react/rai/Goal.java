@@ -72,6 +72,11 @@ public abstract class Goal implements IGoal
 	@Override
 	public void update()
 	{
+		for(IGoal i : getSubgoals())
+		{
+			i.update();
+		}
+
 		if(isFailing())
 		{
 			propigate();

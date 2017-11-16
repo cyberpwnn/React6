@@ -8,8 +8,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.ItemMergeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
+import org.cyberpwn.gbench.Profiler;
 import org.cyberpwn.gconcurrent.S;
-import org.cyberpwn.gconcurrent.TICK;
+import org.cyberpwn.glang.GList;
 
 import react.Config;
 import surge.Surge;
@@ -47,11 +48,6 @@ public class DropMergeController extends Controller
 	@Override
 	public void tick()
 	{
-		if(TICK.tick % 20 != 0)
-		{
-			return;
-		}
-
 		if(Config.DROPSTACK_USEDEFAULT)
 		{
 			return;
@@ -71,9 +67,14 @@ public class DropMergeController extends Controller
 					@Override
 					public void run()
 					{
-						for(Entity ja : i.getEntities())
+						double tms = 0;
+
+						for(Entity ja : new GList<Entity>(i.getEntities()).shuffleCopy())
 						{
-							for(Entity ka : i.getEntities())
+							Profiler p = new Profiler();
+							p.begin();
+
+							for(Entity ka : new GList<Entity>(i.getEntities()).shuffleCopy())
 							{
 								if(ja instanceof Item && ka instanceof Item)
 								{
@@ -93,6 +94,14 @@ public class DropMergeController extends Controller
 										}
 									}
 								}
+							}
+
+							p.end();
+							tms += p.getMillis();
+
+							if(tms > 5)
+							{
+								break;
 							}
 						}
 					}

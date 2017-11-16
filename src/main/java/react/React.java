@@ -8,6 +8,7 @@ import react.controller.EntityCullController;
 import react.controller.EntityStackController;
 import react.controller.FastDecayController;
 import react.controller.GlassController;
+import react.controller.HopperController;
 import react.controller.MonitorController;
 import react.controller.NMSController;
 import react.controller.PhysicsController;
@@ -76,6 +77,9 @@ public class React
 
 	@Control
 	public RedstoneController redstoneController;
+
+	@Control
+	public HopperController hopperController;
 
 	@Control
 	public PhysicsController physicsController;

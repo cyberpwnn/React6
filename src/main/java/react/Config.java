@@ -143,10 +143,10 @@ public class Config
 
 	@Sector(7)
 	@Injection(InjectionMethod.SUBSTRATE)
-	@Clip(min = 100000, max = 5000000)
+	@Clip(min = 1000000, max = 50000000)
 	@PoolNanoThrottle
 	@Experimental
-	public static long POOL_SYNC_NANOS = 500000;
+	public static long POOL_SYNC_NANOS = 5000000;
 
 	@Sector(8)
 	@Injection(InjectionMethod.SWAP)
@@ -550,8 +550,6 @@ public class Config
 					continue;
 				case ARROW:
 					continue;
-				case DROPPED_ITEM:
-					continue;
 				case ITEM_FRAME:
 					continue;
 				case COMPLEX_PART:
@@ -620,8 +618,6 @@ public class Config
 			{
 				case PLAYER:
 					continue;
-				case DROPPED_ITEM:
-					continue;
 				case ITEM_FRAME:
 					continue;
 				case COMPLEX_PART:
@@ -669,6 +665,11 @@ public class Config
 			if(i.toString().equals("VILLAGER"))
 			{
 				m = 10;
+			}
+
+			if(i.toString().equals("DROPPED_ITEM"))
+			{
+				m = 30;
 			}
 
 			scrs.add("@Restrict " + F.capitalizeWords(i.toLowerCase().replaceAll("_", " ")) + " = " + m);

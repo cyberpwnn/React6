@@ -1,5 +1,6 @@
 package react.rai;
 
+import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
 
 import surge.util.C;
@@ -34,7 +35,10 @@ public class RAI implements IRAI
 			i.update();
 		}
 
-		printStatus();
+		if(TICK.tick % 50 == 0)
+		{
+			printStatus();
+		}
 	}
 
 	@Override

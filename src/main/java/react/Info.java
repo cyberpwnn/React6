@@ -103,6 +103,10 @@ public class Info
 	public static String SAMPLER_REDSTONE_TICK = "RST";
 	public static String SAMPLER_REDSTONE_SECOND = "RSS";
 	public static String SAMPLER_REDSTONE_TIME = "RSMS";
+	public static String SAMPLER_HOPPER_TICK_USAGE = "H TU";
+	public static String SAMPLER_HOPPER_TICK = "HT";
+	public static String SAMPLER_HOPPER_SECOND = "HS";
+	public static String SAMPLER_HOPPER_TIME = "HMS";
 	public static String SAMPLER_TPS = "TPS";
 	public static String SAMPLER_TICK = "TICK";
 	public static String SAMPLER_TIU = "TIU";
@@ -122,6 +126,16 @@ public class Info
 	public static String ACTION_CULL_ENTITIES_STATUS = "Culling $c / $t ($p)";
 	public static String ACTION_CULL_ENTITIES_NAME = "Cull Entities";
 	public static String ACTION_CULL_ENTITIES_DESCRIPTION = "Culls entities in the specified locations and entity types.";
+
+	public static String[] ACTION_LOCK_HOPPER_TAGS = new String[] {"lock-hopper", "lh"};
+	public static String ACTION_LOCK_HOPPER_STATUS = "Locking Hopper $c / $t ($p)";
+	public static String ACTION_LOCK_HOPPER_NAME = "Lock Hopper";
+	public static String ACTION_LOCK_HOPPER_DESCRIPTION = "Locks (stops) hoppers in various chunks for a time period.";
+
+	public static String[] ACTION_UNLOCK_HOPPER_TAGS = new String[] {"unlock-hopper", "ulh"};
+	public static String ACTION_UNLOCK_HOPPER_STATUS = "Unlocking Hopper $c / $t ($p)";
+	public static String ACTION_UNLOCK_HOPPER_NAME = "Unlock Hopper";
+	public static String ACTION_UNLOCK_HOPPER_DESCRIPTION = "Unlocks (restarts) hoppers in various chunks.";
 
 	public static String[] ACTION_LOCK_REDSTONE_TAGS = new String[] {"lock-redstone", "lr"};
 	public static String ACTION_LOCK_REDSTONE_STATUS = "Locking Redstone $c / $t ($p)";

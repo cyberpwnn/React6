@@ -1,11 +1,8 @@
 package react.controller;
 
 import org.bukkit.Chunk;
-import org.bukkit.block.Block;
-import org.bukkit.block.Hopper;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 import org.cyberpwn.glang.GMap;
 
@@ -49,26 +46,15 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 		hit(c, ChunkIssue.REDSTONE, 10);
 	}
 
+	public void onHopper(Chunk c)
+	{
+		hit(c, ChunkIssue.HOPPER, 10);
+	}
+
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void on(ChunkUnloadEvent e)
 	{
 		samples.remove(e.getChunk());
-	}
-
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-	public void on(InventoryMoveItemEvent e)
-	{
-		if(e.getDestination().getHolder() instanceof Hopper)
-		{
-			Block b = ((Hopper) e.getDestination().getHolder()).getBlock();
-			hit(b.getChunk(), ChunkIssue.HOPPER, 10);
-		}
-
-		if(e.getSource().getHolder() instanceof Hopper)
-		{
-			Block b = ((Hopper) e.getSource().getHolder()).getBlock();
-			hit(b.getChunk(), ChunkIssue.HOPPER, 10);
-		}
 	}
 
 	public void hit(Chunk c, ChunkIssue issue, int weight)
