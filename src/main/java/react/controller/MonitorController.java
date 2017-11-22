@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.M;
 
@@ -16,13 +17,16 @@ import react.api.Permissable;
 import react.api.ReactPlayer;
 import react.api.SampledType;
 import react.api.TitleMonitor;
+import react.slate.PhantomSlate;
 import surge.Surge;
 import surge.collection.GSound;
 import surge.control.Controller;
 import surge.nms.NMSX;
 import surge.sched.IMasterTickComponent;
+import surge.sched.Task;
 import surge.server.AsyncTick;
 import surge.util.C;
+import surge.util.D;
 import surge.util.MSound;
 
 @AsyncTick
@@ -31,9 +35,12 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	public static int maxCooldown = 4;
 	private TitleMonitor titleMonitor;
 	private GMap<Player, Integer> posts;
+	private PhantomSlate sb;
+	private boolean ready;
 
 	public MonitorController()
 	{
+		ready = false;
 		posts = new GMap<Player, Integer>();
 		titleMonitor = new TitleMonitor();
 	}
@@ -41,16 +48,55 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	@Override
 	public void start()
 	{
-		constructMonitor();
 		Surge.register(this);
 		Surge.registerTicked(this);
 
+		constructMonitor();
+
 		for(Player i : Bukkit.getOnlinePlayers())
 		{
-			if(canMonitor(i))
+			if(canMonitor(i) || canActionLog(i))
 			{
 				React.instance.playerController.getPlayer(i);
 			}
+		}
+
+		D.v("Setup Monitor and Action Log");
+
+		new Task("waiter")
+		{
+			@Override
+			public void run()
+			{
+				sb = constructActionLogBoard();
+
+				ready = true;
+			}
+		};
+	}
+
+	private PhantomSlate constructActionLogBoard()
+	{
+		return new PhantomSlate(C.LIGHT_PURPLE + "Action Board");
+	}
+
+	public void toggleActionLog(Player p)
+	{
+		if(!canActionLog(p))
+		{
+			return;
+		}
+
+		if(isActionLogging(p))
+		{
+			stopActionLogging(p);
+			Gate.msgSuccess(p, Info.MSG_ACTIONLOGGING_STOPPED);
+		}
+
+		else
+		{
+			startActionLogging(p);
+			Gate.msgSuccess(p, Info.MSG_ACTIONLOGGING_STARTED);
 		}
 	}
 
@@ -119,11 +165,26 @@ public class MonitorController extends Controller implements IMasterTickComponen
 		return (Permissable.ACCESS.has(p) && Permissable.MONITOR_TITLE.has(p)) || p.isOp();
 	}
 
+	public boolean canActionLog(Player p)
+	{
+		return (Permissable.ACCESS.has(p) && Permissable.MONITOR_ACTIONLOG.has(p)) || p.isOp();
+	}
+
 	public boolean isMonitoring(Player p)
 	{
 		if(canMonitor(p))
 		{
 			return React.instance.playerController.getPlayer(p).isMonitoring();
+		}
+
+		return false;
+	}
+
+	public boolean isActionLogging(Player p)
+	{
+		if(canActionLog(p))
+		{
+			return React.instance.playerController.getPlayer(p).isActionlogging();
 		}
 
 		return false;
@@ -152,6 +213,30 @@ public class MonitorController extends Controller implements IMasterTickComponen
 		}
 	}
 
+	public void startActionLogging(Player p)
+	{
+		if(canActionLog(p) && !isActionLogging(p))
+		{
+			React.instance.playerController.getPlayer(p).setActionlogging(true);
+			sb.addViewer(p);
+		}
+	}
+
+	public void stopActionLogging(Player p)
+	{
+		if(canActionLog(p) && isActionLogging(p))
+		{
+			React.instance.playerController.getPlayer(p).setActionlogging(false);
+			sb.removeViewer(p);
+		}
+
+		if(React.instance.playerController.has(p) && !canActionLog(p))
+		{
+			React.instance.playerController.getPlayer(p).setActionlogging(false);
+			sb.removeViewer(p);
+		}
+	}
+
 	@Override
 	public void tick()
 	{
@@ -167,15 +252,23 @@ public class MonitorController extends Controller implements IMasterTickComponen
 
 	private void processPlayer(ReactPlayer i)
 	{
-		if(!isMonitoring(i.getP()))
+		if(isActionLogging(i.getP()))
 		{
-			return;
+			handleActionLog(i.getP());
 		}
 
-		handlePosting(i);
-		handleShifting(i);
-		handleScrolling(i);
-		handleTriggers(i);
+		if(isMonitoring(i.getP()))
+		{
+			handlePosting(i);
+			handleShifting(i);
+			handleScrolling(i);
+			handleTriggers(i);
+		}
+	}
+
+	private void handleActionLog(Player p)
+	{
+
 	}
 
 	private void handleTriggers(ReactPlayer i)
@@ -368,7 +461,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	@EventHandler
 	public void on(PlayerJoinEvent e)
 	{
-		if(canMonitor(e.getPlayer()))
+		if(canMonitor(e.getPlayer()) || canActionLog(e.getPlayer()))
 		{
 			React.instance.playerController.getPlayer(e.getPlayer());
 		}
@@ -391,6 +484,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	@Override
 	public void onTick()
 	{
+		updateActionBoard();
 		for(ReactPlayer i : React.instance.playerController.getPlayers())
 		{
 			processPlayer(i);
@@ -402,6 +496,32 @@ public class MonitorController extends Controller implements IMasterTickComponen
 
 			i.setPlays(i.getPlays() > 0 ? i.getPlays() - 1 : 0);
 		}
+	}
+
+	private void updateActionBoard()
+	{
+		new S()
+		{
+			@Override
+			public void run()
+			{
+				if(!ready)
+				{
+					return;
+				}
+
+				sb.clearLines();
+
+				sb.addLine("Queue: " + React.instance.actionController.pending.size());
+
+				for(String i : React.instance.actionController.tasks)
+				{
+					sb.addLine(i);
+				}
+
+				sb.update();
+			}
+		};
 	}
 
 	@Override

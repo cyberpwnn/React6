@@ -1,14 +1,11 @@
 package react.controller;
 
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-
-import react.Gate;
 import react.rai.IGoal;
 import react.rai.IRAI;
 import react.rai.RAI;
 import react.rai.goals.GoalReducedChunkLoad;
 import react.rai.goals.GoalReducedEntityCounts;
+import react.rai.goals.GoalStableFluidTime;
 import react.rai.goals.GoalStableHopperTime;
 import react.rai.goals.GoalStableRedstoneTime;
 import react.rai.goals.GoalStableTickTime;
@@ -28,6 +25,7 @@ public class RAIController extends Controller
 		raiEnabled = true;
 		IGoal goalStable = new GoalStableTickTime();
 		goalStable.addGoal(new GoalStableRedstoneTime());
+		goalStable.addGoal(new GoalStableFluidTime());
 		goalStable.addGoal(new GoalStableHopperTime());
 		goalStable.addGoal(new GoalReducedEntityCounts());
 		goalStable.addGoal(new GoalReducedChunkLoad());
@@ -38,17 +36,6 @@ public class RAIController extends Controller
 	public void stop()
 	{
 		Surge.unregister(this);
-	}
-
-	@EventHandler
-	public void on(PlayerCommandPreprocessEvent e)
-	{
-		if(e.getMessage().equalsIgnoreCase("/rai"))
-		{
-			raiEnabled = !raiEnabled;
-			Gate.msgRAI(e.getPlayer(), raiEnabled ? "Im Back!" : "... I'll see myself out now...");
-			e.setCancelled(true);
-		}
 	}
 
 	@Override

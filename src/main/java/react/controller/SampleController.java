@@ -19,12 +19,14 @@ public class SampleController extends Controller implements IMasterTickComponent
 {
 	private GMap<String, ISampler> samplers;
 	private SuperSampler ss;
+	private int cd;
 
 	public SampleController()
 	{
 		samplers = new GMap<String, ISampler>();
 		ss = new SuperSampler();
 		constructSamplers();
+		cd = 4;
 	}
 
 	public void registerSampler(ISampler s)
@@ -114,6 +116,12 @@ public class SampleController extends Controller implements IMasterTickComponent
 	@Override
 	public void onTick()
 	{
+		if(cd > 0)
+		{
+			cd--;
+			return;
+		}
+
 		for(ISampler i : samplers.v())
 		{
 			try

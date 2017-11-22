@@ -27,6 +27,7 @@ import react.controller.SecurityController;
 import surge.Main;
 import surge.Surge;
 import surge.util.Anchor;
+import surge.util.C;
 
 @Anchor(-8)
 public class SecurityCheckpointAlpha
@@ -92,7 +93,7 @@ public class SecurityCheckpointAlpha
 					for(int i = 0; i < r; i++)
 					{
 						String key = din.readUTF();
-						byte[] buf = new byte[16];
+						byte[] buf = new byte[32];
 						din.readFully(buf);
 						hashes.put(key, ByteBuffer.wrap(buf));
 					}
@@ -113,7 +114,13 @@ public class SecurityCheckpointAlpha
 							{
 								if(!SecurityController.failures.contains(i))
 								{
+									System.out.println(C.WHITE + i + " -> " + C.RED + "FAILED");
 									SecurityController.failures.add(i);
+								}
+
+								else
+								{
+									System.out.println(C.WHITE + i + " -> " + C.GREEN + "VERIFIED");
 								}
 							}
 						}
@@ -187,7 +194,7 @@ public class SecurityCheckpointAlpha
 		File jar = i;
 		FileInputStream fin = new FileInputStream(jar);
 		ZipInputStream zip = new ZipInputStream(fin);
-		MessageDigest md = MessageDigest.getInstance("MD5");
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
 
 		for(ZipEntry entry = zip.getNextEntry(); entry != null; entry = zip.getNextEntry())
 		{

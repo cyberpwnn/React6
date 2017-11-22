@@ -6,15 +6,22 @@ import org.cyberpwn.gconcurrent.TICK;
 import react.React;
 import react.api.ActionType;
 import react.api.IAction;
-import react.api.ReactActionSource;
+import react.api.RAIActionSource;
 import react.api.SampledType;
 import react.rai.Goal;
+import react.rai.RAI;
+import react.rai.RAIEvent;
+import react.rai.RAIEventType;
 
 public class GoalReducedChunkLoad extends Goal
 {
+	boolean failing;
+
 	public GoalReducedChunkLoad()
 	{
 		super("Reduced Chunk Load");
+
+		failing = false;
 	}
 
 	private int getChunkCountForView()
@@ -30,9 +37,28 @@ public class GoalReducedChunkLoad extends Goal
 	@Override
 	public boolean onCheckFailing()
 	{
+		boolean f;
+
 		int chunksLoaded = (int) React.instance.sampleController.getSampler(SampledType.CHK.toString()).getValue();
 
-		return chunksLoaded > getMaxChunksForView();
+		f = chunksLoaded > getMaxChunksForView();
+
+		if(failing != f)
+		{
+			failing = f;
+
+			if(failing)
+			{
+				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, "keep a stable chunk count", "chunk count"));
+			}
+
+			else
+			{
+				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, "keep a stable chunk count", "chunk count"));
+			}
+		}
+
+		return f;
 	}
 
 	@Override
@@ -41,7 +67,8 @@ public class GoalReducedChunkLoad extends Goal
 		if(TICK.tick % 20 == 0)
 		{
 			IAction action = React.instance.actionController.getAction(ActionType.PURGE_CHUNKS);
-			React.instance.actionController.fire(action.getType(), new ReactActionSource());
+			RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), "chunk mass"));
+			React.instance.actionController.fire(action.getType(), new RAIActionSource());
 		}
 	}
 }

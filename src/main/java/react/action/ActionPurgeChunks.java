@@ -22,11 +22,12 @@ public class ActionPurgeChunks extends Action
 {
 	private long ms;
 	private int lcd;
+	private boolean fail;
 
 	public ActionPurgeChunks()
 	{
 		super(ActionType.PURGE_CHUNKS);
-
+		fail = false;
 		setNodes(Info.ACTION_PURGE_CHUNKS_TAGS);
 
 		setDefaultSelector(Chunk.class, new AccessCallback<ISelector>()
@@ -49,6 +50,7 @@ public class ActionPurgeChunks extends Action
 		FinalInteger totalCulled = new FinalInteger(0);
 		FinalInteger totalChunked = new FinalInteger(0);
 		FinalInteger completed = new FinalInteger(0);
+		FinalInteger acompleted = new FinalInteger(0);
 		ms = M.ms();
 		int tchu = 0;
 
@@ -67,38 +69,57 @@ public class ActionPurgeChunks extends Action
 			if(i.getType().equals(Chunk.class))
 			{
 				total.add(i.getPossibilities().size());
-
+				double mk = 2;
 				for(Object j : i.getPossibilities())
 				{
 					if(i.can(j))
 					{
-						purge((Chunk) j, new Runnable()
+						mk += 0.03;
+						int dk = (int) mk;
+						new Task("waiter-tr", 0, (int) dk)
 						{
 							@Override
 							public void run()
 							{
-								completed.add(1);
-								String s = Info.ACTION_PURGE_CHUNKS_STATUS;
-								setProgress((double) completed.get() / (double) total.get());
-								s = s.replace("$c", F.f(completed.get()));
-								s = s.replace("$t", F.f(total.get()));
-								s = s.replace("$p", F.pc(getProgress(), 0));
-								setStatus(s);
-								ms = M.ms();
-								totalCulled.add(lcd);
-
-								if(lcd > 0)
+								if((int) dk - 1 == ticks)
 								{
-									totalChunked.add(1);
-								}
+									purge((Chunk) j, new Runnable()
+									{
+										@Override
+										public void run()
+										{
+											if(!fail)
+											{
+												acompleted.add(1);
+											}
 
-								if(completed.get() == total.get())
-								{
-									completeAction();
-									source.sendResponseSuccess("Purged " + F.f(completed.get()) + " chunk" + ((completed.get() > 1 || completed.get() == 0) ? "s" : ""));
+											completed.add(1);
+											String s = Info.ACTION_PURGE_CHUNKS_STATUS;
+											setProgress((double) completed.get() / (double) total.get());
+											s = s.replace("$c", F.f(completed.get()));
+											s = s.replace("$t", F.f(total.get()));
+											s = s.replace("$p", F.pc(getProgress(), 0));
+											setStatus(s);
+											ms = M.ms();
+											totalCulled.add(lcd);
+
+											if(lcd > 0)
+											{
+												totalChunked.add(1);
+											}
+
+											if(completed.get() == total.get())
+											{
+												completeAction();
+												source.sendResponseSuccess("Purged " + F.f(acompleted.get()) + " chunk" + ((acompleted.get() > 1 || acompleted.get() == 0) ? "s" : ""));
+											}
+										}
+									}, source, selectors);
+
+									cancel();
 								}
 							}
-						}, source, selectors);
+						};
 					}
 				}
 			}
@@ -113,7 +134,7 @@ public class ActionPurgeChunks extends Action
 				{
 					cancel();
 					completeAction();
-					source.sendResponseSuccess("Purged " + F.f(completed.get()) + " chunk" + ((completed.get() > 1 || completed.get() == 0) ? "s" : ""));
+					source.sendResponseSuccess("Purged " + F.f(acompleted.get()) + " chunk" + ((acompleted.get() > 1 || acompleted.get() == 0) ? "s" : ""));
 				}
 			}
 
@@ -127,11 +148,15 @@ public class ActionPurgeChunks extends Action
 			@Override
 			public void run()
 			{
+				fail = true;
+
 				if(chunk.unload())
 				{
-					ms = M.ms();
-					cb.run();
+					fail = false;
 				}
+
+				ms = M.ms();
+				cb.run();
 			}
 		};
 	}

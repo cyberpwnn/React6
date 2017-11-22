@@ -56,7 +56,7 @@ public class ActionUnlockHopper extends Action
 				{
 					if(i.can(j))
 					{
-						React.instance.redstoneController.unfreeze(((Chunk) j));
+						React.instance.hopperController.unfreeze(((Chunk) j));
 						completed.add(1);
 						String s = Info.ACTION_LOCK_HOPPER_STATUS;
 						setProgress((double) completed.get() / (double) total.get());

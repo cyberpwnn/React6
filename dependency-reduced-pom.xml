@@ -34,6 +34,36 @@
                   <include>org.cyberpwn:*</include>
                 </includes>
               </artifactSet>
+              <relocations>
+                <relocation>
+                  <pattern>org.cyberpwn.gbench</pattern>
+                  <shadedPattern>react.gbench</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.cyberpwn.gconcurrent</pattern>
+                  <shadedPattern>react.gconcurrent</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.cyberpwn.gformat</pattern>
+                  <shadedPattern>react.gformat</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.cyberpwn.glang</pattern>
+                  <shadedPattern>react.glang</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.cyberpwn.gmath</pattern>
+                  <shadedPattern>react.gmath</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.cyberpwn.json</pattern>
+                  <shadedPattern>react.json</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>surge</pattern>
+                  <shadedPattern>react.surge</shadedPattern>
+                </relocation>
+              </relocations>
             </configuration>
           </execution>
         </executions>
@@ -120,8 +150,23 @@
       <id>central</id>
       <url>https://raw.githubusercontent.com/cyberpwnn/Central/master/</url>
     </repository>
+    <repository>
+      <id>fawe</id>
+      <url>http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
+    </repository>
+    <repository>
+      <id>jcenter</id>
+      <name>jcenter-bintray</name>
+      <url>http://jcenter.bintray.com</url>
+    </repository>
   </repositories>
   <dependencies>
+    <dependency>
+      <groupId>com.boydti</groupId>
+      <artifactId>fawe-api</artifactId>
+      <version>latest</version>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>org.cyberpwn</groupId>
       <artifactId>ClassTweaker</artifactId>
@@ -195,7 +240,7 @@
     <exp1>${react.compile}/mapping.txt</exp1>
     <react.plugin.description>${project.description}</react.plugin.description>
     <react.release.name>${project.name}-${project.version}</react.release.name>
-    <react.plugin.main>surge.Main</react.plugin.main>
+    <react.plugin.main>react.surge.Main</react.plugin.main>
     <maven.compiler.target>1.8</maven.compiler.target>
     <react.scripts>${project.basedir}\scripts</react.scripts>
     <script.copy>${react.scripts}\copy.bat</script.copy>

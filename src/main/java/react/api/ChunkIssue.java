@@ -5,5 +5,6 @@ public enum ChunkIssue
 	ENTITY,
 	HOPPER,
 	REDSTONE,
+	FLUID,
 	PHYSICS;
 }

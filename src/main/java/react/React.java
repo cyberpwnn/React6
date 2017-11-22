@@ -1,16 +1,17 @@
 package react;
 
 import react.controller.ActionController;
+import react.controller.ChronophyHopperController;
 import react.controller.CommandController;
 import react.controller.DropMergeController;
 import react.controller.EntityCacheController;
 import react.controller.EntityCullController;
 import react.controller.EntityStackController;
 import react.controller.FastDecayController;
+import react.controller.FluidController;
 import react.controller.GlassController;
 import react.controller.HopperController;
 import react.controller.MonitorController;
-import react.controller.NMSController;
 import react.controller.PhysicsController;
 import react.controller.PlayerController;
 import react.controller.RAIController;
@@ -64,9 +65,6 @@ public class React
 	public GlassController glassController;
 
 	@Control
-	public NMSController nmsController;
-
-	@Control
 	public EntityCullController entityCullController;
 
 	@Control
@@ -89,6 +87,12 @@ public class React
 
 	@Control
 	public RAIController raiController;
+
+	@Control
+	public FluidController fluidController;
+
+	@Control
+	public ChronophyHopperController chronophyHopperController;
 
 	@Enable
 	public void enable()

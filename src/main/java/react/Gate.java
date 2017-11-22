@@ -3,9 +3,11 @@ package react;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.Hopper;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import surge.util.C;
 import surge.util.TXT;
@@ -116,9 +118,46 @@ public class Gate
 	@SuppressWarnings("deprecation")
 	public static void updateBlock(Block block)
 	{
+		ItemStack[] cont = null;
+
+		if(block.getState() instanceof Hopper)
+		{
+			cont = ((Hopper) block.getState()).getInventory().getContents();
+			((Hopper) block.getState()).getInventory().clear();
+		}
+
 		int id = block.getTypeId();
 		byte byt = block.getData();
 		block.setTypeIdAndData(1, (byte) 0, false);
 		block.setTypeIdAndData(id, byt, true);
+
+		if(block.getState() instanceof Hopper)
+		{
+			((Hopper) block.getState()).getInventory().setContents(cont);
+		}
+	}
+
+	public static String header(String string, C color)
+	{
+		int maxLength = 48;
+		int left = string.length() + 2;
+		int of = (maxLength - left) / 2;
+
+		return TXT.line(color, of) + C.RESET + " " + string + " " + C.RESET + TXT.line(color, of);
+	}
+
+	public static String header(C color)
+	{
+		return TXT.line(color, 48);
+	}
+
+	@SuppressWarnings("deprecation")
+	public static void updateFluid(Block block)
+	{
+		int id = block.getTypeId();
+		byte byt = block.getData();
+		block.setTypeIdAndData(block.getTypeId(), (byte) 0, false);
+		block.setTypeIdAndData(id, byt, true);
+
 	}
 }

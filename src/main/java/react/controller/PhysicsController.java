@@ -51,6 +51,11 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 		hit(c, ChunkIssue.HOPPER, 10);
 	}
 
+	public void onFluid(Chunk c)
+	{
+		hit(c, ChunkIssue.FLUID, 10);
+	}
+
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void on(ChunkUnloadEvent e)
 	{

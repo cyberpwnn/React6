@@ -22,6 +22,7 @@ public class ReactPlayer implements IConfigurable
 	{
 		keystore = new GMap<Integer, String>();
 		keystore.put(-175, Info.STATE_MONITORING_ENABLED);
+		keystore.put(-172, Info.STATE_ACTIONLOGGING_ENABLED);
 		keystore.put(234, Info.STATE_MAPPING_ENABLED);
 		keystore.put(-885, Info.STATE_MONITORING_TAB);
 		keystore.put(343, Info.STATE_SOUND_PLAYS);
@@ -38,6 +39,9 @@ public class ReactPlayer implements IConfigurable
 
 	@KeyPointer(-175)
 	public boolean monitoring = false;
+
+	@KeyPointer(-172)
+	public boolean actionlogging = false;
 
 	@KeyPointer(164)
 	public boolean glasses = false;
@@ -257,5 +261,15 @@ public class ReactPlayer implements IConfigurable
 	public void setGlasses(boolean glasses)
 	{
 		this.glasses = glasses;
+	}
+
+	public boolean isActionlogging()
+	{
+		return actionlogging;
+	}
+
+	public void setActionlogging(boolean actionlogging)
+	{
+		this.actionlogging = actionlogging;
 	}
 }

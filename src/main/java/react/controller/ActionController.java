@@ -2,7 +2,6 @@ package react.controller;
 
 import java.lang.reflect.InvocationTargetException;
 
-import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GTriset;
@@ -13,7 +12,6 @@ import react.api.ActionType;
 import react.api.IAction;
 import react.api.IActionSource;
 import react.api.ISelector;
-import react.api.ReactActionSource;
 import surge.Main;
 import surge.control.Controller;
 
@@ -22,10 +20,12 @@ public class ActionController extends Controller
 	private static int kiv = 0;
 	private GMap<ActionType, IAction> actions;
 	public GMap<Integer, GTriset<ActionType, IActionSource, GList<ISelector>>> pending;
+	public GList<String> tasks;
 
 	@Override
 	public void start()
 	{
+		tasks = new GList<String>();
 		pending = new GMap<Integer, GTriset<ActionType, IActionSource, GList<ISelector>>>();
 		actions = new GMap<ActionType, IAction>();
 
@@ -118,6 +118,9 @@ public class ActionController extends Controller
 	@Override
 	public void tick()
 	{
+		GMap<ActionType, Integer> pendingStatus = new GMap<ActionType, Integer>();
+		GMap<ActionType, String> runningStatus = new GMap<ActionType, String>();
+
 		for(int d : pending.k())
 		{
 			GTriset<ActionType, IActionSource, GList<ISelector>> i = pending.get(d);
@@ -131,19 +134,54 @@ public class ActionController extends Controller
 			{
 				pending.remove(d);
 			}
+
+			if(!pendingStatus.containsKey(i.getA()))
+			{
+				pendingStatus.put(i.getA(), 0);
+			}
+
+			pendingStatus.put((i.getA()), pendingStatus.get((i.getA())) + 1);
 		}
 
-		if(TICK.tick % 600 == 0)
+		for(ActionType i : ActionType.values())
 		{
 			try
 			{
-				getAction(ActionType.PURGE_CHUNKS).act(new ReactActionSource());
+				if(getAction(i).getState().equals(ActionState.RUNNING))
+				{
+					if(!pendingStatus.containsKey(i))
+					{
+						pendingStatus.put(i, 0);
+					}
+
+					pendingStatus.put((i), pendingStatus.get((i)) + 1);
+					runningStatus.put(i, getAction(i).getStatus());
+				}
 			}
 
-			catch(ActionAlreadyRunningException e)
+			catch(Exception e)
 			{
 
 			}
+		}
+
+		tasks.clear();
+
+		for(ActionType i : pendingStatus.k())
+		{
+			String pre = pendingStatus.get(i) > 1 ? pendingStatus.get(i) + "x " : "";
+
+			if(getAction(i).getState().equals(ActionState.RUNNING))
+			{
+				pre += getAction(i).getStatus();
+			}
+
+			else
+			{
+				pre += i.getName();
+			}
+
+			tasks.add(pre);
 		}
 	}
 

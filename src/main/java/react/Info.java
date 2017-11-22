@@ -16,6 +16,7 @@ public class Info
 	public static String CORE_DOTYML = ".yml";
 
 	public static String COMMAND_REACT = "react";
+	public static String COMMAND_RAI = "rai";
 	public static String COMMAND_ACT_DESCRIPTION = "Runs an action";
 	public static String COMMAND_ACT = "action";
 	public static String COMMAND_ACT_ALIAS_1 = "act";
@@ -58,9 +59,17 @@ public class Info
 	public static String COMMAND_GLASS_ALIAS_2 = "gg";
 	public static String COMMAND_GLASS_USAGE = "/react glass";
 
+	public static String COMMAND_ACTIONLOG_DESCRIPTION = "Toggles React Action Log";
+	public static String COMMAND_ACTIONLOG = "actionlog";
+	public static String COMMAND_ACTIONLOG_ALIAS_1 = "alog";
+	public static String COMMAND_ACTIONLOG_ALIAS_2 = "al";
+	public static String COMMAND_ACTIONLOG_USAGE = "/react actionlog";
+
 	public static String MSG_PERMISSION = "Insufficient Permission";
 	public static String MSG_MONITORING_STARTED = "Monitoring Enabled";
 	public static String MSG_MONITORING_STOPPED = "Monitoring Disabled";
+	public static String MSG_ACTIONLOGGING_STARTED = "Action Logging Enabled";
+	public static String MSG_ACTIONLOGGING_STOPPED = "Action Logging Disabled";
 	public static String MSG_GLASS_STARTED = "Glass Enabled";
 	public static String MSG_GLASS_STOPPED = "Glass Disabled";
 
@@ -78,6 +87,7 @@ public class Info
 
 	public static String STATE_MONITORING_TAB = "monitor.tab";
 	public static String STATE_MONITORING_ENABLED = "monitor.enabled";
+	public static String STATE_ACTIONLOGGING_ENABLED = "actionlogging.enabled";
 	public static String STATE_MAPPING_ENABLED = "map.enabled";
 	public static String STATE_SOUND_PLAYS = "player.sound-buffer";
 	public static String STATE_MONITORING_POSTED = "monitor.posted";
@@ -93,20 +103,29 @@ public class Info
 	public static String PERM_ACCESS = "access";
 	public static String PERM_MONITOR = "monitor";
 	public static String PERM_MONITOR_TITLE = PERM_MONITOR + ".title";
+	public static String PERM_MONITOR_ACTIONLOG = PERM_MONITOR + ".actionlog";
 	public static String PERM_MONITOR_MAP = PERM_MONITOR + ".map";
 	public static String PERM_MONITOR_ENVIRONMENT = PERM_MONITOR + ".environment";
 	public static String PERM_MONITOR_GLASSES = PERM_MONITOR + ".glasses";
 	public static String PERM_ACT = "act";
+	public static String PERM_RAI = "rai";
+	public static String PERM_RAI_CONTROL = PERM_RAI + ".control";
+	public static String PERM_RAI_ACCESS = PERM_RAI + ".access";
+	public static String PERM_RAI_MONITOR = PERM_RAI + ".monitor";
 	public static String PERM_RELOAD = "reload";
 
 	public static String SAMPLER_REDSTONE_TICK_USAGE = "RSTU";
 	public static String SAMPLER_REDSTONE_TICK = "RST";
 	public static String SAMPLER_REDSTONE_SECOND = "RSS";
 	public static String SAMPLER_REDSTONE_TIME = "RSMS";
-	public static String SAMPLER_HOPPER_TICK_USAGE = "H TU";
+	public static String SAMPLER_HOPPER_TICK_USAGE = "HTU";
 	public static String SAMPLER_HOPPER_TICK = "HT";
 	public static String SAMPLER_HOPPER_SECOND = "HS";
 	public static String SAMPLER_HOPPER_TIME = "HMS";
+	public static String SAMPLER_FLUID_TICK_USAGE = "FTU";
+	public static String SAMPLER_FLUID_TICK = "FT";
+	public static String SAMPLER_FLUID_SECOND = "FS";
+	public static String SAMPLER_FLUID_TIME = "FMS";
 	public static String SAMPLER_TPS = "TPS";
 	public static String SAMPLER_TICK = "TICK";
 	public static String SAMPLER_TIU = "TIU";
@@ -126,6 +145,21 @@ public class Info
 	public static String ACTION_CULL_ENTITIES_STATUS = "Culling $c / $t ($p)";
 	public static String ACTION_CULL_ENTITIES_NAME = "Cull Entities";
 	public static String ACTION_CULL_ENTITIES_DESCRIPTION = "Culls entities in the specified locations and entity types.";
+
+	public static String[] ACTION_UPDATE_FLUID_TAGS = new String[] {"update-fluid", "upf"};
+	public static String ACTION_UPDATE_FLUID_STATUS = "Updating Fluid $c / $t ($p)";
+	public static String ACTION_UPDATE_FLUID_NAME = "Update Fluid";
+	public static String ACTION_UPDATE_FLUID_DESCRIPTION = "Updates (restarts) ALL fluids in various chunks.";
+
+	public static String[] ACTION_LOCK_FLUID_TAGS = new String[] {"lock-fluid", "lf"};
+	public static String ACTION_LOCK_FLUID_STATUS = "Locking Fluid $c / $t ($p)";
+	public static String ACTION_LOCK_FLUID_NAME = "Lock Fluid";
+	public static String ACTION_LOCK_FLUID_DESCRIPTION = "Locks (stops) fluids in various chunks for a time period.";
+
+	public static String[] ACTION_UNLOCK_FLUID_TAGS = new String[] {"unlock-fluid", "ulf"};
+	public static String ACTION_UNLOCK_FLUID_STATUS = "Unlocking Fluid $c / $t ($p)";
+	public static String ACTION_UNLOCK_FLUID_NAME = "Unlock Fluid";
+	public static String ACTION_UNLOCK_FLUID_DESCRIPTION = "Unlocks (restarts) fluids in various chunks.";
 
 	public static String[] ACTION_LOCK_HOPPER_TAGS = new String[] {"lock-hopper", "lh"};
 	public static String ACTION_LOCK_HOPPER_STATUS = "Locking Hopper $c / $t ($p)";

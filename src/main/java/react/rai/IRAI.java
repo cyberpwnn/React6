@@ -1,5 +1,6 @@
 package react.rai;
 
+import org.bukkit.command.CommandSender;
 import org.cyberpwn.glang.GList;
 
 public interface IRAI
@@ -10,5 +11,9 @@ public interface IRAI
 
 	public void addGoal(IGoal goal);
 
-	public void printStatus();
+	public GList<RAIEvent> getEvents();
+
+	public void callEvent(RAIEvent e);
+
+	public GList<CommandSender> getListeners();
 }

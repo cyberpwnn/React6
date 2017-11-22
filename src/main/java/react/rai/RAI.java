@@ -1,18 +1,33 @@
 package react.rai;
 
-import org.cyberpwn.gconcurrent.TICK;
-import org.cyberpwn.glang.GList;
+import java.util.Arrays;
 
-import surge.util.C;
-import surge.util.D;
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
+import org.cyberpwn.glang.GList;
+import org.cyberpwn.gmath.M;
+
+import react.Gate;
 
 public class RAI implements IRAI
 {
 	private GList<IGoal> goals;
+	private GList<RAIEvent> events;
+	private GList<RAIEvent> logEvents;
+	private GList<CommandSender> listeners;
+	public long since;
+
+	public static RAI instance;
 
 	public RAI()
 	{
 		goals = new GList<IGoal>();
+		events = new GList<RAIEvent>();
+		logEvents = new GList<RAIEvent>();
+		listeners = new GList<CommandSender>();
+		instance = this;
+		getListeners().add(Bukkit.getConsoleSender());
+		since = M.ms();
 	}
 
 	@Override
@@ -35,39 +50,38 @@ public class RAI implements IRAI
 			i.update();
 		}
 
-		if(TICK.tick % 50 == 0)
+		for(RAIEvent i : logEvents)
 		{
-			printStatus();
+			for(CommandSender j : getListeners())
+			{
+				Gate.msgRAI(j, i.toString());
+			}
 		}
+
+		logEvents.clear();
 	}
 
 	@Override
-	public void printStatus()
+	public GList<RAIEvent> getEvents()
 	{
-		for(IGoal i : getGoals())
+		return events;
+	}
+
+	@Override
+	public void callEvent(RAIEvent e)
+	{
+		if(events.size() > 1 && (events.get(events.size() - 1).getType().equals(e.getType()) && Arrays.equals(events.get(events.size() - 1).getPars(), e.getPars())))
 		{
-			if(i.isFailing())
-			{
-				D.l(i.getTag() + " -> " + C.RED + "FAILED GOAL");
-			}
-
-			else
-			{
-				D.l(i.getTag() + " -> " + C.GREEN + "ACHIEVED GOAL");
-			}
-
-			for(IGoal j : i.getSubgoals())
-			{
-				if(j.isFailing())
-				{
-					D.l("  " + j.getTag() + " -> " + C.RED + "FAILED GOAL");
-				}
-
-				else
-				{
-					D.l("  " + j.getTag() + " -> " + C.GREEN + "ACHIEVED GOAL");
-				}
-			}
+			return;
 		}
+
+		events.add(e);
+		logEvents.add(e);
+	}
+
+	@Override
+	public GList<CommandSender> getListeners()
+	{
+		return listeners;
 	}
 }

@@ -105,6 +105,81 @@ public class Config
 	@Address(23)
 	public static final String A_CULL_RULES = "entity-culler.rules";
 
+	@Address(24)
+	public static final String A_RAI_TPS_HIGH_TICK = "rai.tps.high-tick";
+
+	@Address(25)
+	public static final String A_RAI_REDSTONE_TIME_FLOOR = "rai.redstone.time-floor";
+
+	@Address(26)
+	public static final String A_RAI_REDSTONE_TIME_CEIL = "rai.redstone.time-ceil";
+
+	@Address(27)
+	public static final String A_RAI_REDSTONE_TIME_MUDDING = "rai.redstone.time-mudding";
+
+	@Address(28)
+	public static final String A_RAI_REDSTONE_TIME_FUNCTION = "rai.redstone.time-function";
+
+	@Address(29)
+	public static final String A_RAI_REDSTONE_TIME_OVERBLEED = "rai.redstone.time-overbleed";
+
+	@Address(30)
+	public static final String A_RAI_REDSTONE_TIME_RADIUS = "rai.redstone.time-radius";
+
+	@Address(31)
+	public static final String A_RAI_REDSTONE_TIME_PROPIGATION = "rai.redstone.time-propigation";
+
+	@Address(32)
+	public static final String A_RAI_HOPPER_TIME_FLOOR = "rai.hopper.time-floor";
+
+	@Address(33)
+	public static final String A_RAI_HOPPER_TIME_CEIL = "rai.hopper.time-ceil";
+
+	@Address(34)
+	public static final String A_RAI_HOPPER_TIME_MUDDING = "rai.hopper.time-mudding";
+
+	@Address(35)
+	public static final String A_RAI_HOPPER_TIME_FUNCTION = "rai.hopper.time-function";
+
+	@Address(36)
+	public static final String A_RAI_HOPPER_TIME_OVERBLEED = "rai.hopper.time-overbleed";
+
+	@Address(37)
+	public static final String A_RAI_HOPPER_TIME_RADIUS = "rai.hopper.time-radius";
+
+	@Address(38)
+	public static final String A_RAI_HOPPER_TIME_PROPIGATION = "rai.hopper.time-propigation";
+
+	@Address(39)
+	public static final String A_RAI_ENTITY_CHUNK_MULTIPLIER = "rai.entity.chunk-multiplier";
+
+	@Address(40)
+	public static final String A_RAI_ENTITY_CHUNK_CLUSTERIZER = "rai.entity.chunk-clusterer";
+
+	@Address(41)
+	public static final String A_RAI_ENTITY_CHUNK_RADIUS = "rai.entity.chunk-radius";
+
+	@Address(42)
+	public static final String A_RAI_FLUID_TIME_FLOOR = "rai.fluid.time-floor";
+
+	@Address(43)
+	public static final String A_RAI_FLUID_TIME_CEIL = "rai.fluid.time-ceil";
+
+	@Address(44)
+	public static final String A_RAI_FLUID_TIME_MUDDING = "rai.fluid.time-mudding";
+
+	@Address(45)
+	public static final String A_RAI_FLUID_TIME_FUNCTION = "rai.fluid.time-function";
+
+	@Address(46)
+	public static final String A_RAI_FLUID_TIME_OVERBLEED = "rai.fluid.time-overbleed";
+
+	@Address(47)
+	public static final String A_RAI_FLUID_TIME_RADIUS = "rai.fluid.time-radius";
+
+	@Address(48)
+	public static final String A_RAI_FLUID_TIME_PROPIGATION = "rai.fluid.time-propigation";
+
 	@Sector(0)
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 1, max = 7)
@@ -136,10 +211,10 @@ public class Config
 
 	@Sector(6)
 	@Injection(InjectionMethod.RELOAD)
-	@Clip(min = 2, max = 4)
+	@Clip(min = 2, max = 8)
 	@PoolCount
 	@Experimental
-	public static int POOL_MAXTHREADS = 2;
+	public static int POOL_MAXTHREADS = 4;
 
 	@Sector(7)
 	@Injection(InjectionMethod.SUBSTRATE)
@@ -219,6 +294,156 @@ public class Config
 	@Sector(23)
 	@Injection(InjectionMethod.SWAP)
 	public static GList<String> CULL_RULES = getDefaultCullRules();
+
+	@Sector(24)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 20.0, max = 70.0)
+	public static double RAI_TPS_HIGH_TICK = 50.0;
+
+	@Sector(25)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 2000000, max = 9000000)
+	public static long RAI_REDSTONE_TIME_FLOOR = 2000000;
+
+	@Sector(26)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 10000000, max = 50000000)
+	public static long RAI_REDSTONE_TIME_CEIL = 30000000;
+
+	@Sector(27)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 2000000, max = 10000000)
+	public static long RAI_REDSTONE_TIME_MUDDING = 2360000;
+
+	@Sector(28)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 0.01, max = 1.5)
+	public static double RAI_REDSTONE_TIME_FUNCTION = 0.36;
+
+	@Sector(29)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 0.05, max = 5.5)
+	public static double RAI_REDSTONE_TIME_OVERBLEED = 1.54;
+
+	@Sector(30)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 1, max = 3)
+	public static int RAI_REDSTONE_TIME_RADIUS = 2;
+
+	@Sector(31)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 500, max = 2000)
+	public static int RAI_REDSTONE_TIME_PROPIGATION = 1000;
+
+	@Sector(32)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 2000000, max = 9000000)
+	public static long RAI_HOPPER_TIME_FLOOR = 2000000;
+
+	@Sector(33)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 10000000, max = 50000000)
+	public static long RAI_HOPPER_TIME_CEIL = 30000000;
+
+	@Sector(34)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 2000000, max = 10000000)
+	public static long RAI_HOPPER_TIME_MUDDING = 2360000;
+
+	@Sector(35)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 0.01, max = 1.5)
+	public static double RAI_HOPPER_TIME_FUNCTION = 0.16;
+
+	@Sector(36)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 0.05, max = 5.5)
+	public static double RAI_HOPPER_TIME_OVERBLEED = 1.54;
+
+	@Sector(37)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 1, max = 3)
+	public static int RAI_HOPPER_TIME_RADIUS = 2;
+
+	@Sector(38)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 500, max = 2000)
+	public static int RAI_HOPPER_TIME_PROPIGATION = 1000;
+
+	@Sector(39)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 1, max = 5)
+	public static int RAI_ENTITY_CHUNK_MULTIPLIER = 3;
+
+	@Sector(40)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 20, max = 100)
+	public static int RAI_ENTITY_CHUNK_CLUSTERIZER = 40;
+
+	@Sector(41)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 1, max = 3)
+	public static int RAI_ENTITY_CHUNK_RADIUS = 2;
+
+	@Sector(42)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 2000000, max = 9000000)
+	public static long RAI_FLUID_TIME_FLOOR = 2000000;
+
+	@Sector(43)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 10000000, max = 50000000)
+	public static long RAI_FLUID_TIME_CEIL = 30000000;
+
+	@Sector(44)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 2000000, max = 10000000)
+	public static long RAI_FLUID_TIME_MUDDING = 2360000;
+
+	@Sector(45)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 0.01, max = 1.5)
+	public static double RAI_FLUID_TIME_FUNCTION = 0.36;
+
+	@Sector(46)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 0.05, max = 5.5)
+	public static double RAI_FLUID_TIME_OVERBLEED = 1.54;
+
+	@Sector(47)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 1, max = 3)
+	public static int RAI_FLUID_TIME_RADIUS = 2;
+
+	@Sector(48)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 500, max = 2000)
+	public static int RAI_FLUID_TIME_PROPIGATION = 1000;
 
 	private static boolean hrld = false;
 	private static boolean rns = false;

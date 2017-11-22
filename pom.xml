@@ -17,7 +17,7 @@
 		<react.plugin.name>${project.name}</react.plugin.name>
 		<react.plugin.version>${project.version}</react.plugin.version>
 		<react.plugin.description>${project.description}</react.plugin.description>
-		<react.plugin.main>surge.Main</react.plugin.main>
+		<react.plugin.main>react.surge.Main</react.plugin.main>
 		<react.plugin.authors>cyberpwn, Puretie</react.plugin.authors>
 		<react.release.name>${project.name}-${project.version}</react.release.name>
 		<react.target>${project.basedir}/target</react.target>
@@ -67,6 +67,36 @@
 									<include>org.cyberpwn:*</include>
 								</includes>
 							</artifactSet>
+							<relocations>
+								<relocation>
+									<pattern>org.cyberpwn.gbench</pattern>
+									<shadedPattern>react.gbench</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>org.cyberpwn.gconcurrent</pattern>
+									<shadedPattern>react.gconcurrent</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>org.cyberpwn.gformat</pattern>
+									<shadedPattern>react.gformat</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>org.cyberpwn.glang</pattern>
+									<shadedPattern>react.glang</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>org.cyberpwn.gmath</pattern>
+									<shadedPattern>react.gmath</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>org.cyberpwn.json</pattern>
+									<shadedPattern>react.json</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>surge</pattern>
+									<shadedPattern>react.surge</shadedPattern>
+								</relocation>
+							</relocations>
 						</configuration>
 					</execution>
 				</executions>
@@ -146,6 +176,15 @@
 			<id>central</id>
 			<url>https://raw.githubusercontent.com/cyberpwnn/Central/master/</url>
 		</repository>
+		<repository>
+			<id>fawe</id>
+			<url>http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
+		</repository>
+		<repository>
+			<id>jcenter</id>
+			<name>jcenter-bintray</name>
+			<url>http://jcenter.bintray.com</url>
+		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -156,9 +195,14 @@
 			<version>1.12.2</version>
 		</dependency>
 		<dependency>
+			<groupId>com.boydti</groupId>
+			<artifactId>fawe-api</artifactId>
+			<version>latest</version>
+		</dependency>
+		<dependency>
 			<groupId>org.cyberpwn</groupId>
 			<artifactId>Surge</artifactId>
-			<version>2.2</version>
+			<version>2.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.cyberpwn</groupId>
