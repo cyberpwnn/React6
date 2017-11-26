@@ -60,6 +60,13 @@ public class HopperWormhole
 
 					if(poss.getBlock().getType().equals(Material.HOPPER))
 					{
+						if(breadcrumbs.size() > 1)
+						{
+							breadcrumbs.removeLast();
+							cursor = breadcrumbs.get(breadcrumbs.last());
+							break;
+						}
+
 						return null;
 					}
 				}

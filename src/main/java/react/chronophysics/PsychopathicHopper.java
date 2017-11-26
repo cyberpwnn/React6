@@ -6,8 +6,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import surge.util.D;
-
 public class PsychopathicHopper implements Listener
 {
 	private Hopper h;
@@ -42,8 +40,6 @@ public class PsychopathicHopper implements Listener
 				contents[isi] = new ItemStack(Material.AIR);
 				getInventory().addItem(isf);
 				inv.setContents(contents);
-				D.v("Transfered: " + isf.toString());
-
 				transfered++;
 			}
 		}

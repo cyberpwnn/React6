@@ -9,9 +9,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.inventory.ItemStack;
+import org.cyberpwn.gconcurrent.A;
+import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
@@ -23,6 +26,7 @@ import surge.Surge;
 import surge.control.Controller;
 import surge.sched.Task;
 import surge.util.MaterialBlock;
+import surge.util.W;
 
 public class ChronophyHopperController extends Controller
 {
@@ -41,13 +45,6 @@ public class ChronophyHopperController extends Controller
 	public void stop()
 	{
 		Surge.unregister(this);
-	}
-
-	@Unused
-	@Override
-	public void tick()
-	{
-
 	}
 
 	private void registerHopperWormhole(HopperWormhole wh)
@@ -100,12 +97,31 @@ public class ChronophyHopperController extends Controller
 			return;
 		}
 
-		HopperWormhole hw = tryHopperWormhole(hopper, 64, 3);
-
-		if(hw != null)
+		new A()
 		{
-			registerHopperWormhole(hw);
-		}
+			@Override
+			public void run()
+			{
+				HopperWormhole hw = tryHopperWormhole(hopper, 64, 4);
+
+				new S()
+				{
+					@Override
+					public void run()
+					{
+						if(hw != null)
+						{
+							if(isRegistered(hopper.getLocation()))
+							{
+								return;
+							}
+
+							registerHopperWormhole(hw);
+						}
+					}
+				};
+			}
+		};
 	}
 
 	public GList<HopperWormhole> getWormhole(Block b)
@@ -209,6 +225,29 @@ public class ChronophyHopperController extends Controller
 	}
 
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+	public void on(BlockPlaceEvent e)
+	{
+		for(Block i : W.blockFaces(e.getBlock()))
+		{
+			if(i.getType().equals(Material.HOPPER))
+			{
+				for(HopperWormhole j : getWormhole(i))
+				{
+					unregisterHopperWormhole(j);
+				}
+			}
+		}
+
+		if(e.getBlock().getType().equals(Material.HOPPER))
+		{
+			for(HopperWormhole i : getWormhole(e.getBlock()))
+			{
+				unregisterHopperWormhole(i);
+			}
+		}
+	}
+
+	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 	public void on(BlockBreakEvent e)
 	{
 		for(HopperWormhole i : getWormhole(e.getBlock()))
@@ -247,5 +286,12 @@ public class ChronophyHopperController extends Controller
 				}
 			}
 		}
+	}
+
+	@Unused
+	@Override
+	public void tick()
+	{
+
 	}
 }
