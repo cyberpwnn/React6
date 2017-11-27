@@ -1,8 +1,5 @@
 package react.graph;
 
-import org.bukkit.map.MapCanvas;
-import org.bukkit.map.MapView;
-
 import react.papyrus.BufferedFrame;
 
 public interface IGraph
@@ -13,7 +10,7 @@ public interface IGraph
 
 	public long getTimeViewport();
 
-	public void render(BufferedFrame frame, MapCanvas c, MapView view);
+	public void render(BufferedFrame frame);
 
 	public double getMax();
 

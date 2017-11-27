@@ -9,6 +9,7 @@ import react.controller.DropMergeController;
 import react.controller.EntityCacheController;
 import react.controller.EntityCullController;
 import react.controller.EntityStackController;
+import react.controller.EventController;
 import react.controller.FastDecayController;
 import react.controller.FluidController;
 import react.controller.GlassController;
@@ -105,6 +106,9 @@ public class React
 
 	@Control
 	public ChronophyFluidController fluidChronophyController;
+
+	@Control
+	public EventController eventController;
 
 	@Enable
 	public void enable()

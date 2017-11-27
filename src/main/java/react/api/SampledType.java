@@ -1,6 +1,7 @@
 package react.api;
 
 import react.Info;
+import react.React;
 
 public enum SampledType
 {
@@ -33,6 +34,11 @@ public enum SampledType
 	ENTTILE(Info.SAMPLER_ENTTILE);
 
 	private String node;
+
+	public ISampler get()
+	{
+		return React.instance.sampleController.getSampler(toString());
+	}
 
 	private SampledType(String s)
 	{

@@ -145,4 +145,19 @@ public class SampleController extends Controller implements IMasterTickComponent
 	{
 		return "Sampler";
 	}
+
+	public GMap<String, ISampler> getSamplers()
+	{
+		return samplers;
+	}
+
+	public SuperSampler getSs()
+	{
+		return ss;
+	}
+
+	public int getCd()
+	{
+		return cd;
+	}
 }

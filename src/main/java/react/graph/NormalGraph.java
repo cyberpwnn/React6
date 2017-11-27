@@ -1,8 +1,5 @@
 package react.graph;
 
-import org.bukkit.map.MapCanvas;
-import org.bukkit.map.MapView;
-
 import react.papyrus.BufferedFrame;
 
 public abstract class NormalGraph implements IGraph
@@ -39,9 +36,9 @@ public abstract class NormalGraph implements IGraph
 	}
 
 	@Override
-	public void render(BufferedFrame frame, MapCanvas c, MapView view)
+	public void render(BufferedFrame frame)
 	{
-		onRender(frame, c, view);
+		onRender(frame);
 	}
 
 	@Override
@@ -56,5 +53,5 @@ public abstract class NormalGraph implements IGraph
 		this.max = max;
 	}
 
-	public abstract void onRender(BufferedFrame frame, MapCanvas c, MapView view);
+	public abstract void onRender(BufferedFrame frame);
 }

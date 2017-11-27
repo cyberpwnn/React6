@@ -121,13 +121,20 @@ public class BufferedFrame
 		}
 	}
 
-	public void write(int x, int y, byte c)
+	public boolean write(int x, int y, byte c)
 	{
+		if((int) M.clip(x, 0, width - 1) != x || (int) M.clip(y, 0, height - 1) != y)
+		{
+			return false;
+		}
+
 		frame[(int) M.clip(x, 0, width - 1)][(int) M.clip(y, 0, height - 1)] = c;
+		return true;
 	}
 
-	public void write(BufferedFrame frame, int sx, int sy)
+	public int write(BufferedFrame frame, int sx, int sy)
 	{
+		int wrote = 0;
 		byte[][] pframe = frame.getRawFrame();
 
 		int i;
@@ -142,9 +149,14 @@ public class BufferedFrame
 					continue;
 				}
 
-				write(i + sx, j + sy, pframe[i][j]);
+				if(write(i + sx, j + sy, pframe[i][j]))
+				{
+					wrote++;
+				}
 			}
 		}
+
+		return wrote;
 	}
 
 	public void write(BufferedFrame frame)

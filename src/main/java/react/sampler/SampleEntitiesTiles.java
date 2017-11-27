@@ -4,12 +4,27 @@ import org.cyberpwn.gformat.F;
 
 import react.api.MSampler;
 import react.api.SampledType;
+import react.graph.IFormatter;
 import surge.util.Anchor;
 import surge.util.C;
 
 @Anchor(2)
 public class SampleEntitiesTiles extends MSampler
 {
+	private IFormatter formatter;
+
+	public SampleEntitiesTiles()
+	{
+		formatter = new IFormatter()
+		{
+			@Override
+			public String from(double d)
+			{
+				return F.f((int) d);
+			}
+		};
+	}
+
 	@Override
 	public void construct()
 	{
@@ -31,5 +46,11 @@ public class SampleEntitiesTiles extends MSampler
 	public String get()
 	{
 		return "\u2756" + F.f((int) getValue());
+	}
+
+	@Override
+	public IFormatter getFormatter()
+	{
+		return formatter;
 	}
 }

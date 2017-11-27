@@ -5,12 +5,27 @@ import org.cyberpwn.gformat.F;
 import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
+import react.graph.IFormatter;
 import surge.util.Anchor;
 import surge.util.C;
 
 @Anchor(2)
 public class SampleEntitiesLiving extends MSampler
 {
+	private IFormatter formatter;
+
+	public SampleEntitiesLiving()
+	{
+		formatter = new IFormatter()
+		{
+			@Override
+			public String from(double d)
+			{
+				return F.f((int) d);
+			}
+		};
+	}
+
 	@Override
 	public void construct()
 	{
@@ -32,6 +47,12 @@ public class SampleEntitiesLiving extends MSampler
 	public String get()
 	{
 		int ca = React.instance.entityCacheController.getCachedEntities();
-		return "\u2764" + F.f((int) getValue()) + C.LIGHT_PURPLE + "\u21C6" + F.f((int) ca);
+		return "\u2764" + getFormatter().from(getValue()) + C.LIGHT_PURPLE + "\u21C6" + F.f((int) ca);
+	}
+
+	@Override
+	public IFormatter getFormatter()
+	{
+		return formatter;
 	}
 }

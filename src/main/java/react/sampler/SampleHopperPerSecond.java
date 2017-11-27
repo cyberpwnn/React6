@@ -5,12 +5,27 @@ import org.cyberpwn.gformat.F;
 import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
+import react.graph.IFormatter;
 import surge.util.Anchor;
 import surge.util.C;
 
 @Anchor(2)
 public class SampleHopperPerSecond extends MSampler
 {
+	private IFormatter formatter;
+
+	public SampleHopperPerSecond()
+	{
+		formatter = new IFormatter()
+		{
+			@Override
+			public String from(double d)
+			{
+				return F.f(d, 0) + "/s";
+			}
+		};
+	}
+
 	@Override
 	public void construct()
 	{
@@ -31,6 +46,12 @@ public class SampleHopperPerSecond extends MSampler
 	@Override
 	public String get()
 	{
-		return F.f(getValue(), 0) + "/s";
+		return getFormatter().from(getValue());
+	}
+
+	@Override
+	public IFormatter getFormatter()
+	{
+		return formatter;
 	}
 }

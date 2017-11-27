@@ -1,16 +1,11 @@
-package react.graphs;
+package react.graph;
 
-import org.bukkit.map.MapCanvas;
-import org.bukkit.map.MapView;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.Average;
 import org.cyberpwn.gmath.M;
 
 import react.api.ISampler;
-import react.graph.IFormatter;
-import react.graph.IGraph;
-import react.graph.NormalGraph;
 import react.papyrus.BufferedFrame;
 import react.papyrus.FrameColor;
 import react.papyrus.ReactFont;
@@ -47,7 +42,7 @@ public class GraphSampler extends NormalGraph implements IGraph
 	}
 
 	@Override
-	public void onRender(BufferedFrame frame, MapCanvas c, MapView view)
+	public void onRender(BufferedFrame frame)
 	{
 		GMap<Long, Double> map = getPlotBoard().getBetween(M.ms() - getTimeViewport(), M.ms());
 		GList<Long> da = map.k();

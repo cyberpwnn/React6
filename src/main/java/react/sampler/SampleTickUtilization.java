@@ -5,13 +5,27 @@ import org.cyberpwn.gmath.Average;
 
 import react.api.MSampler;
 import react.api.SampledType;
+import react.graph.IFormatter;
 import surge.util.Anchor;
 import surge.util.C;
 
 @Anchor(2)
 public class SampleTickUtilization extends MSampler
 {
+	private IFormatter formatter;
 	private Average aa = new Average(50);
+
+	public SampleTickUtilization()
+	{
+		formatter = new IFormatter()
+		{
+			@Override
+			public String from(double d)
+			{
+				return F.pc(d, 0);
+			}
+		};
+	}
 
 	@Override
 	public void construct()
@@ -34,6 +48,12 @@ public class SampleTickUtilization extends MSampler
 	@Override
 	public String get()
 	{
-		return F.pc(getValue(), 0);
+		return getFormatter().from(getValue());
+	}
+
+	@Override
+	public IFormatter getFormatter()
+	{
+		return formatter;
 	}
 }

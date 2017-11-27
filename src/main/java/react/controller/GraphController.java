@@ -6,59 +6,52 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.map.MapCanvas;
 import org.bukkit.map.MapView;
-import org.cyberpwn.gformat.F;
+import org.cyberpwn.gconcurrent.A;
+import org.cyberpwn.glang.GMap;
 
-import react.React;
 import react.api.SampledType;
-import react.graph.IFormatter;
-import react.graphs.GraphSampler;
+import react.event.ReactScrollEvent;
+import react.event.ScrollDirection;
+import react.graph.ColossalView;
+import react.graph.GraphSampler;
+import react.graph.Point;
 import react.papyrus.BufferedFrame;
 import react.papyrus.FrameColor;
+import react.papyrus.IPapyrus;
 import react.papyrus.IRenderer;
 import react.papyrus.Papyrus;
 import surge.Surge;
 import surge.control.Controller;
+import surge.util.C;
 
 public class GraphController extends Controller
 {
-	private GraphSampler chk;
-	private GraphSampler mah;
-	private GraphSampler tick;
+	private GMap<SampledType, GraphSampler> g;
+	private ColossalView colossal;
 
 	@Override
 	public void start()
 	{
 		Surge.register(this);
-		mah = new GraphSampler(React.instance.sampleController.getSampler(SampledType.MAHS.toString()), new IFormatter()
-		{
-			@Override
-			public String from(double d)
-			{
-				return F.memSize((long) d);
-			}
-		}, 20000);
-		mah.setGraphColor(FrameColor.matchColor(Color.YELLOW));
+		g = new GMap<SampledType, GraphSampler>();
 
-		tick = new GraphSampler(React.instance.sampleController.getSampler(SampledType.TICK.toString()), new IFormatter()
+		for(SampledType i : SampledType.values())
 		{
-			@Override
-			public String from(double d)
-			{
-				return F.f(d, 0);
-			}
-		}, 20000);
-		tick.setGraphColor(FrameColor.LIGHT_GREEN);
+			GraphSampler graph = new GraphSampler(i.get(), i.get().getFormatter(), 20000);
+			int r = C.chatToDye(i.get().getColor().chatColor()).getColor().asRGB();
+			graph.setGraphColor(FrameColor.matchColor(new Color(r)));
+			g.put(i, graph);
+		}
 
-		chk = new GraphSampler(React.instance.sampleController.getSampler(SampledType.CHK_TIME.toString()), new IFormatter()
-		{
-			@Override
-			public String from(double d)
-			{
-				return F.time(d / 1000000.0, 1);
-			}
-		}, 20000);
-		chk.setGraphColor(FrameColor.RED);
-
+		colossal = new ColossalView();
+		colossal.addGraph(new Point(0, 0), new Point(128, 64), g.get(SampledType.TICK));
+		colossal.addGraph(new Point(0, 64), new Point(64, 64), g.get(SampledType.MAHS));
+		colossal.addGraph(new Point(64, 64), new Point(64, 64), g.get(SampledType.CHK_TIME));
+		colossal.addGraph(new Point(0, 128), new Point(64, 64), g.get(SampledType.MEM));
+		colossal.addGraph(new Point(0, 128 + 64), new Point(64, 64), g.get(SampledType.ENTDROP));
+		colossal.addGraph(new Point(64, 128), new Point(64, 128), g.get(SampledType.ENTLIV));
+		colossal.addGraph(new Point(0, 256), new Point(128, 128), g.get(SampledType.TICK));
+		colossal.recompile();
 	}
 
 	@Override
@@ -70,37 +63,50 @@ public class GraphController extends Controller
 	@Override
 	public void tick()
 	{
-		tick.sample();
-		mah.sample();
-		chk.sample();
+		new A()
+		{
+			@Override
+			public void run()
+			{
+				for(SampledType i : g.k())
+				{
+					g.get(i).sample();
+				}
+			}
+		};
+	}
+
+	@SuppressWarnings("deprecation")
+	@EventHandler
+	public void on(ReactScrollEvent e)
+	{
+		if(e.getDirection().equals(ScrollDirection.UP))
+		{
+			colossal.scroll(16);
+		}
+
+		else
+		{
+			colossal.scroll(-16);
+		}
 	}
 
 	@EventHandler
 	public void on(PlayerCommandPreprocessEvent e)
 	{
-		BufferedFrame ba = new BufferedFrame(64, 64);
-		BufferedFrame bb = new BufferedFrame(64, 64);
-		BufferedFrame bc = new BufferedFrame(128, 64);
+		IPapyrus pap = new Papyrus(e.getPlayer().getWorld());
 
-		if(e.getMessage().equals("/pap"))
+		pap.addRenderer(new IRenderer()
 		{
-			Papyrus p = new Papyrus(e.getPlayer().getWorld());
-			p.addRenderer(new IRenderer()
+			@Override
+			public void draw(BufferedFrame frame, MapCanvas c, MapView v)
 			{
-				@Override
-				public void draw(BufferedFrame frame, MapCanvas c, MapView v)
-				{
-					tick.render(bc, c, v);
-					chk.render(bb, c, v);
-					mah.render(ba, c, v);
+				colossal.getView().write(FrameColor.matchColor(0, 0, 0));
+				colossal.render();
+				frame.write(colossal.getView());
+			}
+		});
 
-					frame.write(ba, 0, 0);
-					frame.write(bb, 64, 0);
-					frame.write(bc, 0, 64);
-				}
-			});
-
-			e.getPlayer().getInventory().addItem(p.makeMapItem());
-		}
+		e.getPlayer().getInventory().addItem(pap.makeMapItem());
 	}
 }

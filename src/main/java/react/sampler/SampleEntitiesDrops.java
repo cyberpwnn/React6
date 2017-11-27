@@ -21,8 +21,7 @@ public class SampleEntitiesDrops extends MSampler
 			@Override
 			public String from(double d)
 			{
-				// TODO Auto-generated method stub
-				return null;
+				return F.f((int) d);
 			}
 		};
 	}
@@ -48,6 +47,12 @@ public class SampleEntitiesDrops extends MSampler
 	public String get()
 	{
 		int ca = React.instance.entityCacheController.getCachedDrops();
-		return "\u25CF" + F.f((int) getValue()) + C.LIGHT_PURPLE + "\u21C6" + F.f((int) ca);
+		return "\u25CF" + getFormatter().from(getValue()) + C.LIGHT_PURPLE + "\u21C6" + F.f((int) ca);
+	}
+
+	@Override
+	public IFormatter getFormatter()
+	{
+		return formatter;
 	}
 }
