@@ -28,7 +28,7 @@ public class SampleTickTime extends MSampler
 	public void sample()
 	{
 		aa.put(ss().getTickTime());
-		setValue(aa.getAverage());
+		setValue(ss().getTickTime());
 	}
 
 	@Override

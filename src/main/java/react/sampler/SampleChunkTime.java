@@ -10,19 +10,18 @@ import surge.util.Anchor;
 import surge.util.C;
 
 @Anchor(2)
-public class SampleEntitiesDrops extends MSampler
+public class SampleChunkTime extends MSampler
 {
 	private IFormatter formatter;
 
-	public SampleEntitiesDrops()
+	public SampleChunkTime()
 	{
 		formatter = new IFormatter()
 		{
 			@Override
 			public String from(double d)
 			{
-				// TODO Auto-generated method stub
-				return null;
+				return F.time(d / 1000000.0, 1);
 			}
 		};
 	}
@@ -30,24 +29,29 @@ public class SampleEntitiesDrops extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Drops");
-		setDescription("Total Drops");
-		setID(SampledType.ENTDROP.toString());
+		setName("Chunk Time");
+		setDescription("Samples Chunl total load times");
+		setID(SampledType.CHK_TIME.toString());
 		setValue(0);
-		setColor(C.AQUA, C.AQUA);
+		setColor(C.RED, C.RED);
 		setInterval(1);
 	}
 
 	@Override
 	public void sample()
 	{
-		setValue(ss().getTotalDrops());
+		setValue(React.instance.chunkController.getaCSMS().getAverage());
 	}
 
 	@Override
 	public String get()
 	{
-		int ca = React.instance.entityCacheController.getCachedDrops();
-		return "\u25CF" + F.f((int) getValue()) + C.LIGHT_PURPLE + "\u21C6" + F.f((int) ca);
+		return getFormatter().from(getValue());
+	}
+
+	@Override
+	public IFormatter getFormatter()
+	{
+		return formatter;
 	}
 }

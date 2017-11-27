@@ -5,6 +5,7 @@ import org.cyberpwn.gmath.Average;
 
 import react.api.MSampler;
 import react.api.SampledType;
+import react.graph.IFormatter;
 import surge.util.Anchor;
 import surge.util.C;
 
@@ -12,6 +13,19 @@ import surge.util.C;
 public class SampleChunksLoadedPerSecond extends MSampler
 {
 	private Average a = new Average(19);
+	private IFormatter formatter;
+
+	public SampleChunksLoadedPerSecond()
+	{
+		formatter = new IFormatter()
+		{
+			@Override
+			public String from(double d)
+			{
+				return F.f((int) d);
+			}
+		};
+	}
 
 	@Override
 	public void construct()
@@ -34,6 +48,12 @@ public class SampleChunksLoadedPerSecond extends MSampler
 	@Override
 	public String get()
 	{
-		return "\u29F1 " + F.f((int) getValue()) + "/s";
+		return "\u29F1 " + getFormatter().from(getValue()) + "/s";
+	}
+
+	@Override
+	public IFormatter getFormatter()
+	{
+		return formatter;
 	}
 }

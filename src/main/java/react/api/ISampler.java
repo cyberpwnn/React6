@@ -1,10 +1,13 @@
 package react.api;
 
+import react.graph.IFormatter;
 import surge.util.C;
 
 public interface ISampler
 {
 	public String getID();
+
+	public IFormatter getFormatter();
 
 	public String getName();
 

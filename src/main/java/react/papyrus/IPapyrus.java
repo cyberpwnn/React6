@@ -1,5 +1,6 @@
 package react.papyrus;
 
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.map.MapView;
 import org.cyberpwn.glang.GList;
 
@@ -18,4 +19,6 @@ public interface IPapyrus
 	public void removeRenderer(IRenderer renderer);
 
 	public void destroy();
+
+	public ItemStack makeMapItem();
 }

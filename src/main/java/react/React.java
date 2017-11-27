@@ -1,7 +1,9 @@
 package react;
 
 import react.controller.ActionController;
+import react.controller.ChronophyFluidController;
 import react.controller.ChronophyHopperController;
+import react.controller.ChunkController;
 import react.controller.CommandController;
 import react.controller.DropMergeController;
 import react.controller.EntityCacheController;
@@ -10,6 +12,7 @@ import react.controller.EntityStackController;
 import react.controller.FastDecayController;
 import react.controller.FluidController;
 import react.controller.GlassController;
+import react.controller.GraphController;
 import react.controller.HopperController;
 import react.controller.MonitorController;
 import react.controller.PhysicsController;
@@ -92,7 +95,16 @@ public class React
 	public FluidController fluidController;
 
 	@Control
+	public ChunkController chunkController;
+
+	@Control
+	public GraphController graphController;
+
+	@Control
 	public ChronophyHopperController chronophyHopperController;
+
+	@Control
+	public ChronophyFluidController fluidChronophyController;
 
 	@Enable
 	public void enable()

@@ -1,8 +1,10 @@
 package react.papyrus;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.map.MapCanvas;
 import org.bukkit.map.MapRenderer;
 import org.bukkit.map.MapView;
@@ -82,7 +84,7 @@ public class Papyrus extends MapRenderer implements IPapyrus
 
 					for(IRenderer i : renderers)
 					{
-						i.draw(frameBuffer);
+						i.draw(frameBuffer, c, v);
 					}
 
 					int i;
@@ -109,5 +111,14 @@ public class Papyrus extends MapRenderer implements IPapyrus
 	public void destroy()
 	{
 
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public ItemStack makeMapItem()
+	{
+		ItemStack is = new ItemStack(Material.MAP);
+		is.setDurability(map.getId());
+		return is;
 	}
 }

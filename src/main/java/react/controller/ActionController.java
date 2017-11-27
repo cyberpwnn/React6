@@ -25,6 +25,7 @@ public class ActionController extends Controller
 	@Override
 	public void start()
 	{
+
 		tasks = new GList<String>();
 		pending = new GMap<Integer, GTriset<ActionType, IActionSource, GList<ISelector>>>();
 		actions = new GMap<ActionType, IAction>();

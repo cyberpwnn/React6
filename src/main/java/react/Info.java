@@ -135,6 +135,7 @@ public class Info
 	public static String SAMPLER_ALLOCMEM = "ALLOCMEM";
 	public static String SAMPLER_MAHS = "MAHS";
 	public static String SAMPLER_CHK = "CHK";
+	public static String SAMPLER_CHK_TIME = "CHK_TIME";
 	public static String SAMPLER_CHKS = "CHKS";
 	public static String SAMPLER_ENT = "ENT";
 	public static String SAMPLER_ENTLIV = "ENTLIV";
