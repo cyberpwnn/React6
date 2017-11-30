@@ -7,12 +7,14 @@ public class ReactScrollEvent extends ReactPlayerEvent implements Cancellable
 {
 	private ScrollDirection direction;
 	private boolean cancellled;
+	private int amount;
 
-	public ReactScrollEvent(Player player, ScrollDirection direction)
+	public ReactScrollEvent(Player player, ScrollDirection direction, int amount)
 	{
 		super(player);
 		this.direction = direction;
 		cancellled = false;
+		this.amount = amount;
 	}
 
 	public ScrollDirection getDirection()
@@ -30,5 +32,15 @@ public class ReactScrollEvent extends ReactPlayerEvent implements Cancellable
 	public void setCancelled(boolean cancellled)
 	{
 		this.cancellled = cancellled;
+	}
+
+	public boolean isCancellled()
+	{
+		return cancellled;
+	}
+
+	public int getAmount()
+	{
+		return amount;
 	}
 }

@@ -8,13 +8,15 @@ import org.bukkit.map.MapCanvas;
 import org.bukkit.map.MapView;
 import org.cyberpwn.gconcurrent.A;
 import org.cyberpwn.glang.GMap;
+import org.cyberpwn.gmath.M;
 
 import react.api.SampledType;
 import react.event.ReactScrollEvent;
 import react.event.ScrollDirection;
 import react.graph.ColossalView;
+import react.graph.ColossalView.Builder;
 import react.graph.GraphSampler;
-import react.graph.Point;
+import react.graph.GraphSize;
 import react.papyrus.BufferedFrame;
 import react.papyrus.FrameColor;
 import react.papyrus.IPapyrus;
@@ -43,15 +45,14 @@ public class GraphController extends Controller
 			g.put(i, graph);
 		}
 
-		colossal = new ColossalView();
-		colossal.addGraph(new Point(0, 0), new Point(128, 64), g.get(SampledType.TICK));
-		colossal.addGraph(new Point(0, 64), new Point(64, 64), g.get(SampledType.MAHS));
-		colossal.addGraph(new Point(64, 64), new Point(64, 64), g.get(SampledType.CHK_TIME));
-		colossal.addGraph(new Point(0, 128), new Point(64, 64), g.get(SampledType.MEM));
-		colossal.addGraph(new Point(0, 128 + 64), new Point(64, 64), g.get(SampledType.ENTDROP));
-		colossal.addGraph(new Point(64, 128), new Point(64, 128), g.get(SampledType.ENTLIV));
-		colossal.addGraph(new Point(0, 256), new Point(128, 128), g.get(SampledType.TICK));
-		colossal.recompile();
+		ColossalView.Builder builder = new Builder();
+
+		for(SampledType i : SampledType.values())
+		{
+			builder.add(g.get(i), M.r(0.25) ? GraphSize.WIDE : GraphSize.SQUARE);
+		}
+
+		colossal = builder.compute();
 	}
 
 	@Override
@@ -82,18 +83,24 @@ public class GraphController extends Controller
 	{
 		if(e.getDirection().equals(ScrollDirection.UP))
 		{
-			colossal.scroll(16);
+			colossal.scroll(16 * e.getAmount());
 		}
 
 		else
 		{
-			colossal.scroll(-16);
+			colossal.scroll(-16 * e.getAmount());
 		}
 	}
 
 	@EventHandler
 	public void on(PlayerCommandPreprocessEvent e)
 	{
+		if(!e.getMessage().equals("/pap"))
+		{
+			return;
+		}
+
+		e.setCancelled(true);
 		IPapyrus pap = new Papyrus(e.getPlayer().getWorld());
 
 		pap.addRenderer(new IRenderer()

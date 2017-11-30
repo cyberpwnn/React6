@@ -1,9 +1,9 @@
 package react.graph;
 
+import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
 import react.papyrus.BufferedFrame;
-import surge.util.D;
 
 public class ColossalView
 {
@@ -16,6 +16,11 @@ public class ColossalView
 	private int maxY = 0;
 
 	public ColossalView()
+	{
+		clear();
+	}
+
+	public void clear()
 	{
 		buffers = new GMap<Point, BufferedFrame>();
 		graphs = new GMap<Point, IGraph>();
@@ -30,29 +35,44 @@ public class ColossalView
 		{
 			if(level > targetLevel)
 			{
-				level -= Math.abs(level - targetLevel) / 3.0;
+				level -= Math.abs(level - targetLevel) / 4.0;
 			}
 
 			if(level < targetLevel)
 			{
-				level += Math.abs(level - targetLevel) / 3.0;
+				level += Math.abs(level - targetLevel) / 4.0;
 			}
 		}
 
-		D.v(": " + targetLevel);
-
 		for(Point i : buffers.k())
 		{
-			graphs.get(i).render(buffers.get(i));
-			view.write(buffers.get(i), i.x, (int) (i.y - level));
+			if((level >= i.y && level < i.y + buffers.get(i).getHeight()) || (level + 128 > i.y && level < i.y + buffers.get(i).getHeight()))
+			{
+				graphs.get(i).render(buffers.get(i));
+				view.write(buffers.get(i), i.x, (int) (i.y - level));
+			}
 		}
 	}
 
 	public void scroll(int amt)
 	{
+		double pretarg = targetLevel;
 		targetLevel -= amt;
 		targetLevel = targetLevel > maxY ? maxY : targetLevel;
 		targetLevel = targetLevel < 0 ? 0 : targetLevel;
+
+		for(Point i : buffers.k())
+		{
+			if(!((pretarg >= i.y && pretarg < i.y + buffers.get(i).getHeight()) || (pretarg + 128 > i.y && pretarg < i.y + buffers.get(i).getHeight())) && ((targetLevel >= i.y && targetLevel < i.y + buffers.get(i).getHeight()) || (targetLevel + 128 > i.y && targetLevel < i.y + buffers.get(i).getHeight())))
+			{
+				IGraph g = graphs.get(i);
+
+				if(g instanceof GraphSampler)
+				{
+					((GraphSampler) g).ticksLeftTitle = 50;
+				}
+			}
+		}
 	}
 
 	public void recompile()
@@ -108,5 +128,46 @@ public class ColossalView
 	public int getMaxY()
 	{
 		return maxY;
+	}
+
+	public static class Builder
+	{
+		private GList<PointedGraph> graphs;
+
+		public Builder()
+		{
+			graphs = new GList<PointedGraph>();
+		}
+
+		public void add(IGraph graph, GraphSize size)
+		{
+			graphs.add(new PointedGraph(graph, size));
+		}
+
+		public ColossalView compute()
+		{
+			int sid = 1000;
+			ColossalView view = new ColossalView();
+			CubicleIterator it = new CubicleIterator();
+			GMap<PointedGraph, Integer> gg = new GMap<PointedGraph, Integer>();
+
+			for(PointedGraph i : graphs.copy())
+			{
+				gg.put(i, sid);
+				it.insert(i.getSize(), sid);
+				sid += 1;
+			}
+
+			for(PointedGraph i : gg.k())
+			{
+				Point pos = it.positionFor(gg.get(i));
+				Point siz = i.getSize().toPoint();
+				view.addGraph(pos, siz, i.getGraph());
+			}
+
+			it.print();
+			view.recompile();
+			return view;
+		}
 	}
 }

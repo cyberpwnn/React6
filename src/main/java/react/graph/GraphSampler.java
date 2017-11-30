@@ -1,5 +1,7 @@
 package react.graph;
 
+import java.awt.Color;
+
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.Average;
@@ -22,10 +24,11 @@ public class GraphSampler extends NormalGraph implements IGraph
 	private byte backgroundColor;
 	private byte borderColor;
 	private byte textColor;
+	public int ticksLeftTitle;
 
 	public GraphSampler(ISampler sampler, IFormatter formatter, long timeViewport)
 	{
-		super(sampler.getName(), timeViewport);
+		super(sampler.getID(), timeViewport);
 		this.sampler = sampler;
 		this.formatter = formatter;
 		graphColor = FrameColor.RED;
@@ -154,6 +157,53 @@ public class GraphSampler extends NormalGraph implements IGraph
 				}
 			}
 		}
+
+		if(ticksLeftTitle > 0)
+		{
+			ticksLeftTitle--;
+			String title = getName();
+			int wid = ReactFont.Font.getWidth(title);
+			Color c = FrameColor.getColor(graphColor);
+			float hue = (float) getHue(c.getRed(), c.getGreen(), c.getBlue()) / 360f;
+			Color n = Color.getHSBColor(hue, (float) 1.0 - ((float) ticksLeftTitle / 50f), (float) 1.0 - ((float) ticksLeftTitle / 50f));
+			frame.drawText((frame.getWidth() / 2) - wid / 2, (frame.getHeight() / 2 - (ReactFont.Font.getHeight() / 2))
+
+					, ReactFont.Font, FrameColor.matchColor(n), title);
+		}
+	}
+
+	public int getHue(int red, int green, int blue)
+	{
+
+		float min = Math.min(Math.min(red, green), blue);
+		float max = Math.max(Math.max(red, green), blue);
+		float hue = 0f;
+
+		if(max == red)
+		{
+			hue = (green - blue) / (max - min);
+
+		}
+
+		else if(max == green)
+		{
+			hue = 2f + (blue - red) / (max - min);
+
+		}
+
+		else
+		{
+			hue = 4f + (red - green) / (max - min);
+		}
+
+		hue = hue * 60;
+
+		if(hue < 0)
+		{
+			hue = hue + 360;
+		}
+
+		return Math.round(hue);
 	}
 
 	public void scaleFor(GList<Double> nums)

@@ -11,6 +11,7 @@ import react.event.ReactScrollEvent;
 import react.event.ScrollDirection;
 import surge.Surge;
 import surge.control.Controller;
+import surge.util.D;
 
 public class EventController extends Controller
 {
@@ -41,19 +42,23 @@ public class EventController extends Controller
 		{
 			int from = slots.get(i);
 			int to = i.getInventory().getHeldItemSlot();
-
+			int amt = Math.abs(from - to);
 			if(from != to)
 			{
 				ScrollDirection dir = null;
 
-				if(from == 0 && to == 9)
-				{
-					dir = ScrollDirection.DOWN;
-				}
+				D.v("FROM " + from + " TO " + to);
 
-				else if(to == 0 && from == 9)
+				if(from < 3 && to > 6)
 				{
 					dir = ScrollDirection.UP;
+					amt = 1;
+				}
+
+				else if(to < 3 && from > 6)
+				{
+					dir = ScrollDirection.DOWN;
+					amt = 1;
 				}
 
 				else if(from > to)
@@ -68,7 +73,7 @@ public class EventController extends Controller
 
 				if(dir != null)
 				{
-					ReactScrollEvent r = new ReactScrollEvent(i, dir);
+					ReactScrollEvent r = new ReactScrollEvent(i, dir, amt);
 					Bukkit.getServer().getPluginManager().callEvent(r);
 
 					if(r.isCancelled())

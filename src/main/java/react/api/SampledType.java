@@ -40,6 +40,12 @@ public enum SampledType
 		return React.instance.sampleController.getSampler(toString());
 	}
 
+	@Override
+	public String toString()
+	{
+		return node;
+	}
+
 	private SampledType(String s)
 	{
 		try

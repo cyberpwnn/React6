@@ -1,6 +1,7 @@
 package react;
 
 import react.controller.ActionController;
+import react.controller.BlockInjectController;
 import react.controller.ChronophyFluidController;
 import react.controller.ChronophyHopperController;
 import react.controller.ChunkController;
@@ -109,6 +110,9 @@ public class React
 
 	@Control
 	public EventController eventController;
+
+	@Control
+	public BlockInjectController blockInjectController;
 
 	@Enable
 	public void enable()
