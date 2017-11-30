@@ -190,4 +190,16 @@ public class ActionController extends Controller
 	{
 		return actions.v();
 	}
+
+	public GList<String> getActionNames()
+	{
+		GList<String> acts = new GList<String>();
+
+		for(IAction i : getActions())
+		{
+			acts.add(i.getName());
+		}
+
+		return acts;
+	}
 }

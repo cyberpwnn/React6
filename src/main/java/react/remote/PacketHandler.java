@@ -15,11 +15,6 @@ public class PacketHandler
 	public PacketHandler()
 	{
 		reg = new GList<IRPacket>();
-		register(new PacketGetToken());
-		register(new PacketSendToken());
-		register(new PacketRefreshToken());
-		register(new PacketDeleteToken());
-		register(new PacketOk());
 	}
 
 	public void register(IRPacket pack)

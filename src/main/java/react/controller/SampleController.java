@@ -3,6 +3,7 @@ package react.controller;
 import java.lang.reflect.InvocationTargetException;
 
 import org.cyberpwn.gconcurrent.TICK;
+import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
 import react.api.ISampler;
@@ -159,5 +160,17 @@ public class SampleController extends Controller implements IMasterTickComponent
 	public int getCd()
 	{
 		return cd;
+	}
+
+	public GList<String> getSamplerNames()
+	{
+		GList<String> samps = new GList<String>();
+
+		for(String i : getSamplers().k())
+		{
+			samps.add(i);
+		}
+
+		return samps;
 	}
 }
