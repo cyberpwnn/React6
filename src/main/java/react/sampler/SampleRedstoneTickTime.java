@@ -33,7 +33,7 @@ public class SampleRedstoneTickTime extends MSampler
 		setDescription("Samples Redstone Tick Time");
 		setID(SampledType.REDSTONE_TIME.toString());
 		setValue(0);
-		setColor(C.RED, C.RED);
+		setColor(C.LIGHT_PURPLE, C.LIGHT_PURPLE);
 		setInterval(1);
 	}
 

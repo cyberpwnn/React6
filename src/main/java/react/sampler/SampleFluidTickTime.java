@@ -33,7 +33,7 @@ public class SampleFluidTickTime extends MSampler
 		setDescription("Samples Fluid Tick Time");
 		setID(SampledType.FLUID_TIME.toString());
 		setValue(0);
-		setColor(C.RED, C.RED);
+		setColor(C.LIGHT_PURPLE, C.LIGHT_PURPLE);
 		setInterval(1);
 	}
 

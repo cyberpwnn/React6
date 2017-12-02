@@ -7,6 +7,7 @@ import org.cyberpwn.glang.AccessCallback;
 import org.cyberpwn.glang.FinalInteger;
 import org.cyberpwn.gmath.M;
 
+import react.Gate;
 import react.Info;
 import react.api.Action;
 import react.api.ActionState;
@@ -150,7 +151,7 @@ public class ActionPurgeChunks extends Action
 			{
 				fail = true;
 
-				if(chunk.unload())
+				if(Gate.unloadChunk(chunk))
 				{
 					fail = false;
 				}

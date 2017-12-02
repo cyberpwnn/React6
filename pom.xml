@@ -77,6 +77,10 @@
 									<shadedPattern>react.gconcurrent</shadedPattern>
 								</relocation>
 								<relocation>
+									<pattern>org.cyberpwn.reactlink</pattern>
+									<shadedPattern>react.remote</shadedPattern>
+								</relocation>
+								<relocation>
 									<pattern>org.cyberpwn.gformat</pattern>
 									<shadedPattern>react.gformat</shadedPattern>
 								</relocation>
@@ -198,6 +202,11 @@
 			<groupId>com.boydti</groupId>
 			<artifactId>fawe-api</artifactId>
 			<version>latest</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cyberpwn</groupId>
+			<artifactId>ReactLink</artifactId>
+			<version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.cyberpwn</groupId>

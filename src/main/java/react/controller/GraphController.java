@@ -2,26 +2,17 @@ package react.controller;
 
 import java.awt.Color;
 
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.map.MapCanvas;
-import org.bukkit.map.MapView;
+import org.bukkit.entity.Player;
 import org.cyberpwn.gconcurrent.A;
+import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
-import org.cyberpwn.gmath.M;
 
 import react.api.SampledType;
-import react.event.ReactScrollEvent;
-import react.event.ScrollDirection;
-import react.graph.ColossalView;
-import react.graph.ColossalView.Builder;
 import react.graph.GraphSampler;
 import react.graph.GraphSize;
-import react.papyrus.BufferedFrame;
+import react.graph.GraphingInstance;
+import react.graph.PointedGraph;
 import react.papyrus.FrameColor;
-import react.papyrus.IPapyrus;
-import react.papyrus.IRenderer;
-import react.papyrus.Papyrus;
 import surge.Surge;
 import surge.control.Controller;
 import surge.util.C;
@@ -29,12 +20,13 @@ import surge.util.C;
 public class GraphController extends Controller
 {
 	private GMap<SampledType, GraphSampler> g;
-	private ColossalView colossal;
+	private GMap<Player, GraphingInstance> gr;
 
 	@Override
 	public void start()
 	{
 		Surge.register(this);
+		gr = new GMap<Player, GraphingInstance>();
 		g = new GMap<SampledType, GraphSampler>();
 
 		for(SampledType i : SampledType.values())
@@ -44,21 +36,17 @@ public class GraphController extends Controller
 			graph.setGraphColor(FrameColor.matchColor(new Color(r)));
 			g.put(i, graph);
 		}
-
-		ColossalView.Builder builder = new Builder();
-
-		for(SampledType i : SampledType.values())
-		{
-			builder.add(g.get(i), M.r(0.25) ? GraphSize.WIDE : GraphSize.SQUARE);
-		}
-
-		colossal = builder.compute();
 	}
 
 	@Override
 	public void stop()
 	{
 		Surge.unregister(this);
+
+		for(Player i : gr.k())
+		{
+			gr.get(i).destroy();
+		}
 	}
 
 	@Override
@@ -77,43 +65,45 @@ public class GraphController extends Controller
 		};
 	}
 
-	@SuppressWarnings("deprecation")
-	@EventHandler
-	public void on(ReactScrollEvent e)
+	public void toggleMapping(Player player)
 	{
-		if(e.getDirection().equals(ScrollDirection.UP))
+		if(!gr.containsKey(player))
 		{
-			colossal.scroll(16 * e.getAmount());
+			GList<PointedGraph> pg = new GList<PointedGraph>();
+			gr.put(player, new GraphingInstance(player));
+
+
+			pg.add(new PointedGraph(g.get(SampledType.ENTITY_TIME), GraphSize.WIDE));
+			pg.add(new PointedGraph(g.get(SampledType.ENTITY_TIME_LOCK), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.ENTITY_DROPTICK), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.TICK), GraphSize.WIDE));
+			pg.add(new PointedGraph(g.get(SampledType.TIU), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.TPS), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.MEM), GraphSize.WIDE));
+			pg.add(new PointedGraph(g.get(SampledType.MAHS), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.ALLOCMEM), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.REDSTONE_SECOND), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.HOPPER_SECOND), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.FLUID_SECOND), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.CHK), GraphSize.WIDE));
+			pg.add(new PointedGraph(g.get(SampledType.CHKS), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.ENT), GraphSize.WIDE));
+			pg.add(new PointedGraph(g.get(SampledType.ENTLIV), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.ENTDROP), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.ENTTILE), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.STASK), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.ATASK), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.HOPPER_TIME), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.REDSTONE_TIME), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.FLUID_TIME), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.CHK_TIME), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.TILE_TIME_LOCK), GraphSize.WIDE));
+			pg.add(new PointedGraph(g.get(SampledType.TILE_TIME), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.TILE_DROPTICK), GraphSize.SQUARE));
+			gr.get(player).setGraphs(pg);
+			gr.get(player).compile();
 		}
 
-		else
-		{
-			colossal.scroll(-16 * e.getAmount());
-		}
-	}
-
-	@EventHandler
-	public void on(PlayerCommandPreprocessEvent e)
-	{
-		if(!e.getMessage().equals("/pap"))
-		{
-			return;
-		}
-
-		e.setCancelled(true);
-		IPapyrus pap = new Papyrus(e.getPlayer().getWorld());
-
-		pap.addRenderer(new IRenderer()
-		{
-			@Override
-			public void draw(BufferedFrame frame, MapCanvas c, MapView v)
-			{
-				colossal.getView().write(FrameColor.matchColor(0, 0, 0));
-				colossal.render();
-				frame.write(colossal.getView());
-			}
-		});
-
-		e.getPlayer().getInventory().addItem(pap.makeMapItem());
+		gr.get(player).toggle();
 	}
 }

@@ -2,26 +2,26 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
-import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
+import surge.Surge;
 import surge.util.Anchor;
 import surge.util.C;
 
 @Anchor(2)
-public class SampleHopperTickTime extends MSampler
+public class SampleSyncQueue extends MSampler
 {
 	private IFormatter formatter;
 
-	public SampleHopperTickTime()
+	public SampleSyncQueue()
 	{
 		formatter = new IFormatter()
 		{
 			@Override
 			public String from(double d)
 			{
-				return F.time(d / 1000000.0, 1);
+				return F.f((int) d);
 			}
 		};
 	}
@@ -29,10 +29,10 @@ public class SampleHopperTickTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Hopper Tick Time");
-		setDescription("Samples Hopper Tick Time");
-		setID(SampledType.HOPPER_TIME.toString());
-		setValue(0);
+		setName("Tasks");
+		setDescription("Total sync tasks");
+		setID(SampledType.STASK.toString());
+		setValue(1);
 		setColor(C.LIGHT_PURPLE, C.LIGHT_PURPLE);
 		setInterval(1);
 	}
@@ -40,7 +40,7 @@ public class SampleHopperTickTime extends MSampler
 	@Override
 	public void sample()
 	{
-		setValue(React.instance.hopperController.getaHSMS().getAverage());
+		setValue(Surge.getAmp().getPluginInstance().getThreadPool().getSqueue().size());
 	}
 
 	@Override

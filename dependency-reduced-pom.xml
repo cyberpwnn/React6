@@ -44,6 +44,10 @@
                   <shadedPattern>react.gconcurrent</shadedPattern>
                 </relocation>
                 <relocation>
+                  <pattern>org.cyberpwn.reactlink</pattern>
+                  <shadedPattern>react.remote</shadedPattern>
+                </relocation>
+                <relocation>
                   <pattern>org.cyberpwn.gformat</pattern>
                   <shadedPattern>react.gformat</shadedPattern>
                 </relocation>

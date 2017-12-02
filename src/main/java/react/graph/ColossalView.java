@@ -4,6 +4,7 @@ import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
 import react.papyrus.BufferedFrame;
+import react.papyrus.FrameColor;
 
 public class ColossalView
 {
@@ -29,18 +30,35 @@ public class ColossalView
 		targetLevel = 0;
 	}
 
+	public void triggerGraphsInView()
+	{
+		for(Point i : buffers.k())
+		{
+			if((level >= i.y && level < i.y + buffers.get(i).getHeight()) || (level + 128 > i.y && level < i.y + buffers.get(i).getHeight()))
+			{
+				if(graphs.get(i) instanceof GraphSampler)
+				{
+					((GraphSampler) graphs.get(i)).ticksLeftTitle = 20;
+					((GraphSampler) graphs.get(i)).ticksOutTitle = 0;
+				}
+			}
+		}
+	}
+
 	public void render()
 	{
+		view.write(FrameColor.DARK_GRAY);
+
 		if(Math.abs(level - targetLevel) > 0.01)
 		{
 			if(level > targetLevel)
 			{
-				level -= Math.abs(level - targetLevel) / 4.0;
+				level -= Math.abs(level - targetLevel) / 2.2;
 			}
 
 			if(level < targetLevel)
 			{
-				level += Math.abs(level - targetLevel) / 4.0;
+				level += Math.abs(level - targetLevel) / 2.2;
 			}
 		}
 
@@ -69,7 +87,7 @@ public class ColossalView
 
 				if(g instanceof GraphSampler)
 				{
-					((GraphSampler) g).ticksLeftTitle = 50;
+					((GraphSampler) g).ticksLeftTitle = 20;
 				}
 			}
 		}

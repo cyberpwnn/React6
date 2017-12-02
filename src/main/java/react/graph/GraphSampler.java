@@ -25,6 +25,7 @@ public class GraphSampler extends NormalGraph implements IGraph
 	private byte borderColor;
 	private byte textColor;
 	public int ticksLeftTitle;
+	public int ticksOutTitle;
 
 	public GraphSampler(ISampler sampler, IFormatter formatter, long timeViewport)
 	{
@@ -60,7 +61,10 @@ public class GraphSampler extends NormalGraph implements IGraph
 
 		for(int i = 0; i < 12; i++)
 		{
-			aa.put(da.get(0));
+			if(!da.isEmpty())
+			{
+				aa.put(da.get(0));
+			}
 		}
 
 		for(int i = 0; i < da.size(); i++)
@@ -144,7 +148,7 @@ public class GraphSampler extends NormalGraph implements IGraph
 			}
 		}
 
-		frame.drawText(3, 3, ReactFont.Font, textColor, formatter.from(getMax()));
+		frame.drawText(3, 3, ReactFont.Font, textColor, formatter.from(getMax()) + " " + getName());
 		frame.drawText(3, frame.getHeight() - 10, ReactFont.Font, textColor, formatter.from(0));
 
 		for(int i = 0; i < frame.getWidth(); i++)
@@ -160,15 +164,25 @@ public class GraphSampler extends NormalGraph implements IGraph
 
 		if(ticksLeftTitle > 0)
 		{
+			ticksOutTitle = 0;
 			ticksLeftTitle--;
 			String title = getName();
 			int wid = ReactFont.Font.getWidth(title);
 			Color c = FrameColor.getColor(graphColor);
 			float hue = (float) getHue(c.getRed(), c.getGreen(), c.getBlue()) / 360f;
-			Color n = Color.getHSBColor(hue, (float) 1.0 - ((float) ticksLeftTitle / 50f), (float) 1.0 - ((float) ticksLeftTitle / 50f));
-			frame.drawText((frame.getWidth() / 2) - wid / 2, (frame.getHeight() / 2 - (ReactFont.Font.getHeight() / 2))
+			Color n = Color.getHSBColor(hue, (float) 1.0 - ((float) ticksLeftTitle / 20f), (float) 1.0 - ((float) ticksLeftTitle / 20f));
+			frame.drawText((frame.getWidth() / 2) - wid / 2, (frame.getHeight() / 2 - (ReactFont.Font.getHeight() / 2)), ReactFont.Font, FrameColor.matchColor(n), title);
+		}
 
-					, ReactFont.Font, FrameColor.matchColor(n), title);
+		if(ticksLeftTitle == 0 && ticksOutTitle < 20)
+		{
+			ticksOutTitle++;
+			String title = getName();
+			int wid = ReactFont.Font.getWidth(title);
+			Color c = FrameColor.getColor(graphColor);
+			float hue = (float) getHue(c.getRed(), c.getGreen(), c.getBlue()) / 360f;
+			Color n = Color.getHSBColor(hue, (float) 1.0 - ((float) ticksOutTitle / 20f), (float) 1.0 - ((float) ticksOutTitle / 20f));
+			frame.drawText((frame.getWidth() / 2) - wid / 2, (frame.getHeight() / 2 - (ReactFont.Font.getHeight() / 2)), ReactFont.Font, FrameColor.matchColor(n), title);
 		}
 	}
 

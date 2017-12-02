@@ -10,18 +10,18 @@ import surge.util.Anchor;
 import surge.util.C;
 
 @Anchor(2)
-public class SampleHopperTickTime extends MSampler
+public class SampleEntityTimeLock extends MSampler
 {
 	private IFormatter formatter;
 
-	public SampleHopperTickTime()
+	public SampleEntityTimeLock()
 	{
 		formatter = new IFormatter()
 		{
 			@Override
 			public String from(double d)
 			{
-				return F.time(d / 1000000.0, 1);
+				return F.time(d, 1);
 			}
 		};
 	}
@@ -29,9 +29,9 @@ public class SampleHopperTickTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Hopper Tick Time");
-		setDescription("Samples Hopper Tick Time");
-		setID(SampledType.HOPPER_TIME.toString());
+		setName("Entity Tick Time Lock");
+		setDescription("Samples Entity Tick Time Lock");
+		setID(SampledType.ENTITY_TIME_LOCK.toString());
 		setValue(0);
 		setColor(C.LIGHT_PURPLE, C.LIGHT_PURPLE);
 		setInterval(1);
@@ -40,7 +40,7 @@ public class SampleHopperTickTime extends MSampler
 	@Override
 	public void sample()
 	{
-		setValue(React.instance.hopperController.getaHSMS().getAverage());
+		setValue(React.instance.smearTickController.getUniversalEntityLimit());
 	}
 
 	@Override

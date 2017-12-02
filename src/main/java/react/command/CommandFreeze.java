@@ -32,7 +32,7 @@ public class CommandFreeze extends ReactCommand
 	@Override
 	public void fire(CommandSender sender, String[] args)
 	{
-		new Task("spam", 0, 100)
+		new Task("spam", 0, 20)
 		{
 			@Override
 			public void run()

@@ -53,6 +53,12 @@ public class Info
 	public static String COMMAND_MONITOR_ALIAS_2 = "m";
 	public static String COMMAND_MONITOR_USAGE = "/react monitor";
 
+	public static String COMMAND_MAP_DESCRIPTION = "Toggles the map";
+	public static String COMMAND_MAP = "map";
+	public static String COMMAND_MAP_ALIAS_1 = "mp";
+	public static String COMMAND_MAP_ALIAS_2 = "pap";
+	public static String COMMAND_MAP_USAGE = "/react map";
+
 	public static String COMMAND_GLASS_DESCRIPTION = "Toggles React Glass";
 	public static String COMMAND_GLASS = "glass";
 	public static String COMMAND_GLASS_ALIAS_1 = "glasses";
@@ -116,6 +122,12 @@ public class Info
 
 	public static String SAMPLER_REDSTONE_TICK_USAGE = "RSTU";
 	public static String SAMPLER_REDSTONE_TICK = "RST";
+	public static String SAMPLER_ENTITY_TIME = "ENTITY TIME";
+	public static String SAMPLER_ENTITY_TIME_LOCK = "ENTITY LOCK";
+	public static String SAMPLER_TILE_TIME_LOCK = "TILE LOCK";
+	public static String SAMPLER_TILE_TIME = "TILE TIME";
+	public static String SAMPLER_TILE_DROPTICK = "TILE DROPTICK";
+	public static String SAMPLER_ENTITY_DROPTICK = "ENTITY DROPTICK";
 	public static String SAMPLER_REDSTONE_SECOND = "RSS";
 	public static String SAMPLER_REDSTONE_TIME = "RSMS";
 	public static String SAMPLER_HOPPER_TICK_USAGE = "HTU";
@@ -135,7 +147,9 @@ public class Info
 	public static String SAMPLER_ALLOCMEM = "ALLOCMEM";
 	public static String SAMPLER_MAHS = "MAHS";
 	public static String SAMPLER_CHK = "CHK";
-	public static String SAMPLER_CHK_TIME = "CHK_TIME";
+	public static String SAMPLER_ATASK = "STASK";
+	public static String SAMPLER_STASK = "ATASK";
+	public static String SAMPLER_CHK_TIME = "CHK TIME";
 	public static String SAMPLER_CHKS = "CHKS";
 	public static String SAMPLER_ENT = "ENT";
 	public static String SAMPLER_ENTLIV = "ENTLIV";
