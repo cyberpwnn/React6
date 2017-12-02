@@ -3,6 +3,7 @@ package react;
 import react.controller.ActionController;
 import react.controller.BlockInjectController;
 import react.controller.ChronophyFluidController;
+import react.controller.ChronophyHopperController;
 import react.controller.ChunkController;
 import react.controller.CommandController;
 import react.controller.DropMergeController;
@@ -23,9 +24,9 @@ import react.controller.RedstoneController;
 import react.controller.RemoteController;
 import react.controller.SampleController;
 import react.controller.SecurityController;
+import react.controller.SmearTickController;
 import react.controller.SpikeController;
 import react.controller.TickTimeController;
-import react.controller.SmearTickController;
 import surge.control.Control;
 import surge.control.Disable;
 import surge.control.Enable;
@@ -117,6 +118,9 @@ public class React
 
 	@Control
 	public SmearTickController smearTickController;
+
+	@Control
+	public ChronophyHopperController chronophyHopperController;
 
 	@Enable
 	public void enable()

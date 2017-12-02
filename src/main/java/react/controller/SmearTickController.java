@@ -6,29 +6,28 @@ import java.lang.reflect.InvocationTargetException;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
 import org.cyberpwn.glang.GMap;
 import org.spigotmc.TickLimiter;
 
 import react.Gate;
-import react.api.SpecialTickLimiter;
+import react.api.SpecializedTickLimiter;
 import surge.Surge;
 import surge.control.Controller;
 import surge.nms.NMSX;
 
 public class SmearTickController extends Controller
 {
-	private GMap<World, SpecialTickLimiter> etl;
-	private GMap<World, SpecialTickLimiter> ttl;
+	private GMap<World, SpecializedTickLimiter> etl;
+	private GMap<World, SpecializedTickLimiter> ttl;
 
 	@Override
 	public void start()
 	{
 		Surge.register(this);
-		etl = new GMap<World, SpecialTickLimiter>();
-		ttl = new GMap<World, SpecialTickLimiter>();
+		etl = new GMap<World, SpecializedTickLimiter>();
+		ttl = new GMap<World, SpecializedTickLimiter>();
 
 		for(World i : Bukkit.getWorlds())
 		{
@@ -102,8 +101,8 @@ public class SmearTickController extends Controller
 		Object theWorld = cworldclass.getMethod("getHandle").invoke(w);
 		Field fe = deepFindField(theWorld, "entityLimiter");
 		Field ft = deepFindField(theWorld, "tileLimiter");
-		SpecialTickLimiter ste = new SpecialTickLimiter(50);
-		SpecialTickLimiter stt = new SpecialTickLimiter(50);
+		SpecializedTickLimiter ste = new SpecializedTickLimiter(50, true);
+		SpecializedTickLimiter stt = new SpecializedTickLimiter(50, false);
 		fe.setAccessible(true);
 		ft.setAccessible(true);
 		fe.set(theWorld, ste);
@@ -126,17 +125,6 @@ public class SmearTickController extends Controller
 		ft.set(theWorld, stt);
 		etl.remove(w);
 		ttl.remove(w);
-	}
-
-	@EventHandler
-	public void on(PlayerCommandPreprocessEvent e)
-	{
-		if(e.getMessage().equals("/tg"))
-		{
-			e.setCancelled(true);
-			SpecialTickLimiter.limit = !SpecialTickLimiter.limit;
-			Gate.msgSuccess(e.getPlayer(), "Entity Tick Envelope: " + (SpecialTickLimiter.limit ? "Enabled" : "Disabled"));
-		}
 	}
 
 	public double getUniversalEntityTick()

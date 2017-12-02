@@ -19,7 +19,6 @@ import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
 
-import react.api.Unused;
 import react.chronophysics.HopperWormhole;
 import react.chronophysics.PsychopathicHopper;
 import surge.Surge;
@@ -32,6 +31,7 @@ public class ChronophyHopperController extends Controller
 {
 	private GMap<Location, HopperWormhole> entries;
 	private GMap<Location, GList<HopperWormhole>> paths;
+	private GList<Location> overtickLock;
 
 	@Override
 	public void start()
@@ -39,6 +39,7 @@ public class ChronophyHopperController extends Controller
 		Surge.register(this);
 		entries = new GMap<Location, HopperWormhole>();
 		paths = new GMap<Location, GList<HopperWormhole>>();
+		overtickLock = new GList<Location>();
 	}
 
 	@Override
@@ -259,16 +260,39 @@ public class ChronophyHopperController extends Controller
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 	public void on(InventoryMoveItemEvent e)
 	{
+		if(overtickLock.contains(e.getSource().getLocation()))
+		{
+			e.setCancelled(true);
+			return;
+		}
+
+		overtickLock.add(e.getSource().getLocation());
+
+		if(e.getDestination().firstEmpty() == -1)
+		{
+			return;
+		}
+
 		if(e.getSource().getHolder() instanceof Hopper)
 		{
-			if(!isStartRegistered(((Hopper) e.getSource().getHolder()).getLocation()))
+			if(isStartRegistered(((Hopper) e.getSource().getHolder()).getLocation()))
 			{
+				if(isRegistered(((Hopper) e.getSource().getHolder()).getLocation()))
+				{
+					return;
+				}
+
 				tryHopperWormhole((Hopper) e.getSource().getHolder());
 			}
 
 			else
 			{
 				HopperWormhole wh = entries.get(((Hopper) e.getSource().getHolder()).getLocation());
+
+				if(wh.getDestination().getInventory().firstEmpty() == -1)
+				{
+					return;
+				}
 
 				if(wh != null)
 				{
@@ -288,10 +312,9 @@ public class ChronophyHopperController extends Controller
 		}
 	}
 
-	@Unused
 	@Override
 	public void tick()
 	{
-
+		overtickLock.clear();
 	}
 }

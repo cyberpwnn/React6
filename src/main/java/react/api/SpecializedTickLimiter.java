@@ -4,19 +4,21 @@ import org.cyberpwn.gmath.Average;
 import org.cyberpwn.gmath.M;
 import org.spigotmc.TickLimiter;
 
-public class SpecialTickLimiter extends TickLimiter // heh
+import react.Config;
+
+public class SpecializedTickLimiter extends TickLimiter // heh
 {
 	public double rMaxTime;
 	public long rStartTime;
 	public double rLastTime;
 	public long rMark;
 	public double tMaxTime;
-	public Average atimes = new Average(2);
+	public Average atimes = new Average(5);
 	public Average adropped = new Average(20);
 	private int droppedTicks;
-	public static boolean limit = true;
+	private boolean entityTick;
 
-	public SpecialTickLimiter(double maxtime)
+	public SpecializedTickLimiter(double maxtime, boolean entityTick)
 	{
 		super((int) maxtime);
 
@@ -24,6 +26,7 @@ public class SpecialTickLimiter extends TickLimiter // heh
 		this.rMaxTime = maxtime;
 		this.tMaxTime = maxtime;
 		this.droppedTicks = 0;
+		this.entityTick = entityTick;
 	}
 
 	@Override
@@ -31,23 +34,23 @@ public class SpecialTickLimiter extends TickLimiter // heh
 	{
 		rLastTime = (double) (rMark - rStartTime) / 1000000.0;
 		this.rStartTime = M.ns();
-		atimes.put(M.clip(rLastTime, 0, 50));
+		atimes.put(M.clip(rLastTime, 0, 1000));
 		adropped.put(droppedTicks);
 
-		if(limit)
+		if((entityTick && Config.SMEAR_TICK_ENTITIES_ENABLE) || (!entityTick && Config.SMEAR_TICK_TILES_ENABLE))
 		{
 			double k = atimes.getAverage();
 
 			if(droppedTicks > 0)
 			{
-				k += 1.5;
+				k += 0.25;
 			}
 
-			tMaxTime = M.clip(k, 0.15, 50);
+			tMaxTime = M.clip(k, 0.15, 50) + (entityTick ? Config.SMEAR_TICK_ENTITIES_SEPERATION_BIAS : Config.SMEAR_TICK_TILES_SEPERATION_BIAS);
 
 			if(Math.abs(tMaxTime - rMaxTime) > 0.01)
 			{
-				double d = Math.abs(tMaxTime - rMaxTime) / 20;
+				double d = Math.abs(tMaxTime - rMaxTime) / (entityTick ? Config.SMEAR_TICK_ENTITIES_AMOUNT : Config.SMEAR_TICK_TILES_AMOUNT);
 
 				if(tMaxTime > rMaxTime)
 				{

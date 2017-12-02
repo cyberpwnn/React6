@@ -180,6 +180,30 @@ public class Config
 	@Address(48)
 	public static final String A_RAI_FLUID_TIME_PROPIGATION = "rai.fluid.time-propigation";
 
+	@Address(49)
+	public static final String A_SMEAR_TICK_ENTITIES_MAX_TICK = "tick-smearing.entities.max-time";
+
+	@Address(50)
+	public static final String A_SMEAR_TICK_TILES_MAX_TICK = "tick-smearing.tiles.max-time";
+
+	@Address(51)
+	public static final String A_SMEAR_TICK_ENTITIES_SEPERATION_BIAS = "tick-smearing.entities.seperation-bias";
+
+	@Address(52)
+	public static final String A_SMEAR_TICK_TILES_SEPERATION_BIAS = "tick-smearing.tiles.seperation-bias";
+
+	@Address(53)
+	public static final String A_SMEAR_TICK_ENTITIES_AMOUNT = "tick-smearing.entities.smear-factor";
+
+	@Address(54)
+	public static final String A_SMEAR_TICK_TILES_AMOUNT = "tick-smearing.tiles.smear-factor";
+
+	@Address(55)
+	public static final String A_SMEAR_TICK_ENTITIES_ENABLE = "tick-smearing.entities.enable";
+
+	@Address(56)
+	public static final String A_SMEAR_TICK_TILES_ENABLE = "tick-smearing.tiles.enable";
+
 	@Sector(0)
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 1, max = 7)
@@ -444,6 +468,52 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 500, max = 2000)
 	public static int RAI_FLUID_TIME_PROPIGATION = 1000;
+
+	@Sector(49)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 0.01, max = 100)
+	public static double SMEAR_TICK_ENTITIES_MAX_TICK = 25;
+
+	@Sector(50)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 0.01, max = 100)
+	public static double SMEAR_TICK_TILES_MAX_TICK = 35;
+
+	@Sector(51)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 0, max = 10)
+	public static double SMEAR_TICK_ENTITIES_SEPERATION_BIAS = 0.65;
+
+	@Sector(52)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 0, max = 10)
+	public static double SMEAR_TICK_TILES_SEPERATION_BIAS = 0.07;
+
+	@Sector(53)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 5, max = 100)
+	public static double SMEAR_TICK_ENTITIES_AMOUNT = 50;
+
+	@Sector(54)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 5, max = 100)
+	public static double SMEAR_TICK_TILES_AMOUNT = 50;
+
+	@Sector(55)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	public static boolean SMEAR_TICK_ENTITIES_ENABLE = true;
+
+	@Sector(56)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	public static boolean SMEAR_TICK_TILES_ENABLE = true;
 
 	private static boolean hrld = false;
 	private static boolean rns = false;
