@@ -33,7 +33,7 @@ public class SampleSyncQueue extends MSampler
 		setDescription("Total sync tasks");
 		setID(SampledType.STASK.toString());
 		setValue(1);
-		setColor(C.LIGHT_PURPLE, C.LIGHT_PURPLE);
+		setColor(C.AQUA, C.AQUA);
 		setInterval(1);
 	}
 

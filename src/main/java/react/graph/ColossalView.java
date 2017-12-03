@@ -36,10 +36,10 @@ public class ColossalView
 		{
 			if((level >= i.y && level < i.y + buffers.get(i).getHeight()) || (level + 128 > i.y && level < i.y + buffers.get(i).getHeight()))
 			{
-				if(graphs.get(i) instanceof GraphSampler)
+				if(graphs.get(i) instanceof GraphSampleLine)
 				{
-					((GraphSampler) graphs.get(i)).ticksLeftTitle = 20;
-					((GraphSampler) graphs.get(i)).ticksOutTitle = 0;
+					((GraphSampleLine) graphs.get(i)).ticksLeftTitle = 20;
+					((GraphSampleLine) graphs.get(i)).ticksOutTitle = 0;
 				}
 			}
 		}
@@ -85,9 +85,9 @@ public class ColossalView
 			{
 				IGraph g = graphs.get(i);
 
-				if(g instanceof GraphSampler)
+				if(g instanceof GraphSampleLine)
 				{
-					((GraphSampler) g).ticksLeftTitle = 20;
+					((GraphSampleLine) g).ticksLeftTitle = 20;
 				}
 			}
 		}

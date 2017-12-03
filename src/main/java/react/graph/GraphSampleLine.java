@@ -1,7 +1,5 @@
 package react.graph;
 
-import java.awt.Color;
-
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.Average;
@@ -14,7 +12,7 @@ import react.papyrus.ReactFont;
 import surge.util.Anchor;
 
 @Anchor(127)
-public class GraphSampler extends NormalGraph implements IGraph
+public class GraphSampleLine extends NormalGraph implements IGraph
 {
 	private double lx;
 	private double ly;
@@ -26,8 +24,9 @@ public class GraphSampler extends NormalGraph implements IGraph
 	private byte textColor;
 	public int ticksLeftTitle;
 	public int ticksOutTitle;
+	public double nextPoint;
 
-	public GraphSampler(ISampler sampler, IFormatter formatter, long timeViewport)
+	public GraphSampleLine(ISampler sampler, IFormatter formatter, long timeViewport)
 	{
 		super(sampler.getID(), timeViewport);
 		this.sampler = sampler;
@@ -36,6 +35,7 @@ public class GraphSampler extends NormalGraph implements IGraph
 		backgroundColor = FrameColor.matchColor(0, 0, 0);
 		textColor = FrameColor.WHITE;
 		borderColor = FrameColor.DARK_GRAY;
+		nextPoint = 0;
 		lx = 0;
 		ly = 0;
 	}
@@ -48,6 +48,8 @@ public class GraphSampler extends NormalGraph implements IGraph
 	@Override
 	public void onRender(BufferedFrame frame)
 	{
+		byte dk = FrameColor.matchColor(FrameColor.getColor(graphColor).darker().darker().darker());
+		byte dt = FrameColor.matchColor(FrameColor.getColor(textColor).darker().darker().darker());
 		GMap<Long, Double> map = getPlotBoard().getBetween(M.ms() - getTimeViewport(), M.ms());
 		GList<Long> da = map.k();
 		da.sort();
@@ -58,6 +60,8 @@ public class GraphSampler extends NormalGraph implements IGraph
 		double yv = 0;
 		double xv = 0;
 		frame.write(backgroundColor);
+		double value = -1;
+		int pixX = -1;
 
 		for(int i = 0; i < 12; i++)
 		{
@@ -78,7 +82,14 @@ public class GraphSampler extends NormalGraph implements IGraph
 			d = (int) M.clip(d, 2, frame.getHeight() - 2);
 			xv = w;
 			yv = d;
+			frame.write(w + 1, d + 1, dk);
 			frame.write(w, d, graphColor);
+
+			if(i == da.size() - 1)
+			{
+				pixX = w;
+				value = val;
+			}
 
 			if(wlast >= 0)
 			{
@@ -86,6 +97,7 @@ public class GraphSampler extends NormalGraph implements IGraph
 				{
 					for(int j = wlast; j > w; j--)
 					{
+						frame.write(j + 1, d + 1, dk);
 						frame.write(j, d, graphColor);
 					}
 				}
@@ -94,6 +106,7 @@ public class GraphSampler extends NormalGraph implements IGraph
 				{
 					for(int j = w; j > wlast; j--)
 					{
+						frame.write(j + 1, d + 1, dk);
 						frame.write(j, d, graphColor);
 					}
 				}
@@ -105,6 +118,7 @@ public class GraphSampler extends NormalGraph implements IGraph
 				{
 					for(int j = dlast; j > d; j--)
 					{
+						frame.write((int) ((double) i * scf) + 1, j + 1, dk);
 						frame.write((int) ((double) i * scf), j, graphColor);
 					}
 				}
@@ -113,6 +127,7 @@ public class GraphSampler extends NormalGraph implements IGraph
 				{
 					for(int j = d; j > dlast; j--)
 					{
+						frame.write((int) ((double) i * scf) + 1, j + 1, dk);
 						frame.write((int) ((double) i * scf), j, graphColor);
 					}
 				}
@@ -148,8 +163,12 @@ public class GraphSampler extends NormalGraph implements IGraph
 			}
 		}
 
-		frame.drawText(3, 3, ReactFont.Font, textColor, formatter.from(getMax()) + " " + getName());
-		frame.drawText(3, frame.getHeight() - 10, ReactFont.Font, textColor, formatter.from(0));
+		frame.drawText(pixX - ReactFont.Font.getWidth(formatter.from(value)) - 6, getHeightForText(frame) - 1, ReactFont.Font, dt, formatter.from(value));
+		frame.drawText(pixX - ReactFont.Font.getWidth(formatter.from(value)) - 5, getHeightForText(frame), ReactFont.Font, textColor, formatter.from(value));
+		frame.drawText(3, 3, ReactFont.Font, dt, formatter.from(getMax()));
+		frame.drawText(4, 4, ReactFont.Font, textColor, formatter.from(getMax()));
+		frame.drawText(3, frame.getHeight() - 9, ReactFont.Font, dt, getName());
+		frame.drawText(4, frame.getHeight() - 10, ReactFont.Font, textColor, getName());
 
 		for(int i = 0; i < frame.getWidth(); i++)
 		{
@@ -161,29 +180,44 @@ public class GraphSampler extends NormalGraph implements IGraph
 				}
 			}
 		}
+	}
 
-		if(ticksLeftTitle > 0)
+	public int getHeightForText(BufferedFrame frame)
+	{
+		GList<Double> map = getPlotBoard().getBetween(M.ms() - (getTimeViewport() / 4), M.ms()).v();
+		Average aa = new Average(map.size());
+
+		for(Double i : map)
 		{
-			ticksOutTitle = 0;
-			ticksLeftTitle--;
-			String title = getName();
-			int wid = ReactFont.Font.getWidth(title);
-			Color c = FrameColor.getColor(graphColor);
-			float hue = (float) getHue(c.getRed(), c.getGreen(), c.getBlue()) / 360f;
-			Color n = Color.getHSBColor(hue, (float) 1.0 - ((float) ticksLeftTitle / 20f), (float) 1.0 - ((float) ticksLeftTitle / 20f));
-			frame.drawText((frame.getWidth() / 2) - wid / 2, (frame.getHeight() / 2 - (ReactFont.Font.getHeight() / 2)), ReactFont.Font, FrameColor.matchColor(n), title);
+			aa.put(i);
 		}
 
-		if(ticksLeftTitle == 0 && ticksOutTitle < 20)
+		double dp = M.clip(1.0 - (aa.getAverage() / getMax()), 0, 1) * frame.getHeight();
+
+		if(dp > frame.getHeight() / 2)
 		{
-			ticksOutTitle++;
-			String title = getName();
-			int wid = ReactFont.Font.getWidth(title);
-			Color c = FrameColor.getColor(graphColor);
-			float hue = (float) getHue(c.getRed(), c.getGreen(), c.getBlue()) / 360f;
-			Color n = Color.getHSBColor(hue, (float) 1.0 - ((float) ticksOutTitle / 20f), (float) 1.0 - ((float) ticksOutTitle / 20f));
-			frame.drawText((frame.getWidth() / 2) - wid / 2, (frame.getHeight() / 2 - (ReactFont.Font.getHeight() / 2)), ReactFont.Font, FrameColor.matchColor(n), title);
+			dp -= 24;
 		}
+
+		else
+		{
+			dp += 24;
+		}
+
+		if(Math.abs(dp - nextPoint) > 0.1)
+		{
+			if(dp < nextPoint)
+			{
+				nextPoint -= (Math.abs(dp - nextPoint) / 10.0);
+			}
+
+			else
+			{
+				nextPoint += (Math.abs(dp - nextPoint) / 10.0);
+			}
+		}
+
+		return (int) nextPoint;
 	}
 
 	public int getHue(int red, int green, int blue)

@@ -1,6 +1,9 @@
 package react.papyrus;
 
 import java.awt.Color;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 
 import org.bukkit.map.MapFont;
 import org.bukkit.map.MapFont.CharacterSprite;
@@ -93,6 +96,55 @@ public class BufferedFrame
 		}
 	}
 
+	public BufferedFrame scale(double x, double y, int affineTransformOp)
+	{
+		BufferedImage before = toBufferedImage();
+		int w = before.getWidth();
+		int h = before.getHeight();
+		BufferedImage after = new BufferedImage((int) (w * x), (int) (h * y), BufferedImage.TYPE_INT_ARGB);
+		AffineTransform at = new AffineTransform();
+		at.scale(x, y);
+		AffineTransformOp scaleOp = new AffineTransformOp(at, affineTransformOp);
+		after = scaleOp.filter(before, after);
+		BufferedFrame bf = new BufferedFrame(after.getWidth(), after.getHeight());
+		bf.fromBufferedImage(after);
+
+		return bf;
+	}
+
+	public void fromBufferedImage(BufferedImage bu)
+	{
+		int i;
+		int j;
+
+		for(i = 0; i < width; i++)
+		{
+			for(j = 0; j < height; j++)
+			{
+				write(i, j, FrameColor.matchColor(new Color(bu.getRGB(i, j), true)));
+			}
+		}
+	}
+
+	public BufferedImage toBufferedImage()
+	{
+		BufferedImage bu = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+
+		int i;
+		int j;
+
+		for(i = 0; i < width; i++)
+		{
+			for(j = 0; j < height; j++)
+			{
+				Color a = FrameColor.getColor(frame[i][j]);
+				bu.setRGB(i, j, new Color(a.getRed(), a.getGreen(), a.getBlue(), a.getAlpha()).getRGB());
+			}
+		}
+
+		return bu;
+	}
+
 	public void writeRainbowMul()
 	{
 		int i;
@@ -117,6 +169,23 @@ public class BufferedFrame
 			for(j = 0; j < height; j++)
 			{
 				write(i, j, FrameColor.matchColor(Color.getHSBColor((float) (i + j) / (float) (width + height), 1.0f, 1f)));
+			}
+		}
+	}
+
+	public void writeSparks()
+	{
+		int i;
+		int j;
+
+		for(i = 0; i < width; i++)
+		{
+			for(j = 0; j < height; j++)
+			{
+				if(M.r(0.05))
+				{
+					write(i, j, FrameColor.WHITE);
+				}
 			}
 		}
 	}
