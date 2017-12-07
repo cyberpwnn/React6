@@ -14,7 +14,7 @@ public abstract class ReactCommand implements ICommand
 
 	public ReactCommand()
 	{
-
+		parameterDescriptions = new GMap<String, String>();
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public abstract class ReactCommand implements ICommand
 	@Override
 	public void registerParameterDescription(String id, String desc)
 	{
-
+		parameterDescriptions.put(id, desc);
 	}
 
 	@Override

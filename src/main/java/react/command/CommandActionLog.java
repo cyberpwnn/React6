@@ -21,6 +21,7 @@ public class CommandActionLog extends ReactCommand
 		usage = Info.COMMAND_ACTIONLOG_USAGE;
 		description = Info.COMMAND_ACTIONLOG_DESCRIPTION;
 		sideGate = SideGate.PLAYERS_ONLY;
+		registerParameterDescription("(toggle)", "Using this command either turns it on or off.");
 	}
 
 	@Override

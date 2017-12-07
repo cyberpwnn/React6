@@ -21,6 +21,7 @@ public class CommandGlasses extends ReactCommand
 		usage = Info.COMMAND_GLASS_USAGE;
 		description = Info.COMMAND_GLASS_DESCRIPTION;
 		sideGate = SideGate.PLAYERS_ONLY;
+		registerParameterDescription("(toggle)", "Using this command either turns it on or off.");
 	}
 
 	@Override

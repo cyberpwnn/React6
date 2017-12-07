@@ -34,6 +34,8 @@ public class CommandAct extends ReactCommand
 		usage = Info.COMMAND_ACT_USAGE;
 		description = Info.COMMAND_ACT_DESCRIPTION;
 		sideGate = SideGate.ANYTHING;
+		registerParameterDescription("<action>", "The name of the action to run");
+		registerParameterDescription("[options]", "Special selectors (multiple) which change how the action executes. Use /re a to see specific selector usages.");
 	}
 
 	@Override

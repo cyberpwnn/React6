@@ -21,6 +21,7 @@ public class CommandMonitor extends ReactCommand
 		usage = Info.COMMAND_MONITOR_USAGE;
 		description = Info.COMMAND_MONITOR_DESCRIPTION;
 		sideGate = SideGate.PLAYERS_ONLY;
+		registerParameterDescription("(toggle)", "Using this command either turns it on or off.");
 	}
 
 	@Override

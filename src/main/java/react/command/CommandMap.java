@@ -21,6 +21,7 @@ public class CommandMap extends ReactCommand
 		usage = Info.COMMAND_MAP_USAGE;
 		description = Info.COMMAND_MAP_DESCRIPTION;
 		sideGate = SideGate.PLAYERS_ONLY;
+		registerParameterDescription("(toggle)", "Using this command either turns it on or off.");
 	}
 
 	@Override
