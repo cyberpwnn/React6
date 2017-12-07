@@ -5,6 +5,7 @@ import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.M;
 
 import react.Config;
+import react.Lang;
 import react.React;
 import react.api.ActionType;
 import react.api.ChunkIssue;
@@ -26,7 +27,7 @@ public class GoalStableRedstoneTime extends Goal
 
 	public GoalStableRedstoneTime()
 	{
-		super("Stabilize Redstone Tick");
+		super(Lang.getString("rai.goal.redstone-time.stablilize")); //$NON-NLS-1$
 
 		failing = false;
 		reocc = new GMap<Chunk, Integer>();
@@ -62,7 +63,7 @@ public class GoalStableRedstoneTime extends Goal
 			time.set((long) ((long) (reocc.containsKey(laggiest) ? reocc.get(laggiest) : 1) * (Config.RAI_REDSTONE_TIME_PROPIGATION * Math.random())));
 			reocc.put(laggiest, reocc.containsKey(laggiest) ? reocc.get(laggiest) + 4 : 1);
 			React.instance.actionController.fire(action.getType(), source, pos, time);
-			RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), "redstone lag"));
+			RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), Lang.getString("rai.goal.redstone-time.redstone-lag"))); //$NON-NLS-1$
 		}
 	}
 
@@ -90,12 +91,12 @@ public class GoalStableRedstoneTime extends Goal
 
 			if(failing)
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, "keep a stable redstone tick", "redstone tick"));
+				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, Lang.getString("rai.goal.redstone-time.keep-stable"), Lang.getString("rai.goal.redstone-time.redstone-tick"))); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
 			else
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, "keeping a stable redstone tick", "redstone tick"));
+				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, Lang.getString("rai.goal.redstone-time.keeping-stable"), Lang.getString("rai.goal.redstone-time.redstone-tick"))); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 

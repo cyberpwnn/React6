@@ -11,12 +11,20 @@ public class CPUBenchmark extends Thread
 {
 	private CommandSender sender;
 	private int score;
+	private Runnable onFinish;
 
 	public CPUBenchmark(CommandSender sender)
 	{
 		this.sender = sender;
 		this.score = 0;
 		setPriority(MAX_PRIORITY);
+		onFinish = null;
+	}
+
+	public CPUBenchmark(CommandSender sender, Runnable callb)
+	{
+		this(sender);
+		onFinish = callb;
 	}
 
 	@Override
@@ -52,7 +60,27 @@ public class CPUBenchmark extends Thread
 			{
 				Gate.msgSuccess(sender, "CPU Score: " + score);
 				Gate.msgSuccess(sender, "Looks like it's a " + C.WHITE + CPUResult.c(score) + " CPU");
+
+				if(onFinish != null)
+				{
+					onFinish.run();
+				}
 			}
 		};
+	}
+
+	public CommandSender getSender()
+	{
+		return sender;
+	}
+
+	public int getScore()
+	{
+		return score;
+	}
+
+	public Runnable getOnFinish()
+	{
+		return onFinish;
 	}
 }

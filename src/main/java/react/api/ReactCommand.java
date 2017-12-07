@@ -1,5 +1,7 @@
 package react.api;
 
+import org.cyberpwn.glang.GMap;
+
 public abstract class ReactCommand implements ICommand
 {
 	protected String command;
@@ -7,9 +9,22 @@ public abstract class ReactCommand implements ICommand
 	protected String[] permissions;
 	protected String usage;
 	protected String description;
+	protected GMap<String, String> parameterDescriptions;
 	protected SideGate sideGate;
 
 	public ReactCommand()
+	{
+
+	}
+
+	@Override
+	public String getDescriptionForParameter(String par)
+	{
+		return parameterDescriptions.get(par.toLowerCase());
+	}
+
+	@Override
+	public void registerParameterDescription(String id, String desc)
 	{
 
 	}

@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
@@ -29,8 +30,8 @@ public class SampleEntityTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Entity Tick Time");
-		setDescription("Samples Entity Tick Time");
+		setName(Lang.getString("sampler.entity-time.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.entity-time.description")); //$NON-NLS-1$
 		setID(SampledType.ENTITY_TIME.toString());
 		setValue(0);
 		setColor(C.LIGHT_PURPLE, C.LIGHT_PURPLE);

@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
@@ -29,8 +30,8 @@ public class SampleSyncQueue extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Tasks");
-		setDescription("Total sync tasks");
+		setName(Lang.getString("sampler.sync-queue.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.sync-queue.description")); //$NON-NLS-1$
 		setID(SampledType.STASK.toString());
 		setValue(1);
 		setColor(C.AQUA, C.AQUA);

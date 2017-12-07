@@ -6,6 +6,7 @@ import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
+import react.Lang;
 import react.api.ISampler;
 import surge.Main;
 import surge.Surge;
@@ -82,7 +83,7 @@ public class SampleController extends Controller implements IMasterTickComponent
 
 		for(ISampler i : samplers.v())
 		{
-			D.v("Sampler: " + i.getID() + " (" + i.getName() + ") @ " + i.getInterval());
+			D.v("Sampler: " + i.getID() + " (" + i.getName() + ") @ " + i.getInterval()); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			i.construct();
 		}
 	}
@@ -135,7 +136,7 @@ public class SampleController extends Controller implements IMasterTickComponent
 
 			catch(Exception e)
 			{
-				D.f("Failed to sample " + i.getName());
+				D.f(Lang.getString("controller.sampler.failed-to-sample") + i.getName()); //$NON-NLS-1$
 				e.printStackTrace();
 			}
 		}
@@ -144,7 +145,7 @@ public class SampleController extends Controller implements IMasterTickComponent
 	@Override
 	public String getTickName()
 	{
-		return "Sampler";
+		return "Sampler"; //$NON-NLS-1$
 	}
 
 	public GMap<String, ISampler> getSamplers()

@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
@@ -21,7 +22,7 @@ public class SampleHopperPerTick extends MSampler
 			@Override
 			public String from(double d)
 			{
-				return F.f(d, 0) + "/t";
+				return F.f(d, 0) + Lang.getString("sampler.hopper-per-tick.pt"); //$NON-NLS-1$
 			}
 		};
 
@@ -30,8 +31,8 @@ public class SampleHopperPerTick extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Hopper Per Tick");
-		setDescription("Samples hopper updates per tick");
+		setName(Lang.getString("sampler.hopper-per-tick.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.hopper-per-tick.description")); //$NON-NLS-1$
 		setID(SampledType.HOPPER_TICK.toString());
 		setValue(0);
 		setColor(C.RED, C.RED);

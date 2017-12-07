@@ -11,6 +11,7 @@ import org.cyberpwn.gmath.M;
 
 import react.Gate;
 import react.Info;
+import react.Lang;
 import react.api.Action;
 import react.api.ActionState;
 import react.api.ActionType;
@@ -90,7 +91,7 @@ public class ActionPurgeEntities extends Action
 			}
 		}
 
-		source.sendResponseActing("Purging " + tent + " type" + ((tent == 0 || tent > 1) ? "s" : "") + " of " + ((tent == 0 || tent > 1) ? "entities" : "entity") + " across " + F.f(tchu) + " chunk" + ((tchu > 1 || tchu == 0) ? "s" : ""));
+		source.sendResponseActing(Lang.getString("action.purge-entities.purging") + tent + Lang.getString("action.purge-entities.type") + ((tent == 0 || tent > 1) ? "s" : "") + Lang.getString("action.purge-entities.of") + ((tent == 0 || tent > 1) ? Lang.getString("action.purge-entities.entities") : Lang.getString("action.purge-entities.entity")) + Lang.getString("action.purge-entities.across") + F.f(tchu) + Lang.getString("action.purge-entities.chunk") + ((tchu > 1 || tchu == 0) ? "s" : "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$
 
 		for(ISelector i : selectors)
 		{
@@ -110,9 +111,9 @@ public class ActionPurgeEntities extends Action
 								completed.add(1);
 								String s = Info.ACTION_PURGE_ENTITIES_STATUS;
 								setProgress((double) completed.get() / (double) total.get());
-								s = s.replace("$c", F.f(completed.get()));
-								s = s.replace("$t", F.f(total.get()));
-								s = s.replace("$p", F.pc(getProgress(), 0));
+								s = s.replace("$c", F.f(completed.get())); //$NON-NLS-1$
+								s = s.replace("$t", F.f(total.get())); //$NON-NLS-1$
+								s = s.replace("$p", F.pc(getProgress(), 0)); //$NON-NLS-1$
 								setStatus(s);
 								ms = M.ms();
 								totalCulled.add(lcd);
@@ -125,7 +126,7 @@ public class ActionPurgeEntities extends Action
 								if(completed.get() == total.get())
 								{
 									completeAction();
-									source.sendResponseSuccess("Purged " + F.f(totalCulled.get()) + " entities in " + F.f(totalChunked.get()) + " chunk" + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : ""));
+									source.sendResponseSuccess(Lang.getString("action.purge-entities.purged") + F.f(totalCulled.get()) + Lang.getString("action.purge-entities.entities-in") + F.f(totalChunked.get()) + Lang.getString("action.purge-entities.chunk") + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 								}
 							}
 						}, source, selectors);
@@ -134,7 +135,7 @@ public class ActionPurgeEntities extends Action
 			}
 		}
 
-		new Task("purger-monitor-callback", 2)
+		new Task("purger-monitor-callback", 2) //$NON-NLS-1$
 		{
 
 			@Override
@@ -144,7 +145,7 @@ public class ActionPurgeEntities extends Action
 				{
 					cancel();
 					completeAction();
-					source.sendResponseSuccess("Purged " + F.f(totalCulled.get()) + " entities in " + F.f(totalChunked.get()) + " chunk" + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : ""));
+					source.sendResponseSuccess(Lang.getString("action.purge-entities.purged") + F.f(totalCulled.get()) + Lang.getString("action.purge-entities.entities-in") + F.f(totalChunked.get()) + Lang.getString("action.purge-entities.chunk") + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 				}
 			}
 

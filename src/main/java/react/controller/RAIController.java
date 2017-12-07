@@ -41,9 +41,6 @@ public class RAIController extends Controller
 	@Override
 	public void tick()
 	{
-		if(raiEnabled)
-		{
-			rai.tick();
-		}
+		rai.tick();
 	}
 }

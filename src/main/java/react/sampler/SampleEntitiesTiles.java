@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
@@ -28,8 +29,8 @@ public class SampleEntitiesTiles extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Tiles");
-		setDescription("Total Tiles");
+		setName(Lang.getString("sampler.entities-tiles.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.entities-tiles.description")); //$NON-NLS-1$
 		setID(SampledType.ENTTILE.toString());
 		setValue(0);
 		setColor(C.AQUA, C.AQUA);
@@ -45,7 +46,7 @@ public class SampleEntitiesTiles extends MSampler
 	@Override
 	public String get()
 	{
-		return "\u2756" + F.f((int) getValue());
+		return Lang.getString("sampler.entities-tiles.symbol") + F.f((int) getValue()); //$NON-NLS-1$
 	}
 
 	@Override

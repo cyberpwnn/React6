@@ -2,7 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
-import react.React;
+import react.Lang;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
@@ -29,8 +29,8 @@ public class SampleEntitiesDrops extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Drops");
-		setDescription("Total Drops");
+		setName(Lang.getString("sampler.entities-drops.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.entities-drops.description")); //$NON-NLS-1$
 		setID(SampledType.ENTDROP.toString());
 		setValue(0);
 		setColor(C.AQUA, C.AQUA);
@@ -46,8 +46,7 @@ public class SampleEntitiesDrops extends MSampler
 	@Override
 	public String get()
 	{
-		int ca = React.instance.entityCacheController.getCachedDrops();
-		return "\u25CF" + getFormatter().from(getValue()) + C.LIGHT_PURPLE + "\u21C6" + F.f((int) ca);
+		return Lang.getString("sampler.entities-drops.symbol") + getFormatter().from(getValue()); //$NON-NLS-1$
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import org.cyberpwn.glang.FinalInteger;
 import org.cyberpwn.gmath.M;
 
 import react.Info;
+import react.Lang;
 import react.React;
 import react.api.Action;
 import react.api.ActionState;
@@ -88,7 +89,7 @@ public class ActionCullEntities extends Action
 			}
 		}
 
-		source.sendResponseActing("Culling " + tent + " type" + ((tent == 0 || tent > 1) ? "s" : "") + " of " + ((tent == 0 || tent > 1) ? "entities" : "entity") + " across " + F.f(tchu) + " chunk" + ((tchu > 1 || tchu == 0) ? "s" : ""));
+		source.sendResponseActing(Lang.getString("action.cull-entities.culling") + tent + Lang.getString("action.cull-entities.type") + ((tent == 0 || tent > 1) ? "s" : "") + Lang.getString("action.cull-entities.of-for-culling") + ((tent == 0 || tent > 1) ? Lang.getString("action.cull-entities.entities") : Lang.getString("action.cull-entities.entity")) + Lang.getString("action.cull-entities.across") + F.f(tchu) + Lang.getString("action.cull-entities.chunk") + ((tchu > 1 || tchu == 0) ? "s" : "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$
 
 		for(ISelector i : selectors)
 		{
@@ -108,9 +109,9 @@ public class ActionCullEntities extends Action
 								completed.add(1);
 								String s = Info.ACTION_CULL_ENTITIES_STATUS;
 								setProgress((double) completed.get() / (double) total.get());
-								s = s.replace("$c", F.f(completed.get()));
-								s = s.replace("$t", F.f(total.get()));
-								s = s.replace("$p", F.pc(getProgress(), 0));
+								s = s.replace("$c", F.f(completed.get())); //$NON-NLS-1$
+								s = s.replace("$t", F.f(total.get())); //$NON-NLS-1$
+								s = s.replace("$p", F.pc(getProgress(), 0)); //$NON-NLS-1$
 								setStatus(s);
 								ms = M.ms();
 								totalCulled.add(lcd);
@@ -123,7 +124,7 @@ public class ActionCullEntities extends Action
 								if(completed.get() == total.get())
 								{
 									completeAction();
-									source.sendResponseSuccess("Culled " + F.f(totalCulled.get()) + " entities in " + F.f(totalChunked.get()) + " chunk" + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : ""));
+									source.sendResponseSuccess(Lang.getString("action.cull-entities.culled") + F.f(totalCulled.get()) + Lang.getString("action.cull-entities.entities-in") + F.f(totalChunked.get()) + Lang.getString("action.cull-entities.chunk") + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 								}
 							}
 						}, source, selectors);
@@ -132,7 +133,7 @@ public class ActionCullEntities extends Action
 			}
 		}
 
-		new Task("culler-monitor-callback", 2)
+		new Task("culler-monitor-callback", 2) //$NON-NLS-1$
 		{
 			@Override
 			public void run()
@@ -141,7 +142,7 @@ public class ActionCullEntities extends Action
 				{
 					cancel();
 					completeAction();
-					source.sendResponseSuccess("Culled " + F.f(totalCulled.get()) + " entities in " + F.f(totalChunked.get()) + " chunk" + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : ""));
+					source.sendResponseSuccess(Lang.getString("action.cull-entities.culled") + F.f(totalCulled.get()) + Lang.getString("action.cull-entities.entities-in") + F.f(totalChunked.get()) + Lang.getString("action.cull-entities.chunk") + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 				}
 			}
 

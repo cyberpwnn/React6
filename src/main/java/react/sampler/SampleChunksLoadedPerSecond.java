@@ -3,6 +3,7 @@ package react.sampler;
 import org.cyberpwn.gformat.F;
 import org.cyberpwn.gmath.Average;
 
+import react.Lang;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
@@ -30,8 +31,8 @@ public class SampleChunksLoadedPerSecond extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Chunks/s");
-		setDescription("Chunks per second");
+		setName(Lang.getString("sampler.chunks-per-second.chunks-sec")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.chunks-per-second.chunks-per-second")); //$NON-NLS-1$
 		setID(SampledType.CHKS.toString());
 		setValue(1);
 		setColor(C.RED, C.RED);
@@ -48,7 +49,7 @@ public class SampleChunksLoadedPerSecond extends MSampler
 	@Override
 	public String get()
 	{
-		return "\u29F1 " + getFormatter().from(getValue()) + "/s";
+		return Lang.getString("sampler.chunks-per-second.symbol") + getFormatter().from(getValue()) + Lang.getString("sampler.chunks-per-second.ps"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Override

@@ -19,19 +19,21 @@ import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
 
+import react.Config;
+import react.Lang;
 import react.chronophysics.HopperWormhole;
 import react.chronophysics.PsychopathicHopper;
 import surge.Surge;
 import surge.control.Controller;
 import surge.sched.Task;
+import surge.util.D;
 import surge.util.MaterialBlock;
 import surge.util.W;
 
-public class ChronophyHopperController extends Controller
+public class HopperWarpController extends Controller
 {
 	private GMap<Location, HopperWormhole> entries;
 	private GMap<Location, GList<HopperWormhole>> paths;
-	private GList<Location> overtickLock;
 
 	@Override
 	public void start()
@@ -39,7 +41,6 @@ public class ChronophyHopperController extends Controller
 		Surge.register(this);
 		entries = new GMap<Location, HopperWormhole>();
 		paths = new GMap<Location, GList<HopperWormhole>>();
-		overtickLock = new GList<Location>();
 	}
 
 	@Override
@@ -50,6 +51,11 @@ public class ChronophyHopperController extends Controller
 
 	private void registerHopperWormhole(HopperWormhole wh)
 	{
+		if(!Config.HOPPER_WARP_ENABLE)
+		{
+			return;
+		}
+
 		for(Hopper i : wh.getPath())
 		{
 			if(!paths.containsKey(i.getLocation()))
@@ -65,6 +71,11 @@ public class ChronophyHopperController extends Controller
 
 	private void unregisterHopperWormhole(HopperWormhole wh)
 	{
+		if(!Config.HOPPER_WARP_ENABLE)
+		{
+			return;
+		}
+
 		for(Hopper i : wh.getPath())
 		{
 			if(paths.containsKey(i.getLocation()))
@@ -93,6 +104,11 @@ public class ChronophyHopperController extends Controller
 
 	private void tryHopperWormhole(Hopper hopper)
 	{
+		if(!Config.HOPPER_WARP_ENABLE)
+		{
+			return;
+		}
+
 		if(isRegistered(hopper.getLocation()))
 		{
 			return;
@@ -103,7 +119,14 @@ public class ChronophyHopperController extends Controller
 			@Override
 			public void run()
 			{
-				HopperWormhole hw = tryHopperWormhole(hopper, 64, 4);
+				if(Config.HOPPER_WARP_MAX < Config.HOPPER_WARP_MIN)
+				{
+					D.f(Lang.getString("controller.hopper-warp.hopper-warp-max-less-than-min")); //$NON-NLS-1$
+					Config.HOPPER_WARP_MAX = 64;
+					Config.HOPPER_WARP_MIN = 6;
+				}
+
+				HopperWormhole hw = tryHopperWormhole(hopper, Config.HOPPER_WARP_MAX, Config.HOPPER_WARP_MIN);
 
 				new S()
 				{
@@ -127,6 +150,11 @@ public class ChronophyHopperController extends Controller
 
 	public GList<HopperWormhole> getWormhole(Block b)
 	{
+		if(!Config.HOPPER_WARP_ENABLE)
+		{
+			return null;
+		}
+
 		GList<HopperWormhole> w = new GList<HopperWormhole>();
 
 		if(entries.containsKey(b.getLocation()))
@@ -145,6 +173,11 @@ public class ChronophyHopperController extends Controller
 	@SuppressWarnings("deprecation")
 	public void drawPathsFor(Player p)
 	{
+		if(!Config.HOPPER_WARP_ENABLE)
+		{
+			return;
+		}
+
 		GMap<HopperWormhole, DyeColor> wh = new GMap<HopperWormhole, DyeColor>();
 		GList<DyeColor> colors = new GList<DyeColor>(DyeColor.values());
 		GMap<Location, MaterialBlock> memb = new GMap<Location, MaterialBlock>();
@@ -183,7 +216,7 @@ public class ChronophyHopperController extends Controller
 			}
 		}
 
-		new Task("waiter-dye-chrono-hopper", 20, 10)
+		new Task("waiter-dye-chrono-hopper", 20, 10) //$NON-NLS-1$
 		{
 			@Override
 			public void run()
@@ -200,9 +233,14 @@ public class ChronophyHopperController extends Controller
 		};
 	}
 
-	private HopperWormhole tryHopperWormhole(Hopper hopper, int min, int max)
+	private HopperWormhole tryHopperWormhole(Hopper hopper, int max, int min)
 	{
-		return HopperWormhole.findPath(hopper, min, max);
+		if(!Config.HOPPER_WARP_ENABLE)
+		{
+			return null;
+		}
+
+		return HopperWormhole.findPath(hopper, max, min);
 	}
 
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
@@ -228,6 +266,11 @@ public class ChronophyHopperController extends Controller
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 	public void on(BlockPlaceEvent e)
 	{
+		if(!Config.HOPPER_WARP_ENABLE)
+		{
+			return;
+		}
+
 		for(Block i : W.blockFaces(e.getBlock()))
 		{
 			if(i.getType().equals(Material.HOPPER))
@@ -251,6 +294,11 @@ public class ChronophyHopperController extends Controller
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 	public void on(BlockBreakEvent e)
 	{
+		if(!Config.HOPPER_WARP_ENABLE)
+		{
+			return;
+		}
+
 		for(HopperWormhole i : getWormhole(e.getBlock()))
 		{
 			unregisterHopperWormhole(i);
@@ -260,13 +308,10 @@ public class ChronophyHopperController extends Controller
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 	public void on(InventoryMoveItemEvent e)
 	{
-		if(overtickLock.contains(e.getSource().getLocation()))
+		if(!Config.HOPPER_WARP_ENABLE)
 		{
-			e.setCancelled(true);
 			return;
 		}
-
-		overtickLock.add(e.getSource().getLocation());
 
 		if(e.getDestination().firstEmpty() == -1)
 		{
@@ -289,6 +334,11 @@ public class ChronophyHopperController extends Controller
 			{
 				HopperWormhole wh = entries.get(((Hopper) e.getSource().getHolder()).getLocation());
 
+				if(wh == null)
+				{
+					return;
+				}
+
 				if(wh.getDestination().getInventory().firstEmpty() == -1)
 				{
 					return;
@@ -298,7 +348,7 @@ public class ChronophyHopperController extends Controller
 				{
 					e.setItem(new ItemStack(Material.AIR));
 
-					new Task("transport-hopper")
+					new Task("transport-hopper") //$NON-NLS-1$
 					{
 						@Override
 						public void run()
@@ -315,6 +365,13 @@ public class ChronophyHopperController extends Controller
 	@Override
 	public void tick()
 	{
-		overtickLock.clear();
+		if(!Config.HOPPER_WARP_ENABLE)
+		{
+			if(entries.size() + paths.size() > 0)
+			{
+				entries.clear();
+				paths.clear();
+			}
+		}
 	}
 }

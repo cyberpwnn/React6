@@ -6,6 +6,7 @@ import org.cyberpwn.glang.GList;
 
 import react.Gate;
 import react.Info;
+import react.Lang;
 import react.React;
 import react.api.ActionHandle;
 import react.api.ActionState;
@@ -40,7 +41,7 @@ public class CommandAct extends ReactCommand
 	{
 		if(args.length == 0)
 		{
-			Gate.msg(sender, "Some list of actions should be here.");
+			Gate.msg(sender, "Some list of actions should be here."); //$NON-NLS-1$
 			return;
 		}
 
@@ -63,13 +64,13 @@ public class CommandAct extends ReactCommand
 
 		if(action == null)
 		{
-			Gate.msg(sender, "Unknown Action: " + C.RED + tag);
+			Gate.msg(sender, Lang.getString("command.act.unknown-action") + C.RED + tag); //$NON-NLS-1$
 			return;
 		}
 
 		if(action.getHandleType().equals(ActionHandle.AUTOMATIC))
 		{
-			Gate.msg(sender, C.RED + "Action: " + action.getName() + " does not support manual invocations.");
+			Gate.msg(sender, C.RED + Lang.getString("command.act.action") + action.getName() + Lang.getString("command.act.no-manual")); //$NON-NLS-1$ //$NON-NLS-2$
 			return;
 		}
 
@@ -85,7 +86,7 @@ public class CommandAct extends ReactCommand
 
 					if(!action.getDefaultSelectors().k().contains(selectors[i].getType()))
 					{
-						Gate.msg(sender, C.RED + "Action: " + action.getName() + " does not support the selector: " + selectors[i].getName());
+						Gate.msg(sender, C.RED + Lang.getString("command.act.action") + action.getName() + Lang.getString("command.act.no-selector") + selectors[i].getName()); //$NON-NLS-1$ //$NON-NLS-2$
 						return;
 					}
 				}
@@ -109,8 +110,8 @@ public class CommandAct extends ReactCommand
 
 			if(action.getState().equals(ActionState.RUNNING))
 			{
-				Gate.msgError(sender, action.getName() + " " + C.AQUA + action.getStatus());
-				Gate.msgSuccess(sender, "Your action has been queued to run.");
+				Gate.msgError(sender, action.getName() + " " + C.AQUA + action.getStatus()); //$NON-NLS-1$
+				Gate.msgSuccess(sender, Lang.getString("command.act.queued-to-run")); //$NON-NLS-1$
 			}
 
 			React.instance.actionController.fire(action.getType(), source, selectors);
@@ -118,11 +119,11 @@ public class CommandAct extends ReactCommand
 
 		else
 		{
-			Gate.msg(sender, C.RED + "Action: " + action.getName() + " failed to parse supplied input.");
+			Gate.msg(sender, C.RED + Lang.getString("command.act.action") + action.getName() + Lang.getString("command.act.failed-to-parse")); //$NON-NLS-1$ //$NON-NLS-2$
 
 			for(String i : errors)
 			{
-				Gate.msg(sender, C.RED + action.getName() + ": " + i);
+				Gate.msg(sender, C.RED + action.getName() + ": " + i); //$NON-NLS-1$
 			}
 		}
 	}

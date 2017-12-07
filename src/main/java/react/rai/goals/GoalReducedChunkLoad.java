@@ -3,6 +3,7 @@ package react.rai.goals;
 import org.bukkit.Bukkit;
 import org.cyberpwn.gconcurrent.TICK;
 
+import react.Lang;
 import react.React;
 import react.api.ActionType;
 import react.api.IAction;
@@ -19,7 +20,7 @@ public class GoalReducedChunkLoad extends Goal
 
 	public GoalReducedChunkLoad()
 	{
-		super("Reduced Chunk Load");
+		super(Lang.getString("rai.goal.chunk-load.reduced-chunk-load")); //$NON-NLS-1$
 
 		failing = false;
 	}
@@ -49,12 +50,12 @@ public class GoalReducedChunkLoad extends Goal
 
 			if(failing)
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, "keep a stable chunk count", "chunk count"));
+				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, Lang.getString("rai.goal.chunk-load.keep-chunk-count"), Lang.getString("rai.goal.chunk-load.chunk-count"))); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
 			else
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, "keep a stable chunk count", "chunk count"));
+				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, Lang.getString("rai.goal.chunk-load.keep-chunk-count"), Lang.getString("rai.goal.chunk-load.chunk-count"))); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 
@@ -67,7 +68,7 @@ public class GoalReducedChunkLoad extends Goal
 		if(TICK.tick % 20 == 0)
 		{
 			IAction action = React.instance.actionController.getAction(ActionType.PURGE_CHUNKS);
-			RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), "chunk mass"));
+			RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), Lang.getString("rai.goal.chunk-load.chunk-mass"))); //$NON-NLS-1$
 			React.instance.actionController.fire(action.getType(), new RAIActionSource());
 		}
 	}

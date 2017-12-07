@@ -6,6 +6,7 @@ import org.cyberpwn.glang.AccessCallback;
 import org.cyberpwn.glang.FinalInteger;
 
 import react.Info;
+import react.Lang;
 import react.React;
 import react.api.Action;
 import react.api.ActionType;
@@ -60,9 +61,9 @@ public class ActionUnlockRedstone extends Action
 						completed.add(1);
 						String s = Info.ACTION_LOCK_REDSTONE_STATUS;
 						setProgress((double) completed.get() / (double) total.get());
-						s = s.replace("$c", F.f(completed.get()));
-						s = s.replace("$t", F.f(total.get()));
-						s = s.replace("$p", F.pc(getProgress(), 0));
+						s = s.replace("$c", F.f(completed.get())); //$NON-NLS-1$
+						s = s.replace("$t", F.f(total.get())); //$NON-NLS-1$
+						s = s.replace("$p", F.pc(getProgress(), 0)); //$NON-NLS-1$
 						setStatus(s);
 						totalCulled.add(lcd);
 
@@ -74,7 +75,7 @@ public class ActionUnlockRedstone extends Action
 						if(completed.get() == total.get())
 						{
 							completeAction();
-							source.sendResponseSuccess("Unlocked Redstone in " + F.f(completed.get()) + " chunk" + ((completed.get() > 1 || completed.get() == 0) ? "s" : ""));
+							source.sendResponseSuccess(Lang.getString("action.unlock-redstone.unlocked-in") + F.f(completed.get()) + Lang.getString("action.unlock-redstone.chunk") + ((completed.get() > 1 || completed.get() == 0) ? "s" : "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 						}
 					}
 				}

@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
@@ -29,8 +30,8 @@ public class SampleTileDroppedTicks extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Tile Dropped Ticks");
-		setDescription("Samples Dropped Tile Ticks");
+		setName(Lang.getString("sampler.tile.dropped-ticks.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.tile.dropped-ticks.description")); //$NON-NLS-1$
 		setID(SampledType.TILE_DROPTICK.toString());
 		setValue(0);
 		setColor(C.LIGHT_PURPLE, C.LIGHT_PURPLE);

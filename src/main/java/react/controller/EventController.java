@@ -11,7 +11,6 @@ import react.event.ReactScrollEvent;
 import react.event.ScrollDirection;
 import surge.Surge;
 import surge.control.Controller;
-import surge.util.D;
 
 public class EventController extends Controller
 {
@@ -46,8 +45,6 @@ public class EventController extends Controller
 			if(from != to)
 			{
 				ScrollDirection dir = null;
-
-				D.v("FROM " + from + " TO " + to);
 
 				if(from < 3 && to > 6)
 				{

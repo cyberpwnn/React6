@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
@@ -29,8 +30,8 @@ public class SampleHopperTickUtilization extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Hopper Tick Time Utilization");
-		setDescription("Samples Hopper Tick Time Utilization");
+		setName(Lang.getString("sampler.hopper-tick-utilization.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.hopper-tick-utilization.description")); //$NON-NLS-1$
 		setID(SampledType.HOPPER_TICK_USAGE.toString());
 		setValue(0);
 		setColor(C.RED, C.RED);
@@ -54,7 +55,7 @@ public class SampleHopperTickUtilization extends MSampler
 	@Override
 	public String get()
 	{
-		return getFormatter().from(getValue()) + "";
+		return getFormatter().from(getValue()) + ""; //$NON-NLS-1$
 	}
 
 	@Override

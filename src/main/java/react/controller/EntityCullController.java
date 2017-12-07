@@ -9,6 +9,7 @@ import org.cyberpwn.glang.GSet;
 
 import react.Config;
 import react.Gate;
+import react.Lang;
 import react.api.EntityFlag;
 import react.api.EntityGroup;
 import react.api.EntitySample;
@@ -50,9 +51,9 @@ public class EntityCullController extends Controller
 
 		searching: for(String i : Config.CULL_RULES)
 		{
-			if(i.startsWith("@Refuse "))
+			if(i.startsWith("@Refuse ")) //$NON-NLS-1$
 			{
-				String ref = i.replace("@Refuse ", "").trim();
+				String ref = i.replace("@Refuse ", "").trim(); //$NON-NLS-1$ //$NON-NLS-2$
 
 				for(EntityFlag j : EntityFlag.values())
 				{
@@ -60,7 +61,7 @@ public class EntityCullController extends Controller
 					{
 						if(flags.contains(j))
 						{
-							D.w("Duplicate Refuse Flag (" + i + ")");
+							D.w(Lang.getString("controller.entity-culler.duplicate-refuse") + i + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 						}
 
 						flags.add(j);
@@ -68,9 +69,9 @@ public class EntityCullController extends Controller
 				}
 			}
 
-			else if(i.startsWith("@Defer "))
+			else if(i.startsWith("@Defer ")) //$NON-NLS-1$
 			{
-				String ref = i.replace("@Defer ", "").trim();
+				String ref = i.replace("@Defer ", "").trim(); //$NON-NLS-1$ //$NON-NLS-2$
 
 				for(EntityFlag j : EntityFlag.values())
 				{
@@ -78,12 +79,12 @@ public class EntityCullController extends Controller
 					{
 						if(defer.contains(j))
 						{
-							D.w("Duplicate Defer Flag (" + i + ")");
+							D.w(Lang.getString("controller.entity-culler.duplicate-defer") + i + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 						}
 
 						if(flags.contains(j))
 						{
-							D.w("Cannot defer a REFUSED flag (" + i + ")");
+							D.w(Lang.getString("controller.entity-culler.cannot-defer-refused") + i + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 							continue;
 						}
 
@@ -92,20 +93,20 @@ public class EntityCullController extends Controller
 				}
 			}
 
-			else if(i.startsWith("@Restrict ") && i.contains("="))
+			else if(i.startsWith("@Restrict ") && i.contains("=")) //$NON-NLS-1$ //$NON-NLS-2$
 			{
-				String ref = i.replace("@Restrict ", "").trim();
-				String key = ref.split("=")[0].trim();
-				String val = ref.split("=")[1].trim();
+				String ref = i.replace("@Restrict ", "").trim(); //$NON-NLS-1$ //$NON-NLS-2$
+				String key = ref.split("=")[0].trim(); //$NON-NLS-1$
+				String val = ref.split("=")[1].trim(); //$NON-NLS-1$
 
 				try
 				{
 					int limit = Integer.valueOf(val);
 					GList<String> srs = new GList<String>();
 
-					if(key.contains(","))
+					if(key.contains(",")) //$NON-NLS-1$
 					{
-						for(String j : key.split(","))
+						for(String j : key.split(",")) //$NON-NLS-1$
 						{
 							srs.add(j.trim());
 						}
@@ -122,7 +123,7 @@ public class EntityCullController extends Controller
 					{
 						parsing: for(String k : Config.ALLOW_CULL)
 						{
-							if(k.replaceAll("_", " ").equalsIgnoreCase(j))
+							if(k.replaceAll("_", " ").equalsIgnoreCase(j)) //$NON-NLS-1$ //$NON-NLS-2$
 							{
 								for(EntityType l : EntityType.values())
 								{
@@ -133,7 +134,7 @@ public class EntityCullController extends Controller
 									}
 								}
 
-								D.w("Could not find entity of type: " + j + " (" + i + ")");
+								D.w(Lang.getString("controller.entity-culler.cannot-find-entity-type") + j + " (" + i + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 								continue parsing;
 							}
 						}
@@ -141,7 +142,7 @@ public class EntityCullController extends Controller
 
 					if(g.getEntityTypes().isEmpty())
 					{
-						D.w("Could not parse any entity types for " + i);
+						D.w(Lang.getString("controller.entity-culler.could-not-parse-any") + i); //$NON-NLS-1$
 						continue searching;
 					}
 
@@ -150,20 +151,20 @@ public class EntityCullController extends Controller
 
 				catch(NumberFormatException e)
 				{
-					D.w("Unable to parse integer at " + i);
+					D.w(Lang.getString("controller.entity-culler.unable-to-parse-int") + i); //$NON-NLS-1$
 				}
 			}
 
 			else
 			{
-				D.w("Unable to parse: " + i);
-				D.w("Must start with @Restrict <A,B,C,...> OR @Refuse <TYPE>");
+				D.w(Lang.getString("controller.entity-culler.unable-to-parse") + i); //$NON-NLS-1$
+				D.w(Lang.getString("controller.entity-culler.must-start-with-restrict")); //$NON-NLS-1$
 			}
 		}
 
-		D.v("Built " + flags.size() + " Refusals");
-		D.v("Built " + defer.size() + " Defers");
-		D.v("Built " + maxs.size() + " Filters");
+		D.v(Lang.getString("controller.entity-culler.built") + flags.size() + Lang.getString("controller.entity-culler.refusals")); //$NON-NLS-1$ //$NON-NLS-2$
+		D.v(Lang.getString("controller.entity-culler.built") + defer.size() + Lang.getString("controller.entity-culler.defers")); //$NON-NLS-1$ //$NON-NLS-2$
+		D.v(Lang.getString("controller.entity-culler.built") + maxs.size() + Lang.getString("controller.entity-culler.filters")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public int cull(Chunk c)

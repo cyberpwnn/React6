@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
@@ -28,8 +29,8 @@ public class SampleMemoryUse extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Used Memory");
-		setDescription("Memory currently used");
+		setName(Lang.getString("sampler.memory-used.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.memory-used.description")); //$NON-NLS-1$
 		setID(SampledType.MEM.toString());
 		setValue(1);
 		setColor(C.GOLD, C.GOLD);

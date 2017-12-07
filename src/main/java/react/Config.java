@@ -34,175 +34,190 @@ import surge.util.RawEvent;
 public class Config
 {
 	@Address(0)
-	public static final String A_ENTITYCACHE_CHUNK_RADIUS = "entity-cache.chunk-radius";
+	public static final String A_ENTITYCACHE_CHUNK_RADIUS = "entity-cache.chunk-radius"; //$NON-NLS-1$
 
 	@Address(1)
-	public static final String A_ENTITYCACHE_INTERVAL = "entity-cache.swap-interval";
+	public static final String A_ENTITYCACHE_INTERVAL = "entity-cache.swap-interval"; //$NON-NLS-1$
 
 	@Address(2)
-	public static final String A_DROPSTACK_RADIUS = "drop-stacker.stack-radius";
+	public static final String A_DROPSTACK_RADIUS = "drop-stacker.stack-radius"; //$NON-NLS-1$
 
 	@Address(3)
-	public static final String A_DROPSTACK_STACKDROPS = "drop-stacker.stack-drops";
+	public static final String A_DROPSTACK_STACKDROPS = "drop-stacker.stack-drops"; //$NON-NLS-1$
 
 	@Address(4)
-	public static final String A_DROPSTACK_USEDEFAULT = "drop-stacker.use-default";
+	public static final String A_DROPSTACK_USEDEFAULT = "drop-stacker.use-default"; //$NON-NLS-1$
 
 	@Address(5)
-	public static final String A_DROPSTACK_SMOOTHSTACK = "drop-stacker.smooth-stack";
+	public static final String A_DROPSTACK_SMOOTHSTACK = "drop-stacker.smooth-stack"; //$NON-NLS-1$
 
 	@Address(6)
-	public static final String A_POOL_MAXTHREADS = "threads.pool-size";
+	public static final String A_POOL_MAXTHREADS = "threads.pool-size"; //$NON-NLS-1$
 
 	@Address(7)
-	public static final String A_POOL_SYNC_NANOS = "threads.nano-mitigation";
+	public static final String A_POOL_SYNC_NANOS = "threads.nano-mitigation"; //$NON-NLS-1$
 
 	@Address(8)
-	public static final String A_ENTITYCACHE_ENABLED = "entity-cache.enable-caching";
+	public static final String A_ENTITYCACHE_ENABLED = "entity-cache.enable-caching"; //$NON-NLS-1$
 
 	@Address(9)
-	public static final String A_FASTLEAF_ENABLED = "fast-leaf-decay.enabled";
+	public static final String A_FASTLEAF_ENABLED = "fast-leaf-decay.enabled"; //$NON-NLS-1$
 
 	@Address(10)
-	public static final String A_FASTLEAF_ONDECAY = "fast-leaf-decay.trigger-on-decay";
+	public static final String A_FASTLEAF_ONDECAY = "fast-leaf-decay.trigger-on-decay"; //$NON-NLS-1$
 
 	@Address(11)
-	public static final String A_FASTLEAF_INSTANT = "fast-leaf-decay.instantaneous";
+	public static final String A_FASTLEAF_INSTANT = "fast-leaf-decay.instantaneous"; //$NON-NLS-1$
 
 	@Address(12)
-	public static final String A_FASTLEAF_DECAYPERIOD = "fast-leaf-decay.decay-period";
+	public static final String A_FASTLEAF_DECAYPERIOD = "fast-leaf-decay.decay-period"; //$NON-NLS-1$
 
 	@Address(13)
-	public static final String A_DROPSTACK_MINAGE = "drop-stacker.minimum-age-ticks";
+	public static final String A_DROPSTACK_MINAGE = "drop-stacker.minimum-age-ticks"; //$NON-NLS-1$
 
 	@Address(14)
-	public static final String A_ENTITYSTACK_ENABLED = "entity-stacker.enabled";
+	public static final String A_ENTITYSTACK_ENABLED = "entity-stacker.enabled"; //$NON-NLS-1$
 
 	@Address(15)
-	public static final String A_ENTITYSTACK_MINIMUM_GROUP = "entity-stacker.minimum-group-size";
+	public static final String A_ENTITYSTACK_MINIMUM_GROUP = "entity-stacker.minimum-group-size"; //$NON-NLS-1$
 
 	@Address(16)
-	public static final String A_ENTITYSTACK_GROUP_SEARCH_RADIUS = "entity-stacker.search-radius";
+	public static final String A_ENTITYSTACK_GROUP_SEARCH_RADIUS = "entity-stacker.search-radius"; //$NON-NLS-1$
 
 	@Address(17)
-	public static final String A_ENTITYSTACK_MAXIMUM_HEALTH = "entity-stacker.max-health";
+	public static final String A_ENTITYSTACK_MAXIMUM_HEALTH = "entity-stacker.max-health"; //$NON-NLS-1$
 
 	@Address(18)
-	public static final String A_GLASS_SHOW_BLOCKS = "glass.display-blocks";
+	public static final String A_GLASS_SHOW_BLOCKS = "glass.display-blocks"; //$NON-NLS-1$
 
 	@Address(19)
-	public static final String A_GLASS_SHOW_PARTICLES = "glass.display-particles";
+	public static final String A_GLASS_SHOW_PARTICLES = "glass.display-particles"; //$NON-NLS-1$
 
 	@Address(20)
-	public static final String A_ALLOW_CULL = "entity-types.allow-culling";
+	public static final String A_ALLOW_CULL = "entity-types.allow-culling"; //$NON-NLS-1$
 
 	@Address(21)
-	public static final String A_ALLOW_PURGE = "entity-types.allow-purging";
+	public static final String A_ALLOW_PURGE = "entity-types.allow-purging"; //$NON-NLS-1$
 
 	@Address(22)
-	public static final String A_ALLOW_CACHE = "entity-types.allow-caching";
+	public static final String A_ALLOW_CACHE = "entity-types.allow-caching"; //$NON-NLS-1$
 
 	@Address(23)
-	public static final String A_CULL_RULES = "entity-culler.rules";
+	public static final String A_CULL_RULES = "entity-culler.rules"; //$NON-NLS-1$
 
 	@Address(24)
-	public static final String A_RAI_TPS_HIGH_TICK = "rai.tps.high-tick";
+	public static final String A_RAI_TPS_HIGH_TICK = "rai.tps.high-tick"; //$NON-NLS-1$
 
 	@Address(25)
-	public static final String A_RAI_REDSTONE_TIME_FLOOR = "rai.redstone.time-floor";
+	public static final String A_RAI_REDSTONE_TIME_FLOOR = "rai.redstone.time-floor"; //$NON-NLS-1$
 
 	@Address(26)
-	public static final String A_RAI_REDSTONE_TIME_CEIL = "rai.redstone.time-ceil";
+	public static final String A_RAI_REDSTONE_TIME_CEIL = "rai.redstone.time-ceil"; //$NON-NLS-1$
 
 	@Address(27)
-	public static final String A_RAI_REDSTONE_TIME_MUDDING = "rai.redstone.time-mudding";
+	public static final String A_RAI_REDSTONE_TIME_MUDDING = "rai.redstone.time-mudding"; //$NON-NLS-1$
 
 	@Address(28)
-	public static final String A_RAI_REDSTONE_TIME_FUNCTION = "rai.redstone.time-function";
+	public static final String A_RAI_REDSTONE_TIME_FUNCTION = "rai.redstone.time-function"; //$NON-NLS-1$
 
 	@Address(29)
-	public static final String A_RAI_REDSTONE_TIME_OVERBLEED = "rai.redstone.time-overbleed";
+	public static final String A_RAI_REDSTONE_TIME_OVERBLEED = "rai.redstone.time-overbleed"; //$NON-NLS-1$
 
 	@Address(30)
-	public static final String A_RAI_REDSTONE_TIME_RADIUS = "rai.redstone.time-radius";
+	public static final String A_RAI_REDSTONE_TIME_RADIUS = "rai.redstone.time-radius"; //$NON-NLS-1$
 
 	@Address(31)
-	public static final String A_RAI_REDSTONE_TIME_PROPIGATION = "rai.redstone.time-propigation";
+	public static final String A_RAI_REDSTONE_TIME_PROPIGATION = "rai.redstone.time-propigation"; //$NON-NLS-1$
 
 	@Address(32)
-	public static final String A_RAI_HOPPER_TIME_FLOOR = "rai.hopper.time-floor";
+	public static final String A_RAI_HOPPER_TIME_FLOOR = "rai.hopper.time-floor"; //$NON-NLS-1$
 
 	@Address(33)
-	public static final String A_RAI_HOPPER_TIME_CEIL = "rai.hopper.time-ceil";
+	public static final String A_RAI_HOPPER_TIME_CEIL = "rai.hopper.time-ceil"; //$NON-NLS-1$
 
 	@Address(34)
-	public static final String A_RAI_HOPPER_TIME_MUDDING = "rai.hopper.time-mudding";
+	public static final String A_RAI_HOPPER_TIME_MUDDING = "rai.hopper.time-mudding"; //$NON-NLS-1$
 
 	@Address(35)
-	public static final String A_RAI_HOPPER_TIME_FUNCTION = "rai.hopper.time-function";
+	public static final String A_RAI_HOPPER_TIME_FUNCTION = "rai.hopper.time-function"; //$NON-NLS-1$
 
 	@Address(36)
-	public static final String A_RAI_HOPPER_TIME_OVERBLEED = "rai.hopper.time-overbleed";
+	public static final String A_RAI_HOPPER_TIME_OVERBLEED = "rai.hopper.time-overbleed"; //$NON-NLS-1$
 
 	@Address(37)
-	public static final String A_RAI_HOPPER_TIME_RADIUS = "rai.hopper.time-radius";
+	public static final String A_RAI_HOPPER_TIME_RADIUS = "rai.hopper.time-radius"; //$NON-NLS-1$
 
 	@Address(38)
-	public static final String A_RAI_HOPPER_TIME_PROPIGATION = "rai.hopper.time-propigation";
+	public static final String A_RAI_HOPPER_TIME_PROPIGATION = "rai.hopper.time-propigation"; //$NON-NLS-1$
 
 	@Address(39)
-	public static final String A_RAI_ENTITY_CHUNK_MULTIPLIER = "rai.entity.chunk-multiplier";
+	public static final String A_RAI_ENTITY_CHUNK_MULTIPLIER = "rai.entity.chunk-multiplier"; //$NON-NLS-1$
 
 	@Address(40)
-	public static final String A_RAI_ENTITY_CHUNK_CLUSTERIZER = "rai.entity.chunk-clusterer";
+	public static final String A_RAI_ENTITY_CHUNK_CLUSTERIZER = "rai.entity.chunk-clusterer"; //$NON-NLS-1$
 
 	@Address(41)
-	public static final String A_RAI_ENTITY_CHUNK_RADIUS = "rai.entity.chunk-radius";
+	public static final String A_RAI_ENTITY_CHUNK_RADIUS = "rai.entity.chunk-radius"; //$NON-NLS-1$
 
 	@Address(42)
-	public static final String A_RAI_FLUID_TIME_FLOOR = "rai.fluid.time-floor";
+	public static final String A_RAI_FLUID_TIME_FLOOR = "rai.fluid.time-floor"; //$NON-NLS-1$
 
 	@Address(43)
-	public static final String A_RAI_FLUID_TIME_CEIL = "rai.fluid.time-ceil";
+	public static final String A_RAI_FLUID_TIME_CEIL = "rai.fluid.time-ceil"; //$NON-NLS-1$
 
 	@Address(44)
-	public static final String A_RAI_FLUID_TIME_MUDDING = "rai.fluid.time-mudding";
+	public static final String A_RAI_FLUID_TIME_MUDDING = "rai.fluid.time-mudding"; //$NON-NLS-1$
 
 	@Address(45)
-	public static final String A_RAI_FLUID_TIME_FUNCTION = "rai.fluid.time-function";
+	public static final String A_RAI_FLUID_TIME_FUNCTION = "rai.fluid.time-function"; //$NON-NLS-1$
 
 	@Address(46)
-	public static final String A_RAI_FLUID_TIME_OVERBLEED = "rai.fluid.time-overbleed";
+	public static final String A_RAI_FLUID_TIME_OVERBLEED = "rai.fluid.time-overbleed"; //$NON-NLS-1$
 
 	@Address(47)
-	public static final String A_RAI_FLUID_TIME_RADIUS = "rai.fluid.time-radius";
+	public static final String A_RAI_FLUID_TIME_RADIUS = "rai.fluid.time-radius"; //$NON-NLS-1$
 
 	@Address(48)
-	public static final String A_RAI_FLUID_TIME_PROPIGATION = "rai.fluid.time-propigation";
+	public static final String A_RAI_FLUID_TIME_PROPIGATION = "rai.fluid.time-propigation"; //$NON-NLS-1$
 
 	@Address(49)
-	public static final String A_SMEAR_TICK_ENTITIES_MAX_TICK = "tick-smearing.entities.max-time";
+	public static final String A_SMEAR_TICK_ENTITIES_MAX_TICK = "tick-smearing.entities.max-time"; //$NON-NLS-1$
 
 	@Address(50)
-	public static final String A_SMEAR_TICK_TILES_MAX_TICK = "tick-smearing.tiles.max-time";
+	public static final String A_SMEAR_TICK_TILES_MAX_TICK = "tick-smearing.tiles.max-time"; //$NON-NLS-1$
 
 	@Address(51)
-	public static final String A_SMEAR_TICK_ENTITIES_SEPERATION_BIAS = "tick-smearing.entities.seperation-bias";
+	public static final String A_SMEAR_TICK_ENTITIES_SEPERATION_BIAS = "tick-smearing.entities.seperation-bias"; //$NON-NLS-1$
 
 	@Address(52)
-	public static final String A_SMEAR_TICK_TILES_SEPERATION_BIAS = "tick-smearing.tiles.seperation-bias";
+	public static final String A_SMEAR_TICK_TILES_SEPERATION_BIAS = "tick-smearing.tiles.seperation-bias"; //$NON-NLS-1$
 
 	@Address(53)
-	public static final String A_SMEAR_TICK_ENTITIES_AMOUNT = "tick-smearing.entities.smear-factor";
+	public static final String A_SMEAR_TICK_ENTITIES_AMOUNT = "tick-smearing.entities.smear-factor"; //$NON-NLS-1$
 
 	@Address(54)
-	public static final String A_SMEAR_TICK_TILES_AMOUNT = "tick-smearing.tiles.smear-factor";
+	public static final String A_SMEAR_TICK_TILES_AMOUNT = "tick-smearing.tiles.smear-factor"; //$NON-NLS-1$
 
 	@Address(55)
-	public static final String A_SMEAR_TICK_ENTITIES_ENABLE = "tick-smearing.entities.enable";
+	public static final String A_SMEAR_TICK_ENTITIES_ENABLE = "tick-smearing.entities.enable"; //$NON-NLS-1$
 
 	@Address(56)
-	public static final String A_SMEAR_TICK_TILES_ENABLE = "tick-smearing.tiles.enable";
+	public static final String A_SMEAR_TICK_TILES_ENABLE = "tick-smearing.tiles.enable"; //$NON-NLS-1$
+
+	@Address(57)
+	public static final String A_HOPPER_OVERTICK_ENABLE = "tweaks.hoppers.reduce-overtick-hoppers"; //$NON-NLS-1$
+
+	@Address(58)
+	public static final String A_HOPPER_WARP_ENABLE = "tweaks.hoppers.hopper-warping.enabled"; //$NON-NLS-1$
+
+	@Address(59)
+	public static final String A_HOPPER_WARP_MIN = "tweaks.hoppers.hopper-warping.min-los"; //$NON-NLS-1$
+
+	@Address(60)
+	public static final String A_HOPPER_WARP_MAX = "tweaks.hoppers.hopper-warping.max-los"; //$NON-NLS-1$
+
+	@Address(61)
+	public static final String A_LANGUAGE = "language"; //$NON-NLS-1$
 
 	@Sector(0)
 	@Injection(InjectionMethod.SWAP)
@@ -515,6 +530,28 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean SMEAR_TICK_TILES_ENABLE = true;
 
+	@Sector(57)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean HOPPER_OVERTICK_ENABLE = true;
+
+	@Sector(58)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean HOPPER_WARP_ENABLE = true;
+
+	@Sector(59)
+	@Clip(min = 3, max = 16)
+	@Injection(InjectionMethod.SWAP)
+	public static int HOPPER_WARP_MIN = 6;
+
+	@Sector(60)
+	@Clip(min = 12, max = 128)
+	@Injection(InjectionMethod.SWAP)
+	public static int HOPPER_WARP_MAX = 64;
+
+	@Sector(61)
+	@Injection(InjectionMethod.SWAP)
+	public static String LANGUAGE = "enUS";
+
 	private static boolean hrld = false;
 	private static boolean rns = false;
 	private static boolean rrl = false;
@@ -522,8 +559,8 @@ public class Config
 	@DynamicTracker
 	public static void doTrack(Plugin main)
 	{
-		File fConfig = new File(main.getDataFolder(), "config.yml");
-		File fConfigExperimental = new File(main.getDataFolder(), "config-experimental.yml");
+		File fConfig = new File(main.getDataFolder(), "config.yml"); //$NON-NLS-1$
+		File fConfigExperimental = new File(main.getDataFolder(), "config-experimental.yml"); //$NON-NLS-1$
 
 		Runnable r = new Runnable()
 		{
@@ -544,8 +581,8 @@ public class Config
 	@RawEvent
 	public static void onRead(Plugin main)
 	{
-		File fConfig = new File(main.getDataFolder(), "config.yml");
-		File fConfigExperimental = new File(main.getDataFolder(), "config-experimental.yml");
+		File fConfig = new File(main.getDataFolder(), "config.yml"); //$NON-NLS-1$
+		File fConfigExperimental = new File(main.getDataFolder(), "config-experimental.yml"); //$NON-NLS-1$
 
 		try
 		{
@@ -633,7 +670,7 @@ public class Config
 
 				if(key == null)
 				{
-					D.w("Failed to find key for field " + i.getName());
+					D.w(Lang.getString("messages.fail.find-key-for-field") + i.getName()); //$NON-NLS-1$
 					continue;
 				}
 
@@ -647,31 +684,39 @@ public class Config
 
 						if(i.isAnnotationPresent(Clip.class))
 						{
-							Clip c = i.getAnnotation(Clip.class);
-
-							if(i.getType().equals(Integer.class) || i.getType().equals(int.class))
+							try
 							{
-								i.set(null, (int) M.clip(in.getInt(j), c.min(), c.max()));
-								cc.set(key, (int) M.clip(in.getInt(j), c.min(), c.max()));
+								Clip c = i.getAnnotation(Clip.class);
+
+								if(i.getType().equals(Integer.class) || i.getType().equals(int.class))
+								{
+									i.set(null, (int) M.clip(in.getInt(j), c.min(), c.max()));
+									cc.set(key, (int) M.clip(in.getInt(j), c.min(), c.max()));
+								}
+
+								else if(i.getType().equals(Double.class) || i.getType().equals(double.class))
+								{
+									i.set(null, (double) M.clip(in.getDouble(j), c.min(), c.max()));
+									cc.set(key, (double) M.clip(in.getDouble(j), c.min(), c.max()));
+								}
+
+								else if(i.getType().equals(Long.class) || i.getType().equals(long.class))
+								{
+									i.set(null, (long) M.clip(in.getLong(j), c.min(), c.max()));
+									cc.set(key, (long) M.clip(in.getLong(j), c.min(), c.max()));
+								}
+
+								else
+								{
+									D.w(Lang.getString("messages.fail.cannot-clip") + key + " (" + i.getType().getSimpleName() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+									i.set(null, in.get(j));
+									cc.trySet(key, in.get(j));
+								}
 							}
 
-							else if(i.getType().equals(Double.class) || i.getType().equals(double.class))
+							catch(Exception e)
 							{
-								i.set(null, (double) M.clip(in.getDouble(j), c.min(), c.max()));
-								cc.set(key, (double) M.clip(in.getDouble(j), c.min(), c.max()));
-							}
 
-							else if(i.getType().equals(Long.class) || i.getType().equals(long.class))
-							{
-								i.set(null, (long) M.clip(in.getLong(j), c.min(), c.max()));
-								cc.set(key, (long) M.clip(in.getLong(j), c.min(), c.max()));
-							}
-
-							else
-							{
-								D.w("Cannot clip " + key + " (" + i.getType().getSimpleName() + ")");
-								i.set(null, in.get(j));
-								cc.trySet(key, in.get(j));
 							}
 						}
 
@@ -694,7 +739,7 @@ public class Config
 
 				if(!applied)
 				{
-					D.w("Adding new key: " + key);
+					D.w(Lang.getString("messages.status.adding-new.key") + key); //$NON-NLS-1$
 					cc.trySet(key, i.get(null));
 				}
 
@@ -744,7 +789,7 @@ public class Config
 
 				if(key == null)
 				{
-					D.w("Failed to find key for field " + i.getName());
+					D.w(Lang.getString("messages.fail.find-key-for-field") + i.getName()); //$NON-NLS-1$
 					continue;
 				}
 
@@ -944,30 +989,30 @@ public class Config
 		GList<String> ents = getDefaultEntitiesForCulling();
 		GList<String> scrs = new GList<String>();
 
-		scrs.add("@Refuse Tamed");
-		scrs.add("@Defer Named");
-		scrs.add("@Defer Leashed");
-		scrs.add("@Defer Stacked");
-		scrs.add("@Defer Ridden");
-		scrs.add("@Restrict Pig,Cow,Sheep,Chicken = 12");
-		scrs.add("@Restrict Zombie,Spider,Skeleton,Creeper = 12");
-		scrs.add("@Restrict Wolf,Ocelot,Horse = 7");
+		scrs.add("@Refuse Tamed"); //$NON-NLS-1$
+		scrs.add("@Defer Named"); //$NON-NLS-1$
+		scrs.add("@Defer Leashed"); //$NON-NLS-1$
+		scrs.add("@Defer Stacked"); //$NON-NLS-1$
+		scrs.add("@Defer Ridden"); //$NON-NLS-1$
+		scrs.add("@Restrict Pig,Cow,Sheep,Chicken = 12"); //$NON-NLS-1$
+		scrs.add("@Restrict Zombie,Spider,Skeleton,Creeper = 12"); //$NON-NLS-1$
+		scrs.add("@Restrict Wolf,Ocelot,Horse = 7"); //$NON-NLS-1$
 
 		for(String i : ents)
 		{
 			int m = 7;
 
-			if(i.toString().equals("VILLAGER"))
+			if(i.toString().equals("VILLAGER")) //$NON-NLS-1$
 			{
 				m = 10;
 			}
 
-			if(i.toString().equals("DROPPED_ITEM"))
+			if(i.toString().equals("DROPPED_ITEM")) //$NON-NLS-1$
 			{
 				m = 30;
 			}
 
-			scrs.add("@Restrict " + F.capitalizeWords(i.toLowerCase().replaceAll("_", " ")) + " = " + m);
+			scrs.add("@Restrict " + F.capitalizeWords(i.toLowerCase().replaceAll("_", " ")) + " = " + m); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		}
 
 		return scrs;

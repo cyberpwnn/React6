@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
@@ -28,8 +29,8 @@ public class SampleMemoryMax extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Max Memory");
-		setDescription("Maximum Memory");
+		setName(Lang.getString("sampler.memory-max.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.memory-max.description")); //$NON-NLS-1$
 		setID(SampledType.MAXMEM.toString());
 		setValue(1);
 		setColor(C.GOLD, C.GOLD);

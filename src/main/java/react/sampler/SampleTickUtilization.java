@@ -3,6 +3,7 @@ package react.sampler;
 import org.cyberpwn.gformat.F;
 import org.cyberpwn.gmath.Average;
 
+import react.Lang;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
@@ -30,8 +31,8 @@ public class SampleTickUtilization extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Tick Utilization");
-		setDescription("Tick usage via percent");
+		setName(Lang.getString("sampler.tick-utilization.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.tick-utilization.description")); //$NON-NLS-1$
 		setID(SampledType.TIU.toString());
 		setValue(1);
 		setColor(C.GREEN, C.GREEN);

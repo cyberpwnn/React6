@@ -3,15 +3,11 @@ package react.controller;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
-import org.cyberpwn.gconcurrent.S;
-import org.cyberpwn.gformat.F;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
@@ -190,21 +186,6 @@ public class RedstoneController extends Controller
 		}
 
 		frozen.remove(c);
-
-		new S()
-		{
-			@Override
-			public void run()
-			{
-				for(Entity i : c.getEntities())
-				{
-					if(i instanceof Player)
-					{
-						Gate.msgActing(i, "Redstone has been unlocked in this area");
-					}
-				}
-			}
-		};
 	}
 
 	public void freeze(Chunk c, long ms)
@@ -216,21 +197,6 @@ public class RedstoneController extends Controller
 
 		frozen.add(c);
 		freezeTimes.put(c, M.ms() + ms);
-
-		new S()
-		{
-			@Override
-			public void run()
-			{
-				for(Entity i : c.getEntities())
-				{
-					if(i instanceof Player)
-					{
-						Gate.msgActing(i, "Redstone has been locked in this area for " + F.time(ms, 1));
-					}
-				}
-			}
-		};
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

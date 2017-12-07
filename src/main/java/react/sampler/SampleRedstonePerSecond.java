@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
@@ -21,7 +22,7 @@ public class SampleRedstonePerSecond extends MSampler
 			@Override
 			public String from(double d)
 			{
-				return F.f(d, 0) + "/s";
+				return F.f(d, 0) + Lang.getString("sampler.redstone-second.ps"); //$NON-NLS-1$
 			}
 		};
 	}
@@ -29,8 +30,8 @@ public class SampleRedstonePerSecond extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Redstone Per Second");
-		setDescription("Samples redstone updates per second");
+		setName(Lang.getString("sampler.redstone-second.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.redstone-second.description")); //$NON-NLS-1$
 		setID(SampledType.REDSTONE_SECOND.toString());
 		setValue(0);
 		setColor(C.RED, C.RED);

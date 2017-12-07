@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
@@ -29,8 +30,8 @@ public class SampleFluidTickTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Fluid Tick Time");
-		setDescription("Samples Fluid Tick Time");
+		setName(Lang.getString("sampler.fluid-tick-time.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.fluid-tick-time.description")); //$NON-NLS-1$
 		setID(SampledType.FLUID_TIME.toString());
 		setValue(0);
 		setColor(C.LIGHT_PURPLE, C.LIGHT_PURPLE);
@@ -46,7 +47,7 @@ public class SampleFluidTickTime extends MSampler
 	@Override
 	public String get()
 	{
-		return getFormatter().from(getValue()) + "";
+		return getFormatter().from(getValue()) + ""; //$NON-NLS-1$
 	}
 
 	@Override

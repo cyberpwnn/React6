@@ -14,7 +14,11 @@ public interface ICommand
 
 	public String getDescription();
 
+	public String getDescriptionForParameter(String par);
+
 	public SideGate getSideGate();
+
+	public void registerParameterDescription(String id, String desc);
 
 	public void fire(CommandSender sender, String[] args);
 }

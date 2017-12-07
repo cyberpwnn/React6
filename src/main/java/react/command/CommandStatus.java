@@ -12,6 +12,7 @@ import org.cyberpwn.gformat.F;
 import org.cyberpwn.glang.GList;
 
 import react.Info;
+import react.Lang;
 import react.React;
 import react.api.Permissable;
 import react.api.ReactCommand;
@@ -50,7 +51,7 @@ public class CommandStatus extends ReactCommand
 	{
 		ItemStack is = new ItemStack(Material.WRITTEN_BOOK);
 		BookMeta book = (BookMeta) is.getItemMeta();
-		book.setTitle("Server Status");
+		book.setTitle(Lang.getString("command.status.server-status")); //$NON-NLS-1$
 		GList<String> set = new GList<String>();
 		addStatusPages(set);
 		addSpikePages(set);
@@ -62,8 +63,8 @@ public class CommandStatus extends ReactCommand
 
 	private void addSpikePages(GList<String> set)
 	{
-		String f = "";
-		f += C.DARK_AQUA + C.BOLD.toString() + C.ITALIC + "Server Spikes\n" + C.RESET;
+		String f = ""; //$NON-NLS-1$
+		f += C.DARK_AQUA + C.BOLD.toString() + C.ITALIC + Lang.getString("command.status.server-spikes") + C.RESET; //$NON-NLS-1$
 
 		GList<Integer> ints = React.instance.spikeController.getSpikes().v();
 		Collections.sort(ints);
@@ -80,8 +81,8 @@ public class CommandStatus extends ReactCommand
 			{
 				if(React.instance.spikeController.getSpikes().get(j).equals(i))
 				{
-					String jn = j.length() > 14 ? j.substring(0, 14) + "..." : j;
-					f += C.GRAY + jn + ": " + C.BLACK + C.BOLD.toString() + i + "\n";
+					String jn = j.length() > 14 ? j.substring(0, 14) + Lang.getString("command.status.elips") : j; //$NON-NLS-1$
+					f += C.GRAY + jn + ": " + C.BLACK + C.BOLD.toString() + i + "\n"; //$NON-NLS-1$ //$NON-NLS-2$
 					break;
 				}
 			}
@@ -92,15 +93,15 @@ public class CommandStatus extends ReactCommand
 
 	private void addStatusPages(GList<String> set)
 	{
-		String f = "";
-		f += C.DARK_AQUA + C.BOLD.toString() + C.ITALIC + "General\n" + C.RESET;
-		f += C.GRAY + "Players Online: " + Bukkit.getServer().getOnlinePlayers().size() + "\n";
-		f += C.GRAY + "Chunks Loaded: " + React.instance.sampleController.getSampler(SampledType.CHK.toString()).get() + "\n";
-		f += C.GRAY + "Worlds Loaded: " + Bukkit.getWorlds().size() + "\n";
-		f += C.DARK_AQUA + C.BOLD.toString() + C.ITALIC + "Memory\n" + C.RESET;
-		f += C.GRAY + React.instance.sampleController.getSampler(SampledType.MEM.toString()).get() + " of " + React.instance.sampleController.getSampler(SampledType.MAXMEM.toString()).get() + "\n";
-		f += C.DARK_AQUA + C.BOLD.toString() + C.ITALIC + "Tick\n" + C.RESET;
-		f += C.GRAY + "Tick Usage: " + React.instance.sampleController.getSampler(SampledType.TIU.toString()).get() + " (" + F.f(React.instance.sampleController.getSampler(SampledType.TICK.toString()).getValue(), 0) + "ms)\n";
+		String f = ""; //$NON-NLS-1$
+		f += C.DARK_AQUA + C.BOLD.toString() + C.ITALIC + Lang.getString("command.status.general") + C.RESET; //$NON-NLS-1$
+		f += C.GRAY + Lang.getString("command.status.players-online") + Bukkit.getServer().getOnlinePlayers().size() + "\n"; //$NON-NLS-1$ //$NON-NLS-2$
+		f += C.GRAY + Lang.getString("command.status.chunks-loaded") + React.instance.sampleController.getSampler(SampledType.CHK.toString()).get() + "\n"; //$NON-NLS-1$ //$NON-NLS-2$
+		f += C.GRAY + Lang.getString("command.status.worlds-loaded") + Bukkit.getWorlds().size() + "\n"; //$NON-NLS-1$ //$NON-NLS-2$
+		f += C.DARK_AQUA + C.BOLD.toString() + C.ITALIC + Lang.getString("command.status.memory") + C.RESET; //$NON-NLS-1$
+		f += C.GRAY + React.instance.sampleController.getSampler(SampledType.MEM.toString()).get() + Lang.getString("command.status.of") + React.instance.sampleController.getSampler(SampledType.MAXMEM.toString()).get() + "\n"; //$NON-NLS-1$ //$NON-NLS-2$
+		f += C.DARK_AQUA + C.BOLD.toString() + C.ITALIC + Lang.getString("command.status.tick") + C.RESET; //$NON-NLS-1$
+		f += C.GRAY + Lang.getString("command.status.tick-usage") + React.instance.sampleController.getSampler(SampledType.TIU.toString()).get() + " (" + F.f(React.instance.sampleController.getSampler(SampledType.TICK.toString()).getValue(), 0) + "ms)\n"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		set.add(f);
 	}
 

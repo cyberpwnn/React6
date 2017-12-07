@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
@@ -28,8 +29,8 @@ public class SampleMemoryAllocated extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Allocated Memory");
-		setDescription("Allocated Memory");
+		setName(Lang.getString("sampler.memory-allocated.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.memory-allocated.description")); //$NON-NLS-1$
 		setID(SampledType.ALLOCMEM.toString());
 		setValue(1);
 		setColor(C.GOLD, C.GOLD);

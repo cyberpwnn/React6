@@ -1,10 +1,12 @@
 package react.rai;
 
+import react.Lang;
+
 public enum RAIEventType
 {
-	FIRE_ACTION("I'll fire %1 to help with %2", "I'm Trying to fix %2 by running %1", "I'm Still Trying to fix %2 with %1"),
-	NOTE_GOAL_FAILING("It seems like the server is failing to %1", "Looks like we cant %1", "It seems like the %2 is not stable."),
-	NOTE_GOAL_FIXED("Looks like we are now %1", "The %2 looks good to me!");
+	FIRE_ACTION(Lang.getString("rai.event-message.react1"), Lang.getString("rai.event-message.react2"), Lang.getString("rai.event-message.react3")), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	NOTE_GOAL_FAILING(Lang.getString("rai.event-message.sample1"), Lang.getString("rai.event-message.sample2"), Lang.getString("rai.event-message.sample3")), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	NOTE_GOAL_FIXED(Lang.getString("rai.event-message.fixed1"), Lang.getString("rai.event-message.fixed2")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	private String[] msgs;
 
@@ -33,7 +35,7 @@ public enum RAIEventType
 		{
 			l++;
 
-			sel = sel.replaceAll("%" + l, i);
+			sel = sel.replaceAll("%" + l, i); //$NON-NLS-1$
 		}
 
 		return sel;

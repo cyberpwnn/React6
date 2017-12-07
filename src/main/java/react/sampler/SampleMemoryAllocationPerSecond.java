@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
@@ -28,8 +29,8 @@ public class SampleMemoryAllocationPerSecond extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Memory allocated per second");
-		setDescription("Memory allocated per second");
+		setName(Lang.getString("sampler.mahs.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.mahs.description")); //$NON-NLS-1$
 		setID(SampledType.MAHS.toString());
 		setValue(1);
 		setColor(C.GOLD, C.GOLD);
@@ -45,7 +46,7 @@ public class SampleMemoryAllocationPerSecond extends MSampler
 	@Override
 	public String get()
 	{
-		return "\u21AF " + getFormatter().from(getValue());
+		return "\u21AF " + getFormatter().from(getValue()); //$NON-NLS-1$
 	}
 
 	@Override

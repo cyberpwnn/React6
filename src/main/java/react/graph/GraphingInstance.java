@@ -143,21 +143,7 @@ public class GraphingInstance implements Listener
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void on(AsyncPlayerChatEvent e)
 	{
-		if(e.isCancelled())
-		{
-			return;
-		}
 
-		if(mapping)
-		{
-			if(e.getRecipients().contains(player))
-			{
-				e.getRecipients().remove(player);
-			}
-
-			notif = true;
-			msgs.add(C.YELLOW + "" + M.ms() + ":REACTSPLITTERFFF:" + C.RESET + e.getFormat().replaceAll("%1", e.getPlayer().getDisplayName()).replaceAll("%2", e.getMessage()).replace("$s", C.RESET.toString()).replace("$s", C.RESET.toString()));
-		}
 	}
 
 	@EventHandler

@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
@@ -28,8 +29,8 @@ public class SampleChunksLoaded extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Chunks");
-		setDescription("Total loaded chunks");
+		setName(Lang.getString("sampler.chunks-loaded.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.chunks-loaded.description")); //$NON-NLS-1$
 		setID(SampledType.CHK.toString());
 		setValue(1);
 		setColor(C.RED, C.RED);
@@ -45,7 +46,7 @@ public class SampleChunksLoaded extends MSampler
 	@Override
 	public String get()
 	{
-		return getFormatter().from(getValue()) + "\u2691";
+		return getFormatter().from(getValue()) + Lang.getString("sampler.chunks-loaded.flag"); //$NON-NLS-1$
 	}
 
 	@Override

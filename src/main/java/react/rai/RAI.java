@@ -2,19 +2,18 @@ package react.rai;
 
 import java.util.Arrays;
 
-import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.gmath.M;
 
-import react.Gate;
+import react.api.IActionSource;
+import react.api.RAIActionSource;
 
 public class RAI implements IRAI
 {
 	private GList<IGoal> goals;
 	private GList<RAIEvent> events;
 	private GList<RAIEvent> logEvents;
-	private GList<CommandSender> listeners;
+	private GList<IActionSource> listeners;
 	public long since;
 
 	public static RAI instance;
@@ -24,9 +23,9 @@ public class RAI implements IRAI
 		goals = new GList<IGoal>();
 		events = new GList<RAIEvent>();
 		logEvents = new GList<RAIEvent>();
-		listeners = new GList<CommandSender>();
+		listeners = new GList<IActionSource>();
 		instance = this;
-		getListeners().add(Bukkit.getConsoleSender());
+		getListeners().add(new RAIActionSource());
 		since = M.ms();
 	}
 
@@ -52,9 +51,9 @@ public class RAI implements IRAI
 
 		for(RAIEvent i : logEvents)
 		{
-			for(CommandSender j : getListeners())
+			for(IActionSource j : getListeners())
 			{
-				Gate.msgRAI(j, i.toString());
+				j.sendResponseActing(i.toString());
 			}
 		}
 
@@ -80,7 +79,7 @@ public class RAI implements IRAI
 	}
 
 	@Override
-	public GList<CommandSender> getListeners()
+	public GList<IActionSource> getListeners()
 	{
 		return listeners;
 	}

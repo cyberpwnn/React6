@@ -11,6 +11,7 @@ import org.cyberpwn.gmath.M;
 
 import react.Gate;
 import react.Info;
+import react.Lang;
 import react.React;
 import react.api.MonitorHeading;
 import react.api.Permissable;
@@ -61,9 +62,9 @@ public class MonitorController extends Controller implements IMasterTickComponen
 			}
 		}
 
-		D.v("Setup Monitor and Action Log");
+		D.v("Setup Monitor and Action Log"); //$NON-NLS-1$
 
-		new Task("waiter")
+		new Task("waiter") //$NON-NLS-1$
 		{
 			@Override
 			public void run()
@@ -77,7 +78,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 
 	private PhantomSlate constructActionLogBoard()
 	{
-		return new PhantomSlate(C.LIGHT_PURPLE + "Action Board");
+		return new PhantomSlate(C.LIGHT_PURPLE + Lang.getString("controller.action-log.scoreboard-name")); //$NON-NLS-1$
 	}
 
 	public void toggleActionLog(Player p)
@@ -203,13 +204,13 @@ public class MonitorController extends Controller implements IMasterTickComponen
 		if(canMonitor(p) && isMonitoring(p))
 		{
 			React.instance.playerController.getPlayer(p).setMonitoring(false);
-			NMSX.sendActionBar(p, "    ");
+			NMSX.sendActionBar(p, "    "); //$NON-NLS-1$
 		}
 
 		if(React.instance.playerController.has(p) && !canMonitor(p))
 		{
 			React.instance.playerController.getPlayer(p).setMonitoring(false);
-			NMSX.sendActionBar(p, "    ");
+			NMSX.sendActionBar(p, "    "); //$NON-NLS-1$
 		}
 	}
 
@@ -404,11 +405,11 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	{
 		if(sel == -1)
 		{
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 
 		double pct = (double) cd / (double) maxCooldown;
-		String acolor = titleMonitor.getHeadFor(sel).getHead().getColor() + "";
+		String acolor = titleMonitor.getHeadFor(sel).getHead().getColor() + ""; //$NON-NLS-1$
 
 		if(pct > 0.6)
 		{
@@ -420,14 +421,14 @@ public class MonitorController extends Controller implements IMasterTickComponen
 			return acolor;
 		}
 
-		return C.DARK_GRAY + "";
+		return C.DARK_GRAY + ""; //$NON-NLS-1$
 	}
 
 	public String prefixForSub(ReactPlayer rp, C color, int cd)
 	{
 		double pct = (double) cd / (double) maxCooldown;
 		pct = 1.0 - pct;
-		String acolor = color + "";
+		String acolor = color + ""; //$NON-NLS-1$
 
 		if(pct > 0.6)
 		{
@@ -439,7 +440,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 			return acolor + C.BOLD;
 		}
 
-		return C.DARK_GRAY + "" + C.BOLD;
+		return C.DARK_GRAY + "" + C.BOLD; //$NON-NLS-1$
 	}
 
 	public void tickMonitor(ReactPlayer rp)
@@ -449,7 +450,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 		NMSX.sendActionBar(p, titleMonitor.getHotbarFor(sel, rp.isShift()));
 		String k = titleMonitor.getHotbarHeadFor(sel, rp.isShift(), this, rp, rp.getSwitchNotification());
 		String m = prefixFor(rp, sel, rp.getSwitchNotification());
-		String v = sel != -1 ? (rp.getSwitchNotification() > 0 ? (m + titleMonitor.getHeadFor(sel).getName()) : "  ") : "  ";
+		String v = sel != -1 ? (rp.getSwitchNotification() > 0 ? (m + titleMonitor.getHeadFor(sel).getName()) : "  ") : "  "; //$NON-NLS-1$ //$NON-NLS-2$
 		NMSX.sendTitle(p, 0, 5, 0, v, k);
 	}
 
@@ -512,7 +513,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 
 				sb.clearLines();
 
-				sb.addLine("Queue: " + React.instance.actionController.pending.size());
+				sb.addLine(Lang.getString("controller.action-log.queue") + React.instance.actionController.pending.size()); //$NON-NLS-1$
 
 				for(String i : React.instance.actionController.tasks)
 				{
@@ -527,6 +528,6 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	@Override
 	public String getTickName()
 	{
-		return "Monitor";
+		return Lang.getString("controller.action-log.monitor"); //$NON-NLS-1$
 	}
 }

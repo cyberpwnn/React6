@@ -8,6 +8,7 @@ import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
 
+import react.Lang;
 import react.React;
 import react.api.Async;
 import react.api.Unused;
@@ -29,7 +30,7 @@ public class SpikeController extends Controller implements IMasterTickComponent
 	{
 		Surge.registerTicked(this);
 
-		new Task("waiter")
+		new Task("waiter") //$NON-NLS-1$
 		{
 			@Override
 			public void run()
@@ -39,11 +40,11 @@ public class SpikeController extends Controller implements IMasterTickComponent
 					@Override
 					public void run()
 					{
-						D.l("Scanning Plugins...");
+						D.l(Lang.getString("controller.spike-manager.scanning-plugins")); //$NON-NLS-1$
 						try
 						{
 							CPS.scan();
-							D.l("Completed!");
+							D.l(Lang.getString("controller.spike-manager.completed")); //$NON-NLS-1$
 						}
 
 						catch(IOException e)
@@ -100,7 +101,7 @@ public class SpikeController extends Controller implements IMasterTickComponent
 	@Override
 	public String getTickName()
 	{
-		return "spike-controller";
+		return "spike-controller"; //$NON-NLS-1$
 	}
 
 	@Unused

@@ -1,7 +1,10 @@
 package react.api;
 
+import java.util.Set;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -108,6 +111,59 @@ public class SelectorPosition extends Selector
 			else
 			{
 				throw new SelectorParseException("Only players can use the \"this\" keyword. We don't know where you are!");
+			}
+
+			if(input.contains("+"))
+			{
+				try
+				{
+					rad = Integer.valueOf(input.split("\\+")[1]);
+				}
+
+				catch(NumberFormatException e)
+				{
+					throw new SelectorParseException("Unable to parse integer: " + input.split("+")[1]);
+				}
+
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					throw new SelectorParseException("Unable to parse: " + input);
+				}
+			}
+
+			if(rad != 0)
+			{
+				if(rad < 0)
+				{
+					throw new SelectorParseException("Chunk Radius must be positive (" + input + ")");
+				}
+
+				for(Chunk i : W.chunkRadius(c, rad))
+				{
+					chunks.add(i);
+				}
+			}
+
+			else
+			{
+				chunks.add(c);
+			}
+		}
+
+		if(input.startsWith("look"))
+		{
+			int rad = 0;
+			Chunk c = null;
+
+			if(sender instanceof Player)
+			{
+				c = ((Player) sender).getTargetBlock((Set<Material>) null, 512).getChunk();
+			}
+
+			else
+			{
+				throw new SelectorParseException("Only players can use the \"look\" keyword. We don't know where you are!");
 			}
 
 			if(input.contains("+"))

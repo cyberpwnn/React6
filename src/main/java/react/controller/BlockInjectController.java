@@ -2,6 +2,7 @@ package react.controller;
 
 import org.cyberpwn.glang.GMap;
 
+import react.Lang;
 import react.binject.IBlockInjector;
 import react.binject.V10.BlockInjector10;
 import react.binject.V11.BlockInjector11;
@@ -77,17 +78,17 @@ public class BlockInjectController extends Controller
 
 			else
 			{
-				D.w("Could not find an injector client for " + current.toString());
-				D.w("Block injections will not be executed");
+				D.w(Lang.getString("block-injector.could-not-find-client") + current.toString()); //$NON-NLS-1$
+				D.w(Lang.getString("block-injector.block-injections-wont")); //$NON-NLS-1$
 			}
 		}
 
 		if(injector != null)
 		{
-			D.v("Found Block Injector " + set.toString() + " for " + current.toString());
-			D.v("=== Injecting Blocks ===");
+			D.v(Lang.getString("block-injector.found-injector") + set.toString() + Lang.getString("block-injector.for") + current.toString()); //$NON-NLS-1$ //$NON-NLS-2$
+			D.v(Lang.getString("block-injector.injecting-blocks")); //$NON-NLS-1$
 			injector.inject();
-			D.v("========================");
+			D.v("========================"); //$NON-NLS-1$
 			injected = true;
 		}
 	}

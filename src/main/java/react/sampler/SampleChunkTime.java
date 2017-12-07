@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
@@ -29,8 +30,8 @@ public class SampleChunkTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Chunk Time");
-		setDescription("Samples Chunl total load times");
+		setName(Lang.getString("sampler.chunk-time.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.chunk-time.description")); //$NON-NLS-1$
 		setID(SampledType.CHK_TIME.toString());
 		setValue(0);
 		setColor(C.LIGHT_PURPLE, C.LIGHT_PURPLE);

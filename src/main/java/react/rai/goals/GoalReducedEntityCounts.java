@@ -4,6 +4,7 @@ import org.bukkit.Chunk;
 import org.cyberpwn.gconcurrent.TICK;
 
 import react.Config;
+import react.Lang;
 import react.React;
 import react.api.ActionType;
 import react.api.IAction;
@@ -23,7 +24,7 @@ public class GoalReducedEntityCounts extends Goal
 
 	public GoalReducedEntityCounts()
 	{
-		super("Reduced Entity Counts");
+		super(Lang.getString("rai.goal.entity-count.reduced-entity-count")); //$NON-NLS-1$
 
 		failing = false;
 	}
@@ -56,12 +57,12 @@ public class GoalReducedEntityCounts extends Goal
 
 			if(failing)
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, "keep a stable entity count", "entity count"));
+				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, Lang.getString("rai.goal.entity-count.keep-stable"), Lang.getString("rai.goal.entity-count.entity-count"))); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
 			else
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, "keep a stable entity count", "entity count"));
+				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, Lang.getString("rai.goal.entity-count.keep-stable"), Lang.getString("rai.goal.entity-count.entity-count"))); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 
@@ -96,7 +97,7 @@ public class GoalReducedEntityCounts extends Goal
 			IActionSource source = new RAIActionSource();
 			SelectorPosition pos = new SelectorPosition();
 			pos.add(laggiest, Config.RAI_ENTITY_CHUNK_RADIUS);
-			RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), "entity clustering"));
+			RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), Lang.getString("rai.goal.entity-count.entity-clustering"))); //$NON-NLS-1$
 			React.instance.actionController.fire(action.getType(), source, pos);
 		}
 	}

@@ -4,13 +4,9 @@ import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
-import org.cyberpwn.gconcurrent.S;
-import org.cyberpwn.gformat.F;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
 import org.cyberpwn.gmath.Average;
@@ -125,21 +121,6 @@ public class HopperController extends Controller
 		}
 
 		frozen.remove(c);
-
-		new S()
-		{
-			@Override
-			public void run()
-			{
-				for(Entity i : c.getEntities())
-				{
-					if(i instanceof Player)
-					{
-						Gate.msgActing(i, "Hoppers have been unlocked in this area");
-					}
-				}
-			}
-		};
 	}
 
 	public void freeze(Chunk c, long ms)
@@ -151,21 +132,6 @@ public class HopperController extends Controller
 
 		frozen.add(c);
 		freezeTimes.put(c, M.ms() + ms);
-
-		new S()
-		{
-			@Override
-			public void run()
-			{
-				for(Entity i : c.getEntities())
-				{
-					if(i instanceof Player)
-					{
-						Gate.msgActing(i, "Hoppers have been locked in this area for " + F.time(ms, 1));
-					}
-				}
-			}
-		};
 	}
 
 	@Override

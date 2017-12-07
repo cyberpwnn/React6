@@ -3,6 +3,7 @@ package react.rai.goals;
 import org.cyberpwn.gmath.M;
 
 import react.Config;
+import react.Lang;
 import react.React;
 import react.api.SampledType;
 import react.rai.Goal;
@@ -16,7 +17,7 @@ public class GoalStableEntityTime extends Goal
 
 	public GoalStableEntityTime()
 	{
-		super("Stabilize Entity Tick");
+		super(Lang.getString("rai.goal.stable-entity-tick.stabilize-entity-tick")); //$NON-NLS-1$
 
 		failing = false;
 	}
@@ -56,12 +57,12 @@ public class GoalStableEntityTime extends Goal
 
 			if(failing)
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, "keep a stable entity tick", "entity tick"));
+				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, Lang.getString("rai.goal.stable-entity-tick.keep-stable"), Lang.getString("rai.goal.stable-entity-tick.entity-tick"))); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
 			else
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, "keeping a stable entity tick", "entity tick"));
+				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, Lang.getString("rai.goal.stable-entity-tick.keeping-stable"), Lang.getString("rai.goal.stable-entity-tick.entity-tick"))); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 

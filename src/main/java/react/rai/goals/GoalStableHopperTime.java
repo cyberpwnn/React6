@@ -5,6 +5,7 @@ import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.M;
 
 import react.Config;
+import react.Lang;
 import react.React;
 import react.api.ActionType;
 import react.api.ChunkIssue;
@@ -26,7 +27,7 @@ public class GoalStableHopperTime extends Goal
 
 	public GoalStableHopperTime()
 	{
-		super("Stabilize Hopper Tick");
+		super(Lang.getString("rai.goal.stable-hopper-time.stablize")); //$NON-NLS-1$
 
 		failing = false;
 		reocc = new GMap<Chunk, Integer>();
@@ -61,7 +62,7 @@ public class GoalStableHopperTime extends Goal
 			SelectorTime time = new SelectorTime();
 			time.set((long) ((long) (reocc.containsKey(laggiest) ? reocc.get(laggiest) : 1) * (Config.RAI_HOPPER_TIME_PROPIGATION * Math.random())));
 			reocc.put(laggiest, reocc.containsKey(laggiest) ? reocc.get(laggiest) + 4 : 1);
-			RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), "hopper lag"));
+			RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), Lang.getString("rai.goal.stable-hopper-time.hopper-lag"))); //$NON-NLS-1$
 			React.instance.actionController.fire(action.getType(), source, pos, time);
 		}
 	}
@@ -89,12 +90,12 @@ public class GoalStableHopperTime extends Goal
 
 			if(failing)
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, "keep a stable hopper tick", "hopper tick"));
+				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, Lang.getString("rai.goal.stable-hopper-time.keep-stable"), Lang.getString("rai.goal.stable-hopper-time.hopper-tick"))); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
 			else
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, "keeping a stable hopper tick", "hopper tick"));
+				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, Lang.getString("rai.goal.stable-hopper-time.keeping-stable"), Lang.getString("rai.goal.stable-hopper-time.hopper-tick"))); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 

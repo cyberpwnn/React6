@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
@@ -29,8 +30,8 @@ public class SampleEntityTimeLock extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Entity Tick Time Lock");
-		setDescription("Samples Entity Tick Time Lock");
+		setName(Lang.getString("sampler.entity-time-lock.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.entity-time-lock.description")); //$NON-NLS-1$
 		setID(SampledType.ENTITY_TIME_LOCK.toString());
 		setValue(0);
 		setColor(C.LIGHT_PURPLE, C.LIGHT_PURPLE);

@@ -1,21 +1,24 @@
 package react;
 
 import react.controller.ActionController;
+import react.controller.BenchmarkController;
 import react.controller.BlockInjectController;
 import react.controller.ChronophyFluidController;
-import react.controller.ChronophyHopperController;
 import react.controller.ChunkController;
 import react.controller.CommandController;
 import react.controller.DropMergeController;
-import react.controller.EntityCacheController;
 import react.controller.EntityCullController;
 import react.controller.EntityStackController;
 import react.controller.EventController;
 import react.controller.FastDecayController;
+import react.controller.FeatureController;
 import react.controller.FluidController;
 import react.controller.GlassController;
 import react.controller.GraphController;
 import react.controller.HopperController;
+import react.controller.HopperOvertickController;
+import react.controller.HopperWarpController;
+import react.controller.LanguageController;
 import react.controller.MonitorController;
 import react.controller.PhysicsController;
 import react.controller.PlayerController;
@@ -55,9 +58,6 @@ public class React
 
 	@Control
 	public ActionController actionController;
-
-	@Control
-	public EntityCacheController entityCacheController;
 
 	@Control
 	public DropMergeController dropMergeController;
@@ -120,7 +120,19 @@ public class React
 	public SmearTickController smearTickController;
 
 	@Control
-	public ChronophyHopperController chronophyHopperController;
+	public HopperWarpController chronophyHopperController;
+
+	@Control
+	public FeatureController featureController;
+
+	@Control
+	public HopperOvertickController hopperPlungeController;
+
+	@Control
+	public BenchmarkController benchmarkController;
+
+	@Control
+	public LanguageController languageController;
 
 	@Enable
 	public void enable()

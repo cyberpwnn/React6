@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
@@ -29,8 +30,8 @@ public class SampleEntityDroppedTicks extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Entity Dropped Ticks");
-		setDescription("Samples Dropped Entity Ticks");
+		setName(Lang.getString("sampler.entities-dropped-ticks.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.entities-dropped-ticks.description")); //$NON-NLS-1$
 		setID(SampledType.ENTITY_DROPTICK.toString());
 		setValue(0);
 		setColor(C.LIGHT_PURPLE, C.LIGHT_PURPLE);

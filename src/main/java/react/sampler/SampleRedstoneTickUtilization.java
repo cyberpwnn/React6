@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
@@ -29,8 +30,8 @@ public class SampleRedstoneTickUtilization extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Redstone Tick Time Utilization");
-		setDescription("Samples Redstone Tick Time Utilization");
+		setName(Lang.getString("sampler.redstone-tick-utilization.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.redstone-tick-utilization.description")); //$NON-NLS-1$
 		setID(SampledType.REDSTONE_TICK_USAGE.toString());
 		setValue(0);
 		setColor(C.RED, C.RED);

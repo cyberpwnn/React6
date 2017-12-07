@@ -1,6 +1,7 @@
 package react.rai.goals;
 
 import react.Config;
+import react.Lang;
 import react.React;
 import react.api.SampledType;
 import react.rai.Goal;
@@ -14,7 +15,7 @@ public class GoalStableTickTime extends Goal
 
 	public GoalStableTickTime()
 	{
-		super("Stabilize TPS");
+		super(Lang.getString("rai.goal.stable-tick.stable-tps")); //$NON-NLS-1$
 
 		failing = false;
 	}
@@ -36,12 +37,12 @@ public class GoalStableTickTime extends Goal
 
 			if(failing)
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, "keep a stable tps", "tps"));
+				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, Lang.getString("rai.goal.stable-tick.keep-stable-tps"), Lang.getString("rai.goal.stable-tick.tps"))); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
 			else
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, "keeping a stable tps", "tps"));
+				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, Lang.getString("rai.goal.stable-tick.keeping-stable"), Lang.getString("rai.goal.stable-tick.tps"))); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 

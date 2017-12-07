@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
@@ -28,8 +29,8 @@ public class SampleMemoryFree extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Free Memory");
-		setDescription("Memory currently free");
+		setName(Lang.getString("sampler.memory-free.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.memory-free.description")); //$NON-NLS-1$
 		setID(SampledType.FREEMEM.toString());
 		setValue(1);
 		setColor(C.GOLD, C.GOLD);

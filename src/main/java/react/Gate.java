@@ -1,8 +1,11 @@
 package react;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -12,12 +15,15 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.cyberpwn.gconcurrent.A;
 import org.cyberpwn.gconcurrent.TICK;
+import org.cyberpwn.glang.Callback;
 import org.cyberpwn.glang.GMap;
 import org.spigotmc.SpigotWorldConfig;
 import org.spigotmc.TickLimiter;
 
 import react.api.ActivationRangeType;
+import react.api.SelectorPosition;
 import surge.nms.NMSX;
 import surge.util.C;
 import surge.util.D;
@@ -27,14 +33,76 @@ public class Gate
 {
 	private static GMap<String, Integer> defaultSettings = new GMap<String, Integer>();
 
+	public static void fixLighting(SelectorPosition sel, Callback<Integer> cb, Callback<Double> prog)
+	{
+		new A()
+		{
+			@Override
+			public void run()
+			{
+				if(hasFawe())
+				{
+					try
+					{
+						Class<?> vectorClass = Class.forName("com.sk89q.worldedit.Vector"); //$NON-NLS-1$
+						Class<?> cuboidClass = Class.forName("com.sk89q.worldedit.regions.CuboidRegion"); //$NON-NLS-1$
+						Class<?> regionClass = Class.forName("com.sk89q.worldedit.regions.Region"); //$NON-NLS-1$
+						Class<?> faweapClass = Class.forName("com.boydti.fawe.FaweAPI"); //$NON-NLS-1$
+						Constructor<?> cuboidConstruct = cuboidClass.getConstructor(vectorClass, vectorClass);
+						Constructor<?> vectorConstruct = vectorClass.getConstructor(int.class, int.class, int.class);
+						Method faweFixMethod = faweapClass.getMethod("fixLighting", String.class, regionClass); //$NON-NLS-1$
+						Integer total = 0;
+						Integer sof = 0;
+						Integer tot = sel.getPossibilities().size();
+
+						for(Object o : sel.getPossibilities())
+						{
+							if(!sel.can(o))
+							{
+								continue;
+							}
+
+							Chunk c = (Chunk) o;
+							Object vector1 = vectorConstruct.newInstance(c.getX() << 4, 0, c.getZ() << 4);
+							Object vector2 = vectorConstruct.newInstance(16 + (c.getX() << 4), 256, 16 + (c.getZ() << 4));
+							Object cuboid = cuboidConstruct.newInstance(vector1, vector2);
+							Object ret = faweFixMethod.invoke(null, c.getWorld().getName(), cuboid);
+							total += (int) ret;
+							sof++;
+							prog.run(sof.doubleValue() / tot.doubleValue());
+						}
+
+						cb.run(total);
+					}
+
+					catch(Exception e)
+					{
+						e.printStackTrace();
+						prog.run(1.0);
+						cb.run(-1);
+						return;
+					}
+				}
+
+				prog.run(1.0);
+				cb.run(-1);
+			}
+		};
+	}
+
+	public static boolean hasFawe()
+	{
+		return Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null; //$NON-NLS-1$
+	}
+
 	public static void tickEntityNextTickListTick(World world) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException
 	{
-		Class<?> cworldclass = NMSX.getCBClass("CraftWorld");
-		Object theWorld = cworldclass.getMethod("getHandle").invoke(world);
-		Field f = deepFindField(theWorld, "entityLimiter");
+		Class<?> cworldclass = NMSX.getCBClass("CraftWorld"); //$NON-NLS-1$
+		Object theWorld = cworldclass.getMethod("getHandle").invoke(world); //$NON-NLS-1$
+		Field f = deepFindField(theWorld, "entityLimiter"); //$NON-NLS-1$
 		f.setAccessible(true);
 		TickLimiter tl = (TickLimiter) f.get(theWorld);
-		Field ff = tl.getClass().getDeclaredField("maxTime");
+		Field ff = tl.getClass().getDeclaredField("maxTime"); //$NON-NLS-1$
 		ff.setAccessible(true);
 		int maxTime = (int) ff.get(tl);
 
@@ -54,9 +122,9 @@ public class Gate
 
 	public static void resetEntityMaxTick(World world) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException
 	{
-		if(defaultSettings.containsKey(world.getName() + "-entitymaxtick"))
+		if(defaultSettings.containsKey(world.getName() + "-entitymaxtick")) //$NON-NLS-1$
 		{
-			tweakEntityTickMax(world, defaultSettings.get(world.getName() + "-entitymaxtick"));
+			tweakEntityTickMax(world, defaultSettings.get(world.getName() + "-entitymaxtick")); //$NON-NLS-1$
 		}
 	}
 
@@ -74,24 +142,22 @@ public class Gate
 	{
 		SpigotWorldConfig wc = getSpigotConfig(world);
 
-		if(!defaultSettings.containsKey(world.getName() + "-entitymaxtick"))
+		if(!defaultSettings.containsKey(world.getName() + "-entitymaxtick")) //$NON-NLS-1$
 		{
-			defaultSettings.put(world.getName() + "-entitymaxtick", getEntityTickMax(world));
+			defaultSettings.put(world.getName() + "-entitymaxtick", getEntityTickMax(world)); //$NON-NLS-1$
 		}
 
 		wc.entityMaxTickTime = tt;
-		forceSet(wc, "max-tick-time.entity", tt);
-		Class<?> cworldclass = NMSX.getCBClass("CraftWorld");
-		Object theWorld = cworldclass.getMethod("getHandle").invoke(world);
-		Field f = deepFindField(theWorld, "entityLimiter");
+		forceSet(wc, "max-tick-time.entity", tt); //$NON-NLS-1$
+		Class<?> cworldclass = NMSX.getCBClass("CraftWorld"); //$NON-NLS-1$
+		Object theWorld = cworldclass.getMethod("getHandle").invoke(world); //$NON-NLS-1$
+		Field f = deepFindField(theWorld, "entityLimiter"); //$NON-NLS-1$
 
 		if(f != null)
 		{
 			f.setAccessible(true);
 			f.set(theWorld, new TickLimiter(tt));
 		}
-
-		D.v("Entity Cap: " + tt);
 	}
 
 	public static Field deepFindField(Object obj, String fieldName)
@@ -118,10 +184,10 @@ public class Gate
 
 	public static void forceSet(SpigotWorldConfig v, String key, Object value) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException
 	{
-		Field f = v.getClass().getDeclaredField("config");
+		Field f = v.getClass().getDeclaredField("config"); //$NON-NLS-1$
 		f.setAccessible(true);
 		YamlConfiguration fc = (YamlConfiguration) f.get(v);
-		fc.set("world-settings.default." + key, value);
+		fc.set("world-settings.default." + key, value); //$NON-NLS-1$
 	}
 
 	public static int getActivationRange(World world, ActivationRangeType type) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException
@@ -143,9 +209,9 @@ public class Gate
 
 	public static void resetActivationRange(World world, ActivationRangeType type) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException
 	{
-		if(defaultSettings.containsKey(world.getName() + "-" + type.toString()))
+		if(defaultSettings.containsKey(world.getName() + "-" + type.toString())) //$NON-NLS-1$
 		{
-			tweakActivationRange(world, type, defaultSettings.get(world.getName() + "-" + type.toString()));
+			tweakActivationRange(world, type, defaultSettings.get(world.getName() + "-" + type.toString())); //$NON-NLS-1$
 		}
 	}
 
@@ -153,9 +219,9 @@ public class Gate
 	{
 		SpigotWorldConfig conf = getSpigotConfig(world);
 
-		if(!defaultSettings.containsKey(world.getName() + "-" + type.toString()))
+		if(!defaultSettings.containsKey(world.getName() + "-" + type.toString())) //$NON-NLS-1$
 		{
-			defaultSettings.put(world.getName() + "-" + type.toString(), getActivationRange(world, type));
+			defaultSettings.put(world.getName() + "-" + type.toString(), getActivationRange(world, type)); //$NON-NLS-1$
 		}
 
 		switch(type)
@@ -173,9 +239,9 @@ public class Gate
 
 	public static SpigotWorldConfig getSpigotConfig(World world) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException
 	{
-		Class<?> cworldclass = NMSX.getCBClass("CraftWorld");
-		Object theWorld = cworldclass.getMethod("getHandle").invoke(world);
-		SpigotWorldConfig wc = (SpigotWorldConfig) theWorld.getClass().getField("spigotConfig").get(theWorld);
+		Class<?> cworldclass = NMSX.getCBClass("CraftWorld"); //$NON-NLS-1$
+		Object theWorld = cworldclass.getMethod("getHandle").invoke(world); //$NON-NLS-1$
+		SpigotWorldConfig wc = (SpigotWorldConfig) theWorld.getClass().getField("spigotConfig").get(theWorld); //$NON-NLS-1$
 
 		return wc;
 	}
@@ -190,7 +256,7 @@ public class Gate
 
 	public static String msgRAI(CommandSender p, String msg)
 	{
-		String s = TXT.makeTag(C.AQUA, C.DARK_GRAY, C.GRAY, "RAI") + msg;
+		String s = TXT.makeTag(C.AQUA, C.DARK_GRAY, C.GRAY, "RAI") + msg; //$NON-NLS-1$
 		p.sendMessage(s);
 
 		return s;
@@ -198,17 +264,17 @@ public class Gate
 
 	public static String msgSuccess(CommandSender p, String msg)
 	{
-		return msg(p, C.GREEN + "\u2714 " + C.GRAY + msg);
+		return msg(p, C.GREEN + "\u2714 " + C.GRAY + msg); //$NON-NLS-1$
 	}
 
 	public static String msgError(CommandSender p, String msg)
 	{
-		return msg(p, C.RED + "\u2718 " + C.GRAY + msg);
+		return msg(p, C.RED + "\u2718 " + C.GRAY + msg); //$NON-NLS-1$
 	}
 
 	public static String msgActing(CommandSender p, String msg)
 	{
-		return msg(p, C.GOLD + "\u26A0 " + C.GRAY + msg);
+		return msg(p, C.GOLD + "\u26A0 " + C.GRAY + msg); //$NON-NLS-1$
 	}
 
 	public static boolean unloadChunk(Chunk c)
@@ -220,7 +286,7 @@ public class Gate
 
 		catch(Exception e)
 		{
-			D.f("Failed to unload a chunk " + e.getMessage());
+			D.f(Lang.getString("message.fail.unload-chunk") + e.getMessage()); //$NON-NLS-1$
 			return false;
 		}
 	}
@@ -270,26 +336,6 @@ public class Gate
 		removeEntity(e);
 	}
 
-	public static void cacheEntity(Entity e)
-	{
-		if(e instanceof Player)
-		{
-			return;
-		}
-
-		if(!Config.ALLOW_CACHE.contains(e.getType().toString()))
-		{
-			return;
-		}
-
-		React.instance.entityCacheController.pop(e);
-	}
-
-	public static int restoreEntities(Chunk chunk)
-	{
-		return React.instance.entityCacheController.push(chunk);
-	}
-
 	@SuppressWarnings("deprecation")
 	public static void updateBlock(Block block)
 	{
@@ -318,7 +364,7 @@ public class Gate
 		int left = string.length() + 2;
 		int of = (maxLength - left) / 2;
 
-		return TXT.line(color, of) + C.RESET + " " + string + " " + C.RESET + TXT.line(color, of);
+		return TXT.line(color, of) + C.RESET + " " + string + " " + C.RESET + TXT.line(color, of); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public static String header(C color)
@@ -333,6 +379,5 @@ public class Gate
 		byte byt = block.getData();
 		block.setTypeIdAndData(block.getTypeId(), (byte) 0, false);
 		block.setTypeIdAndData(id, byt, true);
-
 	}
 }

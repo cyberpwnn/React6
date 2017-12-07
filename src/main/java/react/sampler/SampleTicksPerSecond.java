@@ -3,6 +3,7 @@ package react.sampler;
 import org.cyberpwn.gformat.F;
 import org.cyberpwn.gmath.M;
 
+import react.Lang;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
@@ -29,8 +30,8 @@ public class SampleTicksPerSecond extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Ticks Per Second");
-		setDescription("Samples the tps");
+		setName(Lang.getString("sampler.tps.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.tps.description")); //$NON-NLS-1$
 		setID(SampledType.TPS.toString());
 		setValue(20);
 		setColor(C.GREEN, C.GREEN);
@@ -48,10 +49,10 @@ public class SampleTicksPerSecond extends MSampler
 	{
 		if(-getValue() > 20)
 		{
-			return (M.r(0.5) ? C.GOLD : C.RED) + "\u26A0" + C.RED + " " + F.time(-getValue(), 1);
+			return (M.r(0.5) ? C.GOLD : C.RED) + Lang.getString("sampler.tps.symbol-frozen") + C.RED + " " + F.time(-getValue(), 1); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
-		return getFormatter().from(getValue()) + "\u2126";
+		return getFormatter().from(getValue()) + Lang.getString("sampler.tps.symbol-stable"); //$NON-NLS-1$
 	}
 
 	@Override

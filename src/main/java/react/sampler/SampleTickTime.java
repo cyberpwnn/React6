@@ -3,6 +3,7 @@ package react.sampler;
 import org.cyberpwn.gformat.F;
 import org.cyberpwn.gmath.Average;
 
+import react.Lang;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
@@ -22,7 +23,7 @@ public class SampleTickTime extends MSampler
 			@Override
 			public String from(double d)
 			{
-				return F.f(d, 0) + "ms";
+				return F.f(d, 0) + Lang.getString("sampler.tick-time.milliseconds"); //$NON-NLS-1$
 			}
 		};
 	}
@@ -30,8 +31,8 @@ public class SampleTickTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Tick Time");
-		setDescription("Tick time in milliseconds");
+		setName(Lang.getString("sampler.tick-time.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.tick-time.description")); //$NON-NLS-1$
 		setID(SampledType.TICK.toString());
 		setValue(1);
 		setColor(C.GREEN, C.GREEN);
@@ -48,7 +49,7 @@ public class SampleTickTime extends MSampler
 	@Override
 	public String get()
 	{
-		return getFormatter().from(getValue()) + " \u27A4";
+		return getFormatter().from(getValue()) + Lang.getString("sampler.tick-time.symbol"); //$NON-NLS-1$
 	}
 
 	@Override

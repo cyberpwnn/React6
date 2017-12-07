@@ -2,6 +2,7 @@ package react.sampler;
 
 import org.cyberpwn.gformat.F;
 
+import react.Lang;
 import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
@@ -29,8 +30,8 @@ public class SampleTileTimeLock extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Tile Tick Time Lock");
-		setDescription("Samples Tile Tick Time Lock");
+		setName(Lang.getString("sampler.tile-time-lock.name")); //$NON-NLS-1$
+		setDescription(Lang.getString("sampler.tile-time-lock.description")); //$NON-NLS-1$
 		setID(SampledType.TILE_TIME_LOCK.toString());
 		setValue(0);
 		setColor(C.LIGHT_PURPLE, C.LIGHT_PURPLE);

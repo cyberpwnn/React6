@@ -14,6 +14,7 @@ import org.cyberpwn.gmath.M;
 
 import react.Gate;
 import react.Info;
+import react.Lang;
 import react.React;
 import react.api.ICommand;
 import react.api.Permissable;
@@ -58,7 +59,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 			{
 				Object c = i.getConstructor().newInstance();
 				commands.add((ICommand) c);
-				D.v("@Command " + c.getClass().getSimpleName());
+				D.v("@Command " + c.getClass().getSimpleName()); //$NON-NLS-1$
 			}
 
 			catch(InstantiationException e)
@@ -131,13 +132,13 @@ public class CommandController extends Controller implements Listener, CommandEx
 
 			if(a.length == 0)
 			{
-				s.sendMessage(Gate.header(C.AQUA + "RAI", C.LIGHT_PURPLE));
-				s.sendMessage(C.LIGHT_PURPLE + "/rai " + C.WHITE + "toggle" + C.GRAY + " - Toggle RAI on or off");
-				s.sendMessage(C.LIGHT_PURPLE + "/rai " + C.WHITE + "status" + C.GRAY + " - Get RAI's Status");
+				s.sendMessage(Gate.header(C.AQUA + "RAI", C.LIGHT_PURPLE)); //$NON-NLS-1$
+				s.sendMessage(C.LIGHT_PURPLE + "/rai " + C.WHITE + "toggle" + C.GRAY + " - Toggle RAI on or off"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				s.sendMessage(C.LIGHT_PURPLE + "/rai " + C.WHITE + "status" + C.GRAY + " - Get RAI's Status"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				s.sendMessage(Gate.header(C.LIGHT_PURPLE));
 			}
 
-			else if(a[0].equalsIgnoreCase("toggle"))
+			else if(a[0].equalsIgnoreCase("toggle")) //$NON-NLS-1$
 			{
 				if(!Permissable.RAI_CONTROL.has(s))
 				{
@@ -146,10 +147,10 @@ public class CommandController extends Controller implements Listener, CommandEx
 				}
 
 				React.instance.raiController.raiEnabled = !React.instance.raiController.raiEnabled;
-				Gate.msgRAI(s, React.instance.raiController.raiEnabled ? "RAI Online!" : "RAI is now offline.");
+				Gate.msgRAI(s, React.instance.raiController.raiEnabled ? Lang.getString("message.rai-online") : Lang.getString("message.rai-offline")); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
-			else if(a[0].equalsIgnoreCase("status"))
+			else if(a[0].equalsIgnoreCase("status")) //$NON-NLS-1$
 			{
 				if(!Permissable.RAI_MONITOR.has(s))
 				{
@@ -180,17 +181,17 @@ public class CommandController extends Controller implements Listener, CommandEx
 					}
 				}
 
-				s.sendMessage(Gate.header(C.AQUA + "RAI Status", C.LIGHT_PURPLE));
-				s.sendMessage("Goals: " + C.WHITE + (m - f) + " / " + m + C.GRAY + " Achieved");
-				s.sendMessage(F.f(RAI.instance.getEvents().size()) + " interventions in the past " + F.timeLong(M.ms() - RAI.instance.since, 0));
+				s.sendMessage(Gate.header(C.AQUA + Lang.getString("message.rai-status"), C.LIGHT_PURPLE)); //$NON-NLS-1$
+				s.sendMessage(Lang.getString("message.goal.goals") + C.WHITE + (m - f) + " / " + m + C.GRAY + Lang.getString("message.goal.achieved-sp")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				s.sendMessage(F.f(RAI.instance.getEvents().size()) + Lang.getString("message.goal.interventions-in-past") + F.timeLong(M.ms() - RAI.instance.since, 0)); //$NON-NLS-1$
 
 				for(IGoal i : RAI.instance.getGoals())
 				{
-					s.sendMessage(C.WHITE + i.getTag() + C.GRAY + " -> " + (i.isFailing() ? C.RED + "Failing" : C.GREEN + "Achieved"));
+					s.sendMessage(C.WHITE + i.getTag() + C.GRAY + " -> " + (i.isFailing() ? C.RED + Lang.getString("message.goal.failing") : C.GREEN + Lang.getString("message.goal.achieved"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 					for(IGoal j : i.getSubgoals())
 					{
-						s.sendMessage("  " + C.WHITE + j.getTag() + C.GRAY + " -> " + (j.isFailing() ? C.RED + "Failing" : C.GREEN + "Achieved"));
+						s.sendMessage("  " + C.WHITE + j.getTag() + C.GRAY + " -> " + (j.isFailing() ? C.RED + Lang.getString("message.goal.failing") : C.GREEN + Lang.getString("message.goal.achieved"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 					}
 				}
 
@@ -211,7 +212,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 
 			if(a.length == 0)
 			{
-				onCommand(plr ? px : s, c, n, new String[] {"?"});
+				onCommand(plr ? px : s, c, n, new String[] {"?"}); //$NON-NLS-1$
 				return true;
 			}
 
@@ -248,7 +249,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 
 				if(!gate.supports(side))
 				{
-					f(s, "This command does not support " + side.ss());
+					f(s, Lang.getString("message.failure.does-not-support-side") + side.ss()); //$NON-NLS-1$
 					return true;
 				}
 			}
@@ -277,11 +278,31 @@ public class CommandController extends Controller implements Listener, CommandEx
 
 			else
 			{
-				onCommand(plr ? px : s, c, n, new String[] {"?"});
+				onCommand(plr ? px : s, c, n, new String[] {"?"}); //$NON-NLS-1$
 				return true;
 			}
 		}
 
 		return false;
+	}
+
+	public GList<ICommand> getCommands()
+	{
+		return commands;
+	}
+
+	public void setCommands(GList<ICommand> commands)
+	{
+		this.commands = commands;
+	}
+
+	public boolean isK()
+	{
+		return k;
+	}
+
+	public void setK(boolean k)
+	{
+		this.k = k;
 	}
 }
