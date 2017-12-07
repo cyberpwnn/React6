@@ -67,6 +67,10 @@
                   <pattern>surge</pattern>
                   <shadedPattern>react.surge</shadedPattern>
                 </relocation>
+                <relocation>
+                  <pattern>org.cyberpwn.gnet</pattern>
+                  <shadedPattern>react.gnet</shadedPattern>
+                </relocation>
               </relocations>
             </configuration>
           </execution>

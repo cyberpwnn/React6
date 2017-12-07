@@ -19,6 +19,7 @@ public class CPUBenchmark extends Thread
 		this.score = 0;
 		setPriority(MAX_PRIORITY);
 		onFinish = null;
+		setName("Surge CPU Benchmark");
 	}
 
 	public CPUBenchmark(CommandSender sender, Runnable callb)
@@ -42,8 +43,18 @@ public class CPUBenchmark extends Thread
 		int tt = 0;
 		int max = Integer.MIN_VALUE;
 
+		if(interrupted())
+		{
+			return;
+		}
+
 		for(int i = 0; i < 19; i++)
 		{
+			if(interrupted())
+			{
+				return;
+			}
+
 			tt = DTest.test();
 
 			if(tt > max)
@@ -51,6 +62,11 @@ public class CPUBenchmark extends Thread
 				max = tt;
 				score = max;
 			}
+		}
+
+		if(interrupted())
+		{
+			return;
 		}
 
 		new S()
