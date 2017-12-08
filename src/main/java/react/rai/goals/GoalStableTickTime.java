@@ -1,5 +1,7 @@
 package react.rai.goals;
 
+import org.cyberpwn.gconcurrent.S;
+
 import react.Config;
 import react.Lang;
 import react.React;
@@ -35,15 +37,22 @@ public class GoalStableTickTime extends Goal
 		{
 			failing = f;
 
-			if(failing)
+			new S()
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, Lang.getString("rai.goal.stable-tick.keep-stable-tps"), Lang.getString("rai.goal.stable-tick.tps"))); //$NON-NLS-1$ //$NON-NLS-2$
-			}
+				@Override
+				public void run()
+				{
+					if(failing)
+					{
+						RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, Lang.getString("rai.goal.stable-tick.keep-stable-tps"), Lang.getString("rai.goal.stable-tick.tps"))); //$NON-NLS-1$ //$NON-NLS-2$
+					}
 
-			else
-			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, Lang.getString("rai.goal.stable-tick.keeping-stable"), Lang.getString("rai.goal.stable-tick.tps"))); //$NON-NLS-1$ //$NON-NLS-2$
-			}
+					else
+					{
+						RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, Lang.getString("rai.goal.stable-tick.keeping-stable"), Lang.getString("rai.goal.stable-tick.tps"))); //$NON-NLS-1$ //$NON-NLS-2$
+					}
+				}
+			};
 		}
 
 		return f;

@@ -8,6 +8,7 @@ import org.bukkit.util.Vector;
 import org.cyberpwn.gmath.M;
 
 import react.Config;
+import surge.util.PE;
 import surge.util.ParticleEffect;
 
 public class StackedEntity
@@ -18,7 +19,7 @@ public class StackedEntity
 
 	public StackedEntity(LivingEntity entity, int count)
 	{
-		this.rmx = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+		this.rmx = getMaxHealth(entity);
 
 		if(count > getAbsoluteMaxCount())
 		{
@@ -29,6 +30,17 @@ public class StackedEntity
 		this.count = count;
 	}
 
+	@SuppressWarnings("deprecation")
+	public static double getMaxHealth(LivingEntity e)
+	{
+		if(!Capabilities.ATTRIBUTES.isCapable())
+		{
+			return e.getMaxHealth();
+		}
+
+		return e.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+	}
+
 	public int getAbsoluteMaxCount()
 	{
 		return getEffectiveCount(Config.ENTITYSTACK_MAXIMUM_HEALTH);
@@ -36,7 +48,7 @@ public class StackedEntity
 
 	public static int getMaxCount(LivingEntity exf)
 	{
-		return (int) Math.ceil(((double) 2000 / (double) exf.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
+		return (int) Math.ceil(((double) 2000 / (double) getMaxHealth(exf)));
 	}
 
 	public void update()
@@ -79,7 +91,17 @@ public class StackedEntity
 			for(int i = 0; i < diff; i++)
 			{
 				LivingEntity ex = (LivingEntity) entity.getWorld().spawnEntity(entity.getLocation(), entity.getType());
-				ex.setAI(false);
+
+				if(Capabilities.ENTITY_AI.isCapable())
+				{
+					ex.setAI(false);
+				}
+
+				else
+				{
+					PE.SLOW.a(10).d(100).apply(ex);
+				}
+
 				ex.setFireTicks(entity.getFireTicks());
 
 				if(entity instanceof Ageable)
@@ -142,12 +164,26 @@ public class StackedEntity
 			setHealth(max);
 		}
 
-		entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(max);
+		setMaxHealth(entity, max);
+	}
+
+	@SuppressWarnings("deprecation")
+	public static void setMaxHealth(LivingEntity e, double v)
+	{
+		if(!Capabilities.ATTRIBUTES.isCapable())
+		{
+			e.setMaxHealth(v + 0.1);
+		}
+
+		else
+		{
+			e.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(v);
+		}
 	}
 
 	public double getMaxHealth()
 	{
-		return entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+		return getMaxHealth(entity);
 	}
 
 	public LivingEntity getEntity()

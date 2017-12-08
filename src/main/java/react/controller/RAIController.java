@@ -1,5 +1,7 @@
 package react.controller;
 
+import org.cyberpwn.gconcurrent.A;
+
 import react.rai.IGoal;
 import react.rai.IRAI;
 import react.rai.RAI;
@@ -41,6 +43,13 @@ public class RAIController extends Controller
 	@Override
 	public void tick()
 	{
-		rai.tick();
+		new A()
+		{
+			@Override
+			public void run()
+			{
+				rai.tick();
+			}
+		};
 	}
 }

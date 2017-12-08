@@ -1,6 +1,7 @@
 package react.rai.goals;
 
 import org.bukkit.Chunk;
+import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.gconcurrent.TICK;
 
 import react.Config;
@@ -36,14 +37,22 @@ public class GoalReducedEntityCounts extends Goal
 
 		int max = -1;
 
-		for(Chunk i : Chunks.getLoadedChunks())
+		try
 		{
-			int s = i.getEntities().length;
-
-			if(s > max)
+			for(Chunk i : Chunks.getLoadedChunks())
 			{
-				max = s;
+				int s = i.getEntities().length;
+
+				if(s > max)
+				{
+					max = s;
+				}
 			}
+		}
+
+		catch(Exception e)
+		{
+			return false;
 		}
 
 		int totalEntities = (int) (React.instance.sampleController.getSampler(SampledType.ENTDROP.toString()).getValue() + React.instance.sampleController.getSampler(SampledType.ENTLIV.toString()).getValue());
@@ -55,15 +64,22 @@ public class GoalReducedEntityCounts extends Goal
 		{
 			failing = f;
 
-			if(failing)
+			new S()
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, Lang.getString("rai.goal.entity-count.keep-stable"), Lang.getString("rai.goal.entity-count.entity-count"))); //$NON-NLS-1$ //$NON-NLS-2$
-			}
+				@Override
+				public void run()
+				{
+					if(failing)
+					{
+						RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, Lang.getString("rai.goal.entity-count.keep-stable"), Lang.getString("rai.goal.entity-count.entity-count"))); //$NON-NLS-1$ //$NON-NLS-2$
+					}
 
-			else
-			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, Lang.getString("rai.goal.entity-count.keep-stable"), Lang.getString("rai.goal.entity-count.entity-count"))); //$NON-NLS-1$ //$NON-NLS-2$
-			}
+					else
+					{
+						RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, Lang.getString("rai.goal.entity-count.keep-stable"), Lang.getString("rai.goal.entity-count.entity-count"))); //$NON-NLS-1$ //$NON-NLS-2$
+					}
+				}
+			};
 		}
 
 		return f;
@@ -93,12 +109,22 @@ public class GoalReducedEntityCounts extends Goal
 
 		if(laggiest != null)
 		{
-			IAction action = React.instance.actionController.getAction(ActionType.CULL_ENTITIES);
-			IActionSource source = new RAIActionSource();
-			SelectorPosition pos = new SelectorPosition();
-			pos.add(laggiest, Config.RAI_ENTITY_CHUNK_RADIUS);
-			RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), Lang.getString("rai.goal.entity-count.entity-clustering"))); //$NON-NLS-1$
-			React.instance.actionController.fire(action.getType(), source, pos);
+			Chunk lx = laggiest;
+
+			new S()
+			{
+				@Override
+				public void run()
+				{
+					Chunk laggiest = lx;
+					IAction action = React.instance.actionController.getAction(ActionType.CULL_ENTITIES);
+					IActionSource source = new RAIActionSource();
+					SelectorPosition pos = new SelectorPosition();
+					pos.add(laggiest, Config.RAI_ENTITY_CHUNK_RADIUS);
+					RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), Lang.getString("rai.goal.entity-count.entity-clustering"))); //$NON-NLS-1$
+					React.instance.actionController.fire(action.getType(), source, pos);
+				}
+			};
 		}
 	}
 }

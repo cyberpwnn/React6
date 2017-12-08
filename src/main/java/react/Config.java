@@ -39,17 +39,13 @@ public class Config
 	@Address(1)
 	public static final String A_ENTITYCACHE_INTERVAL = "entity-cache.swap-interval"; //$NON-NLS-1$
 
-	@Address(2)
-	public static final String A_DROPSTACK_RADIUS = "drop-stacker.stack-radius"; //$NON-NLS-1$
+	// @Address(2)
 
-	@Address(3)
-	public static final String A_DROPSTACK_STACKDROPS = "drop-stacker.stack-drops"; //$NON-NLS-1$
+	// @Address(3)
 
-	@Address(4)
-	public static final String A_DROPSTACK_USEDEFAULT = "drop-stacker.use-default"; //$NON-NLS-1$
+	// @Address(4)
 
-	@Address(5)
-	public static final String A_DROPSTACK_SMOOTHSTACK = "drop-stacker.smooth-stack"; //$NON-NLS-1$
+	// @Address(5)
 
 	@Address(6)
 	public static final String A_POOL_MAXTHREADS = "threads.pool-size"; //$NON-NLS-1$
@@ -230,37 +226,27 @@ public class Config
 	@Experimental
 	public static int ENTITYCACHE_INTERVAL = 2;
 
-	@Sector(2)
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 0.5, max = 1.998)
-	public static double DROPSTACK_RADIUS = 1.5;
+	// @Sector(2)
 
-	@Sector(3)
-	@Injection(InjectionMethod.SWAP)
-	public static boolean DROPSTACK_STACKDROPS = true;
+	// @Sector(3)
 
-	@Sector(4)
-	@Injection(InjectionMethod.SWAP)
-	public static boolean DROPSTACK_USEDEFAULT = false;
+	// @Sector(4)
 
-	@Sector(5)
-	@Injection(InjectionMethod.SWAP)
-	@Experimental
-	public static boolean DROPSTACK_SMOOTHSTACK = false;
+	// @Sector(5)
 
 	@Sector(6)
 	@Injection(InjectionMethod.RELOAD)
-	@Clip(min = 2, max = 8)
+	@Clip(min = 2, max = 6)
 	@PoolCount
 	@Experimental
-	public static int POOL_MAXTHREADS = 4;
+	public static int POOL_MAXTHREADS = 2;
 
 	@Sector(7)
 	@Injection(InjectionMethod.SUBSTRATE)
 	@Clip(min = 1000000, max = 50000000)
 	@PoolNanoThrottle
 	@Experimental
-	public static long POOL_SYNC_NANOS = 5000000;
+	public static long POOL_SYNC_NANOS = 1500000;
 
 	@Sector(8)
 	@Injection(InjectionMethod.SWAP)

@@ -1,5 +1,6 @@
 package react.rai;
 
+import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.glang.GList;
 
 public abstract class Goal implements IGoal
@@ -29,7 +30,14 @@ public abstract class Goal implements IGoal
 
 		for(IGoal i : getSubgoals())
 		{
-			i.propigate();
+			new S()
+			{
+				@Override
+				public void run()
+				{
+					i.propigate();
+				}
+			};
 		}
 
 		onPropigated();

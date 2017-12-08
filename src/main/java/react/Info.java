@@ -66,6 +66,12 @@ public class Info
 	public static String COMMAND_ACTIONLOG_ALIAS_2 = "al"; //$NON-NLS-1$
 	public static String COMMAND_ACTIONLOG_USAGE = "(toggle)"; //$NON-NLS-1$
 
+	public static String COMMAND_CAPABILITIES_DESCRIPTION = "Checks react's capabilities and what features work.";
+	public static String COMMAND_CAPABILITIES = "capabilities"; //$NON-NLS-1$
+	public static String COMMAND_CAPABILITIES_ALIAS_1 = "cap"; //$NON-NLS-1$
+	public static String COMMAND_CAPABILITIES_ALIAS_2 = "ca"; //$NON-NLS-1$
+	public static String COMMAND_CAPABILITIES_USAGE = ""; //$NON-NLS-1$
+
 	public static String MSG_PERMISSION = Lang.getString("message.fail.no-permission"); //$NON-NLS-1$
 	public static String MSG_MONITORING_STARTED = Lang.getString("message.status.monitoring.enabled"); //$NON-NLS-1$
 	public static String MSG_MONITORING_STOPPED = Lang.getString("message.status.monitoring.disabled"); //$NON-NLS-1$

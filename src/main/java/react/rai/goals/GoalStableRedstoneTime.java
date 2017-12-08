@@ -1,6 +1,7 @@
 package react.rai.goals;
 
 import org.bukkit.Chunk;
+import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.M;
 
@@ -55,15 +56,25 @@ public class GoalStableRedstoneTime extends Goal
 
 		if(laggiest != null)
 		{
-			IAction action = React.instance.actionController.getAction(ActionType.LOCK_REDSTONE);
-			IActionSource source = new RAIActionSource();
-			SelectorPosition pos = new SelectorPosition();
-			pos.add(laggiest, Config.RAI_REDSTONE_TIME_RADIUS);
-			SelectorTime time = new SelectorTime();
-			time.set((long) ((long) (reocc.containsKey(laggiest) ? reocc.get(laggiest) : 1) * (Config.RAI_REDSTONE_TIME_PROPIGATION * Math.random())));
-			reocc.put(laggiest, reocc.containsKey(laggiest) ? reocc.get(laggiest) + 4 : 1);
-			React.instance.actionController.fire(action.getType(), source, pos, time);
-			RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), Lang.getString("rai.goal.redstone-time.redstone-lag"))); //$NON-NLS-1$
+			Chunk lx = laggiest;
+
+			new S()
+			{
+				@Override
+				public void run()
+				{
+					Chunk laggiest = lx;
+					IAction action = React.instance.actionController.getAction(ActionType.LOCK_REDSTONE);
+					IActionSource source = new RAIActionSource();
+					SelectorPosition pos = new SelectorPosition();
+					pos.add(laggiest, Config.RAI_REDSTONE_TIME_RADIUS);
+					SelectorTime time = new SelectorTime();
+					time.set((long) ((long) (reocc.containsKey(laggiest) ? reocc.get(laggiest) : 1) * (Config.RAI_REDSTONE_TIME_PROPIGATION * Math.random())));
+					reocc.put(laggiest, reocc.containsKey(laggiest) ? reocc.get(laggiest) + 4 : 1);
+					React.instance.actionController.fire(action.getType(), source, pos, time);
+					RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), Lang.getString("rai.goal.redstone-time.redstone-lag"))); //$NON-NLS-1$
+				}
+			};
 		}
 	}
 
@@ -89,15 +100,22 @@ public class GoalStableRedstoneTime extends Goal
 		{
 			failing = f;
 
-			if(failing)
+			new S()
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, Lang.getString("rai.goal.redstone-time.keep-stable"), Lang.getString("rai.goal.redstone-time.redstone-tick"))); //$NON-NLS-1$ //$NON-NLS-2$
-			}
+				@Override
+				public void run()
+				{
+					if(failing)
+					{
+						RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, Lang.getString("rai.goal.redstone-time.keep-stable"), Lang.getString("rai.goal.redstone-time.redstone-tick"))); //$NON-NLS-1$ //$NON-NLS-2$
+					}
 
-			else
-			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, Lang.getString("rai.goal.redstone-time.keeping-stable"), Lang.getString("rai.goal.redstone-time.redstone-tick"))); //$NON-NLS-1$ //$NON-NLS-2$
-			}
+					else
+					{
+						RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, Lang.getString("rai.goal.redstone-time.keeping-stable"), Lang.getString("rai.goal.redstone-time.redstone-tick"))); //$NON-NLS-1$ //$NON-NLS-2$
+					}
+				}
+			};
 		}
 
 		return f;

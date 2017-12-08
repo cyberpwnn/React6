@@ -2,12 +2,17 @@ package react.controller;
 
 import java.awt.Color;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.cyberpwn.gconcurrent.A;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
 import react.Lang;
+import react.React;
+import react.api.Capabilities;
 import react.api.SampledType;
 import react.graph.GraphSampleLine;
 import react.graph.GraphSize;
@@ -17,6 +22,7 @@ import react.graph.PointedGraph;
 import react.papyrus.FrameColor;
 import surge.Surge;
 import surge.control.Controller;
+import surge.sched.TaskLater;
 import surge.util.C;
 
 public class GraphController extends Controller
@@ -38,6 +44,27 @@ public class GraphController extends Controller
 			graph.setGraphColor(FrameColor.matchColor(new Color(r)));
 			g.put(i, graph);
 		}
+
+		new TaskLater("waiter2")
+		{
+			@Override
+			public void run()
+			{
+				for(Player i : Bukkit.getOnlinePlayers())
+				{
+					if(React.instance.playerController.has(i))
+					{
+						if(React.instance.playerController.getPlayer(i).isMapping())
+						{
+							if(!gr.containsKey(i))
+							{
+								toggleMapping(i);
+							}
+						}
+					}
+				}
+			}
+		};
 	}
 
 	@Override
@@ -67,13 +94,40 @@ public class GraphController extends Controller
 		};
 	}
 
+	@EventHandler
+	public void on(PlayerJoinEvent e)
+	{
+		new TaskLater("waiter2")
+		{
+			@Override
+			public void run()
+			{
+				if(React.instance.playerController.has(e.getPlayer()))
+				{
+					if(React.instance.playerController.getPlayer(e.getPlayer()).isMapping())
+					{
+						if(!gr.containsKey(e.getPlayer()))
+						{
+							toggleMapping(e.getPlayer());
+						}
+					}
+				}
+			}
+		};
+	}
+
 	public void toggleMapping(Player player)
 	{
+		if(!Capabilities.DUAL_WIELD.isCapable())
+		{
+			Capabilities.DUAL_WIELD.sendNotCapable(player);
+			return;
+		}
+
 		if(!gr.containsKey(player))
 		{
 			GList<PointedGraph> pg = new GList<PointedGraph>();
 			gr.put(player, new GraphingInstance(player));
-
 			pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.tick"), g.get(SampledType.TICK).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
 			pg.add(new PointedGraph(g.get(SampledType.TICK), GraphSize.WIDE));
 			pg.add(new PointedGraph(g.get(SampledType.TPS), GraphSize.SQUARE));

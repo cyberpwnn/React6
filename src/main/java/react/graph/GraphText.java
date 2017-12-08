@@ -13,11 +13,13 @@ public class GraphText extends NormalGraph implements IGraph
 	private String text;
 	private byte fontColor;
 	private byte backgroundColor;
+	private boolean wrote;
 
 	public GraphText(String textInitial, byte fontColor)
 	{
 		super("textedGraph-" + textInitial, 1000);
 
+		wrote = false;
 		this.text = textInitial;
 		this.fontColor = fontColor;
 		this.backgroundColor = FrameColor.matchColor(FrameColor.getColor(fontColor).darker().darker().darker());
@@ -26,20 +28,24 @@ public class GraphText extends NormalGraph implements IGraph
 	@Override
 	public void onRender(BufferedFrame frame)
 	{
-		int x = (frame.getWidth() / 2);
-		int y = (frame.getHeight() / 2);
-		int w = ReactFont.Font.getWidth(text) + 6;
-		int h = ReactFont.Font.getHeight() + 6;
-		BufferedFrame presc = new BufferedFrame(w, h);
-		presc.write(backgroundColor);
-		presc.drawText(3, 3, ReactFont.Font, FrameColor.matchColor(0, 0, 0), text);
-		presc.drawText(2, 2, ReactFont.Font, fontColor, text);
-		presc = presc.scale(2, 2, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-		presc = presc.scale(1.5, 1.5, AffineTransformOp.TYPE_BILINEAR);
-		w = presc.getWidth();
-		h = presc.getHeight();
-		frame.write(backgroundColor);
-		frame.write(presc, x - (w / 2), y - (h / 2));
+		if(!wrote)
+		{
+			int x = (frame.getWidth() / 2);
+			int y = (frame.getHeight() / 2);
+			int w = ReactFont.Font.getWidth(text) + 6;
+			int h = ReactFont.Font.getHeight() + 6;
+			BufferedFrame presc = new BufferedFrame(w, h);
+			presc.write(backgroundColor);
+			presc.drawText(3, 3, ReactFont.Font, FrameColor.matchColor(0, 0, 0), text);
+			presc.drawText(2, 2, ReactFont.Font, fontColor, text);
+			presc = presc.scale(2, 2, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+			presc = presc.scale(1.5, 1.5, AffineTransformOp.TYPE_BILINEAR);
+			w = presc.getWidth();
+			h = presc.getHeight();
+			frame.write(backgroundColor);
+			frame.write(presc, x - (w / 2), y - (h / 2));
+			wrote = true;
+		}
 	}
 
 	public String getText()

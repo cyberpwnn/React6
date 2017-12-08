@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 
 import react.Info;
 import react.React;
+import react.api.Capabilities;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
@@ -28,6 +29,13 @@ public class CommandMap extends ReactCommand
 	public void fire(CommandSender sender, String[] args)
 	{
 		Player player = (Player) sender;
+
+		if(!Capabilities.DUAL_WIELD.isCapable())
+		{
+			Capabilities.DUAL_WIELD.sendNotCapable(player);
+			return;
+		}
+
 		React.instance.graphController.toggleMapping(player);
 	}
 }

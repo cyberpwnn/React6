@@ -1,6 +1,7 @@
 package react.rai.goals;
 
 import org.bukkit.Bukkit;
+import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.gconcurrent.TICK;
 
 import react.Lang;
@@ -48,15 +49,22 @@ public class GoalReducedChunkLoad extends Goal
 		{
 			failing = f;
 
-			if(failing)
+			new S()
 			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, Lang.getString("rai.goal.chunk-load.keep-chunk-count"), Lang.getString("rai.goal.chunk-load.chunk-count"))); //$NON-NLS-1$ //$NON-NLS-2$
-			}
+				@Override
+				public void run()
+				{
+					if(failing)
+					{
+						RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FAILING, Lang.getString("rai.goal.chunk-load.keep-chunk-count"), Lang.getString("rai.goal.chunk-load.chunk-count"))); //$NON-NLS-1$ //$NON-NLS-2$
+					}
 
-			else
-			{
-				RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, Lang.getString("rai.goal.chunk-load.keep-chunk-count"), Lang.getString("rai.goal.chunk-load.chunk-count"))); //$NON-NLS-1$ //$NON-NLS-2$
-			}
+					else
+					{
+						RAI.instance.callEvent(new RAIEvent(RAIEventType.NOTE_GOAL_FIXED, Lang.getString("rai.goal.chunk-load.keep-chunk-count"), Lang.getString("rai.goal.chunk-load.chunk-count"))); //$NON-NLS-1$ //$NON-NLS-2$
+					}
+				}
+			};
 		}
 
 		return f;
@@ -65,11 +73,18 @@ public class GoalReducedChunkLoad extends Goal
 	@Override
 	public void onPropigated()
 	{
-		if(TICK.tick % 20 == 0)
+		if(TICK.tick % 100 == 0)
 		{
-			IAction action = React.instance.actionController.getAction(ActionType.PURGE_CHUNKS);
-			RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), Lang.getString("rai.goal.chunk-load.chunk-mass"))); //$NON-NLS-1$
-			React.instance.actionController.fire(action.getType(), new RAIActionSource());
+			new S()
+			{
+				@Override
+				public void run()
+				{
+					IAction action = React.instance.actionController.getAction(ActionType.PURGE_CHUNKS);
+					RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), Lang.getString("rai.goal.chunk-load.chunk-mass"))); //$NON-NLS-1$
+					React.instance.actionController.fire(action.getType(), new RAIActionSource());
+				}
+			};
 		}
 	}
 }

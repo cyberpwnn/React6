@@ -19,6 +19,7 @@ import org.cyberpwn.glang.GList;
 import org.cyberpwn.gmath.M;
 
 import react.Gate;
+import react.React;
 import react.event.ReactScrollEvent;
 import react.event.ScrollDirection;
 import react.papyrus.BufferedFrame;
@@ -177,7 +178,7 @@ public class GraphingInstance implements Listener
 	{
 		if(mapping)
 		{
-			disable();
+			disableNoSave();
 		}
 
 		waiter.cancel();
@@ -207,6 +208,7 @@ public class GraphingInstance implements Listener
 	{
 		if(player.getInventory().getItemInOffHand() == null || player.getInventory().getItemInOffHand().getType().equals(Material.AIR))
 		{
+			React.instance.playerController.getPlayer(player).setMapping(true);
 			mapping = true;
 			player.getInventory().setItemInOffHand(item);
 			Gate.msgSuccess(player, "Mapping Enabled");
@@ -223,12 +225,15 @@ public class GraphingInstance implements Listener
 	{
 		mapping = false;
 		player.getInventory().setItemInOffHand(null);
+		React.instance.playerController.getPlayer(player).setMapping(false);
+		msgs.clear();
+		Gate.msgSuccess(player, "Mapping Disabled");
+	}
 
-		for(String i : msgs)
-		{
-			send(i);
-		}
-
+	public void disableNoSave()
+	{
+		mapping = false;
+		player.getInventory().setItemInOffHand(null);
 		msgs.clear();
 		Gate.msgSuccess(player, "Mapping Disabled");
 	}

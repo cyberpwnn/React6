@@ -19,12 +19,14 @@ import org.cyberpwn.gconcurrent.A;
 import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.Callback;
 import org.cyberpwn.glang.GMap;
+import org.cyberpwn.gmath.M;
 import org.spigotmc.SpigotWorldConfig;
 import org.spigotmc.TickLimiter;
 
 import react.api.ActivationRangeType;
 import react.api.SelectorPosition;
 import surge.nms.NMSX;
+import surge.sched.TaskLater;
 import surge.util.C;
 import surge.util.D;
 import surge.util.TXT;
@@ -51,10 +53,10 @@ public class Gate
 						Constructor<?> cuboidConstruct = cuboidClass.getConstructor(vectorClass, vectorClass);
 						Constructor<?> vectorConstruct = vectorClass.getConstructor(int.class, int.class, int.class);
 						Method faweFixMethod = faweapClass.getMethod("fixLighting", String.class, regionClass); //$NON-NLS-1$
-						Integer total = 0;
-						Integer sof = 0;
+						Integer[] total = {0};
+						Integer[] sof = {0};
 						Integer tot = sel.getPossibilities().size();
-
+						int kv = 0;
 						for(Object o : sel.getPossibilities())
 						{
 							if(!sel.can(o))
@@ -62,17 +64,53 @@ public class Gate
 								continue;
 							}
 
-							Chunk c = (Chunk) o;
-							Object vector1 = vectorConstruct.newInstance(c.getX() << 4, 0, c.getZ() << 4);
-							Object vector2 = vectorConstruct.newInstance(16 + (c.getX() << 4), 256, 16 + (c.getZ() << 4));
-							Object cuboid = cuboidConstruct.newInstance(vector1, vector2);
-							Object ret = faweFixMethod.invoke(null, c.getWorld().getName(), cuboid);
-							total += (int) ret;
-							sof++;
-							prog.run(sof.doubleValue() / tot.doubleValue());
+							if(M.r(0.32))
+							{
+								kv += 2;
+							}
+
+							new TaskLater("fq-chunkwait", kv)
+							{
+								@Override
+								public void run()
+								{
+									try
+									{
+										Chunk c = (Chunk) o;
+										Object vector1 = vectorConstruct.newInstance(c.getX() << 4, 0, c.getZ() << 4);
+										Object vector2 = vectorConstruct.newInstance(16 + (c.getX() << 4), 256, 16 + (c.getZ() << 4));
+										Object cuboid = cuboidConstruct.newInstance(vector1, vector2);
+										Object ret = faweFixMethod.invoke(null, c.getWorld().getName(), cuboid);
+										total[0] += (int) ret;
+										sof[0]++;
+										prog.run(sof[0].doubleValue() / tot.doubleValue());
+									}
+
+									catch(Exception e)
+									{
+
+									}
+								}
+							};
 						}
 
-						cb.run(total);
+						new TaskLater("fq-chunkwait-finish", kv)
+						{
+							@Override
+							public void run()
+							{
+								try
+								{
+									prog.run(1.0);
+									cb.run(total[0]);
+								}
+
+								catch(Exception e)
+								{
+
+								}
+							}
+						};
 					}
 
 					catch(Exception e)
@@ -83,9 +121,6 @@ public class Gate
 						return;
 					}
 				}
-
-				prog.run(1.0);
-				cb.run(-1);
 			}
 		};
 	}

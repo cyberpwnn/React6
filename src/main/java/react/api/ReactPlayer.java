@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.cyberpwn.glang.GMap;
 
 import react.Info;
+import react.React;
 import surge.Surge;
 import surge.cluster.ConfigurationDataInput;
 import surge.cluster.ConfigurationDataOutput;
@@ -130,11 +131,13 @@ public class ReactPlayer implements IConfigurable
 
 	public void setMonitoring(boolean monitoring)
 	{
+		React.instance.playerController.requestSave(getP(), false);
 		this.monitoring = monitoring;
 	}
 
 	public void setMapping(boolean mapping)
 	{
+		React.instance.playerController.requestSave(getP(), false);
 		this.mapping = mapping;
 	}
 
@@ -145,6 +148,7 @@ public class ReactPlayer implements IConfigurable
 
 	public void setMonitorSelection(int monitorSelection)
 	{
+		React.instance.playerController.requestSave(getP(), false);
 		this.monitorSelection = monitorSelection;
 	}
 
@@ -155,6 +159,7 @@ public class ReactPlayer implements IConfigurable
 
 	public void setHotbarSlot(int hotbarSlot)
 	{
+		React.instance.playerController.requestSave(getP(), false);
 		this.hotbarSlot = hotbarSlot;
 	}
 
@@ -165,6 +170,7 @@ public class ReactPlayer implements IConfigurable
 
 	public void setShifting(boolean shift)
 	{
+		React.instance.playerController.requestSave(getP(), false);
 		this.shift = shift;
 	}
 
@@ -175,6 +181,7 @@ public class ReactPlayer implements IConfigurable
 
 	public void setShift(boolean shift)
 	{
+		React.instance.playerController.requestSave(getP(), false);
 		this.shift = shift;
 	}
 
@@ -185,6 +192,7 @@ public class ReactPlayer implements IConfigurable
 
 	public void setScroll(int scroll)
 	{
+		React.instance.playerController.requestSave(getP(), false);
 		this.scroll = scroll;
 	}
 
@@ -195,6 +203,7 @@ public class ReactPlayer implements IConfigurable
 
 	public void setMonitorLastSelection(int monitorLastSelection)
 	{
+		React.instance.playerController.requestSave(getP(), false);
 		this.monitorLastSelection = monitorLastSelection;
 	}
 
@@ -210,6 +219,7 @@ public class ReactPlayer implements IConfigurable
 
 	public void setLastHeight(double lastHeight)
 	{
+		React.instance.playerController.requestSave(getP(), false);
 		this.lastHeight = lastHeight;
 	}
 
@@ -220,6 +230,7 @@ public class ReactPlayer implements IConfigurable
 
 	public void setHeightMovement(boolean heightMovement)
 	{
+		React.instance.playerController.requestSave(getP(), false);
 		this.heightMovement = heightMovement;
 	}
 
@@ -230,6 +241,7 @@ public class ReactPlayer implements IConfigurable
 
 	public void setSwitchNotification(int switchNotification)
 	{
+		React.instance.playerController.requestSave(getP(), false);
 		this.switchNotification = switchNotification;
 	}
 
@@ -240,6 +252,7 @@ public class ReactPlayer implements IConfigurable
 
 	public void setMonitorPosted(boolean monitorPosted)
 	{
+		React.instance.playerController.requestSave(getP(), false);
 		this.monitorPosted = monitorPosted;
 	}
 
@@ -250,6 +263,7 @@ public class ReactPlayer implements IConfigurable
 
 	public void setPlays(int plays)
 	{
+		React.instance.playerController.requestSave(getP(), false);
 		this.plays = plays;
 	}
 
@@ -260,6 +274,7 @@ public class ReactPlayer implements IConfigurable
 
 	public void setGlasses(boolean glasses)
 	{
+		React.instance.playerController.requestSave(getP(), false);
 		this.glasses = glasses;
 	}
 
@@ -270,6 +285,7 @@ public class ReactPlayer implements IConfigurable
 
 	public void setActionlogging(boolean actionlogging)
 	{
+		React.instance.playerController.requestSave(getP(), false);
 		this.actionlogging = actionlogging;
 	}
 }

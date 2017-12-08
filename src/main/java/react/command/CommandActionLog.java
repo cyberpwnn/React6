@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 
 import react.Info;
 import react.React;
+import react.api.Capabilities;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
@@ -28,6 +29,13 @@ public class CommandActionLog extends ReactCommand
 	public void fire(CommandSender sender, String[] args)
 	{
 		Player player = (Player) sender;
+
+		if(!Capabilities.SCOREBOARD.isCapable())
+		{
+			Capabilities.SCOREBOARD.sendNotCapable(player);
+			return;
+		}
+
 		React.instance.monitorController.toggleActionLog(player);
 	}
 }

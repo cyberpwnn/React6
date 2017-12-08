@@ -24,7 +24,7 @@ import surge.collection.GSound;
 import surge.control.Controller;
 import surge.nms.NMSX;
 import surge.sched.IMasterTickComponent;
-import surge.sched.Task;
+import surge.sched.TaskLater;
 import surge.server.AsyncTick;
 import surge.util.C;
 import surge.util.D;
@@ -64,14 +64,24 @@ public class MonitorController extends Controller implements IMasterTickComponen
 
 		D.v("Setup Monitor and Action Log"); //$NON-NLS-1$
 
-		new Task("waiter") //$NON-NLS-1$
+		new TaskLater("waiter-sb") //$NON-NLS-1$
 		{
 			@Override
 			public void run()
 			{
 				sb = constructActionLogBoard();
-
 				ready = true;
+
+				for(Player i : Bukkit.getOnlinePlayers())
+				{
+					if(React.instance.playerController.has(i) && canActionLog(i))
+					{
+						if(isActionLogging(i))
+						{
+							startActionLogging(i);
+						}
+					}
+				}
 			}
 		};
 	}
@@ -92,12 +102,14 @@ public class MonitorController extends Controller implements IMasterTickComponen
 		{
 			stopActionLogging(p);
 			Gate.msgSuccess(p, Info.MSG_ACTIONLOGGING_STOPPED);
+			React.instance.playerController.requestSave(p, false);
 		}
 
 		else
 		{
 			startActionLogging(p);
 			Gate.msgSuccess(p, Info.MSG_ACTIONLOGGING_STARTED);
+			React.instance.playerController.requestSave(p, false);
 		}
 	}
 
@@ -112,12 +124,14 @@ public class MonitorController extends Controller implements IMasterTickComponen
 		{
 			stopMonitoring(p);
 			Gate.msgSuccess(p, Info.MSG_MONITORING_STOPPED);
+			React.instance.playerController.requestSave(p, false);
 		}
 
 		else
 		{
 			startMonitoring(p);
 			Gate.msgSuccess(p, Info.MSG_MONITORING_STARTED);
+			React.instance.playerController.requestSave(p, false);
 		}
 	}
 
@@ -126,6 +140,14 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	{
 		Surge.unregister(this);
 		Surge.unregisterTicked(this);
+
+		for(Player i : Bukkit.getOnlinePlayers())
+		{
+			if(isActionLogging(i))
+			{
+				sb.removeViewer(i);
+			}
+		}
 	}
 
 	public void constructMonitor()
@@ -216,7 +238,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 
 	public void startActionLogging(Player p)
 	{
-		if(canActionLog(p) && !isActionLogging(p))
+		if(canActionLog(p))
 		{
 			React.instance.playerController.getPlayer(p).setActionlogging(true);
 			sb.addViewer(p);
@@ -465,6 +487,11 @@ public class MonitorController extends Controller implements IMasterTickComponen
 		if(canMonitor(e.getPlayer()) || canActionLog(e.getPlayer()))
 		{
 			React.instance.playerController.getPlayer(e.getPlayer());
+		}
+
+		if(isActionLogging(e.getPlayer()))
+		{
+			startActionLogging(e.getPlayer());
 		}
 	}
 

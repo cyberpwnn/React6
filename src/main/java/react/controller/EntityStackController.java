@@ -9,6 +9,7 @@ import org.bukkit.event.entity.EntitySpawnEvent;
 import org.cyberpwn.glang.GList;
 
 import react.Config;
+import react.api.Capabilities;
 import react.api.StackedEntity;
 import surge.Surge;
 import surge.control.Controller;
@@ -51,6 +52,7 @@ public class EntityStackController extends Controller
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public void stack(GList<LivingEntity> e)
 	{
 		if(!Config.ENTITYSTACK_ENABLED)
@@ -58,9 +60,20 @@ public class EntityStackController extends Controller
 			return;
 		}
 
-		while(e.pickRandom().getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() * (e.size()) > Config.ENTITYSTACK_MAXIMUM_HEALTH)
+		if(!Capabilities.ATTRIBUTES.isCapable())
 		{
-			e.pop();
+			while(e.pickRandom().getMaxHealth() * (e.size()) > Config.ENTITYSTACK_MAXIMUM_HEALTH)
+			{
+				e.pop();
+			}
+		}
+
+		else
+		{
+			while(e.pickRandom().getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() * (e.size()) > Config.ENTITYSTACK_MAXIMUM_HEALTH)
+			{
+				e.pop();
+			}
 		}
 
 		if(e.size() < Config.ENTITYSTACK_MINIMUM_GROUP)

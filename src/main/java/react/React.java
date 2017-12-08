@@ -6,7 +6,6 @@ import react.controller.BlockInjectController;
 import react.controller.ChronophyFluidController;
 import react.controller.ChunkController;
 import react.controller.CommandController;
-import react.controller.DropMergeController;
 import react.controller.EntityCullController;
 import react.controller.EntityStackController;
 import react.controller.EventController;
@@ -58,9 +57,6 @@ public class React
 
 	@Control
 	public ActionController actionController;
-
-	@Control
-	public DropMergeController dropMergeController;
 
 	@Control
 	public FastDecayController fastDecayController;

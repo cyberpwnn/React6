@@ -65,6 +65,11 @@ public class GlassController extends Controller
 
 		g = glasses;
 
+		if(g.isEmpty())
+		{
+			return;
+		}
+
 		GMap<Location, Color> cc = q.copy();
 
 		while(cc.size() > 200)

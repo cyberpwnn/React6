@@ -1,5 +1,6 @@
 package react.graph;
 
+import org.cyberpwn.gbench.Profiler;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
@@ -47,18 +48,20 @@ public class ColossalView
 
 	public void render()
 	{
+		Profiler p = new Profiler();
+		p.begin();
 		view.write(FrameColor.DARK_GRAY);
 
-		if(Math.abs(level - targetLevel) > 0.01)
+		if(Math.abs(level - targetLevel) > 0.001)
 		{
 			if(level > targetLevel)
 			{
-				level -= Math.abs(level - targetLevel) / 2.2;
+				level -= Math.abs(level - targetLevel) / 3.2;
 			}
 
 			if(level < targetLevel)
 			{
-				level += Math.abs(level - targetLevel) / 2.2;
+				level += Math.abs(level - targetLevel) / 3.2;
 			}
 		}
 
@@ -70,6 +73,7 @@ public class ColossalView
 				view.write(buffers.get(i), i.x, (int) (i.y - level));
 			}
 		}
+		p.end();
 	}
 
 	public void scroll(int amt)
@@ -183,7 +187,6 @@ public class ColossalView
 				view.addGraph(pos, siz, i.getGraph());
 			}
 
-			it.print();
 			view.recompile();
 			return view;
 		}
