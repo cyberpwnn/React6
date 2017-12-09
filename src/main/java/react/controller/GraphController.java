@@ -154,4 +154,14 @@ public class GraphController extends Controller
 
 		gr.get(player).toggle();
 	}
+
+	public GMap<SampledType, GraphSampleLine> getG()
+	{
+		return g;
+	}
+
+	public GMap<Player, GraphingInstance> getGr()
+	{
+		return gr;
+	}
 }

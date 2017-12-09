@@ -64,7 +64,7 @@ public class Gate
 								continue;
 							}
 
-							if(M.r(0.32))
+							if(M.r(0.05))
 							{
 								kv += 2;
 							}

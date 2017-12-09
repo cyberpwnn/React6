@@ -46,7 +46,15 @@ public class RAI implements IRAI
 	{
 		for(IGoal i : getGoals())
 		{
-			i.update();
+			try
+			{
+				i.update();
+			}
+
+			catch(Exception e)
+			{
+
+			}
 		}
 
 		for(RAIEvent i : logEvents)
