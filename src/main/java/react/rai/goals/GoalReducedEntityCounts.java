@@ -88,7 +88,7 @@ public class GoalReducedEntityCounts extends Goal
 	@Override
 	public void onPropigated()
 	{
-		if(TICK.tick % 5 != 0)
+		if(TICK.tick % 2 != 0)
 		{
 			return;
 		}

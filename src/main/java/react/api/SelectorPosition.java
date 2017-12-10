@@ -26,10 +26,7 @@ public class SelectorPosition extends Selector
 
 	public void add(Chunk c, int rad)
 	{
-		for(int i = 1; i < rad; i++)
-		{
-			getPossibilities().addAll(W.chunkRadius(c, i));
-		}
+		getPossibilities().addAll(W.chunkRadius(c, rad));
 	}
 
 	public void add(World w)
