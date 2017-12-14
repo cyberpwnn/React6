@@ -9,6 +9,7 @@ import react.controller.CommandController;
 import react.controller.EntityCullController;
 import react.controller.EntityStackController;
 import react.controller.EventController;
+import react.controller.ExplosiveController;
 import react.controller.FastDecayController;
 import react.controller.FeatureController;
 import react.controller.FluidController;
@@ -16,7 +17,6 @@ import react.controller.GlassController;
 import react.controller.GraphController;
 import react.controller.HopperController;
 import react.controller.HopperOvertickController;
-import react.controller.HopperWarpController;
 import react.controller.LanguageController;
 import react.controller.MonitorController;
 import react.controller.PhysicsController;
@@ -110,13 +110,7 @@ public class React
 	public BlockInjectController blockInjectController;
 
 	@Control
-	public RemoteController remoteController;
-
-	@Control
 	public SmearTickController smearTickController;
-
-	@Control
-	public HopperWarpController chronophyHopperController;
 
 	@Control
 	public FeatureController featureController;
@@ -129,6 +123,12 @@ public class React
 
 	@Control
 	public LanguageController languageController;
+
+	@Control
+	public RemoteController remoteController;
+
+	@Control
+	public ExplosiveController explosiveController;
 
 	@Enable
 	public void enable()

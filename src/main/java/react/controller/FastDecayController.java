@@ -6,6 +6,7 @@ import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.M;
@@ -73,7 +74,7 @@ public class FastDecayController extends Controller
 					{
 						if(isAllowedSplooge(l))
 						{
-							l.getBlock().breakNaturally();
+							decay(l.getBlock());
 						}
 					}
 
@@ -108,7 +109,7 @@ public class FastDecayController extends Controller
 										{
 											if(isAllowedSplooge(j))
 											{
-												j.getBlock().breakNaturally();
+												decay(j.getBlock());
 											}
 										}
 									}
@@ -119,6 +120,18 @@ public class FastDecayController extends Controller
 				}
 			};
 		}
+	}
+
+	public void decay(Block b)
+	{
+		new S()
+		{
+			@Override
+			public void run()
+			{
+				b.breakNaturally();
+			}
+		};
 	}
 
 	@Override

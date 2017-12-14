@@ -30,6 +30,7 @@ import surge.sched.TaskLater;
 import surge.util.C;
 import surge.util.D;
 import surge.util.TXT;
+import surge.util.W;
 
 public class Gate
 {
@@ -123,6 +124,46 @@ public class Gate
 				}
 			}
 		};
+	}
+
+	public static Player whoLoaded(Chunk c)
+	{
+		if(c.isLoaded())
+		{
+			for(Entity i : c.getEntities())
+			{
+				if(i instanceof Player)
+				{
+					return (Player) i;
+				}
+			}
+
+			for(int i = 1; i < Bukkit.getViewDistance() + 1; i++)
+			{
+				for(Chunk j : W.chunkRadius(c, i + 1))
+				{
+					for(Entity k : j.getEntities())
+					{
+						if(k instanceof Player)
+						{
+							return (Player) k;
+						}
+					}
+				}
+			}
+		}
+
+		return null;
+	}
+
+	public static int getChunkCountForView()
+	{
+		return (int) Math.pow((Bukkit.getViewDistance() * 2) + 1, 2);
+	}
+
+	public static int getMaxChunksForView()
+	{
+		return (getChunkCountForView()) * (Bukkit.getOnlinePlayers().size() + 1);
 	}
 
 	public static boolean hasFawe()

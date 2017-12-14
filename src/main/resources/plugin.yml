@@ -37,6 +37,7 @@ permissions:
       react.monitor.actionlog: true
       react.monitor.environment: true
       react.monitor.glasses: true
+      react.monitor.chunkblame: true
   react.act:
     description: Gives access to use actions (all subtypes included)
     default: op
@@ -54,6 +55,9 @@ permissions:
     default: op
   react.monitor.glasses:
     description: Gives access to use react glasses commands
+    default: op
+  react.monitor.chunkblame:
+    description: Gives access to use react chunk blame tools
     default: op
   react.access: 
     description: Gives access to use react.

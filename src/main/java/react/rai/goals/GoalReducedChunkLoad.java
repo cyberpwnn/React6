@@ -1,9 +1,9 @@
 package react.rai.goals;
 
-import org.bukkit.Bukkit;
 import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.gconcurrent.TICK;
 
+import react.Gate;
 import react.Lang;
 import react.React;
 import react.api.ActionType;
@@ -26,16 +26,6 @@ public class GoalReducedChunkLoad extends Goal
 		failing = false;
 	}
 
-	private int getChunkCountForView()
-	{
-		return (int) Math.pow((Bukkit.getViewDistance() * 2) + 1, 2);
-	}
-
-	private int getMaxChunksForView()
-	{
-		return (getChunkCountForView()) * (Bukkit.getOnlinePlayers().size() + 1);
-	}
-
 	@Override
 	public boolean onCheckFailing()
 	{
@@ -43,7 +33,7 @@ public class GoalReducedChunkLoad extends Goal
 
 		int chunksLoaded = (int) React.instance.sampleController.getSampler(SampledType.CHK.toString()).getValue();
 
-		f = chunksLoaded > getMaxChunksForView();
+		f = chunksLoaded > Gate.getMaxChunksForView();
 
 		if(failing != f)
 		{

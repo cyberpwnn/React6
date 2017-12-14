@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.bukkit.plugin.Plugin;
 import org.cyberpwn.gconcurrent.A;
+import org.cyberpwn.glang.Callback;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
@@ -67,35 +68,41 @@ public class SpikeController extends Controller implements IMasterTickComponent
 	@Override
 	public void onTick()
 	{
-		GMap<Long, GList<StackTraceElement>> vv = React.instance.sampleController.getSuperSampler().getSpikes();
+		GMap<Long, GList<StackTraceElement>> vv = React.instance.sampleController.getSuperSampler().getSpikes().copy();
+		React.instance.sampleController.getSuperSampler().getSpikes().clear();
 
-		for(long i : vv.k())
+		new A()
 		{
-			GSet<String> gv = new GSet<String>();
-
-			for(StackTraceElement j : vv.get(i))
+			@Override
+			public void run()
 			{
-				for(Plugin k : CPS.identify(j.getClassName()))
+				for(long i : vv.k())
 				{
-					if(!gv.contains(k.getName()))
+					GSet<String> gv = new GSet<String>();
+
+					for(StackTraceElement j : vv.get(i))
 					{
-						gv.add(k.getName());
+						for(Plugin k : CPS.identify(j.getClassName()))
+						{
+							if(!gv.contains(k.getName()))
+							{
+								gv.add(k.getName());
+							}
+						}
+					}
+
+					for(String j : gv)
+					{
+						if(!spikes.contains(j))
+						{
+							spikes.put(j, 0);
+						}
+
+						spikes.put(j, spikes.get(j) + 1);
 					}
 				}
 			}
-
-			for(String j : gv)
-			{
-				if(!spikes.contains(j))
-				{
-					spikes.put(j, 0);
-				}
-
-				spikes.put(j, spikes.get(j) + 1);
-			}
-		}
-
-		React.instance.sampleController.getSuperSampler().getSpikes().clear();
+		};
 	}
 
 	@Override
@@ -114,5 +121,41 @@ public class SpikeController extends Controller implements IMasterTickComponent
 	public GMap<String, Integer> getSpikes()
 	{
 		return spikes;
+	}
+
+	public void whoFuckingDidThis(Callback<Plugin> callback)
+	{
+		Thread t = Thread.currentThread();
+
+		new A()
+		{
+			@Override
+			public void run()
+			{
+				StackTraceElement[] els = t.getStackTrace();
+				Plugin plg = null;
+				GList<Plugin> plgs = new GList<Plugin>();
+
+				for(StackTraceElement i : els)
+				{
+					for(Plugin j : CPS.identify(i.getClassName()))
+					{
+						if(j.equals(Surge.getAmp().getPluginInstance()))
+						{
+							continue;
+						}
+
+						plgs.add(j);
+					}
+				}
+
+				if(!plgs.isEmpty())
+				{
+					plg = plgs.mostCommon();
+				}
+
+				callback.run(plg);
+			}
+		};
 	}
 }

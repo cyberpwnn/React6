@@ -41,11 +41,14 @@ public class Config
 
 	// @Address(2)
 
-	// @Address(3)
+	@Address(3)
+	public static final String A_REACT_REMOTE_PORT = "react-remote.port";
 
-	// @Address(4)
+	@Address(4)
+	public static final String A_REACT_REMOTE_ENABLED = "react-remote.enabled";
 
-	// @Address(5)
+	@Address(5)
+	public static final String A_ENTITY_STACK_MAX_COUNT = "entity-stacker.max-stack-size";
 
 	@Address(6)
 	public static final String A_POOL_MAXTHREADS = "threads.pool-size"; //$NON-NLS-1$
@@ -68,8 +71,7 @@ public class Config
 	@Address(12)
 	public static final String A_FASTLEAF_DECAYPERIOD = "fast-leaf-decay.decay-period"; //$NON-NLS-1$
 
-	@Address(13)
-	public static final String A_DROPSTACK_MINAGE = "drop-stacker.minimum-age-ticks"; //$NON-NLS-1$
+	// @Address(13)
 
 	@Address(14)
 	public static final String A_ENTITYSTACK_ENABLED = "entity-stacker.enabled"; //$NON-NLS-1$
@@ -203,17 +205,50 @@ public class Config
 	@Address(57)
 	public static final String A_HOPPER_OVERTICK_ENABLE = "tweaks.hoppers.reduce-overtick-hoppers"; //$NON-NLS-1$
 
-	@Address(58)
-	public static final String A_HOPPER_WARP_ENABLE = "tweaks.hoppers.hopper-warping.enabled"; //$NON-NLS-1$
+	// @Address(58)
 
-	@Address(59)
-	public static final String A_HOPPER_WARP_MIN = "tweaks.hoppers.hopper-warping.min-los"; //$NON-NLS-1$
+	// @Address(59)
 
-	@Address(60)
-	public static final String A_HOPPER_WARP_MAX = "tweaks.hoppers.hopper-warping.max-los"; //$NON-NLS-1$
+	// @Address(60)
 
 	@Address(61)
 	public static final String A_LANGUAGE = "language"; //$NON-NLS-1$
+
+	@Address(62)
+	public static final String A_RAI_CHUNK_TIME_FLOOR = "rai.chunk.time-floor"; //$NON-NLS-1$
+
+	@Address(63)
+	public static final String A_RAI_CHUNK_TIME_CEIL = "rai.chunk.time-ceil"; //$NON-NLS-1$
+
+	@Address(64)
+	public static final String A_RAI_CHUNK_TIME_MUDDING = "rai.chunk.time-mudding"; //$NON-NLS-1$
+
+	@Address(65)
+	public static final String A_RAI_CHUNK_TIME_FUNCTION = "rai.chunk.time-function"; //$NON-NLS-1$
+
+	@Address(66)
+	public static final String A_RAI_CHUNK_TIME_OVERBLEED = "rai.chunk.time-overbleed"; //$NON-NLS-1$
+
+	@Address(67)
+	public static final String A_RAI_CHUNK_TIME_RADIUS = "rai.chunk.time-radius"; //$NON-NLS-1$
+
+	@Address(68)
+	public static final String A_RAI_CHUNK_TIME_PROPIGATION = "rai.chunk.time-propigation"; //$NON-NLS-1$
+
+	@Address(69)
+	public static final String A_RAI_CHUNK_TIME_PROPIGATE = "rai.chunk.propigate";
+
+	@Address(70)
+	public static final String A_RAI_FLUID_TIME_PROPIGATE = "rai.fluid.propigate";
+
+	@Address(71)
+	public static final String A_RAI_ENTITY_PROPIGATE = "rai.entity.propigate";
+
+	@Address(72)
+	public static final String A_RAI_HOPPER_TIME_PROPIGATE = "rai.hopper.propigate";
+
+	@Address(73)
+	public static final String A_RAI_REDSTONE_TIME_PROPIGATE = "rai.redstone.propigate";
 
 	@Sector(0)
 	@Injection(InjectionMethod.SWAP)
@@ -228,11 +263,19 @@ public class Config
 
 	// @Sector(2)
 
-	// @Sector(3)
+	@Sector(3)
+	@Injection(InjectionMethod.RELOAD)
+	@Clip(min = 1000, max = 10000)
+	public static int REACT_REMOTE_PORT = 7331;
 
-	// @Sector(4)
+	@Sector(4)
+	@Injection(InjectionMethod.RELOAD)
+	public static boolean REACT_REMOTE_ENABLED = false;
 
-	// @Sector(5)
+	@Sector(5)
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 2, max = 256)
+	public static int ENTITY_STACK_MAX_COUNT = 16;
 
 	@Sector(6)
 	@Injection(InjectionMethod.RELOAD)
@@ -267,12 +310,9 @@ public class Config
 	@Sector(12)
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 2, max = 200)
-	public static int FASTLEAF_DECAYPERIOD = 20;
+	public static int FASTLEAF_DECAYPERIOD = 7;
 
-	@Sector(13)
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 10, max = 200)
-	public static int DROPSTACK_MINAGE = 70;
+	// @Sector(13)
 
 	@Sector(14)
 	@Injection(InjectionMethod.SWAP)
@@ -520,23 +560,82 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean HOPPER_OVERTICK_ENABLE = true;
 
-	@Sector(58)
-	@Injection(InjectionMethod.SWAP)
-	public static boolean HOPPER_WARP_ENABLE = true;
+	// @Sector(58)
 
-	@Sector(59)
-	@Clip(min = 3, max = 16)
-	@Injection(InjectionMethod.SWAP)
-	public static int HOPPER_WARP_MIN = 6;
+	// @Sector(59)
 
-	@Sector(60)
-	@Clip(min = 12, max = 128)
-	@Injection(InjectionMethod.SWAP)
-	public static int HOPPER_WARP_MAX = 64;
+	// @Sector(60)
 
 	@Sector(61)
 	@Injection(InjectionMethod.SWAP)
 	public static String LANGUAGE = "enUS";
+
+	@Sector(62) // here
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 2000000, max = 9000000)
+	public static long RAI_CHUNK_TIME_FLOOR = 2000000;
+
+	@Sector(63)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 10000000, max = 50000000)
+	public static long RAI_CHUNK_TIME_CEIL = 30000000;
+
+	@Sector(64)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 2000000, max = 10000000)
+	public static long RAI_CHUNK_TIME_MUDDING = 2360000;
+
+	@Sector(65)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 0.01, max = 1.5)
+	public static double RAI_CHUNK_TIME_FUNCTION = 0.36;
+
+	@Sector(66)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 0.05, max = 5.5)
+	public static double RAI_CHUNK_TIME_OVERBLEED = 1.54;
+
+	@Sector(67)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 1, max = 3)
+	public static int RAI_CHUNK_TIME_RADIUS = 2;
+
+	@Sector(68)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 500, max = 2000)
+	public static int RAI_CHUNK_TIME_PROPIGATION = 1000;
+
+	@Sector(69)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	public static boolean RAI_CHUNK_TIME_PROPIGATE = true;
+
+	@Sector(70)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	public static boolean RAI_FLUID_TIME_PROPIGATE = true;
+
+	@Sector(71)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	public static boolean RAI_ENTITY_PROPIGATE = true;
+
+	@Sector(72)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	public static boolean RAI_HOPPER_TIME_PROPIGATE = true;
+
+	@Sector(73)
+	@Experimental
+	@Injection(InjectionMethod.SWAP)
+	public static boolean RAI_REDSTONE_TIME_PROPIGATE = true;
 
 	private static boolean hrld = false;
 	private static boolean rns = false;

@@ -142,7 +142,7 @@ public class GraphController extends Controller
 			pg.add(new PointedGraph(g.get(SampledType.FLUID_TIME), GraphSize.SQUARE));
 			pg.add(new PointedGraph(g.get(SampledType.CHK_TIME), GraphSize.SQUARE));
 			pg.add(new PointedGraph(g.get(SampledType.ENTITY_TIME), GraphSize.SQUARE));
-			pg.add(new PointedGraph(g.get(SampledType.ENTITY_TIME_LOCK), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.EXPLOSION_TIME), GraphSize.SQUARE));
 			pg.add(new PointedGraph(g.get(SampledType.TILE_TIME), GraphSize.SQUARE));
 			pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.react"), g.get(SampledType.ATASK).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
 			pg.add(new PointedGraph(g.get(SampledType.ATASK), GraphSize.WIDE));

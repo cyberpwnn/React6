@@ -60,6 +60,12 @@ public class Info
 	public static String COMMAND_GLASS_ALIAS_2 = "gg"; //$NON-NLS-1$
 	public static String COMMAND_GLASS_USAGE = "(toggle)"; //$NON-NLS-1$
 
+	public static String COMMAND_CBLAME_DESCRIPTION = "Compiles a list of total chunk loads, with who loaded them (plugin or player)"; //$NON-NLS-1$
+	public static String COMMAND_CBLAME = "chunk-blame"; //$NON-NLS-1$
+	public static String COMMAND_CBLAME_ALIAS_1 = "cblame"; //$NON-NLS-1$
+	public static String COMMAND_CBLAME_ALIAS_2 = "cb"; //$NON-NLS-1$
+	public static String COMMAND_CBLAME_USAGE = ""; //$NON-NLS-1$
+
 	public static String COMMAND_ACTIONLOG_DESCRIPTION = Lang.getString("command.action-log.description"); //$NON-NLS-1$
 	public static String COMMAND_ACTIONLOG = "actionlog"; //$NON-NLS-1$
 	public static String COMMAND_ACTIONLOG_ALIAS_1 = "alog"; //$NON-NLS-1$
@@ -114,6 +120,7 @@ public class Info
 	public static String PERM_MONITOR_MAP = PERM_MONITOR + ".map"; //$NON-NLS-1$
 	public static String PERM_MONITOR_ENVIRONMENT = PERM_MONITOR + ".environment"; //$NON-NLS-1$
 	public static String PERM_MONITOR_GLASSES = PERM_MONITOR + ".glasses"; //$NON-NLS-1$
+	public static String PERM_MONITOR_CHUNK_BLAME = PERM_MONITOR + ".chunkblame"; //$NON-NLS-1$
 	public static String PERM_ACT = "act"; //$NON-NLS-1$
 	public static String PERM_RAI = "rai"; //$NON-NLS-1$
 	public static String PERM_RAI_CONTROL = PERM_RAI + ".control"; //$NON-NLS-1$
@@ -151,6 +158,7 @@ public class Info
 	public static String SAMPLER_ATASK = Lang.getString("sampler.name.async-queue"); //$NON-NLS-1$
 	public static String SAMPLER_STASK = Lang.getString("sampler.name.sync-queue"); //$NON-NLS-1$
 	public static String SAMPLER_CHK_TIME = Lang.getString("sampler.name.chunk-time"); //$NON-NLS-1$
+	public static String SAMPLER_EXPLOSION_TIME = "Explosion MS"; //$NON-NLS-1$
 	public static String SAMPLER_CHKS = Lang.getString("sampler.name.chunks-second"); //$NON-NLS-1$
 	public static String SAMPLER_ENT = Lang.getString("sampler.name.entities-count"); //$NON-NLS-1$
 	public static String SAMPLER_ENTLIV = Lang.getString("sampler.name.entities-living-count"); //$NON-NLS-1$

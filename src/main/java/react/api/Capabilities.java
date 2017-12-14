@@ -14,7 +14,8 @@ public enum Capabilities
 	HOPPERS(Lang.getString("message.error.capabilities.hoppers"), Protocol.B1_5, Protocol.LATEST), //$NON-NLS-1$
 	ATTRIBUTES(Lang.getString("message.error.capabilities.attrib"), Protocol.R1_9, Protocol.LATEST), //$NON-NLS-1$
 	ENTITY_AI(Lang.getString("message.error.capabilities.eai"), Protocol.R1_9, Protocol.LATEST), //$NON-NLS-1$
-	ACTION_BAR(Lang.getString("message.error.capabilities.action-bars"), Protocol.R1_8, Protocol.LATEST); //$NON-NLS-1$
+	ACTION_BAR(Lang.getString("message.error.capabilities.action-bars"), Protocol.R1_8, Protocol.LATEST), //$NON-NLS-1$
+	ENTITY_NAMES(Lang.getString("message.error.capabilities.entity-names"), Protocol.R1_8, Protocol.LATEST); //$NON-NLS-1$
 
 	private ProtocolRange r;
 	private String n;

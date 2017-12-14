@@ -14,9 +14,9 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import org.cyberpwn.gconcurrent.A;
-import org.cyberpwn.gnet.Download;
-import org.cyberpwn.gnet.DownloadMonitor;
-import org.cyberpwn.gnet.DownloadState;
+import org.cyberpwn.gnet.download.Download;
+import org.cyberpwn.gnet.download.DownloadMonitor;
+import org.cyberpwn.gnet.download.DownloadState;
 import org.cyberpwn.json.JSONObject;
 
 import react.Config;

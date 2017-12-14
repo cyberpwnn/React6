@@ -60,9 +60,19 @@ public class EntityStackController extends Controller
 			return;
 		}
 
+		if(Config.ENTITY_STACK_MAX_COUNT < Config.ENTITYSTACK_MINIMUM_GROUP)
+		{
+			Config.ENTITY_STACK_MAX_COUNT = Config.ENTITYSTACK_MINIMUM_GROUP + 2;
+		}
+
 		if(!Capabilities.ATTRIBUTES.isCapable())
 		{
 			while(e.pickRandom().getMaxHealth() * (e.size()) > Config.ENTITYSTACK_MAXIMUM_HEALTH)
+			{
+				e.pop();
+			}
+
+			while(e.size() > Config.ENTITY_STACK_MAX_COUNT)
 			{
 				e.pop();
 			}
@@ -71,6 +81,11 @@ public class EntityStackController extends Controller
 		else
 		{
 			while(e.pickRandom().getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() * (e.size()) > Config.ENTITYSTACK_MAXIMUM_HEALTH)
+			{
+				e.pop();
+			}
+
+			while(e.size() > Config.ENTITY_STACK_MAX_COUNT)
 			{
 				e.pop();
 			}
