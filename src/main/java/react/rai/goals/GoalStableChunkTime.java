@@ -75,6 +75,11 @@ public class GoalStableChunkTime extends Goal
 	@Override
 	public void onPropigated()
 	{
+		if(!Config.RAI_CHUNK_TIME_PROPIGATE)
+		{
+			return;
+		}
+
 		if(TICK.tick % 5 == 0)
 		{
 			GMap<Player, Integer> player = React.instance.chunkController.getPlayerLoads();

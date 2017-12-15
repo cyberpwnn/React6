@@ -37,6 +37,11 @@ public class GoalStableRedstoneTime extends Goal
 	@Override
 	public void onPropigated()
 	{
+		if(!Config.RAI_REDSTONE_TIME_PROPIGATE)
+		{
+			return;
+		}
+
 		Chunk laggiest = null;
 		int max = -1;
 

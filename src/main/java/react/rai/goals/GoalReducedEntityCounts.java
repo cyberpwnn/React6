@@ -88,6 +88,11 @@ public class GoalReducedEntityCounts extends Goal
 	@Override
 	public void onPropigated()
 	{
+		if(!Config.RAI_ENTITY_PROPIGATE)
+		{
+			return;
+		}
+
 		if(TICK.tick % 2 != 0)
 		{
 			return;

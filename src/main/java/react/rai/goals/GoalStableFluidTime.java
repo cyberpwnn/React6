@@ -37,6 +37,11 @@ public class GoalStableFluidTime extends Goal
 	@Override
 	public void onPropigated()
 	{
+		if(!Config.RAI_FLUID_TIME_PROPIGATE)
+		{
+			return;
+		}
+
 		Chunk laggiest = null;
 		int max = -1;
 

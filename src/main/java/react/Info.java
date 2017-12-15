@@ -219,4 +219,9 @@ public class Info
 	public static String ACTION_FIX_LIGHTING_STATUS = Lang.getString("action.fix-lighting.status"); //$NON-NLS-1$
 	public static String ACTION_FIX_LIGHTING_NAME = Lang.getString("action.fix-lighting.name"); //$NON-NLS-1$
 	public static String ACTION_FIX_LIGHTING_DESCRIPTION = Lang.getString("action.fix-lighting.description"); //$NON-NLS-1$
+
+	public static String[] ACTION_COLLECT_GARBAGE_TAGS = new String[] {"collect-garbage", "gc"}; //$NON-NLS-1$ //$NON-NLS-2$
+	public static String ACTION_COLLECT_GARBAGE = "Collecting Garbage"; //$NON-NLS-1$
+	public static String ACTION_COLLECT_GARBAGE_NAME = "Collect Garbage"; //$NON-NLS-1$
+	public static String ACTION_COLLECT_GARBAGE_DESCRIPTION = "Runs GC on the server"; //$NON-NLS-1$
 }

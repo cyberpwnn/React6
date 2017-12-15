@@ -37,6 +37,11 @@ public class GoalStableHopperTime extends Goal
 	@Override
 	public void onPropigated()
 	{
+		if(!Config.RAI_HOPPER_TIME_PROPIGATE)
+		{
+			return;
+		}
+
 		Chunk laggiest = null;
 		int max = -1;
 
