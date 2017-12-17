@@ -161,7 +161,7 @@ public class CommandHelp extends ReactCommand
 
 			if(page > 0)
 			{
-				rtx.addTextWithHoverCommand(Lang.getString("command.help.symbol-prev"), RawText.COLOR_AQUA, Lang.getString("command.help.rehelpjumper") + (page - 1), Lang.getString("command.help.previous-page"), RawText.COLOR_AQUA, false, false, false, false, false); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				rtx.addTextWithHoverCommand(Lang.getString("command.help.symbol-prev"), RawText.COLOR_AQUA, Lang.getString("command.help.rehelpjumper") + (page), Lang.getString("command.help.previous-page"), RawText.COLOR_AQUA, false, false, false, false, false); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 
 			else
@@ -174,7 +174,7 @@ public class CommandHelp extends ReactCommand
 
 			if(page < getPageSize(maxEntries) - 1)
 			{
-				rtx.addTextWithHoverCommand(Lang.getString("command.help.symbol-next"), RawText.COLOR_AQUA, Lang.getString("command.help.rehelpjumper") + (page + 1), Lang.getString("command.help.next-page"), RawText.COLOR_AQUA, false, false, false, false, false); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				rtx.addTextWithHoverCommand(Lang.getString("command.help.symbol-next"), RawText.COLOR_AQUA, Lang.getString("command.help.rehelpjumper") + (page + 2), Lang.getString("command.help.next-page"), RawText.COLOR_AQUA, false, false, false, false, false); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 
 			else

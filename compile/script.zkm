@@ -33,9 +33,9 @@ exclude     public *.^* and
 obfuscate   changeLogFileIn=""
             changeLogFileOut="ChangeLog.txt"
             keepInnerClassInfo=true
-            obfuscateFlow=heavy
+            obfuscateFlow=light
             exceptionObfuscation=light
-            encryptStringLiterals=normal
+            encryptStringLiterals=none
             mixedCaseClassNames=true
             collapsePackagesWithDefault=""
             localVariables=obfuscate

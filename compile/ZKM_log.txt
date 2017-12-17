@@ -1,19 +1,219 @@
-[2017.12.17 06:13:03] Zelix KlassMaster (Cracked by CM&N) 8.0.8 - License #Cracked by CM&N
+[2017.12.17 06:48:52] Zelix KlassMaster (Cracked by CM&N) 8.0.8 - License #Cracked by CM&N
                       Unlimited
                       coolman
                       coolman@neth.er
                       Copyright 1997-2016 Zelix Pty Ltd (ABN 47 078 740 093)
                       All rights reserved
-[2017.12.17 06:13:03] Preprocessing ZKM Script file "C:\Users\cyberpwn\Documents\development\workspace\React6\compile\script.zkm"
-[2017.12.17 06:13:03] Parsing ZKM Script file "C:\Users\cyberpwn\Documents\development\workspace\React6\compile\script.zkm"
-Zelix KlassMaster encountered "heavy" 
-	after "="
-	at line 36, column 27.
-Was expecting one of:
-    "none" ...
-    "light" ...
-    "normal" ...
-    "aggressive" ...
-    "extraAggressive" ...
-    
-While parsing "obfuscate" statement
+[2017.12.17 06:48:52] Preprocessing ZKM Script file "C:\Users\cyberpwn\Documents\development\workspace\React6\compile\script.zkm"
+[2017.12.17 06:48:52] Parsing ZKM Script file "C:\Users\cyberpwn\Documents\development\workspace\React6\compile\script.zkm"
+[2017.12.17 06:48:52] Setting classpath to "C:\Program Files\Java\jre1.8.0_144\lib\resources.jar;C:\Program Files\Java\jre1.8.0_144\lib\rt.jar;C:\Program Files\Java\jre1.8.0_144\lib\jsse.jar;C:\Program Files\Java\jre1.8.0_144\lib\jce.jar;C:\Program Files\Java\jre1.8.0_144\lib\charsets.jar;C:\Program Files\Java\jre1.8.0_144\lib\jfr.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\spigot-1.12.2.jar"
+[2017.12.17 06:48:52] Opening classes...
+WARNING: Class 'net.minecraft.server.v1_10_R1.Block' not found while looking for field 'net.minecraft.server.v1_10_R1.RegistryBlocks REGISTRY' in class 'net.minecraft.server.v1_10_R1.Block' which is referenced in class 'C:\Users\cyberpwn\Documents\development\workspace\React6\compile\in.jar!react/binject/V10/BlockInjector10.class'. Check the classpath option and reopen classes. (1a)
+API calls detected that may not be handled automatically...
+In class react.Config
+    in method private static react.surge.cluster.DataCluster read(react.surge.cluster.DataCluster, boolean)
+        java.lang.reflect.Field.getName()
+    in method private static react.surge.cluster.DataCluster defaultConfig(boolean)
+        java.lang.reflect.Field.getName()
+In class react.Gate
+    in method public static void tickEntityNextTickListTick(org.bukkit.World)
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+    in method public static void tweakEntityTickMax(org.bukkit.World, int)
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+    in method public static java.lang.reflect.Field deepFindField(java.lang.Object, java.lang.String)
+        java.lang.Class.getDeclaredField(java.lang.String)
+    in method public static void forceSet(org.spigotmc.SpigotWorldConfig, java.lang.String, java.lang.Object)
+        java.lang.Class.getDeclaredField(java.lang.String)
+    in method public static org.spigotmc.SpigotWorldConfig getSpigotConfig(org.bukkit.World)
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getField(java.lang.String)
+In class react.Gate$1
+    in method public void run()
+        java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.Class.getConstructor(java.lang.Class[])
+In class react.api.PluginSelfDeleter
+    in method public void run()
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getDeclaredField(java.lang.String)
+In class react.binject.BlockInjector
+    in method public void inject()
+        java.lang.Class.newInstance()
+In class react.binject.ReflectionUtil
+    in method public static java.lang.Object get(java.lang.Object, java.lang.Class, java.lang.String, java.lang.Class)
+        java.lang.reflect.Field.getName()
+    in method public static void setStatic(java.lang.String, java.lang.Class, java.lang.Object)
+        java.lang.Class.getDeclaredField(java.lang.String)
+In class react.controller.ActionController
+    in method public void start()
+        java.lang.Class.getConstructor(java.lang.Class[])
+In class react.controller.CommandController
+    in method public void begin()
+        java.lang.Class.getConstructor(java.lang.Class[])
+In class react.controller.SampleController
+    in method private void constructSamplers()
+        java.lang.Class.getConstructor(java.lang.Class[])
+In class react.controller.SecurityController
+    in method public static void checkForIP()
+        java.lang.Class.newInstance()
+    in method public static void scan(java.lang.Runnable)
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+In class react.controller.SecurityController$3
+    in method public void run()
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+In class react.controller.SmearTickController
+    in method public void witholdWorld(org.bukkit.World)
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+    in method public void releaseWorld(org.bukkit.World)
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+    in method public static java.lang.reflect.Field deepFindField(java.lang.Object, java.lang.String)
+        java.lang.Class.getDeclaredField(java.lang.String)
+In class react.json.JSONObject
+    in method public JSONObject(java.lang.Object, java.lang.String[])
+        java.lang.Class.getField(java.lang.String)
+    in method public static java.lang.String[] getNames(java.lang.Object)
+        java.lang.reflect.Field.getName()
+    in method private void populateMap(java.lang.Object)
+        java.lang.reflect.Method.getName()
+    in method public static java.lang.Object wrap(java.lang.Object)
+        java.lang.Package.getName()
+In class react.security.checkpoints.SecurityCheckpointAlpha
+    in method public static void finishScan()
+        java.lang.Class.getConstructor(java.lang.Class[])
+In class react.surge.Main
+    in method private void initializeAmps()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+    in method public void doScan()
+        java.lang.Class.forName(java.lang.String)
+    in method private void scanForPoolDefiners()
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+    in method private void scanForRawEvents()
+        java.lang.reflect.Method.getName()
+    in method private void scanForDynamicTrack()
+        java.lang.reflect.Method.getName()
+In class react.surge.cluster.ConfigurationDataInput
+    in method public void read(react.surge.cluster.IConfigurable, java.io.File)
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+    in method public react.surge.cluster.DataCluster fillDefaults(react.surge.cluster.IConfigurable)
+        java.lang.reflect.Field.getName()
+In class react.surge.cluster.ConfigurationDataOutput
+    in method public void write(react.surge.cluster.IConfigurable, java.io.File)
+        java.lang.reflect.Field.getName()
+In class react.surge.nms.NMSX
+    in method static 
+        java.lang.Package.getName()
+    in method public static java.lang.String getVersion()
+        java.lang.Package.getName()
+    in method public static java.lang.Class getCBNMSClass(java.lang.String)
+        java.lang.Class.forName(java.lang.String)
+    in method public static java.lang.Class getCBClass(java.lang.String)
+        java.lang.Class.forName(java.lang.String)
+    in method public static java.lang.Object serializeChat(java.lang.String)
+        java.lang.Class.getDeclaredMethod(java.lang.String, java.lang.Class[])
+    in method public static java.lang.String getBukkitVersion()
+        java.lang.Package.getName()
+    in method public static void showPickup(org.bukkit.entity.Player, org.bukkit.entity.Entity, org.bukkit.entity.Entity)
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getConstructor(java.lang.Class[])
+    in method public static void sendPacket(org.bukkit.entity.Player, java.lang.Object)
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getField(java.lang.String)
+    in method public static java.lang.Class getNMSClass(java.lang.String)
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Package.getName()
+    in method public static void sendTitle(org.bukkit.entity.Player, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String)
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getField(java.lang.String)
+        java.lang.Class.getField(java.lang.String)
+        java.lang.Class.getField(java.lang.String)
+        java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.Class.getConstructor(java.lang.Class[])
+    in method public static void sendTabTitle(org.bukkit.entity.Player, java.lang.String, java.lang.String)
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getConstructor(java.lang.Class[])
+    in method public static void sendActionBar(org.bukkit.entity.Player, java.lang.String)
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Class.getDeclaredMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getDeclaredMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getDeclaredMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.Class.getConstructor(java.lang.Class[])
+    in method public static int ping(org.bukkit.entity.Player)
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Package.getName()
+        java.lang.Class.getDeclaredField(java.lang.String)
+In class react.surge.util.PluginUtil
+    in method public static void unload(org.bukkit.plugin.Plugin)
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getName()
+In class react.surge.util.Protocol
+    in method public boolean hasPackageSupport()
+        java.lang.Class.forName(java.lang.String)
+In class react.surge.util.ReflectionUtils
+    in method public static java.lang.reflect.Method getMethod(java.lang.Class, java.lang.String, java.lang.Class[])
+        java.lang.reflect.Method.getName()
+    in method public static java.lang.reflect.Field getField(java.lang.Class, boolean, java.lang.String)
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getField(java.lang.String)
+In class react.surge.util.ReflectionUtils$PackageType
+    in method public java.lang.Class getClass(java.lang.String)
+        java.lang.Class.forName(java.lang.String)
+    in method public static java.lang.String getServerVersion()
+        java.lang.Package.getName()
+
+637 classes opened in 0 seconds. 104290K of memory used. 370845K of memory free.
+
+[2017.12.17 06:48:53] Setting trim exclusions...
+FATAL ERROR: Attempt to use "trim" statement at line 20 with unusable classes : Class 'net.minecraft.server.v1_10_R1.Block' not found while looking for field 'net.minecraft.server.v1_10_R1.RegistryBlocks REGISTRY' in class 'net.minecraft.server.v1_10_R1.Block' which is referenced in class 'C:\Users\cyberpwn\Documents\development\workspace\React6\compile\in.jar!react/binject/V10/BlockInjector10.class'. Check the classpath option and reopen classes. (1a)
