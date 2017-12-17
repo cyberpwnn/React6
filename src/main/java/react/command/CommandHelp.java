@@ -38,11 +38,21 @@ public class CommandHelp extends ReactCommand
 	@Override
 	public void fire(CommandSender sender, String[] args)
 	{
-		sendPage(sender, args.length == 0 ? 0 : Integer.valueOf(args[0]), 9);
+		sendPage(sender, args.length == 0 ? 0 : Integer.valueOf(args[0]) - 1, 9);
 	}
 
 	public void sendPage(CommandSender sender, int page, int maxEntries)
 	{
+		if(page < 0)
+		{
+			return;
+		}
+
+		if(page >= getPageSize(maxEntries))
+		{
+			return;
+		}
+
 		sender.sendMessage("  "); //$NON-NLS-1$
 		sendHeader(sender, page, maxEntries);
 

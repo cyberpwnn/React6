@@ -39,7 +39,8 @@ public class Config
 	@Address(1)
 	public static final String A_ENTITYCACHE_INTERVAL = "entity-cache.swap-interval"; //$NON-NLS-1$
 
-	// @Address(2)
+	@Address(2)
+	public static final String A_COMMANDOVERRIDE_TPS = "command-overrides.tps";
 
 	@Address(3)
 	public static final String A_REACT_REMOTE_PORT = "react-remote.port";
@@ -71,7 +72,8 @@ public class Config
 	@Address(12)
 	public static final String A_FASTLEAF_DECAYPERIOD = "fast-leaf-decay.decay-period"; //$NON-NLS-1$
 
-	// @Address(13)
+	@Address(13)
+	public static final String A_COMMANDOVERRIDE_MEMORY = "command-overrides.memory";
 
 	@Address(14)
 	public static final String A_ENTITYSTACK_ENABLED = "entity-stacker.enabled"; //$NON-NLS-1$
@@ -261,7 +263,9 @@ public class Config
 	@Experimental
 	public static int ENTITYCACHE_INTERVAL = 2;
 
-	// @Sector(2)
+	@Sector(2)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean COMMANDOVERRIDES_TPS = true;
 
 	@Sector(3)
 	@Injection(InjectionMethod.RELOAD)
@@ -312,7 +316,9 @@ public class Config
 	@Clip(min = 2, max = 200)
 	public static int FASTLEAF_DECAYPERIOD = 7;
 
-	// @Sector(13)
+	@Sector(13)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean COMMANDOVERRIDES_MEMORY = true;
 
 	@Sector(14)
 	@Injection(InjectionMethod.SWAP)

@@ -9,6 +9,7 @@ import react.api.ReactCommand;
 import react.api.SideGate;
 import surge.Main;
 import surge.Surge;
+import surge.sched.TaskLater;
 import surge.util.Anchor;
 
 @Anchor(0)
@@ -27,7 +28,20 @@ public class CommandReload extends ReactCommand
 	@Override
 	public void fire(CommandSender sender, String[] args)
 	{
-		Gate.msgSuccess(sender, "React " + Surge.getAmp().getPluginInstance().getDescription().getVersion() + " Reloaded");
-		Main.requestReload();
+		Main.requestReload(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				new TaskLater("waiter-greet", 2)
+				{
+					@Override
+					public void run()
+					{
+						Gate.msgSuccess(sender, "React " + Surge.getAmp().getPluginInstance().getDescription().getVersion() + " Reloaded");
+					}
+				};
+			}
+		});
 	}
 }

@@ -7,17 +7,21 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.cyberpwn.gformat.F;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.gmath.M;
 
+import react.Config;
 import react.Gate;
 import react.Info;
 import react.Lang;
 import react.React;
 import react.api.ICommand;
 import react.api.Permissable;
+import react.api.SampledType;
 import react.api.Side;
 import react.api.SideGate;
 import react.rai.IGoal;
@@ -284,6 +288,28 @@ public class CommandController extends Controller implements Listener, CommandEx
 		}
 
 		return false;
+	}
+
+	@EventHandler
+	public void on(PlayerCommandPreprocessEvent e)
+	{
+		if(e.getMessage().toLowerCase().startsWith("/tps") || e.getMessage().toLowerCase().startsWith("/lag"))
+		{
+			if(Permissable.ACCESS.has(e.getPlayer()) && Config.COMMANDOVERRIDES_TPS)
+			{
+				Gate.msgSuccess(e.getPlayer(), "Current TPS: " + C.GREEN + SampledType.TPS.get().get() + C.GRAY + " (" + C.GREEN + F.f(SampledType.TICK.get().getValue(), 1) + C.GRAY + ")");
+				e.setCancelled(true);
+			}
+		}
+
+		if(e.getMessage().toLowerCase().startsWith("/mem") || e.getMessage().toLowerCase().startsWith("/memory") || e.getMessage().toLowerCase().startsWith("/gc"))
+		{
+			if(Permissable.ACCESS.has(e.getPlayer()) && Config.COMMANDOVERRIDES_MEMORY)
+			{
+				Gate.msgSuccess(e.getPlayer(), "Current Memory Usage: " + C.GOLD + SampledType.MEM.get().get() + C.GRAY + " (" + C.GOLD + F.pc(SampledType.MEM.get().getValue() / SampledType.MAXMEM.get().getValue(), 0) + "ms" + C.GRAY + ")");
+				e.setCancelled(true);
+			}
+		}
 	}
 
 	public GList<ICommand> getCommands()

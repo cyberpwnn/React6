@@ -7,11 +7,13 @@ import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
 import react.Lang;
+import react.React;
 import react.api.ISampler;
 import surge.Main;
 import surge.Surge;
 import surge.control.Controller;
 import surge.sched.IMasterTickComponent;
+import surge.sched.TaskLater;
 import surge.server.AsyncTick;
 import surge.server.SuperSampler;
 import surge.util.D;
@@ -29,6 +31,46 @@ public class SampleController extends Controller implements IMasterTickComponent
 		ss = new SuperSampler();
 		constructSamplers();
 		cd = 4;
+	}
+
+	public boolean checkThreads()
+	{
+		GList<String> mf = new GList<String>();
+
+		for(Thread i : Thread.getAllStackTraces().keySet())
+		{
+			if(i.getName().startsWith("Surge Thread Monitor") && i.isAlive())
+			{
+				return false;
+			}
+		}
+
+		for(Thread i : Thread.getAllStackTraces().keySet())
+		{
+			if(i.getName().startsWith("Surge ") && i.isAlive())
+			{
+				if(!mf.contains(i.getName()))
+				{
+					mf.add(i.getName());
+				}
+
+				else
+				{
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	public void restartSuperSampler()
+	{
+		stop();
+		React.instance.sampleController = new SampleController();
+		React.instance.sampleController.start();
+		D.w("Resetting Sample Controller");
+		Main.requestReload();
 	}
 
 	public void registerSampler(ISampler s)
@@ -94,6 +136,30 @@ public class SampleController extends Controller implements IMasterTickComponent
 		ss.start();
 		Surge.register(this);
 		Surge.registerTicked(this);
+
+		new TaskLater("superSampler verification", 250)
+		{
+			@Override
+			public void run()
+			{
+				if(checkThreads())
+				{
+					Main.requestReload();
+				}
+			}
+		};
+
+		new TaskLater("superSampler verification", 100)
+		{
+			@Override
+			public void run()
+			{
+				if(ss.getTickTime() == 0)
+				{
+					restartSuperSampler();
+				}
+			}
+		};
 	}
 
 	@Override

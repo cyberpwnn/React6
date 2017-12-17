@@ -63,7 +63,7 @@ public class CommandAct extends ReactCommand
 			try
 			{
 				int k = Integer.valueOf(args[0]);
-				sendPage(sender, k, 9);
+				sendPage(sender, k - 1, 9);
 				D.v(k + ":f");
 				return;
 			}
@@ -160,6 +160,16 @@ public class CommandAct extends ReactCommand
 
 	public void sendPage(CommandSender sender, int page, int maxEntries)
 	{
+		if(page < 0)
+		{
+			return;
+		}
+
+		if(page >= getPageSize(maxEntries))
+		{
+			return;
+		}
+
 		sender.sendMessage("  "); //$NON-NLS-1$
 		sendHeader(sender, page, maxEntries);
 

@@ -215,7 +215,7 @@
 		<dependency>
 			<groupId>org.cyberpwn</groupId>
 			<artifactId>Surge</artifactId>
-			<version>2.3</version>
+			<version>2.3.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.cyberpwn</groupId>
