@@ -894,71 +894,77 @@ public class Config
 	private static GList<String> getDefaultEntitiesForCaching()
 	{
 		GList<String> ents = new GList<String>();
+		GList<String> entx = new GList<String>();
 
 		for(EntityType i : EntityType.values())
 		{
+			entx.add(i.name());
+		}
+
+		for(String i : entx)
+		{
 			switch(i)
 			{
-				case PLAYER:
+				case "PLAYER":
 					continue;
-				case AREA_EFFECT_CLOUD:
+				case "AREA_EFFECT_CLOUD":
 					continue;
-				case BOAT:
+				case "BOAT":
 					continue;
-				case ARROW:
+				case "ARROW":
 					continue;
-				case ITEM_FRAME:
+				case "ITEM_FRAME":
 					continue;
-				case COMPLEX_PART:
+				case "COMPLEX_PART":
 					continue;
-				case DRAGON_FIREBALL:
+				case "DRAGON_FIREBALL":
 					continue;
-				case EGG:
+				case "EGG":
 					continue;
-				case ENDER_CRYSTAL:
+				case "ENDER_CRYSTAL":
 					continue;
-				case WITHER_SKULL:
+				case "WITHER_SKULL":
 					continue;
-				case ENDER_PEARL:
+				case "ENDER_PEARL":
 					continue;
-				case ENDER_SIGNAL:
+				case "ENDER_SIGNAL":
 					continue;
-				case WEATHER:
+				case "WEATHER":
 					continue;
-				case UNKNOWN:
+				case "UNKNOWN":
 					continue;
-				case TIPPED_ARROW:
+				case "TIPPED_ARROW":
 					continue;
-				case THROWN_EXP_BOTTLE:
+				case "THROWN_EXP_BOTTLE":
 					continue;
-				case SPLASH_POTION:
+				case "SPLASH_POTION":
 					continue;
-				case SPECTRAL_ARROW:
+				case "SPECTRAL_ARROW":
 					continue;
-				case SHULKER_BULLET:
+				case "SHULKER_BULLET":
 					continue;
-				case EVOKER_FANGS:
+				case "EVOKER_FANGS":
 					continue;
-				case EXPERIENCE_ORB:
+				case "EXPERIENCE_ORB":
 					continue;
-				case SNOWBALL:
+				case "SNOWBALL":
 					continue;
-				case FIREBALL:
+				case "FIREBALL":
 					continue;
-				case SMALL_FIREBALL:
+				case "SMALL_FIREBALL":
 					continue;
-				case FIREWORK:
+				case "FIREWORK":
 					continue;
-				case PRIMED_TNT:
+				case "PRIMED_TNT":
 					continue;
-				case LIGHTNING:
+				case "LIGHTNING":
 					continue;
-				case LINGERING_POTION:
+				case "LINGERING_POTION":
 					continue;
-				case LEASH_HITCH:
+				case "LEASH_HITCH":
 					continue;
 				default:
-					ents.add(i.name());
+					ents.add(i);
 			}
 		}
 
@@ -968,71 +974,77 @@ public class Config
 	private static GList<String> getDefaultEntitiesForCulling()
 	{
 		GList<String> ents = new GList<String>();
+		GList<String> entx = new GList<String>();
 
 		for(EntityType i : EntityType.values())
 		{
+			entx.add(i.name());
+		}
+
+		for(String i : entx)
+		{
 			switch(i)
 			{
-				case PLAYER:
+				case "PLAYER":
 					continue;
-				case AREA_EFFECT_CLOUD:
+				case "AREA_EFFECT_CLOUD":
 					continue;
-				case BOAT:
+				case "BOAT":
 					continue;
-				case ARROW:
+				case "ARROW":
 					continue;
-				case ITEM_FRAME:
+				case "ITEM_FRAME":
 					continue;
-				case COMPLEX_PART:
+				case "COMPLEX_PART":
 					continue;
-				case DRAGON_FIREBALL:
+				case "DRAGON_FIREBALL":
 					continue;
-				case EGG:
+				case "EGG":
 					continue;
-				case ENDER_CRYSTAL:
+				case "ENDER_CRYSTAL":
 					continue;
-				case WITHER_SKULL:
+				case "WITHER_SKULL":
 					continue;
-				case ENDER_PEARL:
+				case "ENDER_PEARL":
 					continue;
-				case ENDER_SIGNAL:
+				case "ENDER_SIGNAL":
 					continue;
-				case WEATHER:
+				case "WEATHER":
 					continue;
-				case UNKNOWN:
+				case "UNKNOWN":
 					continue;
-				case TIPPED_ARROW:
+				case "TIPPED_ARROW":
 					continue;
-				case THROWN_EXP_BOTTLE:
+				case "THROWN_EXP_BOTTLE":
 					continue;
-				case SPLASH_POTION:
+				case "SPLASH_POTION":
 					continue;
-				case SPECTRAL_ARROW:
+				case "SPECTRAL_ARROW":
 					continue;
-				case SHULKER_BULLET:
+				case "SHULKER_BULLET":
 					continue;
-				case EVOKER_FANGS:
+				case "EVOKER_FANGS":
 					continue;
-				case EXPERIENCE_ORB:
+				case "EXPERIENCE_ORB":
 					continue;
-				case SNOWBALL:
+				case "SNOWBALL":
 					continue;
-				case FIREBALL:
+				case "FIREBALL":
 					continue;
-				case SMALL_FIREBALL:
+				case "SMALL_FIREBALL":
 					continue;
-				case FIREWORK:
+				case "FIREWORK":
 					continue;
-				case PRIMED_TNT:
+				case "PRIMED_TNT":
 					continue;
-				case LIGHTNING:
+				case "LIGHTNING":
 					continue;
-				case LINGERING_POTION:
+				case "LINGERING_POTION":
 					continue;
-				case LEASH_HITCH:
+				case "LEASH_HITCH":
 					continue;
 				default:
-					ents.add(i.name());
+					ents.add(i);
 			}
 		}
 
@@ -1042,33 +1054,39 @@ public class Config
 	private static GList<String> getDefaultEntitiesForRemoval()
 	{
 		GList<String> ents = new GList<String>();
+		GList<String> entx = new GList<String>();
 
 		for(EntityType i : EntityType.values())
 		{
+			entx.add(i.name());
+		}
+
+		for(String i : entx)
+		{
 			switch(i)
 			{
-				case PLAYER:
+				case "PLAYER":
 					continue;
-				case ITEM_FRAME:
+				case "ITEM_FRAME":
 					continue;
-				case COMPLEX_PART:
+				case "COMPLEX_PART":
 					continue;
-				case WEATHER:
+				case "WEATHER":
 					continue;
-				case UNKNOWN:
+				case "UNKNOWN":
 					continue;
-				case EXPERIENCE_ORB:
+				case "EXPERIENCE_ORB":
 					continue;
-				case PRIMED_TNT:
+				case "PRIMED_TNT":
 					continue;
-				case LIGHTNING:
+				case "LIGHTNING":
 					continue;
-				case LINGERING_POTION:
+				case "LINGERING_POTION":
 					continue;
-				case LEASH_HITCH:
+				case "LEASH_HITCH":
 					continue;
 				default:
-					ents.add(i.name());
+					ents.add(i);
 			}
 		}
 

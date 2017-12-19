@@ -12,7 +12,7 @@ import org.cyberpwn.glang.GMap;
 
 import react.Lang;
 import react.React;
-import react.api.Capabilities;
+import react.api.Capability;
 import react.api.SampledType;
 import react.graph.GraphSampleLine;
 import react.graph.GraphSize;
@@ -118,9 +118,9 @@ public class GraphController extends Controller
 
 	public void toggleMapping(Player player)
 	{
-		if(!Capabilities.DUAL_WIELD.isCapable())
+		if(!Capability.DUAL_WEILD.isCapable())
 		{
-			Capabilities.DUAL_WIELD.sendNotCapable(player);
+			Capability.DUAL_WEILD.sendNotCapable(player);
 			return;
 		}
 

@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 
 import react.Info;
 import react.React;
-import react.api.Capabilities;
+import react.api.Capability;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
@@ -30,9 +30,9 @@ public class CommandActionLog extends ReactCommand
 	{
 		Player player = (Player) sender;
 
-		if(!Capabilities.SCOREBOARD.isCapable())
+		if(!Capability.SCOREBOARD.isCapable())
 		{
-			Capabilities.SCOREBOARD.sendNotCapable(player);
+			Capability.SCOREBOARD.sendNotCapable(player);
 			return;
 		}
 

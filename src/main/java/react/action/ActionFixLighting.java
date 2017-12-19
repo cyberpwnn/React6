@@ -11,6 +11,7 @@ import react.Lang;
 import react.api.Action;
 import react.api.ActionState;
 import react.api.ActionType;
+import react.api.Capability;
 import react.api.IActionSource;
 import react.api.ISelector;
 import react.api.SelectorPosition;
@@ -41,6 +42,13 @@ public class ActionFixLighting extends Action
 	public void enact(IActionSource source, ISelector... selectors)
 	{
 		int tchu = 0;
+
+		if(!Capability.CHUNK_RELIGHTING.isCapable())
+		{
+			Capability.CHUNK_RELIGHTING.sendNotCapable(source);
+			completeAction();
+			return;
+		}
 
 		for(ISelector i : selectors)
 		{

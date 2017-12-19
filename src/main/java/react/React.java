@@ -1,5 +1,6 @@
 package react;
 
+import react.api.Flavor;
 import react.controller.ActionController;
 import react.controller.BenchmarkController;
 import react.controller.BlockInjectController;
@@ -133,6 +134,17 @@ public class React
 	@Enable
 	public void enable()
 	{
+		try
+		{
+			Thread.sleep(1000);
+			Flavor.getHostFlavor();
+			Thread.sleep(5000);
+		}
+		catch(InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

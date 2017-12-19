@@ -9,7 +9,7 @@ import org.bukkit.event.entity.EntitySpawnEvent;
 import org.cyberpwn.glang.GList;
 
 import react.Config;
-import react.api.Capabilities;
+import react.api.Capability;
 import react.api.StackedEntity;
 import surge.Surge;
 import surge.control.Controller;
@@ -65,7 +65,7 @@ public class EntityStackController extends Controller
 			Config.ENTITY_STACK_MAX_COUNT = Config.ENTITYSTACK_MINIMUM_GROUP + 2;
 		}
 
-		if(!Capabilities.ATTRIBUTES.isCapable())
+		if(!Capability.ENTITY_ATTRIBUTES.isCapable())
 		{
 			while(e.pickRandom().getMaxHealth() * (e.size()) > Config.ENTITYSTACK_MAXIMUM_HEALTH)
 			{

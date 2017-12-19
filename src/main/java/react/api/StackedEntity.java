@@ -33,7 +33,7 @@ public class StackedEntity
 	@SuppressWarnings("deprecation")
 	public static double getMaxHealth(LivingEntity e)
 	{
-		if(!Capabilities.ATTRIBUTES.isCapable())
+		if(!Capability.ENTITY_ATTRIBUTES.isCapable())
 		{
 			return e.getMaxHealth();
 		}
@@ -92,7 +92,7 @@ public class StackedEntity
 			{
 				LivingEntity ex = (LivingEntity) entity.getWorld().spawnEntity(entity.getLocation(), entity.getType());
 
-				if(Capabilities.ENTITY_AI.isCapable())
+				if(Capability.ENTITY_AI.isCapable())
 				{
 					ex.setAI(false);
 				}
@@ -170,7 +170,7 @@ public class StackedEntity
 	@SuppressWarnings("deprecation")
 	public static void setMaxHealth(LivingEntity e, double v)
 	{
-		if(!Capabilities.ATTRIBUTES.isCapable())
+		if(!Capability.ENTITY_ATTRIBUTES.isCapable())
 		{
 			e.setMaxHealth(v + 0.1);
 		}

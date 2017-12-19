@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 
 import react.Info;
 import react.React;
-import react.api.Capabilities;
+import react.api.Capability;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
@@ -30,9 +30,9 @@ public class CommandMap extends ReactCommand
 	{
 		Player player = (Player) sender;
 
-		if(!Capabilities.DUAL_WIELD.isCapable())
+		if(!Capability.DUAL_WEILD.isCapable())
 		{
-			Capabilities.DUAL_WIELD.sendNotCapable(player);
+			Capability.DUAL_WEILD.sendNotCapable(player);
 			return;
 		}
 

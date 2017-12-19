@@ -9,6 +9,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 import org.cyberpwn.glang.GList;
 
 import surge.nms.NMSX;
+import surge.util.Protocol;
 
 /**
  * Scoreboard & Tab utilities
@@ -112,6 +113,14 @@ public class SlateUtil
 	 */
 	public static void setScore(String name, int value, Objective o)
 	{
+		if(Protocol.R1_7_1.to(Protocol.R1_7_10).contains(Protocol.getProtocolVersion()))
+		{
+			if(name.length() > 15)
+			{
+				name = name.substring(0, 15);
+			}
+		}
+
 		if(name.length() > 40)
 		{
 			name = name.substring(0, 37) + "...";

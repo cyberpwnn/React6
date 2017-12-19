@@ -48,6 +48,12 @@ public class Info
 	public static String COMMAND_MONITOR_ALIAS_2 = "m"; //$NON-NLS-1$
 	public static String COMMAND_MONITOR_USAGE = "(toggle)"; //$NON-NLS-1$
 
+	public static String COMMAND_VERSION_DESCRIPTION = "Get react's version"; //$NON-NLS-1$
+	public static String COMMAND_VERSION = "version"; //$NON-NLS-1$
+	public static String COMMAND_VERSION_ALIAS_1 = "ver"; //$NON-NLS-1$
+	public static String COMMAND_VERSION_ALIAS_2 = "v"; //$NON-NLS-1$
+	public static String COMMAND_VERSION_USAGE = ""; //$NON-NLS-1$
+
 	public static String COMMAND_MAP_DESCRIPTION = Lang.getString("command.map.description"); //$NON-NLS-1$
 	public static String COMMAND_MAP = "map"; //$NON-NLS-1$
 	public static String COMMAND_MAP_ALIAS_1 = "mp"; //$NON-NLS-1$
