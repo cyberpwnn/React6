@@ -134,15 +134,23 @@ public class PlotBoard
 		{
 			other = !other;
 
-			if(!other)
+			try
 			{
-				old = plots.get(i);
-				plots.remove(i);
+				if(!other && plots.containsKey(i))
+				{
+					old = plots.get(i);
+					plots.remove(i);
+				}
+
+				else
+				{
+					plots.put(i, (old + plots.get(i)) / 2);
+				}
 			}
 
-			else
+			catch(Exception e)
 			{
-				plots.put(i, (old + plots.get(i)) / 2);
+
 			}
 		}
 	}
@@ -168,9 +176,17 @@ public class PlotBoard
 
 		for(Long i : plots.k())
 		{
-			if(within(from, to, i))
+			try
 			{
-				m.put(i, plots.get(i));
+				if(within(from, to, i))
+				{
+					m.put(i, plots.get(i));
+				}
+			}
+
+			catch(Exception e)
+			{
+
 			}
 		}
 

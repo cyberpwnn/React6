@@ -2,7 +2,7 @@ package react.rai;
 
 import org.cyberpwn.glang.GList;
 
-import react.api.IActionSource;
+import react.action.source.IActionSource;
 
 public interface IRAI
 {

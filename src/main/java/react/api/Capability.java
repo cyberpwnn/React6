@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.cyberpwn.glang.GList;
 
 import react.Gate;
+import react.action.source.IActionSource;
 import surge.util.C;
 import surge.util.Protocol;
 
@@ -18,12 +19,13 @@ public class Capability
 	public static final Capability ENTITY_AI = new Capability("Entity AI", Protocol.R1_9);
 	public static final Capability ACTION_BAR = new Capability("Action Bars", Protocol.R1_8);
 	public static final Capability ENTITY_NAMES = new Capability("Entity Naming", Protocol.R1_8);
-	public static final Capability TITLE_BAR = new Capability("Title Bar", Protocol.R1_7_1);
+	public static final Capability TITLE_BAR = new Capability("Title Bar", Protocol.R1_8);
 	public static final Capability CHUNK_RELIGHTING = new Capability("Chunk Relighting", "FastAsyncWorldEdit");
 	public static final Capability MONITOR_SUBMISSIVENESS = new Capability("Monitor Submissiveness", Protocol.R1_7_1, "ProtocolLib");
 	public static final Capability ACCELERATED_PING = new Capability("Accelerated Ping", Protocol.R1_7_1, "ProtocolLib");
 	public static final Capability ENTITY_THROTTLING = new Capability("Entity Throttling", Protocol.R1_8, Flavor.SOGGY_SPIGOT);
 	public static final Capability TILE_THROTTLING = new Capability("Tile Throttling", Protocol.R1_8, Flavor.SOGGY_SPIGOT);
+	public static final Capability PASSENGERS = new Capability("Entity Passengers", Protocol.R1_9);
 	public static final GList<Capability> capabilities = new GList<Capability>();
 
 	static
@@ -42,6 +44,7 @@ public class Capability
 		capabilities.add(ACCELERATED_PING);
 		capabilities.add(ENTITY_THROTTLING);
 		capabilities.add(TILE_THROTTLING);
+		capabilities.add(PASSENGERS);
 	}
 
 	private final Protocol version;

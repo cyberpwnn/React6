@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Hopper;
@@ -19,22 +20,27 @@ import org.cyberpwn.gconcurrent.A;
 import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.Callback;
 import org.cyberpwn.glang.GMap;
+import org.cyberpwn.glang.GSet;
 import org.cyberpwn.gmath.M;
 import org.spigotmc.SpigotWorldConfig;
 import org.spigotmc.TickLimiter;
 
 import react.api.ActivationRangeType;
+import react.api.Flavor;
 import react.api.SelectorPosition;
 import surge.nms.NMSX;
 import surge.sched.TaskLater;
 import surge.util.C;
 import surge.util.D;
+import surge.util.Protocol;
 import surge.util.TXT;
 import surge.util.W;
 
 public class Gate
 {
 	private static GMap<String, Integer> defaultSettings = new GMap<String, Integer>();
+	private static GSet<Chunk> refresh = new GSet<Chunk>();
+	private static GSet<Location> destroy = new GSet<Location>();
 
 	public static void fixLighting(SelectorPosition sel, Callback<Integer> cb, Callback<Double> prog)
 	{
@@ -78,13 +84,17 @@ public class Gate
 									try
 									{
 										Chunk c = (Chunk) o;
-										Object vector1 = vectorConstruct.newInstance(c.getX() << 4, 0, c.getZ() << 4);
-										Object vector2 = vectorConstruct.newInstance(16 + (c.getX() << 4), 256, 16 + (c.getZ() << 4));
-										Object cuboid = cuboidConstruct.newInstance(vector1, vector2);
-										Object ret = faweFixMethod.invoke(null, c.getWorld().getName(), cuboid);
-										total[0] += (int) ret;
-										sof[0]++;
-										prog.run(sof[0].doubleValue() / tot.doubleValue());
+
+										if(Config.getWorldConfig(c.getWorld()).allowRelighting)
+										{
+											Object vector1 = vectorConstruct.newInstance(c.getX() << 4, 0, c.getZ() << 4);
+											Object vector2 = vectorConstruct.newInstance(16 + (c.getX() << 4), 256, 16 + (c.getZ() << 4));
+											Object cuboid = cuboidConstruct.newInstance(vector1, vector2);
+											Object ret = faweFixMethod.invoke(null, c.getWorld().getName(), cuboid);
+											total[0] += (int) ret;
+											sof[0]++;
+											prog.run(sof[0].doubleValue() / tot.doubleValue());
+										}
 									}
 
 									catch(Exception e)
@@ -128,29 +138,37 @@ public class Gate
 
 	public static Player whoLoaded(Chunk c)
 	{
-		if(c.isLoaded())
+		try
 		{
-			for(Entity i : c.getEntities())
+			if(c.isLoaded())
 			{
-				if(i instanceof Player)
+				for(Entity i : c.getEntities())
 				{
-					return (Player) i;
-				}
-			}
-
-			for(int i = 1; i < Bukkit.getViewDistance() + 1; i++)
-			{
-				for(Chunk j : W.chunkRadius(c, i + 1))
-				{
-					for(Entity k : j.getEntities())
+					if(i instanceof Player)
 					{
-						if(k instanceof Player)
+						return (Player) i;
+					}
+				}
+
+				for(int i = 1; i < Bukkit.getViewDistance() + 1; i++)
+				{
+					for(Chunk j : W.chunkRadius(c, i + 1))
+					{
+						for(Entity k : j.getEntities())
 						{
-							return (Player) k;
+							if(k instanceof Player)
+							{
+								return (Player) k;
+							}
 						}
 					}
 				}
 			}
+		}
+
+		catch(Exception e)
+		{
+
 		}
 
 		return null;
@@ -353,11 +371,31 @@ public class Gate
 		return msg(p, C.GOLD + "\u26A0 " + C.GRAY + msg); //$NON-NLS-1$
 	}
 
+	public static boolean isBadForUnloading()
+	{
+		return Flavor.getHostFlavor().equals(Flavor.PAPER_SPIGOT) && Protocol.EARLIEST.to(Protocol.R1_8_9).contains(Protocol.getProtocolVersion());
+	}
+
+	public static boolean canUnload(World w, int x, int z)
+	{
+		return !isBadForUnloading();
+	}
+
 	public static boolean unloadChunk(Chunk c)
 	{
 		try
 		{
-			return c.unload();
+			if(!Config.getWorldConfig(c.getWorld()).allowActions)
+			{
+				return false;
+			}
+
+			if(canUnload(c.getWorld(), c.getX(), c.getZ()))
+			{
+				return c.unload();
+			}
+
+			return false;
 		}
 
 		catch(Exception e)
@@ -369,6 +407,16 @@ public class Gate
 
 	public static void unloadChunk(World w, int x, int z)
 	{
+		if(!canUnload(w, x, z))
+		{
+			return;
+		}
+
+		if(!Config.getWorldConfig(w).allowActions)
+		{
+			return;
+		}
+
 		w.unloadChunk(x, z);
 	}
 
@@ -379,11 +427,21 @@ public class Gate
 			return;
 		}
 
+		if(Config.getWorldConfig(e.getWorld()).assumeNoSideEffectsEntities.contains(e.getType().toString()))
+		{
+			return;
+		}
+
 		e.remove();
 	}
 
 	public static void purgeEntity(Entity e)
 	{
+		if(Config.getWorldConfig(e.getWorld()).assumeNoSideEffectsEntities.contains(e.getType().toString()))
+		{
+			return;
+		}
+
 		if(!Config.ALLOW_PURGE.contains(e.getType().toString()))
 		{
 			return;
@@ -394,6 +452,11 @@ public class Gate
 
 	public static void cullEntity(Entity e)
 	{
+		if(Config.getWorldConfig(e.getWorld()).assumeNoSideEffectsEntities.contains(e.getType().toString()))
+		{
+			return;
+		}
+
 		if(!Config.ALLOW_CULL.contains(e.getType().toString()))
 		{
 			return;
@@ -404,6 +467,11 @@ public class Gate
 
 	public static void cachedEntity(Entity e)
 	{
+		if(Config.getWorldConfig(e.getWorld()).assumeNoSideEffectsEntities.contains(e.getType().toString()))
+		{
+			return;
+		}
+
 		if(!Config.ALLOW_CACHE.contains(e.getType().toString()))
 		{
 			return;
@@ -455,5 +523,39 @@ public class Gate
 		byte byt = block.getData();
 		block.setTypeIdAndData(block.getTypeId(), (byte) 0, false);
 		block.setTypeIdAndData(id, byt, true);
+	}
+
+	public static void refresh(Chunk chunk)
+	{
+		refresh.add(chunk);
+	}
+
+	@SuppressWarnings("deprecation")
+	public static void refreshChunks()
+	{
+		for(Chunk i : refresh)
+		{
+			i.getWorld().refreshChunk(i.getX(), i.getZ());
+		}
+
+		refresh.clear();
+
+		for(Player j : Bukkit.getOnlinePlayers())
+		{
+			for(Location i : destroy)
+			{
+				if(j.getWorld().equals(i.getWorld()))
+				{
+					j.sendBlockChange(i, 0, (byte) 0);
+				}
+			}
+		}
+
+		destroy.clear();
+	}
+
+	public static void sendBlockChange(Location l)
+	{
+		destroy.add(l);
 	}
 }

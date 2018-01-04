@@ -49,6 +49,11 @@ public enum EntityFlag
 
 		if(this.equals(EntityFlag.RIDDEN) || this.equals(EntityFlag.STACKED))
 		{
+			if(!Capability.PASSENGERS.isCapable())
+			{
+				return false;
+			}
+
 			return !e.getPassengers().isEmpty();
 		}
 

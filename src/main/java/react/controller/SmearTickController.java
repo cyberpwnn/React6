@@ -11,7 +11,9 @@ import org.bukkit.event.world.WorldUnloadEvent;
 import org.cyberpwn.glang.GMap;
 import org.spigotmc.TickLimiter;
 
+import react.Config;
 import react.Gate;
+import react.api.Capability;
 import react.api.SpecializedTickLimiter;
 import surge.Surge;
 import surge.control.Controller;
@@ -25,6 +27,11 @@ public class SmearTickController extends Controller
 	@Override
 	public void start()
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return;
+		}
+
 		Surge.register(this);
 		etl = new GMap<World, SpecializedTickLimiter>();
 		ttl = new GMap<World, SpecializedTickLimiter>();
@@ -46,6 +53,11 @@ public class SmearTickController extends Controller
 	@Override
 	public void stop()
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return;
+		}
+
 		Surge.unregister(this);
 		for(World i : Bukkit.getWorlds())
 		{
@@ -64,6 +76,11 @@ public class SmearTickController extends Controller
 	@EventHandler
 	public void on(WorldLoadEvent e)
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return;
+		}
+
 		try
 		{
 			witholdWorld(e.getWorld());
@@ -78,6 +95,11 @@ public class SmearTickController extends Controller
 	@EventHandler
 	public void on(WorldUnloadEvent e)
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return;
+		}
+
 		try
 		{
 			releaseWorld(e.getWorld());
@@ -97,6 +119,11 @@ public class SmearTickController extends Controller
 
 	public void witholdWorld(World w) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return;
+		}
+
 		Class<?> cworldclass = NMSX.getCBClass("CraftWorld");
 		Object theWorld = cworldclass.getMethod("getHandle").invoke(w);
 		Field fe = deepFindField(theWorld, "entityLimiter");
@@ -113,6 +140,11 @@ public class SmearTickController extends Controller
 
 	public void releaseWorld(World w) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return;
+		}
+
 		Class<?> cworldclass = NMSX.getCBClass("CraftWorld");
 		Object theWorld = cworldclass.getMethod("getHandle").invoke(w);
 		Field fe = deepFindField(theWorld, "entityLimiter");
@@ -129,6 +161,11 @@ public class SmearTickController extends Controller
 
 	public double getUniversalEntityTick()
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return -1;
+		}
+
 		double mt = 0;
 
 		for(World i : etl.k())
@@ -146,6 +183,11 @@ public class SmearTickController extends Controller
 
 	public double getUniversalEntityLimit()
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return -1;
+		}
+
 		double mt = 0;
 
 		for(World i : etl.k())
@@ -163,6 +205,11 @@ public class SmearTickController extends Controller
 
 	public double getUniversalTileLimit()
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return -1;
+		}
+
 		double mt = 0;
 
 		for(World i : etl.k())
@@ -180,6 +227,11 @@ public class SmearTickController extends Controller
 
 	public double getUniversalTileTick()
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return -1;
+		}
+
 		double mt = 0;
 
 		for(World i : ttl.k())
@@ -197,6 +249,11 @@ public class SmearTickController extends Controller
 
 	public double getUniversalEntityDroppedTicks()
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return -1;
+		}
+
 		double mt = 0;
 
 		for(World i : ttl.k())
@@ -209,6 +266,11 @@ public class SmearTickController extends Controller
 
 	public double getUniversalTileDroppedTicks()
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return -1;
+		}
+
 		double mt = 0;
 
 		for(World i : ttl.k())
@@ -221,46 +283,101 @@ public class SmearTickController extends Controller
 
 	public void setEntityTickLimit(World w, double lim)
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return;
+		}
+
+		if(!Config.getWorldConfig(w).allowEntityThrottling)
+		{
+			return;
+		}
+
 		etl.get(w).rMaxTime = lim;
 	}
 
 	public void setTileTickLimit(World w, double lim)
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return;
+		}
+
+		if(!Config.getWorldConfig(w).allowTileThrottling)
+		{
+			return;
+		}
+
 		ttl.get(w).rMaxTime = lim;
 	}
 
 	public double getEntityTickLimit(World w)
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return -1;
+		}
+
 		return etl.get(w).rMaxTime;
 	}
 
 	public double getTileTickLimit(World w)
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return -1;
+		}
+
 		return ttl.get(w).rMaxTime;
 	}
 
 	public double getLastEntityTick(World w)
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return -1;
+		}
+
 		return etl.get(w).atimes.getAverage();
 	}
 
 	public double getLastTileTick(World w)
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return -1;
+		}
+
 		return ttl.get(w).atimes.getAverage();
 	}
 
 	public double getEntityDroppedTicks(World w)
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return -1;
+		}
+
 		return etl.get(w).adropped.getAverage();
 	}
 
 	public double getTileDroppedTicks(World w)
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return -1;
+		}
+
 		return ttl.get(w).adropped.getAverage();
 	}
 
 	public static Field deepFindField(Object obj, String fieldName)
 	{
+		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
+		{
+			return null;
+		}
+
 		Class<?> cls = obj.getClass();
 
 		for(Class<?> acls = cls; acls != null; acls = acls.getSuperclass())

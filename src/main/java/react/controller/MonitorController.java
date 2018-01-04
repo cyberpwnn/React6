@@ -13,6 +13,7 @@ import react.Gate;
 import react.Info;
 import react.Lang;
 import react.React;
+import react.api.Capability;
 import react.api.MonitorHeading;
 import react.api.Permissable;
 import react.api.ReactPlayer;
@@ -467,13 +468,36 @@ public class MonitorController extends Controller implements IMasterTickComponen
 
 	public void tickMonitor(ReactPlayer rp)
 	{
-		Player p = rp.getP();
-		int sel = rp.getMonitorSelection();
-		NMSX.sendActionBar(p, titleMonitor.getHotbarFor(sel, rp.isShift()));
-		String k = titleMonitor.getHotbarHeadFor(sel, rp.isShift(), this, rp, rp.getSwitchNotification());
-		String m = prefixFor(rp, sel, rp.getSwitchNotification());
-		String v = sel != -1 ? (rp.getSwitchNotification() > 0 ? (m + titleMonitor.getHeadFor(sel).getName()) : "  ") : "  "; //$NON-NLS-1$ //$NON-NLS-2$
-		NMSX.sendTitle(p, 0, 5, 0, v, k);
+		if(Capability.ACTION_BAR.isCapable())
+		{
+			Player p = rp.getP();
+			boolean high = rp.highMonitor;
+			int sel = rp.getMonitorSelection();
+
+			if(sel < 0 && high)
+			{
+				String m = prefixFor(rp, sel, rp.getSwitchNotification());
+				String v = sel != -1 ? (rp.getSwitchNotification() > 0 ? (m + titleMonitor.getHeadFor(sel).getName()) : "  ") : "  "; //$NON-NLS-1$ //$NON-NLS-2$
+				NMSX.sendTitle(p, 0, 5, 0, v, titleMonitor.getHotbarFor(sel, rp.isShift()));
+			}
+
+			else if(sel >= 0 && high)
+			{
+				String k = titleMonitor.getHotbarHeadFor(sel, rp.isShift(), this, rp, rp.getSwitchNotification());
+				String m = prefixFor(rp, sel, rp.getSwitchNotification());
+				String v = sel != -1 ? (rp.getSwitchNotification() > 0 ? (m + titleMonitor.getHeadFor(sel).getName()) : "  ") : "  "; //$NON-NLS-1$ //$NON-NLS-2$
+				NMSX.sendTitle(p, 0, 5, 0, v, k);
+			}
+
+			else
+			{
+				NMSX.sendActionBar(p, titleMonitor.getHotbarFor(sel, rp.isShift()));
+				String k = titleMonitor.getHotbarHeadFor(sel, rp.isShift(), this, rp, rp.getSwitchNotification());
+				String m = prefixFor(rp, sel, rp.getSwitchNotification());
+				String v = sel != -1 ? (rp.getSwitchNotification() > 0 ? (m + titleMonitor.getHeadFor(sel).getName()) : "  ") : "  "; //$NON-NLS-1$ //$NON-NLS-2$
+				NMSX.sendTitle(p, 0, 5, 0, v, k);
+			}
+		}
 	}
 
 	public TitleMonitor getTitleMonitor()
@@ -513,6 +537,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	public void onTick()
 	{
 		updateActionBoard();
+
 		for(ReactPlayer i : React.instance.playerController.getPlayers())
 		{
 			processPlayer(i);

@@ -36,10 +36,14 @@ public class ReactPlayer implements IConfigurable
 		keystore.put(841, Info.STATE_PLAYER_HEIGHT_CURRENT);
 		keystore.put(-413, Info.STATE_PLAYER_HEIGHT_CHANGING);
 		keystore.put(164, Info.STATE_GLASSES_ENABLED);
+		keystore.put(-1783, Info.STATE_MONITORING_HIGH);
 	}
 
 	@KeyPointer(-175)
 	public boolean monitoring = false;
+
+	@KeyPointer(-1783)
+	public boolean highMonitor = false;
 
 	@KeyPointer(-172)
 	public boolean actionlogging = false;

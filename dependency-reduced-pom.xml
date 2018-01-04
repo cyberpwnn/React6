@@ -4,7 +4,7 @@
   <groupId>com.volmit</groupId>
   <artifactId>React</artifactId>
   <name>React</name>
-  <version>6.1417a</version>
+  <version>6.13026a</version>
   <description>A performance plugin</description>
   <build>
     <resources>
@@ -125,14 +125,14 @@
                 <configuration>
                   <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
                   <arguments>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.1417a.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.13026a.jar</argument>
                     <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
                     <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.1417a/mapping.txt</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.13026a/mapping.txt</argument>
                     <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.1417a/React-6.1417a-origin.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.13026a/React-6.13026a-origin.jar</argument>
                     <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.1417a/React-6.1417a.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.13026a/React-6.13026a.jar</argument>
                   </arguments>
                 </configuration>
               </execution>
@@ -140,14 +140,14 @@
             <configuration>
               <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
               <arguments>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.1417a.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.13026a.jar</argument>
                 <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
                 <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.1417a/mapping.txt</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.13026a/mapping.txt</argument>
                 <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.1417a/React-6.1417a-origin.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.13026a/React-6.13026a-origin.jar</argument>
                 <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.1417a/React-6.1417a.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.13026a/React-6.13026a.jar</argument>
               </arguments>
             </configuration>
           </plugin>

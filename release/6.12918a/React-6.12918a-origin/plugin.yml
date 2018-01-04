@@ -1,0 +1,76 @@
+name: React
+version: 6.12918a
+main: react.surge.Main
+authors: [cyberpwn, Puretie]
+load: STARTUP
+website: https://www.spigotmc.org/resources/react-smart-server-performance.21057/
+database: false
+prefix: React
+commands: 
+  react: 
+    aliases: [re, ract]
+  rai:
+    aliases: [react-ai]
+permissions:
+  react.*:
+    description: Gives access to all React permissions
+    default: op
+    children:
+      react.reload: true
+      react.access: true
+      react.monitor: true
+      react.act: true
+      react.rai: true
+  react.rai: 
+    description: Gives access to use all rai features
+    default: op
+    children: 
+      react.rai.control: true
+      react.rai.monitor: true
+      react.rai.access: true
+  react.monitor:
+    description: Gives access to monitor (all subtypes included)
+    default: op
+    children:
+      react.monitor.map: true
+      react.monitor.title: true
+      react.monitor.actionlog: true
+      react.monitor.environment: true
+      react.monitor.glasses: true
+      react.monitor.chunkblame: true
+  react.act:
+    description: Gives access to use actions (all subtypes included)
+    default: op
+  react.monitor.map:
+    description: Gives access to use the map monitor
+    default: op
+  react.monitor.actionlog:
+    description: Gives access to use the action log monitor
+    default: op
+  react.monitor.title:
+    description: Gives access to use the title monitor
+    default: op
+  react.monitor.environment:
+    description: Gives access to use environment commands
+    default: op
+  react.monitor.glasses:
+    description: Gives access to use react glasses commands
+    default: op
+  react.monitor.chunkblame:
+    description: Gives access to use react chunk blame tools
+    default: op
+  react.access: 
+    description: Gives access to use react.
+    default: op
+  react.rai.control: 
+    description: Gives access to control rai
+    default: op
+  react.rai.monitor: 
+    description: Gives access to monitor rai
+    default: op
+  react.rai.access: 
+    description: Gives access to rai
+    default: op
+  react.reload: 
+    description: Gives access to reload react.
+    default: op

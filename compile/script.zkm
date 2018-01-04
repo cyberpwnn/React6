@@ -39,6 +39,8 @@ exclude     public *.^* and
             *.* and
             *.Main;
 
+obfuscateFlowExclude   @*.MyAnnotation0 *.*; 
+
 obfuscate   changeLogFileIn=""
             changeLogFileOut="ChangeLog.txt"
             keepInnerClassInfo=true

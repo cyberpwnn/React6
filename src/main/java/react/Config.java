@@ -4,10 +4,12 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.Plugin;
 import org.cyberpwn.gformat.F;
 import org.cyberpwn.glang.GList;
+import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.M;
 
 import react.api.Address;
@@ -16,6 +18,7 @@ import react.api.Experimental;
 import react.api.Injection;
 import react.api.InjectionMethod;
 import react.api.Sector;
+import react.api.WorldConfig;
 import surge.Main;
 import surge.Surge;
 import surge.cluster.DataCluster;
@@ -33,6 +36,8 @@ import surge.util.RawEvent;
 @DynamicConfiguration
 public class Config
 {
+	private static final GMap<World, WorldConfig> worldConfigs = new GMap<World, WorldConfig>();
+
 	@Address(0)
 	public static final String A_ENTITYCACHE_CHUNK_RADIUS = "entity-cache.chunk-radius"; //$NON-NLS-1$
 
@@ -207,7 +212,8 @@ public class Config
 	@Address(57)
 	public static final String A_HOPPER_OVERTICK_ENABLE = "tweaks.hoppers.reduce-overtick-hoppers"; //$NON-NLS-1$
 
-	// @Address(58)
+	@Address(58)
+	public static final String A_USE_WORLD_CONFIGS = "worlds.world-configs";
 
 	// @Address(59)
 
@@ -566,7 +572,9 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean HOPPER_OVERTICK_ENABLE = true;
 
-	// @Sector(58)
+	@Sector(58)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean USE_WORLD_CONFIGS = true;
 
 	// @Sector(59)
 
@@ -728,6 +736,40 @@ public class Config
 		}
 
 		hrld = true;
+	}
+
+	public static WorldConfig getWorldConfig(World w)
+	{
+		if(!worldConfigs.containsKey(w))
+		{
+			WorldConfig wc = new WorldConfig();
+			wc.load(w);
+			worldConfigs.put(w, wc);
+			wc.save(w);
+
+			Surge.getHotloadManager().track(wc.getConfigFile(w), new Runnable()
+			{
+				@Override
+				public void run()
+				{
+					wc.load(w);
+				}
+			});
+		}
+
+		return worldConfigs.get(w);
+	}
+
+	public static void closeWorldConfig(World w)
+	{
+		if(!worldConfigs.containsKey(w))
+		{
+			return;
+		}
+
+		Surge.getHotloadManager().untrack(worldConfigs.get(w).getConfigFile(w));
+		worldConfigs.get(w).save(w);
+		worldConfigs.remove(w);
 	}
 
 	@SuppressWarnings("unchecked")

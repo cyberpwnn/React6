@@ -1,6 +1,6 @@
 package react;
 
-import react.api.Flavor;
+import react.action.source.AccessActionSource;
 import react.controller.ActionController;
 import react.controller.BenchmarkController;
 import react.controller.BlockInjectController;
@@ -30,6 +30,8 @@ import react.controller.SecurityController;
 import react.controller.SmearTickController;
 import react.controller.SpikeController;
 import react.controller.TickTimeController;
+import react.controller.WorldController;
+import surge.Surge;
 import surge.control.Control;
 import surge.control.Disable;
 import surge.control.Enable;
@@ -131,21 +133,20 @@ public class React
 	@Control
 	public ExplosiveController explosiveController;
 
+	@Control
+	public WorldController worldController;
+
 	@Enable
 	public void enable()
 	{
-		try
+		Surge.getAmp().setOnReload(new Runnable()
 		{
-			Thread.sleep(1000);
-			Flavor.getHostFlavor();
-			Thread.sleep(5000);
-		}
-		catch(InterruptedException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+			@Override
+			public void run()
+			{
+				new AccessActionSource().sendResponseActing("Reinstancing from updated jar");
+			}
+		});
 	}
 
 	@Disable

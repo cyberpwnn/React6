@@ -8,6 +8,7 @@ public class Info
 	public static String CORE_REACT_DOT = "react."; //$NON-NLS-1$
 	public static String CORE_NAME = "React"; //$NON-NLS-1$
 	public static String CORE_CACHE = "cache"; //$NON-NLS-1$
+	public static String WORLD_CONFIGS = "worlds"; //$NON-NLS-1$
 	public static String CORE_DOTYML = ".yml"; //$NON-NLS-1$
 
 	public static String COMMAND_REACT = "react"; //$NON-NLS-1$
@@ -106,6 +107,7 @@ public class Info
 
 	public static String STATE_MONITORING_TAB = "monitor.tab"; //$NON-NLS-1$
 	public static String STATE_MONITORING_ENABLED = "monitor.enabled"; //$NON-NLS-1$
+	public static String STATE_MONITORING_HIGH = "monitor.high"; //$NON-NLS-1$
 	public static String STATE_ACTIONLOGGING_ENABLED = "actionlogging.enabled"; //$NON-NLS-1$
 	public static String STATE_MAPPING_ENABLED = "map.enabled"; //$NON-NLS-1$
 	public static String STATE_SOUND_PLAYS = "player.sound-buffer"; //$NON-NLS-1$

@@ -2,16 +2,20 @@ package react.controller;
 
 import java.lang.reflect.InvocationTargetException;
 
+import org.bukkit.Chunk;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GTriset;
 
+import react.Config;
+import react.action.source.IActionSource;
 import react.api.ActionAlreadyRunningException;
+import react.api.ActionException;
 import react.api.ActionState;
 import react.api.ActionType;
 import react.api.IAction;
-import react.api.IActionSource;
 import react.api.ISelector;
+import react.api.SelectorPosition;
 import surge.Main;
 import surge.control.Controller;
 
@@ -74,7 +78,7 @@ public class ActionController extends Controller
 		pending.put(kiv++, new GTriset<ActionType, IActionSource, GList<ISelector>>(type, source, new GList<ISelector>(selectors)));
 	}
 
-	private boolean fireAction(ActionType type, IActionSource source, ISelector... selectors)
+	private boolean fireAction(ActionType type, IActionSource source, ISelector... selectors) throws ActionException
 	{
 		IAction a = getAction(type);
 		boolean failed = false;
@@ -83,6 +87,38 @@ public class ActionController extends Controller
 		{
 			try
 			{
+				int d = 0;
+
+				for(ISelector i : selectors)
+				{
+					if(i.getType().equals(Chunk.class))
+					{
+						SelectorPosition sel = (SelectorPosition) i;
+
+						for(Object j : new GList<Object>(sel.getPossibilities()))
+						{
+							Chunk cc = (Chunk) j;
+
+							if(!Config.getWorldConfig(cc.getWorld()).allowActions)
+							{
+								d++;
+								sel.getPossibilities().remove(cc);
+							}
+						}
+
+						if(i.getPossibilities().isEmpty())
+						{
+							source.sendResponseError("Action failed. No chunks selected.");
+							throw new ActionException();
+						}
+					}
+				}
+
+				if(d > 0)
+				{
+					source.sendResponseActing("Removed " + d + " chunk(s) from selection (blocked)");
+				}
+
 				a.act(source, selectors);
 			}
 
@@ -129,19 +165,28 @@ public class ActionController extends Controller
 			IActionSource source = i.getB();
 			ISelector[] selectors = i.getC().toArray(new ISelector[i.getC().size()]);
 			boolean running = action.getState().equals(ActionState.IDLE);
-			boolean ran = running ? fireAction(i.getA(), source, selectors) : false;
 
-			if(ran)
+			try
+			{
+				boolean ran = running ? fireAction(i.getA(), source, selectors) : false;
+
+				if(ran)
+				{
+					pending.remove(d);
+				}
+
+				if(!pendingStatus.containsKey(i.getA()))
+				{
+					pendingStatus.put(i.getA(), 0);
+				}
+
+				pendingStatus.put((i.getA()), pendingStatus.get((i.getA())) + 1);
+			}
+
+			catch(ActionException e)
 			{
 				pending.remove(d);
 			}
-
-			if(!pendingStatus.containsKey(i.getA()))
-			{
-				pendingStatus.put(i.getA(), 0);
-			}
-
-			pendingStatus.put((i.getA()), pendingStatus.get((i.getA())) + 1);
 		}
 
 		for(ActionType i : ActionType.values())

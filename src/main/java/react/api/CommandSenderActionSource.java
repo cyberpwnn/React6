@@ -3,6 +3,7 @@ package react.api;
 import org.bukkit.command.CommandSender;
 
 import react.Gate;
+import react.action.source.IActionSource;
 
 public class CommandSenderActionSource implements IActionSource
 {

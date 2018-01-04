@@ -1,7 +1,11 @@
 package react.api;
 
+import surge.util.Persist;
+
+@Persist
 public class DTest
 {
+	@Persist
 	public static int test()
 	{
 		int score = 0;

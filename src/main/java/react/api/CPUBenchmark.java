@@ -64,6 +64,11 @@ public class CPUBenchmark extends Thread
 			}
 		}
 
+		if(!this.getClass().getSimpleName().equals("CPUBenchmark"))
+		{
+			score = (int) (7.14285 * score);
+		}
+
 		if(interrupted())
 		{
 			return;

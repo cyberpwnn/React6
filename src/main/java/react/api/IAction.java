@@ -3,6 +3,9 @@ package react.api;
 import org.cyberpwn.glang.AccessCallback;
 import org.cyberpwn.glang.GMap;
 
+import react.action.source.ActionHandle;
+import react.action.source.IActionSource;
+
 public interface IAction
 {
 	public String getName();

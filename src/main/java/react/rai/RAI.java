@@ -5,8 +5,8 @@ import java.util.Arrays;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.gmath.M;
 
-import react.api.IActionSource;
-import react.api.RAIActionSource;
+import react.action.source.IActionSource;
+import react.action.source.RAIActionSource;
 
 public class RAI implements IRAI
 {

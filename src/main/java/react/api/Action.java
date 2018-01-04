@@ -1,8 +1,13 @@
 package react.api;
 
+import org.bukkit.Chunk;
 import org.cyberpwn.glang.AccessCallback;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
+
+import react.Config;
+import react.action.source.ActionHandle;
+import react.action.source.IActionSource;
 
 public abstract class Action implements IAction
 {
@@ -141,6 +146,39 @@ public abstract class Action implements IAction
 
 		state = ActionState.RUNNING;
 		currentSource = source;
+
+		int d = 0;
+
+		for(ISelector i : biselect(selectors))
+		{
+			if(i.getType().equals(Chunk.class))
+			{
+				SelectorPosition sel = (SelectorPosition) i;
+
+				for(Object j : new GList<Object>(sel.getPossibilities()))
+				{
+					Chunk cc = (Chunk) j;
+
+					if(!Config.getWorldConfig(cc.getWorld()).allowActions)
+					{
+						d++;
+						sel.getPossibilities().remove(cc);
+					}
+				}
+
+				if(i.getPossibilities().isEmpty())
+				{
+					source.sendResponseError("Action failed. No chunks selected.");
+					completeAction();
+					return;
+				}
+			}
+		}
+
+		if(d > 0)
+		{
+			source.sendResponseActing("Removed " + d + " chunk(s) from selection (blocked)");
+		}
 
 		enact(source, biselect(selectors));
 	}
