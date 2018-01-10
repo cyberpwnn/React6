@@ -38,11 +38,9 @@ public class Config
 {
 	private static final GMap<World, WorldConfig> worldConfigs = new GMap<World, WorldConfig>();
 
-	@Address(0)
-	public static final String A_ENTITYCACHE_CHUNK_RADIUS = "entity-cache.chunk-radius"; //$NON-NLS-1$
+	// @Address(0)
 
-	@Address(1)
-	public static final String A_ENTITYCACHE_INTERVAL = "entity-cache.swap-interval"; //$NON-NLS-1$
+	// @Address(1)
 
 	@Address(2)
 	public static final String A_COMMANDOVERRIDE_TPS = "command-overrides.tps";
@@ -62,8 +60,7 @@ public class Config
 	@Address(7)
 	public static final String A_POOL_SYNC_NANOS = "threads.nano-mitigation"; //$NON-NLS-1$
 
-	@Address(8)
-	public static final String A_ENTITYCACHE_ENABLED = "entity-cache.enable-caching"; //$NON-NLS-1$
+	// @Address(8)
 
 	@Address(9)
 	public static final String A_FASTLEAF_ENABLED = "fast-leaf-decay.enabled"; //$NON-NLS-1$
@@ -105,7 +102,7 @@ public class Config
 	public static final String A_ALLOW_PURGE = "entity-types.allow-purging"; //$NON-NLS-1$
 
 	@Address(22)
-	public static final String A_ALLOW_CACHE = "entity-types.allow-caching"; //$NON-NLS-1$
+	public static final String A_ALLOW_STACKING = "entity-stacker.allowed-types"; //$NON-NLS-1$
 
 	@Address(23)
 	public static final String A_CULL_RULES = "entity-culler.rules"; //$NON-NLS-1$
@@ -258,16 +255,9 @@ public class Config
 	@Address(73)
 	public static final String A_RAI_REDSTONE_TIME_PROPIGATE = "rai.redstone.propigate";
 
-	@Sector(0)
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 1, max = 7)
-	public static int ENTITYCACHE_CHUNK_RADIUS = 3;
+	// @Sector(0)
 
-	@Sector(1)
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 2, max = 20)
-	@Experimental
-	public static int ENTITYCACHE_INTERVAL = 2;
+	// @Sector(1)
 
 	@Sector(2)
 	@Injection(InjectionMethod.SWAP)
@@ -301,9 +291,7 @@ public class Config
 	@Experimental
 	public static long POOL_SYNC_NANOS = 1500000;
 
-	@Sector(8)
-	@Injection(InjectionMethod.SWAP)
-	public static boolean ENTITYCACHE_ENABLED = false;
+	// @Sector(8)
 
 	@Sector(9)
 	@Injection(InjectionMethod.SWAP)
@@ -320,7 +308,7 @@ public class Config
 	@Sector(12)
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 2, max = 200)
-	public static int FASTLEAF_DECAYPERIOD = 7;
+	public static int FASTLEAF_DECAYPERIOD = 48;
 
 	@Sector(13)
 	@Injection(InjectionMethod.SWAP)
@@ -366,7 +354,7 @@ public class Config
 
 	@Sector(22)
 	@Injection(InjectionMethod.SWAP)
-	public static GList<String> ALLOW_CACHE = getDefaultEntitiesForCaching();
+	public static GList<String> ALLOW_STACKING = getDefaultEntitiesForStacking();
 
 	@Sector(23)
 	@Injection(InjectionMethod.SWAP)
@@ -412,7 +400,7 @@ public class Config
 	@Experimental
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 1, max = 3)
-	public static int RAI_REDSTONE_TIME_RADIUS = 2;
+	public static int RAI_REDSTONE_TIME_RADIUS = 1;
 
 	@Sector(31)
 	@Experimental
@@ -454,7 +442,7 @@ public class Config
 	@Experimental
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 1, max = 3)
-	public static int RAI_HOPPER_TIME_RADIUS = 2;
+	public static int RAI_HOPPER_TIME_RADIUS = 1;
 
 	@Sector(38)
 	@Experimental
@@ -933,7 +921,7 @@ public class Config
 		return cc;
 	}
 
-	private static GList<String> getDefaultEntitiesForCaching()
+	private static GList<String> getDefaultEntitiesForStacking()
 	{
 		GList<String> ents = new GList<String>();
 		GList<String> entx = new GList<String>();
@@ -949,6 +937,8 @@ public class Config
 			{
 				case "PLAYER":
 					continue;
+				case "ARMOR_STAND":
+					continue;
 				case "AREA_EFFECT_CLOUD":
 					continue;
 				case "BOAT":
@@ -956,6 +946,8 @@ public class Config
 				case "ARROW":
 					continue;
 				case "ITEM_FRAME":
+					continue;
+				case "DROPPED_ITEM":
 					continue;
 				case "COMPLEX_PART":
 					continue;

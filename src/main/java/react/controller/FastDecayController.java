@@ -161,7 +161,7 @@ public class FastDecayController extends Controller
 			@Override
 			public void run()
 			{
-				if(M.r(0.07))
+				if(M.r(0.06))
 				{
 					new GSound(MSound.DIG_GRASS.bukkitSound(), 4f, 0.1f + (float) (Math.random() / 2f)).play(b.getLocation());
 				}

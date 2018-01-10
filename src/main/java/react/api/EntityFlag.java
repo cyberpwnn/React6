@@ -44,6 +44,11 @@ public enum EntityFlag
 
 		if(this.equals(EntityFlag.NAMED))
 		{
+			if(!Capability.ENTITY_NAMES.isCapable())
+			{
+				return false;
+			}
+
 			return e.isCustomNameVisible();
 		}
 

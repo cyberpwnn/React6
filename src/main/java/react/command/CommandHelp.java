@@ -1,5 +1,6 @@
 package react.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.cyberpwn.gformat.F;
@@ -38,7 +39,18 @@ public class CommandHelp extends ReactCommand
 	@Override
 	public void fire(CommandSender sender, String[] args)
 	{
-		sendPage(sender, args.length == 0 ? 0 : Integer.valueOf(args[0]) - 1, 9);
+		if(sender instanceof Player)
+		{
+			sendPage(sender, args.length == 0 ? 0 : Integer.valueOf(args[0]) - 1, 9);
+		}
+
+		else
+		{
+			for(ICommand i : getSortedCommands())
+			{
+				sendCommand(sender, i);
+			}
+		}
 	}
 
 	public void sendPage(CommandSender sender, int page, int maxEntries)
@@ -136,6 +148,11 @@ public class CommandHelp extends ReactCommand
 			}
 
 			rtx.tellRawTo((Player) sender);
+		}
+
+		else
+		{
+			Bukkit.getConsoleSender().sendMessage(C.WHITE + "/react " + C.AQUA + command.getCommand() + " " + C.RESET + command.getUsage() + C.RESET + " - " + command.getDescription());
 		}
 	}
 

@@ -15,7 +15,7 @@ public class Capability
 	public static final Capability SCOREBOARD = new Capability("Scoreboards", Protocol.B1_5);
 	public static final Capability SCOREBOARD_ADVANCED = new Capability("Advanced Scoreboards", Protocol.R1_8);
 	public static final Capability HOPPER = new Capability("Hoppers", Protocol.B1_5);
-	public static final Capability ENTITY_ATTRIBUTES = new Capability("Entity Attributes", Protocol.R1_9);
+	public static final Capability ENTITY_ATTRIBUTES = new Capability("Entity Attributes", Protocol.R1_12);
 	public static final Capability ENTITY_AI = new Capability("Entity AI", Protocol.R1_9);
 	public static final Capability ACTION_BAR = new Capability("Action Bars", Protocol.R1_8);
 	public static final Capability ENTITY_NAMES = new Capability("Entity Naming", Protocol.R1_8);

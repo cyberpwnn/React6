@@ -14,6 +14,7 @@ import org.bukkit.block.Hopper;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.cyberpwn.gconcurrent.A;
@@ -422,6 +423,11 @@ public class Gate
 
 	private static void removeEntity(Entity e)
 	{
+		if(e.getType().equals(EntityType.ARMOR_STAND))
+		{
+			return;
+		}
+
 		if(e instanceof Player)
 		{
 			return;
@@ -437,6 +443,11 @@ public class Gate
 
 	public static void purgeEntity(Entity e)
 	{
+		if(e.getType().equals(EntityType.ARMOR_STAND))
+		{
+			return;
+		}
+
 		if(Config.getWorldConfig(e.getWorld()).assumeNoSideEffectsEntities.contains(e.getType().toString()))
 		{
 			return;
@@ -452,27 +463,17 @@ public class Gate
 
 	public static void cullEntity(Entity e)
 	{
+		if(e.getType().equals(EntityType.ARMOR_STAND))
+		{
+			return;
+		}
+
 		if(Config.getWorldConfig(e.getWorld()).assumeNoSideEffectsEntities.contains(e.getType().toString()))
 		{
 			return;
 		}
 
 		if(!Config.ALLOW_CULL.contains(e.getType().toString()))
-		{
-			return;
-		}
-
-		removeEntity(e);
-	}
-
-	public static void cachedEntity(Entity e)
-	{
-		if(Config.getWorldConfig(e.getWorld()).assumeNoSideEffectsEntities.contains(e.getType().toString()))
-		{
-			return;
-		}
-
-		if(!Config.ALLOW_CACHE.contains(e.getType().toString()))
 		{
 			return;
 		}

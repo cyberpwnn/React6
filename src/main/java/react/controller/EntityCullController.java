@@ -189,8 +189,18 @@ public class EntityCullController extends Controller
 		GSet<EntityFlag> eflags = new GSet<EntityFlag>();
 		int culled = 0;
 
+		if(c == null || c.getEntities() == null)
+		{
+			return culled;
+		}
+
 		flagging: for(Entity i : c.getEntities())
 		{
+			if(i == null)
+			{
+				continue;
+			}
+
 			if(i.isDead())
 			{
 				continue;

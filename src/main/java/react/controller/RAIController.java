@@ -5,7 +5,6 @@ import org.cyberpwn.gconcurrent.A;
 import react.rai.IGoal;
 import react.rai.IRAI;
 import react.rai.RAI;
-import react.rai.goals.GoalReducedChunkLoad;
 import react.rai.goals.GoalReducedEntityCounts;
 import react.rai.goals.GoalStableChunkTime;
 import react.rai.goals.GoalStableFluidTime;
@@ -31,7 +30,6 @@ public class RAIController extends Controller
 		goalStable.addGoal(new GoalStableFluidTime());
 		goalStable.addGoal(new GoalStableHopperTime());
 		goalStable.addGoal(new GoalReducedEntityCounts());
-		goalStable.addGoal(new GoalReducedChunkLoad());
 		goalStable.addGoal(new GoalStableChunkTime());
 		rai.addGoal(goalStable);
 	}

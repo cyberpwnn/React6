@@ -51,7 +51,7 @@ public class BenchmarkController extends Controller
 	@Override
 	public void stop()
 	{
-		if(finished.isAlive())
+		if(finished != null && finished.isAlive())
 		{
 			finished.interrupt();
 		}

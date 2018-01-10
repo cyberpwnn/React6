@@ -57,12 +57,20 @@ public class RAI implements IRAI
 			}
 		}
 
-		for(RAIEvent i : logEvents)
+		try
 		{
-			for(IActionSource j : getListeners())
+			for(RAIEvent i : logEvents.copy())
 			{
-				j.sendResponseActing(i.toString());
+				for(IActionSource j : getListeners())
+				{
+					j.sendResponseActing(i.toString());
+				}
 			}
+		}
+
+		catch(Exception e)
+		{
+
 		}
 
 		logEvents.clear();

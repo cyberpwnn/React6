@@ -2,6 +2,7 @@ package react.controller;
 
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -213,6 +214,21 @@ public class EntityStackController extends Controller
 				continue;
 			}
 
+			if(!Config.ALLOW_STACKING.contains(e.getType().toString()))
+			{
+				continue;
+			}
+
+			if(i.getType().equals(EntityType.ARMOR_STAND))
+			{
+				continue;
+			}
+
+			if(i.getType().equals(EntityType.DROPPED_ITEM))
+			{
+				continue;
+			}
+
 			if(!i.isDead() && !isStacked((LivingEntity) i))
 			{
 				le.add((LivingEntity) i);
@@ -251,6 +267,24 @@ public class EntityStackController extends Controller
 				public void run()
 				{
 					if(e.getEntity().isDead())
+					{
+						cancel();
+						return;
+					}
+
+					if(!Config.ALLOW_STACKING.contains(e.getEntity().getType().toString()))
+					{
+						cancel();
+						return;
+					}
+
+					if(e.getEntity().getType().equals(EntityType.ARMOR_STAND))
+					{
+						cancel();
+						return;
+					}
+
+					if(e.getEntity().getType().equals(EntityType.DROPPED_ITEM))
 					{
 						cancel();
 						return;

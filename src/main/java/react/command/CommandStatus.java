@@ -11,6 +11,7 @@ import org.bukkit.inventory.meta.BookMeta;
 import org.cyberpwn.gformat.F;
 import org.cyberpwn.glang.GList;
 
+import react.Gate;
 import react.Info;
 import react.Lang;
 import react.React;
@@ -44,6 +45,7 @@ public class CommandStatus extends ReactCommand
 		if((slot = findSlot(p)) != -1)
 		{
 			p.getInventory().setItem(slot, makeBook());
+			Gate.msgSuccess(p, "Status book given");
 		}
 	}
 
@@ -51,7 +53,7 @@ public class CommandStatus extends ReactCommand
 	{
 		ItemStack is = new ItemStack(Material.WRITTEN_BOOK);
 		BookMeta book = (BookMeta) is.getItemMeta();
-		book.setTitle(Lang.getString("command.status.server-status")); //$NON-NLS-1$
+		book.setTitle(C.BLACK + "^" + C.AQUA + Lang.getString("command.status.server-status")); //$NON-NLS-1$
 		GList<String> set = new GList<String>();
 		addStatusPages(set);
 		addSpikePages(set);
