@@ -4,6 +4,7 @@ import org.bukkit.Chunk;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.world.ChunkUnloadEvent;
+import org.cyberpwn.gconcurrent.A;
 import org.cyberpwn.glang.GMap;
 
 import react.api.ChunkIssue;
@@ -70,6 +71,7 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 		}
 
 		samples.get(c).hit(issue, weight);
+		EventController.map.hit(c, issue, (double) weight);
 	}
 
 	@Override
@@ -88,6 +90,16 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 		{
 			e.printStackTrace();
 		}
+
+		new A()
+		{
+			@Override
+			public void run()
+			{
+				EventController.map.pump();
+				System.out.println("Events: " + EventController.map.getChunks().k().size());
+			}
+		};
 	}
 
 	@Override

@@ -9,16 +9,19 @@ import org.cyberpwn.glang.GMap;
 
 import react.event.ReactScrollEvent;
 import react.event.ScrollDirection;
+import react.lagmap.LagMap;
 import surge.Surge;
 import surge.control.Controller;
 
 public class EventController extends Controller
 {
+	public static LagMap map;
 	private GMap<Player, Integer> slots;
 
 	@Override
 	public void start()
 	{
+		map = new LagMap();
 		Surge.register(this);
 		slots = new GMap<Player, Integer>();
 

@@ -36,6 +36,6 @@ public class CommandMap extends ReactCommand
 			return;
 		}
 
-		React.instance.graphController.toggleMapping(player);
+		React.instance.graphController.toggleMapping(player, args);
 	}
 }

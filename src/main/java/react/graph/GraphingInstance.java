@@ -42,6 +42,7 @@ public class GraphingInstance implements Listener
 	private Task waiter;
 	private Task waiter2;
 	private int shift;
+	private int iv;
 	private boolean notif;
 
 	public GraphingInstance(Player player)
@@ -221,6 +222,11 @@ public class GraphingInstance implements Listener
 		}
 	}
 
+	public ItemStack getItem()
+	{
+		return item;
+	}
+
 	public void disable()
 	{
 		mapping = false;
@@ -236,6 +242,116 @@ public class GraphingInstance implements Listener
 		player.getInventory().setItemInOffHand(null);
 		msgs.clear();
 		Gate.msgSuccess(player, "Mapping Disabled");
+	}
+
+	public Player getPlayer()
+	{
+		return player;
+	}
+
+	public GList<PointedGraph> getGraphs()
+	{
+		return graphs;
+	}
+
+	public ColossalView getView()
+	{
+		return view;
+	}
+
+	public Papyrus getPapyrus()
+	{
+		return papyrus;
+	}
+
+	public void setPlayer(Player player)
+	{
+		this.player = player;
+	}
+
+	public void setItem(ItemStack item)
+	{
+		this.item = item;
+	}
+
+	public void setView(ColossalView view)
+	{
+		this.view = view;
+	}
+
+	public void setPapyrus(Papyrus papyrus)
+	{
+		this.papyrus = papyrus;
+	}
+
+	public void setRenderer(IRenderer renderer)
+	{
+		this.renderer = renderer;
+	}
+
+	public void setMapping(boolean mapping)
+	{
+		this.mapping = mapping;
+	}
+
+	public void setMsgs(GList<String> msgs)
+	{
+		this.msgs = msgs;
+	}
+
+	public void setWaiter(Task waiter)
+	{
+		this.waiter = waiter;
+	}
+
+	public void setWaiter2(Task waiter2)
+	{
+		this.waiter2 = waiter2;
+	}
+
+	public void setShift(int shift)
+	{
+		this.shift = shift;
+	}
+
+	public void setNotif(boolean notif)
+	{
+		this.notif = notif;
+	}
+
+	public IRenderer getRenderer()
+	{
+		return renderer;
+	}
+
+	public boolean isMapping()
+	{
+		return mapping;
+	}
+
+	public GList<String> getMsgs()
+	{
+		return msgs;
+	}
+
+	public Task getWaiter()
+	{
+		return waiter;
+	}
+
+	public Task getWaiter2()
+	{
+		return waiter2;
+	}
+
+	public int getShift()
+	{
+		return shift;
+	}
+
+	public boolean isNotif()
+	{
+		return notif;
 	}
 
 	public void compile()
@@ -256,5 +372,36 @@ public class GraphingInstance implements Listener
 		meta.setLore(new GList<String>().qadd(C.GREEN + "Scroll up and down with your mouse wheel."));
 		item.setItemMeta(meta);
 		item.addUnsafeEnchantment(Enchantment.DURABILITY, 1338);
+	}
+
+	public void enableSly()
+	{
+		if(mapping)
+		{
+			return;
+		}
+
+		for(int i = 12; i < 33; i--)
+		{
+			if(player.getInventory().getItem(i) == null || player.getInventory().getItem(i).getType().equals(Material.AIR))
+			{
+				iv = i;
+				mapping = true;
+				player.getInventory().setItem(iv, item);
+				break;
+			}
+		}
+	}
+
+	public void disableSly()
+	{
+		if(!mapping)
+		{
+			return;
+		}
+
+		mapping = false;
+		player.getInventory().setItem(iv, new ItemStack(Material.AIR));
+		msgs.clear();
 	}
 }
