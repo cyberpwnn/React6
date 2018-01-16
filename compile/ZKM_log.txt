@@ -1,13 +1,13 @@
-[2018.01.12 23:29:59] Zelix KlassMaster (Cracked by CM&N) 8.0.8 - License #Cracked by CM&N
+[2018.01.16 01:43:38] Zelix KlassMaster (Cracked by CM&N) 8.0.8 - License #Cracked by CM&N
                       Unlimited
                       coolman
                       coolman@neth.er
                       Copyright 1997-2016 Zelix Pty Ltd (ABN 47 078 740 093)
                       All rights reserved
-[2018.01.12 23:29:59] Preprocessing ZKM Script file "C:\Users\cyberpwn\Documents\development\workspace\React6\compile\script.zkm"
-[2018.01.12 23:29:59] Parsing ZKM Script file "C:\Users\cyberpwn\Documents\development\workspace\React6\compile\script.zkm"
-[2018.01.12 23:30:00] Setting classpath to "C:\Program Files\Java\jre1.8.0_144\lib\resources.jar;C:\Program Files\Java\jre1.8.0_144\lib\rt.jar;C:\Program Files\Java\jre1.8.0_144\lib\jsse.jar;C:\Program Files\Java\jre1.8.0_144\lib\jce.jar;C:\Program Files\Java\jre1.8.0_144\lib\charsets.jar;C:\Program Files\Java\jre1.8.0_144\lib\jfr.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.8.8.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.9.2.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.9.4.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.9.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.10.2.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.11.2.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.11.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.12.1.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.12.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\spigot-1.12.2.jar"
-[2018.01.12 23:30:00] Opening classes...
+[2018.01.16 01:43:38] Preprocessing ZKM Script file "C:\Users\cyberpwn\Documents\development\workspace\React6\compile\script.zkm"
+[2018.01.16 01:43:38] Parsing ZKM Script file "C:\Users\cyberpwn\Documents\development\workspace\React6\compile\script.zkm"
+[2018.01.16 01:43:38] Setting classpath to "C:\Program Files\Java\jre1.8.0_144\lib\resources.jar;C:\Program Files\Java\jre1.8.0_144\lib\rt.jar;C:\Program Files\Java\jre1.8.0_144\lib\jsse.jar;C:\Program Files\Java\jre1.8.0_144\lib\jce.jar;C:\Program Files\Java\jre1.8.0_144\lib\charsets.jar;C:\Program Files\Java\jre1.8.0_144\lib\jfr.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.8.8.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.9.2.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.9.4.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.9.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.10.2.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.11.2.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.11.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.12.1.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.12.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\spigot-1.12.2.jar"
+[2018.01.16 01:43:39] Opening classes...
 WARNING: Could not find method 'java.util.List getPassengers()' in class 'C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.8.8.jar!org/bukkit/entity/Entity.class' (org.bukkit.entity.Entity) or in its hierarchy. Such a reference occurs in class C:\Users\cyberpwn\Documents\development\workspace\React6\compile\in.jar!react/api/EntityFlag.class. Please check the classpath and reopen your classes (B).
 API calls detected that may not be handled automatically...
 In class react.Config
@@ -17,8 +17,8 @@ In class react.Config
         java.lang.reflect.Field.getName()
 In class react.Gate
     in method public static void tickEntityNextTickListTick(org.bukkit.World)
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
         java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
     in method public static void tweakEntityTickMax(org.bukkit.World, int)
         java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
     in method public static java.lang.reflect.Field deepFindField(java.lang.Object, java.lang.String)
@@ -26,8 +26,8 @@ In class react.Gate
     in method public static void forceSet(org.spigotmc.SpigotWorldConfig, java.lang.String, java.lang.Object)
         java.lang.Class.getDeclaredField(java.lang.String)
     in method public static org.spigotmc.SpigotWorldConfig getSpigotConfig(org.bukkit.World)
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
         java.lang.Class.getField(java.lang.String)
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
 In class react.Gate$1
     in method public void run()
         java.lang.Class.getConstructor(java.lang.Class[])
@@ -84,27 +84,27 @@ In class react.security.checkpoints.SecurityCheckpointAlpha
         java.lang.Class.getConstructor(java.lang.Class[])
 In class react.surge.Main
     in method private void initializeAmps()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
         java.lang.Class.getConstructor(java.lang.Class[])
         java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Field.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
     in method public void doScan()
         java.lang.Class.forName(java.lang.String)
     in method private void scanForPoolDefiners()
@@ -139,8 +139,8 @@ In class react.surge.nms.NMSX
     in method public static void showPickup(org.bukkit.entity.Player, org.bukkit.entity.Entity, org.bukkit.entity.Entity)
         java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
         java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getDeclaredField(java.lang.String)
         java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.Class.getDeclaredField(java.lang.String)
         java.lang.Class.forName(java.lang.String)
         java.lang.Class.forName(java.lang.String)
         java.lang.Class.forName(java.lang.String)
@@ -166,18 +166,18 @@ In class react.surge.nms.NMSX
     in method public static void sendTabTitle(org.bukkit.entity.Player, java.lang.String, java.lang.String)
         java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
         java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getDeclaredField(java.lang.String)
         java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.Class.getDeclaredField(java.lang.String)
     in method public static void sendActionBar(org.bukkit.entity.Player, java.lang.String)
         java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getDeclaredMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getDeclaredMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getDeclaredMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.Class.getConstructor(java.lang.Class[])
         java.lang.Class.getDeclaredField(java.lang.String)
-        java.lang.Class.getDeclaredMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getDeclaredMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getDeclaredMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getConstructor(java.lang.Class[])
-        java.lang.Class.getConstructor(java.lang.Class[])
-        java.lang.Class.getConstructor(java.lang.Class[])
-        java.lang.Class.getConstructor(java.lang.Class[])
         java.lang.Class.forName(java.lang.String)
         java.lang.Class.forName(java.lang.String)
         java.lang.Class.forName(java.lang.String)
@@ -193,11 +193,11 @@ In class react.surge.nms.NMSX
         java.lang.Class.forName(java.lang.String)
 In class react.surge.util.PluginUtil
     in method public static void unload(org.bukkit.plugin.Plugin)
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.Class.getDeclaredField(java.lang.String)
         java.lang.Class.getName()
-        java.lang.Class.getDeclaredField(java.lang.String)
-        java.lang.Class.getDeclaredField(java.lang.String)
-        java.lang.Class.getDeclaredField(java.lang.String)
-        java.lang.Class.getDeclaredField(java.lang.String)
 In class react.surge.util.Protocol
     in method public boolean hasPackageSupport()
         java.lang.Class.forName(java.lang.String)
@@ -213,7 +213,7 @@ In class react.surge.util.ReflectionUtils$PackageType
     in method public static java.lang.String getServerVersion()
         java.lang.Package.getName()
 
-651 classes opened in 1 seconds. 225544K of memory used. 435447K of memory free.
+660 classes opened in 0 seconds. 217190K of memory used. 443801K of memory free.
 
-[2018.01.12 23:30:01] Setting trim exclusions...
+[2018.01.16 01:43:40] Setting trim exclusions...
 FATAL ERROR: Attempt to use "trim" statement at line 29 with unusable classes : Could not find method 'java.util.List getPassengers()' in class 'C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.8.8.jar!org/bukkit/entity/Entity.class' (org.bukkit.entity.Entity) or in its hierarchy. Such a reference occurs in class C:\Users\cyberpwn\Documents\development\workspace\React6\compile\in.jar!react/api/EntityFlag.class. Please check the classpath and reopen your classes (B).

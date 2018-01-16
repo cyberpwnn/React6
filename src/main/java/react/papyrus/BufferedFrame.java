@@ -126,6 +126,28 @@ public class BufferedFrame
 		}
 	}
 
+	public void fromBufferedImage(BufferedImage bu, int xs, int ys)
+	{
+		int i;
+		int j;
+
+		for(i = 0; i < width; i++)
+		{
+			for(j = 0; j < height; j++)
+			{
+				try
+				{
+					write(i, j, FrameColor.matchColor(new Color(bu.getRGB(i + xs, j + ys), true)));
+				}
+
+				catch(Exception e)
+				{
+
+				}
+			}
+		}
+	}
+
 	public BufferedImage toBufferedImage()
 	{
 		BufferedImage bu = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);

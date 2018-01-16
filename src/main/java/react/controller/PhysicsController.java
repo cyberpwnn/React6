@@ -97,7 +97,6 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 			public void run()
 			{
 				EventController.map.pump();
-				System.out.println("Events: " + EventController.map.getChunks().k().size());
 			}
 		};
 	}

@@ -4,6 +4,7 @@ public enum ChunkIssue
 {
 	ENTITY,
 	HOPPER,
+	TNT,
 	REDSTONE,
 	FLUID,
 	PHYSICS;

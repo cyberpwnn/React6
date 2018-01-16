@@ -44,9 +44,11 @@ public class GraphingInstance implements Listener
 	private int shift;
 	private int iv;
 	private boolean notif;
+	private boolean doScrolling;
 
 	public GraphingInstance(Player player)
 	{
+		doScrolling = true;
 		notif = false;
 		shift = 0;
 		waiter = new Task("Chat waiter", 199)
@@ -115,6 +117,16 @@ public class GraphingInstance implements Listener
 		};
 	}
 
+	public boolean isDoScrolling()
+	{
+		return doScrolling;
+	}
+
+	public void setDoScrolling(boolean doScrolling)
+	{
+		this.doScrolling = doScrolling;
+	}
+
 	@EventHandler
 	public void on(PlayerToggleSneakEvent e)
 	{
@@ -153,6 +165,33 @@ public class GraphingInstance implements Listener
 	{
 		if(mapping && e.getPlayer().equals(player))
 		{
+			if(!isDoScrolling())
+			{
+				if(e.getDirection().equals(ScrollDirection.UP))
+				{
+					for(IGraph i : view.getGraphs().v())
+					{
+						if(i instanceof GraphLagMap)
+						{
+							((GraphLagMap) i).zoomIn();
+						}
+					}
+				}
+
+				else
+				{
+					for(IGraph i : view.getGraphs().v())
+					{
+						if(i instanceof GraphLagMap)
+						{
+							((GraphLagMap) i).zoomOut();
+						}
+					}
+				}
+
+				return;
+			}
+
 			if(e.getDirection().equals(ScrollDirection.UP))
 			{
 				view.scroll(32 * e.getAmount());

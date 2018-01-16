@@ -22,6 +22,7 @@ import react.api.Capability;
 import react.api.Permissable;
 import react.api.SampledType;
 import react.event.ReactScrollEvent;
+import react.graph.GraphLagMap;
 import react.graph.GraphSampleLine;
 import react.graph.GraphSize;
 import react.graph.GraphText;
@@ -157,6 +158,12 @@ public class GraphController extends Controller
 			return;
 		}
 
+		if(args[0].equalsIgnoreCase("-e"))
+		{
+			toggleMappingEod(player);
+			return;
+		}
+
 		if(args[0].equalsIgnoreCase("-i"))
 		{
 			Entity e = P.targetEntity(player, 7);
@@ -166,6 +173,7 @@ public class GraphController extends Controller
 				if(!gra.containsKey(e))
 				{
 					GList<PointedGraph> pg = new GList<PointedGraph>();
+
 					gra.put((ItemFrame) e, new GraphingInstance(player));
 					pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.tick"), g.get(SampledType.TICK).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
 					pg.add(new PointedGraph(g.get(SampledType.TICK), GraphSize.WIDE));
@@ -184,8 +192,8 @@ public class GraphController extends Controller
 					pg.add(new PointedGraph(g.get(SampledType.EXPLOSION_TIME), GraphSize.SQUARE));
 					pg.add(new PointedGraph(g.get(SampledType.TILE_TIME), GraphSize.SQUARE));
 					pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.react"), g.get(SampledType.ATASK).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
-					pg.add(new PointedGraph(g.get(SampledType.ATASK), GraphSize.WIDE));
-					pg.add(new PointedGraph(g.get(SampledType.STASK), GraphSize.WIDE));
+					pg.add(new PointedGraph(g.get(SampledType.ATASK), GraphSize.SQUARE));
+					pg.add(new PointedGraph(g.get(SampledType.STASK), GraphSize.SQUARE));
 					gra.get(e).setGraphs(pg);
 					gra.get(e).compile();
 					((ItemFrame) e).setItem(gra.get(e).getItem());
@@ -286,8 +294,10 @@ public class GraphController extends Controller
 			pg.add(new PointedGraph(g.get(SampledType.MEM), GraphSize.WIDE));
 			pg.add(new PointedGraph(g.get(SampledType.MAHS), GraphSize.SQUARE));
 			pg.add(new PointedGraph(g.get(SampledType.ALLOCMEM), GraphSize.SQUARE));
+			pg.add(new PointedGraph(new GraphText("EOD", g.get(SampledType.REDSTONE_SECOND).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
+			pg.add(new PointedGraph(new GraphLagMap(player, 4), GraphSize.FULL));
 			pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.physics"), g.get(SampledType.REDSTONE_TIME).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
-			pg.add(new PointedGraph(g.get(SampledType.REDSTONE_TIME), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.REDSTONE_TIME), GraphSize.WIDE));
 			pg.add(new PointedGraph(g.get(SampledType.HOPPER_TIME), GraphSize.SQUARE));
 			pg.add(new PointedGraph(g.get(SampledType.FLUID_TIME), GraphSize.SQUARE));
 			pg.add(new PointedGraph(g.get(SampledType.CHK_TIME), GraphSize.SQUARE));
@@ -295,9 +305,45 @@ public class GraphController extends Controller
 			pg.add(new PointedGraph(g.get(SampledType.EXPLOSION_TIME), GraphSize.SQUARE));
 			pg.add(new PointedGraph(g.get(SampledType.TILE_TIME), GraphSize.SQUARE));
 			pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.react"), g.get(SampledType.ATASK).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
-			pg.add(new PointedGraph(g.get(SampledType.ATASK), GraphSize.WIDE));
-			pg.add(new PointedGraph(g.get(SampledType.STASK), GraphSize.WIDE));
+			pg.add(new PointedGraph(g.get(SampledType.ATASK), GraphSize.SQUARE));
+			pg.add(new PointedGraph(g.get(SampledType.STASK), GraphSize.SQUARE));
 
+			gr.get(player).setGraphs(pg);
+			gr.get(player).compile();
+			gr.get(player).toggle();
+		}
+
+		else
+		{
+			gr.get(player).toggle();
+			gr.remove(player);
+		}
+	}
+
+	public void toggleMappingEod(Player player)
+	{
+		if(!Capability.DUAL_WEILD.isCapable())
+		{
+			Capability.DUAL_WEILD.sendNotCapable(player);
+			return;
+		}
+
+		for(ItemFrame i : gra.k())
+		{
+			if(gra.get(i).getPlayer().equals(player) && gra.get(i).isMapping())
+			{
+				Gate.msgError(player, "You are currently hosting the item frame graph.");
+				Gate.msgError(player, "Please look away from the item frame to turn on personal mapping.");
+				return;
+			}
+		}
+
+		if(!gr.containsKey(player))
+		{
+			GList<PointedGraph> pg = new GList<PointedGraph>();
+			gr.put(player, new GraphingInstance(player));
+			gr.get(player).setDoScrolling(false);
+			pg.add(new PointedGraph(new GraphLagMap(player, 4), GraphSize.FULL));
 			gr.get(player).setGraphs(pg);
 			gr.get(player).compile();
 			gr.get(player).toggle();

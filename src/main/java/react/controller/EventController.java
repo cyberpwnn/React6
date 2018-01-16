@@ -3,10 +3,15 @@ package react.controller;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.cyberpwn.glang.GMap;
 
+import react.api.ChunkIssue;
 import react.event.ReactScrollEvent;
 import react.event.ScrollDirection;
 import react.lagmap.LagMap;
@@ -85,6 +90,30 @@ public class EventController extends Controller
 				}
 			}
 		}
+	}
+
+	@EventHandler
+	public void on(EntityExplodeEvent e)
+	{
+		map.hit(e.getLocation().getChunk(), ChunkIssue.TNT, 20);
+	}
+
+	@EventHandler
+	public void on(EntitySpawnEvent e)
+	{
+		map.hit(e.getLocation().getChunk(), ChunkIssue.ENTITY, 20);
+	}
+
+	@EventHandler
+	public void on(EntityDeathEvent e)
+	{
+		map.hit(e.getEntity().getLocation().getChunk(), ChunkIssue.ENTITY, 20);
+	}
+
+	@EventHandler
+	public void on(EntityDamageEvent e)
+	{
+		map.hit(e.getEntity().getLocation().getChunk(), ChunkIssue.ENTITY, 20);
 	}
 
 	@EventHandler
