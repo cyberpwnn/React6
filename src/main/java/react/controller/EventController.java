@@ -3,6 +3,7 @@ package react.controller;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
@@ -96,6 +97,12 @@ public class EventController extends Controller
 	public void on(EntityExplodeEvent e)
 	{
 		map.hit(e.getLocation().getChunk(), ChunkIssue.TNT, 20);
+	}
+
+	@EventHandler
+	public void on(BlockPhysicsEvent e)
+	{
+		map.hit(e.getBlock().getChunk(), ChunkIssue.PHYSICS, 20);
 	}
 
 	@EventHandler

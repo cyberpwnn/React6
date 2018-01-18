@@ -38,7 +38,8 @@ public class Config
 {
 	private static final GMap<World, WorldConfig> worldConfigs = new GMap<World, WorldConfig>();
 
-	// @Address(0)
+	@Address(0)
+	public static final String A_MAX_EXPLOSIONS_MAXMS = "tweaks.explosions.max-explosions-milliseconds";
 
 	// @Address(1)
 
@@ -255,7 +256,10 @@ public class Config
 	@Address(73)
 	public static final String A_RAI_REDSTONE_TIME_PROPIGATE = "rai.redstone.propigate";
 
-	// @Sector(0)
+	@Sector(0)
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 0.01, max = 10000)
+	public static double MAX_EXPLOSION_MS = 7;
 
 	// @Sector(1)
 
@@ -454,13 +458,13 @@ public class Config
 	@Experimental
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 1, max = 5)
-	public static int RAI_ENTITY_CHUNK_MULTIPLIER = 3;
+	public static int RAI_ENTITY_CHUNK_MULTIPLIER = 2;
 
 	@Sector(40)
 	@Experimental
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 20, max = 100)
-	public static int RAI_ENTITY_CHUNK_CLUSTERIZER = 40;
+	public static int RAI_ENTITY_CHUNK_CLUSTERIZER = 30;
 
 	@Sector(41)
 	@Experimental
@@ -1021,62 +1025,6 @@ public class Config
 			{
 				case "PLAYER":
 					continue;
-				case "AREA_EFFECT_CLOUD":
-					continue;
-				case "BOAT":
-					continue;
-				case "ARROW":
-					continue;
-				case "ITEM_FRAME":
-					continue;
-				case "COMPLEX_PART":
-					continue;
-				case "DRAGON_FIREBALL":
-					continue;
-				case "EGG":
-					continue;
-				case "ENDER_CRYSTAL":
-					continue;
-				case "WITHER_SKULL":
-					continue;
-				case "ENDER_PEARL":
-					continue;
-				case "ENDER_SIGNAL":
-					continue;
-				case "WEATHER":
-					continue;
-				case "UNKNOWN":
-					continue;
-				case "TIPPED_ARROW":
-					continue;
-				case "THROWN_EXP_BOTTLE":
-					continue;
-				case "SPLASH_POTION":
-					continue;
-				case "SPECTRAL_ARROW":
-					continue;
-				case "SHULKER_BULLET":
-					continue;
-				case "EVOKER_FANGS":
-					continue;
-				case "EXPERIENCE_ORB":
-					continue;
-				case "SNOWBALL":
-					continue;
-				case "FIREBALL":
-					continue;
-				case "SMALL_FIREBALL":
-					continue;
-				case "FIREWORK":
-					continue;
-				case "PRIMED_TNT":
-					continue;
-				case "LIGHTNING":
-					continue;
-				case "LINGERING_POTION":
-					continue;
-				case "LEASH_HITCH":
-					continue;
 				default:
 					ents.add(i);
 			}
@@ -1143,7 +1091,7 @@ public class Config
 
 		for(String i : ents)
 		{
-			int m = 7;
+			int m = 20;
 
 			if(i.toString().equals("VILLAGER")) //$NON-NLS-1$
 			{

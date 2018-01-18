@@ -1,18 +1,80 @@
 package react.lagmap;
 
+import org.bukkit.Chunk;
 import org.cyberpwn.glang.GMap;
 
 import react.api.ChunkIssue;
+import react.controller.EventController;
 
-public class LagMapChunk
+public class LagMapChunk implements Comparable<LagMapChunk>
 {
-	private int x;
-	private int z;
 	private GMap<ChunkIssue, Double> hits;
+	private Chunk c;
 
-	public LagMapChunk(int x, int z)
+	public LagMapChunk(Chunk c)
 	{
+		this.c = c;
 		hits = new GMap<ChunkIssue, Double>();
+	}
+
+	public GMap<ChunkIssue, Double> getMS()
+	{
+		GMap<ChunkIssue, Double> k = EventController.map.getGrandTotal();
+		GMap<ChunkIssue, Double> m = new GMap<ChunkIssue, Double>();
+
+		for(ChunkIssue type : hits.k())
+		{
+			if(!hits.containsKey(type) || !k.containsKey(type))
+			{
+				m.put(type, 0.0);
+				continue;
+			}
+
+			m.put(type, type.getMS() * (hits.get(type) / k.get(type)));
+		}
+
+		return m;
+	}
+
+	public double totalMS()
+	{
+		double ms = 0;
+
+		GMap<ChunkIssue, Double> k = EventController.map.getGrandTotal();
+
+		for(ChunkIssue type : hits.k())
+		{
+			if(!hits.containsKey(type) || !k.containsKey(type))
+			{
+				continue;
+			}
+
+			ms += type.getMS() * (hits.get(type) / k.get(type));
+		}
+
+		if(hits.containsKey(ChunkIssue.PHYSICS) && hits.containsKey(ChunkIssue.REDSTONE))
+		{
+			ms -= ChunkIssue.PHYSICS.getMS() * (hits.get(ChunkIssue.PHYSICS) / k.get(ChunkIssue.PHYSICS));
+		}
+
+		else if(hits.containsKey(ChunkIssue.PHYSICS) && hits.containsKey(ChunkIssue.FLUID))
+		{
+			ms -= ChunkIssue.PHYSICS.getMS() * (hits.get(ChunkIssue.PHYSICS) / k.get(ChunkIssue.PHYSICS));
+		}
+
+		return ms;
+	}
+
+	public double getMS(ChunkIssue type)
+	{
+		GMap<ChunkIssue, Double> k = EventController.map.getGrandTotal();
+
+		if(!hits.containsKey(type) || !k.containsKey(type))
+		{
+			return 0;
+		}
+
+		return type.getMS() * (hits.get(type) / k.get(type));
 	}
 
 	public void hit(ChunkIssue type, double amt)
@@ -32,12 +94,24 @@ public class LagMapChunk
 
 	public int getX()
 	{
-		return x;
+		return c.getX();
 	}
 
 	public int getZ()
 	{
-		return z;
+		return c.getZ();
+	}
+
+	public double totalScore()
+	{
+		double d = 0;
+
+		for(Double i : getHits().v())
+		{
+			d += i;
+		}
+
+		return d;
 	}
 
 	public GMap<ChunkIssue, Double> getHits()
@@ -56,5 +130,16 @@ public class LagMapChunk
 				hits.remove(i);
 			}
 		}
+	}
+
+	@Override
+	public int compareTo(LagMapChunk o)
+	{
+		return (int) (1000.0 * (totalScore() - o.totalScore()));
+	}
+
+	public Chunk getC()
+	{
+		return c;
 	}
 }

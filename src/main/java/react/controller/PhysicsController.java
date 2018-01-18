@@ -3,10 +3,15 @@ package react.controller;
 import org.bukkit.Chunk;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.block.BlockFromToEvent;
+import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 import org.cyberpwn.gconcurrent.A;
 import org.cyberpwn.glang.GMap;
+import org.cyberpwn.gmath.Average;
+import org.cyberpwn.gmath.M;
 
+import react.React;
 import react.api.ChunkIssue;
 import react.api.SampledChunk;
 import react.api.Unused;
@@ -19,6 +24,14 @@ import surge.server.AsyncTick;
 public class PhysicsController extends Controller implements IMasterTickComponent
 {
 	private GMap<Chunk, SampledChunk> samples;
+	private int redstonePerTick;
+	private int redstonePerSecond;
+	private boolean firstTickList;
+	private long firstTick;
+	private long lastTick;
+	private Average aRSMS;
+	private Average aRST;
+	private Average aRSS;
 
 	@Override
 	public void start()
@@ -26,6 +39,57 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 		samples = new GMap<Chunk, SampledChunk>();
 		Surge.register(this);
 		Surge.registerTicked(this);
+		redstonePerTick = 0;
+		redstonePerSecond = 0;
+		aRSMS = new Average(20);
+		aRST = new Average(15);
+		aRSS = new Average(3);
+		firstTickList = false;
+		firstTick = M.ns();
+		lastTick = M.ns();
+	}
+
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	public void on(BlockPhysicsEvent e)
+	{
+		tickNextTickList();
+		React.instance.physicsController.onPhysics(e.getBlock().getChunk());
+		redstonePerSecond++;
+		redstonePerTick++;
+	}
+
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	public void on(BlockFromToEvent e)
+	{
+		tickNextTickList();
+		React.instance.physicsController.onPhysics(e.getBlock().getChunk());
+		redstonePerSecond++;
+		redstonePerTick++;
+	}
+
+	private void flushTickList()
+	{
+		if(lastTick < firstTick)
+		{
+			firstTick = lastTick;
+		}
+
+		aRSMS.put(lastTick - firstTick);
+		firstTickList = false;
+	}
+
+	private void tickNextTickList()
+	{
+		if(!firstTickList)
+		{
+			firstTickList = true;
+			firstTick = M.ns();
+		}
+
+		else
+		{
+			lastTick = M.ns();
+		}
 	}
 
 	@Override
@@ -39,12 +103,22 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 	@Override
 	public void tick()
 	{
+		aRST.put(redstonePerTick);
+		aRSS.put(redstonePerSecond);
+		redstonePerTick = 0;
+		redstonePerSecond = 0;
+		flushTickList();
 
 	}
 
 	public void onRedstone(Chunk c)
 	{
 		hit(c, ChunkIssue.REDSTONE, 10);
+	}
+
+	public void onPhysics(Chunk c)
+	{
+		hit(c, ChunkIssue.PHYSICS, 10);
 	}
 
 	public void onHopper(Chunk c)
@@ -110,5 +184,45 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 	public GMap<Chunk, SampledChunk> getSamples()
 	{
 		return samples;
+	}
+
+	public int getRedstonePerTick()
+	{
+		return redstonePerTick;
+	}
+
+	public int getRedstonePerSecond()
+	{
+		return redstonePerSecond;
+	}
+
+	public boolean isFirstTickList()
+	{
+		return firstTickList;
+	}
+
+	public long getFirstTick()
+	{
+		return firstTick;
+	}
+
+	public long getLastTick()
+	{
+		return lastTick;
+	}
+
+	public Average getaRSMS()
+	{
+		return aRSMS;
+	}
+
+	public Average getaRST()
+	{
+		return aRST;
+	}
+
+	public Average getaRSS()
+	{
+		return aRSS;
 	}
 }

@@ -7,6 +7,7 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.cyberpwn.gmath.Average;
 import org.cyberpwn.gmath.M;
 
+import react.Config;
 import react.api.Unused;
 import surge.Surge;
 import surge.control.Controller;
@@ -75,6 +76,14 @@ public class ExplosiveController extends Controller
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onLoad(EntityExplodeEvent e)
 	{
+		if(aCSMS.getAverage() > Config.MAX_EXPLOSION_MS)
+		{
+			if(M.r(0.65))
+			{
+				e.setCancelled(true);
+			}
+		}
+
 		tickNextTickList();
 	}
 

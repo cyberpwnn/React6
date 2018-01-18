@@ -2,7 +2,6 @@ package react;
 
 import react.action.source.AccessActionSource;
 import react.controller.ActionController;
-import react.controller.BenchmarkController;
 import react.controller.BlockInjectController;
 import react.controller.ChronophyFluidController;
 import react.controller.ChunkController;
@@ -120,9 +119,6 @@ public class React
 
 	@Control
 	public HopperOvertickController hopperPlungeController;
-
-	@Control
-	public BenchmarkController benchmarkController;
 
 	@Control
 	public LanguageController languageController;

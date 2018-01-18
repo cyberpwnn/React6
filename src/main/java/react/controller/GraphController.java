@@ -22,7 +22,10 @@ import react.api.Capability;
 import react.api.Permissable;
 import react.api.SampledType;
 import react.event.ReactScrollEvent;
+import react.graph.GraphCPUArc;
 import react.graph.GraphLagMap;
+import react.graph.GraphMemoryArc;
+import react.graph.GraphMode;
 import react.graph.GraphSampleLine;
 import react.graph.GraphSize;
 import react.graph.GraphText;
@@ -144,6 +147,80 @@ public class GraphController extends Controller
 		};
 	}
 
+	public void createGraphs(GraphMode mode, Player p, GList<PointedGraph> pg)
+	{
+		if(mode.equals(GraphMode.EOD))
+		{
+			addEod(p, pg);
+		}
+
+		else if(mode.equals(GraphMode.ITEMFRAME))
+		{
+			addSystem(p, pg);
+			addTick(p, pg);
+			addMemory(p, pg);
+			addPhysics(p, pg);
+			addReact(p, pg);
+		}
+
+		else if(mode.equals(GraphMode.NORMAL))
+		{
+			addSystem(p, pg);
+			addTick(p, pg);
+			addMemory(p, pg);
+			addPhysics(p, pg);
+			addReact(p, pg);
+		}
+	}
+
+	public void addSystem(Player p, GList<PointedGraph> pg)
+	{
+		pg.add(new PointedGraph(new GraphText("System", FrameColor.matchColor(Color.yellow)), GraphSize.WIDE)); //$NON-NLS-1$
+		pg.add(new PointedGraph(new GraphCPUArc(FrameColor.matchColor(Color.yellow)), GraphSize.SQUARE));
+		pg.add(new PointedGraph(new GraphMemoryArc(FrameColor.matchColor(Color.yellow)), GraphSize.SQUARE));
+	}
+
+	public void addTick(Player p, GList<PointedGraph> pg)
+	{
+		pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.tick"), g.get(SampledType.TICK).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
+		pg.add(new PointedGraph(g.get(SampledType.TICK), GraphSize.WIDE));
+		pg.add(new PointedGraph(g.get(SampledType.TPS), GraphSize.SQUARE));
+		pg.add(new PointedGraph(g.get(SampledType.TIU), GraphSize.SQUARE));
+	}
+
+	public void addMemory(Player p, GList<PointedGraph> pg)
+	{
+		pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.memory"), g.get(SampledType.MEM).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
+		pg.add(new PointedGraph(g.get(SampledType.MEM), GraphSize.WIDE));
+		pg.add(new PointedGraph(g.get(SampledType.MAHS), GraphSize.SQUARE));
+		pg.add(new PointedGraph(g.get(SampledType.ALLOCMEM), GraphSize.SQUARE));
+	}
+
+	public void addEod(Player p, GList<PointedGraph> pg)
+	{
+		pg.add(new PointedGraph(new GraphLagMap(p, 4), GraphSize.FULL));
+	}
+
+	public void addPhysics(Player p, GList<PointedGraph> pg)
+	{
+		pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.physics"), g.get(SampledType.REDSTONE_TIME).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
+		pg.add(new PointedGraph(g.get(SampledType.PHYSICS_TIME), GraphSize.SQUARE));
+		pg.add(new PointedGraph(g.get(SampledType.REDSTONE_TIME), GraphSize.SQUARE));
+		pg.add(new PointedGraph(g.get(SampledType.HOPPER_TIME), GraphSize.SQUARE));
+		pg.add(new PointedGraph(g.get(SampledType.FLUID_TIME), GraphSize.SQUARE));
+		pg.add(new PointedGraph(g.get(SampledType.CHK_TIME), GraphSize.SQUARE));
+		pg.add(new PointedGraph(g.get(SampledType.ENTITY_TIME), GraphSize.SQUARE));
+		pg.add(new PointedGraph(g.get(SampledType.EXPLOSION_TIME), GraphSize.SQUARE));
+		pg.add(new PointedGraph(g.get(SampledType.TILE_TIME), GraphSize.SQUARE));
+	}
+
+	public void addReact(Player p, GList<PointedGraph> pg)
+	{
+		pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.react"), g.get(SampledType.ATASK).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
+		pg.add(new PointedGraph(g.get(SampledType.ATASK), GraphSize.SQUARE));
+		pg.add(new PointedGraph(g.get(SampledType.STASK), GraphSize.SQUARE));
+	}
+
 	public void toggleMapping(Player player, String[] args)
 	{
 		if(!Capability.DUAL_WEILD.isCapable())
@@ -173,27 +250,8 @@ public class GraphController extends Controller
 				if(!gra.containsKey(e))
 				{
 					GList<PointedGraph> pg = new GList<PointedGraph>();
-
 					gra.put((ItemFrame) e, new GraphingInstance(player));
-					pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.tick"), g.get(SampledType.TICK).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
-					pg.add(new PointedGraph(g.get(SampledType.TICK), GraphSize.WIDE));
-					pg.add(new PointedGraph(g.get(SampledType.TPS), GraphSize.SQUARE));
-					pg.add(new PointedGraph(g.get(SampledType.TIU), GraphSize.SQUARE));
-					pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.memory"), g.get(SampledType.MEM).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
-					pg.add(new PointedGraph(g.get(SampledType.MEM), GraphSize.WIDE));
-					pg.add(new PointedGraph(g.get(SampledType.MAHS), GraphSize.SQUARE));
-					pg.add(new PointedGraph(g.get(SampledType.ALLOCMEM), GraphSize.SQUARE));
-					pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.physics"), g.get(SampledType.REDSTONE_TIME).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
-					pg.add(new PointedGraph(g.get(SampledType.REDSTONE_TIME), GraphSize.SQUARE));
-					pg.add(new PointedGraph(g.get(SampledType.HOPPER_TIME), GraphSize.SQUARE));
-					pg.add(new PointedGraph(g.get(SampledType.FLUID_TIME), GraphSize.SQUARE));
-					pg.add(new PointedGraph(g.get(SampledType.CHK_TIME), GraphSize.SQUARE));
-					pg.add(new PointedGraph(g.get(SampledType.ENTITY_TIME), GraphSize.SQUARE));
-					pg.add(new PointedGraph(g.get(SampledType.EXPLOSION_TIME), GraphSize.SQUARE));
-					pg.add(new PointedGraph(g.get(SampledType.TILE_TIME), GraphSize.SQUARE));
-					pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.react"), g.get(SampledType.ATASK).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
-					pg.add(new PointedGraph(g.get(SampledType.ATASK), GraphSize.SQUARE));
-					pg.add(new PointedGraph(g.get(SampledType.STASK), GraphSize.SQUARE));
+					createGraphs(GraphMode.ITEMFRAME, player, pg);
 					gra.get(e).setGraphs(pg);
 					gra.get(e).compile();
 					((ItemFrame) e).setItem(gra.get(e).getItem());
@@ -286,28 +344,7 @@ public class GraphController extends Controller
 		{
 			GList<PointedGraph> pg = new GList<PointedGraph>();
 			gr.put(player, new GraphingInstance(player));
-			pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.tick"), g.get(SampledType.TICK).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
-			pg.add(new PointedGraph(g.get(SampledType.TICK), GraphSize.WIDE));
-			pg.add(new PointedGraph(g.get(SampledType.TPS), GraphSize.SQUARE));
-			pg.add(new PointedGraph(g.get(SampledType.TIU), GraphSize.SQUARE));
-			pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.memory"), g.get(SampledType.MEM).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
-			pg.add(new PointedGraph(g.get(SampledType.MEM), GraphSize.WIDE));
-			pg.add(new PointedGraph(g.get(SampledType.MAHS), GraphSize.SQUARE));
-			pg.add(new PointedGraph(g.get(SampledType.ALLOCMEM), GraphSize.SQUARE));
-			pg.add(new PointedGraph(new GraphText("EOD", g.get(SampledType.REDSTONE_SECOND).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
-			pg.add(new PointedGraph(new GraphLagMap(player, 4), GraphSize.FULL));
-			pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.physics"), g.get(SampledType.REDSTONE_TIME).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
-			pg.add(new PointedGraph(g.get(SampledType.REDSTONE_TIME), GraphSize.WIDE));
-			pg.add(new PointedGraph(g.get(SampledType.HOPPER_TIME), GraphSize.SQUARE));
-			pg.add(new PointedGraph(g.get(SampledType.FLUID_TIME), GraphSize.SQUARE));
-			pg.add(new PointedGraph(g.get(SampledType.CHK_TIME), GraphSize.SQUARE));
-			pg.add(new PointedGraph(g.get(SampledType.ENTITY_TIME), GraphSize.SQUARE));
-			pg.add(new PointedGraph(g.get(SampledType.EXPLOSION_TIME), GraphSize.SQUARE));
-			pg.add(new PointedGraph(g.get(SampledType.TILE_TIME), GraphSize.SQUARE));
-			pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.react"), g.get(SampledType.ATASK).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
-			pg.add(new PointedGraph(g.get(SampledType.ATASK), GraphSize.SQUARE));
-			pg.add(new PointedGraph(g.get(SampledType.STASK), GraphSize.SQUARE));
-
+			createGraphs(GraphMode.NORMAL, player, pg);
 			gr.get(player).setGraphs(pg);
 			gr.get(player).compile();
 			gr.get(player).toggle();
@@ -343,7 +380,7 @@ public class GraphController extends Controller
 			GList<PointedGraph> pg = new GList<PointedGraph>();
 			gr.put(player, new GraphingInstance(player));
 			gr.get(player).setDoScrolling(false);
-			pg.add(new PointedGraph(new GraphLagMap(player, 4), GraphSize.FULL));
+			createGraphs(GraphMode.EOD, player, pg);
 			gr.get(player).setGraphs(pg);
 			gr.get(player).compile();
 			gr.get(player).toggle();

@@ -15,6 +15,38 @@ public class LagMap
 		chunks = new GMap<Chunk, LagMapChunk>();
 	}
 
+	public GMap<ChunkIssue, Double> getGrandTotalMilliseconds()
+	{
+		GMap<ChunkIssue, Double> m = new GMap<ChunkIssue, Double>();
+
+		for(ChunkIssue i : ChunkIssue.values())
+		{
+			m.put(i, i.getMS());
+		}
+
+		return m;
+	}
+
+	public GMap<ChunkIssue, Double> getGrandTotal()
+	{
+		GMap<ChunkIssue, Double> d = new GMap<ChunkIssue, Double>();
+
+		for(LagMapChunk i : chunks.v())
+		{
+			for(ChunkIssue j : i.getHits().k())
+			{
+				if(!d.containsKey(j))
+				{
+					d.put(j, 0.0);
+				}
+
+				d.put(j, d.get(j) + i.getHits().get(j));
+			}
+		}
+
+		return d;
+	}
+
 	public void pump()
 	{
 		for(Chunk i : chunks.k())
@@ -32,7 +64,7 @@ public class LagMap
 	{
 		if(!chunks.containsKey(location.getChunk()))
 		{
-			chunks.put(location.getChunk(), new LagMapChunk(location.getChunk().getX(), location.getChunk().getZ()));
+			chunks.put(location.getChunk(), new LagMapChunk(location.getChunk()));
 		}
 
 		chunks.get(location.getChunk()).hit(type, amt);
@@ -42,7 +74,7 @@ public class LagMap
 	{
 		if(!chunks.containsKey(c))
 		{
-			chunks.put(c, new LagMapChunk(c.getX(), c.getZ()));
+			chunks.put(c, new LagMapChunk(c));
 		}
 
 		chunks.get(c).hit(type, amt);

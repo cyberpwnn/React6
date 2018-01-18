@@ -58,7 +58,7 @@ public class GoalReducedEntityCounts extends Goal
 		int totalEntities = (int) (React.instance.sampleController.getSampler(SampledType.ENTDROP.toString()).getValue() + React.instance.sampleController.getSampler(SampledType.ENTLIV.toString()).getValue());
 		int totalChunks = (int) React.instance.sampleController.getSampler(SampledType.CHK.toString()).getValue();
 
-		f = totalChunks * Config.RAI_ENTITY_CHUNK_MULTIPLIER < totalEntities && max > Config.RAI_ENTITY_CHUNK_CLUSTERIZER;
+		f = totalChunks * Config.RAI_ENTITY_CHUNK_MULTIPLIER < (totalEntities * 4) && max > Config.RAI_ENTITY_CHUNK_CLUSTERIZER;
 
 		if(f != failing)
 		{

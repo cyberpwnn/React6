@@ -49,6 +49,12 @@ public class Info
 	public static String COMMAND_MONITOR_ALIAS_2 = "m"; //$NON-NLS-1$
 	public static String COMMAND_MONITOR_USAGE = "(toggle)"; //$NON-NLS-1$
 
+	public static String COMMAND_ENV_DESCRIPTION = "Retrieve Server environment information.";
+	public static String COMMAND_ENV = "environment"; //$NON-NLS-1$
+	public static String COMMAND_ENV_ALIAS_1 = "env"; //$NON-NLS-1$
+	public static String COMMAND_ENV_ALIAS_2 = "ev"; //$NON-NLS-1$
+	public static String COMMAND_ENV_USAGE = "(toggle)"; //$NON-NLS-1$
+
 	public static String COMMAND_VERSION_DESCRIPTION = "Get react's version"; //$NON-NLS-1$
 	public static String COMMAND_VERSION = "version"; //$NON-NLS-1$
 	public static String COMMAND_VERSION_ALIAS_1 = "ver"; //$NON-NLS-1$
@@ -60,6 +66,12 @@ public class Info
 	public static String COMMAND_MAP_ALIAS_1 = "mp"; //$NON-NLS-1$
 	public static String COMMAND_MAP_ALIAS_2 = "pap"; //$NON-NLS-1$
 	public static String COMMAND_MAP_USAGE = "(toggle)"; //$NON-NLS-1$
+
+	public static String COMMAND_TOPCHUNK_DESCRIPTION = "Shows a list of the hardest hitting chunks."; //$NON-NLS-1$
+	public static String COMMAND_TOPCHUNK = "topchunk"; //$NON-NLS-1$
+	public static String COMMAND_TOPCHUNK_ALIAS_1 = "lagchunk"; //$NON-NLS-1$
+	public static String COMMAND_TOPCHUNK_ALIAS_2 = "lc"; //$NON-NLS-1$
+	public static String COMMAND_TOPCHUNK_USAGE = ""; //$NON-NLS-1$
 
 	public static String COMMAND_GLASS_DESCRIPTION = Lang.getString("command.glass.description"); //$NON-NLS-1$
 	public static String COMMAND_GLASS = "glass"; //$NON-NLS-1$
@@ -146,6 +158,7 @@ public class Info
 	public static String SAMPLER_ENTITY_DROPTICK = Lang.getString("sampler.name.entity-drop-tick"); //$NON-NLS-1$
 	public static String SAMPLER_REDSTONE_SECOND = Lang.getString("sampler.name.redstone.second"); //$NON-NLS-1$
 	public static String SAMPLER_REDSTONE_TIME = Lang.getString("sampler.name.redstone-time"); //$NON-NLS-1$
+	public static String SAMPLER_PHYSICS_TIME = "Physics MS";
 	public static String SAMPLER_HOPPER_TICK_USAGE = Lang.getString("sampler.name.hopper-utilization"); //$NON-NLS-1$
 	public static String SAMPLER_HOPPER_TICK = Lang.getString("sampler.name.hopper-tick"); //$NON-NLS-1$
 	public static String SAMPLER_HOPPER_SECOND = Lang.getString("sampler.name.hopper-second"); //$NON-NLS-1$
