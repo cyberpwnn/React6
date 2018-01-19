@@ -23,6 +23,7 @@ import react.rai.RAIEventType;
 
 public class GoalStableRedstoneTime extends Goal
 {
+	private int d;
 	private boolean failing;
 	private GMap<Chunk, Integer> reocc;
 
@@ -30,6 +31,7 @@ public class GoalStableRedstoneTime extends Goal
 	{
 		super(Lang.getString("rai.goal.redstone-time.stablilize")); //$NON-NLS-1$
 
+		d = 20;
 		failing = false;
 		reocc = new GMap<Chunk, Integer>();
 	}
@@ -59,10 +61,10 @@ public class GoalStableRedstoneTime extends Goal
 			}
 		}
 
-		if(laggiest != null)
+		if(laggiest != null && d <= 0)
 		{
 			Chunk lx = laggiest;
-
+			d = 10;
 			new S()
 			{
 				@Override
@@ -87,7 +89,7 @@ public class GoalStableRedstoneTime extends Goal
 	public boolean onCheckFailing()
 	{
 		boolean f = false;
-
+		d--;
 		double nsms = 1000000;
 		double tickTime = React.instance.sampleController.getSampler(SampledType.TICK.toString()).getValue() * nsms;
 		double redTime = React.instance.sampleController.getSampler(SampledType.REDSTONE_TIME.toString()).getValue();

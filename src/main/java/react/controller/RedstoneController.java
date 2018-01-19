@@ -1,13 +1,17 @@
 package react.controller;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
+import org.bukkit.event.world.WorldLoadEvent;
+import org.bukkit.event.world.WorldUnloadEvent;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
@@ -16,6 +20,7 @@ import org.cyberpwn.gmath.M;
 
 import react.Gate;
 import react.React;
+import react.redstone.RedstoneTracker;
 import surge.Surge;
 import surge.control.Controller;
 
@@ -33,6 +38,7 @@ public class RedstoneController extends Controller
 	private boolean firstTickList;
 	private long firstTick;
 	private long lastTick;
+	private GMap<World, RedstoneTracker> trackers;
 
 	@Override
 	public void start()
@@ -67,6 +73,25 @@ public class RedstoneController extends Controller
 		firstTickList = false;
 		firstTick = M.ns();
 		lastTick = M.ns();
+		trackers = new GMap<World, RedstoneTracker>();
+
+		for(World i : Bukkit.getWorlds())
+		{
+			trackers.put(i, new RedstoneTracker(i));
+		}
+	}
+
+	@EventHandler
+	public void on(WorldLoadEvent e)
+	{
+		trackers.put(e.getWorld(), new RedstoneTracker(e.getWorld()));
+	}
+
+	@EventHandler
+	public void on(WorldUnloadEvent e)
+	{
+		trackers.get(e.getWorld()).close();
+		trackers.remove(e.getWorld());
 	}
 
 	@Override

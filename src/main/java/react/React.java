@@ -2,7 +2,6 @@ package react;
 
 import react.action.source.AccessActionSource;
 import react.controller.ActionController;
-import react.controller.BlockInjectController;
 import react.controller.ChronophyFluidController;
 import react.controller.ChunkController;
 import react.controller.CommandController;
@@ -107,9 +106,6 @@ public class React
 
 	@Control
 	public EventController eventController;
-
-	@Control
-	public BlockInjectController blockInjectController;
 
 	@Control
 	public SmearTickController smearTickController;

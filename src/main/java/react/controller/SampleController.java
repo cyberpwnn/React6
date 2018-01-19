@@ -13,7 +13,6 @@ import surge.Main;
 import surge.Surge;
 import surge.control.Controller;
 import surge.sched.IMasterTickComponent;
-import surge.sched.TaskLater;
 import surge.server.AsyncTick;
 import surge.server.SuperSampler;
 import surge.util.D;
@@ -136,30 +135,6 @@ public class SampleController extends Controller implements IMasterTickComponent
 		ss.start();
 		Surge.register(this);
 		Surge.registerTicked(this);
-
-		new TaskLater("superSampler verification", 250)
-		{
-			@Override
-			public void run()
-			{
-				if(checkThreads())
-				{
-					Main.requestReload();
-				}
-			}
-		};
-
-		new TaskLater("superSampler verification", 100)
-		{
-			@Override
-			public void run()
-			{
-				if(ss.getTickTime() == 0)
-				{
-					restartSuperSampler();
-				}
-			}
-		};
 	}
 
 	@Override
