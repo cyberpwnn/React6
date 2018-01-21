@@ -25,7 +25,7 @@ public class Capability
 	public static final Capability ACCELERATED_PING = new Capability("Accelerated Ping", Protocol.R1_7_1, "ProtocolLib");
 	public static final Capability ENTITY_THROTTLING = new Capability("Entity Throttling", Protocol.R1_8, Flavor.SOGGY_SPIGOT);
 	public static final Capability TILE_THROTTLING = new Capability("Tile Throttling", Protocol.R1_8, Flavor.SOGGY_SPIGOT);
-	public static final Capability PASSENGERS = new Capability("Entity Passengers", Protocol.R1_9);
+	public static final Capability PASSENGERS = new Capability("Entity Passengers", Protocol.R1_11);
 	public static final GList<Capability> capabilities = new GList<Capability>();
 
 	static

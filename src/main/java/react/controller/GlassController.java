@@ -101,24 +101,32 @@ public class GlassController extends Controller
 						{
 							for(Player j : g)
 							{
-								j.sendBlockChange(i, Material.STAINED_GLASS, color.getWoolData());
-
-								new Task("waiter-colorblock", 2, 88)
+								try
 								{
-									@Override
-									public void run()
+									j.sendBlockChange(i, Material.STAINED_GLASS, color.getWoolData());
+
+									new Task("waiter-colorblock", 2, 88)
 									{
-										if(ticks == 1)
+										@Override
+										public void run()
 										{
-											MaterialBlock mb = new MaterialBlock(i);
-											j.sendBlockChange(i, mb.getMaterial(), mb.getData());
+											if(ticks == 1)
+											{
+												MaterialBlock mb = new MaterialBlock(i);
+												j.sendBlockChange(i, mb.getMaterial(), mb.getData());
+											}
 										}
-									}
-								};
+									};
+								}
+
+								catch(Throwable e)
+								{
+
+								}
 							}
 						}
 
-						catch(Exception e)
+						catch(Throwable e)
 						{
 
 						}

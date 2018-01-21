@@ -463,6 +463,11 @@ public class Gate
 
 	public static void cullEntity(Entity e)
 	{
+		if(!Config.CULLING_ENABLED)
+		{
+			return;
+		}
+
 		if(e.getType().equals(EntityType.ARMOR_STAND))
 		{
 			return;

@@ -30,7 +30,7 @@ public class PlayerController extends Controller
 	{
 		save.addAll(players);
 
-		for(ReactPlayer i : save)
+		for(ReactPlayer i : new GList<ReactPlayer>(save))
 		{
 			requestSave(i.getP(), true);
 		}

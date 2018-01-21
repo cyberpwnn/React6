@@ -20,6 +20,7 @@ public class EntityCullController extends Controller
 {
 	private GSet<EntityFlag> flags;
 	private GSet<EntityFlag> defer;
+	private GSet<EntityFlag> prefer;
 	private GMap<EntityGroup, Integer> maxs;
 
 	@Override
@@ -27,6 +28,7 @@ public class EntityCullController extends Controller
 	{
 		flags = new GSet<EntityFlag>();
 		defer = new GSet<EntityFlag>();
+		prefer = new GSet<EntityFlag>();
 		maxs = new GMap<EntityGroup, Integer>();
 		repopulateRules();
 	}
@@ -47,6 +49,7 @@ public class EntityCullController extends Controller
 	{
 		maxs.clear();
 		flags.clear();
+		prefer.clear();
 		defer.clear();
 
 		searching: for(String i : Config.CULL_RULES)
@@ -89,6 +92,35 @@ public class EntityCullController extends Controller
 						}
 
 						defer.add(j);
+					}
+				}
+			}
+
+			else if(i.startsWith("@Prefer ")) //$NON-NLS-1$
+			{
+				String ref = i.replace("@Prefer ", "").trim(); //$NON-NLS-1$ //$NON-NLS-2$
+
+				for(EntityFlag j : EntityFlag.values())
+				{
+					if(j.toString().equalsIgnoreCase(ref))
+					{
+						if(prefer.contains(j))
+						{
+							D.w("Duplicate Prefer (" + i + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+						}
+
+						if(defer.contains(j))
+						{
+							D.w("Cannot prefer a deferred object (" + i + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+						}
+
+						if(flags.contains(j))
+						{
+							D.w("Cannot prefer refued (" + i + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+							continue;
+						}
+
+						prefer.add(j);
 					}
 				}
 			}
@@ -169,6 +201,11 @@ public class EntityCullController extends Controller
 
 	public int cull(Chunk c)
 	{
+		if(!Config.CULLING_ENABLED)
+		{
+			return 0;
+		}
+
 		int culled = 0;
 		int culledSegment;
 
@@ -182,6 +219,11 @@ public class EntityCullController extends Controller
 
 	private int partialCull(Chunk c)
 	{
+		if(!Config.CULLING_ENABLED)
+		{
+			return 0;
+		}
+
 		EntitySample sample = new EntitySample();
 		EntitySample fullSample = new EntitySample();
 		EntitySample deferedSample = new EntitySample();
@@ -212,6 +254,15 @@ public class EntityCullController extends Controller
 			{
 				if(flags.contains(j))
 				{
+					continue flagging;
+				}
+			}
+
+			for(EntityFlag j : eflags)
+			{
+				if(prefer.contains(j))
+				{
+					fullSample.add(i);
 					continue flagging;
 				}
 			}

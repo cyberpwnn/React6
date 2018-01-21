@@ -7,10 +7,12 @@ import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockRedstoneEvent;
+import org.cyberpwn.gbench.Profiler;
 import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.gmath.Average;
 
+import react.Config;
 import react.Gate;
 import react.React;
 import react.api.SampledType;
@@ -41,6 +43,7 @@ public class RedstoneTracker implements Listener
 		events = new GList<RedstoneEvent>();
 		ticking = false;
 		tr = 10;
+
 		task = new Task("rst-" + world.getUID().toString(), 0)
 		{
 			@Override
@@ -59,6 +62,11 @@ public class RedstoneTracker implements Listener
 
 	public void tick()
 	{
+		if(!Config.REDSTONE_DYNAMIC_CLOCK)
+		{
+			return;
+		}
+
 		if(!handleTicking)
 		{
 			return;
@@ -80,7 +88,7 @@ public class RedstoneTracker implements Listener
 		{
 			ticking = true;
 
-			while(!events.isEmpty())
+			for(int i = 0; i < events.size(); i++)
 			{
 				enact(events.pop());
 			}
@@ -92,6 +100,11 @@ public class RedstoneTracker implements Listener
 	@SuppressWarnings("deprecation")
 	public void set(Location l, MaterialBlock mb)
 	{
+		if(!Config.REDSTONE_DYNAMIC_CLOCK)
+		{
+			return;
+		}
+
 		if(!handleTicking)
 		{
 			return;
@@ -104,14 +117,22 @@ public class RedstoneTracker implements Listener
 
 		else
 		{
+			Profiler p = new Profiler();
+			p.begin();
 			l.getBlock().setType(mb.getMaterial());
-			l.getBlock().setData(mb.getData(), false);
+			l.getBlock().setData(mb.getData());
 			Gate.updateBlock(l.getBlock());
+			p.end();
 		}
 	}
 
 	public void enact(RedstoneEvent e)
 	{
+		if(!Config.REDSTONE_DYNAMIC_CLOCK)
+		{
+			return;
+		}
+
 		if(!handleTicking)
 		{
 			return;
@@ -133,6 +154,11 @@ public class RedstoneTracker implements Listener
 	@EventHandler
 	public void on(BlockRedstoneEvent e)
 	{
+		if(!Config.REDSTONE_DYNAMIC_CLOCK)
+		{
+			return;
+		}
+
 		if(!e.getBlock().getWorld().equals(world))
 		{
 			return;

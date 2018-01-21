@@ -140,6 +140,11 @@ public class SpikeController extends Controller implements IMasterTickComponent
 				{
 					for(Plugin j : CPS.identify(i.getClassName()))
 					{
+						if(j == null || Surge.getAmp().getPluginInstance() == null)
+						{
+							continue;
+						}
+
 						if(j.equals(Surge.getAmp().getPluginInstance()))
 						{
 							continue;

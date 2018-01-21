@@ -41,7 +41,8 @@ public class Config
 	@Address(0)
 	public static final String A_MAX_EXPLOSIONS_MAXMS = "tweaks.explosions.max-explosions-milliseconds";
 
-	// @Address(1)
+	@Address(1)
+	public static final String A_REDSTONE_DYNAMIC_CLOCK = "tweaks.redstone.dynamic-clocking"; //$NON-NLS-1$
 
 	@Address(2)
 	public static final String A_COMMANDOVERRIDE_TPS = "command-overrides.tps";
@@ -61,7 +62,8 @@ public class Config
 	@Address(7)
 	public static final String A_POOL_SYNC_NANOS = "threads.nano-mitigation"; //$NON-NLS-1$
 
-	// @Address(8)
+	@Address(8)
+	public static final String A_CULLING_ENABLED = "entity-culler.enabled"; //$NON-NLS-1$
 
 	@Address(9)
 	public static final String A_FASTLEAF_ENABLED = "fast-leaf-decay.enabled"; //$NON-NLS-1$
@@ -261,7 +263,9 @@ public class Config
 	@Clip(min = 0.01, max = 10000)
 	public static double MAX_EXPLOSION_MS = 7;
 
-	// @Sector(1)
+	@Sector(1)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean REDSTONE_DYNAMIC_CLOCK = false;
 
 	@Sector(2)
 	@Injection(InjectionMethod.SWAP)
@@ -295,7 +299,9 @@ public class Config
 	@Experimental
 	public static long POOL_SYNC_NANOS = 1500000;
 
-	// @Sector(8)
+	@Sector(8)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean CULLING_ENABLED = true;
 
 	@Sector(9)
 	@Injection(InjectionMethod.SWAP)
@@ -1085,17 +1091,29 @@ public class Config
 		scrs.add("@Defer Leashed"); //$NON-NLS-1$
 		scrs.add("@Defer Stacked"); //$NON-NLS-1$
 		scrs.add("@Defer Ridden"); //$NON-NLS-1$
-		scrs.add("@Restrict Pig,Cow,Sheep,Chicken = 12"); //$NON-NLS-1$
-		scrs.add("@Restrict Zombie,Spider,Skeleton,Creeper = 12"); //$NON-NLS-1$
-		scrs.add("@Restrict Wolf,Ocelot,Horse = 7"); //$NON-NLS-1$
+		scrs.add("@Defer Young");
+		scrs.add("@Defer Non-Living");
+		scrs.add("@Defer Grounded");
+		scrs.add("@Defer Passive");
+		scrs.add("@Defer Lit");
+		scrs.add("@Prefer Living");
+		scrs.add("@Prefer Hostile");
+		scrs.add("@Prefer Mature");
+		scrs.add("@Prefer Underwater");
+		scrs.add("@Prefer Airborne");
+		scrs.add("@Prefer Projectiles");
+		scrs.add("@Prefer Caves");
+		scrs.add("@Restrict Pig,Cow,Sheep,Chicken = 14"); //$NON-NLS-1$
+		scrs.add("@Restrict Zombie,Spider,Skeleton,Creeper = 14"); //$NON-NLS-1$
+		scrs.add("@Restrict Wolf,Ocelot,Horse = 9"); //$NON-NLS-1$
 
 		for(String i : ents)
 		{
-			int m = 20;
+			int m = 28;
 
 			if(i.toString().equals("VILLAGER")) //$NON-NLS-1$
 			{
-				m = 10;
+				m = 16;
 			}
 
 			if(i.toString().equals("DROPPED_ITEM")) //$NON-NLS-1$

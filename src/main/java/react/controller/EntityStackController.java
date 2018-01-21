@@ -5,6 +5,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.cyberpwn.glang.GList;
@@ -152,6 +153,30 @@ public class EntityStackController extends Controller
 			if(isStacked((LivingEntity) e.getEntity()))
 			{
 				StackedEntity se = getStack((LivingEntity) e.getEntity());
+				se.update();
+
+				if(se.getCount() <= 1)
+				{
+					stacks.remove(se);
+				}
+			}
+		}
+	}
+
+	@EventHandler
+	public void on(EntityDamageByEntityEvent e)
+	{
+		if(!Config.ENTITYSTACK_ENABLED)
+		{
+			return;
+		}
+
+		if(e.getEntity() instanceof LivingEntity)
+		{
+			if(isStacked((LivingEntity) e.getEntity()))
+			{
+				StackedEntity se = getStack((LivingEntity) e.getEntity());
+				se.setDamager(e.getDamager());
 				se.update();
 
 				if(se.getCount() <= 1)

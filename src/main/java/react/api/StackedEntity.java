@@ -2,6 +2,7 @@ package react.api;
 
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Ageable;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.material.Colorable;
 import org.bukkit.util.Vector;
@@ -16,10 +17,12 @@ public class StackedEntity
 	private LivingEntity entity;
 	private int count;
 	private double rmx;
+	private Entity damager;
 
 	public StackedEntity(LivingEntity entity, int count)
 	{
 		this.rmx = getMaxHealth(entity);
+		damager = null;
 
 		if(count > getAbsoluteMaxCount())
 		{
@@ -65,6 +68,11 @@ public class StackedEntity
 		{
 			ParticleEffect.VILLAGER_HAPPY.display(0.2f * getCount(), 1, entity.getLocation().clone().add(0, 0.5, 0).clone().add(Vector.getRandom().subtract(Vector.getRandom())), 16);
 		}
+	}
+
+	public void setDamager(Entity e)
+	{
+		damager = e;
 	}
 
 	private void updateHealth()
@@ -114,7 +122,16 @@ public class StackedEntity
 					((Colorable) ex).setColor(((Colorable) entity).getColor());
 				}
 
-				ex.damage(ex.getHealth() + 1000);
+				if(damager == null)
+				{
+					ex.damage(ex.getHealth() + 1000);
+				}
+
+				else
+				{
+					ex.damage(ex.getHealth() + 1000, damager);
+				}
+
 				ex.remove();
 			}
 
