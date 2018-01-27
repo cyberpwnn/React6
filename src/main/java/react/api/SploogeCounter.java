@@ -55,7 +55,7 @@ public abstract class SploogeCounter
 						}
 					}
 
-					catch(Exception e)
+					catch(Throwable e)
 					{
 
 					}

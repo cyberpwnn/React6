@@ -1,6 +1,7 @@
 package react.lagmap;
 
 import org.bukkit.Chunk;
+import org.bukkit.World;
 import org.cyberpwn.glang.GMap;
 
 import react.api.ChunkIssue;
@@ -141,5 +142,10 @@ public class LagMapChunk implements Comparable<LagMapChunk>
 	public Chunk getC()
 	{
 		return c;
+	}
+
+	public World getWorld()
+	{
+		return c.getWorld();
 	}
 }

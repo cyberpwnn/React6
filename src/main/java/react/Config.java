@@ -132,7 +132,7 @@ public class Config
 	public static final String A_RAI_REDSTONE_TIME_RADIUS = "rai.redstone.time-radius"; //$NON-NLS-1$
 
 	@Address(31)
-	public static final String A_RAI_REDSTONE_TIME_PROPIGATION = "rai.redstone.time-propigation"; //$NON-NLS-1$
+	public static final String A_RAI_REDSTONE_TIME_PROPIGATION = "rai.redstone.time-propagation"; //$NON-NLS-1$
 
 	@Address(32)
 	public static final String A_RAI_HOPPER_TIME_FLOOR = "rai.hopper.time-floor"; //$NON-NLS-1$
@@ -153,7 +153,7 @@ public class Config
 	public static final String A_RAI_HOPPER_TIME_RADIUS = "rai.hopper.time-radius"; //$NON-NLS-1$
 
 	@Address(38)
-	public static final String A_RAI_HOPPER_TIME_PROPIGATION = "rai.hopper.time-propigation"; //$NON-NLS-1$
+	public static final String A_RAI_HOPPER_TIME_PROPIGATION = "rai.hopper.time-propagation"; //$NON-NLS-1$
 
 	@Address(39)
 	public static final String A_RAI_ENTITY_CHUNK_MULTIPLIER = "rai.entity.chunk-multiplier"; //$NON-NLS-1$
@@ -183,7 +183,7 @@ public class Config
 	public static final String A_RAI_FLUID_TIME_RADIUS = "rai.fluid.time-radius"; //$NON-NLS-1$
 
 	@Address(48)
-	public static final String A_RAI_FLUID_TIME_PROPIGATION = "rai.fluid.time-propigation"; //$NON-NLS-1$
+	public static final String A_RAI_FLUID_TIME_PROPIGATION = "rai.fluid.time-propagation"; //$NON-NLS-1$
 
 	@Address(49)
 	public static final String A_SMEAR_TICK_ENTITIES_MAX_TICK = "tick-smearing.entities.max-time"; //$NON-NLS-1$
@@ -215,9 +215,11 @@ public class Config
 	@Address(58)
 	public static final String A_USE_WORLD_CONFIGS = "worlds.world-configs";
 
-	// @Address(59)
+	@Address(59)
+	public static final String A_ENTITY_STACKER_SHOW_PARTICLES = "entity-stacker.options.show-particles";
 
-	// @Address(60)
+	@Address(60)
+	public static final String A_ENTITY_STACKER_SHOW_NAMETAG = "entity-stacker.options.show-nametag";
 
 	@Address(61)
 	public static final String A_LANGUAGE = "language"; //$NON-NLS-1$
@@ -241,22 +243,25 @@ public class Config
 	public static final String A_RAI_CHUNK_TIME_RADIUS = "rai.chunk.time-radius"; //$NON-NLS-1$
 
 	@Address(68)
-	public static final String A_RAI_CHUNK_TIME_PROPIGATION = "rai.chunk.time-propigation"; //$NON-NLS-1$
+	public static final String A_RAI_CHUNK_TIME_PROPIGATION = "rai.chunk.time-propagation"; //$NON-NLS-1$
 
 	@Address(69)
-	public static final String A_RAI_CHUNK_TIME_PROPIGATE = "rai.chunk.propigate";
+	public static final String A_RAI_CHUNK_TIME_PROPIGATE = "rai.chunk.propagate";
 
 	@Address(70)
-	public static final String A_RAI_FLUID_TIME_PROPIGATE = "rai.fluid.propigate";
+	public static final String A_RAI_FLUID_TIME_PROPIGATE = "rai.fluid.propagate";
 
 	@Address(71)
-	public static final String A_RAI_ENTITY_PROPIGATE = "rai.entity.propigate";
+	public static final String A_RAI_ENTITY_PROPIGATE = "rai.entity.propagate";
 
 	@Address(72)
-	public static final String A_RAI_HOPPER_TIME_PROPIGATE = "rai.hopper.propigate";
+	public static final String A_RAI_HOPPER_TIME_PROPIGATE = "rai.hopper.propagate";
 
 	@Address(73)
-	public static final String A_RAI_REDSTONE_TIME_PROPIGATE = "rai.redstone.propigate";
+	public static final String A_RAI_REDSTONE_TIME_PROPIGATE = "rai.redstone.propagate";
+
+	@Address(74)
+	public static final String A_ENTITY_STACKER_NAME_TAG_FORMAT = "entity-stacker.options.nametag-format";
 
 	@Sector(0)
 	@Injection(InjectionMethod.SWAP)
@@ -326,7 +331,7 @@ public class Config
 
 	@Sector(14)
 	@Injection(InjectionMethod.SWAP)
-	public static boolean ENTITYSTACK_ENABLED = true;
+	public static boolean ENTITYSTACK_ENABLED = false;
 
 	@Sector(15)
 	@Injection(InjectionMethod.SWAP)
@@ -574,15 +579,19 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean USE_WORLD_CONFIGS = true;
 
-	// @Sector(59)
+	@Sector(59)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean ENTITY_STACKER_SHOW_PARTICLES = true;
 
-	// @Sector(60)
+	@Sector(60)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean ENTITY_STACKER_SHOW_NAME_TAG = false;
 
 	@Sector(61)
 	@Injection(InjectionMethod.SWAP)
 	public static String LANGUAGE = "enUS";
 
-	@Sector(62) // here
+	@Sector(62)
 	@Experimental
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 2000000, max = 9000000)
@@ -648,6 +657,10 @@ public class Config
 	@Experimental
 	@Injection(InjectionMethod.SWAP)
 	public static boolean RAI_REDSTONE_TIME_PROPIGATE = true;
+
+	@Sector(74)
+	@Injection(InjectionMethod.SWAP)
+	public static String ENTITY_STACKER_NAME_TAG_FORMAT = "&e%size%x &a%type% &c%hp%";
 
 	private static boolean hrld = false;
 	private static boolean rns = false;

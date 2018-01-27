@@ -54,7 +54,9 @@ public class GraphController extends Controller
 
 		for(SampledType i : SampledType.values())
 		{
-			GraphSampleLine graph = new GraphSampleLine(i.get(), i.get().getFormatter(), 20000);
+			int v = 20000;
+
+			GraphSampleLine graph = new GraphSampleLine(i.get(), i.get().getFormatter(), v);
 			int r = C.chatToDye(i.get().getColor().chatColor()).getColor().asRGB();
 			graph.setGraphColor(FrameColor.matchColor(new Color(r)));
 			g.put(i, graph);

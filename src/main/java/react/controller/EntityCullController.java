@@ -260,19 +260,19 @@ public class EntityCullController extends Controller
 
 			for(EntityFlag j : eflags)
 			{
-				if(prefer.contains(j))
+				if(defer.contains(j))
 				{
 					fullSample.add(i);
+					deferedSample.add(i);
 					continue flagging;
 				}
 			}
 
 			for(EntityFlag j : eflags)
 			{
-				if(defer.contains(j))
+				if(prefer.contains(j))
 				{
 					fullSample.add(i);
-					deferedSample.add(i);
 					continue flagging;
 				}
 			}

@@ -32,6 +32,11 @@ public class EntityStackController extends Controller
 	public void stop()
 	{
 		Surge.unregister(this);
+
+		for(StackedEntity i : stacks)
+		{
+			i.destroy();
+		}
 	}
 
 	@Override

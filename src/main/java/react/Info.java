@@ -43,6 +43,12 @@ public class Info
 	public static String COMMAND_RELOAD_ALIAS_2 = "rl"; //$NON-NLS-1$
 	public static String COMMAND_RELOAD_USAGE = ""; //$NON-NLS-1$
 
+	public static String COMMAND_CTP_DESCRIPTION = "Teleport to a chunk"; //$NON-NLS-1$
+	public static String COMMAND_CTP = "chunktp"; //$NON-NLS-1$
+	public static String COMMAND_CTP_ALIAS_1 = "ctp"; //$NON-NLS-1$
+	public static String COMMAND_CTP_ALIAS_2 = "chtp"; //$NON-NLS-1$
+	public static String COMMAND_CTP_USAGE = "<world> <x> <z>"; //$NON-NLS-1$
+
 	public static String COMMAND_MONITOR_DESCRIPTION = Lang.getString("command.monitor.description"); //$NON-NLS-1$
 	public static String COMMAND_MONITOR = "monitor"; //$NON-NLS-1$
 	public static String COMMAND_MONITOR_ALIAS_1 = "mon"; //$NON-NLS-1$
@@ -134,6 +140,7 @@ public class Info
 	public static String STATE_PLAYER_HEIGHT_CHANGING = "player.height-delta"; //$NON-NLS-1$
 
 	public static String PERM_ACCESS = "access"; //$NON-NLS-1$
+	public static String PERM_TELEPORT = "teleport"; //$NON-NLS-1$
 	public static String PERM_MONITOR = "monitor"; //$NON-NLS-1$
 	public static String PERM_MONITOR_TITLE = PERM_MONITOR + ".title"; //$NON-NLS-1$
 	public static String PERM_MONITOR_ACTIONLOG = PERM_MONITOR + ".actionlog"; //$NON-NLS-1$

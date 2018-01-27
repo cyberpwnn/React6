@@ -1,11 +1,13 @@
 package react.api;
 
+import org.bukkit.ChatColor;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Ageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.material.Colorable;
 import org.bukkit.util.Vector;
+import org.cyberpwn.gformat.F;
 import org.cyberpwn.gmath.M;
 
 import react.Config;
@@ -60,14 +62,49 @@ public class StackedEntity
 		signalSize();
 	}
 
+	public void destroy()
+	{
+		if(Config.ENTITY_STACKER_SHOW_NAME_TAG && Capability.ENTITY_NAMES.isCapable())
+		{
+			entity.setCustomNameVisible(false);
+			entity.setCustomName("");
+		}
+	}
+
 	private void signalSize()
 	{
 		double rat = (double) getCount() / (double) getAbsoluteMaxCount();
 
 		if(M.r(rat))
 		{
-			ParticleEffect.VILLAGER_HAPPY.display(0.2f * getCount(), 1, entity.getLocation().clone().add(0, 0.5, 0).clone().add(Vector.getRandom().subtract(Vector.getRandom())), 16);
+			if(Config.ENTITY_STACKER_SHOW_PARTICLES)
+			{
+				if(getCount() > 1)
+				{
+					ParticleEffect.VILLAGER_HAPPY.display(0.2f * getCount(), 1, entity.getLocation().clone().add(0, 0.5, 0).clone().add(Vector.getRandom().subtract(Vector.getRandom())), 16);
+				}
+			}
 		}
+
+		if(Config.ENTITY_STACKER_SHOW_NAME_TAG && Capability.ENTITY_NAMES.isCapable())
+		{
+			if(getCount() < 2)
+			{
+				destroy();
+			}
+
+			else
+			{
+				String tag = Config.ENTITY_STACKER_NAME_TAG_FORMAT.replace("%size%", getCount() + "").replace("%type%", F.capitalizeWords(entity.getType().toString().toLowerCase().replaceAll("_", " "))).replace("%hp%", F.f(entity.getHealth() / 2.0, 1) + " \u2665");
+				entity.setCustomName(color(tag));
+				entity.setCustomNameVisible(true);
+			}
+		}
+	}
+
+	public static String color(String msg)
+	{
+		return ChatColor.translateAlternateColorCodes('&', msg);
 	}
 
 	public void setDamager(Entity e)

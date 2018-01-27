@@ -21,6 +21,7 @@ permissions:
       react.monitor: true
       react.act: true
       react.rai: true
+      react.teleport: true
   react.rai: 
     description: Gives access to use all rai features
     default: op
@@ -73,4 +74,7 @@ permissions:
     default: op
   react.reload: 
     description: Gives access to reload react.
+    default: op
+  react.teleport: 
+    description: Gives access to teleport to chunks
     default: op
