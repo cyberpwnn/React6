@@ -132,9 +132,17 @@ public class React
 	@Control
 	public MessageController messageController;
 
+	boolean aeternum1 = false;
+	boolean aeternum2 = false;
+
 	@Enable
 	public void enable()
 	{
+		if(aeternum1 && aeternum2)
+		{
+			System.out.println("Congratulations! You cracked react!");
+		}
+
 		Surge.getAmp().setOnReload(new Runnable()
 		{
 			@Override

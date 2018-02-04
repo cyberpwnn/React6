@@ -44,14 +44,13 @@ obfuscateFlowExclude   @*.MyAnnotation0 *.*;
 obfuscate   changeLogFileIn=""
             changeLogFileOut="ChangeLog.txt"
             keepInnerClassInfo=true
-            obfuscateFlow=light
-            exceptionObfuscation=light
+            obfuscateFlow=none
+            exceptionObfuscation=none
             encryptStringLiterals=none
             mixedCaseClassNames=true
             collapsePackagesWithDefault=""
-            localVariables=obfuscate
+            localVariables=keep
             lineNumbers=scramble
-            autoReflectionHandling=normal
             obfuscateReferences=none
             obfuscateReferenceStructures=inSpecialClass;
 

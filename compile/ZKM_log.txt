@@ -1,211 +1,200 @@
-[2018.02.04 05:49:45] Zelix KlassMaster (Cracked by CM&N) 8.0.8 - License #Cracked by CM&N
+-- Listing  properties --
+java.runtime.name = Java(TM) SE Runtime Environment
+sun.boot.library.path = C:\Program Files\Java\jre1.8.0_144\bin
+java.vm.version = 25.144-b01
+java.vm.vendor = Oracle Corporation
+java.vendor.url = http://java.oracle.com/
+path.separator = ;
+java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+file.encoding.pkg = sun.io
+user.country = US
+user.script = 
+sun.java.launcher = SUN_STANDARD
+sun.os.patch.level = 
+java.vm.specification.name = Java Virtual Machine Specification
+user.dir = C:\Users\cyberpwn\Documents\development\workspace\React6\compile
+java.runtime.version = 1.8.0_144-b01
+java.awt.graphicsenv = sun.awt.Win32GraphicsEnvironment
+java.endorsed.dirs = C:\Program Files\Java\jre1.8.0_144\lib\endorsed
+os.arch = amd64
+java.io.tmpdir = C:\Users\cyberpwn\AppData\Local\Temp\
+line.separator = 
+
+java.vm.specification.vendor = Oracle Corporation
+user.variant = 
+os.name = Windows 10
+sun.jnu.encoding = Cp1252
+java.library.path = C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\cyberpwn\Documents\development\maven\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Java\jdk1.8.0_144\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Gource\cmd;C:\Users\cyberpwn\AppData\Local\Microsoft\WindowsApps;C:\Users\cyberpwn\AppData\Local\GitHubDesktop\bin;C:\Program Files (x86)\Nmap;.
+sun.awt.enableExtraMouseButtons = true
+java.specification.name = Java Platform API Specification
+java.class.version = 52.0
+sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+os.version = 10.0
+user.home = C:\Users\cyberpwn
+user.timezone = 
+java.awt.printerjob = sun.awt.windows.WPrinterJob
+file.encoding = Cp1252
+java.specification.version = 1.8
+java.class.path = C:\Users\cyberpwn\Documents\development\workspace\React6\compile\ZKM.jar
+user.name = cyberpwn
+java.vm.specification.version = 1.8
+sun.java.command = C:\Users\cyberpwn\Documents\development\workspace\React6\compile\ZKM.jar
+java.home = C:\Program Files\Java\jre1.8.0_144
+sun.arch.data.model = 64
+user.language = en
+java.specification.vendor = Oracle Corporation
+awt.toolkit = sun.awt.windows.WToolkit
+java.vm.info = mixed mode
+java.version = 1.8.0_144
+java.ext.dirs = C:\Program Files\Java\jre1.8.0_144\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
+sun.boot.class.path = C:\Program Files\Java\jre1.8.0_144\lib\resources.jar;C:\Program Files\Java\jre1.8.0_144\lib\rt.jar;C:\Program Files\Java\jre1.8.0_144\lib\sunrsasign.jar;C:\Program Files\Java\jre1.8.0_144\lib\jsse.jar;C:\Program Files\Java\jre1.8.0_144\lib\jce.jar;C:\Program Files\Java\jre1.8.0_144\lib\charsets.jar;C:\Program Files\Java\jre1.8.0_144\lib\jfr.jar;C:\Program Files\Java\jre1.8.0_144\classes
+java.vendor = Oracle Corporation
+file.separator = \
+java.vendor.url.bug = http://bugreport.sun.com/bugreport/
+sun.io.unicode.encoding = UnicodeLittle
+sun.cpu.endian = little
+sun.desktop = windows
+sun.cpu.isalist = amd64
+
+Maximum memory is 5576192K.
+
+[2018.02.04 07:56:42] Zelix KlassMaster (Cracked by CM&N) 8.0.8 - License #Cracked by CM&N
                       Unlimited
                       coolman
                       coolman@neth.er
                       Copyright 1997-2016 Zelix Pty Ltd (ABN 47 078 740 093)
                       All rights reserved
-[2018.02.04 05:49:45] Preprocessing ZKM Script file "C:\Users\cyberpwn\Documents\development\workspace\React6\compile\script.zkm"
-[2018.02.04 05:49:45] Parsing ZKM Script file "C:\Users\cyberpwn\Documents\development\workspace\React6\compile\script.zkm"
-[2018.02.04 05:49:45] Setting classpath to "C:\Program Files\Java\jre1.8.0_144\lib\resources.jar;C:\Program Files\Java\jre1.8.0_144\lib\rt.jar;C:\Program Files\Java\jre1.8.0_144\lib\jsse.jar;C:\Program Files\Java\jre1.8.0_144\lib\jce.jar;C:\Program Files\Java\jre1.8.0_144\lib\charsets.jar;C:\Program Files\Java\jre1.8.0_144\lib\jfr.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.8.8.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.9.2.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.9.4.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.9.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.10.2.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.11.2.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.11.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.12.1.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.12.jar;C:\Users\cyberpwn\Documents\development\workspace\React6\lib\spigot-1.12.2.jar"
-[2018.02.04 05:49:45] Opening classes...
-WARNING: Could not find method 'java.util.List getPassengers()' in class 'C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.8.8.jar!org/bukkit/entity/Entity.class' (org.bukkit.entity.Entity) or in its hierarchy. Such a reference occurs in class C:\Users\cyberpwn\Documents\development\workspace\React6\compile\in.jar!react/api/EntityFlag.class. Please check the classpath and reopen your classes (B).
-API calls detected that may not be handled automatically...
-In class react.Config
-    in method private static react.surge.cluster.DataCluster read(react.surge.cluster.DataCluster, boolean)
-        java.lang.reflect.Field.getName()
-    in method private static react.surge.cluster.DataCluster defaultConfig(boolean)
-        java.lang.reflect.Field.getName()
-In class react.Gate
-    in method public static void tickEntityNextTickListTick(org.bukkit.World)
-        java.lang.Class.getDeclaredField(java.lang.String)
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-    in method public static void tweakEntityTickMax(org.bukkit.World, int)
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-    in method public static java.lang.reflect.Field deepFindField(java.lang.Object, java.lang.String)
-        java.lang.Class.getDeclaredField(java.lang.String)
-    in method public static void forceSet(org.spigotmc.SpigotWorldConfig, java.lang.String, java.lang.Object)
-        java.lang.Class.getDeclaredField(java.lang.String)
-    in method public static org.spigotmc.SpigotWorldConfig getSpigotConfig(org.bukkit.World)
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getField(java.lang.String)
-In class react.Gate$1
-    in method public void run()
-        java.lang.Class.getConstructor(java.lang.Class[])
-        java.lang.Class.getConstructor(java.lang.Class[])
-In class react.api.PluginSelfDeleter
-    in method public void run()
-        java.lang.Class.getDeclaredField(java.lang.String)
-        java.lang.Class.getDeclaredField(java.lang.String)
-        java.lang.Class.getDeclaredField(java.lang.String)
-        java.lang.Class.getDeclaredField(java.lang.String)
-In class react.controller.ActionController
-    in method public void start()
-        java.lang.Class.getConstructor(java.lang.Class[])
-In class react.controller.CommandController
-    in method public void begin()
-        java.lang.Class.getConstructor(java.lang.Class[])
-In class react.controller.SampleController
-    in method private void constructSamplers()
-        java.lang.Class.getConstructor(java.lang.Class[])
-In class react.controller.SecurityController
-    in method public static void checkForIP()
-        java.lang.Class.newInstance()
-    in method public static void scan(java.lang.Runnable)
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-In class react.controller.SecurityController$3
-    in method public void run()
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-In class react.controller.SmearTickController
-    in method public void witholdWorld(org.bukkit.World)
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-    in method public void releaseWorld(org.bukkit.World)
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-    in method public static java.lang.reflect.Field deepFindField(java.lang.Object, java.lang.String)
-        java.lang.Class.getDeclaredField(java.lang.String)
-In class react.json.JSONObject
-    in method public JSONObject(java.lang.Object, java.lang.String[])
-        java.lang.Class.getField(java.lang.String)
-    in method public static java.lang.String[] getNames(java.lang.Object)
-        java.lang.reflect.Field.getName()
-    in method private void populateMap(java.lang.Object)
-        java.lang.reflect.Method.getName()
-    in method public static java.lang.Object wrap(java.lang.Object)
-        java.lang.Package.getName()
-In class react.security.checkpoints.SecurityCheckpointAlpha
-    in method public static void finishScan()
-        java.lang.Class.getConstructor(java.lang.Class[])
-In class react.surge.Main
-    in method private void initializeAmps()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.reflect.Method.getName()
-        java.lang.Class.getConstructor(java.lang.Class[])
-        java.lang.Class.getConstructor(java.lang.Class[])
-    in method public void doScan()
-        java.lang.Class.forName(java.lang.String)
-    in method private void scanForPoolDefiners()
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
-    in method private void scanForRawEvents()
-        java.lang.reflect.Method.getName()
-    in method private void scanForDynamicTrack()
-        java.lang.reflect.Method.getName()
-In class react.surge.cluster.ConfigurationDataInput
-    in method public void read(react.surge.cluster.IConfigurable, java.io.File)
-        java.lang.reflect.Field.getName()
-        java.lang.reflect.Field.getName()
-    in method public react.surge.cluster.DataCluster fillDefaults(react.surge.cluster.IConfigurable)
-        java.lang.reflect.Field.getName()
-In class react.surge.cluster.ConfigurationDataOutput
-    in method public void write(react.surge.cluster.IConfigurable, java.io.File)
-        java.lang.reflect.Field.getName()
-In class react.surge.nms.NMSX
-    in method static 
-        java.lang.Package.getName()
-    in method public static java.lang.String getVersion()
-        java.lang.Package.getName()
-    in method public static java.lang.Class getCBNMSClass(java.lang.String)
-        java.lang.Class.forName(java.lang.String)
-    in method public static java.lang.Class getCBClass(java.lang.String)
-        java.lang.Class.forName(java.lang.String)
-    in method public static java.lang.Object serializeChat(java.lang.String)
-        java.lang.Class.getDeclaredMethod(java.lang.String, java.lang.Class[])
-    in method public static java.lang.String getBukkitVersion()
-        java.lang.Package.getName()
-    in method public static void showPickup(org.bukkit.entity.Player, org.bukkit.entity.Entity, org.bukkit.entity.Entity)
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.forName(java.lang.String)
-        java.lang.Class.forName(java.lang.String)
-        java.lang.Class.forName(java.lang.String)
-        java.lang.Class.getDeclaredField(java.lang.String)
-        java.lang.Class.getConstructor(java.lang.Class[])
-    in method public static void sendPacket(org.bukkit.entity.Player, java.lang.Object)
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getField(java.lang.String)
-    in method public static java.lang.Class getNMSClass(java.lang.String)
-        java.lang.Class.forName(java.lang.String)
-        java.lang.Package.getName()
-    in method public static void sendTitle(org.bukkit.entity.Player, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String)
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getField(java.lang.String)
-        java.lang.Class.getField(java.lang.String)
-        java.lang.Class.getField(java.lang.String)
-        java.lang.Class.getConstructor(java.lang.Class[])
-        java.lang.Class.getConstructor(java.lang.Class[])
-        java.lang.Class.getConstructor(java.lang.Class[])
-        java.lang.Class.getConstructor(java.lang.Class[])
-    in method public static void sendTabTitle(org.bukkit.entity.Player, java.lang.String, java.lang.String)
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getDeclaredField(java.lang.String)
-        java.lang.Class.getConstructor(java.lang.Class[])
-    in method public static void sendActionBar(org.bukkit.entity.Player, java.lang.String)
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.forName(java.lang.String)
-        java.lang.Class.forName(java.lang.String)
-        java.lang.Class.forName(java.lang.String)
-        java.lang.Class.forName(java.lang.String)
-        java.lang.Class.forName(java.lang.String)
-        java.lang.Class.forName(java.lang.String)
-        java.lang.Class.forName(java.lang.String)
-        java.lang.Class.forName(java.lang.String)
-        java.lang.Class.getDeclaredMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getDeclaredMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getDeclaredMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.getDeclaredField(java.lang.String)
-        java.lang.Class.getConstructor(java.lang.Class[])
-        java.lang.Class.getConstructor(java.lang.Class[])
-        java.lang.Class.getConstructor(java.lang.Class[])
-        java.lang.Class.getConstructor(java.lang.Class[])
-    in method public static int ping(org.bukkit.entity.Player)
-        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
-        java.lang.Class.forName(java.lang.String)
-        java.lang.Package.getName()
-        java.lang.Class.getDeclaredField(java.lang.String)
-In class react.surge.util.PluginUtil
-    in method public static void unload(org.bukkit.plugin.Plugin)
-        java.lang.Class.getDeclaredField(java.lang.String)
-        java.lang.Class.getDeclaredField(java.lang.String)
-        java.lang.Class.getDeclaredField(java.lang.String)
-        java.lang.Class.getDeclaredField(java.lang.String)
-        java.lang.Class.getName()
-In class react.surge.util.Protocol
-    in method public boolean hasPackageSupport()
-        java.lang.Class.forName(java.lang.String)
-In class react.surge.util.ReflectionUtils
-    in method public static java.lang.reflect.Method getMethod(java.lang.Class, java.lang.String, java.lang.Class[])
-        java.lang.reflect.Method.getName()
-    in method public static java.lang.reflect.Field getField(java.lang.Class, boolean, java.lang.String)
-        java.lang.Class.getField(java.lang.String)
-        java.lang.Class.getDeclaredField(java.lang.String)
-In class react.surge.util.ReflectionUtils$PackageType
-    in method public java.lang.Class getClass(java.lang.String)
-        java.lang.Class.forName(java.lang.String)
-    in method public static java.lang.String getServerVersion()
-        java.lang.Package.getName()
-
-663 classes opened in 1 seconds. 225066K of memory used. 435925K of memory free.
-
-[2018.02.04 05:49:47] Setting trim exclusions...
-FATAL ERROR: Attempt to use "trim" statement at line 29 with unusable classes : Could not find method 'java.util.List getPassengers()' in class 'C:\Users\cyberpwn\Documents\development\workspace\React6\lib\craftbukkit-1.8.8.jar!org/bukkit/entity/Entity.class' (org.bukkit.entity.Entity) or in its hierarchy. Such a reference occurs in class C:\Users\cyberpwn\Documents\development\workspace\React6\compile\in.jar!react/api/EntityFlag.class. Please check the classpath and reopen your classes (B).
+No classes opened. 14485K of memory used. 362346K of memory free.
+ERROR: : Class 'org.bukkit.craftbukkit.v1_10_R1.CraftWorld' not found while looking for method 'getHandle()' in class 'org.bukkit.craftbukkit.v1_10_R1.CraftWorld' which is referenced in class 'C:\Users\cyberpwn\Documents\development\workspace\React6\compile\in.jar!react/feature/NMSBinding10.class'. Check the classpath option and reopen classes. (1a)
+663 classes opened in 2 seconds. 125074K of memory used. 95597K of memory free.
+8 classes opened in 0 seconds. 104186K of memory used. 209157K of memory free.
+	Using 'C:\Users\cyberpwn\Documents\development\workspace\React6\compile\defaultTrimExclude.txt' for default trim exclusions
+	Trim exclusion parameters:
+		*.* public *(*)
+		*.* public *
+		public *.*
+		*.*
+	Matching method "public static org.cyberpwn.ft.Alphabet fromChar(char)" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public static void main(java.lang.String[])" in class "public org.cyberpwn.ft.Main" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public RsrcURLStreamHandlerFactory(java.lang.ClassLoader)" in class "public org.eclipse.jdt.internal.jarinjarloader.RsrcURLStreamHandlerFactory" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public static java.util.List getAlphabet()" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public static void main(java.lang.String[])" in class "public org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public java.net.URLStreamHandler createURLStreamHandler(java.lang.String)" in class "public org.eclipse.jdt.internal.jarinjarloader.RsrcURLStreamHandlerFactory" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public static java.lang.String radioTalk(java.lang.String)" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public char getChar()" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public RsrcURLStreamHandler(java.lang.ClassLoader)" in class "public org.eclipse.jdt.internal.jarinjarloader.RsrcURLStreamHandler" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public void connect()" in class "public org.eclipse.jdt.internal.jarinjarloader.RsrcURLConnection" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public java.io.InputStream getInputStream()" in class "public org.eclipse.jdt.internal.jarinjarloader.RsrcURLConnection" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public Main()" in class "public org.cyberpwn.ft.Main" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public JarRsrcLoader()" in class "public org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public static org.cyberpwn.ft.Alphabet[] values()" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public RsrcURLConnection(java.net.URL, java.lang.ClassLoader)" in class "public org.eclipse.jdt.internal.jarinjarloader.RsrcURLConnection" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public static org.cyberpwn.ft.Alphabet valueOf(java.lang.String)" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *(*)'"
+	Matching method "public void setURLStreamHandlerFactory(java.net.URLStreamHandlerFactory)" in class "public org.eclipse.jdt.internal.jarinjarloader.RsrcURLStreamHandlerFactory" because of "exclusion parameter '*.* public *(*)'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet UNIFORM" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet MIKE" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet LIMA" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet GOLF" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet FOXTROT" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet ZULU" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet SIERRA" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet ECHO" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet KILO" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet INDIA" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet WISKEY" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet CHARLIE" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet TANGO" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet VICTOR" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet QUEBEC" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet PAPA" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet JULIET" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet BRAVO" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet YANKEE" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet OSCAR" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet HOTEL" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet ROMEO" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet DELTA" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet NOVEMBER" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet XRAY" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching field "public static final enum org.cyberpwn.ft.Alphabet ALPHA" in class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter '*.* public *'"
+	Matching class "public org.eclipse.jdt.internal.jarinjarloader.RsrcURLStreamHandler" because of "exclusion parameter 'public *.*'"
+	Matching class "public org.cyberpwn.ft.Main" because of "exclusion parameter 'public *.*'"
+	Matching class "public final enum org.cyberpwn.ft.Alphabet" because of "exclusion parameter 'public *.*'"
+	Matching class "public org.eclipse.jdt.internal.jarinjarloader.RsrcURLConnection" because of "exclusion parameter 'public *.*'"
+	Matching class "public org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader" because of "exclusion parameter 'public *.*'"
+	Matching class "public org.eclipse.jdt.internal.jarinjarloader.RsrcURLStreamHandlerFactory" because of "exclusion parameter 'public *.*'"
+	Matching class "org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader$ManifestInfo" because of "exclusion parameter '*.*'"
+	Matching class "final org.eclipse.jdt.internal.jarinjarloader.JIJConstants" because of "exclusion parameter '*.*'"
+	Using 'C:\Users\cyberpwn\Documents\development\workspace\React6\compile\defaultTrimExclude.txt' for default trim exclusions
+	Default trim exclusion parameters:
+		"*.* lambda$*(*)"
+		"*.* $deserializeLambda$(java.lang.invoke.SerializedLambda)"
+		"*.* @javafx.fxml.FXML *(*)"
+		"*.* @javafx.fxml.FXML *"
+		"*.* containing{@java.beans.ConstructorProperties *(*)} public get*()"
+		"*.*MXBean public *(*)"
+		"*.*MBean public *(*)"
+		"*.* @javax.annotation.PreDestroy *(*)"
+		"*.* @javax.annotation.PostConstructor *(*)"
+		"@javax.xml.bind.annotation.XmlRootElement *.* public set*(*)"
+		"@javax.xml.bind.annotation.XmlRootElement *.* public is*()"
+		"@javax.xml.bind.annotation.XmlRootElement *.* public get*()"
+		"@javax.xml.bind.annotation.XmlRootElement *.* private *"
+		"@javax.xml.bind.annotation.XmlType *.* public set*(*)"
+		"@javax.xml.bind.annotation.XmlType *.* public is*()"
+		"@javax.xml.bind.annotation.XmlType *.* public get*()"
+		"@javax.xml.bind.annotation.XmlType *.* *"
+		"*.* extends javax.swing.JComponent getUI()"
+		"*.* static createUI(javax.swing.JComponent)"
+		"@javax.jws.WebService *.*^ @javax.jws.WebMethod public *(*)"
+		"@javax.persistence.IdClass(value=*.*^) public *(*)"
+		"*.* @javax.persistence.Id *(*)"
+		"*.* @javax.persistence.Id *"
+		"@javax.persistence.Table *.*^ public *(*)"
+		"@javax.persistence.Entity *.* @javax.persistence.Column *"
+		"@javax.persistence.Entity *.*^ public *(*)"
+		"@javax.ejb.MessageDriven *.*^ public *(*)"
+		"@javax.ejb.Stateful *.*^ public *(*)"
+		"@javax.ejb.Stateless *.*^ public *(*)"
+		"@javax.ejb.RemoteHome *.*^ public *(*)"
+		"@javax.ejb.Remote *.*^ public *(*)"
+		"*.*^ implements javax.ejb.EnterpriseBean public *(*)"
+		"*.*^ implements javax.ejb.EJBLocalHome public find*(*)"
+		"*.*^ implements javax.ejb.EJBLocalHome public create(*)"
+		"*.*^ implements javax.ejb.EJBHome public find*(*)"
+		"*.*^ implements javax.ejb.EJBHome public create(*)"
+		"*.*^ implements javax.ejb.EJBLocalObject public *(*)"
+		"*.*^ implements javax.ejb.EJBObject public *(*)"
+		"*.* extends java.lang.Enum public valueOf(java.lang.String)"
+		"*.* extends java.lang.Enum public values()"
+		"*.* extends java.lang.Enum public *"
+		"*.* implements javax.servlet.Servlet"
+		"*.* java.io.ObjectStreamField[] serialPersistentFields"
+		"*.* readObjectNoData() throws java.io.ObjectStreamException"
+		"*.* readResolve()"
+		"*.* writeReplace()"
+		"*.* static final long serialVersionUID"
+		"*.* private writeObject(java.io.ObjectOutputStream)"
+		"*.* private readObject(java.io.ObjectInputStream)"
+		"interface *.*^ implements java.rmi.Remote *(*) throws java.rmi.RemoteException"
+		"*.*_Tie implements javax.rmi.CORBA.Tie"
+		"*.*_Stub extends javax.rmi.CORBA.Stub"
+		"*.*_Stub extends java.rmi.server.RemoteStub"
+		"*.*_Skel implements java.rmi.server.Skeleton"
+		"*.* extends java.rmi.server.RemoteStub <init>(java.rmi.server.RemoteRef)"
+		"*.* <init>()"
+	Matching method "JIJConstants()" in class "final org.eclipse.jdt.internal.jarinjarloader.JIJConstants" because of "exclusion parameter '*.* <init>()'"
+	Matching method "private JarRsrcLoader$ManifestInfo()" in class "org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader$ManifestInfo" because of "exclusion parameter '*.* <init>()'"
+	NB: Some "static" fields have been trimmed. Compilers can optimize accesses to the values of "static" fields such that the fields are never directly accessed.
+	Trimmed field "static final CURRENT_DIR" in class "org.eclipse.jdt.internal.jarinjarloader.JIJConstants"
+	Trimmed field "static final DEFAULT_REDIRECTED_CLASSPATH" in class "org.eclipse.jdt.internal.jarinjarloader.JIJConstants"
+	Trimmed field "static final INTERNAL_URL_PROTOCOL" in class "org.eclipse.jdt.internal.jarinjarloader.JIJConstants"
+	Trimmed field "static final INTERNAL_URL_PROTOCOL_WITH_COLON" in class "org.eclipse.jdt.internal.jarinjarloader.JIJConstants"
+	Trimmed field "static final JAR_INTERNAL_SEPARATOR" in class "org.eclipse.jdt.internal.jarinjarloader.JIJConstants"
+	Trimmed field "static final JAR_INTERNAL_URL_PROTOCOL_WITH_COLON" in class "org.eclipse.jdt.internal.jarinjarloader.JIJConstants"
+	Trimmed field "static final MAIN_METHOD_NAME" in class "org.eclipse.jdt.internal.jarinjarloader.JIJConstants"
+	Trimmed field "static final PATH_SEPARATOR" in class "org.eclipse.jdt.internal.jarinjarloader.JIJConstants"
+	Trimmed field "static final REDIRECTED_CLASS_PATH_MANIFEST_NAME" in class "org.eclipse.jdt.internal.jarinjarloader.JIJConstants"
+	Trimmed field "static final REDIRECTED_MAIN_CLASS_MANIFEST_NAME" in class "org.eclipse.jdt.internal.jarinjarloader.JIJConstants"
+	Trimmed field "static final UTF8_ENCODING" in class "org.eclipse.jdt.internal.jarinjarloader.JIJConstants"
+	Using 'C:\Users\cyberpwn\Documents\development\workspace\React6\compile\defaultExclude.txt' for default exclusions
