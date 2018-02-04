@@ -19,6 +19,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.cyberpwn.gconcurrent.A;
 import org.cyberpwn.gconcurrent.TICK;
+import org.cyberpwn.gformat.F;
 import org.cyberpwn.glang.Callback;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
@@ -28,7 +29,9 @@ import org.spigotmc.TickLimiter;
 
 import react.api.ActivationRangeType;
 import react.api.Flavor;
+import react.api.ReactPlayer;
 import react.api.SelectorPosition;
+import react.notification.Notification;
 import surge.nms.NMSX;
 import surge.sched.TaskLater;
 import surge.util.C;
@@ -345,6 +348,14 @@ public class Gate
 	{
 		String s = TXT.makeTag(C.AQUA, C.DARK_GRAY, C.GRAY, Info.CORE_NAME) + msg;
 		p.sendMessage(s);
+
+		return s;
+	}
+
+	public static String msg(ReactPlayer p, Notification n)
+	{
+		String s = TXT.makeTag(C.AQUA, C.DARK_GRAY, C.GRAY, Info.CORE_NAME + " - " + C.WHITE + F.capitalizeWords(n.getType().toString().toLowerCase())) + n.getMessage();
+		p.getP().sendMessage(s);
 
 		return s;
 	}

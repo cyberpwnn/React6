@@ -5,27 +5,28 @@ import org.bukkit.entity.Player;
 import org.cyberpwn.glang.GList;
 
 import react.Gate;
+import react.Lang;
 import react.action.source.IActionSource;
 import surge.util.C;
 import surge.util.Protocol;
 
 public class Capability
 {
-	public static final Capability DUAL_WEILD = new Capability("Dual Wielding", Protocol.R1_9);
-	public static final Capability SCOREBOARD = new Capability("Scoreboards", Protocol.B1_5);
-	public static final Capability SCOREBOARD_ADVANCED = new Capability("Advanced Scoreboards", Protocol.R1_8);
-	public static final Capability HOPPER = new Capability("Hoppers", Protocol.B1_5);
-	public static final Capability ENTITY_ATTRIBUTES = new Capability("Entity Attributes", Protocol.R1_12);
-	public static final Capability ENTITY_AI = new Capability("Entity AI", Protocol.R1_9);
-	public static final Capability ACTION_BAR = new Capability("Action Bars", Protocol.R1_8);
-	public static final Capability ENTITY_NAMES = new Capability("Entity Naming", Protocol.R1_8);
-	public static final Capability TITLE_BAR = new Capability("Title Bar", Protocol.R1_8);
-	public static final Capability CHUNK_RELIGHTING = new Capability("Chunk Relighting", "FastAsyncWorldEdit");
-	public static final Capability MONITOR_SUBMISSIVENESS = new Capability("Monitor Submissiveness", Protocol.R1_7_1, "ProtocolLib");
-	public static final Capability ACCELERATED_PING = new Capability("Accelerated Ping", Protocol.R1_7_1, "ProtocolLib");
-	public static final Capability ENTITY_THROTTLING = new Capability("Entity Throttling", Protocol.R1_8, Flavor.SOGGY_SPIGOT);
-	public static final Capability TILE_THROTTLING = new Capability("Tile Throttling", Protocol.R1_8, Flavor.SOGGY_SPIGOT);
-	public static final Capability PASSENGERS = new Capability("Entity Passengers", Protocol.R1_11);
+	public static final Capability DUAL_WEILD = new Capability(Lang.getString("react.capabilities.dual-wield"), Protocol.R1_9); //$NON-NLS-1$
+	public static final Capability SCOREBOARD = new Capability(Lang.getString("react.capabilities.scoreboard"), Protocol.B1_5); //$NON-NLS-1$
+	public static final Capability SCOREBOARD_ADVANCED = new Capability(Lang.getString("react.capabilities.adv-scoreboard"), Protocol.R1_8); //$NON-NLS-1$
+	public static final Capability HOPPER = new Capability(Lang.getString("react.capabilities.hopper"), Protocol.B1_5); //$NON-NLS-1$
+	public static final Capability ENTITY_ATTRIBUTES = new Capability(Lang.getString("react.capabilities.entity-att"), Protocol.R1_12); //$NON-NLS-1$
+	public static final Capability ENTITY_AI = new Capability(Lang.getString("react.capabilities.entity-ai"), Protocol.R1_9); //$NON-NLS-1$
+	public static final Capability ACTION_BAR = new Capability(Lang.getString("react.capabilities.action-bars"), Protocol.R1_8); //$NON-NLS-1$
+	public static final Capability ENTITY_NAMES = new Capability(Lang.getString("react.capabilities.entity-naming"), Protocol.R1_8); //$NON-NLS-1$
+	public static final Capability TITLE_BAR = new Capability(Lang.getString("react.capabilities.title-bar"), Protocol.R1_8); //$NON-NLS-1$
+	public static final Capability CHUNK_RELIGHTING = new Capability(Lang.getString("react.capabilities.chunk-relighting"), Lang.getString("react.capabilities.fawe")); //$NON-NLS-1$ //$NON-NLS-2$
+	public static final Capability MONITOR_SUBMISSIVENESS = new Capability(Lang.getString("react.capabilities.monitor-submissive"), Protocol.R1_7_1, Lang.getString("react.capabilities.proto")); //$NON-NLS-1$ //$NON-NLS-2$
+	public static final Capability ACCELERATED_PING = new Capability(Lang.getString("react.capabilities.ping"), Protocol.R1_7_1, Lang.getString("react.capabilities.proto")); //$NON-NLS-1$ //$NON-NLS-2$
+	public static final Capability ENTITY_THROTTLING = new Capability(Lang.getString("react.capabilities.throttling"), Protocol.R1_8, Flavor.SOGGY_SPIGOT); //$NON-NLS-1$
+	public static final Capability TILE_THROTTLING = new Capability(Lang.getString("react.capabilities.tile-throttling"), Protocol.R1_8, Flavor.SOGGY_SPIGOT); //$NON-NLS-1$
+	public static final Capability PASSENGERS = new Capability(Lang.getString("react.capabilities.passengers"), Protocol.R1_11); //$NON-NLS-1$
 	public static final GList<Capability> capabilities = new GList<Capability>();
 
 	static
@@ -134,17 +135,17 @@ public class Capability
 	{
 		if(!this.isFlavorCapable())
 		{
-			Gate.msgError(sender, C.RED + this.getName() + C.GRAY + " (requires " + C.WHITE + this.getFlavor().fancyName() + C.GRAY + ")");
+			Gate.msgError(sender, C.RED + this.getName() + C.GRAY + Lang.getString("react.capabilities.requires") + C.WHITE + this.getFlavor().fancyName() + C.GRAY + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 		else if(!this.isPluginCapable())
 		{
-			Gate.msgError(sender, C.RED + this.getName() + C.GRAY + " (requires " + C.WHITE + this.getPlugin() + C.GRAY + ")");
+			Gate.msgError(sender, C.RED + this.getName() + C.GRAY + Lang.getString("react.capabilities.requires") + C.WHITE + this.getPlugin() + C.GRAY + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 		else if(!this.isVersionCapable())
 		{
-			Gate.msgError(sender, C.RED + this.getName() + C.GRAY + " (requires " + C.WHITE + this.getVersion().getVersionString() + "+" + C.GRAY + ")");
+			Gate.msgError(sender, C.RED + this.getName() + C.GRAY + Lang.getString("react.capabilities.requires") + C.WHITE + this.getVersion().getVersionString() + "+" + C.GRAY + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 	}
 
@@ -152,17 +153,17 @@ public class Capability
 	{
 		if(!this.isFlavorCapable())
 		{
-			source.sendResponseError(C.RED + this.getName() + C.GRAY + " (requires " + C.WHITE + this.getFlavor().fancyName() + C.GRAY + ")");
+			source.sendResponseError(C.RED + this.getName() + C.GRAY + Lang.getString("react.capabilities.requires") + C.WHITE + this.getFlavor().fancyName() + C.GRAY + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 		else if(!this.isPluginCapable())
 		{
-			source.sendResponseError(C.RED + this.getName() + C.GRAY + " (requires " + C.WHITE + this.getPlugin() + C.GRAY + ")");
+			source.sendResponseError(C.RED + this.getName() + C.GRAY + Lang.getString("react.capabilities.requires") + C.WHITE + this.getPlugin() + C.GRAY + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 		else if(!this.isVersionCapable())
 		{
-			source.sendResponseError(C.RED + this.getName() + C.GRAY + " (requires " + C.WHITE + this.getVersion().getVersionString() + "+" + C.GRAY + ")");
+			source.sendResponseError(C.RED + this.getName() + C.GRAY + Lang.getString("react.capabilities.requires") + C.WHITE + this.getVersion().getVersionString() + "+" + C.GRAY + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 	}
 }

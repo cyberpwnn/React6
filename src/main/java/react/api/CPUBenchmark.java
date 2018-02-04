@@ -5,6 +5,7 @@ import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.gformat.F;
 
 import react.Gate;
+import react.Lang;
 import surge.util.C;
 
 public class CPUBenchmark extends Thread
@@ -19,7 +20,7 @@ public class CPUBenchmark extends Thread
 		this.score = 0;
 		setPriority(MAX_PRIORITY);
 		onFinish = null;
-		setName("Surge CPU Benchmark");
+		setName("Surge CPU Benchmark"); //$NON-NLS-1$
 	}
 
 	public CPUBenchmark(CommandSender sender, Runnable callb)
@@ -36,7 +37,7 @@ public class CPUBenchmark extends Thread
 			@Override
 			public void run()
 			{
-				Gate.msgSuccess(sender, "Benchmarking CPU for ~" + F.time(1268 * 19, 0));
+				Gate.msgSuccess(sender, Lang.getString("react.bench.benchmarking-for") + F.time(1268 * 19, 0)); //$NON-NLS-1$
 			}
 		};
 
@@ -64,7 +65,7 @@ public class CPUBenchmark extends Thread
 			}
 		}
 
-		if(!this.getClass().getSimpleName().equals("CPUBenchmark"))
+		if(!this.getClass().getSimpleName().equals("CPUBenchmark")) //$NON-NLS-1$
 		{
 			score = (int) (7.14285 * score);
 		}
@@ -79,8 +80,8 @@ public class CPUBenchmark extends Thread
 			@Override
 			public void run()
 			{
-				Gate.msgSuccess(sender, "CPU Score: " + score);
-				Gate.msgSuccess(sender, "Looks like it's a " + C.WHITE + CPUResult.c(score) + " CPU");
+				Gate.msgSuccess(sender, Lang.getString("react.bench.cpu-score") + score); //$NON-NLS-1$
+				Gate.msgSuccess(sender, Lang.getString("react.bench.looks-like-its") + C.WHITE + CPUResult.c(score) + Lang.getString("react.bench.cpu")); //$NON-NLS-1$ //$NON-NLS-2$
 
 				if(onFinish != null)
 				{

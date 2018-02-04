@@ -7,6 +7,7 @@ import org.cyberpwn.gmath.M;
 
 import react.action.source.IActionSource;
 import react.action.source.RAIActionSource;
+import react.notification.Note;
 
 public class RAI implements IRAI
 {
@@ -64,6 +65,11 @@ public class RAI implements IRAI
 				for(IActionSource j : getListeners())
 				{
 					j.sendResponseActing(i.toString());
+				}
+
+				if(RAIEventType.FIRE_ACTION.equals(i.getType()))
+				{
+					Note.RAI.bake(i.getOvt());
 				}
 			}
 		}

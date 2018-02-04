@@ -55,7 +55,7 @@ public class Info
 	public static String COMMAND_MONITOR_ALIAS_2 = "m"; //$NON-NLS-1$
 	public static String COMMAND_MONITOR_USAGE = "(toggle)"; //$NON-NLS-1$
 
-	public static String COMMAND_ENV_DESCRIPTION = "Retrieve Server environment information.";
+	public static String COMMAND_ENV_DESCRIPTION = Lang.getString("command.description.env"); //$NON-NLS-1$
 	public static String COMMAND_ENV = "environment"; //$NON-NLS-1$
 	public static String COMMAND_ENV_ALIAS_1 = "env"; //$NON-NLS-1$
 	public static String COMMAND_ENV_ALIAS_2 = "ev"; //$NON-NLS-1$
@@ -85,6 +85,18 @@ public class Info
 	public static String COMMAND_GLASS_ALIAS_2 = "gg"; //$NON-NLS-1$
 	public static String COMMAND_GLASS_USAGE = "(toggle)"; //$NON-NLS-1$
 
+	public static String COMMAND_SUB_DESCRIPTION = Lang.getString("command.description.sub"); //$NON-NLS-1$
+	public static String COMMAND_SUB = "subscribe"; //$NON-NLS-1$
+	public static String COMMAND_SUB_ALIAS_1 = "sub"; //$NON-NLS-1$
+	public static String COMMAND_SUB_ALIAS_2 = "su"; //$NON-NLS-1$
+	public static String COMMAND_SUB_USAGE = "[channel]"; //$NON-NLS-1$
+
+	public static String COMMAND_USUB_DESCRIPTION = Lang.getString("command.description.unsub"); //$NON-NLS-1$
+	public static String COMMAND_USUB = "unsubscribe"; //$NON-NLS-1$
+	public static String COMMAND_USUB_ALIAS_1 = "unsub"; //$NON-NLS-1$
+	public static String COMMAND_USUB_ALIAS_2 = "usu"; //$NON-NLS-1$
+	public static String COMMAND_USUB_USAGE = "[channel]"; //$NON-NLS-1$
+
 	public static String COMMAND_CBLAME_DESCRIPTION = "Compiles a list of total chunk loads, with who loaded them (plugin or player)"; //$NON-NLS-1$
 	public static String COMMAND_CBLAME = "chunk-blame"; //$NON-NLS-1$
 	public static String COMMAND_CBLAME_ALIAS_1 = "cblame"; //$NON-NLS-1$
@@ -97,7 +109,7 @@ public class Info
 	public static String COMMAND_ACTIONLOG_ALIAS_2 = "al"; //$NON-NLS-1$
 	public static String COMMAND_ACTIONLOG_USAGE = "(toggle)"; //$NON-NLS-1$
 
-	public static String COMMAND_CAPABILITIES_DESCRIPTION = "Checks react's capabilities and what features work.";
+	public static String COMMAND_CAPABILITIES_DESCRIPTION = Lang.getString("command.description.cap"); //$NON-NLS-1$
 	public static String COMMAND_CAPABILITIES = "capabilities"; //$NON-NLS-1$
 	public static String COMMAND_CAPABILITIES_ALIAS_1 = "cap"; //$NON-NLS-1$
 	public static String COMMAND_CAPABILITIES_ALIAS_2 = "ca"; //$NON-NLS-1$
@@ -126,6 +138,7 @@ public class Info
 	public static String STATE_MONITORING_TAB = "monitor.tab"; //$NON-NLS-1$
 	public static String STATE_MONITORING_ENABLED = "monitor.enabled"; //$NON-NLS-1$
 	public static String STATE_MONITORING_HIGH = "monitor.high"; //$NON-NLS-1$
+	public static String STATE_CHANNELS = "player.channels"; //$NON-NLS-1$
 	public static String STATE_ACTIONLOGGING_ENABLED = "actionlogging.enabled"; //$NON-NLS-1$
 	public static String STATE_MAPPING_ENABLED = "map.enabled"; //$NON-NLS-1$
 	public static String STATE_SOUND_PLAYS = "player.sound-buffer"; //$NON-NLS-1$
@@ -165,7 +178,7 @@ public class Info
 	public static String SAMPLER_ENTITY_DROPTICK = Lang.getString("sampler.name.entity-drop-tick"); //$NON-NLS-1$
 	public static String SAMPLER_REDSTONE_SECOND = Lang.getString("sampler.name.redstone.second"); //$NON-NLS-1$
 	public static String SAMPLER_REDSTONE_TIME = Lang.getString("sampler.name.redstone-time"); //$NON-NLS-1$
-	public static String SAMPLER_PHYSICS_TIME = "Physics MS";
+	public static String SAMPLER_PHYSICS_TIME = Lang.getString("sampler.name.physics-time"); //$NON-NLS-1$
 	public static String SAMPLER_HOPPER_TICK_USAGE = Lang.getString("sampler.name.hopper-utilization"); //$NON-NLS-1$
 	public static String SAMPLER_HOPPER_TICK = Lang.getString("sampler.name.hopper-tick"); //$NON-NLS-1$
 	public static String SAMPLER_HOPPER_SECOND = Lang.getString("sampler.name.hopper-second"); //$NON-NLS-1$

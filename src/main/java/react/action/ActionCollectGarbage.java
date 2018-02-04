@@ -5,6 +5,7 @@ import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.gformat.F;
 
 import react.Info;
+import react.Lang;
 import react.action.source.IActionSource;
 import react.api.Action;
 import react.api.ActionType;
@@ -24,7 +25,7 @@ public class ActionCollectGarbage extends Action
 	@Override
 	public void enact(IActionSource source, ISelector... selectors)
 	{
-		source.sendResponseActing("Collecting Garbage");
+		source.sendResponseActing(Lang.getString("react.action.collect-garbagecollecting-garbage")); //$NON-NLS-1$
 
 		new A()
 		{
@@ -45,12 +46,12 @@ public class ActionCollectGarbage extends Action
 
 						if(freed > 0)
 						{
-							source.sendResponseSuccess("Collected " + F.memSize(freed) + " of garbage.");
+							source.sendResponseSuccess(Lang.getString("react.action.collect-garbagecollected") + F.memSize(freed) + Lang.getString("react.action.collect-garbageof-garbage")); //$NON-NLS-1$ //$NON-NLS-2$
 						}
 
 						else
 						{
-							source.sendResponseError("Could not free a measurable amount of memory.");
+							source.sendResponseError(Lang.getString("react.action.collect-garbageno-free")); //$NON-NLS-1$
 						}
 
 						completeAction();

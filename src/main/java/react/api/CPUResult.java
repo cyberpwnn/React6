@@ -1,15 +1,17 @@
 package react.api;
 
+import react.Lang;
+
 public enum CPUResult
 {
-	ULTRA_SLOW("Ultra Slow"), // Under 100
-	VERY_SLOW("Very Slow"), // Over 100
-	SLOW("Slow"), // Over 800
-	AVERAGE("Average"), // Over 1100
-	GOOD("Good"), // Over 1350
-	FAST("Fast"), // Over 1500
-	VERY_FAST("Very Fast"), // Over 1700
-	ULTRA_FAST("Ultra Fast"); // Over 2000!
+	ULTRA_SLOW(Lang.getString("react.bench.score-type.ultra-slow")), // Under 100 //$NON-NLS-1$
+	VERY_SLOW(Lang.getString("react.bench.score-type.very-slow")), // Over 100 //$NON-NLS-1$
+	SLOW(Lang.getString("react.bench.score-type.slow")), // Over 800 //$NON-NLS-1$
+	AVERAGE(Lang.getString("react.bench.score-type.avg")), // Over 1100 //$NON-NLS-1$
+	GOOD(Lang.getString("react.bench.score-type.good")), // Over 1350 //$NON-NLS-1$
+	FAST(Lang.getString("react.bench.score-type.fast")), // Over 1500 //$NON-NLS-1$
+	VERY_FAST(Lang.getString("react.bench.score-type.very-fast")), // Over 1700 //$NON-NLS-1$
+	ULTRA_FAST(Lang.getString("react.bench.score-type.pcmr")); // Over 2000! //$NON-NLS-1$
 
 	private String m;
 

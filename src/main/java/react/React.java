@@ -17,6 +17,7 @@ import react.controller.GraphController;
 import react.controller.HopperController;
 import react.controller.HopperOvertickController;
 import react.controller.LanguageController;
+import react.controller.MessageController;
 import react.controller.MonitorController;
 import react.controller.PhysicsController;
 import react.controller.PlayerController;
@@ -128,6 +129,9 @@ public class React
 	@Control
 	public WorldController worldController;
 
+	@Control
+	public MessageController messageController;
+
 	@Enable
 	public void enable()
 	{
@@ -136,7 +140,7 @@ public class React
 			@Override
 			public void run()
 			{
-				new AccessActionSource().sendResponseActing("Reinstancing from updated jar");
+				new AccessActionSource().sendResponseActing(Lang.getString("react.reinstance-jar")); //$NON-NLS-1$
 			}
 		});
 	}

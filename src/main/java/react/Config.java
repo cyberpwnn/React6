@@ -656,7 +656,7 @@ public class Config
 	@Sector(73)
 	@Experimental
 	@Injection(InjectionMethod.SWAP)
-	public static boolean RAI_REDSTONE_TIME_PROPIGATE = true;
+	public static boolean RAI_REDSTONE_TIME_PROPIGATE = false;
 
 	@Sector(74)
 	@Injection(InjectionMethod.SWAP)

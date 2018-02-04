@@ -13,6 +13,7 @@ import react.Lang;
 import react.React;
 import react.api.Async;
 import react.api.Unused;
+import react.notification.Note;
 import surge.Surge;
 import surge.control.Controller;
 import surge.sched.IMasterTickComponent;
@@ -99,6 +100,7 @@ public class SpikeController extends Controller implements IMasterTickComponent
 						}
 
 						spikes.put(j, spikes.get(j) + 1);
+						Note.SPIKES.bake("Spike -> " + j + " (" + spikes.get(j) + " time" + (spikes.get(j) == 1 ? "" : "s") + ")");
 					}
 				}
 			}

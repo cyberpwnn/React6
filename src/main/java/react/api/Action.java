@@ -6,6 +6,7 @@ import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
 import react.Config;
+import react.Lang;
 import react.action.source.ActionHandle;
 import react.action.source.IActionSource;
 
@@ -33,7 +34,7 @@ public abstract class Action implements IAction
 		this.name = name;
 		this.description = description;
 		this.handle = handle;
-		this.status = "";
+		this.status = ""; //$NON-NLS-1$
 		this.progress = 0;
 		this.state = ActionState.IDLE;
 		this.target = target;
@@ -168,7 +169,7 @@ public abstract class Action implements IAction
 
 				if(i.getPossibilities().isEmpty())
 				{
-					source.sendResponseError("Action failed. No chunks selected.");
+					source.sendResponseError(Lang.getString("react.action.no-chunks-failed")); //$NON-NLS-1$
 					completeAction();
 					return;
 				}
@@ -177,7 +178,7 @@ public abstract class Action implements IAction
 
 		if(d > 0)
 		{
-			source.sendResponseActing("Removed " + d + " chunk(s) from selection (blocked)");
+			source.sendResponseActing(Lang.getString("react.action.removed") + d + Lang.getString("react.action.chunks-from-selection-blocked")); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 		enact(source, biselect(selectors));

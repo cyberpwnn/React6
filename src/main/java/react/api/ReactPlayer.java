@@ -1,6 +1,8 @@
 package react.api;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.entity.Player;
 import org.cyberpwn.glang.GMap;
@@ -37,6 +39,7 @@ public class ReactPlayer implements IConfigurable
 		keystore.put(-413, Info.STATE_PLAYER_HEIGHT_CHANGING);
 		keystore.put(164, Info.STATE_GLASSES_ENABLED);
 		keystore.put(-1783, Info.STATE_MONITORING_HIGH);
+		keystore.put(-845, Info.STATE_CHANNELS);
 	}
 
 	@KeyPointer(-175)
@@ -81,6 +84,9 @@ public class ReactPlayer implements IConfigurable
 	@KeyPointer(841)
 	public double lastHeight = 0;
 
+	@KeyPointer(-845)
+	public List<String> channels = new ArrayList<String>();
+
 	@KeyPointer(-413)
 	public boolean heightMovement = false;
 
@@ -90,6 +96,11 @@ public class ReactPlayer implements IConfigurable
 	{
 		this.p = p;
 		load();
+	}
+
+	public boolean hasChannel(String s)
+	{
+		return channels.contains(s);
 	}
 
 	public void save()
@@ -131,6 +142,28 @@ public class ReactPlayer implements IConfigurable
 	public Player getP()
 	{
 		return p;
+	}
+
+	public void addChannel(String c)
+	{
+		channels.add(c);
+		React.instance.playerController.requestSave(getP(), false);
+	}
+
+	public void removeChannel(String c)
+	{
+		while(channels.contains(c))
+		{
+			channels.remove(c);
+		}
+
+		React.instance.playerController.requestSave(getP(), false);
+	}
+
+	public void removeAllChannels()
+	{
+		channels.clear();
+		React.instance.playerController.requestSave(getP(), false);
 	}
 
 	public void setMonitoring(boolean monitoring)
