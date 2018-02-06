@@ -198,4 +198,10 @@ public class ActionPurgeEntities extends Action
 			cb.run();
 		}
 	}
+
+	@Override
+	public String getNode()
+	{
+		return "react.act.purge-entities";
+	}
 }

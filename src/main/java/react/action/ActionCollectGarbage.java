@@ -60,4 +60,10 @@ public class ActionCollectGarbage extends Action
 			}
 		};
 	}
+
+	@Override
+	public String getNode()
+	{
+		return "react.act.gc";
+	}
 }

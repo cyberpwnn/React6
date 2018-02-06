@@ -101,4 +101,10 @@ public class ActionFixLighting extends Action
 			}
 		}
 	}
+
+	@Override
+	public String getNode()
+	{
+		return "react.act.fix-lighting";
+	}
 }

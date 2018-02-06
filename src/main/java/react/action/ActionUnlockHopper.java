@@ -82,4 +82,10 @@ public class ActionUnlockHopper extends Action
 			}
 		}
 	}
+
+	@Override
+	public String getNode()
+	{
+		return "react.act.unlock-hopper";
+	}
 }

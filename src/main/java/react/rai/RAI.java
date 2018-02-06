@@ -98,6 +98,16 @@ public class RAI implements IRAI
 
 		events.add(e);
 		logEvents.add(e);
+
+		while(events.size() > 100)
+		{
+			events.remove(0);
+		}
+
+		while(logEvents.size() > 100)
+		{
+			logEvents.remove(0);
+		}
 	}
 
 	@Override

@@ -154,4 +154,10 @@ public class ActionCullEntities extends Action
 		lcd = React.instance.entityCullController.cull(chunk);
 		cb.run();
 	}
+
+	@Override
+	public String getNode()
+	{
+		return "react.act.cull-entities";
+	}
 }

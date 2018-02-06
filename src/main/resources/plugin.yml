@@ -42,6 +42,51 @@ permissions:
   react.act:
     description: Gives access to use actions (all subtypes included)
     default: op
+    children:
+      react.act.gc: true
+      react.act.cull-entities: true
+      react.act.fix-lighting: true
+      react.act.lock-fluid: true
+      react.act.lock-hopper: true
+      react.act.lock-redstone: true
+      react.act.purge-chunks: true
+      react.act.purge-entities: true
+      react.act.unlock-fluid: true
+      react.act.unlock-hopper: true
+      react.act.unlock-redstone: true
+  react.act.gc:
+    description: Allows the use of /re act gc
+    default: op
+  react.act.cull-entities:
+    description: Allows the use of /re act cull-entities
+    default: op
+  react.act.fix-lighting:
+    description: Allows the use of /re act fix-lighting
+    default: op
+  react.act.lock-fluid:
+    description: Allows the use of /re act lock-fluid
+    default: op
+  react.act.lock-hopper:
+    description: Allows the use of /re act lock-hopper
+    default: op
+  react.act.lock-redstone:
+    description: Allows the use of /re act lock-redstone
+    default: op
+  react.act.purge-chunks:
+    description: Allows the use of /re act purge-chunks
+    default: op
+  react.act.purge-entities:
+    description: Allows the use of /re act purge-entities
+    default: op
+  react.act.unlock-fluid:
+    description: Allows the use of /re act unlock-fluid
+    default: op
+  react.act.unlock-hopper:
+    description: Allows the use of /re act unlock-hopper
+    default: op
+  react.act.unlock-redstone:
+    description: Allows the use of /re act unlock-redstone
+    default: op
   react.monitor.map:
     description: Gives access to use the map monitor
     default: op
@@ -60,9 +105,6 @@ permissions:
   react.monitor.chunkblame:
     description: Gives access to use react chunk blame tools
     default: op
-  react.access: 
-    description: Gives access to use react.
-    default: op
   react.rai.control: 
     description: Gives access to control rai
     default: op
@@ -71,6 +113,9 @@ permissions:
     default: op
   react.rai.access: 
     description: Gives access to rai
+    default: op
+  react.access: 
+    description: Gives access to use react.
     default: op
   react.reload: 
     description: Gives access to reload react.

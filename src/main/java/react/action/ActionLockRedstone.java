@@ -100,4 +100,10 @@ public class ActionLockRedstone extends Action
 		completeAction();
 		source.sendResponseSuccess(Lang.getString("action.lock-redstone.locked-in") + F.f(completed.get()) + Lang.getString("action.lock-redstone.chunk") + ((completed.get() > 1 || completed.get() == 0) ? "s" : "") + Lang.getString("action.lock-redstone.for") + F.time(timeFor, 1)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 	}
+
+	@Override
+	public String getNode()
+	{
+		return "react.act.lock-redstone";
+	}
 }

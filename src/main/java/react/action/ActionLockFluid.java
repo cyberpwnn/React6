@@ -101,4 +101,10 @@ public class ActionLockFluid extends Action
 		completeAction();
 		source.sendResponseSuccess(Lang.getString("action.lock-fluid.locked-in") + F.f(completed.get()) + Lang.getString("action.lock-fluid.chunk") + ((completed.get() > 1 || completed.get() == 0) ? "s" : "") + Lang.getString("action.lock-fluid.for") + F.time(timeFor, 1)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 	}
+
+	@Override
+	public String getNode()
+	{
+		return "react.act.lock-fluid";
+	}
 }

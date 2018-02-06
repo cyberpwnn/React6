@@ -18,6 +18,7 @@ import react.controller.HopperController;
 import react.controller.HopperOvertickController;
 import react.controller.LanguageController;
 import react.controller.MessageController;
+import react.controller.MetricsController;
 import react.controller.MonitorController;
 import react.controller.PhysicsController;
 import react.controller.PlayerController;
@@ -132,17 +133,12 @@ public class React
 	@Control
 	public MessageController messageController;
 
-	boolean aeternum1 = false;
-	boolean aeternum2 = false;
+	@Control
+	public MetricsController metricsController;
 
 	@Enable
 	public void enable()
 	{
-		if(aeternum1 && aeternum2)
-		{
-			System.out.println("Congratulations! You cracked react!");
-		}
-
 		Surge.getAmp().setOnReload(new Runnable()
 		{
 			@Override

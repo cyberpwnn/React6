@@ -16,6 +16,7 @@ import react.action.source.ActionHandle;
 import react.action.source.ConsoleActionSource;
 import react.action.source.IActionSource;
 import react.action.source.PlayerActionSource;
+import react.api.Action;
 import react.api.ActionState;
 import react.api.ActionType;
 import react.api.IAction;
@@ -95,6 +96,12 @@ public class CommandAct extends ReactCommand
 		if(action == null)
 		{
 			Gate.msg(sender, Lang.getString("command.act.unknown-action") + C.RED + tag); //$NON-NLS-1$
+			return;
+		}
+
+		if(!sender.hasPermission(((Action) action).getNode()))
+		{
+			f(sender, Info.MSG_PERMISSION);
 			return;
 		}
 
@@ -375,5 +382,10 @@ public class CommandAct extends ReactCommand
 		end = getSortedCommands().getIndexOrLast(end);
 
 		return getSortedCommands().grepExplicit(start, end);
+	}
+
+	public void f(CommandSender s, String msg)
+	{
+		Gate.msgError(s, C.RED + msg);
 	}
 }

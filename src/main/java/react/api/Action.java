@@ -44,6 +44,8 @@ public abstract class Action implements IAction
 		nodes = new String[0];
 	}
 
+	public abstract String getNode();
+
 	@Override
 	public ISelector[] biselect(ISelector... selectors)
 	{

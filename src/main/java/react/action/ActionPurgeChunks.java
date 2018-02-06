@@ -162,4 +162,10 @@ public class ActionPurgeChunks extends Action
 			}
 		};
 	}
+
+	@Override
+	public String getNode()
+	{
+		return "react.act.purge-chunks";
+	}
 }

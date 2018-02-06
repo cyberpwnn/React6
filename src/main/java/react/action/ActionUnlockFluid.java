@@ -82,4 +82,10 @@ public class ActionUnlockFluid extends Action
 			}
 		}
 	}
+
+	@Override
+	public String getNode()
+	{
+		return "react.act.unlock-fluid";
+	}
 }

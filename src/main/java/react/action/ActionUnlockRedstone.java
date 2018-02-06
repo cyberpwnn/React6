@@ -82,4 +82,10 @@ public class ActionUnlockRedstone extends Action
 			}
 		}
 	}
+
+	@Override
+	public String getNode()
+	{
+		return "react.act.unlock-redstone";
+	}
 }
