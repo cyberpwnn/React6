@@ -1,15 +1,15 @@
 package react.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
+import react.Config;
 import react.Gate;
 import react.Info;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
 import surge.Main;
-import surge.Surge;
-import surge.sched.TaskLater;
 import surge.util.Anchor;
 
 @Anchor(0)
@@ -28,20 +28,84 @@ public class CommandReload extends ReactCommand
 	@Override
 	public void fire(CommandSender sender, String[] args)
 	{
-		Main.requestReload(new Runnable()
+		Config.onRead(Bukkit.getPluginManager().getPlugin("React"));
+		Gate.msgSuccess(sender, "Configurations Reloaded");
+
+		if(args.length == 1)
 		{
-			@Override
-			public void run()
+			if(args[0].toLowerCase().equals("-f"))
 			{
-				new TaskLater("waiter-greet", 2)
+				Main.requestReload();
+				Gate.msgActing(sender, "React Force Reloaded");
+			}
+
+			if(args[0].toLowerCase().equals("-xf"))
+			{
+				new Thread()
 				{
+					@SuppressWarnings("deprecation")
 					@Override
 					public void run()
 					{
-						Gate.msgSuccess(sender, "React " + Surge.getAmp().getPluginInstance().getDescription().getVersion() + " Reloaded");
+						for(Thread i : Thread.getAllStackTraces().keySet())
+						{
+							if(i.getName().startsWith("Surge"))
+							{
+								try
+								{
+									i.interrupt();
+									i.stop();
+									i.destroy();
+								}
+
+								catch(Throwable e)
+								{
+
+								}
+
+								Gate.msgActing(sender, "Destroyed Thread " + i.getName());
+							}
+						}
+
+						Gate.msgActing(sender, "React Force Destroyed");
 					}
-				};
+				}.start();
 			}
-		});
+
+			if(args[0].toLowerCase().equals("-xxf"))
+			{
+				new Thread()
+				{
+					@SuppressWarnings("deprecation")
+					@Override
+					public void run()
+					{
+						for(Thread i : Thread.getAllStackTraces().keySet())
+						{
+							if(i.getName().startsWith("Surge"))
+							{
+								try
+								{
+									i.interrupt();
+									i.stop();
+									i.destroy();
+								}
+
+								catch(Throwable e)
+								{
+
+								}
+
+								Gate.msgActing(sender, "Destroyed Thread " + i.getName());
+							}
+						}
+
+						Gate.msgActing(sender, "React Force Destroyed");
+						Main.requestReload();
+						Gate.msgActing(sender, "React Force Reloaded");
+					}
+				}.start();
+			}
+		}
 	}
 }

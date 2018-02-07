@@ -1,5 +1,5 @@
 name: ${react.plugin.name}
-version: ${react.plugin.version}
+version: ${project.version}
 main: ${react.plugin.main}
 authors: [cyberpwn, Puretie]
 load: STARTUP

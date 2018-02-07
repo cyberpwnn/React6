@@ -220,6 +220,21 @@ public class CommandController extends Controller implements Listener, CommandEx
 				return true;
 			}
 
+			if(a.length == 1 && a[0].length() == 1 && Character.isDigit(a[0].charAt(0)))
+			{
+				try
+				{
+					Integer ii = Integer.valueOf(a[0]);
+					onCommand(plr ? px : s, c, n, new String[] {"?", ii + ""}); //$NON-NLS-1$
+					return true;
+				}
+
+				catch(Exception e)
+				{
+
+				}
+			}
+
 			ICommand cmd = null;
 
 			for(ICommand i : commands)

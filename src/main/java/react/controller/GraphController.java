@@ -15,6 +15,7 @@ import org.cyberpwn.gconcurrent.A;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
+import react.Config;
 import react.Gate;
 import react.Lang;
 import react.React;
@@ -54,8 +55,7 @@ public class GraphController extends Controller
 
 		for(SampledType i : SampledType.values())
 		{
-			int v = 20000;
-
+			int v = Config.SAMPLE_VIEWPORT;
 			GraphSampleLine graph = new GraphSampleLine(i.get(), i.get().getFormatter(), v);
 			int r = C.chatToDye(i.get().getColor().chatColor()).getColor().asRGB();
 			graph.setGraphColor(FrameColor.matchColor(new Color(r)));

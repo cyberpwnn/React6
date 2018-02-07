@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.volmit</groupId>
 	<artifactId>React</artifactId>
-	<version>6.0.42</version>
+	<version>6.0.48</version>
 	<name>React</name>
 	<description>A performance plugin</description>
 	<properties>
@@ -17,7 +17,7 @@
 		<react.plugin.name>${project.name}</react.plugin.name>
 		<react.plugin.version>${project.version}</react.plugin.version>
 		<react.plugin.description>${project.description}</react.plugin.description>
-		<react.plugin.main>react.surge.Main</react.plugin.main>
+		<react.plugin.main>surge.Main</react.plugin.main>
 		<react.plugin.authors>cyberpwn</react.plugin.authors>
 		<react.release.name>${project.name}-${project.version}</react.release.name>
 		<react.target>${project.basedir}/target</react.target>
@@ -95,10 +95,6 @@
 								<relocation>
 									<pattern>org.cyberpwn.json</pattern>
 									<shadedPattern>react.json</shadedPattern>
-								</relocation>
-								<relocation>
-									<pattern>surge</pattern>
-									<shadedPattern>react.surge</shadedPattern>
 								</relocation>
 								<relocation>
 									<pattern>org.cyberpwn.gnet</pattern>
@@ -214,8 +210,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.cyberpwn</groupId>
-			<artifactId>Surge</artifactId>
-			<version>2.4.2</version>
+			<artifactId>JSON</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cyberpwn</groupId>
+			<artifactId>GConcurrent</artifactId>
+			<version>1.5.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.cyberpwn</groupId>

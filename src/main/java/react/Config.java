@@ -48,10 +48,9 @@ public class Config
 	public static final String A_COMMANDOVERRIDE_TPS = "command-overrides.tps";
 
 	@Address(3)
-	public static final String A_REACT_REMOTE_PORT = "react-remote.port";
+	public static final String A_SAMPLE_VIEWPORT = "sampler.sample-viewport";
 
-	@Address(4)
-	public static final String A_REACT_REMOTE_ENABLED = "react-remote.enabled";
+	// @Address(4)
 
 	@Address(5)
 	public static final String A_ENTITY_STACK_MAX_COUNT = "entity-stacker.max-stack-size";
@@ -277,13 +276,11 @@ public class Config
 	public static boolean COMMANDOVERRIDES_TPS = true;
 
 	@Sector(3)
-	@Injection(InjectionMethod.RELOAD)
-	@Clip(min = 1000, max = 10000)
-	public static int REACT_REMOTE_PORT = 7331;
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 6000, max = 30000)
+	public static int SAMPLE_VIEWPORT = 6000;
 
-	@Sector(4)
-	@Injection(InjectionMethod.RELOAD)
-	public static boolean REACT_REMOTE_ENABLED = false;
+	// @Sector(4)
 
 	@Sector(5)
 	@Injection(InjectionMethod.SWAP)
@@ -292,10 +289,10 @@ public class Config
 
 	@Sector(6)
 	@Injection(InjectionMethod.RELOAD)
-	@Clip(min = 2, max = 6)
+	@Clip(min = 1, max = 2)
 	@PoolCount
 	@Experimental
-	public static int POOL_MAXTHREADS = 2;
+	public static int POOL_MAXTHREADS = 1;
 
 	@Sector(7)
 	@Injection(InjectionMethod.SUBSTRATE)

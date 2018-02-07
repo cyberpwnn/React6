@@ -24,7 +24,6 @@ import react.controller.PhysicsController;
 import react.controller.PlayerController;
 import react.controller.RAIController;
 import react.controller.RedstoneController;
-import react.controller.RemoteController;
 import react.controller.SampleController;
 import react.controller.SecurityController;
 import react.controller.SmearTickController;
@@ -37,6 +36,7 @@ import surge.control.Disable;
 import surge.control.Enable;
 import surge.control.Instance;
 import surge.control.Plugin;
+import surge.util.D;
 import surge.util.Persist;
 
 @Plugin
@@ -122,9 +122,6 @@ public class React
 	public LanguageController languageController;
 
 	@Control
-	public RemoteController remoteController;
-
-	@Control
 	public ExplosiveController explosiveController;
 
 	@Control
@@ -147,6 +144,12 @@ public class React
 				new AccessActionSource().sendResponseActing(Lang.getString("react.reinstance-jar")); //$NON-NLS-1$
 			}
 		});
+
+		if(React.instance == null)
+		{
+			D.f("Instance null, fixing");
+			React.instance = this;
+		}
 	}
 
 	@Disable

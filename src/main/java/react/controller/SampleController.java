@@ -21,13 +21,11 @@ import surge.util.D;
 public class SampleController extends Controller implements IMasterTickComponent
 {
 	private GMap<String, ISampler> samplers;
-	private SuperSampler ss;
 	private int cd;
 
 	public SampleController()
 	{
 		samplers = new GMap<String, ISampler>();
-		ss = new SuperSampler();
 		constructSamplers();
 		cd = 4;
 	}
@@ -132,7 +130,6 @@ public class SampleController extends Controller implements IMasterTickComponent
 	@Override
 	public void start()
 	{
-		ss.start();
 		Surge.register(this);
 		Surge.registerTicked(this);
 	}
@@ -140,7 +137,6 @@ public class SampleController extends Controller implements IMasterTickComponent
 	@Override
 	public void stop()
 	{
-		ss.stop();
 		Surge.unregister(this);
 		Surge.unregisterTicked(this);
 	}
@@ -153,7 +149,7 @@ public class SampleController extends Controller implements IMasterTickComponent
 
 	public SuperSampler getSuperSampler()
 	{
-		return ss;
+		return Main.getSuperSampler();
 	}
 
 	@Override
@@ -196,7 +192,7 @@ public class SampleController extends Controller implements IMasterTickComponent
 
 	public SuperSampler getSs()
 	{
-		return ss;
+		return Main.getSuperSampler();
 	}
 
 	public int getCd()
