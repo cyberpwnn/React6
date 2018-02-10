@@ -53,13 +53,13 @@ public class Info
 	public static String COMMAND_MONITOR = "monitor"; //$NON-NLS-1$
 	public static String COMMAND_MONITOR_ALIAS_1 = "mon"; //$NON-NLS-1$
 	public static String COMMAND_MONITOR_ALIAS_2 = "m"; //$NON-NLS-1$
-	public static String COMMAND_MONITOR_USAGE = "(toggle)"; //$NON-NLS-1$
+	public static String COMMAND_MONITOR_USAGE = "(toggle) [options]"; //$NON-NLS-1$
 
 	public static String COMMAND_ENV_DESCRIPTION = Lang.getString("command.description.env"); //$NON-NLS-1$
 	public static String COMMAND_ENV = "environment"; //$NON-NLS-1$
 	public static String COMMAND_ENV_ALIAS_1 = "env"; //$NON-NLS-1$
 	public static String COMMAND_ENV_ALIAS_2 = "ev"; //$NON-NLS-1$
-	public static String COMMAND_ENV_USAGE = "(toggle)"; //$NON-NLS-1$
+	public static String COMMAND_ENV_USAGE = ""; //$NON-NLS-1$
 
 	public static String COMMAND_VERSION_DESCRIPTION = "Get react's version"; //$NON-NLS-1$
 	public static String COMMAND_VERSION = "version"; //$NON-NLS-1$
@@ -74,8 +74,8 @@ public class Info
 	public static String COMMAND_MAP_USAGE = "(toggle)"; //$NON-NLS-1$
 
 	public static String COMMAND_TOPCHUNK_DESCRIPTION = "Shows a list of the hardest hitting chunks."; //$NON-NLS-1$
-	public static String COMMAND_TOPCHUNK = "topchunk"; //$NON-NLS-1$
-	public static String COMMAND_TOPCHUNK_ALIAS_1 = "lagchunk"; //$NON-NLS-1$
+	public static String COMMAND_TOPCHUNK = "top"; //$NON-NLS-1$
+	public static String COMMAND_TOPCHUNK_ALIAS_1 = "topchunk"; //$NON-NLS-1$
 	public static String COMMAND_TOPCHUNK_ALIAS_2 = "lc"; //$NON-NLS-1$
 	public static String COMMAND_TOPCHUNK_USAGE = ""; //$NON-NLS-1$
 
@@ -98,7 +98,7 @@ public class Info
 	public static String COMMAND_USUB_USAGE = "[channel]"; //$NON-NLS-1$
 
 	public static String COMMAND_CBLAME_DESCRIPTION = "Compiles a list of total chunk loads, with who loaded them (plugin or player)"; //$NON-NLS-1$
-	public static String COMMAND_CBLAME = "chunk-blame"; //$NON-NLS-1$
+	public static String COMMAND_CBLAME = "blame"; //$NON-NLS-1$
 	public static String COMMAND_CBLAME_ALIAS_1 = "cblame"; //$NON-NLS-1$
 	public static String COMMAND_CBLAME_ALIAS_2 = "cb"; //$NON-NLS-1$
 	public static String COMMAND_CBLAME_USAGE = ""; //$NON-NLS-1$

@@ -27,7 +27,6 @@ import react.controller.SecurityController;
 import surge.Main;
 import surge.Surge;
 import surge.util.Anchor;
-import surge.util.C;
 
 @Anchor(-8)
 public class SecurityCheckpointAlpha
@@ -114,13 +113,7 @@ public class SecurityCheckpointAlpha
 							{
 								if(!SecurityController.failures.contains(i))
 								{
-									System.out.println(C.WHITE + i + " -> " + C.RED + "FAILED");
 									SecurityController.failures.add(i);
-								}
-
-								else
-								{
-									System.out.println(C.WHITE + i + " -> " + C.GREEN + "VERIFIED");
 								}
 							}
 						}

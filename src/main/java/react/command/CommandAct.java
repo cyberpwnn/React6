@@ -48,6 +48,7 @@ public class CommandAct extends ReactCommand
 		sideGate = SideGate.ANYTHING;
 		registerParameterDescription("<action>", "The name of the action to run");
 		registerParameterDescription("[options]", "Special selectors (multiple) which change how the action executes. Use /re a to see specific selector usages.");
+		registerParameterDescription("[force]", "--force or -f to " + C.RED + "FORCE AGAINST CONFIG RULES");
 	}
 
 	@Override
@@ -57,6 +58,16 @@ public class CommandAct extends ReactCommand
 		{
 			sendPage(sender, 0, 9);
 			return;
+		}
+
+		boolean force = false;
+		GList<String> ar = new GList<String>(args);
+
+		if(ar.get(ar.last()).equalsIgnoreCase("--force") || ar.get(ar.last()).equalsIgnoreCase("-f"))
+		{
+			force = true;
+			ar.remove(ar.last());
+			args = ar.toArray(new String[ar.size()]);
 		}
 
 		if(args.length == 1)
@@ -73,7 +84,6 @@ public class CommandAct extends ReactCommand
 			{
 
 			}
-
 		}
 
 		String tag = args[0];
@@ -151,6 +161,7 @@ public class CommandAct extends ReactCommand
 				Gate.msgSuccess(sender, Lang.getString("command.act.queued-to-run")); //$NON-NLS-1$
 			}
 
+			((Action) action).setForceful(force);
 			React.instance.actionController.fire(action.getType(), source, selectors);
 		}
 

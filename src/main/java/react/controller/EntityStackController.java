@@ -13,6 +13,7 @@ import org.cyberpwn.glang.GList;
 import react.Config;
 import react.api.Capability;
 import react.api.StackedEntity;
+import react.rai.goals.GoalReducedEntityCounts;
 import surge.Surge;
 import surge.control.Controller;
 import surge.sched.Task;
@@ -284,6 +285,8 @@ public class EntityStackController extends Controller
 	@EventHandler
 	public void on(EntitySpawnEvent e)
 	{
+		GoalReducedEntityCounts.spawned++;
+
 		if(!Config.ENTITYSTACK_ENABLED)
 		{
 			return;

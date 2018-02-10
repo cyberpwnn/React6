@@ -16,7 +16,7 @@ public class CommandCPUScore extends ReactCommand
 	public CommandCPUScore()
 	{
 		command = Info.COMMAND_CPUSCORE;
-		aliases = new String[] {Info.COMMAND_CPUSCORE_ALIAS_1, Info.COMMAND_CPUSCORE_ALIAS_2};
+		aliases = new String[] {Info.COMMAND_CPUSCORE_ALIAS_1, Info.COMMAND_CPUSCORE_ALIAS_2, "cpu"};
 		permissions = new String[] {Permissable.ACCESS.getNode()};
 		usage = Info.COMMAND_CPUSCORE_USAGE;
 		description = Info.COMMAND_CPUSCORE_DESCRIPTION;

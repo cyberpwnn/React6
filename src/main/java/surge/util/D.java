@@ -40,6 +40,11 @@ public class D
 
 	public static void l(Object instance, String message)
 	{
+		if(scall != null)
+		{
+			scall.run(message);
+		}
+
 		cdb();
 
 		if(!dbg)
@@ -52,6 +57,11 @@ public class D
 
 	public static void s(Object instance, String message)
 	{
+		if(scall != null)
+		{
+			scall.run(message);
+		}
+
 		log(C.GREEN + "React", C.WHITE + message);
 	}
 
@@ -87,16 +97,31 @@ public class D
 
 	public static void w(Object instance, String message)
 	{
+		if(scall != null)
+		{
+			scall.run(message);
+		}
+
 		log(C.RED + "React", C.YELLOW + message);
 	}
 
 	public static void f(Object instance, String message)
 	{
+		if(scall != null)
+		{
+			scall.run(message);
+		}
+
 		log(C.RED + "React", C.RED + message);
 	}
 
 	public static void l(String message)
 	{
+		if(scall != null)
+		{
+			scall.run(message);
+		}
+
 		cdb();
 
 		if(!dbg)
@@ -114,6 +139,11 @@ public class D
 
 	public static void s(String message)
 	{
+		if(scall != null)
+		{
+			scall.run(message);
+		}
+
 		if(!Surge.hasAmp())
 		{
 			log(C.GREEN + "React", C.WHITE + message);
@@ -125,6 +155,11 @@ public class D
 
 	public static void v(String message)
 	{
+		if(scall != null)
+		{
+			scall.run(message);
+		}
+
 		cdb();
 
 		if(!dbg)
@@ -143,6 +178,11 @@ public class D
 
 	public static void w(String message)
 	{
+		if(scall != null)
+		{
+			scall.run(message);
+		}
+
 		if(!Surge.hasAmp())
 		{
 			log(C.RED + "React", C.YELLOW + message);
@@ -154,6 +194,11 @@ public class D
 
 	public static void f(String message)
 	{
+		if(scall != null)
+		{
+			scall.run(message);
+		}
+
 		if(!Surge.hasAmp())
 		{
 			log(C.RED + "React", C.RED + message);

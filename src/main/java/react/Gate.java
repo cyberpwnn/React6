@@ -454,22 +454,40 @@ public class Gate
 
 	public static void purgeEntity(Entity e)
 	{
-		if(e.getType().equals(EntityType.ARMOR_STAND))
+		purgeEntity(e, false);
+	}
+
+	public static void purgeEntity(Entity e, boolean b)
+	{
+		if(e.getType().equals(EntityType.ARMOR_STAND) && !b)
 		{
 			return;
 		}
 
-		if(Config.getWorldConfig(e.getWorld()).assumeNoSideEffectsEntities.contains(e.getType().toString()))
+		if(Config.getWorldConfig(e.getWorld()).assumeNoSideEffectsEntities.contains(e.getType().toString()) && !b)
 		{
 			return;
 		}
 
-		if(!Config.ALLOW_PURGE.contains(e.getType().toString()))
+		if(!Config.ALLOW_PURGE.contains(e.getType().toString()) && !b)
 		{
 			return;
 		}
 
-		removeEntity(e);
+		if(e.getType().equals(EntityType.PLAYER))
+		{
+			return;
+		}
+
+		if(b)
+		{
+			e.remove();
+		}
+
+		else
+		{
+			removeEntity(e);
+		}
 	}
 
 	public static void cullEntity(Entity e)

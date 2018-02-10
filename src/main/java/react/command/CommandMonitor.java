@@ -3,6 +3,7 @@ package react.command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import react.Gate;
 import react.Info;
 import react.React;
 import react.api.Capability;
@@ -23,6 +24,7 @@ public class CommandMonitor extends ReactCommand
 		description = Info.COMMAND_MONITOR_DESCRIPTION;
 		sideGate = SideGate.PLAYERS_ONLY;
 		registerParameterDescription("(toggle)", "Using this command either turns it on or off.");
+		registerParameterDescription("[options]", "-- high or -h to push the monitor up or down (toggle)");
 	}
 
 	@Override
@@ -33,6 +35,14 @@ public class CommandMonitor extends ReactCommand
 		if(!Capability.ACTION_BAR.isCapable())
 		{
 			Capability.ACTION_BAR.sendNotCapable(player);
+			return;
+		}
+
+		if(args.length > 0 && (args[0].equalsIgnoreCase("-h") || args[0].equalsIgnoreCase("--high")))
+		{
+			Player p = (Player) sender;
+			React.instance.playerController.getPlayer(p).highMonitor = !React.instance.playerController.getPlayer(p).highMonitor;
+			Gate.msgSuccess(p, "High Monitor " + (React.instance.playerController.getPlayer(p).highMonitor ? "enabled" : "disabled"));
 			return;
 		}
 

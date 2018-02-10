@@ -2,6 +2,7 @@ package react.action;
 
 import org.bukkit.Chunk;
 import org.bukkit.entity.EntityType;
+import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.gformat.F;
 import org.cyberpwn.glang.AccessCallback;
 import org.cyberpwn.glang.FinalInteger;
@@ -151,8 +152,15 @@ public class ActionCullEntities extends Action
 
 	public void cull(Chunk chunk, Runnable cb, IActionSource source, ISelector... selectors)
 	{
-		lcd = React.instance.entityCullController.cull(chunk);
-		cb.run();
+		new S()
+		{
+			@Override
+			public void run()
+			{
+				lcd = React.instance.entityCullController.cull(chunk);
+				cb.run();
+			}
+		};
 	}
 
 	@Override

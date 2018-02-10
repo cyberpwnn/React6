@@ -73,7 +73,7 @@ public class GoalStableFluidTime extends Goal
 					SelectorPosition pos = new SelectorPosition();
 					pos.add(lx, Config.RAI_FLUID_TIME_RADIUS);
 					SelectorTime time = new SelectorTime();
-					time.set((long) ((long) (reocc.containsKey(lx) ? reocc.get(lx) : 1) * (Config.RAI_FLUID_TIME_PROPIGATION * Math.random())));
+					time.set((long) ((long) (reocc.containsKey(lx) ? reocc.get(lx) : 4) * (Config.RAI_FLUID_TIME_PROPIGATION * Math.random())));
 					reocc.put(lx, reocc.containsKey(lx) ? reocc.get(lx) + 4 : 1);
 					React.instance.actionController.fire(action.getType(), source, pos, time);
 					RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), Lang.getString("rai.goal.fluid-tick.fluid-lag"))); //$NON-NLS-1$

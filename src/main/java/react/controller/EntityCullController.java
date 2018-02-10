@@ -206,15 +206,7 @@ public class EntityCullController extends Controller
 			return 0;
 		}
 
-		int culled = 0;
-		int culledSegment;
-
-		while((culledSegment = partialCull(c)) > 0)
-		{
-			culled += culledSegment;
-		}
-
-		return culled;
+		return partialCull(c);
 	}
 
 	private int partialCull(Chunk c)
@@ -244,6 +236,11 @@ public class EntityCullController extends Controller
 			}
 
 			if(i.isDead())
+			{
+				continue;
+			}
+
+			if(!Config.ALLOW_CULL.contains(i.getType().toString().toUpperCase()))
 			{
 				continue;
 			}

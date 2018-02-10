@@ -3,6 +3,7 @@ package react.api;
 import org.bukkit.entity.Ageable;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Projectile;
@@ -59,14 +60,17 @@ public enum EntityFlag
 			return e.getLocation().getBlock().isLiquid();
 		}
 
-		if(this.equals(EntityFlag.CAVES))
+		if(!e.getType().equals(EntityType.ARMOR_STAND))
 		{
-			return e.getLocation().getBlock().getLightFromSky() < 9;
-		}
+			if(this.equals(EntityFlag.CAVES))
+			{
+				return e.getLocation().getBlock().getLightFromSky() < 9;
+			}
 
-		if(this.equals(EntityFlag.LIT))
-		{
-			return e.getLocation().getBlock().getLightFromSky() >= 9;
+			if(this.equals(EntityFlag.LIT))
+			{
+				return e.getLocation().getBlock().getLightFromSky() >= 9;
+			}
 		}
 
 		if(this.equals(EntityFlag.GROUNDED))

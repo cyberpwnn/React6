@@ -2,7 +2,6 @@ package react.rai.goals;
 
 import org.bukkit.Chunk;
 import org.cyberpwn.gconcurrent.S;
-import org.cyberpwn.gconcurrent.TICK;
 
 import react.Config;
 import react.Lang;
@@ -21,20 +20,30 @@ import surge.util.Chunks;
 
 public class GoalReducedEntityCounts extends Goal
 {
+	public static int spawned = 0;
 	private boolean failing;
+	private double cd;
+	private double ad;
 
 	public GoalReducedEntityCounts()
 	{
 		super(Lang.getString("rai.goal.entity-count.reduced-entity-count")); //$NON-NLS-1$
-
+		cd = 1;
+		ad = 1;
 		failing = false;
 	}
 
 	@Override
 	public boolean onCheckFailing()
 	{
-		boolean f;
+		if(cd > 80)
+		{
+			cd = 10;
+			ad = 1;
+		}
 
+		boolean f;
+		cd++;
 		int max = -1;
 
 		try
@@ -88,12 +97,18 @@ public class GoalReducedEntityCounts extends Goal
 	@Override
 	public void onPropigated()
 	{
+		ad++;
 		if(!Config.RAI_ENTITY_PROPIGATE)
 		{
 			return;
 		}
 
-		if(TICK.tick % 2 != 0)
+		if(spawned < 10)
+		{
+			return;
+		}
+
+		if(ad / cd > 0.25)
 		{
 			return;
 		}
@@ -121,6 +136,7 @@ public class GoalReducedEntityCounts extends Goal
 				@Override
 				public void run()
 				{
+					spawned = 0;
 					Chunk laggiest = lx;
 					IAction action = React.instance.actionController.getAction(ActionType.CULL_ENTITIES);
 					IActionSource source = new RAIActionSource();

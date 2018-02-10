@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import react.Info;
+import react.Lang;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
@@ -23,6 +24,10 @@ public class CommandChunkTP extends ReactCommand
 		usage = Info.COMMAND_CTP_USAGE;
 		description = Info.COMMAND_CTP_DESCRIPTION;
 		sideGate = SideGate.PLAYERS_ONLY;
+		registerParameterDescription("<world>", Lang.getString("react.command.chunktp.world")); //$NON-NLS-1$ //$NON-NLS-2$
+		registerParameterDescription("<x>", Lang.getString("react.command.chunktp.x")); //$NON-NLS-1$ //$NON-NLS-2$
+		registerParameterDescription("<y>", Lang.getString("react.command.chunktp.y")); //$NON-NLS-1$ //$NON-NLS-2$
+		registerParameterDescription("<z>", Lang.getString("react.command.chunktp.z")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Override

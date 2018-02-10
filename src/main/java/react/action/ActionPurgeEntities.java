@@ -91,7 +91,7 @@ public class ActionPurgeEntities extends Action
 			}
 		}
 
-		source.sendResponseActing(Lang.getString("action.purge-entities.purging") + tent + Lang.getString("action.purge-entities.type") + ((tent == 0 || tent > 1) ? "s" : "") + Lang.getString("action.purge-entities.of") + ((tent == 0 || tent > 1) ? Lang.getString("action.purge-entities.entities") : Lang.getString("action.purge-entities.entity")) + Lang.getString("action.purge-entities.across") + F.f(tchu) + Lang.getString("action.purge-entities.chunk") + ((tchu > 1 || tchu == 0) ? "s" : "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$
+		source.sendResponseActing((isForceful() ? "Force " : "") + Lang.getString("action.purge-entities.purging") + tent + Lang.getString("action.purge-entities.type") + ((tent == 0 || tent > 1) ? "s" : "") + Lang.getString("action.purge-entities.of") + ((tent == 0 || tent > 1) ? Lang.getString("action.purge-entities.entities") : Lang.getString("action.purge-entities.entity")) + Lang.getString("action.purge-entities.across") + F.f(tchu) + Lang.getString("action.purge-entities.chunk") + ((tchu > 1 || tchu == 0) ? "s" : "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$
 
 		for(ISelector i : selectors)
 		{
@@ -103,7 +103,7 @@ public class ActionPurgeEntities extends Action
 				{
 					if(i.can(j))
 					{
-						purge((Chunk) j, new Runnable()
+						purge(isForceful(), (Chunk) j, new Runnable()
 						{
 							@Override
 							public void run()
@@ -137,7 +137,6 @@ public class ActionPurgeEntities extends Action
 
 		new Task("purger-monitor-callback", 2) //$NON-NLS-1$
 		{
-
 			@Override
 			public void run()
 			{
@@ -148,11 +147,10 @@ public class ActionPurgeEntities extends Action
 					source.sendResponseSuccess(Lang.getString("action.purge-entities.purged") + F.f(totalCulled.get()) + Lang.getString("action.purge-entities.entities-in") + F.f(totalChunked.get()) + Lang.getString("action.purge-entities.chunk") + ((totalChunked.get() > 1 || totalChunked.get() == 0) ? "s" : "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 				}
 			}
-
 		};
 	}
 
-	public void purge(Chunk chunk, Runnable cb, IActionSource source, ISelector... selectors)
+	public void purge(boolean force, Chunk chunk, Runnable cb, IActionSource source, ISelector... selectors)
 	{
 		boolean nc = false;
 		FinalInteger cu = new FinalInteger(0);
@@ -180,7 +178,7 @@ public class ActionPurgeEntities extends Action
 				@Override
 				public void run()
 				{
-					Gate.purgeEntity(i);
+					Gate.purgeEntity(i, force);
 					cu.add(1);
 
 					if(k == chunk.getEntities().length - 1)

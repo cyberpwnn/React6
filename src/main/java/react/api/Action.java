@@ -22,6 +22,7 @@ public abstract class Action implements IAction
 	private ActionType type;
 	private IActionSource currentSource;
 	private double progress;
+	private boolean forceful;
 	private GMap<Class<?>, AccessCallback<ISelector>> defaultSelectors;
 
 	public Action(ActionType type)
@@ -42,6 +43,17 @@ public abstract class Action implements IAction
 		defaultSelectors = new GMap<Class<?>, AccessCallback<ISelector>>();
 		currentSource = null;
 		nodes = new String[0];
+		forceful = false;
+	}
+
+	public boolean isForceful()
+	{
+		return forceful;
+	}
+
+	public void setForceful(boolean forceful)
+	{
+		this.forceful = forceful;
 	}
 
 	public abstract String getNode();
@@ -184,6 +196,7 @@ public abstract class Action implements IAction
 		}
 
 		enact(source, biselect(selectors));
+		setForceful(false);
 	}
 
 	@Override

@@ -55,7 +55,6 @@ public class SelectorEntityType extends Selector
 		getList().clear();
 		getPossibilities().addAll(etx);
 		getList().addAll(etx);
-		System.out.println(getPossibilities().size());
 
 		return etx.size();
 	}

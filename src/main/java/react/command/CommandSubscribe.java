@@ -11,6 +11,7 @@ import react.api.ReactCommand;
 import react.api.SideGate;
 import react.notification.Note;
 import surge.util.Anchor;
+import surge.util.C;
 
 @Anchor(0)
 public class CommandSubscribe extends ReactCommand
@@ -23,7 +24,15 @@ public class CommandSubscribe extends ReactCommand
 		usage = Info.COMMAND_SUB_USAGE;
 		description = Info.COMMAND_SUB_DESCRIPTION;
 		sideGate = SideGate.PLAYERS_ONLY;
-		registerParameterDescription("[channel]", "The channel to subscribe to");
+
+		String ch = "Channels: ";
+
+		for(Note i : Note.values())
+		{
+			ch += C.WHITE + i.toString().toLowerCase() + ", ";
+		}
+
+		registerParameterDescription("[channel]", "The channel to subscribe to. " + ch + C.GRAY);
 	}
 
 	@Override
