@@ -4,36 +4,44 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Leaves;
-import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.M;
 
 import react.Config;
 import react.Gate;
 import react.React;
-import react.api.SploogeCounter;
 import surge.Surge;
 import surge.collection.GSound;
 import surge.control.Controller;
-import surge.sched.Task;
+import surge.sched.TaskLater;
+import surge.util.BlockFinder;
 import surge.util.MSound;
 import surge.util.MaterialBlock;
-import surge.util.ParticleEffect;
+import surge.util.W;
 
 public class FastDecayController extends Controller
 {
+	private GList<Material> leaves;
+	private GList<Material> logs;
+
 	@Override
 	public void start()
 	{
 		Surge.register(this);
+		leaves = new GList<Material>();
+		logs = new GList<Material>();
+		leaves.add(Material.LEAVES);
+		leaves.add(Material.LEAVES_2);
+		logs.add(Material.LOG_2);
+		logs.add(Material.LOG);
 	}
 
 	@Override
@@ -71,122 +79,96 @@ public class FastDecayController extends Controller
 
 	public void checkBreak(Block source)
 	{
-		if(!Config.FASTLEAF_ENABLED)
+		new TaskLater("t", 10)
 		{
-			return;
-		}
-
-		if(!Config.getWorldConfig(source.getWorld()).allowFastLeafDecay)
-		{
-			return;
-		}
-
-		if(source.getType().equals(Material.LOG) || source.getType().equals(Material.LOG_2) || source.getType().equals(Material.LEAVES) || source.getType().equals(Material.LEAVES_2))
-		{
-			GMap<Integer, GList<Location>> locs = new GMap<Integer, GList<Location>>();
-
-			new SploogeCounter(5, 5, source.getLocation())
+			@Override
+			public void run()
 			{
-				@Override
-				public boolean isAllowedSplooge(Location l)
+				if(!Config.FASTLEAF_ENABLED)
 				{
-					return l.getBlock().getType().equals(Material.LEAVES) || l.getBlock().getType().equals(Material.VINE) || l.getBlock().getType().equals(Material.LEAVES_2);
+					return;
 				}
 
-				@Override
-				public boolean isAllowedSource(Location l)
+				if(!Config.getWorldConfig(source.getWorld()).allowFastLeafDecay)
 				{
-					return l.getBlock().getType().equals(Material.LOG) || l.getBlock().getType().equals(Material.LOG_2);
+					return;
 				}
 
-				@Override
-				public void clipped(Location l)
+				for(Block i : W.blockFaces(source))
 				{
-					if(Config.FASTLEAF_INSTANT)
+					if(leaves.contains(i.getType()))
 					{
-						if(isAllowedSplooge(l))
+						if(!BlockFinder.follow(i, leaves, logs, 5))
 						{
-							decay(l.getBlock());
-						}
-					}
-
-					else
-					{
-						int rnd = M.rand(0, Config.FASTLEAF_DECAYPERIOD);
-
-						if(!locs.containsKey(rnd))
-						{
-							locs.put(rnd, new GList<Location>());
-						}
-
-						locs.get(rnd).add(l);
-					}
-				}
-
-				@Override
-				public void finished()
-				{
-					if(!Config.FASTLEAF_INSTANT)
-					{
-						for(int i : locs.k())
-						{
-							new Task("leaf-decay", i, 2)
+							new TaskLater("dvd", (int) (0 + (Math.random() * 12)))
 							{
 								@Override
 								public void run()
 								{
-									if(ticks == 1)
-									{
-										for(Location j : locs.get(i))
-										{
-											if(isAllowedSplooge(j))
-											{
-												decay(j.getBlock());
-											}
-										}
-									}
+									decay(i);
 								}
 							};
 						}
 					}
 				}
-			};
-		}
-	}
 
-	public void decay(Block b)
-	{
-		new S()
-		{
-			@Override
-			public void run()
-			{
-				if(M.r(0.06))
+				if(leaves.contains(source.getType()))
 				{
-					new GSound(MSound.DIG_GRASS.bukkitSound(), 4f, 0.1f + (float) (Math.random() / 2f)).play(b.getLocation());
-				}
-
-				if(React.instance.featureController.hasBinding())
-				{
-					Location c = b.getLocation().clone().add(0.5, 0.5, 0.5);
-
-					for(ItemStack i : getDrops(b))
+					if(!BlockFinder.follow(source, leaves, logs, 5))
 					{
-						ParticleEffect.CLOUD.display(0f, 1, c, 32);
-						b.getWorld().dropItemNaturally(c, i);
+						new TaskLater("dvd", (int) (0 + (Math.random() * 12)))
+						{
+							@Override
+							public void run()
+							{
+								decay(source);
+							}
+						};
 					}
-
-					React.instance.featureController.setBlock(b.getLocation(), new MaterialBlock());
-					LeavesDecayEvent de = new LeavesDecayEvent(b);
-					Bukkit.getPluginManager().callEvent(de);
-				}
-
-				else
-				{
-					b.breakNaturally();
 				}
 			}
 		};
+	}
+
+	@SuppressWarnings("deprecation")
+	public void decay(Block b)
+	{
+		if(!leaves.contains(b.getType()))
+		{
+			return;
+		}
+
+		if(M.r(0.06))
+		{
+			new GSound(MSound.DIG_GRASS.bukkitSound(), 4f, 0.1f + (float) (Math.random() / 2f)).play(b.getLocation());
+		}
+
+		if(React.instance.featureController.hasBinding())
+		{
+			Location c = b.getLocation().clone().add(0.5, 0.5, 0.5);
+
+			for(ItemStack i : getDrops(b))
+			{
+				b.getWorld().dropItemNaturally(c, i);
+			}
+
+			React.instance.featureController.setBlock(b.getLocation(), new MaterialBlock());
+			LeavesDecayEvent de = new LeavesDecayEvent(b);
+			Bukkit.getPluginManager().callEvent(de);
+
+			if(b.getRelative(BlockFace.UP).getType().equals(Material.SNOW))
+			{
+				if(b.getRelative(BlockFace.UP).getData() < 15)
+				{
+					React.instance.featureController.setBlock(b.getRelative(BlockFace.UP).getLocation(), new MaterialBlock());
+				}
+			}
+		}
+
+		else
+		{
+			b.breakNaturally();
+		}
 	}
 
 	@SuppressWarnings("deprecation")

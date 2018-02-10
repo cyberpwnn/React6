@@ -42,9 +42,24 @@ public class CommandSubscribe extends ReactCommand
 
 		if(args.length == 0)
 		{
+			player.sendMessage(Gate.header("Subscribed", C.AQUA));
+
 			for(Note i : Note.values())
 			{
-				Gate.msg(player, i.toString().toLowerCase());
+				if(React.instance.messageController.isSubscribed(player, i))
+				{
+					Gate.msg(player, C.YELLOW + i.toString().toLowerCase());
+				}
+			}
+
+			player.sendMessage(Gate.header("Subscriptions", C.AQUA));
+
+			for(Note i : Note.values())
+			{
+				if(!React.instance.messageController.isSubscribed(player, i))
+				{
+					Gate.msg(player, i.toString().toLowerCase());
+				}
 			}
 
 			return;
