@@ -4,7 +4,8 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.cyberpwn.glang.GList;
 
-import surge.util.Cuboid.CuboidDirection;
+import surge.server.Cuboid;
+import surge.server.Cuboid.CuboidDirection;
 
 public class BlockFinder
 {
@@ -30,14 +31,12 @@ public class BlockFinder
 
 		for(Block i : W.blockFaces(b))
 		{
-			if(!c.contains(i))
-			{
-				continue;
-			}
-
 			if(f.contains(i.getType()))
 			{
-				return tail(c, i, f, g, t - 1);
+				if(tail(c, i, f, g, t - 1))
+				{
+					return true;
+				}
 			}
 
 			if(g.contains(i.getType()))

@@ -320,7 +320,7 @@ public class Config
 	@Sector(12)
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 2, max = 200)
-	public static int FASTLEAF_DECAYPERIOD = 48;
+	public static int FASTLEAF_DECAYPERIOD = 5;
 
 	@Sector(13)
 	@Injection(InjectionMethod.SWAP)

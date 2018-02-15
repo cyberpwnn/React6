@@ -9,6 +9,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.cyberpwn.glang.GList;
 
+import surge.server.Cuboid;
+
 /**
  * Used to Create an instance of a spherical area based on a central location
  * Great for efficiently checking if an entity is within a spherical area.

@@ -3,12 +3,12 @@ package react.controller;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
-import react.feature.INMSBinding;
-import react.feature.NMSBinding10;
-import react.feature.NMSBinding11;
-import react.feature.NMSBinding12;
-import react.feature.NMSBinding8;
-import react.feature.NMSBinding9;
+import react.nms.INMSBinding;
+import react.nms.NMSBinding10;
+import react.nms.NMSBinding11;
+import react.nms.NMSBinding12;
+import react.nms.NMSBinding8;
+import react.nms.NMSBinding9;
 import surge.Surge;
 import surge.control.Controller;
 import surge.util.MaterialBlock;

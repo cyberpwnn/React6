@@ -31,6 +31,7 @@ public class FastDecayController extends Controller
 {
 	private GList<Material> leaves;
 	private GList<Material> logs;
+	private GList<Block> queue;
 
 	@Override
 	public void start()
@@ -42,6 +43,7 @@ public class FastDecayController extends Controller
 		leaves.add(Material.LEAVES_2);
 		logs.add(Material.LOG_2);
 		logs.add(Material.LOG);
+		queue = new GList<Block>();
 	}
 
 	@Override
@@ -69,17 +71,12 @@ public class FastDecayController extends Controller
 			return;
 		}
 
-		if(!Config.FASTLEAF_ONDECAY)
-		{
-			return;
-		}
-
 		checkBreak(e.getBlock());
 	}
 
 	public void checkBreak(Block source)
 	{
-		new TaskLater("t", 10)
+		new TaskLater("tleaf1", 0)
 		{
 			@Override
 			public void run()
@@ -100,38 +97,36 @@ public class FastDecayController extends Controller
 					{
 						if(!BlockFinder.follow(i, leaves, logs, 5))
 						{
-							new TaskLater("dvd", (int) (0 + (Math.random() * 12)))
+							if(Config.FASTLEAF_INSTANT)
 							{
-								@Override
-								public void run()
-								{
-									decay(i);
-								}
-							};
-						}
-					}
-				}
-
-				if(leaves.contains(source.getType()))
-				{
-					if(!BlockFinder.follow(source, leaves, logs, 5))
-					{
-						new TaskLater("dvd", (int) (0 + (Math.random() * 12)))
-						{
-							@Override
-							public void run()
-							{
-								decay(source);
+								decay(i);
 							}
-						};
+
+							else
+							{
+								new TaskLater("dvdxleaf", (int) ((Math.random() * Config.FASTLEAF_DECAYPERIOD)))
+								{
+									@Override
+									public void run()
+									{
+										decay(i);
+									}
+								};
+							}
+						}
 					}
 				}
 			}
 		};
 	}
 
-	@SuppressWarnings("deprecation")
 	public void decay(Block b)
+	{
+		queue.add(b);
+	}
+
+	@SuppressWarnings("deprecation")
+	public void doDecay(Block b)
 	{
 		if(!leaves.contains(b.getType()))
 		{
@@ -237,9 +232,16 @@ public class FastDecayController extends Controller
 	@Override
 	public void tick()
 	{
-		if(TICK.tick % 5 == 0)
+		if(TICK.tick % 7 == 0)
 		{
 			Gate.refreshChunks();
+		}
+
+		long ns = M.ns();
+
+		while(!queue.isEmpty() && M.ns() - ns < 900000)
+		{
+			doDecay(queue.popRandom());
 		}
 	}
 }

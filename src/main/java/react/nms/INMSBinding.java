@@ -1,4 +1,4 @@
-package react.feature;
+package react.nms;
 
 import org.bukkit.Location;
 

@@ -1,4 +1,4 @@
-package react.feature;
+package react.nms;
 
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_11_R1.CraftWorld;

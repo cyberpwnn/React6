@@ -11,6 +11,7 @@ import react.controller.EventController;
 import react.controller.ExplosiveController;
 import react.controller.FastDecayController;
 import react.controller.FeatureController;
+import react.controller.FeatureSetController;
 import react.controller.FluidController;
 import react.controller.GlassController;
 import react.controller.GraphController;
@@ -132,6 +133,9 @@ public class React
 
 	@Control
 	public MetricsController metricsController;
+
+	@Control
+	public FeatureSetController featureSetController;
 
 	@Enable
 	public void enable()

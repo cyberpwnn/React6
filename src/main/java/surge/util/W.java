@@ -21,6 +21,8 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 import org.cyberpwn.glang.GList;
 
+import surge.server.Cuboid;
+
 /**
  * World utils
  *

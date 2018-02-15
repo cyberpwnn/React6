@@ -1,4 +1,4 @@
-package surge.util;
+package surge.server;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +18,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.material.MaterialData;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GListAdapter;
+
+import surge.util.Axis;
 
 /**
  * Cuboids

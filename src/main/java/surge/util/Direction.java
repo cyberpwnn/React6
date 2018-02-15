@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import org.cyberpwn.glang.GList;
 
-import surge.util.Cuboid.CuboidDirection;
+import surge.server.Cuboid.CuboidDirection;
 
 /**
  * Directions

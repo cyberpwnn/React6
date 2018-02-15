@@ -43,6 +43,12 @@ public class Info
 	public static String COMMAND_RELOAD_ALIAS_2 = "rl"; //$NON-NLS-1$
 	public static String COMMAND_RELOAD_USAGE = ""; //$NON-NLS-1$
 
+	public static String COMMAND_FEATURE_DESCRIPTION = "Turn on and off features and configure them."; //$NON-NLS-1$
+	public static String COMMAND_FEATURE = "feature"; //$NON-NLS-1$
+	public static String COMMAND_FEATURE_ALIAS_1 = "f"; //$NON-NLS-1$
+	public static String COMMAND_FEATURE_ALIAS_2 = "fe"; //$NON-NLS-1$
+	public static String COMMAND_FEATURE_USAGE = ""; //$NON-NLS-1$
+
 	public static String COMMAND_CTP_DESCRIPTION = "Teleport to a chunk"; //$NON-NLS-1$
 	public static String COMMAND_CTP = "chunktp"; //$NON-NLS-1$
 	public static String COMMAND_CTP_ALIAS_1 = "ctp"; //$NON-NLS-1$
@@ -71,7 +77,7 @@ public class Info
 	public static String COMMAND_MAP = "map"; //$NON-NLS-1$
 	public static String COMMAND_MAP_ALIAS_1 = "mp"; //$NON-NLS-1$
 	public static String COMMAND_MAP_ALIAS_2 = "pap"; //$NON-NLS-1$
-	public static String COMMAND_MAP_USAGE = "(toggle)"; //$NON-NLS-1$
+	public static String COMMAND_MAP_USAGE = "(toggle) [options]"; //$NON-NLS-1$
 
 	public static String COMMAND_TOPCHUNK_DESCRIPTION = "Shows a list of the hardest hitting chunks."; //$NON-NLS-1$
 	public static String COMMAND_TOPCHUNK = "top"; //$NON-NLS-1$

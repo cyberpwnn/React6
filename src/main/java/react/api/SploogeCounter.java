@@ -10,7 +10,7 @@ import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GSet;
 
-import surge.util.Cuboid;
+import surge.server.Cuboid;
 
 public abstract class SploogeCounter
 {

@@ -1,4 +1,4 @@
-package react.feature;
+package react.nms;
 
 public abstract class NMSBinding implements INMSBinding
 {

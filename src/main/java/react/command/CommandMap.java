@@ -23,6 +23,7 @@ public class CommandMap extends ReactCommand
 		description = Info.COMMAND_MAP_DESCRIPTION;
 		sideGate = SideGate.PLAYERS_ONLY;
 		registerParameterDescription("(toggle)", "Using this command either turns it on or off.");
+		registerParameterDescription("[options]", "-i To place map on item frame\n-e to view eod map view");
 	}
 
 	@Override
