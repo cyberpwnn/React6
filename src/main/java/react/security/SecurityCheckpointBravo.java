@@ -1,4 +1,4 @@
-package react.security.checkpoints;
+package react.security;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -29,7 +29,7 @@ import surge.Surge;
 import surge.util.Anchor;
 
 @Anchor(-8)
-public class SecurityCheckpointEcho
+public class SecurityCheckpointBravo
 {
 	public static void finishScan()
 	{

@@ -10,7 +10,6 @@ import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
 import surge.util.Anchor;
-import surge.util.PluginUtil;
 
 @Anchor(0)
 public class CommandReload extends ReactCommand
@@ -30,13 +29,5 @@ public class CommandReload extends ReactCommand
 	{
 		Config.onRead(Bukkit.getPluginManager().getPlugin("React"));
 		Gate.msgSuccess(sender, "Configurations Reloaded");
-
-		if(args.length == 1)
-		{
-			if(args[0].toLowerCase().equals("-f"))
-			{
-				PluginUtil.reload(Bukkit.getPluginManager().getPlugin("React"));
-			}
-		}
 	}
 }

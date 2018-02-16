@@ -1,4 +1,4 @@
-package react.security.ipsec;
+package react.security;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -7,11 +7,11 @@ import java.net.URL;
 import surge.util.Anchor;
 
 @Anchor(-10)
-public class IPSecDelta extends Thread
+public class IPSecBravo extends Thread
 {
 	private String ip = null;
 
-	public IPSecDelta()
+	public IPSecBravo()
 	{
 
 	}

@@ -471,6 +471,42 @@ public class PluginUtil
 		return;
 	}
 
+	public static void load(File f)
+	{
+		Plugin target = null;
+
+		File pluginDir = new File("plugins");
+
+		if(!pluginDir.isDirectory())
+		{
+			return;
+		}
+
+		File pluginFile = f;
+
+		try
+		{
+			target = Bukkit.getPluginManager().loadPlugin(pluginFile);
+		}
+
+		catch(InvalidDescriptionException e)
+		{
+			e.printStackTrace();
+			return;
+		}
+
+		catch(InvalidPluginException e)
+		{
+			e.printStackTrace();
+			return;
+		}
+
+		target.onLoad();
+		Bukkit.getPluginManager().enablePlugin(target);
+
+		return;
+	}
+
 	/**
 	 * Reload a plugin.
 	 *
@@ -608,30 +644,6 @@ public class PluginUtil
 				}
 			}
 		}
-
-		// Attempt to close the classloader to unlock any handles on the
-		// plugin's
-		// jar file.
-		ClassLoader cl = plugin.getClass().getClassLoader();
-
-		if(cl instanceof URLClassLoader)
-		{
-			try
-			{
-				((URLClassLoader) cl).close();
-			}
-			catch(IOException ex)
-			{
-				Logger.getLogger(PluginUtil.class.getName()).log(Level.SEVERE, null, ex);
-			}
-		}
-
-		// Will not work on processes started with the -XX:+DisableExplicitGC
-		// flag,
-		// but lets try it anyway. This tries to get around the issue where
-		// Windows
-		// refuses to unlock jar files that were previously loaded into the JVM.
-		System.gc();
 
 		return;
 	}

@@ -1,4 +1,4 @@
-package react.security.locks;
+package react.security;
 
 import java.io.File;
 

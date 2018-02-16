@@ -3,12 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.volmit</groupId>
 	<artifactId>React</artifactId>
-	<version>6.0.58</version>
+	<version>6.0.69</version>
 	<name>React</name>
 	<description>A performance plugin</description>
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<react.libs>${project.basedir}/lib</react.libs>
 		<react.compile>${project.basedir}/compile</react.compile>
 		<react.release>${project.basedir}/release/${project.version}</react.release>

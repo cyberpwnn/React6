@@ -1,4 +1,4 @@
-package react.security.locks;
+package react.security;
 
 import java.io.File;
 
@@ -10,9 +10,9 @@ import surge.Surge;
 import surge.util.Anchor;
 
 @Anchor(-7)
-public class SecurityLockDelta implements Listener
+public class SecurityLockAlpha implements Listener
 {
-	public SecurityLockDelta()
+	public SecurityLockAlpha()
 	{
 		try
 		{

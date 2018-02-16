@@ -111,7 +111,7 @@ public class DataCluster
 
 	public int getInt(String k)
 	{
-		return (int) clusters.get(k).get();
+		return (Integer) clusters.get(k).get();
 	}
 
 	public Object get(String k)
@@ -126,7 +126,7 @@ public class DataCluster
 			return ((Integer) clusters.get(k).get()).longValue();
 		}
 
-		return (long) clusters.get(k).get();
+		return (Long) clusters.get(k).get();
 	}
 
 	public String getString(String k)
@@ -136,12 +136,12 @@ public class DataCluster
 
 	public double getDouble(String k)
 	{
-		return (double) clusters.get(k).get();
+		return (Double) clusters.get(k).get();
 	}
 
 	public boolean getBoolean(String k)
 	{
-		return (boolean) clusters.get(k).get();
+		return (Boolean) clusters.get(k).get();
 	}
 
 	@SuppressWarnings("unchecked")

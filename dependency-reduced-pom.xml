@@ -4,7 +4,7 @@
   <groupId>com.volmit</groupId>
   <artifactId>React</artifactId>
   <name>React</name>
-  <version>6.0.58</version>
+  <version>6.0.69</version>
   <description>A performance plugin</description>
   <build>
     <resources>
@@ -121,14 +121,14 @@
                 <configuration>
                   <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
                   <arguments>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.0.58.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.0.69.jar</argument>
                     <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
                     <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.0.58/mapping.txt</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.0.69/mapping.txt</argument>
                     <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.0.58/React-6.0.58-origin.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.0.69/React-6.0.69-origin.jar</argument>
                     <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.0.58/React-6.0.58.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.0.69/React-6.0.69.jar</argument>
                   </arguments>
                 </configuration>
               </execution>
@@ -136,14 +136,14 @@
             <configuration>
               <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
               <arguments>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.0.58.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.0.69.jar</argument>
                 <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
                 <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.0.58/mapping.txt</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.0.69/mapping.txt</argument>
                 <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.0.58/React-6.0.58-origin.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.0.69/React-6.0.69-origin.jar</argument>
                 <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.0.58/React-6.0.58.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.0.69/React-6.0.69.jar</argument>
               </arguments>
             </configuration>
           </plugin>
@@ -231,6 +231,7 @@
     <react.release.compile>${react.compile}/in.jar</react.release.compile>
     <react.export.script>${project.basedir}/compile/obfuscate.bat</react.export.script>
     <react.plugin.name>${project.name}</react.plugin.name>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <script.release>${react.compile}\release.bat</script.release>
     <react.release>${project.basedir}/release/${project.version}</react.release>
