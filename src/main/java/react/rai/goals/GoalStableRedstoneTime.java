@@ -1,7 +1,10 @@
 package react.rai.goals;
 
+import java.util.Collections;
+
 import org.bukkit.Chunk;
 import org.cyberpwn.gconcurrent.S;
+import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.M;
 
@@ -16,6 +19,9 @@ import react.api.IAction;
 import react.api.SampledType;
 import react.api.SelectorPosition;
 import react.api.SelectorTime;
+import react.controller.EventController;
+import react.lagmap.LagMap;
+import react.lagmap.LagMapChunk;
 import react.rai.Goal;
 import react.rai.RAI;
 import react.rai.RAIEvent;
@@ -76,7 +82,7 @@ public class GoalStableRedstoneTime extends Goal
 					SelectorPosition pos = new SelectorPosition();
 					pos.add(laggiest, Config.RAI_REDSTONE_TIME_RADIUS);
 					SelectorTime time = new SelectorTime();
-					time.set((long) ((long) (reocc.containsKey(laggiest) ? reocc.get(laggiest) : 1) * (Config.RAI_REDSTONE_TIME_PROPIGATION * Math.random())));
+					time.set(Math.max(500, Math.min((long) ((long) (reocc.containsKey(laggiest) ? reocc.get(laggiest) : 1) * (Config.RAI_REDSTONE_TIME_PROPIGATION * 0.5)), 1800)));
 					reocc.put(laggiest, reocc.containsKey(laggiest) ? reocc.get(laggiest) + 4 : 1);
 					React.instance.actionController.fire(action.getType(), source, pos, time);
 					RAI.instance.callEvent(new RAIEvent(RAIEventType.FIRE_ACTION, action.getName(), Lang.getString("rai.goal.redstone-time.redstone-lag"))); //$NON-NLS-1$
@@ -90,6 +96,7 @@ public class GoalStableRedstoneTime extends Goal
 	{
 		boolean f = false;
 		d--;
+
 		double nsms = 1000000;
 		double tickTime = React.instance.sampleController.getSampler(SampledType.TICK.toString()).getValue() * nsms;
 		double redTime = React.instance.sampleController.getSampler(SampledType.REDSTONE_TIME.toString()).getValue();
@@ -123,6 +130,24 @@ public class GoalStableRedstoneTime extends Goal
 					}
 				}
 			};
+		}
+
+		LagMap map = EventController.map;
+		GList<LagMapChunk> htl = new GList<LagMapChunk>(map.getChunks().v());
+		Collections.sort(htl);
+		Collections.reverse(htl);
+
+		if(htl.isEmpty())
+		{
+			return f;
+		}
+
+		for(LagMapChunk i : htl)
+		{
+			if(i.getMS().containsKey(ChunkIssue.REDSTONE) && i.getMS().get(ChunkIssue.REDSTONE) > Math.PI)
+			{
+				return true;
+			}
 		}
 
 		return f;

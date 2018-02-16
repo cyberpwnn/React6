@@ -6,7 +6,6 @@ import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
-import react.Lang;
 import react.React;
 import react.api.ISampler;
 import surge.Main;
@@ -155,6 +154,11 @@ public class SampleController extends Controller implements IMasterTickComponent
 	@Override
 	public void onTick()
 	{
+		if(TICK.tick < 2)
+		{
+			return;
+		}
+
 		if(cd > 0)
 		{
 			cd--;
@@ -171,10 +175,9 @@ public class SampleController extends Controller implements IMasterTickComponent
 				}
 			}
 
-			catch(Exception e)
+			catch(Throwable e)
 			{
-				D.f(Lang.getString("controller.sampler.failed-to-sample") + i.getName()); //$NON-NLS-1$
-				e.printStackTrace();
+
 			}
 		}
 	}

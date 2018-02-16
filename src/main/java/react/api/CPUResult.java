@@ -1,6 +1,7 @@
 package react.api;
 
 import react.Lang;
+import surge.Surge;
 
 public enum CPUResult
 {
@@ -28,37 +29,39 @@ public enum CPUResult
 
 	public static String c(int s)
 	{
-		if(s > 2000)
+		int mod = Surge.isObfuscated() ? 100 : 0;
+
+		if(s + mod > 2000)
 		{
 			return ULTRA_FAST.toString();
 		}
 
-		if(s > 1700)
+		if(s + mod > 1700)
 		{
 			return VERY_FAST.toString();
 		}
 
-		if(s > 1500)
+		if(s + mod > 1500)
 		{
 			return FAST.toString();
 		}
 
-		if(s > 1350)
+		if(s + mod > 1350)
 		{
 			return GOOD.toString();
 		}
 
-		if(s > 1100)
+		if(s + mod > 1100)
 		{
 			return AVERAGE.toString();
 		}
 
-		if(s > 800)
+		if(s + mod > 800)
 		{
 			return SLOW.toString();
 		}
 
-		if(s > 100)
+		if(s + mod > 100)
 		{
 			return VERY_SLOW.toString();
 		}

@@ -8,4 +8,9 @@ public class BasicIntegerOption extends BasicConfigurationOption<Integer> implem
 	{
 		super(name, description, configurationField);
 	}
+
+	public BasicIntegerOption(String name, String description, int i)
+	{
+		super(name, description, i);
+	}
 }

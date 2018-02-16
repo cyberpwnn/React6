@@ -9,8 +9,8 @@ import react.Info;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
-import surge.Main;
 import surge.util.Anchor;
+import surge.util.PluginUtil;
 
 @Anchor(0)
 public class CommandReload extends ReactCommand
@@ -35,76 +35,7 @@ public class CommandReload extends ReactCommand
 		{
 			if(args[0].toLowerCase().equals("-f"))
 			{
-				Main.requestReload();
-				Gate.msgActing(sender, "React Force Reloaded");
-			}
-
-			if(args[0].toLowerCase().equals("-xf"))
-			{
-				new Thread()
-				{
-					@SuppressWarnings("deprecation")
-					@Override
-					public void run()
-					{
-						for(Thread i : Thread.getAllStackTraces().keySet())
-						{
-							if(i.getName().startsWith("Surge"))
-							{
-								try
-								{
-									i.interrupt();
-									i.stop();
-									i.destroy();
-								}
-
-								catch(Throwable e)
-								{
-
-								}
-
-								Gate.msgActing(sender, "Destroyed Thread " + i.getName());
-							}
-						}
-
-						Gate.msgActing(sender, "React Force Destroyed");
-					}
-				}.start();
-			}
-
-			if(args[0].toLowerCase().equals("-xxf"))
-			{
-				new Thread()
-				{
-					@SuppressWarnings("deprecation")
-					@Override
-					public void run()
-					{
-						for(Thread i : Thread.getAllStackTraces().keySet())
-						{
-							if(i.getName().startsWith("Surge"))
-							{
-								try
-								{
-									i.interrupt();
-									i.stop();
-									i.destroy();
-								}
-
-								catch(Throwable e)
-								{
-
-								}
-
-								Gate.msgActing(sender, "Destroyed Thread " + i.getName());
-							}
-						}
-
-						Gate.msgActing(sender, "React Force Destroyed");
-						Main.requestReload();
-						Gate.msgActing(sender, "React Force Reloaded");
-					}
-				}.start();
+				PluginUtil.reload(Bukkit.getPluginManager().getPlugin("React"));
 			}
 		}
 	}

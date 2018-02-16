@@ -7,7 +7,6 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.event.world.WorldLoadEvent;
@@ -234,24 +233,6 @@ public class RedstoneController extends Controller
 	public void on(BlockPhysicsEvent e)
 	{
 		if(ignore.contains(e.getChangedType()))
-		{
-			tickNextTickList();
-			React.instance.physicsController.onRedstone(e.getBlock().getChunk());
-			redstonePerSecond++;
-			redstonePerTick++;
-
-			if(isFrozen(e.getBlock().getChunk()))
-			{
-				queue(e.getBlock());
-				e.setCancelled(true);
-			}
-		}
-	}
-
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-	public void on(BlockFromToEvent e)
-	{
-		if(ignore.contains(e.getToBlock().getType()))
 		{
 			tickNextTickList();
 			React.instance.physicsController.onRedstone(e.getBlock().getChunk());

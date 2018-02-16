@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Hopper;
@@ -526,10 +527,38 @@ public class Gate
 			((Hopper) block.getState()).getInventory().clear();
 		}
 
+		if(block.getType().equals(Material.REDSTONE_WIRE))
+		{
+			int id = block.getTypeId();
+			byte byt = block.getData();
+			block.setTypeIdAndData(0, (byte) 0, false);
+			block.setTypeIdAndData(id, byt, true);
+			return;
+		}
+
+		if(block.getType().equals(Material.DIODE_BLOCK_OFF))
+		{
+			int id = block.getTypeId();
+			byte byt = block.getData();
+			block.setTypeIdAndData(0, (byte) 0, false);
+			block.setTypeIdAndData(id, byt, true);
+			return;
+		}
+
+		if(block.getType().equals(Material.DIODE_BLOCK_ON))
+		{
+			int id = block.getTypeId();
+			byte byt = block.getData();
+			block.setTypeIdAndData(0, (byte) 0, false);
+			block.setTypeIdAndData(id, byt, true);
+			return;
+		}
+
 		int id = block.getTypeId();
 		byte byt = block.getData();
 		block.setTypeIdAndData(1, (byte) 0, false);
 		block.setTypeIdAndData(id, byt, true);
+
 
 		if(block.getState() instanceof Hopper)
 		{

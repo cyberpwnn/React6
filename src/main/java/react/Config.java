@@ -50,7 +50,8 @@ public class Config
 	@Address(3)
 	public static final String A_SAMPLE_VIEWPORT = "sampler.sample-viewport";
 
-	// @Address(4)
+	@Address(4)
+	public static final String A_RAI = "rai.enabled";
 
 	@Address(5)
 	public static final String A_ENTITY_STACK_MAX_COUNT = "entity-stacker.max-stack-size";
@@ -280,7 +281,9 @@ public class Config
 	@Clip(min = 6000, max = 30000)
 	public static int SAMPLE_VIEWPORT = 6000;
 
-	// @Sector(4)
+	@Sector(4)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean RAI = true;
 
 	@Sector(5)
 	@Injection(InjectionMethod.SWAP)

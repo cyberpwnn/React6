@@ -24,6 +24,11 @@ public class Surge
 	private static HotloadManager hotloadmgr;
 	private static Thread mainThread;
 
+	public static boolean isObfuscated()
+	{
+		return !Surge.class.getSimpleName().equals("Surge");
+	}
+
 	public static void register(Listener l)
 	{
 		Bukkit.getServer().getPluginManager().registerEvents(l, getAmp().getPluginInstance());

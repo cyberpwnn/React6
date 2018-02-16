@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.gmath.M;
 
+import react.Config;
 import react.action.source.IActionSource;
 import react.action.source.RAIActionSource;
 import react.notification.Note;
@@ -45,6 +46,11 @@ public class RAI implements IRAI
 	@Override
 	public void tick()
 	{
+		if(!Config.RAI)
+		{
+			return;
+		}
+
 		for(IGoal i : getGoals())
 		{
 			try

@@ -8,4 +8,9 @@ public class BasicBooleanOption extends BasicConfigurationOption<Boolean> implem
 	{
 		super(name, description, configurationField);
 	}
+
+	public BasicBooleanOption(String name, String description, int i)
+	{
+		super(name, description, i);
+	}
 }
