@@ -66,16 +66,16 @@ public class Config
 	public static final String A_CULLING_ENABLED = "entity-culler.enabled"; //$NON-NLS-1$
 
 	@Address(9)
-	public static final String A_FASTLEAF_ENABLED = "fast-leaf-decay.enabled"; //$NON-NLS-1$
+	public static final String A_FASTLEAF_ENABLED = "tweaks.fast-leaf-decay.enabled"; //$NON-NLS-1$
 
 	@Address(10)
-	public static final String A_FASTLEAF_ONDECAY = "fast-leaf-decay.trigger-on-decay"; //$NON-NLS-1$
+	public static final String A_FASTLEAF_ONDECAY = "tweaks.fast-leaf-decay.trigger-on-decay"; //$NON-NLS-1$
 
 	@Address(11)
-	public static final String A_FASTLEAF_INSTANT = "fast-leaf-decay.instantaneous"; //$NON-NLS-1$
+	public static final String A_FASTLEAF_INSTANT = "tweaks.fast-leaf-decay.instantaneous"; //$NON-NLS-1$
 
 	@Address(12)
-	public static final String A_FASTLEAF_DECAYPERIOD = "fast-leaf-decay.decay-period"; //$NON-NLS-1$
+	public static final String A_FASTLEAF_DECAYPERIOD = "tweaks.fast-leaf-decay.decay-period"; //$NON-NLS-1$
 
 	@Address(13)
 	public static final String A_COMMANDOVERRIDE_MEMORY = "command-overrides.memory";
@@ -263,10 +263,28 @@ public class Config
 	@Address(74)
 	public static final String A_ENTITY_STACKER_NAME_TAG_FORMAT = "entity-stacker.options.nametag-format";
 
+	@Address(75)
+	public static final String A_FAST_LEAF_MAX_MS = "tweaks.fast-leaf-decay.max-ms";
+
+	@Address(76)
+	public static final String A_NMS_CHUNK_UPDATE_INTERVAL = "tweaks.nms.chunk-update-interval";
+
+	@Address(77)
+	public static final String A_THROTTLE_EXPLOSIONS = "tweaks.explosions.throttle-explosions";
+
+	@Address(78)
+	public static final String A_THROTTLED_RATIO = "tweaks.explosions.throttled-ratio";
+
+	@Address(79)
+	public static final String A_FAST_GROWTH = "tweaks.fast-growth.enabled";
+
+	@Address(80)
+	public static final String A_FAST_EXPLOSIONS = "tweaks.explosions.fast-block-destruction";
+
 	@Sector(0)
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 0.01, max = 10000)
-	public static double MAX_EXPLOSION_MS = 7;
+	public static double MAX_EXPLOSION_MS = 5;
 
 	@Sector(1)
 	@Injection(InjectionMethod.SWAP)
@@ -661,6 +679,33 @@ public class Config
 	@Sector(74)
 	@Injection(InjectionMethod.SWAP)
 	public static String ENTITY_STACKER_NAME_TAG_FORMAT = "&e%size%x &a%type% &c%hp%";
+
+	@Sector(75)
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 0.1, max = 50.0)
+	public static double FAST_LEAF_MAX_MS = 0.8;
+
+	@Sector(76)
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 1, max = 20)
+	public static int NMS_CHUNK_UPDATE_INTERVAL = 8;
+
+	@Sector(77)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean THROTTLE_EXPLOSIONS = true;
+
+	@Sector(78)
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 0.0, max = 0.9)
+	public static double THROTTLED_RATIO = 0.65;
+
+	@Sector(79)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean FAST_GROWTH = true;
+
+	@Sector(80)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean FAST_EXPLOSIONS = true;
 
 	private static boolean hrld = false;
 	private static boolean rns = false;

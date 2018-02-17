@@ -548,6 +548,48 @@ public class MonitorController extends Controller implements IMasterTickComponen
 			}
 
 			i.setPlays(i.getPlays() > 0 ? i.getPlays() - 1 : 0);
+
+			if(i.isActionlogging() && !Permissable.MONITOR_ACTIONLOG.has(i.getP()))
+			{
+				Gate.msgError(i.getP(), "You no longer have permission to action log.");
+
+				new S()
+				{
+					@Override
+					public void run()
+					{
+						stopActionLogging(i.getP());
+					}
+				};
+			}
+
+			if(i.isMonitoring() && !Permissable.MONITOR_TITLE.has(i.getP()))
+			{
+				Gate.msgError(i.getP(), "You no longer have permission to monitor");
+
+				new S()
+				{
+					@Override
+					public void run()
+					{
+						stopMonitoring(i.getP());
+					}
+				};
+			}
+
+			if(i.isMapping() && !Permissable.MONITOR_MAP.has(i.getP()))
+			{
+				Gate.msgError(i.getP(), "You no longer have permission to map");
+
+				new S()
+				{
+					@Override
+					public void run()
+					{
+						React.instance.graphController.stopMapping(i.getP());
+					}
+				};
+			}
 		}
 	}
 

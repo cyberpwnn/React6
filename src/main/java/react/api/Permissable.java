@@ -1,7 +1,10 @@
 package react.api;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.cyberpwn.glang.GList;
 
+import react.Gate;
 import react.Info;
 
 public enum Permissable
@@ -23,6 +26,7 @@ public enum Permissable
 	RELOAD(Info.PERM_RELOAD);
 
 	private String node;
+	public static GList<TemporaryAccessor> accessors = new GList<TemporaryAccessor>();
 
 	private Permissable(String s)
 	{
@@ -37,9 +41,62 @@ public enum Permissable
 		}
 	}
 
+	public static void addAccessor(TemporaryAccessor t)
+	{
+		if(!isAccessor(t.getPlayer()))
+		{
+			accessors.add(t);
+			Gate.msgSuccess(t.getPlayer(), "You have been granted temporary access to React");
+		}
+	}
+
+	public static void removeAccesssor(Player p)
+	{
+		if(isAccessor(p))
+		{
+			for(TemporaryAccessor i : accessors.copy())
+			{
+				if(i.getPlayer().equals(p))
+				{
+					accessors.remove(i);
+					Gate.msgActing(i.getPlayer(), "Temporary access expired.");
+				}
+			}
+		}
+	}
+
+	public static boolean isAccessor(Player p)
+	{
+		for(TemporaryAccessor i : accessors)
+		{
+			if(i.getPlayer().equals(p))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public boolean has(CommandSender p)
 	{
-		return p.hasPermission(getNode());
+		if(!p.hasPermission(getNode()))
+		{
+			if(p instanceof Player)
+			{
+				for(TemporaryAccessor i : accessors)
+				{
+					if(i.getPlayer().equals(p) && i.getPermissions().contains(this))
+					{
+						return true;
+					}
+				}
+			}
+
+			return false;
+		}
+
+		return true;
 	}
 
 	public String getNode()

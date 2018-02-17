@@ -115,6 +115,30 @@ public class Info
 	public static String COMMAND_ACTIONLOG_ALIAS_2 = "al"; //$NON-NLS-1$
 	public static String COMMAND_ACTIONLOG_USAGE = "(toggle)"; //$NON-NLS-1$
 
+	public static String COMMAND_TEMPACCESS_DESCRIPTION = "Requests access to use react (granted by an online member or console)";
+	public static String COMMAND_TEMPACCESS = "access"; //$NON-NLS-1$
+	public static String COMMAND_TEMPACCESS_ALIAS_1 = "rac"; //$NON-NLS-1$
+	public static String COMMAND_TEMPACCESS_ALIAS_2 = "acc"; //$NON-NLS-1$
+	public static String COMMAND_TEMPACCESS_USAGE = ""; //$NON-NLS-1$
+
+	public static String COMMAND_ACCEPT_DESCRIPTION = "Accepts a requesting user to gain temp access";
+	public static String COMMAND_ACCEPT = "accept"; //$NON-NLS-1$
+	public static String COMMAND_ACCEPT_ALIAS_1 = "tac"; //$NON-NLS-1$
+	public static String COMMAND_ACCEPT_ALIAS_2 = "tacc"; //$NON-NLS-1$
+	public static String COMMAND_ACCEPT_USAGE = "[player]"; //$NON-NLS-1$
+
+	public static String COMMAND_REVOKE_DESCRIPTION = "Revokes access from an already accepted user";
+	public static String COMMAND_REVOKE = "revoke"; //$NON-NLS-1$
+	public static String COMMAND_REVOKE_ALIAS_1 = "rv"; //$NON-NLS-1$
+	public static String COMMAND_REVOKE_ALIAS_2 = "rev"; //$NON-NLS-1$
+	public static String COMMAND_REVOKE_USAGE = "[player]"; //$NON-NLS-1$
+
+	public static String COMMAND_REQUESTS_DESCRIPTION = "Shows all current requests for temp access";
+	public static String COMMAND_REQUESTS = "requests"; //$NON-NLS-1$
+	public static String COMMAND_REQUESTS_ALIAS_1 = "req"; //$NON-NLS-1$
+	public static String COMMAND_REQUESTS_ALIAS_2 = "rq"; //$NON-NLS-1$
+	public static String COMMAND_REQUESTS_USAGE = ""; //$NON-NLS-1$
+
 	public static String COMMAND_CAPABILITIES_DESCRIPTION = Lang.getString("command.description.cap"); //$NON-NLS-1$
 	public static String COMMAND_CAPABILITIES = "capabilities"; //$NON-NLS-1$
 	public static String COMMAND_CAPABILITIES_ALIAS_1 = "cap"; //$NON-NLS-1$
@@ -206,6 +230,7 @@ public class Info
 	public static String SAMPLER_STASK = Lang.getString("sampler.name.sync-queue"); //$NON-NLS-1$
 	public static String SAMPLER_CHK_TIME = Lang.getString("sampler.name.chunk-time"); //$NON-NLS-1$
 	public static String SAMPLER_EXPLOSION_TIME = "Explosion MS"; //$NON-NLS-1$
+	public static String SAMPLER_GROWTH_TIME = "Growth MS"; //$NON-NLS-1$
 	public static String SAMPLER_CHKS = Lang.getString("sampler.name.chunks-second"); //$NON-NLS-1$
 	public static String SAMPLER_ENT = Lang.getString("sampler.name.entities-count"); //$NON-NLS-1$
 	public static String SAMPLER_ENTLIV = Lang.getString("sampler.name.entities-living-count"); //$NON-NLS-1$

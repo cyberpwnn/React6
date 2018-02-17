@@ -1,32 +1,32 @@
 package react.controller;
 
+import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.block.BlockExplodeEvent;
-import org.bukkit.event.entity.EntityExplodeEvent;
-import org.bukkit.inventory.ItemStack;
-import org.cyberpwn.glang.GList;
+import org.bukkit.event.block.BlockGrowEvent;
+import org.cyberpwn.gconcurrent.TICK;
+import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
 import org.cyberpwn.gmath.Average;
 import org.cyberpwn.gmath.M;
 
 import react.Config;
+import react.Gate;
 import react.React;
 import react.api.Unused;
 import surge.Surge;
 import surge.control.Controller;
 import surge.util.MaterialBlock;
 
-public class ExplosiveController extends Controller
+public class FastGrowthController extends Controller
 {
 	private boolean firstTickList;
 	private long firstTick;
 	private long lastTick;
 	private Average aCSMS;
-	private GSet<Location> locs;
+	private GMap<Location, MaterialBlock> changes;
 
 	@Override
 	public void start()
@@ -36,7 +36,7 @@ public class ExplosiveController extends Controller
 		firstTick = M.ns();
 		lastTick = M.ns();
 		aCSMS = new Average(30);
-		locs = new GSet<Location>();
+		changes = new GMap<Location, MaterialBlock>();
 	}
 
 	private void flushTickList()
@@ -82,63 +82,43 @@ public class ExplosiveController extends Controller
 	{
 		flushTickList();
 
-		for(Location i : locs)
+		if(TICK.tick % 5 == 0)
 		{
-			if(M.r(0.5))
+			GSet<Chunk> updates = new GSet<Chunk>();
+
+			for(Location i : changes.k())
 			{
-				for(ItemStack j : i.getBlock().getDrops())
-				{
-					if(M.r(0.5))
-					{
-						i.getWorld().dropItemNaturally(i, j);
-					}
-				}
+				updates.add(i.getChunk());
+				React.instance.featureController.setBlock(i, changes.get(i));
 			}
 
-			React.instance.featureController.setBlock(i, new MaterialBlock());
-		}
+			changes.clear();
 
-		locs.clear();
+			for(Chunk i : updates)
+			{
+				Gate.refresh(i);
+			}
+		}
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-	public void onLoad(EntityExplodeEvent e)
+	public void on(BlockGrowEvent e)
 	{
-		if(aCSMS.getAverage() > Config.MAX_EXPLOSION_MS && Config.THROTTLE_EXPLOSIONS)
-		{
-			if(M.r(0.65))
-			{
-				e.setCancelled(true);
-			}
-		}
-
-		if(!e.isCancelled())
-		{
-			if(Config.FAST_EXPLOSIONS)
-			{
-				GList<Block> bl = new GList<Block>(e.blockList());
-				e.blockList().clear();
-
-				for(Block i : bl)
-				{
-					if(i.getType().equals(Material.TNT))
-					{
-						e.blockList().add(i);
-						continue;
-					}
-
-					locs.add(i.getLocation());
-				}
-			}
-		}
-
 		tickNextTickList();
+		fastApply(e);
 	}
 
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-	public void onLoad(BlockExplodeEvent e)
+	@SuppressWarnings("deprecation")
+	public void fastApply(BlockGrowEvent e)
 	{
-		tickNextTickList();
+		if(!Config.FAST_GROWTH)
+		{
+			return;
+		}
+
+		e.setCancelled(true);
+		MaterialBlock nb = new MaterialBlock(Material.getMaterial(e.getNewState().getTypeId()), e.getNewState().getRawData());
+		changes.put(e.getBlock().getLocation(), nb);
 	}
 
 	public boolean isFirstTickList()

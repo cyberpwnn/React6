@@ -208,10 +208,13 @@ public class CommandController extends Controller implements Listener, CommandEx
 			boolean plr = s instanceof Player;
 			Player px = plr ? (Player) s : null;
 
-			if(!Permissable.ACCESS.has(s))
+			if(!(a.length >= 1 && (a[0].equalsIgnoreCase(Info.COMMAND_TEMPACCESS) || a[0].equalsIgnoreCase(Info.COMMAND_TEMPACCESS_ALIAS_1) || a[0].equalsIgnoreCase(Info.COMMAND_TEMPACCESS_ALIAS_2))))
 			{
-				f(s, Info.MSG_PERMISSION);
-				return true;
+				if(!Permissable.ACCESS.has(s))
+				{
+					f(s, Info.MSG_PERMISSION);
+					return true;
+				}
 			}
 
 			if(a.length == 0)

@@ -232,14 +232,14 @@ public class FastDecayController extends Controller
 	@Override
 	public void tick()
 	{
-		if(TICK.tick % 7 == 0)
+		if(TICK.tick % Config.NMS_CHUNK_UPDATE_INTERVAL == 0)
 		{
 			Gate.refreshChunks();
 		}
 
 		long ns = M.ns();
 
-		while(!queue.isEmpty() && M.ns() - ns < 900000)
+		while(!queue.isEmpty() && M.ns() - ns < Config.FAST_LEAF_MAX_MS * 1000000)
 		{
 			doDecay(queue.popRandom());
 		}

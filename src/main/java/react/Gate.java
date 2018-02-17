@@ -46,6 +46,7 @@ public class Gate
 	private static GMap<String, Integer> defaultSettings = new GMap<String, Integer>();
 	private static GSet<Chunk> refresh = new GSet<Chunk>();
 	private static GSet<Location> destroy = new GSet<Location>();
+	public static int cd = 0;
 
 	public static void fixLighting(SelectorPosition sel, Callback<Integer> cb, Callback<Double> prog)
 	{

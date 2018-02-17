@@ -213,6 +213,7 @@ public class GraphController extends Controller
 		pg.add(new PointedGraph(g.get(SampledType.CHK_TIME), GraphSize.SQUARE));
 		pg.add(new PointedGraph(g.get(SampledType.ENTITY_TIME), GraphSize.SQUARE));
 		pg.add(new PointedGraph(g.get(SampledType.EXPLOSION_TIME), GraphSize.SQUARE));
+		pg.add(new PointedGraph(g.get(SampledType.GROWTH_TIME), GraphSize.SQUARE));
 		pg.add(new PointedGraph(g.get(SampledType.TILE_TIME), GraphSize.SQUARE));
 	}
 
@@ -322,6 +323,15 @@ public class GraphController extends Controller
 	public void on(ReactScrollEvent e)
 	{
 
+	}
+
+	public void stopMapping(Player p)
+	{
+		if(gr.containsKey(p))
+		{
+			gr.get(p).toggle();
+			gr.remove(p);
+		}
 	}
 
 	public void toggleMapping(Player player)

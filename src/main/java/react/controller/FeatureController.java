@@ -90,12 +90,19 @@ public class FeatureController extends Controller implements INMSBinding
 		return trueBinding != null;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void setBlock(Location l, MaterialBlock m)
 	{
 		if(hasBinding())
 		{
 			trueBinding.setBlock(l, m);
+		}
+
+		else
+		{
+			l.getBlock().setType(m.getMaterial());
+			l.getBlock().setData(m.getData());
 		}
 	}
 }

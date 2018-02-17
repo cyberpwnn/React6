@@ -5,11 +5,13 @@ import react.controller.ActionController;
 import react.controller.ChronophyFluidController;
 import react.controller.ChunkController;
 import react.controller.CommandController;
+import react.controller.CrashController;
 import react.controller.EntityCullController;
 import react.controller.EntityStackController;
 import react.controller.EventController;
 import react.controller.ExplosiveController;
 import react.controller.FastDecayController;
+import react.controller.FastGrowthController;
 import react.controller.FeatureController;
 import react.controller.FeatureSetController;
 import react.controller.FluidController;
@@ -136,6 +138,12 @@ public class React
 
 	@Control
 	public FeatureSetController featureSetController;
+
+	@Control
+	public FastGrowthController fastGrowthController;
+
+	@Control
+	public CrashController crashController;
 
 	@Enable
 	public void enable()
