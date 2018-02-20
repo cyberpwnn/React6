@@ -19,12 +19,14 @@ import react.controller.GlassController;
 import react.controller.GraphController;
 import react.controller.HopperController;
 import react.controller.HopperOvertickController;
+import react.controller.InstantDropController;
 import react.controller.LanguageController;
 import react.controller.MessageController;
 import react.controller.MetricsController;
 import react.controller.MonitorController;
 import react.controller.PhysicsController;
 import react.controller.PlayerController;
+import react.controller.ProtocolController;
 import react.controller.RAIController;
 import react.controller.RedstoneController;
 import react.controller.SampleController;
@@ -145,6 +147,12 @@ public class React
 	@Control
 	public CrashController crashController;
 
+	@Control
+	public InstantDropController InstantDropController;
+
+	@Control
+	public ProtocolController protocolController;
+
 	@Enable
 	public void enable()
 	{
@@ -159,7 +167,7 @@ public class React
 
 		if(React.instance == null)
 		{
-			D.f("Instance null, fixing");
+			D.f("Instance null, fixing?");
 			React.instance = this;
 		}
 	}

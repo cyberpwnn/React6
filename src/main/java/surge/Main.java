@@ -11,6 +11,7 @@ import java.lang.reflect.Modifier;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import org.bukkit.Bukkit;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
@@ -27,6 +28,7 @@ import surge.util.Anchor;
 import surge.util.D;
 import surge.util.DynamicConfiguration;
 import surge.util.DynamicTracker;
+import surge.util.PluginUtil;
 import surge.util.PoolCount;
 import surge.util.PoolDescriber;
 import surge.util.PoolNanoThrottle;
@@ -46,15 +48,18 @@ public class Main extends AmpedPlugin
 	public static long nsf = -1;
 	private static SuperSampler ssx;
 
-	public Main()
-	{
-
-	}
-
 	@Override
 	public void onControllerRegistry()
 	{
 
+	}
+
+	public static void reload()
+	{
+		Main m = (Main) Bukkit.getPluginManager().getPlugin("React");
+		File f = Surge.getPluginJarFile();
+		PluginUtil.unloadForce(m);
+		PluginUtil.load(f);
 	}
 
 	@Override
@@ -85,36 +90,6 @@ public class Main extends AmpedPlugin
 	public static void requestResetNanos()
 	{
 		Main.nsf = -1;
-	}
-
-	public static void requestReload()
-	{
-		try
-		{
-			AmpedPlugin p = Surge.getAmp().getPluginInstance();
-			p.onReload();
-		}
-
-		catch(Throwable e)
-		{
-
-		}
-	}
-
-	public static void requestReload(Runnable r)
-	{
-		try
-		{
-			AmpedPlugin p = Surge.getAmp().getPluginInstance();
-			p.onReload();
-		}
-
-		catch(Throwable e)
-		{
-
-		}
-
-		r.run();
 	}
 
 	@Override
@@ -174,6 +149,11 @@ public class Main extends AmpedPlugin
 		{
 			shutDownAmps();
 			ssx.stop();
+			controllerSet.clear();
+			pluginInstances.clear();
+			plugins.clear();
+			anchors.clear();
+			classes.clear();
 		}
 
 		catch(Exception e)

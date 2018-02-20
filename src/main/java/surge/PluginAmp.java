@@ -6,7 +6,6 @@ import org.cyberpwn.gconcurrent.TICK;
 import surge.control.AmpedPlugin;
 import surge.sched.IMasterTickComponent;
 import surge.util.D;
-import surge.util.PluginUtil;
 
 public class PluginAmp
 {
@@ -50,7 +49,7 @@ public class PluginAmp
 			public void run()
 			{
 				onReload.run();
-				PluginUtil.reload(getPluginInstance());
+				Main.reload();
 			}
 		});
 

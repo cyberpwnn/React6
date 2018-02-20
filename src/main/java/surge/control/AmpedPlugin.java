@@ -14,7 +14,6 @@ import surge.Surge;
 import surge.sched.IMasterTickComponent;
 import surge.server.CoreTickThread;
 import surge.util.D;
-import surge.util.PluginUtil;
 import surge.util.Protocol;
 
 public abstract class AmpedPlugin extends JavaPlugin implements SurgePlugin, IMasterTickComponent
@@ -32,28 +31,7 @@ public abstract class AmpedPlugin extends JavaPlugin implements SurgePlugin, IMa
 
 	public void onReload()
 	{
-		onDisable();
-		destroyOldThreads();
 
-		try
-		{
-			PluginUtil.unload(this);
-		}
-
-		catch(Throwable e)
-		{
-
-		}
-
-		try
-		{
-			PluginUtil.load("React");
-		}
-
-		catch(Throwable e)
-		{
-
-		}
 	}
 
 	@Override
@@ -106,6 +84,8 @@ public abstract class AmpedPlugin extends JavaPlugin implements SurgePlugin, IMa
 	@Override
 	public void onDisable()
 	{
+		Surge.getAsyncTickComponents().clear();
+		Surge.getTickComponents().clear();
 		onStop();
 		pp.shutdown();
 		ctt.interrupt();

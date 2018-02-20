@@ -25,6 +25,12 @@ public class Info
 	public static String COMMAND_HELP_ALIAS_2 = "?"; //$NON-NLS-1$
 	public static String COMMAND_HELP_USAGE = "[page]"; //$NON-NLS-1$
 
+	public static String COMMAND_PING_DESCRIPTION = "View and even graph realtime ping (nanosecond accuracy)"; //$NON-NLS-1$
+	public static String COMMAND_PING = "ping"; //$NON-NLS-1$
+	public static String COMMAND_PING_ALIAS_1 = "png"; //$NON-NLS-1$
+	public static String COMMAND_PING_ALIAS_2 = "p"; //$NON-NLS-1$
+	public static String COMMAND_PING_USAGE = "[player] [opts]"; //$NON-NLS-1$
+
 	public static String COMMAND_STATUS_DESCRIPTION = Lang.getString("command.status.description"); //$NON-NLS-1$
 	public static String COMMAND_STATUS = "status"; //$NON-NLS-1$
 	public static String COMMAND_STATUS_ALIAS_1 = "stat"; //$NON-NLS-1$

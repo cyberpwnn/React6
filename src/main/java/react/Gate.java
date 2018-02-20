@@ -37,12 +37,15 @@ import surge.nms.NMSX;
 import surge.sched.TaskLater;
 import surge.util.C;
 import surge.util.D;
+import surge.util.MSound;
+import surge.util.P;
 import surge.util.Protocol;
 import surge.util.TXT;
 import surge.util.W;
 
 public class Gate
 {
+	public static int snd = 3;
 	private static GMap<String, Integer> defaultSettings = new GMap<String, Integer>();
 	private static GSet<Chunk> refresh = new GSet<Chunk>();
 	private static GSet<Location> destroy = new GSet<Location>();
@@ -130,7 +133,9 @@ public class Gate
 						};
 					}
 
-					catch(Exception e)
+					catch(
+
+							Exception e)
 					{
 						e.printStackTrace();
 						prog.run(1.0);
@@ -372,16 +377,43 @@ public class Gate
 
 	public static String msgSuccess(CommandSender p, String msg)
 	{
+		if(p instanceof Player)
+		{
+			if(snd > 0)
+			{
+				((Player) p).playSound(((Player) p).getLocation(), MSound.SUCCESSFUL_HIT.bukkitSound(), 0.25f, 1.9f);
+				snd--;
+			}
+		}
+
 		return msg(p, C.GREEN + "\u2714 " + C.GRAY + msg); //$NON-NLS-1$
 	}
 
 	public static String msgError(CommandSender p, String msg)
 	{
+		if(p instanceof Player)
+		{
+			if(snd > 0)
+			{
+				((Player) p).playSound(((Player) p).getLocation(), MSound.ENDERDRAGON_HIT.bukkitSound(), 0.25f, 1.9f);
+				snd--;
+			}
+		}
+
 		return msg(p, C.RED + "\u2718 " + C.GRAY + msg); //$NON-NLS-1$
 	}
 
 	public static String msgActing(CommandSender p, String msg)
 	{
+		if(p instanceof Player)
+		{
+			if(snd > 0)
+			{
+				((Player) p).playSound(((Player) p).getLocation(), MSound.CHICKEN_EGG_POP.bukkitSound(), 0.15f, 1.9f);
+				snd--;
+			}
+		}
+
 		return msg(p, C.GOLD + "\u26A0 " + C.GRAY + msg); //$NON-NLS-1$
 	}
 
@@ -406,7 +438,10 @@ public class Gate
 
 			if(canUnload(c.getWorld(), c.getX(), c.getZ()))
 			{
-				return c.unload();
+				if(!P.isWithinViewDistance(c))
+				{
+					return c.unload();
+				}
 			}
 
 			return false;
@@ -560,7 +595,6 @@ public class Gate
 		block.setTypeIdAndData(1, (byte) 0, false);
 		block.setTypeIdAndData(id, byt, true);
 
-
 		if(block.getState() instanceof Hopper)
 		{
 			((Hopper) block.getState()).getInventory().setContents(cont);
@@ -592,17 +626,11 @@ public class Gate
 
 	public static void refresh(Chunk chunk)
 	{
-		refresh.add(chunk);
 	}
 
 	@SuppressWarnings("deprecation")
 	public static void refreshChunks()
 	{
-		for(Chunk i : refresh)
-		{
-			i.getWorld().refreshChunk(i.getX(), i.getZ());
-		}
-
 		refresh.clear();
 
 		for(Player j : Bukkit.getOnlinePlayers())
@@ -611,7 +639,10 @@ public class Gate
 			{
 				if(j.getWorld().equals(i.getWorld()))
 				{
-					j.sendBlockChange(i, 0, (byte) 0);
+					if(j.getLocation().distanceSquared(i) <= Math.pow(Bukkit.getViewDistance() * 16, 2))
+					{
+						j.sendBlockChange(i, 0, (byte) 0);
+					}
 				}
 			}
 		}

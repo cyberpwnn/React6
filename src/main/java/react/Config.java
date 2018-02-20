@@ -281,6 +281,21 @@ public class Config
 	@Address(80)
 	public static final String A_FAST_EXPLOSIONS = "tweaks.explosions.fast-block-destruction";
 
+	@Address(81)
+	public static final String A_DROPS_INSTADROP = "tweaks.drops.fast-drop-items";
+
+	@Address(82)
+	public static final String A_SKIP_ORBS = "tweaks.xp.fast-drop-xp";
+
+	@Address(83)
+	public static final String A_FAST_ORB_PICKUP = "tweaks.xp.fast-xp-pickup";
+
+	@Address(84)
+	public static final String A_DROPS_TELEPORT = "tweaks.drops.teleport-to-source";
+
+	@Address(85)
+	public static final String A_DESPAWN_USELESS_ARROWS = "tweaks.drops.despawn-useless-arrows";
+
 	@Sector(0)
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 0.01, max = 10000)
@@ -707,6 +722,21 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean FAST_EXPLOSIONS = true;
 
+	@Sector(81)
+	public static boolean DROPS_INSTADROP = false;
+
+	@Sector(82)
+	public static boolean SKIP_ORBS = true;
+
+	@Sector(83)
+	public static boolean FAST_ORB_PICKUP = true;
+
+	@Sector(84)
+	public static boolean DROPS_TELEPORT = false;
+
+	@Sector(85)
+	public static boolean DESPAWN_USELESS_ARROWS = true;
+
 	private static boolean hrld = false;
 	private static boolean rns = false;
 	private static boolean rrl = false;
@@ -775,7 +805,7 @@ public class Config
 			{
 				if(rrl)
 				{
-					Main.requestReload();
+					Main.reload();
 					hrld = false;
 				}
 

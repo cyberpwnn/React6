@@ -5,6 +5,7 @@ authors: [cyberpwn, Puretie]
 load: STARTUP
 website: https://www.spigotmc.org/resources/react-smart-server-performance.21057/
 database: false
+softdepend: [ProtocolLib, FastAsyncWorldEdit]
 prefix: React
 commands: 
   react: 

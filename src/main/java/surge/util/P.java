@@ -24,6 +24,27 @@ import org.cyberpwn.glang.GListAdapter;
  */
 public class P
 {
+	public static boolean isWithinViewDistance(Player p, Chunk c)
+	{
+		int manhattan = (int) (Bukkit.getViewDistance() * 1.5);
+		int mdist = Math.abs(p.getLocation().getChunk().getX() - c.getX()) + Math.abs(p.getLocation().getChunk().getZ() - c.getZ());
+
+		return mdist <= manhattan;
+	}
+
+	public static boolean isWithinViewDistance(Chunk c)
+	{
+		for(Player i : c.getWorld().getPlayers())
+		{
+			if(isWithinViewDistance(i, c))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	/**
 	 * Is the given player online?
 	 *

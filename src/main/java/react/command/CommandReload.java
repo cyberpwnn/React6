@@ -1,14 +1,13 @@
 package react.command;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
-import react.Config;
 import react.Gate;
 import react.Info;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
+import surge.Main;
 import surge.util.Anchor;
 
 @Anchor(0)
@@ -27,7 +26,7 @@ public class CommandReload extends ReactCommand
 	@Override
 	public void fire(CommandSender sender, String[] args)
 	{
-		Config.onRead(Bukkit.getPluginManager().getPlugin("React"));
-		Gate.msgSuccess(sender, "Configurations Reloaded");
+		Main.reload();
+		Gate.msgSuccess(sender, "React Reloaded");
 	}
 }

@@ -45,6 +45,16 @@ public class CrashController extends Controller implements Runnable
 
 		while(!Thread.interrupted())
 		{
+			try
+			{
+				Thread.sleep(1000);
+			}
+
+			catch(InterruptedException e)
+			{
+				return;
+			}
+
 			if(M.ms() - lastTick > 7000 && !spiked)
 			{
 				spiked = true;

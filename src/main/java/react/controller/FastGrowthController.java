@@ -1,6 +1,5 @@
 package react.controller;
 
-import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -8,12 +7,10 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockGrowEvent;
 import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GMap;
-import org.cyberpwn.glang.GSet;
 import org.cyberpwn.gmath.Average;
 import org.cyberpwn.gmath.M;
 
 import react.Config;
-import react.Gate;
 import react.React;
 import react.api.Unused;
 import surge.Surge;
@@ -84,20 +81,12 @@ public class FastGrowthController extends Controller
 
 		if(TICK.tick % 5 == 0)
 		{
-			GSet<Chunk> updates = new GSet<Chunk>();
-
 			for(Location i : changes.k())
 			{
-				updates.add(i.getChunk());
 				React.instance.featureController.setBlock(i, changes.get(i));
 			}
 
 			changes.clear();
-
-			for(Chunk i : updates)
-			{
-				Gate.refresh(i);
-			}
 		}
 	}
 
@@ -105,7 +94,7 @@ public class FastGrowthController extends Controller
 	public void on(BlockGrowEvent e)
 	{
 		tickNextTickList();
-		fastApply(e);
+		// fastApply(e);
 	}
 
 	@SuppressWarnings("deprecation")

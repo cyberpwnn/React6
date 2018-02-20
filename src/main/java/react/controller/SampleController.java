@@ -6,7 +6,6 @@ import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
-import react.React;
 import react.api.ISampler;
 import surge.Main;
 import surge.Surge;
@@ -58,15 +57,6 @@ public class SampleController extends Controller implements IMasterTickComponent
 		}
 
 		return false;
-	}
-
-	public void restartSuperSampler()
-	{
-		stop();
-		React.instance.sampleController = new SampleController();
-		React.instance.sampleController.start();
-		D.w("Resetting Sample Controller");
-		Main.requestReload();
 	}
 
 	public void registerSampler(ISampler s)

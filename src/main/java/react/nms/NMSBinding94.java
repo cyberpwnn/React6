@@ -7,9 +7,9 @@ import net.minecraft.server.v1_9_R2.BlockPosition;
 import net.minecraft.server.v1_9_R2.IBlockData;
 import surge.util.MaterialBlock;
 
-public class NMSBinding9 extends NMSBinding
+public class NMSBinding94 extends NMSBinding
 {
-	public NMSBinding9(String packageVersion)
+	public NMSBinding94(String packageVersion)
 	{
 		super(packageVersion);
 	}

@@ -8,6 +8,7 @@ import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GTriset;
 
 import react.Config;
+import react.Gate;
 import react.action.source.IActionSource;
 import react.api.ActionAlreadyRunningException;
 import react.api.ActionException;
@@ -155,6 +156,7 @@ public class ActionController extends Controller
 	@Override
 	public void tick()
 	{
+		Gate.snd = 3;
 		GMap<ActionType, Integer> pendingStatus = new GMap<ActionType, Integer>();
 		GMap<ActionType, String> runningStatus = new GMap<ActionType, String>();
 
