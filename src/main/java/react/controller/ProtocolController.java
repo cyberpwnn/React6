@@ -2,8 +2,11 @@ package react.controller;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.cyberpwn.glang.GBiset;
 import org.cyberpwn.glang.GMap;
+import org.cyberpwn.gmath.Average;
 import org.cyberpwn.gmath.M;
 
 import com.comphenix.protocol.PacketType;
@@ -23,10 +26,13 @@ public class ProtocolController extends Controller
 	private GMap<Player, Double> pings;
 	private GMap<Player, Long> ago;
 	private GMap<Player, GBiset<Long, Long>> times;
+	private double avgPing;
 
 	@Override
 	public void start()
 	{
+		Surge.register(this);
+		avgPing = 0;
 		pings = new GMap<Player, Double>();
 		ago = new GMap<Player, Long>();
 		times = new GMap<Player, GBiset<Long, Long>>();
@@ -70,16 +76,38 @@ public class ProtocolController extends Controller
 	@Override
 	public void stop()
 	{
+		Surge.unregister(this);
+
 		if(safe)
 		{
 			ProtocolLibrary.getProtocolManager().removePacketListeners(Surge.getAmp().getPluginInstance());
 		}
 	}
 
+	@EventHandler
+	public void on(PlayerQuitEvent e)
+	{
+		ago.remove(e.getPlayer());
+		pings.remove(e.getPlayer());
+		times.remove(e.getPlayer());
+	}
+
 	@Override
 	public void tick()
 	{
+		Average a = new Average(pings.size());
 
+		for(Double i : pings.v())
+		{
+			a.put(i);
+		}
+
+		avgPing = a.getAverage();
+	}
+
+	public double getAvgPing()
+	{
+		return avgPing;
 	}
 
 	public double ping(Player p)

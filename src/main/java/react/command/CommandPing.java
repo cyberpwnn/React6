@@ -18,6 +18,7 @@ import react.api.ReactCommand;
 import react.api.SideGate;
 import surge.util.Anchor;
 import surge.util.C;
+import surge.util.P;
 
 @Anchor(0)
 public class CommandPing extends ReactCommand
@@ -31,7 +32,7 @@ public class CommandPing extends ReactCommand
 		description = Info.COMMAND_PING_DESCRIPTION;
 		sideGate = SideGate.ANYTHING;
 		registerParameterDescription("[player]", "the player to ping (or multiple)");
-		registerParameterDescription("[opts]", "-g or --graph shows a realtime graph of the target's ping");
+		registerParameterDescription("[opts]", "-t or --top to view totals");
 	}
 
 	@Override
@@ -105,6 +106,17 @@ public class CommandPing extends ReactCommand
 					Gate.msgSuccess(sender, "Average Ping: " + C.WHITE + F.f(a.getAverage(), 1));
 					sender.sendMessage(Gate.header(C.AQUA));
 				}
+			}
+
+			else if(P.canFindPlayer(args[0]))
+			{
+				Player p = P.findPlayer(args[0]);
+				Gate.msgSuccess(sender, p.getName() + "'s ping is " + C.WHITE + F.f(React.instance.protocolController.ping(p), 1) + "ms" + C.GRAY + " measured " + F.time(M.ms() - React.instance.protocolController.ago(p), 0) + " ago");
+			}
+
+			else
+			{
+				Gate.msgError(sender, "Who is " + args[0] + "?");
 			}
 		}
 	}
