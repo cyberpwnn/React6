@@ -226,6 +226,13 @@ public class GraphController extends Controller
 
 	public void toggleMapping(Player player, String[] args)
 	{
+		if(!Capability.FAST_MAPPING.isCapable())
+		{
+			Capability.FAST_MAPPING.sendNotCapable(player);
+			Capability.DUAL_WEILD.sendNotCapable(player);
+			return;
+		}
+
 		if(!Capability.DUAL_WEILD.isCapable())
 		{
 			Capability.DUAL_WEILD.sendNotCapable(player);

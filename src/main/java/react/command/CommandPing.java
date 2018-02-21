@@ -13,6 +13,7 @@ import org.cyberpwn.gmath.M;
 import react.Gate;
 import react.Info;
 import react.React;
+import react.api.Capability;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
@@ -38,6 +39,12 @@ public class CommandPing extends ReactCommand
 	@Override
 	public void fire(CommandSender sender, String[] args)
 	{
+		if(!Capability.ACCELERATED_PING.isCapable())
+		{
+			Capability.ACCELERATED_PING.sendNotCapable(sender);
+			return;
+		}
+
 		if(args.length == 0)
 		{
 			if(sender instanceof Player)

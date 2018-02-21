@@ -32,6 +32,12 @@ public class CommandMonitor extends ReactCommand
 	{
 		Player player = (Player) sender;
 
+		if(!Capability.TITLE_BAR.isCapable())
+		{
+			Capability.TITLE_BAR.sendNotCapable(player);
+			return;
+		}
+
 		if(!Capability.ACTION_BAR.isCapable())
 		{
 			Capability.ACTION_BAR.sendNotCapable(player);

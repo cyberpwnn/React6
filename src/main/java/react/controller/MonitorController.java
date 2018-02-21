@@ -468,7 +468,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 
 	public void tickMonitor(ReactPlayer rp)
 	{
-		if(Capability.ACTION_BAR.isCapable())
+		if(Capability.TITLE_BAR.isCapable())
 		{
 			Player p = rp.getP();
 			boolean high = rp.highMonitor;
@@ -491,11 +491,14 @@ public class MonitorController extends Controller implements IMasterTickComponen
 
 			else
 			{
-				NMSX.sendActionBar(p, titleMonitor.getHotbarFor(sel, rp.isShift()));
-				String k = titleMonitor.getHotbarHeadFor(sel, rp.isShift(), this, rp, rp.getSwitchNotification());
-				String m = prefixFor(rp, sel, rp.getSwitchNotification());
-				String v = sel != -1 ? (rp.getSwitchNotification() > 0 ? (m + titleMonitor.getHeadFor(sel).getName()) : "  ") : "  "; //$NON-NLS-1$ //$NON-NLS-2$
-				NMSX.sendTitle(p, 0, 5, 0, v, k);
+				if(Capability.ACTION_BAR.isCapable())
+				{
+					NMSX.sendActionBar(p, titleMonitor.getHotbarFor(sel, rp.isShift()));
+					String k = titleMonitor.getHotbarHeadFor(sel, rp.isShift(), this, rp, rp.getSwitchNotification());
+					String m = prefixFor(rp, sel, rp.getSwitchNotification());
+					String v = sel != -1 ? (rp.getSwitchNotification() > 0 ? (m + titleMonitor.getHeadFor(sel).getName()) : "  ") : "  "; //$NON-NLS-1$ //$NON-NLS-2$
+					NMSX.sendTitle(p, 0, 5, 0, v, k);
+				}
 			}
 		}
 	}

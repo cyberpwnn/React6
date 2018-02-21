@@ -12,6 +12,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import react.api.Capability;
+
 public class NMSX
 {
 	public static NMSX bountifulAPI;
@@ -317,6 +319,11 @@ public class NMSX
 
 	public static void sendActionBar(Player player, String message)
 	{
+		if(!Capability.ACTION_BAR.isCapable())
+		{
+			return;
+		}
+
 		if(!VersionBukkit.tc())
 		{
 			return;
