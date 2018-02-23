@@ -14,6 +14,7 @@ import org.cyberpwn.gmath.Average;
 import org.cyberpwn.gmath.M;
 
 import react.Config;
+import react.Gate;
 import react.React;
 import react.api.Unused;
 import surge.Surge;
@@ -104,6 +105,11 @@ public class ExplosiveController extends Controller
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onLoad(EntityExplodeEvent e)
 	{
+		if(Config.FACTIONS && Gate.factions())
+		{
+			return;
+		}
+
 		if(aCSMS.getAverage() > Config.MAX_EXPLOSION_MS && Config.THROTTLE_EXPLOSIONS)
 		{
 			if(M.r(0.65))

@@ -22,6 +22,7 @@ import org.cyberpwn.gconcurrent.A;
 import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.gformat.F;
 import org.cyberpwn.glang.Callback;
+import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
 import org.cyberpwn.gmath.M;
@@ -51,6 +52,11 @@ public class Gate
 	private static GSet<Location> destroy = new GSet<Location>();
 	public static int cd = 0;
 
+	public static boolean factions()
+	{
+		return Bukkit.getServer().getPluginManager().getPlugin("Factions") != null;
+	}
+
 	public static void fixLighting(SelectorPosition sel, Callback<Integer> cb, Callback<Double> prog)
 	{
 		new A()
@@ -73,16 +79,17 @@ public class Gate
 						Integer[] sof = {0};
 						Integer tot = sel.getPossibilities().size();
 						int kv = 0;
-						for(Object o : sel.getPossibilities())
+
+						for(Object o : new GList<Object>(sel.getPossibilities()).shuffleCopy())
 						{
 							if(!sel.can(o))
 							{
 								continue;
 							}
 
-							if(M.r(0.05))
+							if(M.r(0.1))
 							{
-								kv += 2;
+								kv += 5;
 							}
 
 							new TaskLater("fq-chunkwait", kv)

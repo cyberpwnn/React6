@@ -56,7 +56,7 @@ public class CommandAct extends ReactCommand
 	{
 		if(args.length == 0)
 		{
-			sendPage(sender, 0, 9);
+			sendPage(sender, 0, 8);
 			return;
 		}
 
@@ -75,7 +75,7 @@ public class CommandAct extends ReactCommand
 			try
 			{
 				int k = Integer.valueOf(args[0]);
-				sendPage(sender, k - 1, 9);
+				sendPage(sender, k - 1, 8);
 				D.v(k + ":f");
 				return;
 			}

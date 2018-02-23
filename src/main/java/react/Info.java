@@ -47,7 +47,7 @@ public class Info
 	public static String COMMAND_RELOAD = "reload"; //$NON-NLS-1$
 	public static String COMMAND_RELOAD_ALIAS_1 = "rld"; //$NON-NLS-1$
 	public static String COMMAND_RELOAD_ALIAS_2 = "rl"; //$NON-NLS-1$
-	public static String COMMAND_RELOAD_USAGE = ""; //$NON-NLS-1$
+	public static String COMMAND_RELOAD_USAGE = "[options]"; //$NON-NLS-1$
 
 	public static String COMMAND_FEATURE_DESCRIPTION = "Turn on and off features and configure them."; //$NON-NLS-1$
 	public static String COMMAND_FEATURE = "feature"; //$NON-NLS-1$
@@ -190,6 +190,8 @@ public class Info
 
 	public static String PERM_ACCESS = "access"; //$NON-NLS-1$
 	public static String PERM_TELEPORT = "teleport"; //$NON-NLS-1$
+	public static String PERM_PING = "ping"; //$NON-NLS-1$
+	public static String PERM_PING_OTHERS = "ping.others"; //$NON-NLS-1$
 	public static String PERM_MONITOR = "monitor"; //$NON-NLS-1$
 	public static String PERM_MONITOR_TITLE = PERM_MONITOR + ".title"; //$NON-NLS-1$
 	public static String PERM_MONITOR_ACTIONLOG = PERM_MONITOR + ".actionlog"; //$NON-NLS-1$

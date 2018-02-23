@@ -7,6 +7,7 @@ public enum Note
 	RAI,
 	VERBOSE,
 	SPIKES,
+	ACTION,
 	GC;
 
 	public void bake(String msg)

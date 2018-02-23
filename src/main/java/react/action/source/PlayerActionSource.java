@@ -41,4 +41,10 @@ public class PlayerActionSource implements IActionSource
 	{
 		Gate.msgActing(p, r);
 	}
+
+	@Override
+	public String toString()
+	{
+		return p.getName();
+	}
 }

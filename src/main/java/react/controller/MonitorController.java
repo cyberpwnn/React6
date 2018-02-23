@@ -1,5 +1,7 @@
 package react.controller;
 
+import java.io.File;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -50,6 +52,20 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	@Override
 	public void start()
 	{
+		File f = new File(new File(Surge.getAmp().getPluginInstance().getDataFolder(), "cache"), "WIPE");
+
+		if(f.exists())
+		{
+			f.delete();
+
+			File c = new File(Surge.getAmp().getPluginInstance().getDataFolder(), "cache");
+
+			for(File i : c.listFiles())
+			{
+				i.delete();
+			}
+		}
+
 		Surge.register(this);
 		Surge.registerTicked(this);
 

@@ -25,4 +25,10 @@ public class EmptyActionSource implements IActionSource
 	{
 
 	}
+
+	@Override
+	public String toString()
+	{
+		return "A Ghost";
+	}
 }

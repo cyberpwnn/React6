@@ -1,5 +1,7 @@
 package react.controller;
 
+import java.io.File;
+
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
@@ -15,9 +17,12 @@ import surge.control.Controller;
 
 public class WorldController extends Controller
 {
+	private boolean aboutToWipe;
+
 	@Override
 	public void start()
 	{
+		aboutToWipe = false;
 		Surge.register(this);
 
 		for(World i : Bukkit.getWorlds())
@@ -34,6 +39,16 @@ public class WorldController extends Controller
 		for(World i : Bukkit.getWorlds())
 		{
 			Config.closeWorldConfig(i);
+		}
+
+		if(aboutToWipe)
+		{
+			File fx = new File(Surge.getAmp().getPluginInstance().getDataFolder(), "worlds");
+
+			for(File i : fx.listFiles())
+			{
+				i.delete();
+			}
 		}
 	}
 
@@ -58,5 +73,10 @@ public class WorldController extends Controller
 	public void on(WorldUnloadEvent e)
 	{
 		Config.closeWorldConfig(e.getWorld());
+	}
+
+	public void wipe()
+	{
+		aboutToWipe = true;
 	}
 }

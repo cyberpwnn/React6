@@ -23,6 +23,8 @@ permissions:
       react.act: true
       react.rai: true
       react.teleport: true
+      react.ping: true
+      react.ping.others: true
   react.rai: 
     description: Gives access to use all rai features
     default: op
@@ -127,3 +129,9 @@ permissions:
   react.tempaccess: 
     description: Grants the ability to REQUEST access from anyone with actual react access.
     default: true
+  react.ping: 
+    description: Grants the ability to check your ping
+    default: op
+  react.ping.others: 
+    description: Grants the ability to check other players ping and all at once
+    default: op

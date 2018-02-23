@@ -27,4 +27,10 @@ public class RAIActionSource implements IActionSource
 	{
 		D.v("[RAI]: " + r);
 	}
+
+	@Override
+	public String toString()
+	{
+		return "RAI";
+	}
 }

@@ -3,6 +3,7 @@ package react.controller;
 import java.lang.reflect.InvocationTargetException;
 
 import org.bukkit.Chunk;
+import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GTriset;
@@ -17,8 +18,10 @@ import react.api.ActionType;
 import react.api.IAction;
 import react.api.ISelector;
 import react.api.SelectorPosition;
+import react.notification.Note;
 import surge.Main;
 import surge.control.Controller;
+import surge.util.C;
 
 public class ActionController extends Controller
 {
@@ -26,6 +29,7 @@ public class ActionController extends Controller
 	private GMap<ActionType, IAction> actions;
 	public GMap<Integer, GTriset<ActionType, IActionSource, GList<ISelector>>> pending;
 	public GList<String> tasks;
+	private GMap<String, GList<ActionType>> rans;
 
 	@Override
 	public void start()
@@ -34,6 +38,7 @@ public class ActionController extends Controller
 		tasks = new GList<String>();
 		pending = new GMap<Integer, GTriset<ActionType, IActionSource, GList<ISelector>>>();
 		actions = new GMap<ActionType, IAction>();
+		rans = new GMap<String, GList<ActionType>>();
 
 		for(Class<?> i : Main.anchors.get(1))
 		{
@@ -156,6 +161,35 @@ public class ActionController extends Controller
 	@Override
 	public void tick()
 	{
+		if(TICK.tick % 100 == 0)
+		{
+			for(String i : rans.k())
+			{
+				GMap<ActionType, Integer> cts = new GMap<ActionType, Integer>();
+
+				for(ActionType j : rans.get(i))
+				{
+					if(!cts.containsKey(j))
+					{
+						cts.put(j, 0);
+					}
+
+					cts.put(j, cts.get(j) + 1);
+				}
+
+				String s = C.WHITE + i + C.GRAY + " ran";
+
+				for(ActionType j : cts.k())
+				{
+					s += " " + (cts.get(j) > 1 ? (C.GRAY.toString() + cts.get(j) + "x " + C.WHITE) : C.WHITE + "") + j.getName() + C.GRAY;
+				}
+
+				Note.ACTION.bake(s);
+			}
+
+			rans.clear();
+		}
+
 		Gate.snd = 3;
 		GMap<ActionType, Integer> pendingStatus = new GMap<ActionType, Integer>();
 		GMap<ActionType, String> runningStatus = new GMap<ActionType, String>();
@@ -174,6 +208,14 @@ public class ActionController extends Controller
 
 				if(ran)
 				{
+					String src = source.toString();
+
+					if(!rans.containsKey(src))
+					{
+						rans.put(src, new GList<ActionType>());
+					}
+
+					rans.get(src).add(i.getA());
 					pending.remove(d);
 				}
 

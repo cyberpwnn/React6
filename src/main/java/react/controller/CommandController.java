@@ -114,7 +114,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 
 	public void f(CommandSender s, String msg)
 	{
-		msg(s, C.RED + msg);
+		Gate.msgError(s, msg);
 	}
 
 	@Override
@@ -208,7 +208,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 			boolean plr = s instanceof Player;
 			Player px = plr ? (Player) s : null;
 
-			if(!(a.length >= 1 && (a[0].equalsIgnoreCase(Info.COMMAND_TEMPACCESS) || a[0].equalsIgnoreCase(Info.COMMAND_TEMPACCESS_ALIAS_1) || a[0].equalsIgnoreCase(Info.COMMAND_TEMPACCESS_ALIAS_2))))
+			if(!(a.length >= 1 && (a[0].equalsIgnoreCase(Info.COMMAND_PING) || a[0].equalsIgnoreCase(Info.COMMAND_PING_ALIAS_1) || a[0].equalsIgnoreCase(Info.COMMAND_PING_ALIAS_2) || a[0].equalsIgnoreCase(Info.COMMAND_TEMPACCESS) || a[0].equalsIgnoreCase(Info.COMMAND_TEMPACCESS_ALIAS_1) || a[0].equalsIgnoreCase(Info.COMMAND_TEMPACCESS_ALIAS_2))))
 			{
 				if(!Permissable.ACCESS.has(s))
 				{

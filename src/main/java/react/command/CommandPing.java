@@ -28,7 +28,7 @@ public class CommandPing extends ReactCommand
 	{
 		command = Info.COMMAND_PING;
 		aliases = new String[] {Info.COMMAND_PING_ALIAS_1, Info.COMMAND_PING_ALIAS_2};
-		permissions = new String[] {Permissable.ACCESS.getNode()};
+		permissions = new String[] {Permissable.PING.getNode()};
 		usage = Info.COMMAND_PING_USAGE;
 		description = Info.COMMAND_PING_DESCRIPTION;
 		sideGate = SideGate.ANYTHING;
@@ -49,17 +49,26 @@ public class CommandPing extends ReactCommand
 		{
 			if(sender instanceof Player)
 			{
-				Gate.msgSuccess(sender, "Your ping is " + C.WHITE + F.f(React.instance.protocolController.ping((Player) sender), 1) + "ms" + C.GRAY + " measured " + F.time(M.ms() - React.instance.protocolController.ago((Player) sender), 0) + " ago");
+				Gate.msgSuccess(sender, "Your ping is " + C.WHITE + F.f(React.instance.protocolController.ping((Player) sender), 2) + "ms" + C.GRAY + " measured " + F.time(M.ms() - React.instance.protocolController.ago((Player) sender), 0) + " ago");
 			}
 
 			else
 			{
 				Gate.msgError(sender, "The console's ping is probably zero.");
 			}
+
+			return;
+		}
+
+		if(!Permissable.PING_OTHERS.has(sender))
+		{
+			Gate.msgError(sender, "You do not have permission to ping other people");
+			return;
 		}
 
 		if(args.length == 1)
 		{
+
 			if(args[0].startsWith("-"))
 			{
 				if(args[0].equalsIgnoreCase("-t") || args[0].equalsIgnoreCase("--top"))
@@ -107,10 +116,10 @@ public class CommandPing extends ReactCommand
 					}
 
 					sender.sendMessage(Gate.header("Top Ping", C.AQUA));
-					Gate.msgSuccess(sender, "Slowest Ping: " + C.RED + F.f(h, 1) + "ms" + C.GRAY + " (" + high.getName() + ")");
-					Gate.msgSuccess(sender, "Median Ping: " + C.YELLOW + F.f(m, 1) + "ms" + C.GRAY + " (" + mid.getName() + ")");
-					Gate.msgSuccess(sender, "Fastest Ping: " + C.GREEN + F.f(l, 1) + "ms" + C.GRAY + " (" + low.getName() + ")");
-					Gate.msgSuccess(sender, "Average Ping: " + C.WHITE + F.f(a.getAverage(), 1));
+					Gate.msgSuccess(sender, "Slowest Ping: " + C.RED + F.f(h, 2) + "ms" + C.GRAY + " (" + high.getName() + ")");
+					Gate.msgSuccess(sender, "Median Ping: " + C.YELLOW + F.f(m, 2) + "ms" + C.GRAY + " (" + mid.getName() + ")");
+					Gate.msgSuccess(sender, "Fastest Ping: " + C.GREEN + F.f(l, 2) + "ms" + C.GRAY + " (" + low.getName() + ")");
+					Gate.msgSuccess(sender, "Average Ping: " + C.WHITE + F.f(a.getAverage(), 2));
 					sender.sendMessage(Gate.header(C.AQUA));
 				}
 			}
@@ -118,7 +127,7 @@ public class CommandPing extends ReactCommand
 			else if(P.canFindPlayer(args[0]))
 			{
 				Player p = P.findPlayer(args[0]);
-				Gate.msgSuccess(sender, p.getName() + "'s ping is " + C.WHITE + F.f(React.instance.protocolController.ping(p), 1) + "ms" + C.GRAY + " measured " + F.time(M.ms() - React.instance.protocolController.ago(p), 0) + " ago");
+				Gate.msgSuccess(sender, p.getName() + "'s ping is " + C.WHITE + F.f(React.instance.protocolController.ping(p), 2) + "ms" + C.GRAY + " measured " + F.time(M.ms() - React.instance.protocolController.ago(p), 0) + " ago");
 			}
 
 			else

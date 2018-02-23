@@ -2,7 +2,6 @@ package react;
 
 import react.action.source.AccessActionSource;
 import react.controller.ActionController;
-import react.controller.ChronophyFluidController;
 import react.controller.ChunkController;
 import react.controller.CommandController;
 import react.controller.CrashController;
@@ -107,9 +106,6 @@ public class React
 
 	@Control
 	public GraphController graphController;
-
-	@Control
-	public ChronophyFluidController fluidChronophyController;
 
 	@Control
 	public EventController eventController;

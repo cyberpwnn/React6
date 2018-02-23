@@ -2,6 +2,7 @@ package react.rai.goals;
 
 import org.bukkit.Chunk;
 import org.cyberpwn.gconcurrent.S;
+import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.M;
 
@@ -43,7 +44,17 @@ public class GoalStableFluidTime extends Goal
 		}
 
 		Chunk laggiest = null;
+		GList<Chunk> otherLaggiest = new GList<Chunk>();
 		int max = -1;
+		int fuf = 0;
+
+		for(Chunk i : React.instance.physicsController.getSamples().k())
+		{
+			if(React.instance.physicsController.getSamples().get(i).getCounts().containsKey(ChunkIssue.FLUID))
+			{
+				fuf += React.instance.physicsController.getSamples().get(i).getCounts().get(ChunkIssue.FLUID);
+			}
+		}
 
 		for(Chunk i : React.instance.physicsController.getSamples().k())
 		{
@@ -56,8 +67,15 @@ public class GoalStableFluidTime extends Goal
 					max = s;
 					laggiest = i;
 				}
+
+				if((double) s / (double) fuf > 0.2)
+				{
+					otherLaggiest.add(i);
+				}
 			}
 		}
+
+		otherLaggiest.remove(laggiest);
 
 		if(laggiest != null)
 		{
@@ -72,6 +90,12 @@ public class GoalStableFluidTime extends Goal
 					IActionSource source = new RAIActionSource();
 					SelectorPosition pos = new SelectorPosition();
 					pos.add(lx, Config.RAI_FLUID_TIME_RADIUS);
+
+					for(Chunk i : otherLaggiest.shuffleCopy())
+					{
+						pos.add(i);
+					}
+
 					SelectorTime time = new SelectorTime();
 					time.set((long) ((long) (reocc.containsKey(lx) ? reocc.get(lx) : 4) * (Config.RAI_FLUID_TIME_PROPIGATION * Math.random())));
 					reocc.put(lx, reocc.containsKey(lx) ? reocc.get(lx) + 4 : 1);

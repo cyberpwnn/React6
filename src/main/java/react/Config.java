@@ -296,6 +296,9 @@ public class Config
 	@Address(85)
 	public static final String A_DESPAWN_USELESS_ARROWS = "tweaks.drops.despawn-useless-arrows";
 
+	@Address(86)
+	public static final String A_FACTIONS = "tweaks.factions-compat";
+
 	@Sector(0)
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 0.01, max = 10000)
@@ -325,10 +328,10 @@ public class Config
 
 	@Sector(6)
 	@Injection(InjectionMethod.RELOAD)
-	@Clip(min = 1, max = 2)
+	@Clip(min = 1, max = 4)
 	@PoolCount
 	@Experimental
-	public static int POOL_MAXTHREADS = 1;
+	public static int POOL_MAXTHREADS = 2;
 
 	@Sector(7)
 	@Injection(InjectionMethod.SUBSTRATE)
@@ -720,26 +723,59 @@ public class Config
 
 	@Sector(80)
 	@Injection(InjectionMethod.SWAP)
-	public static boolean FAST_EXPLOSIONS = true;
+	public static boolean FAST_EXPLOSIONS = false;
 
 	@Sector(81)
+	@Injection(InjectionMethod.SWAP)
 	public static boolean DROPS_INSTADROP = false;
 
 	@Sector(82)
+	@Injection(InjectionMethod.SWAP)
 	public static boolean SKIP_ORBS = true;
 
 	@Sector(83)
+	@Injection(InjectionMethod.SWAP)
 	public static boolean FAST_ORB_PICKUP = true;
 
 	@Sector(84)
+	@Injection(InjectionMethod.SWAP)
 	public static boolean DROPS_TELEPORT = false;
 
 	@Sector(85)
+	@Injection(InjectionMethod.SWAP)
 	public static boolean DESPAWN_USELESS_ARROWS = true;
+
+	@Sector(86)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean FACTIONS = true;
 
 	private static boolean hrld = false;
 	private static boolean rns = false;
 	private static boolean rrl = false;
+	private static DataCluster defaultMain;
+	private static DataCluster defaultExp;
+
+	public static void setup() throws IllegalArgumentException, IllegalAccessException
+	{
+		defaultMain = defaultConfig(false);
+		defaultExp = defaultConfig(true);
+	}
+
+	public static void resetConfigs() throws IllegalArgumentException, IllegalAccessException
+	{
+		read(defaultMain, false);
+		read(defaultExp, true);
+		doSave();
+	}
+
+	public static void doSave() throws IllegalArgumentException, IllegalAccessException
+	{
+		Plugin main = Surge.getAmp().getPluginInstance();
+		File fConfig = new File(main.getDataFolder(), "config.yml"); //$NON-NLS-1$
+		File fConfigExperimental = new File(main.getDataFolder(), "config-experimental.yml"); //$NON-NLS-1$
+		new YamlDataOutput().write(defaultConfig(false), fConfig);
+		new YamlDataOutput().write(defaultConfig(true), fConfigExperimental);
+	}
 
 	@DynamicTracker
 	public static void doTrack(Plugin main)
@@ -1213,5 +1249,18 @@ public class Config
 		}
 
 		return scrs;
+	}
+
+	static
+	{
+		try
+		{
+			setup();
+		}
+
+		catch(IllegalArgumentException | IllegalAccessException e)
+		{
+			e.printStackTrace();
+		}
 	}
 }

@@ -29,4 +29,10 @@ public class ConsoleActionSource implements IActionSource
 	{
 		Gate.msgActing(Bukkit.getConsoleSender(), r);
 	}
+
+	@Override
+	public String toString()
+	{
+		return "Console";
+	}
 }

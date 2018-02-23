@@ -53,9 +53,20 @@ public class LagMap
 		{
 			chunks.get(i).pump();
 
-			if(chunks.get(i).getHits().isEmpty())
+			try
 			{
-				chunks.remove(i);
+				if(chunks.get(i).getHits().isEmpty())
+				{
+					chunks.remove(i);
+				}
+			}
+
+			catch(Exception e)
+			{
+				if(i != null && chunks != null)
+				{
+					chunks.remove(i);
+				}
 			}
 		}
 	}

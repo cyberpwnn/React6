@@ -41,7 +41,7 @@ public class CommandHelp extends ReactCommand
 	{
 		if(sender instanceof Player)
 		{
-			sendPage(sender, args.length == 0 ? 0 : Integer.valueOf(args[0]) - 1, 9);
+			sendPage(sender, args.length == 0 ? 0 : Integer.valueOf(args[0]) - 1, 8);
 		}
 
 		else
