@@ -10,7 +10,7 @@ import org.cyberpwn.gconcurrent.TICK;
 
 import react.Config;
 import react.React;
-import react.action.source.EmptyActionSource;
+import react.action.source.RAIActionSource;
 import react.api.ActionType;
 import surge.Surge;
 import surge.control.Controller;
@@ -55,11 +55,11 @@ public class WorldController extends Controller
 	@Override
 	public void tick()
 	{
-		if(TICK.tick % 1200 == 0)
+		if(TICK.tick % Config.PURGE_INTERVAL == 0 && Config.PURGE)
 		{
 			try
 			{
-				React.instance.actionController.fire(ActionType.PURGE_CHUNKS, new EmptyActionSource());
+				React.instance.actionController.fire(ActionType.PURGE_CHUNKS, new RAIActionSource());
 			}
 
 			catch(Exception e)

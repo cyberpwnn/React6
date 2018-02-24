@@ -73,6 +73,12 @@ public class Info
 	public static String COMMAND_ENV_ALIAS_2 = "ev"; //$NON-NLS-1$
 	public static String COMMAND_ENV_USAGE = ""; //$NON-NLS-1$
 
+	public static String COMMAND_FIX_DESCRIPTION = "Run predefined actions and tweaks to fix common server issues."; //$NON-NLS-1$
+	public static String COMMAND_FIX = "fix"; //$NON-NLS-1$
+	public static String COMMAND_FIX_ALIAS_1 = "fx"; //$NON-NLS-1$
+	public static String COMMAND_FIX_ALIAS_2 = "auto"; //$NON-NLS-1$
+	public static String COMMAND_FIX_USAGE = "[fix]"; //$NON-NLS-1$
+
 	public static String COMMAND_VERSION_DESCRIPTION = "Get react's version"; //$NON-NLS-1$
 	public static String COMMAND_VERSION = "version"; //$NON-NLS-1$
 	public static String COMMAND_VERSION_ALIAS_1 = "ver"; //$NON-NLS-1$

@@ -386,7 +386,7 @@ public class Gate
 	{
 		if(p instanceof Player)
 		{
-			if(snd > 0)
+			if(snd > 0 && Config.SOUNDS)
 			{
 				((Player) p).playSound(((Player) p).getLocation(), MSound.SUCCESSFUL_HIT.bukkitSound(), 0.25f, 1.9f);
 				snd--;
@@ -400,7 +400,7 @@ public class Gate
 	{
 		if(p instanceof Player)
 		{
-			if(snd > 0)
+			if(snd > 0 && Config.SOUNDS)
 			{
 				((Player) p).playSound(((Player) p).getLocation(), MSound.ENDERDRAGON_HIT.bukkitSound(), 0.25f, 1.9f);
 				snd--;
@@ -414,7 +414,7 @@ public class Gate
 	{
 		if(p instanceof Player)
 		{
-			if(snd > 0)
+			if(snd > 0 && Config.SOUNDS)
 			{
 				((Player) p).playSound(((Player) p).getLocation(), MSound.CHICKEN_EGG_POP.bukkitSound(), 0.15f, 1.9f);
 				snd--;

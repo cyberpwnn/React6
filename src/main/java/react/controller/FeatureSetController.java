@@ -3,6 +3,7 @@ package react.controller;
 import org.bukkit.entity.Player;
 import org.cyberpwn.gformat.F;
 
+import react.Config;
 import react.Gate;
 import react.api.Unused;
 import react.feature.BasicBooleanOption;
@@ -141,6 +142,17 @@ public class FeatureSetController extends Controller
 		}
 
 		ff.getToggle().setValue(!ff.getToggle().getValue());
+
+		try
+		{
+			Config.doSave();
+		}
+
+		catch(IllegalArgumentException | IllegalAccessException e)
+		{
+			e.printStackTrace();
+		}
+
 		sendMain(p);
 	}
 
@@ -181,6 +193,17 @@ public class FeatureSetController extends Controller
 		}
 
 		((BasicBooleanOption) opt).setValue(!((BasicBooleanOption) opt).getValue());
+
+		try
+		{
+			Config.doSave();
+		}
+
+		catch(IllegalArgumentException | IllegalAccessException e)
+		{
+			e.printStackTrace();
+		}
+
 		sendPage(p, string);
 	}
 

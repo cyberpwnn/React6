@@ -13,6 +13,7 @@ import react.controller.FastDecayController;
 import react.controller.FastGrowthController;
 import react.controller.FeatureController;
 import react.controller.FeatureSetController;
+import react.controller.FixController;
 import react.controller.FluidController;
 import react.controller.GlassController;
 import react.controller.GraphController;
@@ -148,6 +149,9 @@ public class React
 
 	@Control
 	public ProtocolController protocolController;
+
+	@Control
+	public FixController fixController;
 
 	@Enable
 	public void enable()

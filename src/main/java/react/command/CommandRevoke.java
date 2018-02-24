@@ -3,6 +3,7 @@ package react.command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import react.Config;
 import react.Gate;
 import react.Info;
 import react.api.Permissable;
@@ -27,6 +28,12 @@ public class CommandRevoke extends ReactCommand
 	@Override
 	public void fire(CommandSender sender, String[] args)
 	{
+		if(!Config.ALLOW_TEMPACCESS)
+		{
+			Gate.msgError(sender, "Temporary Access is disabled.");
+			return;
+		}
+
 		if(sender instanceof Player && Permissable.isAccessor((Player) sender))
 		{
 			if(args.length == 1 && P.findPlayer(args[0]) != null && P.findPlayer(args[0]).equals(sender))

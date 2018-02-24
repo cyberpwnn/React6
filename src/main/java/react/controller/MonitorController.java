@@ -11,6 +11,7 @@ import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.M;
 
+import react.Config;
 import react.Gate;
 import react.Info;
 import react.Lang;
@@ -286,7 +287,12 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	private void changePost(ReactPlayer i)
 	{
 		i.setMonitorPosted(!i.getMonitorPosted());
-		new GSound(MSound.HORSE_GALLOP.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+
+		if(Config.SOUNDS)
+		{
+			new GSound(MSound.HORSE_GALLOP.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+		}
+
 		i.setPlays(i.getPlays() + 3);
 	}
 
@@ -331,7 +337,12 @@ public class MonitorController extends Controller implements IMasterTickComponen
 			if(i.getMonitorSelection() != nsel)
 			{
 				i.setSwitchNotification(maxCooldown);
-				new GSound(MSound.HORSE_LAND.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+
+				if(Config.SOUNDS)
+				{
+					new GSound(MSound.HORSE_LAND.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+				}
+
 				i.setPlays(i.getPlays() + 3);
 			}
 
@@ -397,7 +408,12 @@ public class MonitorController extends Controller implements IMasterTickComponen
 			{
 				i.setMonitorSelection(i.getMonitorLastSelection());
 				i.setSwitchNotification(maxCooldown);
-				new GSound(MSound.HORSE_SADDLE.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+
+				if(Config.SOUNDS)
+				{
+					new GSound(MSound.HORSE_SADDLE.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+				}
+
 				i.setPlays(i.getPlays() + 3);
 			}
 
@@ -405,7 +421,12 @@ public class MonitorController extends Controller implements IMasterTickComponen
 			{
 				i.setMonitorLastSelection(i.getMonitorSelection());
 				i.setMonitorSelection(-1);
-				new GSound(MSound.HORSE_ARMOR.bukkitSound(), calcVolume(i), 1.5f).play(i.getP());
+
+				if(Config.SOUNDS)
+				{
+					new GSound(MSound.HORSE_ARMOR.bukkitSound(), calcVolume(i), 1.5f).play(i.getP());
+				}
+
 				i.setPlays(i.getPlays() + 3);
 			}
 		}
@@ -588,6 +609,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 
 				new S()
 				{
+
 					@Override
 					public void run()
 					{
@@ -609,6 +631,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 					}
 				};
 			}
+
 		}
 	}
 

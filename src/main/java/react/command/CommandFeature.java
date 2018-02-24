@@ -3,6 +3,7 @@ package react.command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import react.Config;
 import react.Gate;
 import react.Info;
 import react.React;
@@ -150,6 +151,16 @@ public class CommandFeature extends ReactCommand
 										}
 									}
 								};
+							}
+
+							try
+							{
+								Config.doSave();
+							}
+
+							catch(IllegalArgumentException | IllegalAccessException e)
+							{
+								e.printStackTrace();
 							}
 						}
 					}

@@ -1,5 +1,6 @@
 package surge.control;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -37,6 +38,11 @@ public abstract class AmpedPlugin extends JavaPlugin implements SurgePlugin, IMa
 	@Override
 	public void onEnable()
 	{
+		if(checkForLegacy())
+		{
+			moveLegacy();
+		}
+
 		destroyOldThreads();
 		idx = UUID.randomUUID();
 
@@ -79,6 +85,47 @@ public abstract class AmpedPlugin extends JavaPlugin implements SurgePlugin, IMa
 
 		onStart(Protocol.getProtocolVersion());
 		Surge.registerTicked(this);
+	}
+
+	private void moveLegacy()
+	{
+		System.out.println("Fould legacy installation of react. Moving to plugins/React Old");
+		File folder = getDataFolder();
+		File newFolder = new File(getDataFolder().getParentFile(), "React Old");
+		folder.renameTo(newFolder);
+		folder.mkdirs();
+	}
+
+	private boolean checkForLegacy()
+	{
+		File folder = getDataFolder();
+
+		if(!folder.exists())
+		{
+			return false;
+		}
+
+		if(new File(folder, "r5x").exists())
+		{
+			return true;
+		}
+
+		if(new File(folder, "timings-controller.yml").exists())
+		{
+			return true;
+		}
+
+		if(new File(folder, "reactions").exists())
+		{
+			return true;
+		}
+
+		if(new File(folder, "console.yml").exists())
+		{
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override

@@ -133,17 +133,19 @@ public class FastDecayController extends Controller
 			return;
 		}
 
-		if(M.r(0.06))
+		if(M.r(0.09))
 		{
-			new GSound(MSound.DIG_GRASS.bukkitSound(), 4f, 0.1f + (float) (Math.random() / 2f)).play(b.getLocation());
+			new GSound(MSound.STEP_GRASS.bukkitSound(), 0.8f, 0.1f + (float) (Math.random() / 2f)).play(b.getLocation());
 		}
 
-		if(React.instance.featureController.hasBinding())
+		if(React.instance.featureController.hasBinding() && Config.FAST_LEAF_NMS)
 		{
 			Location c = b.getLocation().clone().add(0.5, 0.5, 0.5);
 
 			for(ItemStack i : getDrops(b))
 			{
+				new GSound(MSound.DIG_GRASS.bukkitSound(), 0.4f, 1.67f + (float) (Math.random() / 3f)).play(b.getLocation());
+
 				b.getWorld().dropItemNaturally(c, i);
 			}
 
@@ -155,7 +157,15 @@ public class FastDecayController extends Controller
 			{
 				if(b.getRelative(BlockFace.UP).getData() < 15)
 				{
-					React.instance.featureController.setBlock(b.getRelative(BlockFace.UP).getLocation(), new MaterialBlock());
+					b.breakNaturally();
+				}
+			}
+
+			for(Block i : W.blockFaces(b))
+			{
+				if(i.getType().equals(Material.VINE))
+				{
+					i.breakNaturally();
 				}
 			}
 		}

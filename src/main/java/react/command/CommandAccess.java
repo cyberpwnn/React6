@@ -7,6 +7,7 @@ import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
 import org.cyberpwn.gmath.M;
 
+import react.Config;
 import react.Gate;
 import react.Info;
 import react.api.Permissable;
@@ -34,6 +35,12 @@ public class CommandAccess extends ReactCommand
 	@Override
 	public void fire(CommandSender sender, String[] args)
 	{
+		if(!Config.ALLOW_TEMPACCESS)
+		{
+			Gate.msgError(sender, "Temporary Access is disabled.");
+			return;
+		}
+
 		if(Permissable.ACCESS.has(sender))
 		{
 			if(Permissable.isAccessor((Player) sender))

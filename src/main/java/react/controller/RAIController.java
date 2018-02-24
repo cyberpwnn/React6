@@ -52,4 +52,9 @@ public class RAIController extends Controller
 			}
 		};
 	}
+
+	public IRAI getRai()
+	{
+		return rai;
+	}
 }

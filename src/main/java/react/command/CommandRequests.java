@@ -3,6 +3,7 @@ package react.command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import react.Config;
 import react.Gate;
 import react.Info;
 import react.api.Permissable;
@@ -28,6 +29,12 @@ public class CommandRequests extends ReactCommand
 	@Override
 	public void fire(CommandSender sender, String[] args)
 	{
+		if(!Config.ALLOW_TEMPACCESS)
+		{
+			Gate.msgError(sender, "Temporary Access is disabled.");
+			return;
+		}
+
 		sender.sendMessage(Gate.header("Accessors", C.AQUA));
 
 		for(Player i : CommandAccess.req)

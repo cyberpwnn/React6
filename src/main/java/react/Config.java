@@ -45,16 +45,16 @@ public class Config
 	public static final String A_REDSTONE_DYNAMIC_CLOCK = "tweaks.redstone.dynamic-clocking"; //$NON-NLS-1$
 
 	@Address(2)
-	public static final String A_COMMANDOVERRIDE_TPS = "command-overrides.tps";
+	public static final String A_COMMANDOVERRIDE_TPS = "features.react.command-overrides.tps";
 
 	@Address(3)
-	public static final String A_SAMPLE_VIEWPORT = "sampler.sample-viewport";
+	public static final String A_SAMPLE_VIEWPORT = "features.react.sampler.sample-viewport";
 
 	@Address(4)
-	public static final String A_RAI = "rai.enabled";
+	public static final String A_RAI = "features.react.rai.enabled";
 
 	@Address(5)
-	public static final String A_ENTITY_STACK_MAX_COUNT = "entity-stacker.max-stack-size";
+	public static final String A_ENTITY_STACK_MAX_COUNT = "features.entity-stacker.max-stack-size";
 
 	@Address(6)
 	public static final String A_POOL_MAXTHREADS = "threads.pool-size"; //$NON-NLS-1$
@@ -63,7 +63,7 @@ public class Config
 	public static final String A_POOL_SYNC_NANOS = "threads.nano-mitigation"; //$NON-NLS-1$
 
 	@Address(8)
-	public static final String A_CULLING_ENABLED = "entity-culler.enabled"; //$NON-NLS-1$
+	public static final String A_CULLING_ENABLED = "features.entity-culler.enabled"; //$NON-NLS-1$
 
 	@Address(9)
 	public static final String A_FASTLEAF_ENABLED = "tweaks.fast-leaf-decay.enabled"; //$NON-NLS-1$
@@ -78,25 +78,25 @@ public class Config
 	public static final String A_FASTLEAF_DECAYPERIOD = "tweaks.fast-leaf-decay.decay-period"; //$NON-NLS-1$
 
 	@Address(13)
-	public static final String A_COMMANDOVERRIDE_MEMORY = "command-overrides.memory";
+	public static final String A_COMMANDOVERRIDE_MEMORY = "features.react.command-overrides.memory";
 
 	@Address(14)
-	public static final String A_ENTITYSTACK_ENABLED = "entity-stacker.enabled"; //$NON-NLS-1$
+	public static final String A_ENTITYSTACK_ENABLED = "features.entity-stacker.enabled"; //$NON-NLS-1$
 
 	@Address(15)
-	public static final String A_ENTITYSTACK_MINIMUM_GROUP = "entity-stacker.minimum-group-size"; //$NON-NLS-1$
+	public static final String A_ENTITYSTACK_MINIMUM_GROUP = "features.entity-stacker.minimum-group-size"; //$NON-NLS-1$
 
 	@Address(16)
-	public static final String A_ENTITYSTACK_GROUP_SEARCH_RADIUS = "entity-stacker.search-radius"; //$NON-NLS-1$
+	public static final String A_ENTITYSTACK_GROUP_SEARCH_RADIUS = "features.entity-stacker.search-radius"; //$NON-NLS-1$
 
 	@Address(17)
-	public static final String A_ENTITYSTACK_MAXIMUM_HEALTH = "entity-stacker.max-health"; //$NON-NLS-1$
+	public static final String A_ENTITYSTACK_MAXIMUM_HEALTH = "features.entity-stacker.max-health"; //$NON-NLS-1$
 
 	@Address(18)
-	public static final String A_GLASS_SHOW_BLOCKS = "glass.display-blocks"; //$NON-NLS-1$
+	public static final String A_GLASS_SHOW_BLOCKS = "features.glass.display-blocks"; //$NON-NLS-1$
 
 	@Address(19)
-	public static final String A_GLASS_SHOW_PARTICLES = "glass.display-particles"; //$NON-NLS-1$
+	public static final String A_GLASS_SHOW_PARTICLES = "features.glass.display-particles"; //$NON-NLS-1$
 
 	@Address(20)
 	public static final String A_ALLOW_CULL = "entity-types.allow-culling"; //$NON-NLS-1$
@@ -105,10 +105,10 @@ public class Config
 	public static final String A_ALLOW_PURGE = "entity-types.allow-purging"; //$NON-NLS-1$
 
 	@Address(22)
-	public static final String A_ALLOW_STACKING = "entity-stacker.allowed-types"; //$NON-NLS-1$
+	public static final String A_ALLOW_STACKING = "entity-types.allow-stacking"; //$NON-NLS-1$
 
 	@Address(23)
-	public static final String A_CULL_RULES = "entity-culler.rules"; //$NON-NLS-1$
+	public static final String A_CULL_RULES = "entity-types.culling-rules"; //$NON-NLS-1$
 
 	@Address(24)
 	public static final String A_RAI_TPS_HIGH_TICK = "rai.tps.high-tick"; //$NON-NLS-1$
@@ -186,43 +186,43 @@ public class Config
 	public static final String A_RAI_FLUID_TIME_PROPIGATION = "rai.fluid.time-propagation"; //$NON-NLS-1$
 
 	@Address(49)
-	public static final String A_SMEAR_TICK_ENTITIES_MAX_TICK = "tick-smearing.entities.max-time"; //$NON-NLS-1$
+	public static final String A_SMEAR_TICK_ENTITIES_MAX_TICK = "features.tick-smearing.entities.max-time"; //$NON-NLS-1$
 
 	@Address(50)
-	public static final String A_SMEAR_TICK_TILES_MAX_TICK = "tick-smearing.tiles.max-time"; //$NON-NLS-1$
+	public static final String A_SMEAR_TICK_TILES_MAX_TICK = "features.tick-smearing.tiles.max-time"; //$NON-NLS-1$
 
 	@Address(51)
-	public static final String A_SMEAR_TICK_ENTITIES_SEPERATION_BIAS = "tick-smearing.entities.seperation-bias"; //$NON-NLS-1$
+	public static final String A_SMEAR_TICK_ENTITIES_SEPERATION_BIAS = "features.tick-smearing.entities.seperation-bias"; //$NON-NLS-1$
 
 	@Address(52)
-	public static final String A_SMEAR_TICK_TILES_SEPERATION_BIAS = "tick-smearing.tiles.seperation-bias"; //$NON-NLS-1$
+	public static final String A_SMEAR_TICK_TILES_SEPERATION_BIAS = "features.tick-smearing.tiles.seperation-bias"; //$NON-NLS-1$
 
 	@Address(53)
-	public static final String A_SMEAR_TICK_ENTITIES_AMOUNT = "tick-smearing.entities.smear-factor"; //$NON-NLS-1$
+	public static final String A_SMEAR_TICK_ENTITIES_AMOUNT = "features.tick-smearing.entities.smear-factor"; //$NON-NLS-1$
 
 	@Address(54)
-	public static final String A_SMEAR_TICK_TILES_AMOUNT = "tick-smearing.tiles.smear-factor"; //$NON-NLS-1$
+	public static final String A_SMEAR_TICK_TILES_AMOUNT = "features.tick-smearing.tiles.smear-factor"; //$NON-NLS-1$
 
 	@Address(55)
-	public static final String A_SMEAR_TICK_ENTITIES_ENABLE = "tick-smearing.entities.enable"; //$NON-NLS-1$
+	public static final String A_SMEAR_TICK_ENTITIES_ENABLE = "features.tick-smearing.entities.enable"; //$NON-NLS-1$
 
 	@Address(56)
-	public static final String A_SMEAR_TICK_TILES_ENABLE = "tick-smearing.tiles.enable"; //$NON-NLS-1$
+	public static final String A_SMEAR_TICK_TILES_ENABLE = "features.tick-smearing.tiles.enable"; //$NON-NLS-1$
 
 	@Address(57)
 	public static final String A_HOPPER_OVERTICK_ENABLE = "tweaks.hoppers.reduce-overtick-hoppers"; //$NON-NLS-1$
 
 	@Address(58)
-	public static final String A_USE_WORLD_CONFIGS = "worlds.world-configs";
+	public static final String A_USE_WORLD_CONFIGS = "features.react.worlds.world-configs";
 
 	@Address(59)
-	public static final String A_ENTITY_STACKER_SHOW_PARTICLES = "entity-stacker.options.show-particles";
+	public static final String A_ENTITY_STACKER_SHOW_PARTICLES = "features.entity-stacker.options.show-particles";
 
 	@Address(60)
-	public static final String A_ENTITY_STACKER_SHOW_NAMETAG = "entity-stacker.options.show-nametag";
+	public static final String A_ENTITY_STACKER_SHOW_NAMETAG = "features.entity-stacker.options.show-nametag";
 
 	@Address(61)
-	public static final String A_LANGUAGE = "language"; //$NON-NLS-1$
+	public static final String A_LANGUAGE = "features.react.language"; //$NON-NLS-1$
 
 	@Address(62)
 	public static final String A_RAI_CHUNK_TIME_FLOOR = "rai.chunk.time-floor"; //$NON-NLS-1$
@@ -261,7 +261,7 @@ public class Config
 	public static final String A_RAI_REDSTONE_TIME_PROPIGATE = "rai.redstone.propagate";
 
 	@Address(74)
-	public static final String A_ENTITY_STACKER_NAME_TAG_FORMAT = "entity-stacker.options.nametag-format";
+	public static final String A_ENTITY_STACKER_NAME_TAG_FORMAT = "features.entity-stacker.options.nametag-format";
 
 	@Address(75)
 	public static final String A_FAST_LEAF_MAX_MS = "tweaks.fast-leaf-decay.max-ms";
@@ -298,6 +298,21 @@ public class Config
 
 	@Address(86)
 	public static final String A_FACTIONS = "tweaks.factions-compat";
+
+	@Address(87)
+	public static final String A_PURGE_INTERVAL = "tweaks.chunks.purge-interval";
+
+	@Address(88)
+	public static final String A_PURGE = "tweaks.chunks.purge-enabled";
+
+	@Address(89)
+	public static final String A_SOUNDS = "features.react.interaction-sounds";
+
+	@Address(90)
+	public static final String A_ALLOW_TEMPACCESS = "features.react.allow-tempaccess";
+
+	@Address(91)
+	public static final String A_FAST_LEAF_FAST_UPDATE = "tweaks.fast-leaf-decay.fast-destroy";
 
 	@Sector(0)
 	@Injection(InjectionMethod.SWAP)
@@ -387,13 +402,11 @@ public class Config
 
 	@Sector(18)
 	@Injection(InjectionMethod.SWAP)
-	@Experimental
-	public static boolean GLASS_SHOW_BLOCKS = true;
+	public static boolean GLASS_SHOW_BLOCKS = false;
 
 	@Sector(19)
 	@Injection(InjectionMethod.SWAP)
-	@Experimental
-	public static boolean GLASS_SHOW_PARTICLES = false;
+	public static boolean GLASS_SHOW_PARTICLES = true;
 
 	@Sector(20)
 	@Injection(InjectionMethod.SWAP)
@@ -562,13 +575,11 @@ public class Config
 	public static int RAI_FLUID_TIME_PROPIGATION = 1000;
 
 	@Sector(49)
-	@Experimental
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 0.01, max = 100)
 	public static double SMEAR_TICK_ENTITIES_MAX_TICK = 25;
 
 	@Sector(50)
-	@Experimental
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 0.01, max = 100)
 	public static double SMEAR_TICK_TILES_MAX_TICK = 35;
@@ -598,12 +609,10 @@ public class Config
 	public static double SMEAR_TICK_TILES_AMOUNT = 50;
 
 	@Sector(55)
-	@Experimental
 	@Injection(InjectionMethod.SWAP)
 	public static boolean SMEAR_TICK_ENTITIES_ENABLE = true;
 
 	@Sector(56)
-	@Experimental
 	@Injection(InjectionMethod.SWAP)
 	public static boolean SMEAR_TICK_TILES_ENABLE = true;
 
@@ -749,6 +758,27 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean FACTIONS = true;
 
+	@Sector(87)
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 200, max = 12000)
+	public static int PURGE_INTERVAL = 1200;
+
+	@Sector(88)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean PURGE = true;
+
+	@Sector(89)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean SOUNDS = true;
+
+	@Sector(90)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean ALLOW_TEMPACCESS = true;
+
+	@Sector(91)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean FAST_LEAF_NMS = true;
+
 	private static boolean hrld = false;
 	private static boolean rns = false;
 	private static boolean rrl = false;
@@ -771,10 +801,12 @@ public class Config
 	public static void doSave() throws IllegalArgumentException, IllegalAccessException
 	{
 		Plugin main = Surge.getAmp().getPluginInstance();
+		onRead(main);
 		File fConfig = new File(main.getDataFolder(), "config.yml"); //$NON-NLS-1$
 		File fConfigExperimental = new File(main.getDataFolder(), "config-experimental.yml"); //$NON-NLS-1$
 		new YamlDataOutput().write(defaultConfig(false), fConfig);
 		new YamlDataOutput().write(defaultConfig(true), fConfigExperimental);
+		onRead(main);
 	}
 
 	@DynamicTracker
