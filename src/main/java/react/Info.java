@@ -176,6 +176,7 @@ public class Info
 	public static String NAME_MEMORY = Lang.getString("monitor.tab.memory"); //$NON-NLS-1$
 	public static String NAME_CHUNKS = Lang.getString("monitor.tab.chunks"); //$NON-NLS-1$
 	public static String NAME_ENTITIES = Lang.getString("monitor.tab.entities"); //$NON-NLS-1$
+	public static String NAME_BANDWIDTH = "Bandwidth"; //$NON-NLS-1$
 
 	public static String STATE_MONITORING_TAB = "monitor.tab"; //$NON-NLS-1$
 	public static String STATE_MONITORING_ENABLED = "monitor.enabled"; //$NON-NLS-1$
@@ -234,6 +235,11 @@ public class Info
 	public static String SAMPLER_FLUID_TIME = Lang.getString("sampler.name.fluid-time"); //$NON-NLS-1$
 	public static String SAMPLER_TPS = Lang.getString("sampler.name.ticks-per-second"); //$NON-NLS-1$
 	public static String SAMPLER_TICK = Lang.getString("sampler.name.server-tick-time"); //$NON-NLS-1$
+	public static String SAMPLER_CPU = "CPU";
+	public static String SAMPLER_PPS = "PPS";
+	public static String SAMPLER_BANDWIDTH = "Bandwidth";
+	public static String SAMPLER_BANDWIDTH_UP = "Bandwidth Up";
+	public static String SAMPLER_BANDWIDTH_DOWN = "Bandwidth Down";
 	public static String SAMPLER_TIU = Lang.getString("sampler.name.server-tick-utilization"); //$NON-NLS-1$
 	public static String SAMPLER_MEM = Lang.getString("sampler.name.used-memory"); //$NON-NLS-1$
 	public static String SAMPLER_FREEMEM = Lang.getString("sampler.name.free-memory"); //$NON-NLS-1$

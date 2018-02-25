@@ -1,29 +1,30 @@
 package react.sampler;
 
+import org.cyberpwn.gconcurrent.A;
 import org.cyberpwn.gformat.F;
 import org.cyberpwn.gmath.Average;
 
-import react.Lang;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
 import surge.util.Anchor;
 import surge.util.C;
+import surge.util.Platform;
 
 @Anchor(2)
-public class SampleTickTime extends MSampler
+public class SampleCPU extends MSampler
 {
 	private IFormatter formatter;
-	private Average aa = new Average(50);
+	private Average aa = new Average(20);
 
-	public SampleTickTime()
+	public SampleCPU()
 	{
 		formatter = new IFormatter()
 		{
 			@Override
 			public String from(double d)
 			{
-				return F.f(d, 0) + Lang.getString("sampler.tick-time.milliseconds"); //$NON-NLS-1$
+				return F.pc(d, 0) + " CPU"; //$NON-NLS-1$
 			}
 		};
 	}
@@ -31,10 +32,10 @@ public class SampleTickTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName(Lang.getString("sampler.tick-time.name")); //$NON-NLS-1$
-		setDescription(Lang.getString("sampler.tick-time.description")); //$NON-NLS-1$
-		setID(SampledType.TICK.toString());
-		setValue(1);
+		setName("CPU"); //$NON-NLS-1$
+		setDescription("Java Process Usage"); //$NON-NLS-1$
+		setID(SampledType.CPU.toString());
+		setValue(0);
 		setColor(C.GREEN, C.GREEN);
 		setInterval(1);
 	}
@@ -42,8 +43,15 @@ public class SampleTickTime extends MSampler
 	@Override
 	public void sample()
 	{
-		aa.put(ss().getTickTime());
-		setValue(ss().getTickTime());
+		new A()
+		{
+			@Override
+			public void run()
+			{
+				aa.put(Platform.CPU.getLiveProcessCPULoad());
+				setValue(aa.getAverage());
+			}
+		};
 	}
 
 	@Override

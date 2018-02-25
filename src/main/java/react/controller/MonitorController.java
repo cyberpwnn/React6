@@ -172,7 +172,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	{
 		MonitorHeading tick = new MonitorHeading(Info.NAME_TICK, React.instance.sampleController.getSampler(SampledType.TPS.toString()));
 		tick.addSampler(React.instance.sampleController.getSampler(SampledType.TICK.toString()));
-		tick.addSampler(React.instance.sampleController.getSampler(SampledType.TIU.toString()));
+		tick.addSampler(React.instance.sampleController.getSampler(SampledType.CPU.toString()));
 
 		MonitorHeading memory = new MonitorHeading(Info.NAME_MEMORY, React.instance.sampleController.getSampler(SampledType.MEM.toString()));
 		memory.addSampler(React.instance.sampleController.getSampler(SampledType.MAHS.toString()));
@@ -185,10 +185,16 @@ public class MonitorController extends Controller implements IMasterTickComponen
 		entities.addSampler(React.instance.sampleController.getSampler(SampledType.ENTDROP.toString()));
 		entities.addSampler(React.instance.sampleController.getSampler(SampledType.ENTTILE.toString()));
 
+		MonitorHeading bandwidth = new MonitorHeading(Info.NAME_BANDWIDTH, React.instance.sampleController.getSampler(SampledType.BANDWIDTH.toString()));
+		bandwidth.addSampler(React.instance.sampleController.getSampler(SampledType.BANDWIDTH_UP.toString()));
+		bandwidth.addSampler(React.instance.sampleController.getSampler(SampledType.BANDWIDTH_DOWN.toString()));
+		bandwidth.addSampler(React.instance.sampleController.getSampler(SampledType.PPS.toString()));
+
 		titleMonitor.addHeading(tick);
 		titleMonitor.addHeading(memory);
 		titleMonitor.addHeading(chunks);
 		titleMonitor.addHeading(entities);
+		titleMonitor.addHeading(bandwidth);
 	}
 
 	public float calcVolume(ReactPlayer i)
@@ -563,24 +569,24 @@ public class MonitorController extends Controller implements IMasterTickComponen
 						rp.setLastSwt(rp.getLastSwt() - 1);
 						v = rp.getMonitorPosted() ? "Locked" : "Unlocked";
 
-						if(rp.getLastSwt() > 2)
+						if(rp.getLastSwt() > 3)
 						{
 							v = C.LIGHT_PURPLE + "" + C.BOLD + v;
 						}
 
-						else if(rp.getLastSwt() > 1)
+						else if(rp.getLastSwt() > 2)
 						{
 							v = C.LIGHT_PURPLE + "" + v;
 						}
 
-						else if(rp.getLastSwt() > 0)
+						else if(rp.getLastSwt() > 1)
 						{
 							v = C.DARK_GRAY + "" + v;
 						}
 
 						else
 						{
-							v = C.DARK_GRAY + v;
+							v = "";
 						}
 					}
 
