@@ -56,6 +56,7 @@ public class GraphController extends Controller
 		for(SampledType i : SampledType.values())
 		{
 			int v = Config.SAMPLE_VIEWPORT;
+
 			GraphSampleLine graph = new GraphSampleLine(i.get(), i.get().getFormatter(), v);
 			int r = C.chatToDye(i.get().getColor().chatColor()).getColor().asRGB();
 			graph.setGraphColor(FrameColor.matchColor(new Color(r)));
@@ -163,6 +164,11 @@ public class GraphController extends Controller
 			addMemory(p, pg);
 			addPhysics(p, pg);
 			addReact(p, pg);
+
+			if(Capability.STREAM_PROFILING.isCapable())
+			{
+				addNetworking(p, pg);
+			}
 		}
 
 		else if(mode.equals(GraphMode.NORMAL))
@@ -172,6 +178,11 @@ public class GraphController extends Controller
 			addMemory(p, pg);
 			addPhysics(p, pg);
 			addReact(p, pg);
+
+			if(Capability.STREAM_PROFILING.isCapable())
+			{
+				addNetworking(p, pg);
+			}
 		}
 	}
 
@@ -214,7 +225,7 @@ public class GraphController extends Controller
 		pg.add(new PointedGraph(g.get(SampledType.ENTITY_TIME), GraphSize.SQUARE));
 		pg.add(new PointedGraph(g.get(SampledType.EXPLOSION_TIME), GraphSize.SQUARE));
 		pg.add(new PointedGraph(g.get(SampledType.GROWTH_TIME), GraphSize.SQUARE));
-		pg.add(new PointedGraph(g.get(SampledType.TILE_TIME), GraphSize.SQUARE));
+		pg.add(new PointedGraph(g.get(SampledType.TILE_TIME), GraphSize.WIDE));
 	}
 
 	public void addReact(Player p, GList<PointedGraph> pg)
@@ -222,6 +233,15 @@ public class GraphController extends Controller
 		pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.react"), g.get(SampledType.ATASK).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
 		pg.add(new PointedGraph(g.get(SampledType.ATASK), GraphSize.SQUARE));
 		pg.add(new PointedGraph(g.get(SampledType.STASK), GraphSize.SQUARE));
+	}
+
+	public void addNetworking(Player p, GList<PointedGraph> pg)
+	{
+		pg.add(new PointedGraph(new GraphText("Band", g.get(SampledType.BANDWIDTH).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
+		pg.add(new PointedGraph(g.get(SampledType.BANDWIDTH), GraphSize.WIDE));
+		pg.add(new PointedGraph(g.get(SampledType.BANDWIDTH_UP), GraphSize.SQUARE));
+		pg.add(new PointedGraph(g.get(SampledType.BANDWIDTH_DOWN), GraphSize.SQUARE));
+		pg.add(new PointedGraph(g.get(SampledType.PPS), GraphSize.WIDE));
 	}
 
 	public void toggleMapping(Player player, String[] args)

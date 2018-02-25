@@ -1,5 +1,7 @@
 package react.action.source;
 
+import react.Lang;
+
 public class EmptyActionSource implements IActionSource
 {
 	@Override
@@ -29,6 +31,6 @@ public class EmptyActionSource implements IActionSource
 	@Override
 	public String toString()
 	{
-		return "A Ghost";
+		return Lang.getString("actionsource.ghost"); //$NON-NLS-1$
 	}
 }

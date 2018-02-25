@@ -186,15 +186,17 @@ public class MonitorController extends Controller implements IMasterTickComponen
 		entities.addSampler(React.instance.sampleController.getSampler(SampledType.ENTTILE.toString()));
 
 		MonitorHeading bandwidth = new MonitorHeading(Info.NAME_BANDWIDTH, React.instance.sampleController.getSampler(SampledType.BANDWIDTH.toString()));
-		bandwidth.addSampler(React.instance.sampleController.getSampler(SampledType.BANDWIDTH_UP.toString()));
-		bandwidth.addSampler(React.instance.sampleController.getSampler(SampledType.BANDWIDTH_DOWN.toString()));
 		bandwidth.addSampler(React.instance.sampleController.getSampler(SampledType.PPS.toString()));
 
 		titleMonitor.addHeading(tick);
 		titleMonitor.addHeading(memory);
 		titleMonitor.addHeading(chunks);
 		titleMonitor.addHeading(entities);
-		titleMonitor.addHeading(bandwidth);
+
+		if(Capability.STREAM_PROFILING.isCapable())
+		{
+			titleMonitor.addHeading(bandwidth);
+		}
 	}
 
 	public float calcVolume(ReactPlayer i)

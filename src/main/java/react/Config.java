@@ -330,7 +330,7 @@ public class Config
 	@Sector(3)
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 6000, max = 30000)
-	public static int SAMPLE_VIEWPORT = 6000;
+	public static int SAMPLE_VIEWPORT = 12000;
 
 	@Sector(4)
 	@Injection(InjectionMethod.SWAP)

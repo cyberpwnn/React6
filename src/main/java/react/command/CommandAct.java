@@ -46,9 +46,9 @@ public class CommandAct extends ReactCommand
 		usage = Info.COMMAND_ACT_USAGE;
 		description = Info.COMMAND_ACT_DESCRIPTION;
 		sideGate = SideGate.ANYTHING;
-		registerParameterDescription("<action>", "The name of the action to run");
-		registerParameterDescription("[options]", "Special selectors (multiple) which change how the action executes. Use /re a to see specific selector usages.");
-		registerParameterDescription("[force]", "--force or -f to " + C.RED + "FORCE AGAINST CONFIG RULES");
+		registerParameterDescription("<action>", Lang.getString("command.act.action-par-desc")); //$NON-NLS-1$ //$NON-NLS-2$
+		registerParameterDescription("[options]", Lang.getString("command.act.options-par-desc")); //$NON-NLS-1$ //$NON-NLS-2$
+		registerParameterDescription("[force]", Lang.getString("command.act.force-par-desc") + C.RED + Lang.getString("command.act.force-against-conf-rules")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class CommandAct extends ReactCommand
 		boolean force = false;
 		GList<String> ar = new GList<String>(args);
 
-		if(ar.get(ar.last()).equalsIgnoreCase("--force") || ar.get(ar.last()).equalsIgnoreCase("-f"))
+		if(ar.get(ar.last()).equalsIgnoreCase("--force") || ar.get(ar.last()).equalsIgnoreCase("-f")) //$NON-NLS-1$ //$NON-NLS-2$
 		{
 			force = true;
 			ar.remove(ar.last());
@@ -76,7 +76,7 @@ public class CommandAct extends ReactCommand
 			{
 				int k = Integer.valueOf(args[0]);
 				sendPage(sender, k - 1, 8);
-				D.v(k + ":f");
+				D.v(k + ":f"); //$NON-NLS-1$
 				return;
 			}
 
@@ -205,7 +205,7 @@ public class CommandAct extends ReactCommand
 		RTEX rtex = new RTEX();
 		rtex.getExtras().add(new ColoredString(C.AQUA, Lang.getString("command.help.descriptor-react"))); //$NON-NLS-1$
 		rtex.getExtras().add(new ColoredString(C.GRAY, Lang.getString("command.help.or-re"))); //$NON-NLS-1$
-		rtx.addTextHover(Lang.getString("command.help.react-cmd") + " act", rtex, C.AQUA); //$NON-NLS-1$
+		rtx.addTextHover(Lang.getString("command.help.react-cmd") + " act", rtex, C.AQUA); //$NON-NLS-1$ //$NON-NLS-2$
 
 		return rtx;
 	}
@@ -220,7 +220,7 @@ public class CommandAct extends ReactCommand
 
 			for(String i : React.instance.actionController.getAction(command).getNodes())
 			{
-				desc.getExtras().add(new ColoredString(C.GRAY, Lang.getString("command.help.nreact") + "act " + i)); //$NON-NLS-1$
+				desc.getExtras().add(new ColoredString(C.GRAY, Lang.getString("command.help.nreact") + "act " + i)); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
 			desc.getExtras().add(new ColoredString(C.AQUA, Lang.getString("command.help.ndescription"))); //$NON-NLS-1$
@@ -238,58 +238,58 @@ public class CommandAct extends ReactCommand
 				if(i.equals(Chunk.class))
 				{
 					RTEX rtex = new RTEX();
-					rtex.getExtras().add(new ColoredString(C.GREEN, "Positional Selector\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, "\"" + F.wrapWords("Supports selection of chunks using @c to control this action", 27) + "\"\n"));
-					rtex.getExtras().add(new ColoredString(C.GREEN, "Default\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, "@c:*\n"));
-					rtex.getExtras().add(new ColoredString(C.GREEN, "Examples\n"));
-					rtex.getExtras().add(new ColoredString(C.WHITE, "@c:this\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, "Selects your chunk\n"));
-					rtex.getExtras().add(new ColoredString(C.WHITE, "@c:this+2\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, F.wrapWords("Selects your chunk (radius of 2 around you)", 27) + "\n"));
-					rtex.getExtras().add(new ColoredString(C.WHITE, "@c:look+2\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, F.wrapWords("Selects chunk looked at (radius of 2 around you)", 27) + "\n"));
-					rtex.getExtras().add(new ColoredString(C.WHITE, "@c:*&!this+2\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, F.wrapWords("Selects all chunks except for yours +2 radius", 27)));
+					rtex.getExtras().add(new ColoredString(C.GREEN, Lang.getString("command.act.selhelp.pos-selector"))); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, "\"" + F.wrapWords(Lang.getString("command.act.selhelp.chunks"), 27) + "\"\n")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					rtex.getExtras().add(new ColoredString(C.GREEN, Lang.getString("command.act.selhelp.default"))); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, "@c:*\n")); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GREEN, Lang.getString("command.act.selhelp.example"))); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.WHITE, "@c:this\n")); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, Lang.getString("command.act.selhelp.selects-chunk"))); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.WHITE, "@c:this+2\n")); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, F.wrapWords(Lang.getString("command.act.selhelp.chunrad"), 27) + "\n")); //$NON-NLS-1$ //$NON-NLS-2$
+					rtex.getExtras().add(new ColoredString(C.WHITE, "@c:look+2\n")); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, F.wrapWords(Lang.getString("command.act.selhelp.sellook"), 27) + "\n")); //$NON-NLS-1$ //$NON-NLS-2$
+					rtex.getExtras().add(new ColoredString(C.WHITE, "@c:*&!this+2\n")); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, F.wrapWords(Lang.getString("command.act.selhelp.selexeyours"), 27))); //$NON-NLS-1$
 
-					rtx.addTextHover(" @c", rtex, C.GREEN);
+					rtx.addTextHover(" @c", rtex, C.GREEN); //$NON-NLS-1$
 				}
 
 				if(i.equals(EntityType.class))
 				{
 					RTEX rtex = new RTEX();
-					rtex.getExtras().add(new ColoredString(C.AQUA, "Entity Selector\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, "\"" + F.wrapWords("Supports selection of entity types using @e to control this action", 27) + "\"\n"));
-					rtex.getExtras().add(new ColoredString(C.AQUA, "Default\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, "@e:*&!(crst)\n"));
+					rtex.getExtras().add(new ColoredString(C.AQUA, Lang.getString("command.act.selhelp.entity-sel"))); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, "\"" + F.wrapWords(Lang.getString("command.act.selhelp.supports-entity"), 27) + "\"\n")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					rtex.getExtras().add(new ColoredString(C.AQUA, Lang.getString("command.act.selhelp.default"))); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, "@e:*&!(crst)\n")); //$NON-NLS-1$
 
-					rtex.getExtras().add(new ColoredString(C.AQUA, "Examples\n"));
-					rtex.getExtras().add(new ColoredString(C.WHITE, "@e:Pig\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, "Selects only pigs\n"));
-					rtex.getExtras().add(new ColoredString(C.WHITE, "@e:Pig&Cow\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, F.wrapWords("Selects only pigs and cows", 27) + "\n"));
-					rtex.getExtras().add(new ColoredString(C.WHITE, "@e:*&!Cow&!Pig\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, F.wrapWords("Selects all entities except for pigs and cows", 27)));
+					rtex.getExtras().add(new ColoredString(C.AQUA, Lang.getString("command.act.selhelp.example"))); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.WHITE, "@e:Pig\n")); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, Lang.getString("command.act.selhelp.selectspigs"))); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.WHITE, "@e:Pig&Cow\n")); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, F.wrapWords(Lang.getString("command.act.selhelp.selpigcows"), 27) + "\n")); //$NON-NLS-1$ //$NON-NLS-2$
+					rtex.getExtras().add(new ColoredString(C.WHITE, "@e:*&!Cow&!Pig\n")); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, F.wrapWords(Lang.getString("command.act.selhelp.selallpig"), 27))); //$NON-NLS-1$
 
-					rtx.addTextHover(" @e", rtex, C.AQUA);
+					rtx.addTextHover(" @e", rtex, C.AQUA); //$NON-NLS-1$
 				}
 
 				if(i.equals(Long.class))
 				{
 					RTEX rtex = new RTEX();
-					rtex.getExtras().add(new ColoredString(C.GOLD, "Time Selector\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, "\"" + F.wrapWords("Supports selection of a time length using @t to control this action", 27) + "\"\n"));
-					rtex.getExtras().add(new ColoredString(C.GOLD, "Default\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, "@t:(udf)s\n"));
-					rtex.getExtras().add(new ColoredString(C.GOLD, "Examples\n"));
-					rtex.getExtras().add(new ColoredString(C.WHITE, "@t:5s\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, "Selects 5 seconds\n"));
-					rtex.getExtras().add(new ColoredString(C.WHITE, "@t:20t\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, F.wrapWords("Selects 20 ticks (1 second)", 27) + "\n"));
-					rtex.getExtras().add(new ColoredString(C.WHITE, "@t:5h\n"));
-					rtex.getExtras().add(new ColoredString(C.GRAY, F.wrapWords("Selects 5 hours", 27)));
+					rtex.getExtras().add(new ColoredString(C.GOLD, Lang.getString("command.act.selhelp.time-sel"))); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, "\"" + F.wrapWords(Lang.getString("command.act.selhelp.supports-time"), 27) + "\"\n")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					rtex.getExtras().add(new ColoredString(C.GOLD, Lang.getString("command.act.selhelp.default"))); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, "@t:(udf)s\n")); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GOLD, Lang.getString("command.act.selhelp.example"))); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.WHITE, "@t:5s\n")); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, Lang.getString("command.act.selhelp.selfs"))); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.WHITE, "@t:20t\n")); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, F.wrapWords(Lang.getString("command.act.selhelp.seltwt"), 27) + "\n")); //$NON-NLS-1$ //$NON-NLS-2$
+					rtex.getExtras().add(new ColoredString(C.WHITE, "@t:5h\n")); //$NON-NLS-1$
+					rtex.getExtras().add(new ColoredString(C.GRAY, F.wrapWords(Lang.getString("command.act.selhelp.selfh"), 27))); //$NON-NLS-1$
 
-					rtx.addTextHover(" @t", rtex, C.GOLD);
+					rtx.addTextHover(" @t", rtex, C.GOLD); //$NON-NLS-1$
 				}
 			}
 

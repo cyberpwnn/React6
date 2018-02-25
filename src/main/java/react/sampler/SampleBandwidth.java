@@ -1,6 +1,7 @@
 package react.sampler;
 
 import org.cyberpwn.gformat.F;
+import org.cyberpwn.gmath.Average;
 
 import react.api.MSampler;
 import react.api.SampledType;
@@ -15,15 +16,18 @@ public class SampleBandwidth extends MSampler
 	private IFormatter formatter;
 	private long u = 0;
 	private long d = 0;
+	private Average aa;
 
 	public SampleBandwidth()
 	{
+		aa = new Average(5);
+
 		formatter = new IFormatter()
 		{
 			@Override
 			public String from(double dx)
 			{
-				return F.memSize((long) dx) + "\u296E";
+				return F.memSize((long) dx);// + "\u296E";
 			}
 		};
 	}
@@ -44,7 +48,8 @@ public class SampleBandwidth extends MSampler
 	{
 		u = Proto.bpsOUT;
 		d = Proto.bpsIN;
-		setValue(u + d);
+		aa.put(u + d);
+		setValue(aa.getAverage());
 	}
 
 	@Override

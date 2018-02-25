@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import react.Config;
 import react.Gate;
 import react.Info;
+import react.Lang;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
@@ -31,13 +32,13 @@ public class CommandAccept extends ReactCommand
 	{
 		if(!Config.ALLOW_TEMPACCESS)
 		{
-			Gate.msgError(sender, "Temporary Access is disabled.");
+			Gate.msgError(sender, Lang.getString("command.accept.temp-disabled")); //$NON-NLS-1$
 			return;
 		}
 
 		if(sender instanceof Player && Permissable.isAccessor((Player) sender))
 		{
-			Gate.msgError(sender, "Creative, but sorry. You need real access to do this :P");
+			Gate.msgError(sender, Lang.getString("command.accept.fail-accept-temp")); //$NON-NLS-1$
 			return;
 		}
 
@@ -49,13 +50,13 @@ public class CommandAccept extends ReactCommand
 			{
 				if(Permissable.isAccessor(p))
 				{
-					Gate.msgError(sender, p.getName() + " already has temporary access. You can revoke with /re revoke <player>");
+					Gate.msgError(sender, p.getName() + Lang.getString("command.accept.already-temp")); //$NON-NLS-1$
 					return;
 				}
 
 				if(!CommandAccess.req.contains(p))
 				{
-					Gate.msgActing(sender, p.getName() + " has not requested access, giving access anyways. (/re revoke <player> to revoke)");
+					Gate.msgActing(sender, p.getName() + Lang.getString("command.accept.not-requested-but-forcing")); //$NON-NLS-1$
 				}
 
 				TemporaryAccessor t = new TemporaryAccessor(p);
@@ -65,7 +66,7 @@ public class CommandAccept extends ReactCommand
 
 				for(Permissable i : Permissable.values())
 				{
-					if(i.toString().contains("MONITOR"))
+					if(i.toString().contains("MONITOR")) //$NON-NLS-1$
 					{
 						t.addPermission(i);
 					}
@@ -73,18 +74,18 @@ public class CommandAccept extends ReactCommand
 
 				Permissable.addAccessor(t);
 				CommandAccess.req.remove(p);
-				Gate.msgSuccess(sender, p.getName() + " now has temporary access to react.");
+				Gate.msgSuccess(sender, p.getName() + Lang.getString("command.accept.now-has-access")); //$NON-NLS-1$
 			}
 
 			else
 			{
-				Gate.msgError(sender, "Cant find '" + args[0] + "'. Make sure your keyboard is plugged in.");
+				Gate.msgError(sender, Lang.getString("command.accept.cant-find") + args[0] + Lang.getString("command.accept.cant-find-2")); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 
 		else
 		{
-			Gate.msgError(sender, "/re accept <PLAYER>");
+			Gate.msgError(sender, "/re accept <PLAYER>"); //$NON-NLS-1$
 		}
 	}
 }

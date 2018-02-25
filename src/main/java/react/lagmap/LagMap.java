@@ -51,7 +51,15 @@ public class LagMap
 	{
 		for(Chunk i : chunks.k())
 		{
-			chunks.get(i).pump();
+			try
+			{
+				chunks.get(i).pump();
+			}
+
+			catch(Exception e)
+			{
+
+			}
 
 			try
 			{

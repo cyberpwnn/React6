@@ -25,7 +25,7 @@ public class Info
 	public static String COMMAND_HELP_ALIAS_2 = "?"; //$NON-NLS-1$
 	public static String COMMAND_HELP_USAGE = "[page]"; //$NON-NLS-1$
 
-	public static String COMMAND_PING_DESCRIPTION = "View and even graph realtime ping (nanosecond accuracy)"; //$NON-NLS-1$
+	public static String COMMAND_PING_DESCRIPTION = Lang.getString("command.ping.description"); //$NON-NLS-1$
 	public static String COMMAND_PING = "ping"; //$NON-NLS-1$
 	public static String COMMAND_PING_ALIAS_1 = "png"; //$NON-NLS-1$
 	public static String COMMAND_PING_ALIAS_2 = "p"; //$NON-NLS-1$
@@ -49,13 +49,13 @@ public class Info
 	public static String COMMAND_RELOAD_ALIAS_2 = "rl"; //$NON-NLS-1$
 	public static String COMMAND_RELOAD_USAGE = "[options]"; //$NON-NLS-1$
 
-	public static String COMMAND_FEATURE_DESCRIPTION = "Turn on and off features and configure them."; //$NON-NLS-1$
+	public static String COMMAND_FEATURE_DESCRIPTION = Lang.getString("command.feature.description"); //$NON-NLS-1$
 	public static String COMMAND_FEATURE = "feature"; //$NON-NLS-1$
 	public static String COMMAND_FEATURE_ALIAS_1 = "f"; //$NON-NLS-1$
 	public static String COMMAND_FEATURE_ALIAS_2 = "fe"; //$NON-NLS-1$
 	public static String COMMAND_FEATURE_USAGE = ""; //$NON-NLS-1$
 
-	public static String COMMAND_CTP_DESCRIPTION = "Teleport to a chunk"; //$NON-NLS-1$
+	public static String COMMAND_CTP_DESCRIPTION = Lang.getString("command.ctp.description"); //$NON-NLS-1$
 	public static String COMMAND_CTP = "chunktp"; //$NON-NLS-1$
 	public static String COMMAND_CTP_ALIAS_1 = "ctp"; //$NON-NLS-1$
 	public static String COMMAND_CTP_ALIAS_2 = "chtp"; //$NON-NLS-1$
@@ -73,13 +73,13 @@ public class Info
 	public static String COMMAND_ENV_ALIAS_2 = "ev"; //$NON-NLS-1$
 	public static String COMMAND_ENV_USAGE = ""; //$NON-NLS-1$
 
-	public static String COMMAND_FIX_DESCRIPTION = "Run predefined actions and tweaks to fix common server issues."; //$NON-NLS-1$
+	public static String COMMAND_FIX_DESCRIPTION = Lang.getString("command.fix.description"); //$NON-NLS-1$
 	public static String COMMAND_FIX = "fix"; //$NON-NLS-1$
 	public static String COMMAND_FIX_ALIAS_1 = "fx"; //$NON-NLS-1$
 	public static String COMMAND_FIX_ALIAS_2 = "auto"; //$NON-NLS-1$
 	public static String COMMAND_FIX_USAGE = "[fix]"; //$NON-NLS-1$
 
-	public static String COMMAND_VERSION_DESCRIPTION = "Get react's version"; //$NON-NLS-1$
+	public static String COMMAND_VERSION_DESCRIPTION = Lang.getString("command.version.description"); //$NON-NLS-1$
 	public static String COMMAND_VERSION = "version"; //$NON-NLS-1$
 	public static String COMMAND_VERSION_ALIAS_1 = "ver"; //$NON-NLS-1$
 	public static String COMMAND_VERSION_ALIAS_2 = "v"; //$NON-NLS-1$
@@ -91,7 +91,7 @@ public class Info
 	public static String COMMAND_MAP_ALIAS_2 = "pap"; //$NON-NLS-1$
 	public static String COMMAND_MAP_USAGE = "(toggle) [options]"; //$NON-NLS-1$
 
-	public static String COMMAND_TOPCHUNK_DESCRIPTION = "Shows a list of the hardest hitting chunks."; //$NON-NLS-1$
+	public static String COMMAND_TOPCHUNK_DESCRIPTION = Lang.getString("command.topchunk.description"); //$NON-NLS-1$
 	public static String COMMAND_TOPCHUNK = "top"; //$NON-NLS-1$
 	public static String COMMAND_TOPCHUNK_ALIAS_1 = "topchunk"; //$NON-NLS-1$
 	public static String COMMAND_TOPCHUNK_ALIAS_2 = "lc"; //$NON-NLS-1$
@@ -115,7 +115,7 @@ public class Info
 	public static String COMMAND_USUB_ALIAS_2 = "usu"; //$NON-NLS-1$
 	public static String COMMAND_USUB_USAGE = "[channel]"; //$NON-NLS-1$
 
-	public static String COMMAND_CBLAME_DESCRIPTION = "Compiles a list of total chunk loads, with who loaded them (plugin or player)"; //$NON-NLS-1$
+	public static String COMMAND_CBLAME_DESCRIPTION = Lang.getString("command.cblame.description"); //$NON-NLS-1$
 	public static String COMMAND_CBLAME = "blame"; //$NON-NLS-1$
 	public static String COMMAND_CBLAME_ALIAS_1 = "cblame"; //$NON-NLS-1$
 	public static String COMMAND_CBLAME_ALIAS_2 = "cb"; //$NON-NLS-1$
@@ -127,25 +127,25 @@ public class Info
 	public static String COMMAND_ACTIONLOG_ALIAS_2 = "al"; //$NON-NLS-1$
 	public static String COMMAND_ACTIONLOG_USAGE = "(toggle)"; //$NON-NLS-1$
 
-	public static String COMMAND_TEMPACCESS_DESCRIPTION = "Requests access to use react (granted by an online member or console)";
+	public static String COMMAND_TEMPACCESS_DESCRIPTION = Lang.getString("command.access.description"); //$NON-NLS-1$
 	public static String COMMAND_TEMPACCESS = "access"; //$NON-NLS-1$
 	public static String COMMAND_TEMPACCESS_ALIAS_1 = "rac"; //$NON-NLS-1$
 	public static String COMMAND_TEMPACCESS_ALIAS_2 = "acc"; //$NON-NLS-1$
 	public static String COMMAND_TEMPACCESS_USAGE = ""; //$NON-NLS-1$
 
-	public static String COMMAND_ACCEPT_DESCRIPTION = "Accepts a requesting user to gain temp access";
+	public static String COMMAND_ACCEPT_DESCRIPTION = Lang.getString("command.accept.description"); //$NON-NLS-1$
 	public static String COMMAND_ACCEPT = "accept"; //$NON-NLS-1$
 	public static String COMMAND_ACCEPT_ALIAS_1 = "tac"; //$NON-NLS-1$
 	public static String COMMAND_ACCEPT_ALIAS_2 = "tacc"; //$NON-NLS-1$
 	public static String COMMAND_ACCEPT_USAGE = "[player]"; //$NON-NLS-1$
 
-	public static String COMMAND_REVOKE_DESCRIPTION = "Revokes access from an already accepted user";
+	public static String COMMAND_REVOKE_DESCRIPTION = Lang.getString("command.revoke.description"); //$NON-NLS-1$
 	public static String COMMAND_REVOKE = "revoke"; //$NON-NLS-1$
 	public static String COMMAND_REVOKE_ALIAS_1 = "rv"; //$NON-NLS-1$
 	public static String COMMAND_REVOKE_ALIAS_2 = "rev"; //$NON-NLS-1$
 	public static String COMMAND_REVOKE_USAGE = "[player]"; //$NON-NLS-1$
 
-	public static String COMMAND_REQUESTS_DESCRIPTION = "Shows all current requests for temp access";
+	public static String COMMAND_REQUESTS_DESCRIPTION = Lang.getString("command.requests.description"); //$NON-NLS-1$
 	public static String COMMAND_REQUESTS = "requests"; //$NON-NLS-1$
 	public static String COMMAND_REQUESTS_ALIAS_1 = "req"; //$NON-NLS-1$
 	public static String COMMAND_REQUESTS_ALIAS_2 = "rq"; //$NON-NLS-1$
@@ -176,7 +176,7 @@ public class Info
 	public static String NAME_MEMORY = Lang.getString("monitor.tab.memory"); //$NON-NLS-1$
 	public static String NAME_CHUNKS = Lang.getString("monitor.tab.chunks"); //$NON-NLS-1$
 	public static String NAME_ENTITIES = Lang.getString("monitor.tab.entities"); //$NON-NLS-1$
-	public static String NAME_BANDWIDTH = "Bandwidth"; //$NON-NLS-1$
+	public static String NAME_BANDWIDTH = Lang.getString("command.bandwidth"); //$NON-NLS-1$
 
 	public static String STATE_MONITORING_TAB = "monitor.tab"; //$NON-NLS-1$
 	public static String STATE_MONITORING_ENABLED = "monitor.enabled"; //$NON-NLS-1$
@@ -235,11 +235,11 @@ public class Info
 	public static String SAMPLER_FLUID_TIME = Lang.getString("sampler.name.fluid-time"); //$NON-NLS-1$
 	public static String SAMPLER_TPS = Lang.getString("sampler.name.ticks-per-second"); //$NON-NLS-1$
 	public static String SAMPLER_TICK = Lang.getString("sampler.name.server-tick-time"); //$NON-NLS-1$
-	public static String SAMPLER_CPU = "CPU";
-	public static String SAMPLER_PPS = "PPS";
-	public static String SAMPLER_BANDWIDTH = "Bandwidth";
-	public static String SAMPLER_BANDWIDTH_UP = "Bandwidth Up";
-	public static String SAMPLER_BANDWIDTH_DOWN = "Bandwidth Down";
+	public static String SAMPLER_CPU = Lang.getString("command.cpu"); //$NON-NLS-1$
+	public static String SAMPLER_PPS = Lang.getString("command.pps"); //$NON-NLS-1$
+	public static String SAMPLER_BANDWIDTH = Lang.getString("command.bandwidth"); //$NON-NLS-1$
+	public static String SAMPLER_BANDWIDTH_UP = Lang.getString("command.bandwidth-up"); //$NON-NLS-1$
+	public static String SAMPLER_BANDWIDTH_DOWN = Lang.getString("command.bandwidth-down"); //$NON-NLS-1$
 	public static String SAMPLER_TIU = Lang.getString("sampler.name.server-tick-utilization"); //$NON-NLS-1$
 	public static String SAMPLER_MEM = Lang.getString("sampler.name.used-memory"); //$NON-NLS-1$
 	public static String SAMPLER_FREEMEM = Lang.getString("sampler.name.free-memory"); //$NON-NLS-1$
@@ -250,8 +250,8 @@ public class Info
 	public static String SAMPLER_ATASK = Lang.getString("sampler.name.async-queue"); //$NON-NLS-1$
 	public static String SAMPLER_STASK = Lang.getString("sampler.name.sync-queue"); //$NON-NLS-1$
 	public static String SAMPLER_CHK_TIME = Lang.getString("sampler.name.chunk-time"); //$NON-NLS-1$
-	public static String SAMPLER_EXPLOSION_TIME = "Explosion MS"; //$NON-NLS-1$
-	public static String SAMPLER_GROWTH_TIME = "Growth MS"; //$NON-NLS-1$
+	public static String SAMPLER_EXPLOSION_TIME = Lang.getString("command.explosion-ms"); //$NON-NLS-1$
+	public static String SAMPLER_GROWTH_TIME = Lang.getString("command.growth-ms"); //$NON-NLS-1$
 	public static String SAMPLER_CHKS = Lang.getString("sampler.name.chunks-second"); //$NON-NLS-1$
 	public static String SAMPLER_ENT = Lang.getString("sampler.name.entities-count"); //$NON-NLS-1$
 	public static String SAMPLER_ENTLIV = Lang.getString("sampler.name.entities-living-count"); //$NON-NLS-1$

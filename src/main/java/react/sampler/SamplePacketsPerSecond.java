@@ -1,6 +1,7 @@
 package react.sampler;
 
 import org.cyberpwn.gformat.F;
+import org.cyberpwn.gmath.Average;
 
 import react.api.MSampler;
 import react.api.SampledType;
@@ -12,18 +13,21 @@ import surge.util.Proto;
 @Anchor(2)
 public class SamplePacketsPerSecond extends MSampler
 {
+	private Average aa;
 	private IFormatter formatter;
 	private long u = 0;
 	private long d = 0;
 
 	public SamplePacketsPerSecond()
 	{
+		aa = new Average(5);
+
 		formatter = new IFormatter()
 		{
 			@Override
 			public String from(double dx)
 			{
-				return "\u27F4 " + F.f(dx) + " PPS";
+				return F.f((int) dx) + " PPS";// "\u27F4 " + ;
 			}
 		};
 	}
@@ -44,7 +48,8 @@ public class SamplePacketsPerSecond extends MSampler
 	{
 		u = Proto.ppsOUT;
 		d = Proto.ppsIN;
-		setValue(u + d);
+		aa.put(u + d);
+		setValue(aa.getAverage());
 	}
 
 	@Override

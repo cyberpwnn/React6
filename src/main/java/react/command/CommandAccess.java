@@ -10,6 +10,7 @@ import org.cyberpwn.gmath.M;
 import react.Config;
 import react.Gate;
 import react.Info;
+import react.Lang;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
@@ -37,7 +38,7 @@ public class CommandAccess extends ReactCommand
 	{
 		if(!Config.ALLOW_TEMPACCESS)
 		{
-			Gate.msgError(sender, "Temporary Access is disabled.");
+			Gate.msgError(sender, Lang.getString("command.access.temp-disabled")); //$NON-NLS-1$
 			return;
 		}
 
@@ -45,20 +46,20 @@ public class CommandAccess extends ReactCommand
 		{
 			if(Permissable.isAccessor((Player) sender))
 			{
-				Gate.msgError(sender, "You already have temporary access. Disconnecting will expire the access.");
+				Gate.msgError(sender, Lang.getString("command.access.already-access")); //$NON-NLS-1$
 			}
 
 			else
 			{
-				Gate.msgError(sender, "You already have react permissions. This is used for requesting temporary access.");
+				Gate.msgError(sender, Lang.getString("command.access.already-have-full-access")); //$NON-NLS-1$
 			}
 		}
 
-		else if(sender.hasPermission("react.tempaccess"))
+		else if(sender.hasPermission("react.tempaccess")) //$NON-NLS-1$
 		{
 			if(last.containsKey(sender) && last.get(sender) > M.ms())
 			{
-				Gate.msgError(sender, "You can request access again in " + F.time(last.get(sender) - M.ms(), 0));
+				Gate.msgError(sender, Lang.getString("command.access.request-again") + F.time(last.get(sender) - M.ms(), 0)); //$NON-NLS-1$
 			}
 
 			else
@@ -67,20 +68,20 @@ public class CommandAccess extends ReactCommand
 
 				if(req.contains(sender))
 				{
-					Gate.msgSuccess(sender, "Request re-sent! An admin must use /re accept <you>");
+					Gate.msgSuccess(sender, Lang.getString("command.access.re-request-sent")); //$NON-NLS-1$
 				}
 
 				else
 				{
 					req.add((Player) sender);
-					Gate.msgSuccess(sender, "Request sent! An admin must use /re accept <you>");
+					Gate.msgSuccess(sender, Lang.getString("command.access.request-sent")); //$NON-NLS-1$
 				}
 			}
 		}
 
 		else
 		{
-			Gate.msgError(sender, "You do not have permission to request access.");
+			Gate.msgError(sender, Lang.getString("command.access.no-perm")); //$NON-NLS-1$
 		}
 	}
 }

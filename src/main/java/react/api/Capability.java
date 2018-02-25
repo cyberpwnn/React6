@@ -24,6 +24,7 @@ public class Capability
 	public static final Capability CHUNK_RELIGHTING = new Capability(Lang.getString("react.capabilities.chunk-relighting"), Lang.getString("react.capabilities.fawe")); //$NON-NLS-1$ //$NON-NLS-2$
 	public static final Capability MONITOR_SUBMISSIVENESS = new Capability(Lang.getString("react.capabilities.monitor-submissive"), Protocol.R1_7_1, Lang.getString("react.capabilities.proto")); //$NON-NLS-1$ //$NON-NLS-2$
 	public static final Capability ACCELERATED_PING = new Capability(Lang.getString("react.capabilities.ping"), Protocol.R1_8, Lang.getString("react.capabilities.proto")); //$NON-NLS-1$ //$NON-NLS-2$
+	public static final Capability STREAM_PROFILING = new Capability("Stream Profiling", Protocol.R1_8, Lang.getString("react.capabilities.proto")); //$NON-NLS-1$ //$NON-NLS-2$
 	public static final Capability ENTITY_THROTTLING = new Capability(Lang.getString("react.capabilities.throttling"), Protocol.R1_8, Flavor.SOGGY_SPIGOT); //$NON-NLS-1$
 	public static final Capability TILE_THROTTLING = new Capability(Lang.getString("react.capabilities.tile-throttling"), Protocol.R1_8, Flavor.SOGGY_SPIGOT); //$NON-NLS-1$
 	public static final Capability PASSENGERS = new Capability(Lang.getString("react.capabilities.passengers"), Protocol.R1_11); //$NON-NLS-1$
@@ -42,6 +43,7 @@ public class Capability
 		capabilities.add(ENTITY_NAMES);
 		capabilities.add(TITLE_BAR);
 		capabilities.add(CHUNK_RELIGHTING);
+		capabilities.add(STREAM_PROFILING);
 		capabilities.add(MONITOR_SUBMISSIVENESS);
 		capabilities.add(ACCELERATED_PING);
 		capabilities.add(ENTITY_THROTTLING);

@@ -7,6 +7,7 @@ import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
 import react.api.ISampler;
+import react.api.SampledType;
 import surge.Main;
 import surge.Surge;
 import surge.control.Controller;
@@ -20,9 +21,11 @@ public class SampleController extends Controller implements IMasterTickComponent
 {
 	private GMap<String, ISampler> samplers;
 	private int cd;
+	private int sct;
 
 	public SampleController()
 	{
+		sct = 0;
 		samplers = new GMap<String, ISampler>();
 		constructSamplers();
 		cd = 4;
@@ -133,7 +136,21 @@ public class SampleController extends Controller implements IMasterTickComponent
 	@Override
 	public void tick()
 	{
+		if(SampledType.TICK.get().getValue() == 0)
+		{
+			sct++;
+		}
 
+		if(TICK.tick % 5 == 0)
+		{
+			sct -= 2;
+
+			if(sct > 20)
+			{
+				D.w("Super Sampler did not start correctly. Resetting");
+				Main.reload();
+			}
+		}
 	}
 
 	public SuperSampler getSuperSampler()

@@ -3,6 +3,7 @@ package react.action.source;
 import org.bukkit.Bukkit;
 
 import react.Gate;
+import react.Lang;
 
 public class ConsoleActionSource implements IActionSource
 {
@@ -33,6 +34,6 @@ public class ConsoleActionSource implements IActionSource
 	@Override
 	public String toString()
 	{
-		return "Console";
+		return Lang.getString("actionsource.console"); //$NON-NLS-1$
 	}
 }

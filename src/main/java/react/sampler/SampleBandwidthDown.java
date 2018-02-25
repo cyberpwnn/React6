@@ -1,6 +1,7 @@
 package react.sampler;
 
 import org.cyberpwn.gformat.F;
+import org.cyberpwn.gmath.Average;
 
 import react.api.MSampler;
 import react.api.SampledType;
@@ -12,10 +13,13 @@ import surge.util.Proto;
 @Anchor(2)
 public class SampleBandwidthDown extends MSampler
 {
+	private Average aa;
 	private IFormatter formatter;
 
 	public SampleBandwidthDown()
 	{
+		aa = new Average(5);
+
 		formatter = new IFormatter()
 		{
 			@Override
@@ -40,7 +44,8 @@ public class SampleBandwidthDown extends MSampler
 	@Override
 	public void sample()
 	{
-		setValue(Proto.bpsIN);
+		aa.put(Proto.bpsIN);
+		setValue(aa.getAverage());
 	}
 
 	@Override

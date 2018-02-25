@@ -167,7 +167,7 @@ public class React
 
 		if(React.instance == null)
 		{
-			D.f("Instance null, fixing?");
+			D.f(Lang.getString("react.fix-instance")); //$NON-NLS-1$
 			React.instance = this;
 		}
 	}
