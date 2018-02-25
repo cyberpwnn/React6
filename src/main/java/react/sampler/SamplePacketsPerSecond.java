@@ -6,9 +6,9 @@ import org.cyberpwn.gmath.Average;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
+import react.protocol.ProtocolAdapter;
 import surge.util.Anchor;
 import surge.util.C;
-import surge.util.Proto;
 
 @Anchor(2)
 public class SamplePacketsPerSecond extends MSampler
@@ -46,8 +46,8 @@ public class SamplePacketsPerSecond extends MSampler
 	@Override
 	public void sample()
 	{
-		u = Proto.ppsOUT;
-		d = Proto.ppsIN;
+		u = ProtocolAdapter.ppsOUT;
+		d = ProtocolAdapter.ppsIN;
 		aa.put(u + d);
 		setValue(aa.getAverage());
 	}

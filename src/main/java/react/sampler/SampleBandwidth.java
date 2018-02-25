@@ -6,9 +6,9 @@ import org.cyberpwn.gmath.Average;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
+import react.protocol.ProtocolAdapter;
 import surge.util.Anchor;
 import surge.util.C;
-import surge.util.Proto;
 
 @Anchor(2)
 public class SampleBandwidth extends MSampler
@@ -27,7 +27,7 @@ public class SampleBandwidth extends MSampler
 			@Override
 			public String from(double dx)
 			{
-				return F.memSize((long) dx);// + "\u296E";
+				return F.memSize((long) dx) + "/s";// + "\u296E";
 			}
 		};
 	}
@@ -46,8 +46,8 @@ public class SampleBandwidth extends MSampler
 	@Override
 	public void sample()
 	{
-		u = Proto.bpsOUT;
-		d = Proto.bpsIN;
+		u = ProtocolAdapter.bpsOUT;
+		d = ProtocolAdapter.bpsIN;
 		aa.put(u + d);
 		setValue(aa.getAverage());
 	}

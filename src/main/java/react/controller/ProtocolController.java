@@ -6,13 +6,13 @@ import org.cyberpwn.glang.GBiset;
 import org.cyberpwn.glang.GMap;
 
 import react.api.Capability;
+import react.protocol.ProtocolAdapter;
 import surge.control.Controller;
-import surge.util.Proto;
 
 public class ProtocolController extends Controller
 {
 	private boolean safe;
-	private Proto proto;
+	private ProtocolAdapter proto;
 
 	@Override
 	public void start()
@@ -21,7 +21,7 @@ public class ProtocolController extends Controller
 
 		if(safe)
 		{
-			proto = new Proto();
+			proto = new ProtocolAdapter();
 			proto.start();
 		}
 	}
