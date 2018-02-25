@@ -193,7 +193,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 
 	public float calcVolume(ReactPlayer i)
 	{
-		i.setPlays(i.getPlays() > 20 ? 20 : i.getPlays());
+		i.setPlays(i.getPlays() > 50 ? 50 : i.getPlays());
 		float volume = 0.5f;
 		int plays = (int) M.clip(i.getPlays(), 0, 20);
 		volume -= ((float) plays / 20f) * 0.49f;
@@ -287,10 +287,19 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	private void changePost(ReactPlayer i)
 	{
 		i.setMonitorPosted(!i.getMonitorPosted());
+		i.setLastSwt(5);
 
 		if(Config.SOUNDS)
 		{
-			new GSound(MSound.HORSE_GALLOP.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+			if(i.getMonitorPosted())
+			{
+				new GSound(MSound.FALL_SMALL.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+			}
+
+			else
+			{
+				new GSound(MSound.FALL_SMALL.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+			}
 		}
 
 		i.setPlays(i.getPlays() + 3);
@@ -340,7 +349,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 
 				if(Config.SOUNDS)
 				{
-					new GSound(MSound.HORSE_LAND.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+					new GSound(MSound.HORSE_WOOD.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
 				}
 
 				i.setPlays(i.getPlays() + 3);
@@ -396,11 +405,15 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	private void handleShifting(ReactPlayer i)
 	{
 		double height = i.getP().getLocation().getY();
-		double lheight = i.getLastHeight();
-		i.setHeightMovement(Math.abs(lheight - height) > 0.001);
+		i.setHeightMovement(false);
 		i.setLastHeight(height);
-		boolean sh = i.getP().isSneaking() && (!i.isHeightMovement() || !i.getP().isFlying()) || i.getMonitorPosted();
+		boolean sh = i.getP().isSneaking() && (!i.isHeightMovement() || !i.getP().isFlying());
 		boolean osh = i.isShifting();
+
+		if(i.getMonitorPosted())
+		{
+			return;
+		}
 
 		if(sh != osh)
 		{
@@ -411,7 +424,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 
 				if(Config.SOUNDS)
 				{
-					new GSound(MSound.HORSE_SADDLE.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+					new GSound(MSound.DIG_WOOL.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
 				}
 
 				i.setPlays(i.getPlays() + 3);
@@ -424,7 +437,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 
 				if(Config.SOUNDS)
 				{
-					new GSound(MSound.HORSE_ARMOR.bukkitSound(), calcVolume(i), 1.5f).play(i.getP());
+					new GSound(MSound.DIG_WOOL.bukkitSound(), calcVolume(i), 1.5f).play(i.getP());
 				}
 
 				i.setPlays(i.getPlays() + 3);
@@ -530,10 +543,52 @@ public class MonitorController extends Controller implements IMasterTickComponen
 			{
 				if(Capability.ACTION_BAR.isCapable())
 				{
-					NMSX.sendActionBar(p, titleMonitor.getHotbarFor(sel, rp.isShift()));
-					String k = titleMonitor.getHotbarHeadFor(sel, rp.isShift(), this, rp, rp.getSwitchNotification());
-					String m = prefixFor(rp, sel, rp.getSwitchNotification());
+					String lck = "";
+					String rck = "";
+
+					if(rp.getMonitorPosted())
+					{
+						C z = C.LIGHT_PURPLE;
+						lck = C.RESET + "" + z + "\u2193";
+						rck = C.RESET + "" + z + "\u2193";
+					}
+
+					NMSX.sendActionBar(p, lck + " " + titleMonitor.getHotbarFor(rp.getMonitorPosted() ? -1 : sel, rp.isShift()) + " " + rck);
+					String k = titleMonitor.getHotbarHeadFor(sel, rp.isShift() && !rp.getMonitorPosted(), this, rp, rp.getSwitchNotification());
+					String m = prefixFor(rp, rp.getMonitorPosted() ? -1 : sel, rp.getSwitchNotification());
 					String v = sel != -1 ? (rp.getSwitchNotification() > 0 ? (m + titleMonitor.getHeadFor(sel).getName()) : "  ") : "  "; //$NON-NLS-1$ //$NON-NLS-2$
+
+					if(rp.getLastSwt() > 0)
+					{
+						rp.setLastSwt(rp.getLastSwt() - 1);
+						v = rp.getMonitorPosted() ? "Locked" : "Unlocked";
+
+						if(rp.getLastSwt() > 2)
+						{
+							v = C.LIGHT_PURPLE + "" + C.BOLD + v;
+						}
+
+						else if(rp.getLastSwt() > 1)
+						{
+							v = C.LIGHT_PURPLE + "" + v;
+						}
+
+						else if(rp.getLastSwt() > 0)
+						{
+							v = C.DARK_GRAY + "" + v;
+						}
+
+						else
+						{
+							v = C.DARK_GRAY + v;
+						}
+					}
+
+					else if(rp.getMonitorPosted())
+					{
+						v = "";
+					}
+
 					NMSX.sendTitle(p, 0, 5, 0, v, k);
 				}
 			}

@@ -18,6 +18,7 @@ import org.cyberpwn.gformat.F;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.gmath.M;
 
+import react.Config;
 import react.Gate;
 import react.React;
 import react.event.ReactScrollEvent;
@@ -26,8 +27,10 @@ import react.papyrus.BufferedFrame;
 import react.papyrus.IRenderer;
 import react.papyrus.Papyrus;
 import surge.Surge;
+import surge.collection.GSound;
 import surge.sched.Task;
 import surge.util.C;
+import surge.util.MSound;
 
 public class GraphingInstance implements Listener
 {
@@ -165,6 +168,11 @@ public class GraphingInstance implements Listener
 	{
 		if(mapping && e.getPlayer().equals(player))
 		{
+			if(Config.SOUNDS)
+			{
+				new GSound(MSound.STEP_GRASS.bukkitSound(), 0.05f, 1.8f).play(e.getPlayer().getLocation());
+			}
+
 			if(!isDoScrolling())
 			{
 				if(e.getDirection().equals(ScrollDirection.UP))

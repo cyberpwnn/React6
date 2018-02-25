@@ -186,6 +186,7 @@ public class Info
 	public static String STATE_SOUND_PLAYS = "player.sound-buffer"; //$NON-NLS-1$
 	public static String STATE_MONITORING_POSTED = "monitor.posted"; //$NON-NLS-1$
 	public static String STATE_MONITORING_LASTTAB = "monitor.last-tab"; //$NON-NLS-1$
+	public static String STATE_MONITORING_SWT = "monitor.last-swt"; //$NON-NLS-1$
 	public static String STATE_GLASSES_ENABLED = "glasses.enabled"; //$NON-NLS-1$
 	public static String STATE_MONITORING_SWITCHNOTIFICATION = "monitor.switch-notification"; //$NON-NLS-1$
 	public static String STATE_PLAYER_HOTBAR = "player.hotbar"; //$NON-NLS-1$

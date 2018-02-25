@@ -31,6 +31,7 @@ public class ReactPlayer implements IConfigurable
 		keystore.put(343, Info.STATE_SOUND_PLAYS);
 		keystore.put(765, Info.STATE_MONITORING_POSTED);
 		keystore.put(-112, Info.STATE_MONITORING_LASTTAB);
+		keystore.put(-115, Info.STATE_MONITORING_SWT);
 		keystore.put(-694, Info.STATE_MONITORING_SWITCHNOTIFICATION);
 		keystore.put(492, Info.STATE_PLAYER_HOTBAR);
 		keystore.put(117, Info.STATE_PLAYER_SHIFT);
@@ -44,6 +45,9 @@ public class ReactPlayer implements IConfigurable
 
 	@KeyPointer(-175)
 	public boolean monitoring = false;
+
+	@KeyPointer(-115)
+	public int lastSwt = 0;
 
 	@KeyPointer(-1783)
 	public boolean highMonitor = false;
@@ -313,6 +317,46 @@ public class ReactPlayer implements IConfigurable
 	{
 		React.instance.playerController.requestSave(getP(), false);
 		this.glasses = glasses;
+	}
+
+	public static GMap<Integer, String> getKeystore()
+	{
+		return keystore;
+	}
+
+	public static void setKeystore(GMap<Integer, String> keystore)
+	{
+		ReactPlayer.keystore = keystore;
+	}
+
+	public int getLastSwt()
+	{
+		return lastSwt;
+	}
+
+	public void setLastSwt(int lastSwt)
+	{
+		this.lastSwt = lastSwt;
+	}
+
+	public boolean isHighMonitor()
+	{
+		return highMonitor;
+	}
+
+	public void setHighMonitor(boolean highMonitor)
+	{
+		this.highMonitor = highMonitor;
+	}
+
+	public List<String> getChannels()
+	{
+		return channels;
+	}
+
+	public void setChannels(List<String> channels)
+	{
+		this.channels = channels;
 	}
 
 	public boolean isActionlogging()

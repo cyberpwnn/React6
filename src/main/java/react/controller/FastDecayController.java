@@ -1,6 +1,7 @@
 package react.controller;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -11,6 +12,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Leaves;
+import org.bukkit.util.Vector;
 import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.gmath.M;
@@ -138,6 +140,11 @@ public class FastDecayController extends Controller
 			new GSound(MSound.STEP_GRASS.bukkitSound(), 0.8f, 0.1f + (float) (Math.random() / 2f)).play(b.getLocation());
 		}
 
+		for(int i = 0; i < 1 + (4 * Math.random()); i++)
+		{
+			b.getWorld().playEffect(b.getLocation().clone().add(0.5, 0.5, 0.5).clone().add(Vector.getRandom().subtract(Vector.getRandom())), Effect.TILE_BREAK, b.getTypeId(), b.getData());
+		}
+
 		if(React.instance.featureController.hasBinding() && Config.FAST_LEAF_NMS)
 		{
 			Location c = b.getLocation().clone().add(0.5, 0.5, 0.5);
@@ -145,7 +152,6 @@ public class FastDecayController extends Controller
 			for(ItemStack i : getDrops(b))
 			{
 				new GSound(MSound.DIG_GRASS.bukkitSound(), 0.4f, 1.67f + (float) (Math.random() / 3f)).play(b.getLocation());
-
 				b.getWorld().dropItemNaturally(c, i);
 			}
 

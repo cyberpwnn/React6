@@ -56,12 +56,12 @@ public class ColossalView
 		{
 			if(level > targetLevel)
 			{
-				level -= Math.abs(level - targetLevel) / 3.2;
+				level -= Math.abs(level - targetLevel) / 1.9;
 			}
 
 			if(level < targetLevel)
 			{
-				level += Math.abs(level - targetLevel) / 3.2;
+				level += Math.abs(level - targetLevel) / 1.9;
 			}
 		}
 
