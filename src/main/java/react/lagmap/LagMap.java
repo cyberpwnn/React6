@@ -40,7 +40,15 @@ public class LagMap
 					d.put(j, 0.0);
 				}
 
-				d.put(j, d.get(j) + i.getHits().get(j));
+				try
+				{
+					d.put(j, d.get(j) + i.getHits().get(j));
+				}
+
+				catch(Exception e)
+				{
+
+				}
 			}
 		}
 

@@ -94,6 +94,16 @@ public class GoalStableRedstoneTime extends Goal
 	@Override
 	public boolean onCheckFailing()
 	{
+		if(SampledType.TPS.get().getValue() >= 20.0)
+		{
+			return false;
+		}
+
+		if(SampledType.REDSTONE_TICK.get().getValue() <= 10)
+		{
+			return false;
+		}
+
 		boolean f = false;
 		d--;
 

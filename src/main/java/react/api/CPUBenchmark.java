@@ -1,13 +1,10 @@
 package react.api;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.gformat.F;
 
 import react.Gate;
 import react.Lang;
-import react.React;
 import surge.util.C;
 
 public class CPUBenchmark extends Thread
@@ -36,24 +33,10 @@ public class CPUBenchmark extends Thread
 	@Override
 	public void run()
 	{
-		new S()
+		for(CommandSender i : Gate.broadcastReactUsers())
 		{
-			@Override
-			public void run()
-			{
-				for(ReactPlayer i : React.instance.playerController.getPlayers())
-				{
-					if(!Permissable.MONITOR.has(i.getP()))
-					{
-						continue;
-					}
-
-					Gate.msgSuccess(i.getP(), Lang.getString("react.bench.benchmarking-for") + F.time(1000 * 30, 0)); //$NON-NLS-1$
-				}
-
-				Gate.msgSuccess(Bukkit.getConsoleSender(), Lang.getString("react.bench.benchmarking-for") + F.time(1000 * 10, 0)); //$NON-NLS-1$
-			}
-		};
+			Gate.msgSuccess(i, Lang.getString("react.bench.benchmarking-for") + F.time(1000 * 30, 0)); //$NON-NLS-1$
+		}
 
 		int tt = 0;
 		int max = Integer.MIN_VALUE;
@@ -106,31 +89,16 @@ public class CPUBenchmark extends Thread
 			high = score;
 		}
 
-		new S()
+		for(CommandSender i : Gate.broadcastReactUsers())
 		{
-			@Override
-			public void run()
-			{
-				for(ReactPlayer i : React.instance.playerController.getPlayers())
-				{
-					if(!Permissable.MONITOR.has(i.getP()))
-					{
-						continue;
-					}
+			Gate.msgSuccess(i, Lang.getString("react.bench.looks-like-its") + C.WHITE + CPUResult.c(score) + Lang.getString("react.bench.cpu")); //$NON-NLS-1$ //$NON-NLS-2$
+			Gate.msgSuccess(i, C.RED + F.f(low) + C.GRAY + " <- " + C.YELLOW + F.f(high - low) + C.GRAY + " -> " + C.GREEN + F.f(high));
+		}
 
-					Gate.msgSuccess(i.getP(), Lang.getString("react.bench.looks-like-its") + C.WHITE + CPUResult.c(score) + Lang.getString("react.bench.cpu")); //$NON-NLS-1$ //$NON-NLS-2$
-					Gate.msgSuccess(i.getP(), C.RED + F.f(low) + C.GRAY + " <- " + C.YELLOW + F.f(high - low) + C.GRAY + " -> " + C.GREEN + F.f(high));
-				}
-
-				Gate.msgSuccess(Bukkit.getConsoleSender(), Lang.getString("react.bench.looks-like-its") + C.WHITE + CPUResult.c(score) + Lang.getString("react.bench.cpu")); //$NON-NLS-1$ //$NON-NLS-2$
-				Gate.msgSuccess(Bukkit.getConsoleSender(), C.RED + F.f(low) + C.GRAY + " <- " + C.YELLOW + F.f(high - low) + C.GRAY + " -> " + C.GREEN + F.f(high));
-
-				if(onFinish != null)
-				{
-					onFinish.run();
-				}
-			}
-		};
+		if(onFinish != null)
+		{
+			onFinish.run();
+		}
 	}
 
 	public CommandSender getSender()

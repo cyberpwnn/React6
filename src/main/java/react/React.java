@@ -12,7 +12,6 @@ import react.controller.ExplosiveController;
 import react.controller.FastDecayController;
 import react.controller.FastGrowthController;
 import react.controller.FeatureController;
-import react.controller.FeatureSetController;
 import react.controller.FixController;
 import react.controller.FluidController;
 import react.controller.GlassController;
@@ -134,9 +133,6 @@ public class React
 
 	@Control
 	public MetricsController metricsController;
-
-	@Control
-	public FeatureSetController featureSetController;
 
 	@Control
 	public FastGrowthController fastGrowthController;

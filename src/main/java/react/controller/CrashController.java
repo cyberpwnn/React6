@@ -1,7 +1,6 @@
 package react.controller;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 import org.cyberpwn.gmath.M;
 
@@ -88,7 +87,7 @@ public class CrashController extends Controller implements Runnable
 					System.out.println("=====================================================");
 					System.out.println("=====================================================");
 
-					for(Player i : Bukkit.getServer().getOnlinePlayers())
+					for(CommandSender i : Gate.broadcastReactUsers())
 					{
 						Gate.msgError(i, "Warning! The server has been frozen for more than 7 seconds");
 						i.sendMessage(Gate.header("Server Lock: " + px.getName(), C.RED));
@@ -121,6 +120,11 @@ public class CrashController extends Controller implements Runnable
 
 			if(M.ms() - lastTick < 7000 && spiked)
 			{
+				for(CommandSender i : Gate.broadcastReactUsers())
+				{
+					Gate.msgSuccess(i, "The server has recovered from a lock!");
+				}
+
 				System.out.println("[React]: The server has recovered and resumed ticking.");
 				spiked = false;
 			}

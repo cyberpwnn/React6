@@ -166,7 +166,6 @@ public class EntityCullController extends Controller
 									}
 								}
 
-								D.w(Lang.getString("controller.entity-culler.cannot-find-entity-type") + j + " (" + i + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 								continue parsing;
 							}
 						}
@@ -174,7 +173,6 @@ public class EntityCullController extends Controller
 
 					if(g.getEntityTypes().isEmpty())
 					{
-						D.w(Lang.getString("controller.entity-culler.could-not-parse-any") + i); //$NON-NLS-1$
 						continue searching;
 					}
 
@@ -185,12 +183,6 @@ public class EntityCullController extends Controller
 				{
 					D.w(Lang.getString("controller.entity-culler.unable-to-parse-int") + i); //$NON-NLS-1$
 				}
-			}
-
-			else
-			{
-				D.w(Lang.getString("controller.entity-culler.unable-to-parse") + i); //$NON-NLS-1$
-				D.w(Lang.getString("controller.entity-culler.must-start-with-restrict")); //$NON-NLS-1$
 			}
 		}
 

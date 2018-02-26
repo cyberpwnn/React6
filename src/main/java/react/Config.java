@@ -5,7 +5,9 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 import org.bukkit.World;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.cyberpwn.gformat.F;
 import org.cyberpwn.glang.GList;
@@ -24,9 +26,11 @@ import surge.Surge;
 import surge.cluster.DataCluster;
 import surge.cluster.YamlDataInput;
 import surge.cluster.YamlDataOutput;
+import surge.collection.GSound;
 import surge.util.D;
 import surge.util.DynamicConfiguration;
 import surge.util.DynamicTracker;
+import surge.util.MSound;
 import surge.util.PoolCount;
 import surge.util.PoolDescriber;
 import surge.util.PoolNanoThrottle;
@@ -701,7 +705,7 @@ public class Config
 	@Sector(73)
 	@Experimental
 	@Injection(InjectionMethod.SWAP)
-	public static boolean RAI_REDSTONE_TIME_PROPIGATE = false;
+	public static boolean RAI_REDSTONE_TIME_PROPIGATE = true;
 
 	@Sector(74)
 	@Injection(InjectionMethod.SWAP)
@@ -824,6 +828,16 @@ public class Config
 				Surge.getHotloadManager().untrack(fConfigExperimental);
 				onRead(main);
 				doTrack(main);
+
+				for(CommandSender i : Gate.broadcastReactUsers())
+				{
+					Gate.msgSuccess(i, "Configuration Reloaded (changes detected)");
+
+					if(i instanceof Player)
+					{
+						new GSound(MSound.LAVA_POP.bukkitSound(), 0.5f, 1.9f).play((Player) i);
+					}
+				}
 			}
 		};
 

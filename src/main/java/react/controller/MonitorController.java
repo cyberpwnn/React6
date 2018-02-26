@@ -204,7 +204,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 		i.setPlays(i.getPlays() > 50 ? 50 : i.getPlays());
 		float volume = 0.5f;
 		int plays = (int) M.clip(i.getPlays(), 0, 20);
-		volume -= ((float) plays / 20f) * 0.49f;
+		volume -= ((float) plays / 20f) * 0.4f;
 
 		return volume;
 	}
@@ -351,7 +351,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 				nsel = tm.left(nsel);
 			}
 
-			if(i.getMonitorSelection() != nsel)
+			if(i.getMonitorSelection() != nsel && !i.getMonitorPosted())
 			{
 				i.setSwitchNotification(maxCooldown);
 
@@ -650,7 +650,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 				tickMonitor(i);
 			}
 
-			i.setPlays(i.getPlays() > 0 ? i.getPlays() - 1 : 0);
+			i.setPlays(i.getPlays() > 0 ? i.getPlays() - 2 : 0);
 
 			if(i.isActionlogging() && !Permissable.MONITOR_ACTIONLOG.has(i.getP()))
 			{

@@ -547,17 +547,25 @@ public class Main extends AmpedPlugin
 			return;
 		}
 
-		for(IController i : controllerSet)
+		try
 		{
-			try
+			for(IController i : controllerSet)
 			{
-				i.tick();
-			}
+				try
+				{
+					i.tick();
+				}
 
-			catch(Throwable e)
-			{
-				D.f("Failed to tick " + i.getClass().getSimpleName());
+				catch(Throwable e)
+				{
+					D.f("Failed to tick " + i.getClass().getSimpleName());
+				}
 			}
+		}
+
+		catch(Throwable e)
+		{
+			D.v("CTick Shut Down");
 		}
 
 		getThreadPool().tickSyncQueue();

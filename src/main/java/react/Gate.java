@@ -19,6 +19,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.cyberpwn.gconcurrent.A;
+import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.gformat.F;
 import org.cyberpwn.glang.Callback;
@@ -31,9 +32,11 @@ import org.spigotmc.TickLimiter;
 
 import react.api.ActivationRangeType;
 import react.api.Flavor;
+import react.api.Permissable;
 import react.api.ReactPlayer;
 import react.api.SelectorPosition;
 import react.notification.Notification;
+import surge.Surge;
 import surge.nms.NMSX;
 import surge.sched.TaskLater;
 import surge.util.C;
@@ -361,7 +364,23 @@ public class Gate
 	public static String msg(CommandSender p, String msg)
 	{
 		String s = TXT.makeTag(C.AQUA, C.DARK_GRAY, C.GRAY, Info.CORE_NAME) + msg;
-		p.sendMessage(s);
+
+		if(!Surge.isMainThread())
+		{
+			new S()
+			{
+				@Override
+				public void run()
+				{
+					p.sendMessage(s);
+				}
+			};
+		}
+
+		else
+		{
+			p.sendMessage(s);
+		}
 
 		return s;
 	}
@@ -382,8 +401,26 @@ public class Gate
 		return s;
 	}
 
+	public static GList<CommandSender> broadcastReactUsers()
+	{
+		GList<CommandSender> s = new GList<CommandSender>();
+
+		for(Player i : Bukkit.getOnlinePlayers())
+		{
+			if(Permissable.ACCESS.has(i))
+			{
+				s.add(i);
+			}
+		}
+
+		s.add(Bukkit.getConsoleSender());
+
+		return s;
+	}
+
 	public static String msgSuccess(CommandSender p, String msg)
 	{
+		String s = msg(p, C.GREEN + "\u2714 " + C.GRAY + msg); //$NON-NLS-1$
 		if(p instanceof Player)
 		{
 			if(snd > 0 && Config.SOUNDS)
@@ -392,12 +429,13 @@ public class Gate
 				snd--;
 			}
 		}
-
-		return msg(p, C.GREEN + "\u2714 " + C.GRAY + msg); //$NON-NLS-1$
+		return s;
 	}
 
 	public static String msgError(CommandSender p, String msg)
 	{
+		String s = msg(p, C.RED + "\u2718 " + C.GRAY + msg); //$NON-NLS-1$
+
 		if(p instanceof Player)
 		{
 			if(snd > 0 && Config.SOUNDS)
@@ -407,11 +445,13 @@ public class Gate
 			}
 		}
 
-		return msg(p, C.RED + "\u2718 " + C.GRAY + msg); //$NON-NLS-1$
+		return s;
 	}
 
 	public static String msgActing(CommandSender p, String msg)
 	{
+		String s = msg(p, C.GOLD + "\u26A0 " + C.GRAY + msg); //$NON-NLS-1$
+
 		if(p instanceof Player)
 		{
 			if(snd > 0 && Config.SOUNDS)
@@ -421,7 +461,7 @@ public class Gate
 			}
 		}
 
-		return msg(p, C.GOLD + "\u26A0 " + C.GRAY + msg); //$NON-NLS-1$
+		return s;
 	}
 
 	public static boolean isBadForUnloading()

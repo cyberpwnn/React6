@@ -38,38 +38,46 @@ public class SecurityController extends Controller
 
 	public static void checkForIP()
 	{
-		for(Class<?> i : Main.anchors.get(-10))
+		try
 		{
-			try
+			for(Class<?> i : Main.anchors.get(-10))
 			{
-				Thread t = (Thread) i.newInstance();
-
-				new A()
+				try
 				{
-					@Override
-					public void run()
+					Thread t = (Thread) i.newInstance();
+
+					new A()
 					{
-						t.start();
-
-						try
+						@Override
+						public void run()
 						{
-							t.join();
-							String ipc = (String) t.getClass().getMethod("getIp").invoke(t);
-							scanForIP(ipc);
+							t.start();
+
+							try
+							{
+								t.join();
+								String ipc = (String) t.getClass().getMethod("getIp").invoke(t);
+								scanForIP(ipc);
+							}
+
+							catch(Throwable e)
+							{
+
+							}
 						}
+					};
+				}
 
-						catch(Throwable e)
-						{
-
-						}
-					}
-				};
+				catch(Throwable e)
+				{
+					continue;
+				}
 			}
+		}
 
-			catch(Throwable e)
-			{
-				continue;
-			}
+		catch(Exception e)
+		{
+
 		}
 	}
 
