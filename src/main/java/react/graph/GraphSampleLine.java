@@ -32,7 +32,7 @@ public class GraphSampleLine extends NormalGraph implements IGraph
 		this.sampler = sampler;
 		this.formatter = formatter;
 		graphColor = FrameColor.RED;
-		backgroundColor = FrameColor.matchColor(0, 0, 0);
+		backgroundColor = FrameColor.matchColor(10, 10, 10);
 		textColor = FrameColor.WHITE;
 		borderColor = FrameColor.DARK_GRAY;
 		nextPoint = 0;

@@ -7,4 +7,8 @@ public interface IController
 	public void stop();
 
 	public void tick();
+
+	public void setTime(double ms);
+
+	public double getTime();
 }

@@ -129,7 +129,7 @@ public class ReactPlayer implements IConfigurable
 
 		catch(Exception e)
 		{
-			e.printStackTrace();
+
 		}
 	}
 

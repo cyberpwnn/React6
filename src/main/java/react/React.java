@@ -29,7 +29,6 @@ import react.controller.ProtocolController;
 import react.controller.RAIController;
 import react.controller.RedstoneController;
 import react.controller.SampleController;
-import react.controller.SecurityController;
 import react.controller.SmearTickController;
 import react.controller.SpikeController;
 import react.controller.TickTimeController;
@@ -79,9 +78,6 @@ public class React
 
 	@Control
 	public SpikeController spikeController;
-
-	@Control
-	public SecurityController securityController;
 
 	@Control
 	public RedstoneController redstoneController;

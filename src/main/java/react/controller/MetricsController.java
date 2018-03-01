@@ -46,6 +46,24 @@ public class MetricsController extends Controller
 				return Bukkit.getServer().getViewDistance() + "";
 			}
 		}));
+
+		stats.addCustomChart(new BStats.SimplePie("using_protocollib", new Callable<String>()
+		{
+			@Override
+			public String call() throws Exception
+			{
+				return Bukkit.getPluginManager().getPlugin("ProtocolLib") != null ? "Yes" : "No";
+			}
+		}));
+
+		stats.addCustomChart(new BStats.SimplePie("using_fawe", new Callable<String>()
+		{
+			@Override
+			public String call() throws Exception
+			{
+				return Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null ? "Yes" : "No";
+			}
+		}));
 	}
 
 	@Override

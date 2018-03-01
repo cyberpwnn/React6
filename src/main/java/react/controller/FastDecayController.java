@@ -135,6 +135,16 @@ public class FastDecayController extends Controller
 			return;
 		}
 
+		if(b.getType().equals(Material.LEAVES) || b.getType().equals(Material.LEAVES_2))
+		{
+			Leaves l = new Leaves(b.getType(), b.getData());
+
+			if(!l.isDecayable())
+			{
+				return;
+			}
+		}
+
 		if(M.r(0.09))
 		{
 			new GSound(MSound.STEP_GRASS.bukkitSound(), 0.8f, 0.1f + (float) (Math.random() / 2f)).play(b.getLocation());

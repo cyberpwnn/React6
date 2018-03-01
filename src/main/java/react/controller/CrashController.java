@@ -9,19 +9,21 @@ import surge.Surge;
 import surge.control.Controller;
 import surge.server.CPS;
 import surge.util.C;
+import surge.util.D;
 
 public class CrashController extends Controller implements Runnable
 {
 	private long lastTick;
 	private Thread crashThread;
+	private int cd;
 
 	@Override
 	public void start()
 	{
+		cd = 200;
 		Surge.register(this);
 		lastTick = M.ms();
 		crashThread = new Thread(this, "Surge Watchdog");
-		crashThread.start();
 	}
 
 	@Override
@@ -35,6 +37,17 @@ public class CrashController extends Controller implements Runnable
 	public void tick()
 	{
 		lastTick = M.ms();
+
+		if(cd > 0)
+		{
+			cd--;
+
+			if(cd == 0)
+			{
+				D.v("Watchdog Thread Started!");
+				crashThread.start();
+			}
+		}
 	}
 
 	@Override

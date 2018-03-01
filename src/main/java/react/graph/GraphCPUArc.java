@@ -49,7 +49,7 @@ public class GraphCPUArc extends NormalGraph implements IGraph
 		aax.put(pct);
 		aay.put(aax.getAverage());
 		aaz.put(aay.getAverage());
-		frame.write(FrameColor.matchColor(Color.black));
+		frame.write(FrameColor.matchColor(10, 10, 10));
 		frame.drawText((frame.getWidth() / 2) - (ReactFont.Font.getWidth("CPU") / 2), (frame.getHeight() / 2) - (ReactFont.Font.getHeight() + 4), ReactFont.Font, FrameColor.matchColor(Color.getHSBColor((float) aax.getAverage(), 1f, 1f)), "CPU");
 		frame.drawText((frame.getWidth() / 2) - (ReactFont.Font.getWidth(F.pc(aax.getAverage())) / 2), frame.getHeight() / 2, ReactFont.Font, FrameColor.matchColor(Color.getHSBColor((float) aax.getAverage(), 1f, 1f)), F.pc(aax.getAverage()));
 

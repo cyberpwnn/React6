@@ -1,16 +1,20 @@
 package react.controller;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
+import react.React;
 import react.api.ISampler;
 import react.api.SampledType;
 import surge.Main;
 import surge.Surge;
+import surge.control.Control;
 import surge.control.Controller;
+import surge.control.IController;
 import surge.sched.IMasterTickComponent;
 import surge.server.AsyncTick;
 import surge.server.SuperSampler;
@@ -22,13 +26,51 @@ public class SampleController extends Controller implements IMasterTickComponent
 	private GMap<String, ISampler> samplers;
 	private int cd;
 	private int sct;
+	private GMap<String, Double> reports;
+	private GList<IController> controllers;
+	public static double msu = 0;
+	public static double totalTime = 0;
+	public static double totalTaskTime = 0;
 
 	public SampleController()
 	{
+		controllers = new GList<IController>();
+		reports = new GMap<String, Double>();
 		sct = 0;
 		samplers = new GMap<String, ISampler>();
 		constructSamplers();
 		cd = 4;
+	}
+
+	public void construct()
+	{
+		controllers = new GList<IController>();
+
+		for(Field i : React.class.getDeclaredFields())
+		{
+			if(i.isAnnotationPresent(Control.class))
+			{
+				try
+				{
+					controllers.add((IController) i.get(React.instance));
+				}
+
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	public void report(String key, double d)
+	{
+		if(!reports.containsKey(key))
+		{
+			reports.put(key, 0.0);
+		}
+
+		reports.put(key, reports.get(key) + d);
 	}
 
 	public boolean checkThreads()
@@ -151,6 +193,28 @@ public class SampleController extends Controller implements IMasterTickComponent
 				Main.reload();
 			}
 		}
+
+		reports.clear();
+		if(controllers.isEmpty())
+		{
+			construct();
+		}
+
+		for(IController i : controllers)
+		{
+			report("Controller " + i.getClass().getSimpleName().replaceAll("Controller", ""), i.getTime());
+		}
+
+		report("Tasks", msu);
+		msu = 0;
+		double nsv = 0;
+		for(String i : reports.k())
+		{
+			nsv += reports.get(i);
+		}
+
+		totalTime = nsv;
+		totalTaskTime = msu;
 	}
 
 	public SuperSampler getSuperSampler()

@@ -12,6 +12,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.bukkit.Bukkit;
+import org.cyberpwn.gbench.Profiler;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 
@@ -553,7 +554,11 @@ public class Main extends AmpedPlugin
 			{
 				try
 				{
+					Profiler p = new Profiler();
+					p.begin();
 					i.tick();
+					p.end();
+					i.setTime(p.getMilliseconds());
 				}
 
 				catch(Throwable e)

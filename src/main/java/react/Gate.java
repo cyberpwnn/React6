@@ -548,6 +548,11 @@ public class Gate
 			return;
 		}
 
+		if(e.getType().equals(EntityType.ITEM_FRAME) && !b)
+		{
+			return;
+		}
+
 		if(Config.getWorldConfig(e.getWorld()).assumeNoSideEffectsEntities.contains(e.getType().toString()) && !b)
 		{
 			return;
@@ -577,6 +582,11 @@ public class Gate
 	public static void cullEntity(Entity e)
 	{
 		if(!Config.CULLING_ENABLED)
+		{
+			return;
+		}
+
+		if(e.getType().equals(EntityType.ITEM_FRAME))
 		{
 			return;
 		}

@@ -2,6 +2,7 @@ package surge.sched;
 
 import org.cyberpwn.gbench.Profiler;
 
+import react.controller.SampleController;
 import surge.Surge;
 import surge.util.D;
 
@@ -43,6 +44,7 @@ public abstract class TaskLater implements ITask, ICancellable
 					totalComputeTime += computeTime;
 					profiler.end();
 					activeTime += profiler.getMilliseconds();
+					SampleController.msu += profiler.getMilliseconds();
 					activeProfiler.reset();
 					profiler.reset();
 					profiler.begin();

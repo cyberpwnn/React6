@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
+import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.gmath.M;
 
 import surge.Surge;
@@ -142,51 +143,108 @@ public abstract class WorldMonitor extends Thread implements Listener
 			totalChanged = true;
 		}
 
-		if(chunksChanged)
+		try
 		{
-			sampleChunkCount();
-			chunksChanged = false;
-			doUpdate();
-		}
-
-		if(dropChanged)
-		{
-			sampleDropCount();
-			dropChanged = false;
-			doUpdate();
-		}
-
-		if(tileChanged)
-		{
-			sampleTileCount();
-			tileChanged = false;
-			doUpdate();
-		}
-
-		if(livingChanged)
-		{
-			sampleLivingCount();
-			livingChanged = false;
-			doUpdate();
-		}
-
-		if(totalChanged)
-		{
-			sampleTotalCount();
-			totalChanged = false;
-			doUpdate();
-		}
-
-		if(updated || M.ms() - ms > 1000)
-		{
-			updated(totalChunks, totalDrops, totalTiles, totalLiving, totalEntities, chunksLoaded, chunksUnloaded);
-
-			if(M.ms() - ms > 1000)
+			if(chunksChanged)
 			{
-				ms = M.ms();
-				chunksLoaded = 0;
-				chunksLoaded = 0;
+				sampleChunkCount();
+				chunksChanged = false;
+				doUpdate();
 			}
+
+		}
+
+		catch(Throwable e)
+		{
+
+		}
+
+		try
+		{
+			if(dropChanged)
+			{
+				sampleDropCount();
+				dropChanged = false;
+				doUpdate();
+			}
+		}
+
+		catch(Throwable e)
+		{
+
+		}
+
+		try
+		{
+			if(tileChanged)
+			{
+				new S()
+				{
+					@Override
+					public void run()
+					{
+						sampleTileCount();
+						tileChanged = false;
+						doUpdate();
+					}
+				};
+			}
+		}
+
+		catch(Throwable e)
+		{
+
+		}
+
+		try
+		{
+			if(livingChanged)
+			{
+				sampleLivingCount();
+				livingChanged = false;
+				doUpdate();
+			}
+		}
+
+		catch(Throwable e)
+		{
+
+		}
+
+		try
+		{
+			if(totalChanged)
+			{
+				sampleTotalCount();
+				totalChanged = false;
+				doUpdate();
+			}
+
+		}
+
+		catch(Throwable e)
+		{
+
+		}
+
+		try
+		{
+			if(updated || M.ms() - ms > 1000)
+			{
+				updated(totalChunks, totalDrops, totalTiles, totalLiving, totalEntities, chunksLoaded, chunksUnloaded);
+
+				if(M.ms() - ms > 1000)
+				{
+					ms = M.ms();
+					chunksLoaded = 0;
+					chunksLoaded = 0;
+				}
+			}
+		}
+
+		catch(Throwable e)
+		{
+
 		}
 	}
 

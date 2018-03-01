@@ -79,6 +79,7 @@ public class FrameColor
 		{
 			return 0;
 		}
+
 		else
 		{
 			int index = 0;

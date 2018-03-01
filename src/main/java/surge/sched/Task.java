@@ -2,6 +2,7 @@ package surge.sched;
 
 import org.cyberpwn.gbench.Profiler;
 
+import react.controller.SampleController;
 import surge.Surge;
 
 public abstract class Task implements ITask, ICancellable
@@ -33,6 +34,7 @@ public abstract class Task implements ITask, ICancellable
 				completed = true;
 				profiler.end();
 				activeTime = profiler.getMilliseconds();
+				SampleController.msu += profiler.getMilliseconds();
 				computeTime = activeProfiler.getMilliseconds();
 				totalComputeTime = activeTime;
 				profiler.reset();

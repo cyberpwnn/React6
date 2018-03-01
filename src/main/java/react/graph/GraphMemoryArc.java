@@ -47,7 +47,7 @@ public class GraphMemoryArc extends NormalGraph implements IGraph
 	{
 		sample();
 		aax.put(pct);
-		frame.write(FrameColor.matchColor(Color.black));
+		frame.write(FrameColor.matchColor(10, 10, 10));
 
 		String mem = F.memSize((long) (of * aax.getAverage()), 0);
 		frame.drawText((frame.getWidth() / 2) - (ReactFont.Font.getWidth("MEM") / 2), (frame.getHeight() / 2) - (ReactFont.Font.getHeight() + 4), ReactFont.Font, FrameColor.matchColor(Color.getHSBColor((float) aax.getAverage(), 1f, 1f)), "MEM");

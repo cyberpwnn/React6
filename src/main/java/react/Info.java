@@ -217,6 +217,8 @@ public class Info
 	public static String SAMPLER_REDSTONE_TICK_USAGE = Lang.getString("sampler.name.redstone-utilization"); //$NON-NLS-1$
 	public static String SAMPLER_REDSTONE_TICK = Lang.getString("sampler.name.redstone-tick"); //$NON-NLS-1$
 	public static String SAMPLER_ENTITY_TIME = Lang.getString("sampler.name.entity-time"); //$NON-NLS-1$
+	public static String SAMPLER_REACT_TIME = "React Time"; //$NON-NLS-1$
+	public static String SAMPLER_REACT_TASK_TIME = "React Task Time"; //$NON-NLS-1$
 	public static String SAMPLER_ENTITY_TIME_LOCK = Lang.getString("sampler.name.entity-throttle"); //$NON-NLS-1$
 	public static String SAMPLER_TILE_TIME_LOCK = Lang.getString("sampler.name.tile-throttle"); //$NON-NLS-1$
 	public static String SAMPLER_TILE_TIME = Lang.getString("sampler.name.tile-time"); //$NON-NLS-1$

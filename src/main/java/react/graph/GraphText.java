@@ -22,7 +22,7 @@ public class GraphText extends NormalGraph implements IGraph
 		wrote = false;
 		this.text = textInitial;
 		this.fontColor = fontColor;
-		this.backgroundColor = FrameColor.matchColor(FrameColor.getColor(fontColor).darker().darker().darker());
+		this.backgroundColor = FrameColor.matchColor(FrameColor.getColor(fontColor).darker().darker());
 	}
 
 	@Override
