@@ -3,6 +3,7 @@ package react.controller;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.cyberpwn.json.JSONObject;
 
 import react.nms.INMSBinding;
 import react.nms.NMSBinding10;
@@ -19,6 +20,18 @@ import surge.util.Protocol;
 public class FeatureController extends Controller implements INMSBinding
 {
 	private INMSBinding trueBinding;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		if(trueBinding == null)
+		{
+			object.put("nms-binding", "NO BINDING!");
+			return;
+		}
+
+		object.put("nms-binding", trueBinding.getClass().getSimpleName());
+	}
 
 	@Override
 	public void start()

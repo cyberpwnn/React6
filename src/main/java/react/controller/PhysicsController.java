@@ -10,6 +10,7 @@ import org.cyberpwn.gconcurrent.A;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.Average;
 import org.cyberpwn.gmath.M;
+import org.cyberpwn.json.JSONObject;
 
 import react.React;
 import react.api.ChunkIssue;
@@ -32,6 +33,12 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 	private Average aRSMS;
 	private Average aRST;
 	private Average aRSS;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("samples", samples.size() + " Chunks");
+	}
 
 	@Override
 	public void start()

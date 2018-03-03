@@ -7,6 +7,7 @@ import org.cyberpwn.gconcurrent.A;
 import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GSet;
+import org.cyberpwn.json.JSONObject;
 
 import react.api.ReactPlayer;
 import surge.Surge;
@@ -16,6 +17,12 @@ public class PlayerController extends Controller
 {
 	private GList<ReactPlayer> players;
 	private GSet<ReactPlayer> save;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("active-react-players", players.size());
+	}
 
 	@Override
 	public void start()

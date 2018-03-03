@@ -6,6 +6,8 @@ import org.bukkit.entity.EntityType;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
+import org.cyberpwn.json.JSONArray;
+import org.cyberpwn.json.JSONObject;
 
 import react.Config;
 import react.Gate;
@@ -22,6 +24,47 @@ public class EntityCullController extends Controller
 	private GSet<EntityFlag> defer;
 	private GSet<EntityFlag> prefer;
 	private GMap<EntityGroup, Integer> maxs;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		JSONArray flg = new JSONArray();
+		JSONArray grp = new JSONArray();
+
+		for(EntityGroup i : maxs.k())
+		{
+			JSONObject o = new JSONObject();
+			JSONArray f = new JSONArray();
+
+			for(EntityType j : i.getEntityTypes())
+			{
+				f.put(j.name());
+			}
+
+			o.put("group", f);
+			o.put("cap", maxs.get(i));
+			grp.put(o);
+		}
+
+		for(EntityFlag i : defer)
+		{
+			JSONObject js = new JSONObject();
+			js.put("flag", i.name());
+			js.put("type", "DEFER");
+			flg.put(js);
+		}
+
+		for(EntityFlag i : prefer)
+		{
+			JSONObject js = new JSONObject();
+			js.put("flag", i.name());
+			js.put("type", "PREFER");
+			flg.put(js);
+		}
+
+		object.put("loaded-flags", flg);
+		object.put("loaded-groups", grp);
+	}
 
 	@Override
 	public void start()

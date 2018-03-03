@@ -9,6 +9,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.cyberpwn.glang.GList;
+import org.cyberpwn.json.JSONObject;
 
 import react.Config;
 import react.api.Capability;
@@ -22,6 +23,12 @@ import surge.util.Area;
 public class EntityStackController extends Controller
 {
 	private GList<StackedEntity> stacks = new GList<StackedEntity>();
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("active-stacks", stacks.size());
+	}
 
 	@Override
 	public void start()

@@ -16,6 +16,7 @@ import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
 import org.cyberpwn.gmath.Average;
 import org.cyberpwn.gmath.M;
+import org.cyberpwn.json.JSONObject;
 
 import react.Gate;
 import react.React;
@@ -38,6 +39,13 @@ public class RedstoneController extends Controller
 	private long firstTick;
 	private long lastTick;
 	private GMap<World, RedstoneTracker> trackers;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("frozen", frozen.size() + " Chunks");
+		object.put("queue", queue.size() + " Chunks");
+	}
 
 	@Override
 	public void start()

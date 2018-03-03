@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.cyberpwn.glang.GBiset;
 import org.cyberpwn.glang.GMap;
+import org.cyberpwn.json.JSONObject;
 
 import react.api.Capability;
 import react.protocol.ProtocolAdapter;
@@ -13,6 +14,12 @@ public class ProtocolController extends Controller
 {
 	private boolean safe;
 	private ProtocolAdapter proto;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("safe", safe);
+	}
 
 	@Override
 	public void start()

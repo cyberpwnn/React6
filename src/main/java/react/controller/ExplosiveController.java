@@ -12,6 +12,7 @@ import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GSet;
 import org.cyberpwn.gmath.Average;
 import org.cyberpwn.gmath.M;
+import org.cyberpwn.json.JSONObject;
 
 import react.Config;
 import react.Gate;
@@ -28,6 +29,12 @@ public class ExplosiveController extends Controller
 	private long lastTick;
 	private Average aCSMS;
 	private GSet<Location> locs;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("queue", locs.size());
+	}
 
 	@Override
 	public void start()

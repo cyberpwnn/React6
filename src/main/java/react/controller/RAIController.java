@@ -1,6 +1,7 @@
 package react.controller;
 
 import org.cyberpwn.gconcurrent.A;
+import org.cyberpwn.json.JSONObject;
 
 import react.rai.IGoal;
 import react.rai.IRAI;
@@ -18,6 +19,12 @@ public class RAIController extends Controller
 {
 	private IRAI rai;
 	public boolean raiEnabled;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("active", raiEnabled);
+	}
 
 	@Override
 	public void start()

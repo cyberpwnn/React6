@@ -3,19 +3,25 @@ package react.controller;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
+import org.cyberpwn.json.JSONObject;
 
+import react.Gate;
 import react.React;
 import react.api.ISampler;
 import react.api.SampledType;
+import react.timings.TimingsReport;
 import surge.Main;
 import surge.Surge;
 import surge.control.Control;
 import surge.control.Controller;
 import surge.control.IController;
 import surge.sched.IMasterTickComponent;
+import surge.sched.TaskLater;
 import surge.server.AsyncTick;
 import surge.server.SuperSampler;
 import surge.util.D;
@@ -26,11 +32,27 @@ public class SampleController extends Controller implements IMasterTickComponent
 	private GMap<String, ISampler> samplers;
 	private int cd;
 	private int sct;
-	private GMap<String, Double> reports;
+	public static GMap<String, Double> reports;
 	private GList<IController> controllers;
 	public static double msu = 0;
 	public static double totalTime = 0;
 	public static double totalTaskTime = 0;
+	public static TimingsReport t = null;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("reports", reports.size());
+
+		JSONObject js = new JSONObject();
+
+		for(String i : samplers.k())
+		{
+			js.put(i, samplers.get(i).get());
+		}
+
+		object.put("samplers", js);
+	}
 
 	public SampleController()
 	{
@@ -284,5 +306,89 @@ public class SampleController extends Controller implements IMasterTickComponent
 		}
 
 		return samps;
+	}
+
+	@EventHandler
+	public void on(PlayerCommandPreprocessEvent e)
+	{
+		if(e.getMessage().equalsIgnoreCase("/timings on"))
+		{
+			if(t != null)
+			{
+				t.stop();
+				t = null;
+			}
+
+			t = new TimingsReport();
+			t.start();
+			Gate.msgActing(e.getPlayer(), "Timings Started");
+		}
+
+		if(e.getMessage().equalsIgnoreCase("/timings off"))
+		{
+			if(t != null)
+			{
+				t.stop();
+				t = null;
+				Gate.msgSuccess(e.getPlayer(), "Timings Stopped");
+			}
+		}
+
+		if(e.getMessage().equalsIgnoreCase("/timings reset"))
+		{
+			if(t != null)
+			{
+				t.stop();
+				t = null;
+			}
+
+			t = new TimingsReport();
+			t.start();
+			Gate.msgSuccess(e.getPlayer(), "Timings Reset");
+		}
+
+		if(e.getMessage().equalsIgnoreCase("/timings paste"))
+		{
+			if(t != null)
+			{
+				t.stop();
+				t.reportTo(e.getPlayer());
+				t = null;
+			}
+		}
+
+		if(e.getMessage().equalsIgnoreCase("/timings peek"))
+		{
+			if(t != null)
+			{
+				t.reportTo(e.getPlayer());
+				Gate.msgActing(e.getPlayer(), "Timings Peeked. Timings will continue to sample.");
+			}
+
+			e.setCancelled(true);
+		}
+
+		if(e.getMessage().equalsIgnoreCase("/timings spam"))
+		{
+			if(t != null)
+			{
+				Gate.msgActing(e.getPlayer(), "Timings data will be sent 4 times a second.");
+				Gate.msgActing(e.getPlayer(), "You can turn this off by using /timings spam");
+
+				new TaskLater("tf", 45)
+				{
+					@Override
+					public void run()
+					{
+						if(t != null)
+						{
+							t.spam(e.getPlayer());
+						}
+					}
+				};
+			}
+
+			e.setCancelled(true);
+		}
 	}
 }

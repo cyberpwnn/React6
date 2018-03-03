@@ -12,8 +12,10 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import org.cyberpwn.gconcurrent.A;
+import org.cyberpwn.gformat.F;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
+import org.cyberpwn.json.JSONObject;
 
 import react.Config;
 import react.Gate;
@@ -44,6 +46,25 @@ public class GraphController extends Controller
 	private GMap<SampledType, GraphSampleLine> g;
 	private GMap<Player, GraphingInstance> gr;
 	private GMap<ItemFrame, GraphingInstance> gra;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("graphs-loaded", g.size());
+		object.put("renderers-active", gr.size() + gra.size());
+
+		JSONObject sampled = new JSONObject();
+		int ff = 0;
+
+		for(SampledType i : g.k())
+		{
+			sampled.put(i.name(), F.f(g.get(i).getPlotBoard().getSize()) + " Indices @" + F.time(g.get(i).getPlotBoard().latestRecording() - g.get(i).getPlotBoard().earilestRecording(), 1) + " Time Span");
+			ff += g.get(i).getPlotBoard().getSize();
+		}
+
+		object.put("total-indices", F.f(ff) + " (" + F.fileSize(ff * 8).toUpperCase() + "b)");
+		object.put("sample-indices", sampled);
+	}
 
 	@Override
 	public void start()

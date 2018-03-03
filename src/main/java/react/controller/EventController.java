@@ -11,6 +11,7 @@ import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.cyberpwn.glang.GMap;
+import org.cyberpwn.json.JSONObject;
 
 import react.api.ChunkIssue;
 import react.event.ReactScrollEvent;
@@ -23,6 +24,12 @@ public class EventController extends Controller
 {
 	public static LagMap map;
 	private GMap<Player, Integer> slots;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("lagmap-recordings", map.getChunks().size());
+	}
 
 	@Override
 	public void start()

@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.cyberpwn.glang.GList;
+import org.cyberpwn.json.JSONObject;
 
 import react.Config;
 import surge.Surge;
@@ -14,6 +15,12 @@ import surge.control.Controller;
 public class HopperOvertickController extends Controller
 {
 	private GList<Location> possiblePlunge;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("plunging", possiblePlunge.size());
+	}
 
 	@Override
 	public void start()

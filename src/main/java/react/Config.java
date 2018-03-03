@@ -318,6 +318,9 @@ public class Config
 	@Address(91)
 	public static final String A_FAST_LEAF_FAST_UPDATE = "tweaks.fast-leaf-decay.fast-destroy";
 
+	@Address(92)
+	public static final String A_MONITOR_LOCK_SNEAK = "features.react.monitor.double-sneak-lock";
+
 	@Sector(0)
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 0.01, max = 10000)
@@ -748,7 +751,7 @@ public class Config
 
 	@Sector(83)
 	@Injection(InjectionMethod.SWAP)
-	public static boolean FAST_ORB_PICKUP = true;
+	public static boolean FAST_ORB_PICKUP = false;
 
 	@Sector(84)
 	@Injection(InjectionMethod.SWAP)
@@ -782,6 +785,10 @@ public class Config
 	@Sector(91)
 	@Injection(InjectionMethod.SWAP)
 	public static boolean FAST_LEAF_NMS = true;
+
+	@Sector(92)
+	@Injection(InjectionMethod.SWAP)
+	public static boolean DOUBLE_LOCK_SNEAK = true;
 
 	private static boolean hrld = false;
 	private static boolean rns = false;

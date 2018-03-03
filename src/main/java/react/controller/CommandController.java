@@ -13,6 +13,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.cyberpwn.gformat.F;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.gmath.M;
+import org.cyberpwn.json.JSONObject;
 
 import react.Config;
 import react.Gate;
@@ -36,6 +37,12 @@ public class CommandController extends Controller implements Listener, CommandEx
 {
 	private GList<ICommand> commands;
 	private boolean k;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("commands-loaded", commands.size());
+	}
 
 	@Override
 	public void start()

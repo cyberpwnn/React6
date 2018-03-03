@@ -35,6 +35,12 @@ public class LanguageController extends Controller
 	File dlf;
 
 	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("language", Config.LANGUAGE);
+	}
+
+	@Override
 	public void start()
 	{
 		languageFolder = new File(Surge.getAmp().getPluginInstance().getDataFolder(), "lang");

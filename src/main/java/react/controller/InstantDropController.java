@@ -17,8 +17,10 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
+import org.cyberpwn.json.JSONObject;
 
 import react.Config;
+import react.api.Capability;
 import surge.Surge;
 import surge.control.Controller;
 import surge.util.Area;
@@ -26,6 +28,12 @@ import surge.util.Area;
 public class InstantDropController extends Controller
 {
 	private GList<Integer> ignore;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("ignored", ignore.size());
+	}
 
 	@Override
 	public void start()
@@ -111,6 +119,11 @@ public class InstantDropController extends Controller
 	public void on(ProjectileHitEvent e)
 	{
 		if(!Config.DESPAWN_USELESS_ARROWS)
+		{
+			return;
+		}
+
+		if(!Capability.ARROW_OWNER.isCapable())
 		{
 			return;
 		}

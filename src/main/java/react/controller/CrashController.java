@@ -3,6 +3,7 @@ package react.controller;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 import org.cyberpwn.gmath.M;
+import org.cyberpwn.json.JSONObject;
 
 import react.Gate;
 import surge.Surge;
@@ -18,9 +19,16 @@ public class CrashController extends Controller implements Runnable
 	private int cd;
 
 	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("last-tick", lastTick);
+		object.put("cooldown", cd);
+	}
+
+	@Override
 	public void start()
 	{
-		cd = 200;
+		cd = 1200;
 		Surge.register(this);
 		lastTick = M.ms();
 		crashThread = new Thread(this, "Surge Watchdog");

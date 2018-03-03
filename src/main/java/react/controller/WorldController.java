@@ -7,6 +7,7 @@ import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.WorldUnloadEvent;
 import org.cyberpwn.gconcurrent.TICK;
+import org.cyberpwn.json.JSONObject;
 
 import react.Config;
 import react.React;
@@ -18,6 +19,12 @@ import surge.control.Controller;
 public class WorldController extends Controller
 {
 	private boolean aboutToWipe;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+
+	}
 
 	@Override
 	public void start()

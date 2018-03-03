@@ -52,6 +52,13 @@ public class CommandMonitor extends ReactCommand
 			return;
 		}
 
+		if(args.length > 0 && (args[0].equalsIgnoreCase("-l") || args[0].equalsIgnoreCase("--lock")))
+		{
+			Player p = (Player) sender;
+			React.instance.monitorController.doLock(p);
+			return;
+		}
+
 		React.instance.monitorController.toggleMonitoring(player);
 	}
 }

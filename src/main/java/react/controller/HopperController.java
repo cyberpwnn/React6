@@ -11,6 +11,7 @@ import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
 import org.cyberpwn.gmath.Average;
 import org.cyberpwn.gmath.M;
+import org.cyberpwn.json.JSONObject;
 
 import react.Gate;
 import react.React;
@@ -32,6 +33,12 @@ public class HopperController extends Controller
 	private GMap<Chunk, GSet<Block>> queue;
 	private GMap<Chunk, Long> freezeTimes;
 
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("frozen", frozen.size() + " Chunks");
+		object.put("queue", queue.size() + " Chunks");
+	}
 	@Override
 	public void start()
 	{

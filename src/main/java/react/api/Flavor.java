@@ -21,7 +21,7 @@ public enum Flavor
 	{
 		String v = Bukkit.getVersion().toLowerCase();
 
-		if(v.contains("paperspigot"))
+		if(v.contains("paper"))
 		{
 			return Flavor.PAPER_SPIGOT;
 		}

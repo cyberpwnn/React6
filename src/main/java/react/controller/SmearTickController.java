@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
 import org.cyberpwn.glang.GMap;
+import org.cyberpwn.json.JSONObject;
 import org.spigotmc.TickLimiter;
 
 import react.Config;
@@ -23,6 +24,12 @@ public class SmearTickController extends Controller
 {
 	private GMap<World, SpecializedTickLimiter> etl;
 	private GMap<World, SpecializedTickLimiter> ttl;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("throttled-world-instances", etl.size() + ttl.size());
+	}
 
 	@Override
 	public void start()

@@ -31,7 +31,6 @@ import react.controller.RedstoneController;
 import react.controller.SampleController;
 import react.controller.SmearTickController;
 import react.controller.SpikeController;
-import react.controller.TickTimeController;
 import react.controller.WorldController;
 import surge.Surge;
 import surge.control.Control;
@@ -87,9 +86,6 @@ public class React
 
 	@Control
 	public PhysicsController physicsController;
-
-	@Control
-	public TickTimeController tickTimeController;
 
 	@Control
 	public RAIController raiController;

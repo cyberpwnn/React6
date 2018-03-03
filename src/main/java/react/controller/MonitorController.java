@@ -10,6 +10,7 @@ import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.M;
+import org.cyberpwn.json.JSONObject;
 
 import react.Config;
 import react.Gate;
@@ -42,6 +43,12 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	private GMap<Player, Integer> posts;
 	private PhantomSlate sb;
 	private boolean ready;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("posting", posts.size());
+	}
 
 	public MonitorController()
 	{
@@ -617,6 +624,11 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	@EventHandler
 	public void on(PlayerToggleSneakEvent e)
 	{
+		if(!Config.DOUBLE_LOCK_SNEAK)
+		{
+			return;
+		}
+
 		if(canMonitor(e.getPlayer()) && isMonitoring(e.getPlayer()))
 		{
 			if(!posts.containsKey(e.getPlayer()))
@@ -720,5 +732,13 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	public String getTickName()
 	{
 		return Lang.getString("controller.action-log.monitor"); //$NON-NLS-1$
+	}
+
+	public void doLock(Player p)
+	{
+		if(isMonitoring(p))
+		{
+			changePost(React.instance.playerController.getPlayer(p));
+		}
 	}
 }

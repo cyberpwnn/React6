@@ -1,9 +1,12 @@
 package surge.util;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
 
 import org.cyberpwn.json.JSONObject;
 
@@ -20,19 +23,23 @@ public class Paste
 	 * @param s
 	 *            the paste text (use newline chars for new lines)
 	 * @return the url to access the paste
+	 * @throws org.json.simple.parser.ParseException
 	 * @throws Exception
 	 *             shit happens
 	 */
-	public static String paste(String s) throws Exception
+	public static String paste(String toPaste) throws IOException, ParseException, org.json.simple.parser.ParseException
 	{
-		URL url = new URL("https://hastebin.com/");
-		HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-		httpCon.setDoOutput(true);
-		httpCon.setRequestMethod("POST");
-		httpCon.getOutputStream().write(s.getBytes());
-		BufferedReader in = new BufferedReader(new InputStreamReader(httpCon.getInputStream()));
-		JSONObject jso = new JSONObject(in.readLine());
+		HttpURLConnection hastebin = (HttpURLConnection) new URL("http://paste.volmit.com/documents").openConnection();
+		hastebin.setRequestMethod("POST");
+		hastebin.setDoOutput(true);
+		hastebin.setDoInput(true);
+		DataOutputStream dos = new DataOutputStream(hastebin.getOutputStream());
+		dos.writeBytes(toPaste);
+		dos.flush();
+		dos.close();
+		BufferedReader rd = new BufferedReader(new InputStreamReader(hastebin.getInputStream()));
+		JSONObject json = new JSONObject(rd.readLine());
 
-		return "https://hastebin.com/" + jso.getString("key");
+		return "http://paste.volmit.com/" + json.get("key");
 	}
 }

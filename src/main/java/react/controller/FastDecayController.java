@@ -16,6 +16,7 @@ import org.bukkit.util.Vector;
 import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.gmath.M;
+import org.cyberpwn.json.JSONObject;
 
 import react.Config;
 import react.Gate;
@@ -34,6 +35,12 @@ public class FastDecayController extends Controller
 	private GList<Material> leaves;
 	private GList<Material> logs;
 	private GList<Block> queue;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("queue", queue.size());
+	}
 
 	@Override
 	public void start()
@@ -131,6 +138,11 @@ public class FastDecayController extends Controller
 	public void doDecay(Block b)
 	{
 		if(!leaves.contains(b.getType()))
+		{
+			return;
+		}
+
+		if(!new Leaves(b.getType(), b.getData()).isDecayable())
 		{
 			return;
 		}

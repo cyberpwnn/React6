@@ -8,6 +8,7 @@ import org.cyberpwn.glang.Callback;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GSet;
+import org.cyberpwn.json.JSONObject;
 
 import react.Lang;
 import react.React;
@@ -26,6 +27,19 @@ import surge.util.D;
 public class SpikeController extends Controller implements IMasterTickComponent
 {
 	private GMap<String, Integer> spikes = new GMap<String, Integer>();
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		JSONObject j = new JSONObject();
+
+		for(String i : spikes.k())
+		{
+			j.put(i, spikes.get(i));
+		}
+
+		object.put("spikes", j);
+	}
 
 	@Override
 	public void start()

@@ -7,6 +7,8 @@ import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.glang.GTriset;
+import org.cyberpwn.json.JSONArray;
+import org.cyberpwn.json.JSONObject;
 
 import react.Config;
 import react.Gate;
@@ -32,9 +34,53 @@ public class ActionController extends Controller
 	private GMap<String, GList<ActionType>> rans;
 
 	@Override
+	public void dump(JSONObject object)
+	{
+		JSONArray acts = new JSONArray();
+		JSONArray queue = new JSONArray();
+
+		for(ActionType i : actions.k())
+		{
+			JSONObject a = new JSONObject();
+			a.put("name", i.name());
+			a.put("description", i.getDescription());
+			a.put("handle", i.getHandle().name());
+			a.put("target", i.getTarget().name());
+			acts.put(i);
+		}
+
+		for(Integer i : pending.k())
+		{
+			JSONObject pend = new JSONObject();
+			ActionType t = pending.get(i).getA();
+			IActionSource s = pending.get(i).getB();
+			GList<ISelector> e = pending.get(i).getC();
+			JSONArray sels = new JSONArray();
+
+			for(ISelector j : e)
+			{
+				JSONObject ss = new JSONObject();
+				ss.put("type", j.getClass().getSimpleName());
+				ss.put("selected", j.getList().size());
+				ss.put("possibility", j.getPossibilities().size());
+				ss.put("mode", j.getMode().name());
+				sels.put(ss);
+			}
+
+			pend.put("id", i);
+			pend.put("type", t.name());
+			pend.put("source", s.toString());
+			pend.put("selectors", sels);
+			queue.put(pend);
+		}
+
+		object.put("queue", queue);
+		object.put("loaded-actions", acts);
+	}
+
+	@Override
 	public void start()
 	{
-
 		tasks = new GList<String>();
 		pending = new GMap<Integer, GTriset<ActionType, IActionSource, GList<ISelector>>>();
 		actions = new GMap<ActionType, IAction>();

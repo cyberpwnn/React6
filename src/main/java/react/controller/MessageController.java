@@ -3,6 +3,7 @@ package react.controller;
 import org.bukkit.entity.Player;
 import org.cyberpwn.glang.Callback;
 import org.cyberpwn.glang.GList;
+import org.cyberpwn.json.JSONObject;
 
 import react.Gate;
 import react.React;
@@ -17,6 +18,12 @@ import surge.util.D;
 public class MessageController extends Controller
 {
 	private GList<Notification> notes;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("queue", notes.size());
+	}
 
 	public void queue(Notification notification)
 	{

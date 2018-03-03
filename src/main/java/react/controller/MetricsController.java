@@ -3,6 +3,7 @@ package react.controller;
 import java.util.concurrent.Callable;
 
 import org.bukkit.Bukkit;
+import org.cyberpwn.json.JSONObject;
 
 import react.BStats;
 import react.Config;
@@ -14,6 +15,12 @@ import surge.control.Controller;
 public class MetricsController extends Controller
 {
 	private BStats stats;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+
+	}
 
 	@Override
 	public void start()

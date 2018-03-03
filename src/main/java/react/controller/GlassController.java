@@ -17,6 +17,7 @@ import org.bukkit.inventory.Inventory;
 import org.cyberpwn.gconcurrent.A;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
+import org.cyberpwn.json.JSONObject;
 
 import react.Config;
 import react.Gate;
@@ -34,6 +35,13 @@ public class GlassController extends Controller
 {
 	private GMap<Location, Color> q;
 	private GList<Player> g;
+
+	@Override
+	public void dump(JSONObject object)
+	{
+		object.put("viewers", g.size());
+		object.put("queue", q.size());
+	}
 
 	@Override
 	public void start()
