@@ -2,6 +2,7 @@ package react.controller;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.cyberpwn.json.JSONObject;
 
@@ -131,6 +132,15 @@ public class FeatureController extends Controller implements INMSBinding
 		{
 			l.getBlock().setType(m.getMaterial());
 			l.getBlock().setData(m.getData());
+		}
+	}
+
+	@Override
+	public void updateBlock(Block b)
+	{
+		if(hasBinding())
+		{
+			trueBinding.updateBlock(b);
 		}
 	}
 }

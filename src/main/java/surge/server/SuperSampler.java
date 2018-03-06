@@ -1,7 +1,5 @@
 package surge.server;
 
-import java.util.UUID;
-
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.gmath.Average;
@@ -151,7 +149,7 @@ public class SuperSampler implements IMasterTickComponent
 	@Override
 	public String getTickName()
 	{
-		return "supersampler-" + UUID.randomUUID().toString();
+		return "supersampler";
 	}
 
 	public Average getTicksPerSecondL()

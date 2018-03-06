@@ -1,6 +1,7 @@
 package react.nms;
 
 import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_10_R1.CraftWorld;
 
 import net.minecraft.server.v1_10_R1.BlockPosition;
@@ -27,5 +28,15 @@ public class NMSBinding10 extends NMSBinding
 		int combined = m.getMaterial().getId() + (m.getData() << 12);
 		IBlockData ibd = net.minecraft.server.v1_10_R1.Block.getByCombinedId(combined);
 		chunk.a(bp, ibd);
+	}
+
+	@Override
+	public void updateBlock(Block bfg)
+	{
+		net.minecraft.server.v1_10_R1.Block b = org.bukkit.craftbukkit.v1_10_R1.util.CraftMagicNumbers.getBlock((org.bukkit.craftbukkit.v1_10_R1.block.CraftBlock) bfg);
+		net.minecraft.server.v1_10_R1.BlockPosition bp = new net.minecraft.server.v1_10_R1.BlockPosition(bfg.getX(), bfg.getY(), bfg.getZ());
+		org.bukkit.craftbukkit.v1_10_R1.CraftWorld w = (org.bukkit.craftbukkit.v1_10_R1.CraftWorld) bfg.getWorld();
+		net.minecraft.server.v1_10_R1.World v = (net.minecraft.server.v1_10_R1.World) w.getHandle();
+		v.update(bp, b);
 	}
 }

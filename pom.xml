@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.volmit</groupId>
 	<artifactId>React</artifactId>
-	<version>6.0.6</version>
+	<version>6.0.7</version>
 	<name>React</name>
 	<description>A performance plugin</description>
 	<properties>
@@ -251,21 +251,6 @@
 			<artifactId>fawe-api</artifactId>
 			<version>latest</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.cyberpwn</groupId>
-			<artifactId>JSON</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.cyberpwn</groupId>
-			<artifactId>GConcurrent</artifactId>
-			<version>1.5.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.cyberpwn</groupId>
-			<artifactId>GNet</artifactId>
-			<version>1.2.7</version>
 		</dependency>
 	</dependencies>
 </project>

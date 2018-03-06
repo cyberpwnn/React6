@@ -29,6 +29,7 @@ import surge.util.Anchor;
 import surge.util.D;
 import surge.util.DynamicConfiguration;
 import surge.util.DynamicTracker;
+import surge.util.I;
 import surge.util.PluginUtil;
 import surge.util.PoolCount;
 import surge.util.PoolDescriber;
@@ -117,6 +118,7 @@ public class Main extends AmpedPlugin
 	@Override
 	public void onStart(Protocol serverProtocol)
 	{
+		I.a("main.start", 1);
 		try
 		{
 			try
@@ -141,6 +143,7 @@ public class Main extends AmpedPlugin
 		{
 			e.printStackTrace();
 		}
+		I.b("main.start");
 	}
 
 	@Override
@@ -192,6 +195,7 @@ public class Main extends AmpedPlugin
 
 	private void initializeAmps() throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
+		I.a("main.amps", 1);
 		pluginInstances = new GMap<Object, Method>();
 
 		for(Class<?> i : plugins)
@@ -401,11 +405,13 @@ public class Main extends AmpedPlugin
 		{
 			i.invoke(null, this);
 		}
+		I.b("main.amps");
 	}
 
 	@Override
 	public void doScan() throws IOException, ClassNotFoundException
 	{
+		I.a("main.scan", 1);
 		File jar = Surge.getPluginJarFileUnsafe(this);
 		FileInputStream fin = new FileInputStream(jar);
 		ZipInputStream zip = new ZipInputStream(fin);
@@ -473,6 +479,8 @@ public class Main extends AmpedPlugin
 				}
 			}
 		}
+
+		I.b("main.scan");
 	}
 
 	private void scanForRawEvents() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException
@@ -543,6 +551,7 @@ public class Main extends AmpedPlugin
 	@Override
 	public void onTick()
 	{
+		I.a("main.tick", 20);
 		if(!Surge.hasAmp())
 		{
 			return;
@@ -556,7 +565,9 @@ public class Main extends AmpedPlugin
 				{
 					Profiler p = new Profiler();
 					p.begin();
+					I.a("main.tick." + i.getClass().getSimpleName(), 20);
 					i.tick();
+					I.b("main.tick." + i.getClass().getSimpleName());
 					p.end();
 					i.setTime(p.getMilliseconds());
 				}
@@ -573,7 +584,10 @@ public class Main extends AmpedPlugin
 			D.v("CTick Shut Down");
 		}
 
+		I.a("main.tp.sync", 20);
 		getThreadPool().tickSyncQueue();
+		I.b("main.tp.sync");
+		I.b("main.tick");
 	}
 
 	public static SuperSampler getSuperSampler()

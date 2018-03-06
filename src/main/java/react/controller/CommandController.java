@@ -318,7 +318,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 	@EventHandler
 	public void on(PlayerCommandPreprocessEvent e)
 	{
-		if(e.getMessage().toLowerCase().startsWith("/tps") || e.getMessage().toLowerCase().startsWith("/lag"))
+		if(e.getMessage().toLowerCase().equalsIgnoreCase("/tps") || e.getMessage().toLowerCase().equalsIgnoreCase("/lag"))
 		{
 			if(Permissable.ACCESS.has(e.getPlayer()) && Config.COMMANDOVERRIDES_TPS)
 			{
@@ -327,7 +327,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 			}
 		}
 
-		if(e.getMessage().toLowerCase().startsWith("/mem") || e.getMessage().toLowerCase().startsWith("/memory") || e.getMessage().toLowerCase().startsWith("/gc"))
+		if(e.getMessage().toLowerCase().equalsIgnoreCase("/mem") || e.getMessage().toLowerCase().equalsIgnoreCase("/memory") || e.getMessage().toLowerCase().equalsIgnoreCase("/gc"))
 		{
 			if(Permissable.ACCESS.has(e.getPlayer()) && Config.COMMANDOVERRIDES_MEMORY)
 			{

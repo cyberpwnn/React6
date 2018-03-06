@@ -20,6 +20,7 @@ import surge.control.Control;
 import surge.control.IController;
 import surge.util.Anchor;
 import surge.util.C;
+import surge.util.I;
 import surge.util.Paste;
 
 @Anchor(0)
@@ -99,6 +100,14 @@ public class CommandDump extends ReactCommand
 		react.put("plugin", rplugin);
 		react.put("controllers", activeCon);
 		react.put("capabilities", capabilities);
+		JSONObject timings = new JSONObject();
+
+		for(String i : I.m.k())
+		{
+			timings.put(i, "AVG: " + F.f(I.m.get(i).getAverage(), 5) + " /" + I.m.get(i).size() + " HIT: " + F.f(I.h.get(i)) + " TOT: " + F.f(I.y.get(i), 6));
+		}
+
+		react.put("timings", timings);
 		js.put("react", react);
 
 		new A()

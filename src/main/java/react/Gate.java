@@ -8,16 +8,13 @@ import java.lang.reflect.Method;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.block.Hopper;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.cyberpwn.gconcurrent.A;
 import org.cyberpwn.gconcurrent.S;
 import org.cyberpwn.gconcurrent.TICK;
@@ -609,53 +606,9 @@ public class Gate
 		removeEntity(e);
 	}
 
-	@SuppressWarnings("deprecation")
 	public static void updateBlock(Block block)
 	{
-		ItemStack[] cont = null;
-
-		if(block.getState() instanceof Hopper)
-		{
-			cont = ((Hopper) block.getState()).getInventory().getContents();
-			((Hopper) block.getState()).getInventory().clear();
-		}
-
-		if(block.getType().equals(Material.REDSTONE_WIRE))
-		{
-			int id = block.getTypeId();
-			byte byt = block.getData();
-			block.setTypeIdAndData(0, (byte) 0, false);
-			block.setTypeIdAndData(id, byt, true);
-			return;
-		}
-
-		if(block.getType().equals(Material.DIODE_BLOCK_OFF))
-		{
-			int id = block.getTypeId();
-			byte byt = block.getData();
-			block.setTypeIdAndData(0, (byte) 0, false);
-			block.setTypeIdAndData(id, byt, true);
-			return;
-		}
-
-		if(block.getType().equals(Material.DIODE_BLOCK_ON))
-		{
-			int id = block.getTypeId();
-			byte byt = block.getData();
-			block.setTypeIdAndData(0, (byte) 0, false);
-			block.setTypeIdAndData(id, byt, true);
-			return;
-		}
-
-		int id = block.getTypeId();
-		byte byt = block.getData();
-		block.setTypeIdAndData(1, (byte) 0, false);
-		block.setTypeIdAndData(id, byt, true);
-
-		if(block.getState() instanceof Hopper)
-		{
-			((Hopper) block.getState()).getInventory().setContents(cont);
-		}
+		React.instance.featureController.updateBlock(block);
 	}
 
 	public static String header(String string, C color)

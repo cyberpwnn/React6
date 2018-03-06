@@ -58,11 +58,6 @@ public abstract class TPSMonitor extends Thread
 				processState(Surge.getServerThread().getState());
 			}
 
-			else
-			{
-
-			}
-
 			if(interrupted())
 			{
 				return;
