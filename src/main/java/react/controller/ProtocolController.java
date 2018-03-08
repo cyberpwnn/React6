@@ -6,6 +6,7 @@ import org.cyberpwn.glang.GBiset;
 import org.cyberpwn.glang.GMap;
 import org.cyberpwn.json.JSONObject;
 
+import react.Config;
 import react.api.Capability;
 import react.protocol.ProtocolAdapter;
 import surge.control.Controller;
@@ -25,6 +26,11 @@ public class ProtocolController extends Controller
 	public void start()
 	{
 		safe = Bukkit.getPluginManager().getPlugin("ProtocolLib") != null && Capability.ACCELERATED_PING.isCapable();
+
+		if(safe && !Config.FAST_PING)
+		{
+			safe = false;
+		}
 
 		if(safe)
 		{

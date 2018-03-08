@@ -169,7 +169,7 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 
 		catch(Exception e)
 		{
-			e.printStackTrace();
+
 		}
 
 		new A()

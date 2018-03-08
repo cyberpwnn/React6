@@ -177,6 +177,11 @@ public class GlassController extends Controller
 	@EventHandler
 	public void on(BlockPhysicsEvent e)
 	{
+		if(g.isEmpty())
+		{
+			return;
+		}
+
 		if(g.size() > 0)
 		{
 			Location a = e.getBlock().getLocation().clone().add(0.5, 0.5, 0.5);
@@ -187,6 +192,11 @@ public class GlassController extends Controller
 	@EventHandler
 	public void on(BlockFromToEvent e)
 	{
+		if(g.isEmpty())
+		{
+			return;
+		}
+
 		if(g.size() > 0)
 		{
 			Location a = e.getBlock().getLocation().clone().add(0.5, 0.5, 0.5);
@@ -197,6 +207,11 @@ public class GlassController extends Controller
 	@EventHandler
 	public void on(BlockBurnEvent e)
 	{
+		if(g.isEmpty())
+		{
+			return;
+		}
+
 		if(g.size() > 0)
 		{
 			Location a = e.getBlock().getLocation().clone().add(0.5, 0.5, 0.5);
@@ -207,6 +222,11 @@ public class GlassController extends Controller
 	@EventHandler
 	public void on(BlockFormEvent e)
 	{
+		if(g.isEmpty())
+		{
+			return;
+		}
+
 		if(g.size() > 0)
 		{
 			Location a = e.getBlock().getLocation().clone().add(0.5, 0.5, 0.5);
@@ -217,6 +237,11 @@ public class GlassController extends Controller
 	@EventHandler
 	public void on(BlockFadeEvent e)
 	{
+		if(g.isEmpty())
+		{
+			return;
+		}
+
 		if(g.size() > 0)
 		{
 			Location a = e.getBlock().getLocation().clone().add(0.5, 0.5, 0.5);
@@ -227,6 +252,11 @@ public class GlassController extends Controller
 	@EventHandler
 	public void on(InventoryMoveItemEvent e)
 	{
+		if(g.isEmpty())
+		{
+			return;
+		}
+
 		if(g.size() > 0)
 		{
 			Inventory source = e.getSource();

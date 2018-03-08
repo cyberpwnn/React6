@@ -26,20 +26,17 @@ public abstract class ParallelPoolManager
 
 	public void tickSyncQueue()
 	{
-		int itr = 0;
-		int fsi = squeue.size();
 		long ns = M.ns();
-		long nsl = 1000000;
+		double nsl = 0.1 * 1000000.0;
+
+		if(squeue.size() > 100)
+		{
+			nsl += (0.05 * 1000000.0) * (double) squeue.size();
+		}
 
 		while(!squeue.isEmpty() && M.ns() - ns < nsl)
 		{
-			itr++;
 			squeue.poll().run();
-		}
-
-		if(itr >= fsi)
-		{
-			squeue.clear();
 		}
 	}
 

@@ -1,7 +1,5 @@
 package react.controller;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.bukkit.Chunk;
 import org.cyberpwn.gconcurrent.TICK;
 import org.cyberpwn.glang.GList;
@@ -12,6 +10,17 @@ import org.cyberpwn.json.JSONObject;
 
 import react.Config;
 import react.Gate;
+import react.action.ActionCollectGarbage;
+import react.action.ActionCullEntities;
+import react.action.ActionFixLighting;
+import react.action.ActionLockFluid;
+import react.action.ActionLockHopper;
+import react.action.ActionLockRedstone;
+import react.action.ActionPurgeChunks;
+import react.action.ActionPurgeEntities;
+import react.action.ActionUnlockFluid;
+import react.action.ActionUnlockHopper;
+import react.action.ActionUnlockRedstone;
 import react.action.source.IActionSource;
 import react.api.ActionAlreadyRunningException;
 import react.api.ActionException;
@@ -21,7 +30,6 @@ import react.api.IAction;
 import react.api.ISelector;
 import react.api.SelectorPosition;
 import react.notification.Note;
-import surge.Main;
 import surge.control.Controller;
 import surge.util.C;
 
@@ -86,43 +94,17 @@ public class ActionController extends Controller
 		actions = new GMap<ActionType, IAction>();
 		rans = new GMap<String, GList<ActionType>>();
 
-		for(Class<?> i : Main.anchors.get(1))
-		{
-			try
-			{
-				registerAction((IAction) i.getConstructor().newInstance());
-			}
-
-			catch(InstantiationException e)
-			{
-				e.printStackTrace();
-			}
-
-			catch(IllegalAccessException e)
-			{
-				e.printStackTrace();
-			}
-
-			catch(IllegalArgumentException e)
-			{
-				e.printStackTrace();
-			}
-
-			catch(InvocationTargetException e)
-			{
-				e.printStackTrace();
-			}
-
-			catch(NoSuchMethodException e)
-			{
-				e.printStackTrace();
-			}
-
-			catch(SecurityException e)
-			{
-				e.printStackTrace();
-			}
-		}
+		registerAction(new ActionCollectGarbage());
+		registerAction(new ActionCullEntities());
+		registerAction(new ActionFixLighting());
+		registerAction(new ActionLockFluid());
+		registerAction(new ActionLockHopper());
+		registerAction(new ActionLockRedstone());
+		registerAction(new ActionPurgeChunks());
+		registerAction(new ActionPurgeEntities());
+		registerAction(new ActionUnlockFluid());
+		registerAction(new ActionUnlockHopper());
+		registerAction(new ActionUnlockRedstone());
 	}
 
 	public void fire(ActionType type, IActionSource source, ISelector... selectors)

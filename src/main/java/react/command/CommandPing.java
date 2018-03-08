@@ -68,7 +68,6 @@ public class CommandPing extends ReactCommand
 
 		if(args.length == 1)
 		{
-
 			if(args[0].startsWith("-"))
 			{
 				if(args[0].equalsIgnoreCase("-t") || args[0].equalsIgnoreCase("--top"))

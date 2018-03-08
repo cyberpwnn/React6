@@ -1,14 +1,13 @@
 package react.controller;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.bukkit.command.CommandSender;
 import org.cyberpwn.glang.GList;
 import org.cyberpwn.json.JSONObject;
 
 import react.Gate;
 import react.api.IFix;
-import surge.Main;
+import react.fix.FixEntityAI;
+import react.fix.FixInvisibleChunk;
 import surge.Surge;
 import surge.control.Controller;
 import surge.util.C;
@@ -28,18 +27,8 @@ public class FixController extends Controller
 	{
 		fixes = new GList<IFix>();
 
-		for(Class<?> i : Main.anchors.get(111))
-		{
-			try
-			{
-				fixes.add((IFix) i.getConstructor().newInstance());
-			}
-
-			catch(InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e)
-			{
-				e.printStackTrace();
-			}
-		}
+		fixes.add(new FixEntityAI());
+		fixes.add(new FixInvisibleChunk());
 
 		Surge.register(this);
 	}

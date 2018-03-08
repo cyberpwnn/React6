@@ -1,7 +1,6 @@
 package react.controller;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
@@ -14,6 +13,47 @@ import react.Gate;
 import react.React;
 import react.api.ISampler;
 import react.api.SampledType;
+import react.sampler.SampleAsyncQueue;
+import react.sampler.SampleCPU;
+import react.sampler.SampleChunkTime;
+import react.sampler.SampleChunksLoaded;
+import react.sampler.SampleChunksLoadedPerSecond;
+import react.sampler.SampleEntitiesDrops;
+import react.sampler.SampleEntitiesLiving;
+import react.sampler.SampleEntitiesTiles;
+import react.sampler.SampleEntitiesTotal;
+import react.sampler.SampleEntityDroppedTicks;
+import react.sampler.SampleEntityTime;
+import react.sampler.SampleEntityTimeLock;
+import react.sampler.SampleExplosionTime;
+import react.sampler.SampleFluidPerSecond;
+import react.sampler.SampleFluidPerTick;
+import react.sampler.SampleFluidTickTime;
+import react.sampler.SampleFluidTickUtilization;
+import react.sampler.SampleGrowthTime;
+import react.sampler.SampleHopperPerSecond;
+import react.sampler.SampleHopperPerTick;
+import react.sampler.SampleHopperTickTime;
+import react.sampler.SampleHopperTickUtilization;
+import react.sampler.SampleMemoryAllocated;
+import react.sampler.SampleMemoryAllocationPerSecond;
+import react.sampler.SampleMemoryFree;
+import react.sampler.SampleMemoryMax;
+import react.sampler.SampleMemoryUse;
+import react.sampler.SamplePhysicsTickTime;
+import react.sampler.SampleReactTaskTime;
+import react.sampler.SampleReactTime;
+import react.sampler.SampleRedstonePerSecond;
+import react.sampler.SampleRedstonePerTick;
+import react.sampler.SampleRedstoneTickTime;
+import react.sampler.SampleRedstoneTickUtilization;
+import react.sampler.SampleSyncQueue;
+import react.sampler.SampleTickTime;
+import react.sampler.SampleTickUtilization;
+import react.sampler.SampleTicksPerSecond;
+import react.sampler.SampleTileDroppedTicks;
+import react.sampler.SampleTileTime;
+import react.sampler.SampleTileTimeLock;
 import react.timings.TimingsReport;
 import surge.Main;
 import surge.Surge;
@@ -138,43 +178,47 @@ public class SampleController extends Controller implements IMasterTickComponent
 
 	private void constructSamplers()
 	{
-		for(Class<?> i : Main.anchors.get(2))
-		{
-			try
-			{
-				registerSampler((ISampler) i.getConstructor().newInstance());
-			}
-
-			catch(InstantiationException e)
-			{
-				e.printStackTrace();
-			}
-
-			catch(IllegalAccessException e)
-			{
-				e.printStackTrace();
-			}
-
-			catch(IllegalArgumentException e)
-			{
-				e.printStackTrace();
-			}
-
-			catch(InvocationTargetException e)
-			{
-				e.printStackTrace();
-			}
-
-			catch(NoSuchMethodException e)
-			{
-				e.printStackTrace();
-			}
-
-			catch(SecurityException e)
-			{
-				e.printStackTrace();
-			}
-		}
+		registerSampler(new SampleAsyncQueue());
+		registerSampler(new SampleChunksLoaded());
+		registerSampler(new SampleChunksLoadedPerSecond());
+		registerSampler(new SampleChunkTime());
+		registerSampler(new SampleCPU());
+		registerSampler(new SampleEntitiesDrops());
+		registerSampler(new SampleEntitiesLiving());
+		registerSampler(new SampleEntitiesTiles());
+		registerSampler(new SampleEntitiesTotal());
+		registerSampler(new SampleEntityDroppedTicks());
+		registerSampler(new SampleEntityTime());
+		registerSampler(new SampleEntityTimeLock());
+		registerSampler(new SampleExplosionTime());
+		registerSampler(new SampleFluidPerSecond());
+		registerSampler(new SampleFluidPerTick());
+		registerSampler(new SampleFluidTickTime());
+		registerSampler(new SampleFluidTickUtilization());
+		registerSampler(new SampleGrowthTime());
+		registerSampler(new SampleHopperPerSecond());
+		registerSampler(new SampleHopperPerTick());
+		registerSampler(new SampleHopperTickTime());
+		registerSampler(new SampleHopperTickUtilization());
+		registerSampler(new SampleMemoryAllocated());
+		registerSampler(new SampleMemoryAllocationPerSecond());
+		registerSampler(new SampleMemoryFree());
+		registerSampler(new SampleMemoryMax());
+		registerSampler(new SampleMemoryUse());
+		registerSampler(new SamplePhysicsTickTime());
+		registerSampler(new SampleReactTaskTime());
+		registerSampler(new SampleReactTime());
+		registerSampler(new SampleRedstonePerSecond());
+		registerSampler(new SampleRedstonePerTick());
+		registerSampler(new SampleRedstoneTickTime());
+		registerSampler(new SampleRedstoneTickUtilization());
+		registerSampler(new SampleSyncQueue());
+		registerSampler(new SampleTicksPerSecond());
+		registerSampler(new SampleTickTime());
+		registerSampler(new SampleTickUtilization());
+		registerSampler(new SampleTileDroppedTicks());
+		registerSampler(new SampleTileTime());
+		registerSampler(new SampleTileTimeLock());
 
 		for(ISampler i : samplers.v())
 		{

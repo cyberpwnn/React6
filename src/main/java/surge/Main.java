@@ -25,7 +25,6 @@ import surge.control.IController;
 import surge.control.Instance;
 import surge.control.Plugin;
 import surge.server.SuperSampler;
-import surge.util.Anchor;
 import surge.util.D;
 import surge.util.DynamicConfiguration;
 import surge.util.DynamicTracker;
@@ -42,7 +41,6 @@ public class Main extends AmpedPlugin
 	private GList<Class<?>> plugins;
 	private GMap<Object, Method> pluginInstances;
 	private GList<Controller> controllerSet;
-	public static GMap<Integer, GList<Class<?>>> anchors;
 	public static final GList<Class<?>> classes = new GList<Class<?>>();
 	private static Field nsField = null;
 	private static Field thField = null;
@@ -123,7 +121,6 @@ public class Main extends AmpedPlugin
 		{
 			try
 			{
-				anchors = new GMap<Integer, GList<Class<?>>>();
 				controllerSet = new GList<Controller>();
 				plugins = new GList<Class<?>>();
 				scanForAmps();
@@ -156,7 +153,6 @@ public class Main extends AmpedPlugin
 			controllerSet.clear();
 			pluginInstances.clear();
 			plugins.clear();
-			anchors.clear();
 			classes.clear();
 		}
 
@@ -531,19 +527,6 @@ public class Main extends AmpedPlugin
 			{
 				plugins.add(clazz);
 				D.v("@Plugin " + clazz.getSimpleName());
-			}
-
-			if(clazz.isAnnotationPresent(Anchor.class))
-			{
-				int s = clazz.getAnnotation(Anchor.class).value();
-
-				if(!anchors.containsKey(s))
-				{
-					anchors.put(s, new GList<Class<?>>());
-				}
-
-				anchors.get(s).add(clazz);
-				D.v("@Anchor(" + s + ") " + clazz.getSimpleName());
 			}
 		}
 	}

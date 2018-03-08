@@ -1,7 +1,5 @@
 package react.controller;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -25,13 +23,35 @@ import react.api.Permissable;
 import react.api.SampledType;
 import react.api.Side;
 import react.api.SideGate;
+import react.command.CommandAccept;
+import react.command.CommandAccess;
+import react.command.CommandAct;
+import react.command.CommandActionLog;
+import react.command.CommandCPUScore;
+import react.command.CommandCapabilities;
+import react.command.CommandChunkBlame;
+import react.command.CommandChunkTP;
+import react.command.CommandDump;
+import react.command.CommandEnvironment;
+import react.command.CommandFix;
+import react.command.CommandGlasses;
+import react.command.CommandHelp;
+import react.command.CommandMap;
+import react.command.CommandMonitor;
+import react.command.CommandPing;
+import react.command.CommandReload;
+import react.command.CommandRequests;
+import react.command.CommandRevoke;
+import react.command.CommandStatus;
+import react.command.CommandSubscribe;
+import react.command.CommandTopChunk;
+import react.command.CommandUnsubscribe;
+import react.command.CommandVersion;
 import react.rai.IGoal;
 import react.rai.RAI;
-import surge.Main;
 import surge.Surge;
 import surge.control.Controller;
 import surge.util.C;
-import surge.util.D;
 
 public class CommandController extends Controller implements Listener, CommandExecutor
 {
@@ -63,46 +83,30 @@ public class CommandController extends Controller implements Listener, CommandEx
 		Bukkit.getPluginCommand(Info.COMMAND_RAI).setExecutor(this);
 		Surge.register(this);
 		commands = new GList<ICommand>();
-
-		for(Class<?> i : Main.anchors.get(0))
-		{
-			try
-			{
-				Object c = i.getConstructor().newInstance();
-				commands.add((ICommand) c);
-				D.v("@Command " + c.getClass().getSimpleName()); //$NON-NLS-1$
-			}
-
-			catch(InstantiationException e)
-			{
-				e.printStackTrace();
-			}
-
-			catch(IllegalAccessException e)
-			{
-				e.printStackTrace();
-			}
-
-			catch(IllegalArgumentException e)
-			{
-				e.printStackTrace();
-			}
-
-			catch(InvocationTargetException e)
-			{
-				e.printStackTrace();
-			}
-
-			catch(NoSuchMethodException e)
-			{
-				e.printStackTrace();
-			}
-
-			catch(SecurityException e)
-			{
-				e.printStackTrace();
-			}
-		}
+		commands.add(new CommandAccept());
+		commands.add(new CommandAccess());
+		commands.add(new CommandAct());
+		commands.add(new CommandActionLog());
+		commands.add(new CommandCapabilities());
+		commands.add(new CommandChunkBlame());
+		commands.add(new CommandChunkTP());
+		commands.add(new CommandCPUScore());
+		commands.add(new CommandDump());
+		commands.add(new CommandEnvironment());
+		commands.add(new CommandFix());
+		commands.add(new CommandGlasses());
+		commands.add(new CommandHelp());
+		commands.add(new CommandMap());
+		commands.add(new CommandMonitor());
+		commands.add(new CommandPing());
+		commands.add(new CommandReload());
+		commands.add(new CommandRequests());
+		commands.add(new CommandRevoke());
+		commands.add(new CommandStatus());
+		commands.add(new CommandSubscribe());
+		commands.add(new CommandTopChunk());
+		commands.add(new CommandUnsubscribe());
+		commands.add(new CommandVersion());
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package react;
 
+import org.bukkit.plugin.java.JavaPlugin;
+
 import react.action.source.AccessActionSource;
 import react.controller.ActionController;
 import react.controller.ChunkController;
@@ -43,7 +45,7 @@ import surge.util.Persist;
 
 @Plugin
 @Persist
-public class React
+public class React extends JavaPlugin
 {
 	@Instance
 	public static React instance;
@@ -140,6 +142,18 @@ public class React
 
 	@Control
 	public FixController fixController;
+
+	@Override
+	public void onEnable()
+	{
+
+	}
+
+	@Override
+	public void onDisable()
+	{
+
+	}
 
 	@Enable
 	public void enable()

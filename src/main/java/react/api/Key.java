@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 
 @Retention(RUNTIME)
 @Target(FIELD)
-public @interface Address
+public @interface Key
 {
-	public int value();
+	public String value();
 }
