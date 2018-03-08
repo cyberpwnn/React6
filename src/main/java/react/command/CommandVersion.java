@@ -40,6 +40,6 @@ public class CommandVersion extends ReactCommand
 			vt += C.GREEN + vs;
 		}
 
-		Gate.msgSuccess(sender, C.WHITE + "React " + vt + " " + (Surge.isObfuscated() ? C.AQUA + "Obfuscated" : C.RED + "NOT OBFUSCATED"));
+		Gate.msgSuccess(sender, C.WHITE + "React " + vt);
 	}
 }
