@@ -1,9 +1,13 @@
 package react.controller;
 
 import org.bukkit.entity.Player;
-import org.cyberpwn.glang.Callback;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.Callback;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.D;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.JSONObject;
 
 import react.Gate;
 import react.React;
@@ -11,9 +15,6 @@ import react.api.Permissable;
 import react.api.ReactPlayer;
 import react.notification.Note;
 import react.notification.Notification;
-import surge.Surge;
-import surge.control.Controller;
-import surge.util.D;
 
 public class MessageController extends Controller
 {

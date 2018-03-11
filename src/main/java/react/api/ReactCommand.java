@@ -1,6 +1,6 @@
 package react.api;
 
-import org.cyberpwn.glang.GMap;
+import com.volmit.react.util.GMap;
 
 public abstract class ReactCommand implements ICommand
 {

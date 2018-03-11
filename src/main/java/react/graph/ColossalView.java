@@ -1,8 +1,8 @@
 package react.graph;
 
-import org.cyberpwn.gbench.Profiler;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.Profiler;
 
 import react.papyrus.BufferedFrame;
 import react.papyrus.FrameColor;

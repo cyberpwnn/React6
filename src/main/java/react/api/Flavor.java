@@ -1,7 +1,8 @@
 package react.api;
 
 import org.bukkit.Bukkit;
-import org.cyberpwn.gformat.F;
+
+import com.volmit.react.util.F;
 
 public enum Flavor
 {

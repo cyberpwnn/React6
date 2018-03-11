@@ -1,15 +1,15 @@
 package react.graph;
 
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.gmath.Average;
-import org.cyberpwn.gmath.M;
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.Average;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.M;
 
 import react.api.ISampler;
 import react.papyrus.BufferedFrame;
 import react.papyrus.FrameColor;
 import react.papyrus.ReactFont;
-import surge.util.Anchor;
 
 @Anchor(127)
 public class GraphSampleLine extends NormalGraph implements IGraph

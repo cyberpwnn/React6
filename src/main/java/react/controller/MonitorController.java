@@ -7,10 +7,21 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
-import org.cyberpwn.gconcurrent.S;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.gmath.M;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.AsyncTick;
+import com.volmit.react.util.C;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.D;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.GSound;
+import com.volmit.react.util.IMasterTickComponent;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.M;
+import com.volmit.react.util.MSound;
+import com.volmit.react.util.NMSX;
+import com.volmit.react.util.S;
+import com.volmit.react.util.TaskLater;
 
 import react.Config;
 import react.Gate;
@@ -24,16 +35,6 @@ import react.api.ReactPlayer;
 import react.api.SampledType;
 import react.api.TitleMonitor;
 import react.slate.PhantomSlate;
-import surge.Surge;
-import surge.collection.GSound;
-import surge.control.Controller;
-import surge.nms.NMSX;
-import surge.sched.IMasterTickComponent;
-import surge.sched.TaskLater;
-import surge.server.AsyncTick;
-import surge.util.C;
-import surge.util.D;
-import surge.util.MSound;
 
 @AsyncTick
 public class MonitorController extends Controller implements IMasterTickComponent
@@ -660,7 +661,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 			{
 				Gate.msgError(i.getP(), "You no longer have permission to action log.");
 
-				new S()
+				new S("stop-alog")
 				{
 					@Override
 					public void run()
@@ -674,7 +675,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 			{
 				Gate.msgError(i.getP(), "You no longer have permission to monitor");
 
-				new S()
+				new S("stop-mon")
 				{
 
 					@Override
@@ -689,7 +690,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 			{
 				Gate.msgError(i.getP(), "You no longer have permission to map");
 
-				new S()
+				new S("stop-graph")
 				{
 					@Override
 					public void run()
@@ -704,7 +705,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 
 	private void updateActionBoard()
 	{
-		new S()
+		new S("action-board-update")
 		{
 			@Override
 			public void run()

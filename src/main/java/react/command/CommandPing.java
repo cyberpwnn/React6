@@ -4,11 +4,15 @@ import java.util.Collections;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.cyberpwn.gformat.F;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.gmath.Average;
-import org.cyberpwn.gmath.M;
+
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.Average;
+import com.volmit.react.util.C;
+import com.volmit.react.util.F;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.M;
+import com.volmit.react.util.P;
 
 import react.Gate;
 import react.Info;
@@ -17,9 +21,6 @@ import react.api.Capability;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
-import surge.util.Anchor;
-import surge.util.C;
-import surge.util.P;
 
 @Anchor(0)
 public class CommandPing extends ReactCommand

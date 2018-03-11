@@ -3,11 +3,14 @@ package react.controller;
 import org.bukkit.Chunk;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.glang.GSet;
-import org.cyberpwn.json.JSONArray;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.D;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.GSet;
+import com.volmit.react.util.JSONArray;
+import com.volmit.react.util.JSONObject;
 
 import react.Config;
 import react.Gate;
@@ -15,8 +18,6 @@ import react.Lang;
 import react.api.EntityFlag;
 import react.api.EntityGroup;
 import react.api.EntitySample;
-import surge.control.Controller;
-import surge.util.D;
 
 public class EntityCullController extends Controller
 {

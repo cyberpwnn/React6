@@ -4,7 +4,7 @@
   <groupId>com.volmit</groupId>
   <artifactId>React</artifactId>
   <name>React</name>
-  <version>6.1</version>
+  <version>6.1.1</version>
   <description>A performance plugin</description>
   <build>
     <resources>
@@ -93,7 +93,7 @@
                 <configuration>
                   <executable>C:\Users\cyberpwn\Documents\development\workspace\React6\scripts\development.bat</executable>
                   <arguments>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.1.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.1.1.jar</argument>
                     <argument>C:\Users\cyberpwn\Documents\development\servers\dynamic\plugins\React.jar</argument>
                   </arguments>
                 </configuration>
@@ -102,7 +102,7 @@
             <configuration>
               <executable>C:\Users\cyberpwn\Documents\development\workspace\React6\scripts\development.bat</executable>
               <arguments>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.1.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.1.1.jar</argument>
                 <argument>C:\Users\cyberpwn\Documents\development\servers\dynamic\plugins\React.jar</argument>
               </arguments>
             </configuration>
@@ -254,7 +254,7 @@
     <exp1>${react.compile}/mapping.txt</exp1>
     <react.plugin.description>${project.description}</react.plugin.description>
     <react.release.name>${project.name}-${project.version}</react.release.name>
-    <react.plugin.main>surge.Main</react.plugin.main>
+    <react.plugin.main>com.volmit.react.surge.Main</react.plugin.main>
     <maven.compiler.target>1.8</maven.compiler.target>
     <react.scripts>${project.basedir}\scripts</react.scripts>
     <script.copy>${react.scripts}\copy.bat</script.copy>

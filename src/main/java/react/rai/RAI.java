@@ -2,8 +2,8 @@ package react.rai;
 
 import java.util.Arrays;
 
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.gmath.M;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.M;
 
 import react.Config;
 import react.action.source.IActionSource;

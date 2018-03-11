@@ -5,12 +5,13 @@ import org.bukkit.block.Hopper;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.JSONObject;
 
 import react.Config;
-import surge.Surge;
-import surge.control.Controller;
 
 public class HopperOvertickController extends Controller
 {

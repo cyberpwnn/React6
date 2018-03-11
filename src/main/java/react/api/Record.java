@@ -1,6 +1,6 @@
 package react.api;
 
-import org.cyberpwn.json.JSONObject;
+import com.volmit.react.util.JSONObject;
 
 public abstract class Record<T> implements IRecord<T>
 {

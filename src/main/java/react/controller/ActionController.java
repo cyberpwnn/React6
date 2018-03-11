@@ -1,12 +1,15 @@
 package react.controller;
 
 import org.bukkit.Chunk;
-import org.cyberpwn.gconcurrent.TICK;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.glang.GTriset;
-import org.cyberpwn.json.JSONArray;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.util.C;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.GTriset;
+import com.volmit.react.util.JSONArray;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.TICK;
 
 import react.Config;
 import react.Gate;
@@ -30,8 +33,6 @@ import react.api.IAction;
 import react.api.ISelector;
 import react.api.SelectorPosition;
 import react.notification.Note;
-import surge.control.Controller;
-import surge.util.C;
 
 public class ActionController extends Controller
 {

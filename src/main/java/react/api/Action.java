@@ -1,9 +1,10 @@
 package react.api;
 
 import org.bukkit.Chunk;
-import org.cyberpwn.glang.AccessCallback;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
+
+import com.volmit.react.util.AccessCallback;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
 
 import react.Config;
 import react.Lang;

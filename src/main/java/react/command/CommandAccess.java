@@ -2,10 +2,12 @@ package react.command;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.cyberpwn.gformat.F;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.glang.GSet;
-import org.cyberpwn.gmath.M;
+
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.F;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.GSet;
+import com.volmit.react.util.M;
 
 import react.Config;
 import react.Gate;
@@ -14,7 +16,6 @@ import react.Lang;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
-import surge.util.Anchor;
 
 @Anchor(0)
 public class CommandAccess extends ReactCommand

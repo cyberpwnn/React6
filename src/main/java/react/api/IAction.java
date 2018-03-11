@@ -1,7 +1,7 @@
 package react.api;
 
-import org.cyberpwn.glang.AccessCallback;
-import org.cyberpwn.glang.GMap;
+import com.volmit.react.util.AccessCallback;
+import com.volmit.react.util.GMap;
 
 import react.action.source.ActionHandle;
 import react.action.source.IActionSource;

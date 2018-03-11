@@ -1,7 +1,9 @@
 package react.rai.goals;
 
 import org.bukkit.Chunk;
-import org.cyberpwn.gconcurrent.S;
+
+import com.volmit.react.util.Chunks;
+import com.volmit.react.util.S;
 
 import react.Config;
 import react.Lang;
@@ -16,7 +18,6 @@ import react.rai.Goal;
 import react.rai.RAI;
 import react.rai.RAIEvent;
 import react.rai.RAIEventType;
-import surge.util.Chunks;
 
 public class GoalReducedEntityCounts extends Goal
 {
@@ -73,7 +74,7 @@ public class GoalReducedEntityCounts extends Goal
 		{
 			failing = f;
 
-			new S()
+			new S("goal-entity")
 			{
 				@Override
 				public void run()
@@ -118,12 +119,20 @@ public class GoalReducedEntityCounts extends Goal
 
 		for(Chunk i : Chunks.getLoadedChunks())
 		{
-			int s = i.getEntities().length;
-
-			if(s > max)
+			try
 			{
-				max = s;
-				laggiest = i;
+				int s = i.getEntities().length;
+
+				if(s > max)
+				{
+					max = s;
+					laggiest = i;
+				}
+			}
+
+			catch(Exception e)
+			{
+
 			}
 		}
 
@@ -131,7 +140,7 @@ public class GoalReducedEntityCounts extends Goal
 		{
 			Chunk lx = laggiest;
 
-			new S()
+			new S("goal-entity.prop")
 			{
 				@Override
 				public void run()

@@ -1,6 +1,6 @@
 package react.text;
 
-import surge.util.C;
+import com.volmit.react.util.C;
 
 /**
  * Represents a colored String

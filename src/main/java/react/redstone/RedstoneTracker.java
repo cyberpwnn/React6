@@ -7,19 +7,20 @@ import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockRedstoneEvent;
-import org.cyberpwn.gbench.Profiler;
-import org.cyberpwn.gconcurrent.TICK;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.gmath.Average;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.Average;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.MaterialBlock;
+import com.volmit.react.util.Profiler;
+import com.volmit.react.util.TICK;
+import com.volmit.react.util.Task;
 
 import react.Config;
 import react.Gate;
 import react.React;
 import react.api.SampledType;
 import react.controller.FeatureController;
-import surge.Surge;
-import surge.sched.Task;
-import surge.util.MaterialBlock;
 
 public class RedstoneTracker implements Listener
 {

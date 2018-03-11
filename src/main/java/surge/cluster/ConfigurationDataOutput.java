@@ -5,9 +5,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.List;
 
-import org.cyberpwn.glang.GMap;
-
-import surge.util.D;
+import com.volmit.react.util.D;
+import com.volmit.react.util.GMap;
 
 public class ConfigurationDataOutput
 {

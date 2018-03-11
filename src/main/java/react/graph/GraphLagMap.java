@@ -10,12 +10,13 @@ import org.bukkit.Chunk;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
+import com.volmit.react.util.Anchor;
+
 import react.api.ChunkIssue;
 import react.controller.EventController;
 import react.lagmap.LagMapChunk;
 import react.papyrus.BufferedFrame;
 import react.papyrus.FrameColor;
-import surge.util.Anchor;
 
 @Anchor(127)
 public class GraphLagMap extends Graph2D

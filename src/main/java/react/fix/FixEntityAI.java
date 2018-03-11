@@ -3,13 +3,14 @@ package react.fix;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.LivingEntity;
-import org.cyberpwn.gformat.F;
+
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.C;
+import com.volmit.react.util.F;
+import com.volmit.react.util.Worlds;
 
 import react.Gate;
 import react.api.Capability;
-import surge.util.Anchor;
-import surge.util.C;
-import surge.util.Worlds;
 
 @Anchor(111)
 public class FixEntityAI extends Fix

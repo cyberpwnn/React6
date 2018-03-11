@@ -6,20 +6,21 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
-import org.cyberpwn.gconcurrent.A;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.gmath.Average;
-import org.cyberpwn.gmath.M;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.A;
+import com.volmit.react.util.AsyncTick;
+import com.volmit.react.util.Average;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.IMasterTickComponent;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.M;
 
 import react.React;
 import react.api.ChunkIssue;
 import react.api.SampledChunk;
 import react.api.Unused;
-import surge.Surge;
-import surge.control.Controller;
-import surge.sched.IMasterTickComponent;
-import surge.server.AsyncTick;
 
 @AsyncTick
 public class PhysicsController extends Controller implements IMasterTickComponent

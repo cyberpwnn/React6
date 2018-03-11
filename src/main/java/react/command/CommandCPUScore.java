@@ -2,13 +2,14 @@ package react.command;
 
 import org.bukkit.command.CommandSender;
 
+import com.volmit.react.util.Anchor;
+
 import react.Gate;
 import react.Info;
 import react.api.CPUBenchmark;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
-import surge.util.Anchor;
 
 @Anchor(0)
 public class CommandCPUScore extends ReactCommand

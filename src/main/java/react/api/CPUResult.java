@@ -1,7 +1,8 @@
 package react.api;
 
+import com.volmit.react.surge.Surge;
+
 import react.Lang;
-import surge.Surge;
 
 public enum CPUResult
 {

@@ -2,7 +2,8 @@ package react.papyrus;
 
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.map.MapView;
-import org.cyberpwn.glang.GList;
+
+import com.volmit.react.util.GList;
 
 public interface IPapyrus
 {

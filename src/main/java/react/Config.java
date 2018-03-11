@@ -9,10 +9,22 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import org.cyberpwn.gformat.F;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.gmath.M;
+
+import com.volmit.react.surge.Main;
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.D;
+import com.volmit.react.util.DynamicConfiguration;
+import com.volmit.react.util.DynamicTracker;
+import com.volmit.react.util.F;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.GSound;
+import com.volmit.react.util.M;
+import com.volmit.react.util.MSound;
+import com.volmit.react.util.PoolCount;
+import com.volmit.react.util.PoolDescriber;
+import com.volmit.react.util.PoolNanoThrottle;
+import com.volmit.react.util.RawEvent;
 
 import react.api.Clip;
 import react.api.Experimental;
@@ -20,20 +32,9 @@ import react.api.Injection;
 import react.api.InjectionMethod;
 import react.api.Key;
 import react.api.WorldConfig;
-import surge.Main;
-import surge.Surge;
 import surge.cluster.DataCluster;
 import surge.cluster.YamlDataInput;
 import surge.cluster.YamlDataOutput;
-import surge.collection.GSound;
-import surge.util.D;
-import surge.util.DynamicConfiguration;
-import surge.util.DynamicTracker;
-import surge.util.MSound;
-import surge.util.PoolCount;
-import surge.util.PoolDescriber;
-import surge.util.PoolNanoThrottle;
-import surge.util.RawEvent;
 
 @PoolDescriber
 @DynamicConfiguration

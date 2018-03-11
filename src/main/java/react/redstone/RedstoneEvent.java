@@ -3,7 +3,7 @@ package react.redstone;
 import org.bukkit.event.block.BlockRedstoneEvent;
 import org.bukkit.util.Vector;
 
-import surge.util.MaterialBlock;
+import com.volmit.react.util.MaterialBlock;
 
 public class RedstoneEvent
 {

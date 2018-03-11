@@ -1,7 +1,8 @@
 package react.api;
 
 import org.bukkit.Chunk;
-import org.cyberpwn.glang.GMap;
+
+import com.volmit.react.util.GMap;
 
 public class SampledChunk
 {

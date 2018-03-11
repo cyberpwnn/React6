@@ -1,7 +1,10 @@
 package react.command;
 
 import org.bukkit.command.CommandSender;
-import org.cyberpwn.glang.GList;
+
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.C;
+import com.volmit.react.util.GList;
 
 import react.Gate;
 import react.Info;
@@ -10,8 +13,6 @@ import react.api.IFix;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
-import surge.util.Anchor;
-import surge.util.C;
 
 @Anchor(0)
 public class CommandFix extends ReactCommand

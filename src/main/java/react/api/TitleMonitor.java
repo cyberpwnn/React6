@@ -1,9 +1,9 @@
 package react.api;
 
-import org.cyberpwn.glang.GList;
+import com.volmit.react.util.C;
+import com.volmit.react.util.GList;
 
 import react.controller.MonitorController;
-import surge.util.C;
 
 public class TitleMonitor
 {

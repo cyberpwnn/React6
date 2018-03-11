@@ -2,10 +2,11 @@ package react.graph;
 
 import java.awt.image.AffineTransformOp;
 
+import com.volmit.react.util.Anchor;
+
 import react.papyrus.BufferedFrame;
 import react.papyrus.FrameColor;
 import react.papyrus.ReactFont;
-import surge.util.Anchor;
 
 @Anchor(127)
 public class GraphText extends NormalGraph implements IGraph

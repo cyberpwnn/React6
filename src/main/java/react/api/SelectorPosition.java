@@ -8,9 +8,9 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.cyberpwn.glang.GSet;
 
-import surge.util.W;
+import com.volmit.react.util.GSet;
+import com.volmit.react.util.W;
 
 public class SelectorPosition extends Selector
 {

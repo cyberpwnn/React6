@@ -8,17 +8,18 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.Area;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.Task;
 
 import react.Config;
 import react.api.Capability;
 import react.api.StackedEntity;
 import react.rai.goals.GoalReducedEntityCounts;
-import surge.Surge;
-import surge.control.Controller;
-import surge.sched.Task;
-import surge.util.Area;
 
 public class EntityStackController extends Controller
 {
@@ -82,27 +83,33 @@ public class EntityStackController extends Controller
 
 		if(!Capability.ENTITY_ATTRIBUTES.isCapable())
 		{
-			while(e.pickRandom().getMaxHealth() * (e.size()) > Config.ENTITYSTACK_MAXIMUM_HEALTH)
+			if(!e.isEmpty())
 			{
-				e.pop();
-			}
+				while(!e.isEmpty() && e.pickRandom().getMaxHealth() * (e.size()) > Config.ENTITYSTACK_MAXIMUM_HEALTH)
+				{
+					e.pop();
+				}
 
-			while(e.size() > Config.ENTITY_STACK_MAX_COUNT)
-			{
-				e.pop();
+				while(e.size() > Config.ENTITY_STACK_MAX_COUNT)
+				{
+					e.pop();
+				}
 			}
 		}
 
 		else
 		{
-			while(e.pickRandom().getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() * (e.size()) > Config.ENTITYSTACK_MAXIMUM_HEALTH)
+			if(!e.isEmpty())
 			{
-				e.pop();
-			}
+				while(!e.isEmpty() && e.pickRandom().getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() * (e.size()) > Config.ENTITYSTACK_MAXIMUM_HEALTH)
+				{
+					e.pop();
+				}
 
-			while(e.size() > Config.ENTITY_STACK_MAX_COUNT)
-			{
-				e.pop();
+				while(e.size() > Config.ENTITY_STACK_MAX_COUNT)
+				{
+					e.pop();
+				}
 			}
 		}
 

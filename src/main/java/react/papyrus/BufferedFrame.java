@@ -7,7 +7,8 @@ import java.awt.image.BufferedImage;
 
 import org.bukkit.map.MapFont;
 import org.bukkit.map.MapFont.CharacterSprite;
-import org.cyberpwn.gmath.M;
+
+import com.volmit.react.util.M;
 
 public class BufferedFrame
 {

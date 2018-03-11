@@ -8,7 +8,8 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.Tameable;
-import org.cyberpwn.glang.GSet;
+
+import com.volmit.react.util.GSet;
 
 public enum EntityFlag
 {

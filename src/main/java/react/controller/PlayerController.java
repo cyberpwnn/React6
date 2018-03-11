@@ -3,15 +3,16 @@ package react.controller;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.cyberpwn.gconcurrent.A;
-import org.cyberpwn.gconcurrent.TICK;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GSet;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.A;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GSet;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.TICK;
 
 import react.api.ReactPlayer;
-import surge.Surge;
-import surge.control.Controller;
 
 public class PlayerController extends Controller
 {

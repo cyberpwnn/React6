@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.json.JSONObject;
 
-import surge.util.D;
+import com.volmit.react.util.D;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.JSONObject;
 
 public class DataCluster
 {

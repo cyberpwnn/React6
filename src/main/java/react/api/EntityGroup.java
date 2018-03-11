@@ -1,7 +1,8 @@
 package react.api;
 
 import org.bukkit.entity.EntityType;
-import org.cyberpwn.glang.GSet;
+
+import com.volmit.react.util.GSet;
 
 public class EntityGroup
 {

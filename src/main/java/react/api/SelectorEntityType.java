@@ -2,7 +2,8 @@ package react.api;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
-import org.cyberpwn.glang.GSet;
+
+import com.volmit.react.util.GSet;
 
 public class SelectorEntityType extends Selector
 {

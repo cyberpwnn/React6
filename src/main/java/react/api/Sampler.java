@@ -1,8 +1,7 @@
 package react.api;
 
-import org.cyberpwn.gmath.M;
-
-import surge.util.C;
+import com.volmit.react.util.C;
+import com.volmit.react.util.M;
 
 public abstract class Sampler implements ISampler
 {

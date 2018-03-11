@@ -4,6 +4,10 @@ import java.io.File;
 
 import org.bukkit.command.CommandSender;
 
+import com.volmit.react.surge.Main;
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.Anchor;
+
 import react.Config;
 import react.Gate;
 import react.Info;
@@ -11,9 +15,6 @@ import react.React;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
-import surge.Main;
-import surge.Surge;
-import surge.util.Anchor;
 
 @Anchor(0)
 public class CommandReload extends ReactCommand

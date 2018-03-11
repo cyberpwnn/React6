@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.World;
-import org.cyberpwn.glang.GList;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.GList;
 
 import react.Config;
 import react.Info;
-import surge.Surge;
 import surge.cluster.ConfigurationDataInput;
 import surge.cluster.ConfigurationDataOutput;
 import surge.cluster.IConfigurable;

@@ -1,10 +1,11 @@
 package react.rai.goals;
 
 import org.bukkit.Chunk;
-import org.cyberpwn.gconcurrent.S;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.gmath.M;
+
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.M;
+import com.volmit.react.util.S;
 
 import react.Config;
 import react.Lang;
@@ -50,28 +51,44 @@ public class GoalStableFluidTime extends Goal
 
 		for(Chunk i : React.instance.physicsController.getSamples().k())
 		{
-			if(React.instance.physicsController.getSamples().get(i).getCounts().containsKey(ChunkIssue.FLUID))
+			try
 			{
-				fuf += React.instance.physicsController.getSamples().get(i).getCounts().get(ChunkIssue.FLUID);
+				if(React.instance.physicsController.getSamples().get(i).getCounts().containsKey(ChunkIssue.FLUID))
+				{
+					fuf += React.instance.physicsController.getSamples().get(i).getCounts().get(ChunkIssue.FLUID);
+				}
+			}
+
+			catch(Exception e)
+			{
+
 			}
 		}
 
 		for(Chunk i : React.instance.physicsController.getSamples().k())
 		{
-			if(React.instance.physicsController.getSamples().get(i).getCounts().containsKey(ChunkIssue.FLUID))
+			try
 			{
-				int s = React.instance.physicsController.getSamples().get(i).getCounts().get(ChunkIssue.FLUID);
-
-				if(s > max)
+				if(React.instance.physicsController.getSamples().get(i).getCounts().containsKey(ChunkIssue.FLUID))
 				{
-					max = s;
-					laggiest = i;
-				}
+					int s = React.instance.physicsController.getSamples().get(i).getCounts().get(ChunkIssue.FLUID);
 
-				if((double) s / (double) fuf > 0.2)
-				{
-					otherLaggiest.add(i);
+					if(s > max)
+					{
+						max = s;
+						laggiest = i;
+					}
+
+					if((double) s / (double) fuf > 0.2)
+					{
+						otherLaggiest.add(i);
+					}
 				}
+			}
+
+			catch(Exception e)
+			{
+
 			}
 		}
 
@@ -81,7 +98,7 @@ public class GoalStableFluidTime extends Goal
 		{
 			Chunk lx = laggiest;
 
-			new S()
+			new S("goal-fluid.prop")
 			{
 				@Override
 				public void run()
@@ -128,7 +145,7 @@ public class GoalStableFluidTime extends Goal
 		{
 			failing = f;
 
-			new S()
+			new S("goal-fluid")
 			{
 				@Override
 				public void run()

@@ -4,11 +4,18 @@ import java.lang.reflect.Field;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.cyberpwn.gconcurrent.A;
-import org.cyberpwn.gformat.F;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.json.JSONArray;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.util.A;
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.C;
+import com.volmit.react.util.Control;
+import com.volmit.react.util.F;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.I;
+import com.volmit.react.util.IController;
+import com.volmit.react.util.JSONArray;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.Paste;
 
 import react.Gate;
 import react.React;
@@ -16,12 +23,6 @@ import react.api.Capability;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
-import surge.control.Control;
-import surge.control.IController;
-import surge.util.Anchor;
-import surge.util.C;
-import surge.util.I;
-import surge.util.Paste;
 
 @Anchor(0)
 public class CommandDump extends ReactCommand
@@ -94,7 +95,6 @@ public class CommandDump extends ReactCommand
 			}
 		}
 
-
 		capabilities.put("capable", capable);
 		capabilities.put("not-capable", notcapable);
 		react.put("plugin", rplugin);
@@ -102,9 +102,28 @@ public class CommandDump extends ReactCommand
 		react.put("capabilities", capabilities);
 		JSONObject timings = new JSONObject();
 
-		for(String i : I.m.k())
+		for(String i : I.m.k().sortCopy())
 		{
-			timings.put(i, "AVG: " + F.f(I.m.get(i).getAverage(), 5) + " /" + I.m.get(i).size() + " HIT: " + F.f(I.h.get(i)) + " TOT: " + F.f(I.y.get(i), 6));
+			JSONObject tx = new JSONObject();
+
+			double perTick = (double) I.h.get(i) / (double) I.hit;
+			String w = "";
+
+			if(perTick > 0.3 && I.m.get(i).getAverage() > 4)
+			{
+				w = " WARNING";
+			}
+
+			tx.put("Average", F.f(I.m.get(i).getAverage(), 5) + " (over " + I.m.get(i).size() + " ticks)");
+			tx.put("Hits", F.f(I.h.get(i)) + " hits across " + F.f(I.hit) + " total ticks (about " + F.f(perTick, 2) + " per tick)");
+			tx.put("Time", F.f(I.y.get(i), 6) + " Total execution time");
+
+			if(w.length() > 0)
+			{
+				tx.put("WARNING", "Tick time and hits per tick for " + i + " is high");
+			}
+
+			timings.put(i, tx);
 		}
 
 		react.put("timings", timings);

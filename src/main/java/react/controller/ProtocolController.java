@@ -2,14 +2,15 @@ package react.controller;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.cyberpwn.glang.GBiset;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.GBiset;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.JSONObject;
 
 import react.Config;
 import react.api.Capability;
 import react.protocol.ProtocolAdapter;
-import surge.control.Controller;
 
 public class ProtocolController extends Controller
 {

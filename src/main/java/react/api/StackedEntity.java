@@ -7,12 +7,13 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.material.Colorable;
 import org.bukkit.util.Vector;
-import org.cyberpwn.gformat.F;
-import org.cyberpwn.gmath.M;
+
+import com.volmit.react.util.F;
+import com.volmit.react.util.M;
+import com.volmit.react.util.PE;
+import com.volmit.react.util.ParticleEffect;
 
 import react.Config;
-import surge.util.PE;
-import surge.util.ParticleEffect;
 
 public class StackedEntity
 {

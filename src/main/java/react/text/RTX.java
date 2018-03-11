@@ -2,10 +2,10 @@ package react.text;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.cyberpwn.json.JSONArray;
-import org.cyberpwn.json.JSONObject;
 
-import surge.util.C;
+import com.volmit.react.util.C;
+import com.volmit.react.util.JSONArray;
+import com.volmit.react.util.JSONObject;
 
 /**
  * Raw Text holder

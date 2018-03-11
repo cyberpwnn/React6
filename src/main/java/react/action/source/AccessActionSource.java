@@ -2,9 +2,10 @@ package react.action.source;
 
 import org.bukkit.entity.Player;
 
+import com.volmit.react.util.P;
+
 import react.Gate;
 import react.api.Permissable;
-import surge.util.P;
 
 public class AccessActionSource implements IActionSource
 {

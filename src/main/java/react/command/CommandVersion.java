@@ -2,14 +2,15 @@ package react.command;
 
 import org.bukkit.command.CommandSender;
 
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.C;
+
 import react.Gate;
 import react.Info;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
-import surge.Surge;
-import surge.util.Anchor;
-import surge.util.C;
 
 @Anchor(0)
 public class CommandVersion extends ReactCommand

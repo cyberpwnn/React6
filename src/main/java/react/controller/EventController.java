@@ -10,15 +10,16 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.JSONObject;
 
 import react.api.ChunkIssue;
 import react.event.ReactScrollEvent;
 import react.event.ScrollDirection;
 import react.lagmap.LagMap;
-import surge.Surge;
-import surge.control.Controller;
 
 public class EventController extends Controller
 {

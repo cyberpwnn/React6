@@ -3,10 +3,13 @@ package react.command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import org.cyberpwn.gconcurrent.A;
-import org.cyberpwn.gconcurrent.S;
-import org.cyberpwn.gformat.F;
-import org.cyberpwn.glang.GMap;
+
+import com.volmit.react.util.A;
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.C;
+import com.volmit.react.util.F;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.S;
 
 import react.Gate;
 import react.Info;
@@ -14,8 +17,6 @@ import react.React;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
-import surge.util.Anchor;
-import surge.util.C;
 
 @Anchor(0)
 public class CommandChunkBlame extends ReactCommand
@@ -62,7 +63,7 @@ public class CommandChunkBlame extends ReactCommand
 
 				for(String i : top.sortK())
 				{
-					new S()
+					new S("cblame.result")
 					{
 						@Override
 						public void run()

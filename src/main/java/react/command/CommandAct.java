@@ -4,9 +4,14 @@ import org.bukkit.Chunk;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.cyberpwn.gformat.F;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.C;
+import com.volmit.react.util.D;
+import com.volmit.react.util.F;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
 
 import react.Gate;
 import react.Info;
@@ -30,10 +35,6 @@ import react.text.ColoredString;
 import react.text.RTEX;
 import react.text.RTX;
 import react.text.RawText;
-import surge.Surge;
-import surge.util.Anchor;
-import surge.util.C;
-import surge.util.D;
 
 @Anchor(0)
 public class CommandAct extends ReactCommand

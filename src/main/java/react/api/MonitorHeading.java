@@ -1,8 +1,7 @@
 package react.api;
 
-import org.cyberpwn.glang.GList;
-
-import surge.util.C;
+import com.volmit.react.util.C;
+import com.volmit.react.util.GList;
 
 public class MonitorHeading
 {

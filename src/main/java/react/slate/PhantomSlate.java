@@ -3,7 +3,8 @@ package react.slate;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
-import org.cyberpwn.glang.GList;
+
+import com.volmit.react.util.GList;
 
 /**
  * Slate implementation

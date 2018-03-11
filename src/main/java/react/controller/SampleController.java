@@ -4,10 +4,22 @@ import java.lang.reflect.Field;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.cyberpwn.gconcurrent.TICK;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Main;
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.AsyncTick;
+import com.volmit.react.util.Control;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.D;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.I;
+import com.volmit.react.util.IController;
+import com.volmit.react.util.IMasterTickComponent;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.SuperSampler;
+import com.volmit.react.util.TICK;
+import com.volmit.react.util.TaskLater;
 
 import react.Gate;
 import react.React;
@@ -55,16 +67,6 @@ import react.sampler.SampleTileDroppedTicks;
 import react.sampler.SampleTileTime;
 import react.sampler.SampleTileTimeLock;
 import react.timings.TimingsReport;
-import surge.Main;
-import surge.Surge;
-import surge.control.Control;
-import surge.control.Controller;
-import surge.control.IController;
-import surge.sched.IMasterTickComponent;
-import surge.sched.TaskLater;
-import surge.server.AsyncTick;
-import surge.server.SuperSampler;
-import surge.util.D;
 
 @AsyncTick
 public class SampleController extends Controller implements IMasterTickComponent
@@ -244,6 +246,8 @@ public class SampleController extends Controller implements IMasterTickComponent
 	@Override
 	public void tick()
 	{
+		I.hit++;
+
 		if(SampledType.TICK.get().getValue() == 0)
 		{
 			sct++;
@@ -291,6 +295,7 @@ public class SampleController extends Controller implements IMasterTickComponent
 	@Override
 	public void onTick()
 	{
+
 		if(TICK.tick < 2)
 		{
 			return;

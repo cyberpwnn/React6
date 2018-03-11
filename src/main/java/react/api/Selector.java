@@ -1,7 +1,8 @@
 package react.api;
 
 import org.bukkit.command.CommandSender;
-import org.cyberpwn.glang.GSet;
+
+import com.volmit.react.util.GSet;
 
 public abstract class Selector implements ISelector
 {

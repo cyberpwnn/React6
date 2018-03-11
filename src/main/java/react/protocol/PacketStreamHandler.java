@@ -1,14 +1,13 @@
 package react.protocol;
 
 import org.bukkit.plugin.Plugin;
-import org.cyberpwn.glang.GMap;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.events.PacketOutputHandler;
-
-import surge.Surge;
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.GMap;
 
 public class PacketStreamHandler implements PacketOutputHandler
 {

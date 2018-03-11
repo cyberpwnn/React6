@@ -13,20 +13,20 @@ import java.net.URLClassLoader;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import org.cyberpwn.gconcurrent.A;
-import org.cyberpwn.gnet.download.Download;
-import org.cyberpwn.gnet.download.DownloadMonitor;
-import org.cyberpwn.gnet.download.DownloadState;
-import org.cyberpwn.json.JSONObject;
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.A;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.D;
+import com.volmit.react.util.Download;
+import com.volmit.react.util.DownloadMonitor;
+import com.volmit.react.util.DownloadState;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.PluginUtil;
+import com.volmit.react.util.TaskLater;
 
 import react.Config;
 import react.Lang;
 import react.React;
-import surge.Surge;
-import surge.control.Controller;
-import surge.sched.TaskLater;
-import surge.util.D;
-import surge.util.PluginUtil;
 
 public class LanguageController extends Controller
 {

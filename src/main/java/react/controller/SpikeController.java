@@ -3,25 +3,26 @@ package react.controller;
 import java.io.IOException;
 
 import org.bukkit.plugin.Plugin;
-import org.cyberpwn.gconcurrent.A;
-import org.cyberpwn.glang.Callback;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.glang.GSet;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.A;
+import com.volmit.react.util.AsyncTick;
+import com.volmit.react.util.CPS;
+import com.volmit.react.util.Callback;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.D;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.GSet;
+import com.volmit.react.util.IMasterTickComponent;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.Task;
 
 import react.Lang;
 import react.React;
 import react.api.Async;
 import react.api.Unused;
 import react.notification.Note;
-import surge.Surge;
-import surge.control.Controller;
-import surge.sched.IMasterTickComponent;
-import surge.sched.Task;
-import surge.server.AsyncTick;
-import surge.server.CPS;
-import surge.util.D;
 
 @AsyncTick
 public class SpikeController extends Controller implements IMasterTickComponent
@@ -91,31 +92,39 @@ public class SpikeController extends Controller implements IMasterTickComponent
 			@Override
 			public void run()
 			{
-				for(long i : vv.k())
+				try
 				{
-					GSet<String> gv = new GSet<String>();
-
-					for(StackTraceElement j : vv.get(i))
+					for(long i : vv.k())
 					{
-						for(Plugin k : CPS.identify(j.getClassName()))
+						GSet<String> gv = new GSet<String>();
+
+						for(StackTraceElement j : vv.get(i))
 						{
-							if(!gv.contains(k.getName()))
+							for(Plugin k : CPS.identify(j.getClassName()))
 							{
-								gv.add(k.getName());
+								if(!gv.contains(k.getName()))
+								{
+									gv.add(k.getName());
+								}
 							}
 						}
-					}
 
-					for(String j : gv)
-					{
-						if(!spikes.contains(j))
+						for(String j : gv)
 						{
-							spikes.put(j, 0);
-						}
+							if(!spikes.contains(j))
+							{
+								spikes.put(j, 0);
+							}
 
-						spikes.put(j, spikes.get(j) + 1);
-						Note.SPIKES.bake("Spike -> " + j + " (" + spikes.get(j) + " time" + (spikes.get(j) == 1 ? "" : "s") + ")");
+							spikes.put(j, spikes.get(j) + 1);
+							Note.SPIKES.bake("Spike -> " + j + " (" + spikes.get(j) + " time" + (spikes.get(j) == 1 ? "" : "s") + ")");
+						}
 					}
+				}
+
+				catch(Throwable e)
+				{
+
 				}
 			}
 		};

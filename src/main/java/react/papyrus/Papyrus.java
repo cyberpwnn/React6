@@ -8,8 +8,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.map.MapCanvas;
 import org.bukkit.map.MapRenderer;
 import org.bukkit.map.MapView;
-import org.cyberpwn.gconcurrent.A;
-import org.cyberpwn.glang.GList;
+
+import com.volmit.react.util.A;
+import com.volmit.react.util.GList;
 
 public class Papyrus extends MapRenderer implements IPapyrus
 {

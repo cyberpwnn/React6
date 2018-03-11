@@ -1,6 +1,6 @@
 package react.api;
 
-import surge.util.Persist;
+import com.volmit.react.util.Persist;
 
 @Persist
 public class DTest

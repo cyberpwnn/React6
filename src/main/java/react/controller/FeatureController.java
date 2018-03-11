@@ -4,7 +4,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.MaterialBlock;
+import com.volmit.react.util.Protocol;
 
 import react.nms.INMSBinding;
 import react.nms.NMSBinding10;
@@ -13,10 +18,6 @@ import react.nms.NMSBinding12;
 import react.nms.NMSBinding8;
 import react.nms.NMSBinding92;
 import react.nms.NMSBinding94;
-import surge.Surge;
-import surge.control.Controller;
-import surge.util.MaterialBlock;
-import surge.util.Protocol;
 
 public class FeatureController extends Controller implements INMSBinding
 {

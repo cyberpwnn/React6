@@ -1,8 +1,8 @@
 package react.api;
 
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.glang.GSet;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.GSet;
 
 public class CacheBase<K, V> implements ICache<K, V>
 {

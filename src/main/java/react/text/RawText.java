@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.cyberpwn.json.JSONException;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.util.JSONException;
+import com.volmit.react.util.JSONObject;
 
 public class RawText
 {

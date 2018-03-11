@@ -1,7 +1,7 @@
 package react.rai.goals;
 
-import org.cyberpwn.gconcurrent.S;
-import org.cyberpwn.gmath.M;
+import com.volmit.react.util.M;
+import com.volmit.react.util.S;
 
 import react.Config;
 import react.Lang;
@@ -56,7 +56,7 @@ public class GoalStableEntityTime extends Goal
 		{
 			failing = f;
 
-			new S()
+			new S("goal-enttime")
 			{
 				@Override
 				public void run()

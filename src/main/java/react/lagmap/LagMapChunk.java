@@ -2,7 +2,8 @@ package react.lagmap;
 
 import org.bukkit.Chunk;
 import org.bukkit.World;
-import org.cyberpwn.glang.GMap;
+
+import com.volmit.react.util.GMap;
 
 import react.api.ChunkIssue;
 import react.controller.EventController;
@@ -23,15 +24,23 @@ public class LagMapChunk implements Comparable<LagMapChunk>
 		GMap<ChunkIssue, Double> k = EventController.map.getGrandTotal();
 		GMap<ChunkIssue, Double> m = new GMap<ChunkIssue, Double>();
 
-		for(ChunkIssue type : hits.k())
+		try
 		{
-			if(!hits.containsKey(type) || !k.containsKey(type))
+			for(ChunkIssue type : hits.k())
 			{
-				m.put(type, 0.0);
-				continue;
-			}
+				if(!hits.containsKey(type) || !k.containsKey(type))
+				{
+					m.put(type, 0.0);
+					continue;
+				}
 
-			m.put(type, type.getMS() * (hits.get(type) / k.get(type)));
+				m.put(type, type.getMS() * (hits.get(type) / k.get(type)));
+			}
+		}
+
+		catch(Exception e)
+		{
+
 		}
 
 		return m;

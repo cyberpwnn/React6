@@ -1,7 +1,8 @@
 package react.graph;
 
+import com.volmit.react.util.Anchor;
+
 import react.papyrus.BufferedFrame;
-import surge.util.Anchor;
 
 @Anchor(127)
 public abstract class Graph2D extends NormalGraph implements IGraph

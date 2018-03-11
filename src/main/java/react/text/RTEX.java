@@ -1,8 +1,8 @@
 package react.text;
 
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.json.JSONArray;
-import org.cyberpwn.json.JSONObject;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.JSONArray;
+import com.volmit.react.util.JSONObject;
 
 /**
  * Raw Text EXTRA

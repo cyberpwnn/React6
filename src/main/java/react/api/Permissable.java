@@ -2,7 +2,8 @@ package react.api;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.cyberpwn.glang.GList;
+
+import com.volmit.react.util.GList;
 
 import react.Gate;
 import react.Info;

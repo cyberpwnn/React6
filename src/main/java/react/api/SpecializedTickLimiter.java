@@ -1,8 +1,9 @@
 package react.api;
 
-import org.cyberpwn.gmath.Average;
-import org.cyberpwn.gmath.M;
 import org.spigotmc.TickLimiter;
+
+import com.volmit.react.util.Average;
+import com.volmit.react.util.M;
 
 import react.Config;
 

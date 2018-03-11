@@ -2,7 +2,7 @@ package react.api;
 
 import java.io.File;
 
-import org.cyberpwn.glang.GMap;
+import com.volmit.react.util.GMap;
 
 public interface IRecordBook<T extends IRecord<?>>
 {

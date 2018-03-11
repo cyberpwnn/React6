@@ -1,6 +1,6 @@
 package react.rai;
 
-import org.cyberpwn.glang.GList;
+import com.volmit.react.util.GList;
 
 public interface IGoal
 {

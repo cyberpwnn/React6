@@ -3,7 +3,7 @@ package react.nms;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 
-import surge.util.MaterialBlock;
+import com.volmit.react.util.MaterialBlock;
 
 public interface INMSBinding
 {

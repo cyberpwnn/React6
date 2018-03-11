@@ -8,17 +8,18 @@ import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.json.JSONObject;
 import org.spigotmc.TickLimiter;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.NMSX;
 
 import react.Config;
 import react.Gate;
 import react.api.Capability;
 import react.api.SpecializedTickLimiter;
-import surge.Surge;
-import surge.control.Controller;
-import surge.nms.NMSX;
 
 public class SmearTickController extends Controller
 {

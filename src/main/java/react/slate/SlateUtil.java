@@ -6,10 +6,10 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
-import org.cyberpwn.glang.GList;
 
-import surge.nms.NMSX;
-import surge.util.Protocol;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.NMSX;
+import com.volmit.react.util.Protocol;
 
 /**
  * Scoreboard & Tab utilities

@@ -11,11 +11,17 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
-import org.cyberpwn.gconcurrent.A;
-import org.cyberpwn.gformat.F;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.A;
+import com.volmit.react.util.C;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.F;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.P;
+import com.volmit.react.util.TaskLater;
 
 import react.Config;
 import react.Gate;
@@ -35,11 +41,6 @@ import react.graph.GraphText;
 import react.graph.GraphingInstance;
 import react.graph.PointedGraph;
 import react.papyrus.FrameColor;
-import surge.Surge;
-import surge.control.Controller;
-import surge.sched.TaskLater;
-import surge.util.C;
-import surge.util.P;
 
 public class GraphController extends Controller
 {

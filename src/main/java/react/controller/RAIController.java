@@ -1,7 +1,9 @@
 package react.controller;
 
-import org.cyberpwn.gconcurrent.A;
-import org.cyberpwn.json.JSONObject;
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.A;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.JSONObject;
 
 import react.rai.IGoal;
 import react.rai.IRAI;
@@ -12,8 +14,6 @@ import react.rai.goals.GoalStableFluidTime;
 import react.rai.goals.GoalStableHopperTime;
 import react.rai.goals.GoalStableRedstoneTime;
 import react.rai.goals.GoalStableTickTime;
-import surge.Surge;
-import surge.control.Controller;
 
 public class RAIController extends Controller
 {

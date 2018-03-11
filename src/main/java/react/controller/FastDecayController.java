@@ -13,22 +13,23 @@ import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Leaves;
 import org.bukkit.util.Vector;
-import org.cyberpwn.gconcurrent.TICK;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.gmath.M;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.BlockFinder;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GSound;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.M;
+import com.volmit.react.util.MSound;
+import com.volmit.react.util.MaterialBlock;
+import com.volmit.react.util.TICK;
+import com.volmit.react.util.TaskLater;
+import com.volmit.react.util.W;
 
 import react.Config;
 import react.Gate;
 import react.React;
-import surge.Surge;
-import surge.collection.GSound;
-import surge.control.Controller;
-import surge.sched.TaskLater;
-import surge.util.BlockFinder;
-import surge.util.MSound;
-import surge.util.MaterialBlock;
-import surge.util.W;
 
 public class FastDecayController extends Controller
 {

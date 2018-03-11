@@ -1,9 +1,11 @@
 package react.action;
 
 import org.bukkit.Chunk;
-import org.cyberpwn.gformat.F;
-import org.cyberpwn.glang.AccessCallback;
-import org.cyberpwn.glang.Callback;
+
+import com.volmit.react.util.AccessCallback;
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.Callback;
+import com.volmit.react.util.F;
 
 import react.Gate;
 import react.Info;
@@ -15,7 +17,6 @@ import react.api.ActionType;
 import react.api.Capability;
 import react.api.ISelector;
 import react.api.SelectorPosition;
-import surge.util.Anchor;
 
 @Anchor(1)
 public class ActionFixLighting extends Action

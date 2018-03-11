@@ -7,9 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.json.JSONObject;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.JSONObject;
 
 public abstract class RecordBook<T extends IRecord<?>> implements IRecordBook<T>
 {

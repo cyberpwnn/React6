@@ -14,16 +14,17 @@ import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.cyberpwn.gconcurrent.S;
-import org.cyberpwn.gconcurrent.TICK;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.Area;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.S;
+import com.volmit.react.util.TICK;
 
 import react.Config;
 import react.api.Capability;
-import surge.Surge;
-import surge.control.Controller;
-import surge.util.Area;
 
 public class InstantDropController extends Controller
 {
@@ -132,7 +133,7 @@ public class InstantDropController extends Controller
 		{
 			Arrow a = (Arrow) e.getEntity();
 
-			new S()
+			new S("arrow.remove-check")
 			{
 				@Override
 				public void run()
@@ -180,7 +181,7 @@ public class InstantDropController extends Controller
 
 			if(Config.DROPS_TELEPORT)
 			{
-				new S()
+				new S("tp-entity-drop")
 				{
 					@Override
 					public void run()

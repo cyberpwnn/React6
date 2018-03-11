@@ -14,10 +14,16 @@ import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.Inventory;
-import org.cyberpwn.gconcurrent.A;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.A;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.MaterialBlock;
+import com.volmit.react.util.ParticleEffect;
+import com.volmit.react.util.Task;
 
 import react.Config;
 import react.Gate;
@@ -25,11 +31,6 @@ import react.Info;
 import react.React;
 import react.api.Permissable;
 import react.api.ReactPlayer;
-import surge.Surge;
-import surge.control.Controller;
-import surge.sched.Task;
-import surge.util.MaterialBlock;
-import surge.util.ParticleEffect;
 
 public class GlassController extends Controller
 {

@@ -1,7 +1,7 @@
 package react.rai;
 
-import org.cyberpwn.gconcurrent.S;
-import org.cyberpwn.glang.GList;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.S;
 
 public abstract class Goal implements IGoal
 {
@@ -30,7 +30,7 @@ public abstract class Goal implements IGoal
 
 		for(IGoal i : getSubgoals())
 		{
-			new S()
+			new S("goal-prop")
 			{
 				@Override
 				public void run()

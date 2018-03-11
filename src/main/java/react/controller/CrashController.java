@@ -2,15 +2,16 @@ package react.controller;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
-import org.cyberpwn.gmath.M;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.C;
+import com.volmit.react.util.CPS;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.D;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.M;
 
 import react.Gate;
-import surge.Surge;
-import surge.control.Controller;
-import surge.server.CPS;
-import surge.util.C;
-import surge.util.D;
 
 public class CrashController extends Controller implements Runnable
 {

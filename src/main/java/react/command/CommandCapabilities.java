@@ -2,6 +2,10 @@ package react.command;
 
 import org.bukkit.command.CommandSender;
 
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.C;
+import com.volmit.react.util.Protocol;
+
 import react.Gate;
 import react.Info;
 import react.api.Capability;
@@ -9,9 +13,6 @@ import react.api.Flavor;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
-import surge.util.Anchor;
-import surge.util.C;
-import surge.util.Protocol;
 
 @Anchor(0)
 public class CommandCapabilities extends ReactCommand

@@ -1,15 +1,15 @@
 package react.sampler;
 
-import org.cyberpwn.gconcurrent.A;
-import org.cyberpwn.gformat.F;
-import org.cyberpwn.gmath.Average;
+import com.volmit.react.util.A;
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.Average;
+import com.volmit.react.util.C;
+import com.volmit.react.util.F;
+import com.volmit.react.util.Platform;
 
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
-import surge.util.Anchor;
-import surge.util.C;
-import surge.util.Platform;
 
 @Anchor(2)
 public class SampleCPU extends MSampler

@@ -1,6 +1,6 @@
 package react.rai.goals;
 
-import org.cyberpwn.gconcurrent.S;
+import com.volmit.react.util.S;
 
 import react.Config;
 import react.Lang;
@@ -37,7 +37,7 @@ public class GoalStableTickTime extends Goal
 		{
 			failing = f;
 
-			new S()
+			new S("goal.tps")
 			{
 				@Override
 				public void run()

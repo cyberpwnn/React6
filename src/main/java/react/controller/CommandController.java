@@ -8,10 +8,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.cyberpwn.gformat.F;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.gmath.M;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.C;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.F;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.M;
 
 import react.Config;
 import react.Gate;
@@ -49,9 +53,6 @@ import react.command.CommandUnsubscribe;
 import react.command.CommandVersion;
 import react.rai.IGoal;
 import react.rai.RAI;
-import surge.Surge;
-import surge.control.Controller;
-import surge.util.C;
 
 public class CommandController extends Controller implements Listener, CommandExecutor
 {

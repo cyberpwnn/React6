@@ -1,6 +1,12 @@
 package react;
 
-import org.bukkit.plugin.java.JavaPlugin;
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.Control;
+import com.volmit.react.util.D;
+import com.volmit.react.util.Disable;
+import com.volmit.react.util.Enable;
+import com.volmit.react.util.Instance;
+import com.volmit.react.util.Plugin;
 
 import react.action.source.AccessActionSource;
 import react.controller.ActionController;
@@ -34,18 +40,9 @@ import react.controller.SampleController;
 import react.controller.SmearTickController;
 import react.controller.SpikeController;
 import react.controller.WorldController;
-import surge.Surge;
-import surge.control.Control;
-import surge.control.Disable;
-import surge.control.Enable;
-import surge.control.Instance;
-import surge.control.Plugin;
-import surge.util.D;
-import surge.util.Persist;
 
 @Plugin
-@Persist
-public class React extends JavaPlugin
+public class React
 {
 	@Instance
 	public static React instance;
@@ -142,18 +139,6 @@ public class React extends JavaPlugin
 
 	@Control
 	public FixController fixController;
-
-	@Override
-	public void onEnable()
-	{
-
-	}
-
-	@Override
-	public void onDisable()
-	{
-
-	}
 
 	@Enable
 	public void enable()

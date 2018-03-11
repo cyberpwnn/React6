@@ -14,9 +14,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.map.MapCanvas;
 import org.bukkit.map.MapView;
-import org.cyberpwn.gformat.F;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.gmath.M;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.C;
+import com.volmit.react.util.F;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GSound;
+import com.volmit.react.util.M;
+import com.volmit.react.util.MSound;
+import com.volmit.react.util.Task;
 
 import react.Config;
 import react.Gate;
@@ -26,11 +32,6 @@ import react.event.ScrollDirection;
 import react.papyrus.BufferedFrame;
 import react.papyrus.IRenderer;
 import react.papyrus.Papyrus;
-import surge.Surge;
-import surge.collection.GSound;
-import surge.sched.Task;
-import surge.util.C;
-import surge.util.MSound;
 
 public class GraphingInstance implements Listener
 {

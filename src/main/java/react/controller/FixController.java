@@ -1,16 +1,17 @@
 package react.controller;
 
 import org.bukkit.command.CommandSender;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.C;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.JSONObject;
 
 import react.Gate;
 import react.api.IFix;
 import react.fix.FixEntityAI;
 import react.fix.FixInvisibleChunk;
-import surge.Surge;
-import surge.control.Controller;
-import surge.util.C;
 
 public class FixController extends Controller
 {

@@ -2,7 +2,8 @@ package react.lagmap;
 
 import org.bukkit.Chunk;
 import org.bukkit.Location;
-import org.cyberpwn.glang.GMap;
+
+import com.volmit.react.util.GMap;
 
 import react.api.ChunkIssue;
 

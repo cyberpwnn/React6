@@ -3,10 +3,11 @@ package react.rai.goals;
 import java.util.Collections;
 
 import org.bukkit.Chunk;
-import org.cyberpwn.gconcurrent.S;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.gmath.M;
+
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.M;
+import com.volmit.react.util.S;
 
 import react.Config;
 import react.Lang;
@@ -71,7 +72,7 @@ public class GoalStableRedstoneTime extends Goal
 		{
 			Chunk lx = laggiest;
 			d = 10;
-			new S()
+			new S("goal-red.prop")
 			{
 				@Override
 				public void run()
@@ -124,7 +125,7 @@ public class GoalStableRedstoneTime extends Goal
 		{
 			failing = f;
 
-			new S()
+			new S("goal-red")
 			{
 				@Override
 				public void run()

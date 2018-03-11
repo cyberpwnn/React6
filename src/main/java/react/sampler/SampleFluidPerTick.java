@@ -1,14 +1,14 @@
 package react.sampler;
 
-import org.cyberpwn.gformat.F;
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.C;
+import com.volmit.react.util.F;
 
 import react.Lang;
 import react.React;
 import react.api.MSampler;
 import react.api.SampledType;
 import react.graph.IFormatter;
-import surge.util.Anchor;
-import surge.util.C;
 
 @Anchor(2)
 public class SampleFluidPerTick extends MSampler

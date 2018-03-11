@@ -8,19 +8,20 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.inventory.ItemStack;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GSet;
-import org.cyberpwn.gmath.Average;
-import org.cyberpwn.gmath.M;
-import org.cyberpwn.json.JSONObject;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.Average;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GSet;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.M;
+import com.volmit.react.util.MaterialBlock;
 
 import react.Config;
 import react.Gate;
 import react.React;
 import react.api.Unused;
-import surge.Surge;
-import surge.control.Controller;
-import surge.util.MaterialBlock;
 
 public class ExplosiveController extends Controller
 {

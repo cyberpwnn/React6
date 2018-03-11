@@ -1,6 +1,6 @@
 package react.api;
 
-import org.cyberpwn.glang.GList;
+import com.volmit.react.util.GList;
 
 public class StackTraceList extends GList<StackTraceElement>
 {

@@ -1,7 +1,8 @@
 package react.slate;
 
 import org.bukkit.entity.Player;
-import org.cyberpwn.glang.GList;
+
+import com.volmit.react.util.GList;
 
 public class IndividualSlate extends PhantomSlate
 {

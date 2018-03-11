@@ -5,18 +5,19 @@ import java.io.IOException;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.cyberpwn.gformat.F;
+
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.Amounts;
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.C;
+import com.volmit.react.util.F;
+import com.volmit.react.util.Platform;
 
 import react.Gate;
 import react.Info;
 import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
-import surge.Surge;
-import surge.util.Amounts;
-import surge.util.Anchor;
-import surge.util.C;
-import surge.util.Platform;
 
 @Anchor(0)
 public class CommandEnvironment extends ReactCommand

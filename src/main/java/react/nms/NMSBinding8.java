@@ -4,9 +4,10 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 
+import com.volmit.react.util.MaterialBlock;
+
 import net.minecraft.server.v1_8_R3.BlockPosition;
 import net.minecraft.server.v1_8_R3.IBlockData;
-import surge.util.MaterialBlock;
 
 public class NMSBinding8 extends NMSBinding
 {

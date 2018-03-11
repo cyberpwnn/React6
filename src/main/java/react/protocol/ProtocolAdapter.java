@@ -4,19 +4,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.cyberpwn.glang.GBiset;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.gmath.Average;
-import org.cyberpwn.gmath.M;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketEvent;
-
-import surge.Surge;
-import surge.util.Protocol;
-import surge.util.ProtocolRange;
+import com.volmit.react.surge.Surge;
+import com.volmit.react.util.Average;
+import com.volmit.react.util.GBiset;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.M;
+import com.volmit.react.util.Protocol;
+import com.volmit.react.util.ProtocolRange;
 
 public class ProtocolAdapter implements Listener
 {

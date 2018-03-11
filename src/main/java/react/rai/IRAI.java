@@ -1,6 +1,6 @@
 package react.rai;
 
-import org.cyberpwn.glang.GList;
+import com.volmit.react.util.GList;
 
 import react.action.source.IActionSource;
 

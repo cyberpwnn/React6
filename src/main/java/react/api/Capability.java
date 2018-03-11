@@ -2,13 +2,14 @@ package react.api;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.cyberpwn.glang.GList;
+
+import com.volmit.react.util.C;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.Protocol;
 
 import react.Gate;
 import react.Lang;
 import react.action.source.IActionSource;
-import surge.util.C;
-import surge.util.Protocol;
 
 public class Capability
 {

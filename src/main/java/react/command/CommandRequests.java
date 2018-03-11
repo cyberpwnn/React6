@@ -3,6 +3,9 @@ package react.command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.C;
+
 import react.Config;
 import react.Gate;
 import react.Info;
@@ -10,8 +13,6 @@ import react.api.Permissable;
 import react.api.ReactCommand;
 import react.api.SideGate;
 import react.api.TemporaryAccessor;
-import surge.util.Anchor;
-import surge.util.C;
 
 @Anchor(0)
 public class CommandRequests extends ReactCommand

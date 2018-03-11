@@ -1,6 +1,6 @@
 package react.api;
 
-import org.cyberpwn.json.JSONObject;
+import com.volmit.react.util.JSONObject;
 
 public interface IRecord<T>
 {

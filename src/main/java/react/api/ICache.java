@@ -1,7 +1,7 @@
 package react.api;
 
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GSet;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GSet;
 
 public interface ICache<K, V>
 {

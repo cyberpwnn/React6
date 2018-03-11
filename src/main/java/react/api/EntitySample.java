@@ -3,9 +3,10 @@ package react.api;
 import org.bukkit.Chunk;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.cyberpwn.glang.GList;
-import org.cyberpwn.glang.GMap;
-import org.cyberpwn.glang.GSet;
+
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.GSet;
 
 public class EntitySample
 {

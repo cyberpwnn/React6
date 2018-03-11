@@ -3,15 +3,15 @@ package react.graph;
 import java.awt.Color;
 import java.util.UUID;
 
-import org.cyberpwn.gformat.F;
-import org.cyberpwn.gmath.Average;
-import org.cyberpwn.gmath.M;
+import com.volmit.react.util.Anchor;
+import com.volmit.react.util.Average;
+import com.volmit.react.util.F;
+import com.volmit.react.util.M;
+import com.volmit.react.util.Platform;
 
 import react.papyrus.BufferedFrame;
 import react.papyrus.FrameColor;
 import react.papyrus.ReactFont;
-import surge.util.Anchor;
-import surge.util.Platform;
 
 @Anchor(127)
 public class GraphCPUArc extends NormalGraph implements IGraph

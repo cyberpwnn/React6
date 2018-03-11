@@ -1,7 +1,8 @@
 package react.api;
 
+import com.volmit.react.util.SuperSampler;
+
 import react.React;
-import surge.server.SuperSampler;
 
 public abstract class MSampler extends Sampler
 {
