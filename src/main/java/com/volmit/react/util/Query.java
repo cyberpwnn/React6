@@ -7,7 +7,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import com.volmit.react.surge.Surge;
+import com.volmit.react.Surge;
 
 public abstract class Query implements Listener
 {

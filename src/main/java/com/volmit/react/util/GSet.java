@@ -3,6 +3,7 @@ package com.volmit.react.util;
 import java.util.Collection;
 import java.util.HashSet;
 
+@SuppressWarnings("hiding")
 public class GSet<T> extends HashSet<T>
 {
 	private static final long serialVersionUID = 1L;

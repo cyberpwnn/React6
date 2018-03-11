@@ -1,6 +1,6 @@
 package com.volmit.react.util;
 
-import com.volmit.react.surge.Surge;
+import com.volmit.react.Surge;
 
 public class SuperSampler implements IMasterTickComponent
 {

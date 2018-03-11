@@ -15,7 +15,7 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 
-import com.volmit.react.surge.Surge;
+import com.volmit.react.Surge;
 
 @SuppressWarnings("deprecation")
 public abstract class WorldMonitor extends Thread implements Listener
@@ -33,12 +33,15 @@ public abstract class WorldMonitor extends Thread implements Listener
 	private int totalEntities = 0;
 	private int chunksLoaded = 0;
 	private int chunksUnloaded = 0;
+	private int rollingTileCount = 0;
 	private long ms = M.ms();
+	private GList<Chunk> pending;
 
 	public WorldMonitor()
 	{
 		Surge.register(this);
 		setName("Surge World Monitor");
+		pending = new GList<Chunk>();
 	}
 
 	@Override
@@ -49,7 +52,7 @@ public abstract class WorldMonitor extends Thread implements Listener
 			try
 			{
 				sample();
-				Thread.sleep(1000);
+				Thread.sleep(50);
 			}
 
 			catch(InterruptedException e)
@@ -176,7 +179,6 @@ public abstract class WorldMonitor extends Thread implements Listener
 		{
 			if(tileChanged)
 			{
-				tileChanged = false;
 				sampleTileCount();
 				doUpdate();
 			}
@@ -261,48 +263,57 @@ public abstract class WorldMonitor extends Thread implements Listener
 
 	private void sampleTileCount()
 	{
-		totalTiles = 0;
-
-		for(World i : Bukkit.getWorlds())
+		if(pending.isEmpty())
 		{
-			try
+			totalTiles = rollingTileCount;
+			rollingTileCount = 0;
+
+			for(World i : Bukkit.getWorlds())
 			{
-				for(Chunk j : i.getLoadedChunks())
+				try
 				{
-					try
+					for(Chunk j : i.getLoadedChunks())
 					{
-						if(j.isLoaded())
-						{
-							try
-							{
-								new S("tile-count")
-								{
-									@Override
-									public void run()
-									{
-										totalTiles += j.getTileEntities().length;
-									}
-								};
-							}
-
-							catch(Exception e)
-							{
-
-							}
-						}
-					}
-
-					catch(Throwable e)
-					{
-
+						pending.add(j);
 					}
 				}
-			}
 
-			catch(Throwable e)
+				catch(Exception e)
+				{
+
+				}
+			}
+		}
+
+		if(!pending.isEmpty())
+		{
+			new S("tile-count-interval")
 			{
+				@Override
+				public void run()
+				{
+					long ns = M.ns();
 
-			}
+					while(!pending.isEmpty() && M.ns() - ns < 250000)
+					{
+						Chunk c = pending.pop();
+
+						if(!c.isLoaded())
+						{
+							continue;
+						}
+
+						rollingTileCount += c.getTileEntities().length;
+					}
+
+					if(pending.isEmpty())
+					{
+						tileChanged = false;
+					}
+				}
+			};
+
+			return;
 		}
 	}
 

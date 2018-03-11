@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import react.api.Capability;
+import com.volmit.react.api.Capability;
 
 public class NMSX
 {

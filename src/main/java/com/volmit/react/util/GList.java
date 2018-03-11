@@ -16,6 +16,7 @@ import java.util.Set;
  * @param <T>
  *            the type of list T
  */
+@SuppressWarnings("hiding")
 public class GList<T> extends ArrayList<T>
 {
 	private static final long serialVersionUID = 4480457702775755227L;

@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.volmit.react.surge.Surge;
+import com.volmit.react.Surge;
 
 public abstract class AmpedPlugin extends JavaPlugin implements SurgePlugin, IMasterTickComponent
 {

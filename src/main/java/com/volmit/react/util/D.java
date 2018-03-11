@@ -4,7 +4,7 @@ import java.io.File;
 
 import org.bukkit.Bukkit;
 
-import com.volmit.react.surge.Surge;
+import com.volmit.react.Surge;
 
 public class D
 {

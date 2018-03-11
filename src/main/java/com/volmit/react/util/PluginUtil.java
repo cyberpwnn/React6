@@ -24,7 +24,7 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredListener;
 
-import com.volmit.react.surge.Surge;
+import com.volmit.react.Surge;
 
 /*
  * #%L
