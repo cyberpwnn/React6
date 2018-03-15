@@ -26,6 +26,7 @@ import com.volmit.react.util.AsyncTick;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.D;
+import com.volmit.react.util.F;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.GSound;
 import com.volmit.react.util.JSONObject;
@@ -721,13 +722,23 @@ public class MonitorController extends Controller
 
 				sb.clearLines();
 
-				sb.addLine(Lang.getString("controller.action-log.queue") + React.instance.actionController.pending.size()); //$NON-NLS-1$
-
-				for(String i : React.instance.actionController.tasks)
-				{
-					sb.addLine(i);
-				}
-
+				int total = 0;
+				total += SampledType.FLUID_SECOND.get().getValue();
+				total += SampledType.HOPPER_SECOND.get().getValue();
+				total += SampledType.REDSTONE_SECOND.get().getValue();
+				double use = SampledType.MEM.get().getValue() / SampledType.MAXMEM.get().getValue();
+				sb.addLine(C.BLACK + "" + C.UNDERLINE + F.repeat("/", 20));
+				sb.addLine(C.GREEN + SampledType.TPS.get().get() + " (" + SampledType.TICK.get().get() + ") " + SampledType.CPU.get().get());
+				sb.addLine(C.GOLD + SampledType.MEM.get().get() + " (" + F.pc(use, 1) + ") " + SampledType.MAHS.get().get());
+				sb.addLine(C.RED + SampledType.CHK.get().get() + " " + SampledType.CHKS.get().get() + " (" + SampledType.CHK_TIME.get().get() + ")");
+				sb.addLine(C.AQUA + SampledType.ENT.get().get() + " (" + SampledType.ENTLIV.get().get() + " " + SampledType.ENTDROP.get().get() + " " + SampledType.ENTTILE.get().get() + ")");
+				sb.addLine(C.LIGHT_PURPLE + "ENT: " + C.WHITE + C.BOLD + SampledType.ENTITY_TIME.get().get() + C.RESET + "" + C.WHITE + " (" + SampledType.ENTITY_TIME_LOCK.get().get() + "c)");
+				sb.addLine(C.LIGHT_PURPLE + "TILE: " + C.WHITE + C.BOLD + SampledType.TILE_TIME.get().get() + C.RESET + "" + C.WHITE + " (" + SampledType.TILE_TIME.get().get() + "c)");
+				sb.addLine(C.LIGHT_PURPLE + "CHK: " + C.WHITE + C.BOLD + SampledType.CHK_TIME.get().get() + C.RESET + "" + C.WHITE + " (" + SampledType.CHKS.get().get() + ")");
+				sb.addLine(C.LIGHT_PURPLE + "PHY: " + C.WHITE + C.BOLD + SampledType.PHYSICS_TIME.get().get() + C.RESET + "" + C.WHITE + " (" + F.f(total) + "/s)");
+				sb.addLine(C.LIGHT_PURPLE + "REDS: " + C.WHITE + C.BOLD + SampledType.REDSTONE_TIME.get().get() + C.RESET + "" + C.WHITE + " (" + SampledType.REDSTONE_SECOND.get().get() + ")");
+				sb.addLine(C.LIGHT_PURPLE + "HOPP: " + C.WHITE + C.BOLD + SampledType.HOPPER_TIME.get().get() + C.RESET + "" + C.WHITE + " (" + SampledType.HOPPER_SECOND.get().get() + ")");
+				sb.addLine(C.LIGHT_PURPLE + "LIQ: " + C.WHITE + C.BOLD + SampledType.FLUID_TIME.get().get() + C.RESET + "" + C.WHITE + " (" + SampledType.FLUID_SECOND.get().get() + ")");
 				sb.update();
 			}
 		};

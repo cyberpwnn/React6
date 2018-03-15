@@ -61,6 +61,7 @@ import com.volmit.react.util.GMap;
 import com.volmit.react.util.I;
 import com.volmit.react.util.IController;
 import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.PluginUtil;
 import com.volmit.react.util.SuperSampler;
 import com.volmit.react.util.TICK;
 import com.volmit.react.util.TaskLater;
@@ -226,8 +227,7 @@ public class SampleController extends Controller
 
 			if(sct > 20)
 			{
-				D.w("Super Sampler did not start correctly. Resetting");
-				ReactPlugin.reload();
+				PluginUtil.reload(ReactPlugin.i);
 			}
 		}
 

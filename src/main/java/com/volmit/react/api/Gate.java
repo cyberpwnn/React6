@@ -421,6 +421,7 @@ public class Gate
 				snd--;
 			}
 		}
+
 		return s;
 	}
 

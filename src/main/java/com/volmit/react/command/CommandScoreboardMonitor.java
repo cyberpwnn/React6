@@ -10,11 +10,11 @@ import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
 
-public class CommandActionLog extends ReactCommand
+public class CommandScoreboardMonitor extends ReactCommand
 {
-	public CommandActionLog()
+	public CommandScoreboardMonitor()
 	{
-		command = Info.COMMAND_ACTIONLOG;
+		command = Info.COMMAND_SCOREBOARDLOG;
 		aliases = new String[] {Info.COMMAND_ACTIONLOG_ALIAS_1, Info.COMMAND_ACTIONLOG_ALIAS_2};
 		permissions = new String[] {Permissable.ACCESS.getNode(), Permissable.MONITOR_TITLE.getNode()};
 		usage = Info.COMMAND_ACTIONLOG_USAGE;

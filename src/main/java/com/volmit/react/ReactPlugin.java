@@ -103,7 +103,7 @@ public class ReactPlugin extends JavaPlugin
 			{
 				for(Player i : P.onlinePlayers())
 				{
-					if(Permissable.ACCESS.has(i))
+					if(Permissable.ACCESS.has(i) || i.isOp())
 					{
 						Gate.msgSuccess(i, "Injecting Configuration Changes");
 					}
@@ -125,10 +125,18 @@ public class ReactPlugin extends JavaPlugin
 
 				if(TICK.tick % 5 == 0)
 				{
-					mgr.onTick();
+					try
+					{
+						mgr.onTick();
+					}
+
+					catch(Throwable e)
+					{
+						Ex.t(e);
+					}
 				}
 
-				for(IController i : controllers)
+				for(IController i : controllers.copy())
 				{
 					try
 					{
@@ -143,6 +151,16 @@ public class ReactPlugin extends JavaPlugin
 					{
 						Ex.t(e);
 					}
+				}
+
+				try
+				{
+					pool.tickSyncQueue();
+				}
+
+				catch(Throwable e)
+				{
+					Ex.t(e);
 				}
 			}
 		};
@@ -171,10 +189,17 @@ public class ReactPlugin extends JavaPlugin
 
 	public static void reload()
 	{
-		i.onDisable();
-		Bukkit.getScheduler().cancelTasks(i);
-		HandlerList.unregisterAll(i);
-		i.onEnable();
+		new TaskLater("", 5)
+		{
+			@Override
+			public void run()
+			{
+				i.onDisable();
+				Bukkit.getScheduler().cancelTasks(i);
+				HandlerList.unregisterAll(i);
+				i.onEnable();
+			}
+		};
 	}
 
 	public int startTask(int delay, Runnable r)

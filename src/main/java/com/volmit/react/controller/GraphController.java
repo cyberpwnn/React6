@@ -142,6 +142,15 @@ public class GraphController extends Controller
 
 		for(Player i : gr.k())
 		{
+			if(gr.get(i).isMapping())
+			{
+				if(!i.getInventory().getItemInOffHand().getType().equals(Material.MAP))
+				{
+					stopMapping(i);
+					gr.get(i).setMapping(false);
+				}
+			}
+
 			if(!gr.get(i).isMapping())
 			{
 				gr.remove(i);

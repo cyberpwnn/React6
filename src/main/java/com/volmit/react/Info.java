@@ -73,6 +73,12 @@ public class Info
 	public static String COMMAND_ENV_ALIAS_2 = "ev"; //$NON-NLS-1$
 	public static String COMMAND_ENV_USAGE = ""; //$NON-NLS-1$
 
+	public static String COMMAND_FS_DESCRIPTION = "Get File Sizes"; //$NON-NLS-1$
+	public static String COMMAND_FS = "filesize"; //$NON-NLS-1$
+	public static String COMMAND_FS_ALIAS_1 = "files"; //$NON-NLS-1$
+	public static String COMMAND_FS_ALIAS_2 = "fs"; //$NON-NLS-1$
+	public static String COMMAND_FS_USAGE = ""; //$NON-NLS-1$
+
 	public static String COMMAND_FIX_DESCRIPTION = Lang.getString("command.fix.description"); //$NON-NLS-1$
 	public static String COMMAND_FIX = "fix"; //$NON-NLS-1$
 	public static String COMMAND_FIX_ALIAS_1 = "fx"; //$NON-NLS-1$
@@ -122,9 +128,9 @@ public class Info
 	public static String COMMAND_CBLAME_USAGE = ""; //$NON-NLS-1$
 
 	public static String COMMAND_ACTIONLOG_DESCRIPTION = Lang.getString("command.action-log.description"); //$NON-NLS-1$
-	public static String COMMAND_ACTIONLOG = "actionlog"; //$NON-NLS-1$
-	public static String COMMAND_ACTIONLOG_ALIAS_1 = "alog"; //$NON-NLS-1$
-	public static String COMMAND_ACTIONLOG_ALIAS_2 = "al"; //$NON-NLS-1$
+	public static String COMMAND_SCOREBOARDLOG = "scoreboard"; //$NON-NLS-1$
+	public static String COMMAND_ACTIONLOG_ALIAS_1 = "score"; //$NON-NLS-1$
+	public static String COMMAND_ACTIONLOG_ALIAS_2 = "sc"; //$NON-NLS-1$
 	public static String COMMAND_ACTIONLOG_USAGE = "(toggle)"; //$NON-NLS-1$
 
 	public static String COMMAND_TEMPACCESS_DESCRIPTION = Lang.getString("command.access.description"); //$NON-NLS-1$

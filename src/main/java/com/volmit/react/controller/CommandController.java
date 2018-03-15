@@ -13,6 +13,7 @@ import com.volmit.react.Config;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
 import com.volmit.react.api.ICommand;
@@ -25,13 +26,13 @@ import com.volmit.react.api.SideGate;
 import com.volmit.react.command.CommandAccept;
 import com.volmit.react.command.CommandAccess;
 import com.volmit.react.command.CommandAct;
-import com.volmit.react.command.CommandActionLog;
 import com.volmit.react.command.CommandCPUScore;
 import com.volmit.react.command.CommandCapabilities;
 import com.volmit.react.command.CommandChunkBlame;
 import com.volmit.react.command.CommandChunkTP;
 import com.volmit.react.command.CommandDump;
 import com.volmit.react.command.CommandEnvironment;
+import com.volmit.react.command.CommandFileSize;
 import com.volmit.react.command.CommandFix;
 import com.volmit.react.command.CommandGlasses;
 import com.volmit.react.command.CommandHelp;
@@ -41,6 +42,7 @@ import com.volmit.react.command.CommandPing;
 import com.volmit.react.command.CommandReload;
 import com.volmit.react.command.CommandRequests;
 import com.volmit.react.command.CommandRevoke;
+import com.volmit.react.command.CommandScoreboardMonitor;
 import com.volmit.react.command.CommandStatus;
 import com.volmit.react.command.CommandSubscribe;
 import com.volmit.react.command.CommandTopChunk;
@@ -75,6 +77,8 @@ public class CommandController extends Controller implements Listener, CommandEx
 	public void stop()
 	{
 		Surge.unregister(this);
+		Bukkit.getPluginCommand(Info.COMMAND_REACT).setExecutor(ReactPlugin.i);
+		Bukkit.getPluginCommand(Info.COMMAND_RAI).setExecutor(ReactPlugin.i);
 	}
 
 	public void begin()
@@ -87,7 +91,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 		commands.add(new CommandAccept());
 		commands.add(new CommandAccess());
 		commands.add(new CommandAct());
-		commands.add(new CommandActionLog());
+		commands.add(new CommandScoreboardMonitor());
 		commands.add(new CommandCapabilities());
 		commands.add(new CommandChunkBlame());
 		commands.add(new CommandChunkTP());
@@ -108,6 +112,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 		commands.add(new CommandTopChunk());
 		commands.add(new CommandUnsubscribe());
 		commands.add(new CommandVersion());
+		commands.add(new CommandFileSize());
 	}
 
 	@Override

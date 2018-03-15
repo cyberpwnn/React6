@@ -1,5 +1,7 @@
 package com.volmit.react.controller;
 
+import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -64,6 +66,11 @@ public class EntityStackController extends Controller
 			{
 				stacks.remove(i);
 			}
+		}
+
+		for(World i : Bukkit.getWorlds())
+		{
+			checkNear(i.getLivingEntities().get((int) (Math.random() * (i.getLivingEntities().size() - 1))));
 		}
 	}
 
@@ -210,7 +217,7 @@ public class EntityStackController extends Controller
 	{
 		double max = a.getRealMaxHealth();
 
-		if(max * (a.getCount() + b.getCount()) > Config.ENTITYSTACK_MAXIMUM_HEALTH)
+		if(max * (a.getCount() + b.getCount()) > Config.ENTITY_STACK_MAX_COUNT)
 		{
 			return;
 		}
