@@ -12,7 +12,6 @@ import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.Average;
 import com.volmit.react.util.C;
 import com.volmit.react.util.F;
@@ -21,7 +20,6 @@ import com.volmit.react.util.GMap;
 import com.volmit.react.util.M;
 import com.volmit.react.util.P;
 
-@Anchor(0)
 public class CommandPing extends ReactCommand
 {
 	public CommandPing()

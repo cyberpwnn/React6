@@ -1,7 +1,6 @@
 package com.volmit.react.util;
 
-import com.volmit.react.E;
-import com.volmit.react.Surge;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.controller.SampleController;
 
 public abstract class TaskLater implements ITask, ICancellable
@@ -27,7 +26,7 @@ public abstract class TaskLater implements ITask, ICancellable
 		setup(name, true);
 		profiler.begin();
 
-		id = Surge.getAmp().startTask(delay, new Runnable()
+		id = ReactPlugin.i.startTask(delay, new Runnable()
 		{
 			@Override
 			public void run()
@@ -50,7 +49,7 @@ public abstract class TaskLater implements ITask, ICancellable
 
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 				}
 			}
 		});
@@ -72,7 +71,7 @@ public abstract class TaskLater implements ITask, ICancellable
 	@Override
 	public void cancel()
 	{
-		Surge.getAmp().stopTask(id);
+		ReactPlugin.i.stopTask(id);
 		completed = true;
 		profiler.end();
 		activeTime += profiler.getMilliseconds();

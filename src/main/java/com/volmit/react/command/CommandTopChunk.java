@@ -14,7 +14,6 @@ import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
 import com.volmit.react.controller.EventController;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.C;
 import com.volmit.react.util.ColoredString;
 import com.volmit.react.util.F;
@@ -22,7 +21,6 @@ import com.volmit.react.util.GList;
 import com.volmit.react.util.RTEX;
 import com.volmit.react.util.RTX;
 
-@Anchor(0)
 public class CommandTopChunk extends ReactCommand
 {
 	public CommandTopChunk()

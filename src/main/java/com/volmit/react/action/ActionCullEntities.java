@@ -15,14 +15,12 @@ import com.volmit.react.api.SelectionMode;
 import com.volmit.react.api.SelectorEntityType;
 import com.volmit.react.api.SelectorPosition;
 import com.volmit.react.util.AccessCallback;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.F;
 import com.volmit.react.util.FinalInteger;
 import com.volmit.react.util.M;
 import com.volmit.react.util.S;
 import com.volmit.react.util.Task;
 
-@Anchor(1)
 public class ActionCullEntities extends Action
 {
 	private long ms;

@@ -6,15 +6,13 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
-import com.volmit.react.util.Anchor;
+import com.volmit.react.util.Ex;
 
-@Anchor(0)
 public class CommandChunkTP extends ReactCommand
 {
 	public CommandChunkTP()
@@ -45,7 +43,7 @@ public class CommandChunkTP extends ReactCommand
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 }

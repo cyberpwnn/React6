@@ -5,11 +5,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
-import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
-import com.volmit.react.Surge;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.api.Action;
 import com.volmit.react.api.ActionHandle;
 import com.volmit.react.api.ActionState;
@@ -25,10 +24,10 @@ import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.Selector;
 import com.volmit.react.api.SelectorParseException;
 import com.volmit.react.api.SideGate;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.C;
 import com.volmit.react.util.ColoredString;
 import com.volmit.react.util.D;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
@@ -36,7 +35,6 @@ import com.volmit.react.util.RTEX;
 import com.volmit.react.util.RTX;
 import com.volmit.react.util.RawText;
 
-@Anchor(0)
 public class CommandAct extends ReactCommand
 {
 	public CommandAct()
@@ -308,7 +306,7 @@ public class CommandAct extends ReactCommand
 			rtx.addText(" " + (page + 1) + Lang.getString("command.help.ofs") + (getPageSize(maxEntries)) + " ", RawText.COLOR_AQUA); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			rtx.addText(F.repeat(C.GRAY + " ", 17), RawText.COLOR_DARK_GRAY, false, false, true, true, false); //$NON-NLS-1$
 
-			rtx.tellRawTo(Surge.getAmp().getPluginInstance(), (Player) sender);
+			rtx.tellRawTo(ReactPlugin.i, (Player) sender);
 		}
 	}
 
@@ -341,7 +339,7 @@ public class CommandAct extends ReactCommand
 				rtx.addTextWithHover(Lang.getString("command.help.symbol-pipe"), RawText.COLOR_DARK_GRAY, Lang.getString("command.help.next-page"), RawText.COLOR_RED, false, false, false, false, false); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
-			rtx.tellRawTo(Surge.getAmp().getPluginInstance(), (Player) sender);
+			rtx.tellRawTo(ReactPlugin.i, (Player) sender);
 		}
 	}
 
@@ -358,7 +356,7 @@ public class CommandAct extends ReactCommand
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 

@@ -1,8 +1,6 @@
 package com.volmit.react.util;
 
-import com.volmit.react.Surge;
-
-public class SuperSampler implements IMasterTickComponent
+public class SuperSampler
 {
 	private Average ticksPerSecondL;
 	private Average tickTimeL;
@@ -30,13 +28,11 @@ public class SuperSampler implements IMasterTickComponent
 	private WorldMonitor worldMonitor;
 	private TPSMonitor tpsMonitor;
 	private MemoryMonitor memoryMonitor;
-	private CoreTickThread c;
 	private StackTraceElement[] lockStack;
 	private GMap<Long, GList<StackTraceElement>> spikes;
 
 	public SuperSampler()
 	{
-		c = AmpedPlugin.ctt;
 		frozen = false;
 		lockStack = null;
 		running = false;
@@ -90,7 +86,7 @@ public class SuperSampler implements IMasterTickComponent
 			}
 		};
 
-		tpsMonitor = new TPSMonitor(memoryMonitor, worldMonitor, c)
+		tpsMonitor = new TPSMonitor(memoryMonitor, worldMonitor)
 		{
 			@Override
 			public void onTicked()
@@ -119,29 +115,20 @@ public class SuperSampler implements IMasterTickComponent
 	{
 		tpsMonitor.start();
 		running = true;
-		Surge.registerTicked(this);
 	}
 
 	public void stop()
 	{
 		tpsMonitor.interrupt();
 		running = false;
-		Surge.unregisterTicked(this);
 	}
 
-	@Override
-	public void onTick()
+	public void onTickAsync()
 	{
 		if(running)
 		{
 			tpsMonitor.markTick();
 		}
-	}
-
-	@Override
-	public String getTickName()
-	{
-		return "supersampler";
 	}
 
 	public Average getTicksPerSecondL()

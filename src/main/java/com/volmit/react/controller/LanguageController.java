@@ -12,18 +12,17 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import com.volmit.react.Config;
-import com.volmit.react.E;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
-import com.volmit.react.Surge;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.util.A;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.D;
 import com.volmit.react.util.Download;
 import com.volmit.react.util.DownloadMonitor;
 import com.volmit.react.util.DownloadState;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.JSONObject;
-import com.volmit.react.util.PluginUtil;
 import com.volmit.react.util.TaskLater;
 
 public class LanguageController extends Controller
@@ -41,7 +40,7 @@ public class LanguageController extends Controller
 	@Override
 	public void start()
 	{
-		languageFolder = new File(Surge.getAmp().getPluginInstance().getDataFolder(), "lang");
+		languageFolder = new File(ReactPlugin.i.getDataFolder(), "lang");
 		languageFolder.mkdirs();
 
 		try
@@ -51,7 +50,7 @@ public class LanguageController extends Controller
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		try
@@ -62,7 +61,7 @@ public class LanguageController extends Controller
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 			Lang.PRIMARY_BUNDLE = Lang.RESOURCE_BUNDLE;
 			D.f("Failed to load language: " + Config.LANGUAGE + ".properties (in plugins/React/lang/");
 		}
@@ -144,7 +143,7 @@ public class LanguageController extends Controller
 
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 				}
 			}
 		};
@@ -190,23 +189,7 @@ public class LanguageController extends Controller
 				@Override
 				public void run()
 				{
-					Thread t = new Thread()
-					{
-						@Override
-						public void run()
-						{
-							new TaskLater("Reload waiter", 20)
-							{
-								@Override
-								public void run()
-								{
-									PluginUtil.reload(Surge.getAmp().getPluginInstance());
-								}
-							};
-						}
-					};
-					t.setName("Surge Language Updater");
-					t.start();
+					ReactPlugin.reload();
 				}
 			};
 		}
@@ -282,7 +265,7 @@ public class LanguageController extends Controller
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 

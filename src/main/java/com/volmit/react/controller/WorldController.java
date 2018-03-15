@@ -8,12 +8,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.WorldUnloadEvent;
 
 import com.volmit.react.Config;
-import com.volmit.react.E;
 import com.volmit.react.React;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.Surge;
 import com.volmit.react.api.ActionType;
 import com.volmit.react.api.RAIActionSource;
 import com.volmit.react.util.Controller;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.TICK;
 
@@ -51,7 +52,7 @@ public class WorldController extends Controller
 
 		if(aboutToWipe)
 		{
-			File fx = new File(Surge.getAmp().getPluginInstance().getDataFolder(), "worlds");
+			File fx = new File(ReactPlugin.i.getDataFolder(), "worlds");
 
 			for(File i : fx.listFiles())
 			{
@@ -72,7 +73,7 @@ public class WorldController extends Controller
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 	}

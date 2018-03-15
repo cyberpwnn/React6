@@ -7,11 +7,9 @@ import com.volmit.react.api.ActionType;
 import com.volmit.react.api.IActionSource;
 import com.volmit.react.api.ISelector;
 import com.volmit.react.util.A;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.F;
 import com.volmit.react.util.S;
 
-@Anchor(1)
 public class ActionCollectGarbage extends Action
 {
 	public ActionCollectGarbage()

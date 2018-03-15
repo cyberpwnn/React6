@@ -6,12 +6,12 @@ import java.util.List;
 
 import org.bukkit.entity.Player;
 
-import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.util.ConfigurationDataInput;
 import com.volmit.react.util.ConfigurationDataOutput;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.IConfigurable;
 import com.volmit.react.util.KeyPointer;
@@ -117,7 +117,7 @@ public class ReactPlayer implements IConfigurable
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 
@@ -130,7 +130,7 @@ public class ReactPlayer implements IConfigurable
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 

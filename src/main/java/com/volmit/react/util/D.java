@@ -126,11 +126,6 @@ public class D
 		{
 			return;
 		}
-		if(!Surge.hasAmp())
-		{
-			log(C.AQUA + "React", C.WHITE + message);
-			return;
-		}
 
 		log(C.AQUA + "React", C.WHITE + message);
 	}
@@ -140,12 +135,6 @@ public class D
 		if(scall != null)
 		{
 			scall.run(message);
-		}
-
-		if(!Surge.hasAmp())
-		{
-			log(C.GREEN + "React", C.WHITE + message);
-			return;
 		}
 
 		log(C.GREEN + "React", C.WHITE + message);
@@ -165,12 +154,6 @@ public class D
 			return;
 		}
 
-		if(!Surge.hasAmp())
-		{
-			log(C.GRAY + "React", C.WHITE + message);
-			return;
-		}
-
 		log(C.GRAY + "React", C.WHITE + message);
 	}
 
@@ -181,12 +164,6 @@ public class D
 			scall.run(message);
 		}
 
-		if(!Surge.hasAmp())
-		{
-			log(C.RED + "React", C.YELLOW + message);
-			return;
-		}
-
 		log(C.RED + "React", C.YELLOW + message);
 	}
 
@@ -195,12 +172,6 @@ public class D
 		if(scall != null)
 		{
 			scall.run(message);
-		}
-
-		if(!Surge.hasAmp())
-		{
-			log(C.RED + "React", C.RED + message);
-			return;
 		}
 
 		log(C.RED + "React", C.RED + message);

@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 import org.bukkit.Bukkit;
 
 import com.volmit.react.Config;
-import com.volmit.react.Main;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.api.BStats;
 import com.volmit.react.api.SampledType;
 import com.volmit.react.api.Unused;
@@ -25,7 +25,7 @@ public class MetricsController extends Controller
 	@Override
 	public void start()
 	{
-		stats = new BStats((Main) Bukkit.getPluginManager().getPlugin("React"));
+		stats = new BStats(ReactPlugin.i);
 
 		stats.addCustomChart(new BStats.SimplePie("max_memory", new Callable<String>()
 		{

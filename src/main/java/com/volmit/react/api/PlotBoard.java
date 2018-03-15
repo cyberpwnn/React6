@@ -1,6 +1,6 @@
 package com.volmit.react.api;
 
-import com.volmit.react.E;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.M;
@@ -151,7 +151,7 @@ public class PlotBoard
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 	}
@@ -187,7 +187,7 @@ public class PlotBoard
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 

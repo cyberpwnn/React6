@@ -5,14 +5,12 @@ import java.lang.reflect.Field;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
-import com.volmit.react.E;
-import com.volmit.react.Main;
 import com.volmit.react.React;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
 import com.volmit.react.api.ISampler;
 import com.volmit.react.api.SampledType;
-import com.volmit.react.sampler.SampleAsyncQueue;
 import com.volmit.react.sampler.SampleCPU;
 import com.volmit.react.sampler.SampleChunkTime;
 import com.volmit.react.sampler.SampleChunksLoaded;
@@ -46,22 +44,22 @@ import com.volmit.react.sampler.SampleRedstonePerSecond;
 import com.volmit.react.sampler.SampleRedstonePerTick;
 import com.volmit.react.sampler.SampleRedstoneTickTime;
 import com.volmit.react.sampler.SampleRedstoneTickUtilization;
-import com.volmit.react.sampler.SampleSyncQueue;
 import com.volmit.react.sampler.SampleTickTime;
 import com.volmit.react.sampler.SampleTickUtilization;
 import com.volmit.react.sampler.SampleTicksPerSecond;
 import com.volmit.react.sampler.SampleTileDroppedTicks;
 import com.volmit.react.sampler.SampleTileTime;
 import com.volmit.react.sampler.SampleTileTimeLock;
+import com.volmit.react.util.A;
 import com.volmit.react.util.AsyncTick;
 import com.volmit.react.util.Control;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.D;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.I;
 import com.volmit.react.util.IController;
-import com.volmit.react.util.IMasterTickComponent;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.SuperSampler;
 import com.volmit.react.util.TICK;
@@ -69,7 +67,7 @@ import com.volmit.react.util.TaskLater;
 import com.volmit.react.util.TimingsReport;
 
 @AsyncTick
-public class SampleController extends Controller implements IMasterTickComponent
+public class SampleController extends Controller
 {
 	private GMap<String, ISampler> samplers;
 	private int cd;
@@ -80,6 +78,7 @@ public class SampleController extends Controller implements IMasterTickComponent
 	public static double totalTime = 0;
 	public static double totalTaskTime = 0;
 	public static TimingsReport t = null;
+	private SuperSampler ss;
 
 	@Override
 	public void dump(JSONObject object)
@@ -104,6 +103,8 @@ public class SampleController extends Controller implements IMasterTickComponent
 		samplers = new GMap<String, ISampler>();
 		constructSamplers();
 		cd = 4;
+		ss = new SuperSampler();
+		ss.start();
 	}
 
 	public void construct()
@@ -121,7 +122,7 @@ public class SampleController extends Controller implements IMasterTickComponent
 
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 				}
 			}
 		}
@@ -149,7 +150,6 @@ public class SampleController extends Controller implements IMasterTickComponent
 
 	private void constructSamplers()
 	{
-		registerSampler(new SampleAsyncQueue());
 		registerSampler(new SampleChunksLoaded());
 		registerSampler(new SampleChunksLoadedPerSecond());
 		registerSampler(new SampleChunkTime());
@@ -183,7 +183,6 @@ public class SampleController extends Controller implements IMasterTickComponent
 		registerSampler(new SampleRedstonePerTick());
 		registerSampler(new SampleRedstoneTickTime());
 		registerSampler(new SampleRedstoneTickUtilization());
-		registerSampler(new SampleSyncQueue());
 		registerSampler(new SampleTicksPerSecond());
 		registerSampler(new SampleTickTime());
 		registerSampler(new SampleTickUtilization());
@@ -202,14 +201,12 @@ public class SampleController extends Controller implements IMasterTickComponent
 	public void start()
 	{
 		Surge.register(this);
-		Surge.registerTicked(this);
 	}
 
 	@Override
 	public void stop()
 	{
 		Surge.unregister(this);
-		Surge.unregisterTicked(this);
 	}
 
 	@Override
@@ -229,7 +226,7 @@ public class SampleController extends Controller implements IMasterTickComponent
 			if(sct > 20)
 			{
 				D.w("Super Sampler did not start correctly. Resetting");
-				Main.reload();
+				ReactPlugin.reload();
 			}
 		}
 
@@ -254,17 +251,24 @@ public class SampleController extends Controller implements IMasterTickComponent
 
 		totalTime = nsv;
 		totalTaskTime = msu;
+
+		new A()
+		{
+			@Override
+			public void run()
+			{
+				onTickAsync();
+			}
+		};
 	}
 
 	public SuperSampler getSuperSampler()
 	{
-		return Main.getSuperSampler();
+		return ss;
 	}
 
-	@Override
-	public void onTick()
+	public void onTickAsync()
 	{
-
 		if(TICK.tick < 2)
 		{
 			return;
@@ -288,15 +292,9 @@ public class SampleController extends Controller implements IMasterTickComponent
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
-	}
-
-	@Override
-	public String getTickName()
-	{
-		return "Sampler"; //$NON-NLS-1$
 	}
 
 	public GMap<String, ISampler> getSamplers()
@@ -306,7 +304,7 @@ public class SampleController extends Controller implements IMasterTickComponent
 
 	public SuperSampler getSs()
 	{
-		return Main.getSuperSampler();
+		return ss;
 	}
 
 	public int getCd()

@@ -11,12 +11,12 @@ import org.bukkit.event.world.WorldUnloadEvent;
 import org.spigotmc.TickLimiter;
 
 import com.volmit.react.Config;
-import com.volmit.react.E;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Capability;
 import com.volmit.react.api.Gate;
 import com.volmit.react.api.SpecializedTickLimiter;
 import com.volmit.react.util.Controller;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.NMSX;
@@ -115,7 +115,7 @@ public class SmearTickController extends Controller
 
 		catch(Throwable e1)
 		{
-			E.t(e1);
+			Ex.t(e1);
 		}
 	}
 
@@ -399,7 +399,7 @@ public class SmearTickController extends Controller
 
 			catch(Throwable ex)
 			{
-				E.t(ex);
+				Ex.t(ex);
 			}
 		}
 

@@ -9,8 +9,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
 
-import com.volmit.react.E;
-
 /**
  * Colors
  *
@@ -417,7 +415,7 @@ public enum C
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 			return C.WHITE;
 		}
 	}
@@ -442,7 +440,7 @@ public enum C
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 			return C.WHITE;
 		}
 	}

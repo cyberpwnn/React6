@@ -9,11 +9,9 @@ import com.volmit.react.api.IFix;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.C;
 import com.volmit.react.util.GList;
 
-@Anchor(0)
 public class CommandFix extends ReactCommand
 {
 	public CommandFix()

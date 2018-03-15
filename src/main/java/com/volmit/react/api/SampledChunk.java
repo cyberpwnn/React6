@@ -2,7 +2,7 @@ package com.volmit.react.api;
 
 import org.bukkit.Chunk;
 
-import com.volmit.react.E;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GMap;
 
 public class SampledChunk
@@ -35,7 +35,7 @@ public class SampledChunk
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 

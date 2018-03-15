@@ -2,8 +2,6 @@ package com.volmit.react.util;
 
 import org.bukkit.entity.Player;
 
-import com.volmit.react.E;
-
 public class Title
 {
 	private String title;
@@ -57,7 +55,7 @@ public class Title
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 

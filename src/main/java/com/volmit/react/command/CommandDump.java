@@ -5,7 +5,6 @@ import java.lang.reflect.Field;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
-import com.volmit.react.E;
 import com.volmit.react.React;
 import com.volmit.react.api.Capability;
 import com.volmit.react.api.Gate;
@@ -13,9 +12,9 @@ import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
 import com.volmit.react.util.A;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Control;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.I;
@@ -24,7 +23,6 @@ import com.volmit.react.util.JSONArray;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.Paste;
 
-@Anchor(0)
 public class CommandDump extends ReactCommand
 {
 	public CommandDump()
@@ -63,7 +61,7 @@ public class CommandDump extends ReactCommand
 
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 				}
 			}
 		}
@@ -142,7 +140,7 @@ public class CommandDump extends ReactCommand
 
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 					Gate.msgError(sender, "Failed to paste.");
 				}
 			}

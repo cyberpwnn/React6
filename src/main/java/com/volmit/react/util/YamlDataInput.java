@@ -5,8 +5,6 @@ import java.io.File;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import com.volmit.react.E;
-
 public class YamlDataInput implements IDataInput
 {
 	@Override
@@ -23,7 +21,7 @@ public class YamlDataInput implements IDataInput
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		return d;

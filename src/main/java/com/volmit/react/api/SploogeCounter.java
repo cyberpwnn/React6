@@ -6,9 +6,9 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.util.Vector;
 
-import com.volmit.react.E;
 import com.volmit.react.util.A;
 import com.volmit.react.util.Cuboid;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GSet;
 import com.volmit.react.util.S;
@@ -58,7 +58,7 @@ public abstract class SploogeCounter
 
 					catch(Throwable e)
 					{
-						E.t(e);
+						Ex.t(e);
 					}
 				}
 

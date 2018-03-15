@@ -9,6 +9,7 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketEvent;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.Surge;
 import com.volmit.react.util.Average;
 import com.volmit.react.util.GBiset;
@@ -38,7 +39,7 @@ public class ProtocolAdapter implements Listener
 
 	private void trackPing()
 	{
-		ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(Surge.getAmp().getPlugin(), PacketType.Play.Server.KEEP_ALIVE)
+		ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(ReactPlugin.i, PacketType.Play.Server.KEEP_ALIVE)
 		{
 			@Override
 			public void onPacketReceiving(PacketEvent e)
@@ -54,7 +55,7 @@ public class ProtocolAdapter implements Listener
 			}
 		});
 
-		ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(Surge.getAmp().getPlugin(), PacketType.Play.Client.KEEP_ALIVE)
+		ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(ReactPlugin.i, PacketType.Play.Client.KEEP_ALIVE)
 		{
 			@Override
 			public void onPacketReceiving(PacketEvent e)
@@ -98,7 +99,7 @@ public class ProtocolAdapter implements Listener
 	public void stop()
 	{
 		Surge.unregister(this);
-		ProtocolLibrary.getProtocolManager().removePacketListeners(Surge.getAmp().getPluginInstance());
+		ProtocolLibrary.getProtocolManager().removePacketListeners(ReactPlugin.i);
 	}
 
 	public double getAvgPing()

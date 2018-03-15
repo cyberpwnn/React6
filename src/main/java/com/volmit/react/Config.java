@@ -5,14 +5,11 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 import org.bukkit.World;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import com.volmit.react.api.Clip;
 import com.volmit.react.api.Experimental;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.Injection;
 import com.volmit.react.api.InjectionMethod;
 import com.volmit.react.api.Key;
@@ -20,13 +17,11 @@ import com.volmit.react.api.WorldConfig;
 import com.volmit.react.util.D;
 import com.volmit.react.util.DataCluster;
 import com.volmit.react.util.DynamicConfiguration;
-import com.volmit.react.util.DynamicTracker;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
-import com.volmit.react.util.GSound;
 import com.volmit.react.util.M;
-import com.volmit.react.util.MSound;
 import com.volmit.react.util.PoolCount;
 import com.volmit.react.util.PoolDescriber;
 import com.volmit.react.util.PoolNanoThrottle;
@@ -517,9 +512,6 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean FAST_PING = true;
 
-	private static boolean hrld = false;
-	private static boolean rns = false;
-	private static boolean rrl = false;
 	private static DataCluster defaultMain;
 	private static DataCluster defaultExp;
 
@@ -538,45 +530,13 @@ public class Config
 
 	public static void doSave() throws IllegalArgumentException, IllegalAccessException
 	{
-		Plugin main = Surge.getAmp().getPluginInstance();
+		Plugin main = ReactPlugin.i;
 		onRead(main);
 		File fConfig = new File(main.getDataFolder(), "config.yml"); //$NON-NLS-1$
 		File fConfigExperimental = new File(main.getDataFolder(), "config-experimental.yml"); //$NON-NLS-1$
 		new YamlDataOutput().write(defaultConfig(false), fConfig);
 		new YamlDataOutput().write(defaultConfig(true), fConfigExperimental);
 		onRead(main);
-	}
-
-	@DynamicTracker
-	public static void doTrack(Plugin main)
-	{
-		File fConfig = new File(main.getDataFolder(), "config.yml"); //$NON-NLS-1$
-		File fConfigExperimental = new File(main.getDataFolder(), "config-experimental.yml"); //$NON-NLS-1$
-
-		Runnable r = new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				Surge.getHotloadManager().untrack(fConfig);
-				Surge.getHotloadManager().untrack(fConfigExperimental);
-				onRead(main);
-				doTrack(main);
-
-				for(CommandSender i : Gate.broadcastReactUsers())
-				{
-					Gate.msgSuccess(i, "Configuration Reloaded (changes detected)");
-
-					if(i instanceof Player)
-					{
-						new GSound(MSound.LAVA_POP.bukkitSound(), 0.5f, 1.9f).play((Player) i);
-					}
-				}
-			}
-		};
-
-		Surge.getHotloadManager().track(fConfig, r);
-		Surge.getHotloadManager().track(fConfigExperimental, r);
 	}
 
 	@RawEvent
@@ -592,7 +552,7 @@ public class Config
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		try
@@ -602,7 +562,7 @@ public class Config
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 
@@ -614,30 +574,6 @@ public class Config
 		}
 
 		new YamlDataOutput().write(read(new YamlDataInput().read(in), experimental), in);
-
-		try
-		{
-			if(hrld)
-			{
-				if(rrl)
-				{
-					Main.reload();
-					hrld = false;
-				}
-
-				else if(rns)
-				{
-					Main.requestResetNanos();
-				}
-			}
-		}
-
-		catch(Throwable e)
-		{
-			E.t(e);
-		}
-
-		hrld = true;
 	}
 
 	public static WorldConfig getWorldConfig(World w)
@@ -648,15 +584,6 @@ public class Config
 			wc.load(w);
 			worldConfigs.put(w, wc);
 			wc.save(w);
-
-			Surge.getHotloadManager().track(wc.getConfigFile(w), new Runnable()
-			{
-				@Override
-				public void run()
-				{
-					wc.load(w);
-				}
-			});
 		}
 
 		return worldConfigs.get(w);
@@ -669,7 +596,6 @@ public class Config
 			return;
 		}
 
-		Surge.getHotloadManager().untrack(worldConfigs.get(w).getConfigFile(w));
 		worldConfigs.get(w).save(w);
 		worldConfigs.remove(w);
 	}
@@ -738,7 +664,7 @@ public class Config
 
 							catch(Throwable e)
 							{
-								E.t(e);
+								Ex.t(e);
 							}
 						}
 
@@ -772,10 +698,7 @@ public class Config
 			}
 		}
 
-		if(Surge.hasAmp())
-		{
-			React.instance.entityCullController.repopulateRules();
-		}
+		React.instance.entityCullController.repopulateRules();
 
 		return cc;
 	}
@@ -1014,7 +937,7 @@ public class Config
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 }

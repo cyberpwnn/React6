@@ -11,11 +11,9 @@ import com.volmit.react.api.IActionSource;
 import com.volmit.react.api.ISelector;
 import com.volmit.react.api.SelectorPosition;
 import com.volmit.react.util.AccessCallback;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.F;
 import com.volmit.react.util.FinalInteger;
 
-@Anchor(1)
 public class ActionUnlockRedstone extends Action
 {
 	private int lcd;

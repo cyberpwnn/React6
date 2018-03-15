@@ -3,8 +3,6 @@ package com.volmit.react.util;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import com.volmit.react.E;
-
 public class PacketUtil
 {
 	public enum V
@@ -61,7 +59,7 @@ public class PacketUtil
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 
@@ -79,7 +77,7 @@ public class PacketUtil
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 
@@ -97,7 +95,7 @@ public class PacketUtil
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 }

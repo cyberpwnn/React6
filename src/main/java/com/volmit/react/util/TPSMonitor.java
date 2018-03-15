@@ -1,6 +1,5 @@
 package com.volmit.react.util;
 
-import com.volmit.react.E;
 import com.volmit.react.Surge;
 import com.volmit.react.controller.CrashController;
 
@@ -21,12 +20,10 @@ public abstract class TPSMonitor extends Thread
 	private MemoryMonitor memoryMonitor;
 	private WorldMonitor worldMonitor;
 	private long lt = 0;
-	private CoreTickThread ctt;
 
-	public TPSMonitor(MemoryMonitor memoryMonitor, WorldMonitor worldMonitor, CoreTickThread c)
+	public TPSMonitor(MemoryMonitor memoryMonitor, WorldMonitor worldMonitor)
 	{
 		lmsx = 0;
-		this.ctt = c;
 		this.memoryMonitor = memoryMonitor;
 		this.worldMonitor = worldMonitor;
 		setName("React Monitor");
@@ -109,7 +106,7 @@ public abstract class TPSMonitor extends Thread
 
 					catch(Throwable e)
 					{
-						E.t(e);
+						Ex.t(e);
 					}
 				}
 
@@ -128,13 +125,12 @@ public abstract class TPSMonitor extends Thread
 					}
 
 					worldMonitor.run();
-					ctt.run();
 				}
 			}
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 
 			try

@@ -17,7 +17,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredListener;
 
-import com.volmit.react.E;
+import com.volmit.react.util.Ex;
 
 public class PluginSelfDeleter extends Thread
 {
@@ -69,7 +69,7 @@ public class PluginSelfDeleter extends Thread
 
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 					reloadlisteners = true;
 				}
 
@@ -83,7 +83,7 @@ public class PluginSelfDeleter extends Thread
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 				return;
 			}
 		}
@@ -143,7 +143,7 @@ public class PluginSelfDeleter extends Thread
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 

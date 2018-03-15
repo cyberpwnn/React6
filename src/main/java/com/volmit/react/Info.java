@@ -249,8 +249,6 @@ public class Info
 	public static String SAMPLER_ALLOCMEM = Lang.getString("sampler.name.allocated-memory"); //$NON-NLS-1$
 	public static String SAMPLER_MAHS = Lang.getString("sampler.name.memory-allocated-per-second"); //$NON-NLS-1$
 	public static String SAMPLER_CHK = Lang.getString("sampler.name.loaded-chunks"); //$NON-NLS-1$
-	public static String SAMPLER_ATASK = Lang.getString("sampler.name.async-queue"); //$NON-NLS-1$
-	public static String SAMPLER_STASK = Lang.getString("sampler.name.sync-queue"); //$NON-NLS-1$
 	public static String SAMPLER_CHK_TIME = Lang.getString("sampler.name.chunk-time"); //$NON-NLS-1$
 	public static String SAMPLER_EXPLOSION_TIME = Lang.getString("command.explosion-ms"); //$NON-NLS-1$
 	public static String SAMPLER_GROWTH_TIME = Lang.getString("command.growth-ms"); //$NON-NLS-1$

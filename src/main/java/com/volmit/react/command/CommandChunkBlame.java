@@ -11,13 +11,11 @@ import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
 import com.volmit.react.util.A;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.C;
 import com.volmit.react.util.F;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.S;
 
-@Anchor(0)
 public class CommandChunkBlame extends ReactCommand
 {
 	public CommandChunkBlame()

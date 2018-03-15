@@ -17,8 +17,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.material.MaterialData;
 
-import com.volmit.react.E;
-
 /**
  * Cuboids
  *
@@ -160,7 +158,7 @@ public class Cuboid implements Iterable<Block>, Cloneable, ConfigurationSerializ
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		return entities;

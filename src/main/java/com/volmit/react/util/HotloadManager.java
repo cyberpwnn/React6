@@ -2,9 +2,7 @@ package com.volmit.react.util;
 
 import java.io.File;
 
-import com.volmit.react.E;
-
-public class HotloadManager implements IMasterTickComponent
+public class HotloadManager
 {
 	private GMap<File, Long> filemods;
 	private GMap<File, Long> filesizes;
@@ -39,7 +37,6 @@ public class HotloadManager implements IMasterTickComponent
 		fileacts.clear();
 	}
 
-	@Override
 	public void onTick()
 	{
 		if(TICK.tick % 20 == 0)
@@ -73,14 +70,13 @@ public class HotloadManager implements IMasterTickComponent
 
 					catch(Throwable e)
 					{
-						E.t(e);
+						Ex.t(e);
 					}
 				}
 			}
 		};
 	}
 
-	@Override
 	public String getTickName()
 	{
 		return "hotloadmgr";

@@ -3,13 +3,11 @@ package com.volmit.react.api;
 import java.awt.Color;
 import java.util.UUID;
 
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.Average;
 import com.volmit.react.util.F;
 import com.volmit.react.util.M;
 import com.volmit.react.util.Platform;
 
-@Anchor(127)
 public class GraphCPUArc extends NormalGraph implements IGraph
 {
 	private byte fontColor;

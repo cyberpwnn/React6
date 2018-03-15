@@ -9,7 +9,7 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.volmit.react.E;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GSet;
 import com.volmit.react.util.W;
 
@@ -128,7 +128,7 @@ public class SelectorPosition extends Selector
 
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 
 					throw new SelectorParseException("Unable to parse: " + input);
 				}
@@ -182,7 +182,7 @@ public class SelectorPosition extends Selector
 
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 					throw new SelectorParseException("Unable to parse: " + input);
 				}
 			}

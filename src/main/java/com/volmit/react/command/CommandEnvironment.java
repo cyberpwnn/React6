@@ -5,20 +5,18 @@ import java.io.File;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
-import com.volmit.react.E;
 import com.volmit.react.Info;
-import com.volmit.react.Surge;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
 import com.volmit.react.util.Amounts;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.C;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
 import com.volmit.react.util.Platform;
 
-@Anchor(0)
 public class CommandEnvironment extends ReactCommand
 {
 	public CommandEnvironment()
@@ -35,7 +33,7 @@ public class CommandEnvironment extends ReactCommand
 	public void fire(CommandSender sender, String[] args)
 	{
 		sender.sendMessage(Gate.header("Environment", C.AQUA));
-		sender.sendMessage(ChatColor.GREEN + "Version: " + ChatColor.WHITE + "v" + Surge.getAmp().getPluginInstance().getDescription().getVersion());
+		sender.sendMessage(ChatColor.GREEN + "Version: " + ChatColor.WHITE + "v" + ReactPlugin.i.getDescription().getVersion());
 		sender.sendMessage(ChatColor.GREEN + "Distro: " + ChatColor.WHITE + "Production");
 		sender.sendMessage(ChatColor.GREEN + "Operating System: " + ChatColor.WHITE + Platform.getName() + " " + ChatColor.GRAY + "(" + Platform.getVersion() + ")");
 		sender.sendMessage(ChatColor.GREEN + "Java: " + ChatColor.WHITE + Platform.ENVIRONMENT.getJavaVendor() + " " + ChatColor.GRAY + "(" + Platform.ENVIRONMENT.getJavaVersion() + ")");
@@ -66,7 +64,7 @@ public class CommandEnvironment extends ReactCommand
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 
 			sender.sendMessage(ChatColor.GREEN + i.toString() + ": " + ChatColor.WHITE + F.memSize(Platform.STORAGE.getTotalSpace(i)) + ChatColor.GRAY + " (" + F.memSize(Platform.STORAGE.getUsedSpace(i)) + " / " + F.memSize(Platform.STORAGE.getTotalSpace(i)) + ")");

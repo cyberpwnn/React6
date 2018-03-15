@@ -9,10 +9,8 @@ import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.P;
 
-@Anchor(0)
 public class CommandRevoke extends ReactCommand
 {
 	public CommandRevoke()

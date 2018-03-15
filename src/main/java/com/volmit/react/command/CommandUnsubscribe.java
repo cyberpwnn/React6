@@ -3,7 +3,6 @@ package com.volmit.react.command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.React;
 import com.volmit.react.api.Gate;
@@ -11,9 +10,8 @@ import com.volmit.react.api.Note;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
-import com.volmit.react.util.Anchor;
+import com.volmit.react.util.Ex;
 
-@Anchor(0)
 public class CommandUnsubscribe extends ReactCommand
 {
 	public CommandUnsubscribe()
@@ -59,7 +57,7 @@ public class CommandUnsubscribe extends ReactCommand
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 			Gate.msgError(player, "Unknown channel");
 		}
 	}

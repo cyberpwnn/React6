@@ -10,9 +10,7 @@ import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
-import com.volmit.react.util.Anchor;
 
-@Anchor(0)
 public class CommandMonitor extends ReactCommand
 {
 	public CommandMonitor()

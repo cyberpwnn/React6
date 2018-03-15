@@ -6,7 +6,7 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.events.PacketOutputHandler;
-import com.volmit.react.Surge;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.util.GMap;
 
 public class PacketStreamHandler implements PacketOutputHandler
@@ -23,7 +23,7 @@ public class PacketStreamHandler implements PacketOutputHandler
 	@Override
 	public Plugin getPlugin()
 	{
-		return Surge.getAmp().getPlugin();
+		return ReactPlugin.i;
 	}
 
 	@Override

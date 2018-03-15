@@ -13,11 +13,9 @@ import com.volmit.react.api.IActionSource;
 import com.volmit.react.api.ISelector;
 import com.volmit.react.api.SelectorPosition;
 import com.volmit.react.util.AccessCallback;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.Callback;
 import com.volmit.react.util.F;
 
-@Anchor(1)
 public class ActionFixLighting extends Action
 {
 	public ActionFixLighting()

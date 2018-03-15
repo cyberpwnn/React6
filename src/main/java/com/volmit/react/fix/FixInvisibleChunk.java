@@ -11,10 +11,8 @@ import com.volmit.react.api.Capability;
 import com.volmit.react.api.Gate;
 import com.volmit.react.api.PlayerActionSource;
 import com.volmit.react.api.SelectorPosition;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.TaskLater;
 
-@Anchor(111)
 public class FixInvisibleChunk extends Fix implements Listener
 {
 	boolean running;

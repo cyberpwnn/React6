@@ -7,11 +7,11 @@ import java.util.List;
 import org.bukkit.World;
 
 import com.volmit.react.Config;
-import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.Surge;
 import com.volmit.react.util.ConfigurationDataInput;
 import com.volmit.react.util.ConfigurationDataOutput;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.IConfigurable;
 import com.volmit.react.util.Key;
@@ -58,7 +58,7 @@ public class WorldConfig implements IConfigurable
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 
@@ -76,7 +76,7 @@ public class WorldConfig implements IConfigurable
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 }

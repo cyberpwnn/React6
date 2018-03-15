@@ -1,12 +1,10 @@
 package com.volmit.react.api;
 
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.Average;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.M;
 
-@Anchor(127)
 public class GraphSampleLine extends NormalGraph implements IGraph
 {
 	private double lx;

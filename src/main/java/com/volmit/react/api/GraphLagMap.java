@@ -11,9 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import com.volmit.react.controller.EventController;
-import com.volmit.react.util.Anchor;
 
-@Anchor(127)
 public class GraphLagMap extends Graph2D
 {
 	private int grid;

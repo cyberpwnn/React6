@@ -1,6 +1,6 @@
 package com.volmit.react.util;
 
-import com.volmit.react.Surge;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.controller.SampleController;
 
 public abstract class Task implements ITask, ICancellable
@@ -21,7 +21,7 @@ public abstract class Task implements ITask, ICancellable
 		setup(name, false);
 		profiler.begin();
 
-		id = Surge.getAmp().startTask(0, new Runnable()
+		id = ReactPlugin.i.startTask(0, new Runnable()
 		{
 			@Override
 			public void run()
@@ -46,7 +46,7 @@ public abstract class Task implements ITask, ICancellable
 		setup(name, true);
 		profiler.begin();
 
-		id = Surge.getAmp().startRepeatingTask(0, interval, new Runnable()
+		id = ReactPlugin.i.startRepeatingTask(0, interval, new Runnable()
 		{
 			@Override
 			public void run()
@@ -71,7 +71,7 @@ public abstract class Task implements ITask, ICancellable
 		setup(name, true);
 		profiler.begin();
 
-		id = Surge.getAmp().startRepeatingTask(0, interval, new Runnable()
+		id = ReactPlugin.i.startRepeatingTask(0, interval, new Runnable()
 		{
 			@Override
 			public void run()
@@ -112,7 +112,7 @@ public abstract class Task implements ITask, ICancellable
 	@Override
 	public void cancel()
 	{
-		Surge.getAmp().stopTask(id);
+		ReactPlugin.i.stopTask(id);
 		completed = true;
 		profiler.end();
 		activeTime += profiler.getMilliseconds();

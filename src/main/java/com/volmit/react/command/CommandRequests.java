@@ -10,10 +10,8 @@ import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
 import com.volmit.react.api.TemporaryAccessor;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.C;
 
-@Anchor(0)
 public class CommandRequests extends ReactCommand
 {
 	public CommandRequests()

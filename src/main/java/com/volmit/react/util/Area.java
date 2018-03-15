@@ -8,8 +8,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
-import com.volmit.react.E;
-
 /**
  * Used to Create an instance of a spherical area based on a central location
  * Great for efficiently checking if an entity is within a spherical area.
@@ -203,7 +201,7 @@ public class Area
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 			return new GList<Entity>().toArray(new Entity[0]);
 		}
 	}

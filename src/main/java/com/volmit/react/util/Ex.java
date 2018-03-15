@@ -1,6 +1,6 @@
-package com.volmit.react;
+package com.volmit.react.util;
 
-public class E
+public class Ex
 {
 	public static void t(Throwable e)
 	{

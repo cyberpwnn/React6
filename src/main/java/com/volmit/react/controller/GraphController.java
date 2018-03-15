@@ -241,9 +241,7 @@ public class GraphController extends Controller
 
 	public void addReact(Player p, GList<PointedGraph> pg)
 	{
-		pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.react"), g.get(SampledType.ATASK).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
-		pg.add(new PointedGraph(g.get(SampledType.ATASK), GraphSize.SQUARE));
-		pg.add(new PointedGraph(g.get(SampledType.STASK), GraphSize.SQUARE));
+		pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.react"), g.get(SampledType.REACT_TIME).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
 		pg.add(new PointedGraph(g.get(SampledType.REACT_TIME), GraphSize.SQUARE));
 		pg.add(new PointedGraph(g.get(SampledType.REACT_TASK_TIME), GraphSize.SQUARE));
 	}

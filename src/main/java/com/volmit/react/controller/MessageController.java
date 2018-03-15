@@ -2,7 +2,6 @@ package com.volmit.react.controller;
 
 import org.bukkit.entity.Player;
 
-import com.volmit.react.E;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
@@ -13,6 +12,7 @@ import com.volmit.react.api.ReactPlayer;
 import com.volmit.react.util.Callback;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.D;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.JSONObject;
 
@@ -122,7 +122,7 @@ public class MessageController extends Controller
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 

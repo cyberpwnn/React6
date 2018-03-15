@@ -2,8 +2,6 @@ package com.volmit.react.util;
 
 import java.io.File;
 
-import com.volmit.react.E;
-
 public class YamlDataOutput implements IDataOutput
 {
 	@Override
@@ -16,7 +14,7 @@ public class YamlDataOutput implements IDataOutput
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 }

@@ -1,8 +1,8 @@
 package com.volmit.react.api;
 
-import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.React;
+import com.volmit.react.util.Ex;
 
 public enum SampledType
 {
@@ -40,8 +40,6 @@ public enum SampledType
 	EXPLOSION_TIME(Info.SAMPLER_EXPLOSION_TIME),
 	GROWTH_TIME(Info.SAMPLER_GROWTH_TIME),
 	CHK(Info.SAMPLER_CHK),
-	ATASK(Info.SAMPLER_ATASK),
-	STASK(Info.SAMPLER_STASK),
 	CHKS(Info.SAMPLER_CHKS),
 	ENT(Info.SAMPLER_ENT),
 	ENTLIV(Info.SAMPLER_ENTLIV),
@@ -70,7 +68,7 @@ public enum SampledType
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 

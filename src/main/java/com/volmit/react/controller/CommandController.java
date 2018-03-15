@@ -10,7 +10,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 import com.volmit.react.Config;
-import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
@@ -49,6 +48,7 @@ import com.volmit.react.command.CommandUnsubscribe;
 import com.volmit.react.command.CommandVersion;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Controller;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.JSONObject;
@@ -246,7 +246,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 				}
 			}
 

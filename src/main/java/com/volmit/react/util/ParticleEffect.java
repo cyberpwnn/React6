@@ -16,7 +16,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-import com.volmit.react.E;
 import com.volmit.react.util.ParticleEffect.ParticleData;
 import com.volmit.react.util.ReflectionUtils.PackageType;
 
@@ -1851,7 +1850,7 @@ public enum ParticleEffect
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 
 			initialized = true;
@@ -1935,7 +1934,7 @@ public enum ParticleEffect
 			}
 			catch(Throwable ex)
 			{
-				E.t(ex);
+				Ex.t(ex);
 			}
 		}
 
@@ -1961,7 +1960,7 @@ public enum ParticleEffect
 			}
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 

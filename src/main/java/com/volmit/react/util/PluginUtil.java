@@ -19,8 +19,7 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredListener;
 
-import com.volmit.react.E;
-import com.volmit.react.Surge;
+import com.volmit.react.ReactPlugin;
 
 /*
  * #%L
@@ -348,7 +347,7 @@ public class PluginUtil
 
 	public static String getPluginFileName(String name)
 	{
-		File pluginDir = Surge.getAmp().getPluginInstance().getDataFolder().getParentFile();
+		File pluginDir = ReactPlugin.i.getDataFolder().getParentFile();
 
 		for(File f : pluginDir.listFiles())
 		{
@@ -356,7 +355,7 @@ public class PluginUtil
 			{
 				try
 				{
-					PluginDescriptionFile desc = Surge.getAmp().getPluginInstance().getPluginLoader().getPluginDescription(f);
+					PluginDescriptionFile desc = ReactPlugin.i.getPluginLoader().getPluginDescription(f);
 					if(desc.getName().equalsIgnoreCase(name))
 					{
 						return f.getName();
@@ -365,7 +364,7 @@ public class PluginUtil
 
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 				}
 			}
 		}
@@ -392,7 +391,7 @@ public class PluginUtil
 
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 				}
 			}
 		}
@@ -429,7 +428,7 @@ public class PluginUtil
 				{
 					try
 					{
-						PluginDescriptionFile desc = Surge.getAmp().getPluginInstance().getPluginLoader().getPluginDescription(f);
+						PluginDescriptionFile desc = ReactPlugin.i.getPluginLoader().getPluginDescription(f);
 						if(desc.getName().equalsIgnoreCase(name))
 						{
 							pluginFile = f;
@@ -438,7 +437,7 @@ public class PluginUtil
 					}
 					catch(Throwable e)
 					{
-						E.t(e);
+						Ex.t(e);
 						return;
 					}
 				}
@@ -451,7 +450,7 @@ public class PluginUtil
 		}
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 			return;
 		}
 
@@ -481,7 +480,7 @@ public class PluginUtil
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 			return;
 		}
 
@@ -565,7 +564,7 @@ public class PluginUtil
 				}
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 					reloadlisteners = false;
 				}
 
@@ -580,7 +579,7 @@ public class PluginUtil
 			}
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 				return;
 			}
 		}
@@ -669,7 +668,7 @@ public class PluginUtil
 				}
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 					reloadlisteners = false;
 				}
 
@@ -684,7 +683,7 @@ public class PluginUtil
 			}
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 
@@ -745,17 +744,10 @@ public class PluginUtil
 			}
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 
 		return;
 	}
-
-	public static void reloadSoft(AmpedPlugin p)
-	{
-		Bukkit.getPluginManager().disablePlugin(p);
-		Bukkit.getPluginManager().enablePlugin(p);
-	}
-
 }

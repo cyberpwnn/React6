@@ -3,7 +3,7 @@ package com.volmit.react.api;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 
-import com.volmit.react.E;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GMap;
 
 public class LagMap
@@ -47,7 +47,7 @@ public class LagMap
 
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 				}
 			}
 		}
@@ -66,7 +66,7 @@ public class LagMap
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 
 			try
@@ -79,7 +79,7 @@ public class LagMap
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 
 				if(i != null && chunks != null)
 				{

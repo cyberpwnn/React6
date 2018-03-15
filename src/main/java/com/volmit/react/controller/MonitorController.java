@@ -12,6 +12,7 @@ import com.volmit.react.Config;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Capability;
 import com.volmit.react.api.Gate;
@@ -20,13 +21,13 @@ import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactPlayer;
 import com.volmit.react.api.SampledType;
 import com.volmit.react.api.TitleMonitor;
+import com.volmit.react.util.A;
 import com.volmit.react.util.AsyncTick;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.D;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.GSound;
-import com.volmit.react.util.IMasterTickComponent;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.M;
 import com.volmit.react.util.MSound;
@@ -36,7 +37,7 @@ import com.volmit.react.util.S;
 import com.volmit.react.util.TaskLater;
 
 @AsyncTick
-public class MonitorController extends Controller implements IMasterTickComponent
+public class MonitorController extends Controller
 {
 	public static int maxCooldown = 4;
 	private TitleMonitor titleMonitor;
@@ -60,13 +61,13 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	@Override
 	public void start()
 	{
-		File f = new File(new File(Surge.getAmp().getPluginInstance().getDataFolder(), "cache"), "WIPE");
+		File f = new File(new File(ReactPlugin.i.getDataFolder(), "cache"), "WIPE");
 
 		if(f.exists())
 		{
 			f.delete();
 
-			File c = new File(Surge.getAmp().getPluginInstance().getDataFolder(), "cache");
+			File c = new File(ReactPlugin.i.getDataFolder(), "cache");
 
 			for(File i : c.listFiles())
 			{
@@ -75,7 +76,6 @@ public class MonitorController extends Controller implements IMasterTickComponen
 		}
 
 		Surge.register(this);
-		Surge.registerTicked(this);
 
 		constructMonitor();
 
@@ -164,7 +164,6 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	public void stop()
 	{
 		Surge.unregister(this);
-		Surge.unregisterTicked(this);
 
 		for(Player i : Bukkit.getOnlinePlayers())
 		{
@@ -288,7 +287,14 @@ public class MonitorController extends Controller implements IMasterTickComponen
 	@Override
 	public void tick()
 	{
-
+		new A()
+		{
+			@Override
+			public void run()
+			{
+				onTickAsync();
+			}
+		};
 	}
 
 	private void changePost(ReactPlayer i)
@@ -640,8 +646,7 @@ public class MonitorController extends Controller implements IMasterTickComponen
 		}
 	}
 
-	@Override
-	public void onTick()
+	public void onTickAsync()
 	{
 		updateActionBoard();
 
@@ -726,12 +731,6 @@ public class MonitorController extends Controller implements IMasterTickComponen
 				sb.update();
 			}
 		};
-	}
-
-	@Override
-	public String getTickName()
-	{
-		return Lang.getString("controller.action-log.monitor"); //$NON-NLS-1$
 	}
 
 	public void doLock(Player p)

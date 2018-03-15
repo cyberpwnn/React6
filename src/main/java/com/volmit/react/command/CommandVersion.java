@@ -3,15 +3,13 @@ package com.volmit.react.command;
 import org.bukkit.command.CommandSender;
 
 import com.volmit.react.Info;
-import com.volmit.react.Surge;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.C;
 
-@Anchor(0)
 public class CommandVersion extends ReactCommand
 {
 	public CommandVersion()
@@ -28,7 +26,7 @@ public class CommandVersion extends ReactCommand
 	public void fire(CommandSender sender, String[] args)
 	{
 		String vt = "";
-		String vs = Surge.getAmp().getPluginInstance().getDescription().getVersion();
+		String vs = ReactPlugin.i.getDescription().getVersion();
 
 		if(vs.contains("a"))
 		{

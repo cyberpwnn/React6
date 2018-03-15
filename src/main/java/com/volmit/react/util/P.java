@@ -15,8 +15,6 @@ import org.bukkit.inventory.InventoryView;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
-import com.volmit.react.E;
-
 /**
  * Player utils
  *
@@ -281,7 +279,7 @@ public class P
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		return -1;
@@ -305,7 +303,7 @@ public class P
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 

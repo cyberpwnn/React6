@@ -12,7 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.volmit.react.E;
 import com.volmit.react.api.Capability;
 
 public class NMSX
@@ -43,7 +42,7 @@ public class NMSX
 
 		catch(Throwable ex)
 		{
-			E.t(ex);
+			Ex.t(ex);
 		}
 	}
 
@@ -86,7 +85,7 @@ public class NMSX
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		return clazz;
@@ -101,7 +100,7 @@ public class NMSX
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		return null;
@@ -176,7 +175,7 @@ public class NMSX
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 
@@ -191,7 +190,7 @@ public class NMSX
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 
@@ -206,7 +205,7 @@ public class NMSX
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 			return null;
 		}
 	}
@@ -278,7 +277,7 @@ public class NMSX
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 
@@ -319,7 +318,7 @@ public class NMSX
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 
@@ -383,7 +382,7 @@ public class NMSX
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 
@@ -454,7 +453,7 @@ public class NMSX
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		return -1;

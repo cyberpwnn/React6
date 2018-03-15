@@ -3,7 +3,7 @@ package com.volmit.react.api;
 import java.util.Arrays;
 
 import com.volmit.react.Config;
-import com.volmit.react.E;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.M;
 
@@ -57,7 +57,7 @@ public class RAI implements IRAI
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 
@@ -79,7 +79,7 @@ public class RAI implements IRAI
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		logEvents.clear();

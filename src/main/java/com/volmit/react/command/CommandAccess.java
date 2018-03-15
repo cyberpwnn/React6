@@ -10,13 +10,11 @@ import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.F;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.GSet;
 import com.volmit.react.util.M;
 
-@Anchor(0)
 public class CommandAccess extends ReactCommand
 {
 	private GMap<Player, Long> last;

@@ -3,7 +3,6 @@ package com.volmit.react.controller;
 import org.bukkit.Chunk;
 
 import com.volmit.react.Config;
-import com.volmit.react.E;
 import com.volmit.react.action.ActionCollectGarbage;
 import com.volmit.react.action.ActionCullEntities;
 import com.volmit.react.action.ActionFixLighting;
@@ -27,6 +26,7 @@ import com.volmit.react.api.Note;
 import com.volmit.react.api.SelectorPosition;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Controller;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.GTriset;
@@ -280,7 +280,7 @@ public class ActionController extends Controller
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 

@@ -3,8 +3,6 @@ package com.volmit.react.util;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import com.volmit.react.E;
-
 public abstract class ParallelPoolManager
 {
 	private QueueMode mode;
@@ -80,7 +78,7 @@ public abstract class ParallelPoolManager
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 
@@ -173,7 +171,7 @@ public abstract class ParallelPoolManager
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 

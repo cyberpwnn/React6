@@ -5,18 +5,15 @@ import java.io.File;
 import org.bukkit.command.CommandSender;
 
 import com.volmit.react.Config;
-import com.volmit.react.E;
 import com.volmit.react.Info;
-import com.volmit.react.Main;
 import com.volmit.react.React;
-import com.volmit.react.Surge;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
-import com.volmit.react.util.Anchor;
+import com.volmit.react.util.Ex;
 
-@Anchor(0)
 public class CommandReload extends ReactCommand
 {
 	public CommandReload()
@@ -45,7 +42,7 @@ public class CommandReload extends ReactCommand
 
 				if(i.equalsIgnoreCase("-xcache"))
 				{
-					new File(new File(Surge.getAmp().getPluginInstance().getDataFolder(), "cache"), "WIPE").mkdirs();
+					new File(new File(ReactPlugin.i.getDataFolder(), "cache"), "WIPE").mkdirs();
 					Gate.msgSuccess(sender, "Cache wipe scheduled.");
 				}
 
@@ -58,11 +55,11 @@ public class CommandReload extends ReactCommand
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 
-		Main.reload();
+		ReactPlugin.reload();
 		Gate.msgSuccess(sender, "React Reloaded");
 	}
 }

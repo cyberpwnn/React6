@@ -4,12 +4,10 @@ import com.volmit.react.Lang;
 import com.volmit.react.api.IFormatter;
 import com.volmit.react.api.MSampler;
 import com.volmit.react.api.SampledType;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.Average;
 import com.volmit.react.util.C;
 import com.volmit.react.util.F;
 
-@Anchor(2)
 public class SampleTickUtilization extends MSampler
 {
 	private IFormatter formatter;

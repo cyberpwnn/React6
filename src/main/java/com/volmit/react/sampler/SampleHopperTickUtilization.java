@@ -1,16 +1,14 @@
 package com.volmit.react.sampler;
 
-import com.volmit.react.E;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
 import com.volmit.react.api.IFormatter;
 import com.volmit.react.api.MSampler;
 import com.volmit.react.api.SampledType;
-import com.volmit.react.util.Anchor;
 import com.volmit.react.util.C;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
 
-@Anchor(2)
 public class SampleHopperTickUtilization extends MSampler
 {
 	private IFormatter formatter;
@@ -48,7 +46,7 @@ public class SampleHopperTickUtilization extends MSampler
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 			setValue(0);
 		}
 	}

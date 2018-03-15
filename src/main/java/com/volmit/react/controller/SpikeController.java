@@ -2,11 +2,9 @@ package com.volmit.react.controller;
 
 import org.bukkit.plugin.Plugin;
 
-import com.volmit.react.E;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
-import com.volmit.react.Surge;
-import com.volmit.react.api.Async;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.api.Note;
 import com.volmit.react.api.Unused;
 import com.volmit.react.util.A;
@@ -15,15 +13,15 @@ import com.volmit.react.util.CPS;
 import com.volmit.react.util.Callback;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.D;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.GSet;
-import com.volmit.react.util.IMasterTickComponent;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.Task;
 
 @AsyncTick
-public class SpikeController extends Controller implements IMasterTickComponent
+public class SpikeController extends Controller
 {
 	private GMap<String, Integer> spikes = new GMap<String, Integer>();
 
@@ -43,8 +41,6 @@ public class SpikeController extends Controller implements IMasterTickComponent
 	@Override
 	public void start()
 	{
-		Surge.registerTicked(this);
-
 		new Task("waiter") //$NON-NLS-1$
 		{
 			@Override
@@ -64,7 +60,7 @@ public class SpikeController extends Controller implements IMasterTickComponent
 
 						catch(Throwable e)
 						{
-							E.t(e);
+							Ex.t(e);
 						}
 					}
 				};
@@ -75,12 +71,10 @@ public class SpikeController extends Controller implements IMasterTickComponent
 	@Override
 	public void stop()
 	{
-		Surge.unregisterTicked(this);
+
 	}
 
-	@Async
-	@Override
-	public void onTick()
+	public void onTickAsync()
 	{
 		GMap<Long, GList<StackTraceElement>> vv = React.instance.sampleController.getSuperSampler().getSpikes().copy();
 		React.instance.sampleController.getSuperSampler().getSpikes().clear();
@@ -122,23 +116,24 @@ public class SpikeController extends Controller implements IMasterTickComponent
 
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 				}
 			}
 		};
-	}
-
-	@Override
-	public String getTickName()
-	{
-		return "spike-controller"; //$NON-NLS-1$
 	}
 
 	@Unused
 	@Override
 	public void tick()
 	{
-
+		new A()
+		{
+			@Override
+			public void run()
+			{
+				onTickAsync();
+			}
+		};
 	}
 
 	public GMap<String, Integer> getSpikes()
@@ -163,12 +158,12 @@ public class SpikeController extends Controller implements IMasterTickComponent
 				{
 					for(Plugin j : CPS.identify(i.getClassName()))
 					{
-						if(j == null || Surge.getAmp().getPluginInstance() == null)
+						if(j == null || ReactPlugin.i == null)
 						{
 							continue;
 						}
 
-						if(j.equals(Surge.getAmp().getPluginInstance()))
+						if(j.equals(ReactPlugin.i))
 						{
 							continue;
 						}

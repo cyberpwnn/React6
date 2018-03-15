@@ -7,7 +7,6 @@ import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 
-import com.volmit.react.E;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.ChunkIssue;
@@ -17,13 +16,13 @@ import com.volmit.react.util.A;
 import com.volmit.react.util.AsyncTick;
 import com.volmit.react.util.Average;
 import com.volmit.react.util.Controller;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GMap;
-import com.volmit.react.util.IMasterTickComponent;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.M;
 
 @AsyncTick
-public class PhysicsController extends Controller implements IMasterTickComponent
+public class PhysicsController extends Controller
 {
 	private GMap<Chunk, SampledChunk> samples;
 	private int redstonePerTick;
@@ -46,7 +45,6 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 	{
 		samples = new GMap<Chunk, SampledChunk>();
 		Surge.register(this);
-		Surge.registerTicked(this);
 		redstonePerTick = 0;
 		redstonePerSecond = 0;
 		aRSMS = new Average(20);
@@ -104,7 +102,6 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 	public void stop()
 	{
 		Surge.unregister(this);
-		Surge.unregisterTicked(this);
 	}
 
 	@Unused
@@ -117,6 +114,14 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 		redstonePerSecond = 0;
 		flushTickList();
 
+		new A()
+		{
+			@Override
+			public void run()
+			{
+				onTickAsync();
+			}
+		};
 	}
 
 	public void onRedstone(Chunk c)
@@ -156,8 +161,7 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 		EventController.map.hit(c, issue, (double) weight);
 	}
 
-	@Override
-	public void onTick()
+	public void onTickAsync()
 	{
 		try
 		{
@@ -170,7 +174,7 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		new A()
@@ -181,12 +185,6 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 				EventController.map.pump();
 			}
 		};
-	}
-
-	@Override
-	public String getTickName()
-	{
-		return "physics-controller";
 	}
 
 	public GMap<Chunk, SampledChunk> getSamples()

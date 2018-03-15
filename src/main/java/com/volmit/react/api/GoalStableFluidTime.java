@@ -3,9 +3,9 @@ package com.volmit.react.api;
 import org.bukkit.Chunk;
 
 import com.volmit.react.Config;
-import com.volmit.react.E;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.M;
@@ -49,7 +49,7 @@ public class GoalStableFluidTime extends Goal
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 
@@ -76,7 +76,7 @@ public class GoalStableFluidTime extends Goal
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 

@@ -1,6 +1,5 @@
 package com.volmit.react;
 
-import com.volmit.react.api.AccessActionSource;
 import com.volmit.react.controller.ActionController;
 import com.volmit.react.controller.ChunkController;
 import com.volmit.react.controller.CommandController;
@@ -33,16 +32,11 @@ import com.volmit.react.controller.SmearTickController;
 import com.volmit.react.controller.SpikeController;
 import com.volmit.react.controller.WorldController;
 import com.volmit.react.util.Control;
-import com.volmit.react.util.D;
-import com.volmit.react.util.Disable;
-import com.volmit.react.util.Enable;
-import com.volmit.react.util.Instance;
 import com.volmit.react.util.Plugin;
 
 @Plugin
 public class React
 {
-	@Instance
 	public static React instance;
 
 	@Control
@@ -138,26 +132,16 @@ public class React
 	@Control
 	public FixController fixController;
 
-	@Enable
-	public void enable()
+	public React()
 	{
-		Surge.getAmp().setOnReload(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				new AccessActionSource().sendResponseActing(Lang.getString("react.reinstance-jar")); //$NON-NLS-1$
-			}
-		});
-
-		if(React.instance == null)
-		{
-			D.f(Lang.getString("react.fix-instance")); //$NON-NLS-1$
-			React.instance = this;
-		}
+		instance = this;
 	}
 
-	@Disable
+	public void enable()
+	{
+
+	}
+
 	public void disable()
 	{
 

@@ -15,7 +15,6 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 
-import com.volmit.react.E;
 import com.volmit.react.Surge;
 
 @SuppressWarnings("deprecation")
@@ -58,7 +57,7 @@ public abstract class WorldMonitor implements Listener
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 
@@ -145,7 +144,7 @@ public abstract class WorldMonitor implements Listener
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		try
@@ -160,7 +159,7 @@ public abstract class WorldMonitor implements Listener
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		try
@@ -174,7 +173,7 @@ public abstract class WorldMonitor implements Listener
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		try
@@ -189,7 +188,7 @@ public abstract class WorldMonitor implements Listener
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		try
@@ -205,7 +204,7 @@ public abstract class WorldMonitor implements Listener
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		try
@@ -225,7 +224,7 @@ public abstract class WorldMonitor implements Listener
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 
@@ -268,7 +267,7 @@ public abstract class WorldMonitor implements Listener
 
 				catch(Throwable e)
 				{
-					E.t(e);
+					Ex.t(e);
 				}
 			}
 		}

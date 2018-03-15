@@ -16,7 +16,6 @@ import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.Inventory;
 
 import com.volmit.react.Config;
-import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
@@ -25,6 +24,7 @@ import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactPlayer;
 import com.volmit.react.util.A;
 import com.volmit.react.util.Controller;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.JSONObject;
@@ -130,14 +130,14 @@ public class GlassController extends Controller
 
 								catch(Throwable e)
 								{
-									E.t(e);
+									Ex.t(e);
 								}
 							}
 						}
 
 						catch(Throwable e)
 						{
-							E.t(e);
+							Ex.t(e);
 						}
 					}
 				}

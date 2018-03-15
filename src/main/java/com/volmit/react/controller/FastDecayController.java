@@ -15,12 +15,12 @@ import org.bukkit.material.Leaves;
 import org.bukkit.util.Vector;
 
 import com.volmit.react.Config;
-import com.volmit.react.E;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
 import com.volmit.react.util.BlockFinder;
 import com.volmit.react.util.Controller;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GSound;
 import com.volmit.react.util.JSONObject;
@@ -288,7 +288,7 @@ public class FastDecayController extends Controller
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 	}
 }

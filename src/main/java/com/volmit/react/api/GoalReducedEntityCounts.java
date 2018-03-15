@@ -3,10 +3,10 @@ package com.volmit.react.api;
 import org.bukkit.Chunk;
 
 import com.volmit.react.Config;
-import com.volmit.react.E;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
 import com.volmit.react.util.Chunks;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.S;
 
 public class GoalReducedEntityCounts extends Goal
@@ -52,7 +52,7 @@ public class GoalReducedEntityCounts extends Goal
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 			return false;
 		}
 
@@ -123,7 +123,7 @@ public class GoalReducedEntityCounts extends Goal
 
 			catch(Throwable e)
 			{
-				E.t(e);
+				Ex.t(e);
 			}
 		}
 

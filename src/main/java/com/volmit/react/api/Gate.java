@@ -19,13 +19,13 @@ import org.spigotmc.SpigotWorldConfig;
 import org.spigotmc.TickLimiter;
 
 import com.volmit.react.Config;
-import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.util.A;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Callback;
+import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
@@ -139,7 +139,7 @@ public class Gate
 
 					catch(Throwable e)
 					{
-						E.t(e);
+						Ex.t(e);
 						prog.run(1.0);
 						cb.run(-1);
 						return;
@@ -181,7 +181,7 @@ public class Gate
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 		}
 
 		return null;
@@ -488,7 +488,7 @@ public class Gate
 
 		catch(Throwable e)
 		{
-			E.t(e);
+			Ex.t(e);
 			return false;
 		}
 	}

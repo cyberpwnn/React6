@@ -2,9 +2,6 @@ package com.volmit.react.api;
 
 import java.awt.image.AffineTransformOp;
 
-import com.volmit.react.util.Anchor;
-
-@Anchor(127)
 public class GraphText extends NormalGraph implements IGraph
 {
 	private String text;
