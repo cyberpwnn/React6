@@ -1,16 +1,25 @@
 package com.volmit.react;
 
+import java.io.File;
 import java.lang.reflect.Field;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.volmit.react.api.Gate;
+import com.volmit.react.api.Permissable;
 import com.volmit.react.util.Control;
 import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
+import com.volmit.react.util.HotloadManager;
 import com.volmit.react.util.IController;
-import com.volmit.react.util.PluginUtil;
+import com.volmit.react.util.P;
+import com.volmit.react.util.ParallelPoolManager;
 import com.volmit.react.util.Profiler;
+import com.volmit.react.util.S;
+import com.volmit.react.util.TICK;
 import com.volmit.react.util.Task;
 import com.volmit.react.util.TaskLater;
 
@@ -19,6 +28,8 @@ public class ReactPlugin extends JavaPlugin
 	public static ReactPlugin i;
 	private GList<IController> controllers;
 	private React react;
+	private ParallelPoolManager pool;
+	private HotloadManager mgr;
 
 	@Override
 	public void onEnable()
@@ -26,7 +37,7 @@ public class ReactPlugin extends JavaPlugin
 		controllers = new GList<IController>();
 		Surge.m();
 		i = this;
-		new TaskLater("del", 5)
+		new TaskLater("del")
 		{
 			@Override
 			public void run()
@@ -40,6 +51,17 @@ public class ReactPlugin extends JavaPlugin
 	{
 		react = new React();
 		React.instance = react;
+
+		pool = new ParallelPoolManager(1)
+		{
+			@Override
+			public long getNanoGate()
+			{
+				return 0;
+			}
+		};
+
+		S.mgr = pool;
 		Config.onRead(i);
 
 		for(Field i : React.class.getFields())
@@ -73,11 +95,39 @@ public class ReactPlugin extends JavaPlugin
 			}
 		}
 
+		mgr = new HotloadManager();
+		Runnable rl = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				for(Player i : P.onlinePlayers())
+				{
+					if(Permissable.ACCESS.has(i))
+					{
+						Gate.msgSuccess(i, "Injecting Configuration Changes");
+					}
+				}
+
+				reload();
+			}
+		};
+
+		mgr.track(new File(getDataFolder(), "config.yml"), rl);
+		mgr.track(new File(getDataFolder(), "config-experimental.yml"), rl);
+
 		new Task("controller-main.tick", 0)
 		{
 			@Override
 			public void run()
 			{
+				TICK.tick++;
+
+				if(TICK.tick % 5 == 0)
+				{
+					mgr.onTick();
+				}
+
 				for(IController i : controllers)
 				{
 					try
@@ -113,11 +163,18 @@ public class ReactPlugin extends JavaPlugin
 				e.printStackTrace();
 			}
 		}
+
+		mgr.untrackall();
+		controllers.clear();
+		pool.shutdown();
 	}
 
 	public static void reload()
 	{
-		PluginUtil.reload(i);
+		i.onDisable();
+		Bukkit.getScheduler().cancelTasks(i);
+		HandlerList.unregisterAll(i);
+		i.onEnable();
 	}
 
 	public int startTask(int delay, Runnable r)

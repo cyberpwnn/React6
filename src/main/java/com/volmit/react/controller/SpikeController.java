@@ -74,7 +74,7 @@ public class SpikeController extends Controller
 
 	}
 
-	public void onTickAsync()
+	public void onTick()
 	{
 		GMap<Long, GList<StackTraceElement>> vv = React.instance.sampleController.getSuperSampler().getSpikes().copy();
 		React.instance.sampleController.getSuperSampler().getSpikes().clear();
@@ -126,14 +126,7 @@ public class SpikeController extends Controller
 	@Override
 	public void tick()
 	{
-		new A()
-		{
-			@Override
-			public void run()
-			{
-				onTickAsync();
-			}
-		};
+		onTick();
 	}
 
 	public GMap<String, Integer> getSpikes()

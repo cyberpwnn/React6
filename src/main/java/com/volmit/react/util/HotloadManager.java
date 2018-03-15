@@ -39,11 +39,6 @@ public class HotloadManager
 
 	public void onTick()
 	{
-		if(TICK.tick % 20 == 0)
-		{
-			return;
-		}
-
 		new A()
 		{
 			@Override

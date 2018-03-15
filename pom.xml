@@ -18,7 +18,7 @@
 		<react.plugin.name>${project.name}</react.plugin.name>
 		<react.plugin.version>${project.version}</react.plugin.version>
 		<react.plugin.description>${project.description}</react.plugin.description>
-		<react.plugin.main>com.volmit.react.Main</react.plugin.main>
+		<react.plugin.main>com.volmit.react.ReactPlugin</react.plugin.main>
 		<react.plugin.authors>cyberpwn</react.plugin.authors>
 		<react.release.name>${project.name}-${project.version}</react.release.name>
 		<react.target>${project.basedir}/target</react.target>

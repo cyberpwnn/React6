@@ -207,6 +207,7 @@ public class SampleController extends Controller
 	public void stop()
 	{
 		Surge.unregister(this);
+		ss.stop();
 	}
 
 	@Override
@@ -257,7 +258,23 @@ public class SampleController extends Controller
 			@Override
 			public void run()
 			{
-				onTickAsync();
+				for(ISampler i : samplers.v())
+				{
+					try
+					{
+						if(TICK.tick % i.getInterval() == 0)
+						{
+							i.sample();
+						}
+					}
+
+					catch(Throwable e)
+					{
+						Ex.t(e);
+					}
+				}
+
+				ss.onTickAsync();
 			}
 		};
 	}
@@ -265,36 +282,6 @@ public class SampleController extends Controller
 	public SuperSampler getSuperSampler()
 	{
 		return ss;
-	}
-
-	public void onTickAsync()
-	{
-		if(TICK.tick < 2)
-		{
-			return;
-		}
-
-		if(cd > 0)
-		{
-			cd--;
-			return;
-		}
-
-		for(ISampler i : samplers.v())
-		{
-			try
-			{
-				if(TICK.tick % i.getInterval() == 0)
-				{
-					i.sample();
-				}
-			}
-
-			catch(Throwable e)
-			{
-				Ex.t(e);
-			}
-		}
 	}
 
 	public GMap<String, ISampler> getSamplers()

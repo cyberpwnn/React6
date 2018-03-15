@@ -87,10 +87,6 @@ public class CrashController extends Controller implements Runnable
 			if(M.ms() - lastTick > 7000 && !spiked)
 			{
 				spiked = true;
-				System.out.println("[React]: WARNING SERVER MAY SHUT DOWN FROM LONG LOCK");
-				System.out.println("[React]: Looking for the cause to this issue");
-				System.out.println("||| CURRENTLY LOCKED AT: ");
-
 				Plugin px = null;
 
 				for(StackTraceElement i : Surge.getServerThread().getStackTrace())
