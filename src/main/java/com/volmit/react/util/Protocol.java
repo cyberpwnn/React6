@@ -2,6 +2,8 @@ package com.volmit.react.util;
 
 import org.bukkit.Bukkit;
 
+import com.volmit.react.E;
+
 public enum Protocol
 {
 	LATEST(10000, "Latest"),
@@ -107,7 +109,7 @@ public enum Protocol
 
 		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		return false;

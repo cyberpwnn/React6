@@ -20,6 +20,8 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
+import com.volmit.react.E;
+
 /**
  * World utils
  *
@@ -380,15 +382,17 @@ public class W
 					}
 				}
 
-				catch(Exception e)
+				catch(Throwable e)
 				{
+					E.t(e);
 					return null;
 				}
 			}
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
+			E.t(e);
 			try
 			{
 				material = Material.valueOf(m.toUpperCase());
@@ -399,8 +403,9 @@ public class W
 				}
 			}
 
-			catch(Exception ex)
+			catch(Throwable ex)
 			{
+				E.t(ex);
 				return null;
 			}
 		}
@@ -410,8 +415,9 @@ public class W
 			meta = Integer.valueOf(b).byteValue();
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
+			E.t(e);
 			meta = (byte) 0;
 		}
 

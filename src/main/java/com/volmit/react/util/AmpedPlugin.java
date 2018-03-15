@@ -6,13 +6,14 @@ import java.util.UUID;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.volmit.react.E;
 import com.volmit.react.Surge;
 
 public abstract class AmpedPlugin extends JavaPlugin implements SurgePlugin, IMasterTickComponent
 {
 	private GList<IController> controllers;
 	private ParallelPoolManager pp;
-	private CoreTickThread ctt;
+	public static CoreTickThread ctt;
 	public static UUID idx;
 
 	public abstract void doScan() throws IOException, ClassNotFoundException;
@@ -42,9 +43,9 @@ public abstract class AmpedPlugin extends JavaPlugin implements SurgePlugin, IMa
 			doScan();
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 			return;
 		}
 
@@ -63,9 +64,7 @@ public abstract class AmpedPlugin extends JavaPlugin implements SurgePlugin, IMa
 		onPreInit();
 		onPostInit();
 		pp.start();
-		A.mgr = pp;
 		S.mgr = pp;
-		ctt.start();
 
 		Surge.createAmp(this).connect();
 
@@ -126,8 +125,6 @@ public abstract class AmpedPlugin extends JavaPlugin implements SurgePlugin, IMa
 		Surge.getTickComponents().clear();
 		onStop();
 		pp.shutdown();
-		ctt.interrupt();
-		ctt.r = false;
 
 		if(Surge.getAmp() != null)
 		{
@@ -202,18 +199,12 @@ public abstract class AmpedPlugin extends JavaPlugin implements SurgePlugin, IMa
 							try
 							{
 								i.interrupt();
-
-								if(i instanceof CoreTickThread)
-								{
-									((CoreTickThread) i).r = false;
-								}
-
 								i.join(100);
 							}
 
 							catch(Throwable e)
 							{
-
+								E.t(e);
 							}
 
 							if(i.isAlive())

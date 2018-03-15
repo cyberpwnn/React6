@@ -5,6 +5,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
+import com.volmit.react.E;
+
 public abstract class Server extends Thread implements IServer
 {
 	private int port;
@@ -31,9 +33,9 @@ public abstract class Server extends Thread implements IServer
 			pstart();
 		}
 
-		catch(IOException e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 			return;
 		}
 

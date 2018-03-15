@@ -15,6 +15,8 @@ import org.bukkit.inventory.InventoryView;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
+import com.volmit.react.E;
+
 /**
  * Player utils
  *
@@ -277,9 +279,9 @@ public class P
 			return (int) sef.getMethod("getTotalExperience", Player.class).invoke(null, p);
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		return -1;
@@ -301,9 +303,9 @@ public class P
 			sef.getMethod("setTotalExperience", Player.class, int.class).invoke(null, p, xp);
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 	}
 

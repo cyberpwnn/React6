@@ -3,6 +3,7 @@ package com.volmit.react.api;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.util.GList;
 
@@ -36,9 +37,9 @@ public enum Permissable
 			node = Info.CORE_REACT_DOT + s;
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 	}
 

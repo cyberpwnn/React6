@@ -15,10 +15,11 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 
+import com.volmit.react.E;
 import com.volmit.react.Surge;
 
 @SuppressWarnings("deprecation")
-public abstract class WorldMonitor extends Thread implements Listener
+public abstract class WorldMonitor implements Listener
 {
 	private boolean chunksChanged = true;
 	private boolean dropChanged = true;
@@ -40,38 +41,25 @@ public abstract class WorldMonitor extends Thread implements Listener
 	public WorldMonitor()
 	{
 		Surge.register(this);
-		setName("Surge World Monitor");
 		pending = new GList<Chunk>();
 	}
 
-	@Override
 	public void run()
 	{
-		while(!interrupted())
+		if(TICK.tick < 20)
 		{
-			try
-			{
-				sample();
-				Thread.sleep(50);
-			}
-
-			catch(InterruptedException e)
-			{
-				return;
-			}
-
-			catch(Exception e)
-			{
-
-			}
-
-			if(interrupted())
-			{
-				return;
-			}
+			return;
 		}
 
-		Surge.unregister(this);
+		try
+		{
+			sample();
+		}
+
+		catch(Throwable e)
+		{
+			E.t(e);
+		}
 	}
 
 	public abstract void updated(int totalChunks, int totalDrops, int totalTiles, int totalLiving, int totalEntities, int chunksLoaded, int chunksUnloaded);
@@ -157,7 +145,7 @@ public abstract class WorldMonitor extends Thread implements Listener
 
 		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		try
@@ -172,7 +160,7 @@ public abstract class WorldMonitor extends Thread implements Listener
 
 		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		try
@@ -186,7 +174,7 @@ public abstract class WorldMonitor extends Thread implements Listener
 
 		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		try
@@ -201,7 +189,7 @@ public abstract class WorldMonitor extends Thread implements Listener
 
 		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		try
@@ -217,7 +205,7 @@ public abstract class WorldMonitor extends Thread implements Listener
 
 		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		try
@@ -237,7 +225,7 @@ public abstract class WorldMonitor extends Thread implements Listener
 
 		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 	}
 
@@ -278,9 +266,9 @@ public abstract class WorldMonitor extends Thread implements Listener
 					}
 				}
 
-				catch(Exception e)
+				catch(Throwable e)
 				{
-
+					E.t(e);
 				}
 			}
 		}

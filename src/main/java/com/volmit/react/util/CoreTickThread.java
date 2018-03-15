@@ -1,70 +1,39 @@
 package com.volmit.react.util;
 
+import com.volmit.react.E;
 import com.volmit.react.Surge;
 
-public class CoreTickThread extends Thread
+public class CoreTickThread
 {
 	public boolean r = true;
 
 	public CoreTickThread()
 	{
-		setName("Surge Sideline");
+
 	}
 
-	@Override
 	public void run()
 	{
-		D.v("@Thread Sideline");
-
-		while(!interrupted())
+		try
 		{
-			if(!r)
+			for(IMasterTickComponent i : Surge.getAsyncTickComponents())
 			{
-				break;
-			}
-
-			if(Thread.interrupted())
-			{
-				return;
-			}
-
-			try
-			{
-				if(Thread.interrupted())
+				try
 				{
-					return;
+					i.onTick();
 				}
 
-				Thread.sleep(50);
-
-				for(IMasterTickComponent i : Surge.getAsyncTickComponents())
+				catch(Throwable e)
 				{
-					if(Thread.interrupted())
-					{
-						return;
-					}
+					E.t(e);
 
-					try
-					{
-						i.onTick();
-					}
-
-					catch(Throwable e)
-					{
-						D.f("Failed to tick coreelement " + i.getClass().getSimpleName());
-					}
 				}
 			}
+		}
 
-			catch(InterruptedException e)
-			{
-				return;
-			}
-
-			catch(Throwable e)
-			{
-
-			}
+		catch(Throwable e)
+		{
+			E.t(e);
 		}
 	}
 }

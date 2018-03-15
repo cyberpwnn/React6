@@ -3,6 +3,8 @@ package com.volmit.react.util;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import com.volmit.react.E;
+
 public class ParallelThread extends Thread
 {
 	private Queue<Execution> queue;
@@ -46,9 +48,9 @@ public class ParallelThread extends Thread
 				return;
 			}
 
-			catch(Exception e)
+			catch(Throwable e)
 			{
-
+				E.t(e);
 			}
 		}
 	}
@@ -68,9 +70,9 @@ public class ParallelThread extends Thread
 			e.run();
 		}
 
-		catch(Exception ex)
+		catch(Throwable ex)
 		{
-			ex.printStackTrace();
+			E.t(ex);
 		}
 	}
 

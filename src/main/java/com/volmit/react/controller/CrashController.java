@@ -3,6 +3,7 @@ package com.volmit.react.controller;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 
+import com.volmit.react.Config;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
 import com.volmit.react.util.C;
@@ -15,8 +16,8 @@ import com.volmit.react.util.M;
 public class CrashController extends Controller implements Runnable
 {
 	private long lastTick;
-	private Thread crashThread;
-	private int cd;
+	public static int cd;
+	public static CrashController inst = null;
 
 	@Override
 	public void dump(JSONObject object)
@@ -31,19 +32,22 @@ public class CrashController extends Controller implements Runnable
 		cd = 1200;
 		Surge.register(this);
 		lastTick = M.ms();
-		crashThread = new Thread(this, "Surge Watchdog");
 	}
 
 	@Override
 	public void stop()
 	{
 		Surge.unregister(this);
-		crashThread.interrupt();
 	}
 
 	@Override
 	public void tick()
 	{
+		if(!Config.TRACK_SERVER_LOCKS)
+		{
+			return;
+		}
+
 		lastTick = M.ms();
 
 		if(cd > 0)
@@ -53,7 +57,7 @@ public class CrashController extends Controller implements Runnable
 			if(cd == 0)
 			{
 				D.v("Watchdog Thread Started!");
-				crashThread.start();
+				inst = this;
 			}
 		}
 	}
@@ -61,6 +65,11 @@ public class CrashController extends Controller implements Runnable
 	@Override
 	public void run()
 	{
+		if(!Config.TRACK_SERVER_LOCKS)
+		{
+			return;
+		}
+
 		boolean spiked = false;
 
 		while(!Thread.interrupted())

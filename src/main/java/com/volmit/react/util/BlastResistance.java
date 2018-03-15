@@ -2,6 +2,8 @@ package com.volmit.react.util;
 
 import org.bukkit.Material;
 
+import com.volmit.react.E;
+
 /**
  * Blast resistance
  *
@@ -182,9 +184,9 @@ public enum BlastResistance
 			return valueOf(m.name()).getBlastResistance();
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		return 0;

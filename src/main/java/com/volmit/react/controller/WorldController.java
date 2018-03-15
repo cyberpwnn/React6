@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.WorldUnloadEvent;
 
 import com.volmit.react.Config;
+import com.volmit.react.E;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.ActionType;
@@ -69,9 +70,9 @@ public class WorldController extends Controller
 				React.instance.actionController.fire(ActionType.PURGE_CHUNKS, new RAIActionSource());
 			}
 
-			catch(Exception e)
+			catch(Throwable e)
 			{
-
+				E.t(e);
 			}
 		}
 	}

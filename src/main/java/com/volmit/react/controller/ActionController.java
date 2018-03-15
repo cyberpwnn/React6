@@ -3,6 +3,7 @@ package com.volmit.react.controller;
 import org.bukkit.Chunk;
 
 import com.volmit.react.Config;
+import com.volmit.react.E;
 import com.volmit.react.action.ActionCollectGarbage;
 import com.volmit.react.action.ActionCullEntities;
 import com.volmit.react.action.ActionFixLighting;
@@ -277,9 +278,9 @@ public class ActionController extends Controller
 				}
 			}
 
-			catch(Exception e)
+			catch(Throwable e)
 			{
-
+				E.t(e);
 			}
 		}
 

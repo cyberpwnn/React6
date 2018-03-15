@@ -1,8 +1,9 @@
 package com.volmit.react.util;
 
-import java.util.ConcurrentModificationException;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
+import com.volmit.react.E;
 
 public abstract class ParallelPoolManager
 {
@@ -77,9 +78,9 @@ public abstract class ParallelPoolManager
 				Thread.sleep(1);
 			}
 
-			catch(InterruptedException e)
+			catch(Throwable e)
 			{
-
+				E.t(e);
 			}
 		}
 
@@ -170,9 +171,9 @@ public abstract class ParallelPoolManager
 			getAverageInfo().setUtilization(utilization);
 		}
 
-		catch(ConcurrentModificationException e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 	}
 
@@ -215,12 +216,7 @@ public abstract class ParallelPoolManager
 
 	private void createThreads(int count)
 	{
-		for(int i = 0; i < count; i++)
-		{
-			ParallelThread p = new ParallelThread(key, i);
-			p.start();
-			threads.add(p);
-		}
+
 	}
 
 	public QueueMode getMode()

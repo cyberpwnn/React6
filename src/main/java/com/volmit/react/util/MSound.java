@@ -2,6 +2,8 @@ package com.volmit.react.util;
 
 import org.bukkit.Sound;
 
+import com.volmit.react.E;
+
 /**
  * Version independent spigot sounds.
  */
@@ -224,8 +226,9 @@ public enum MSound
 			return resolvedSound = Sound.valueOf(post19sound);
 		}
 
-		catch(IllegalArgumentException e)
+		catch(Throwable e)
 		{
+			E.t(e);
 			return resolvedSound = Sound.valueOf(pre19sound);
 		}
 	}

@@ -5,6 +5,7 @@ import java.io.File;
 import org.bukkit.command.CommandSender;
 
 import com.volmit.react.Config;
+import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.Main;
 import com.volmit.react.React;
@@ -57,7 +58,7 @@ public class CommandReload extends ReactCommand
 
 			catch(Throwable e)
 			{
-				e.printStackTrace();
+				E.t(e);
 			}
 		}
 

@@ -11,6 +11,7 @@ import org.bukkit.event.world.WorldUnloadEvent;
 import org.spigotmc.TickLimiter;
 
 import com.volmit.react.Config;
+import com.volmit.react.E;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Capability;
 import com.volmit.react.api.Gate;
@@ -50,9 +51,9 @@ public class SmearTickController extends Controller
 				witholdWorld(i);
 			}
 
-			catch(Exception e)
+			catch(Throwable e)
 			{
-				e.printStackTrace();
+
 			}
 		}
 	}
@@ -73,9 +74,9 @@ public class SmearTickController extends Controller
 				releaseWorld(i);
 			}
 
-			catch(Exception e)
+			catch(Throwable e)
 			{
-				e.printStackTrace();
+
 			}
 		}
 	}
@@ -93,9 +94,9 @@ public class SmearTickController extends Controller
 			witholdWorld(e.getWorld());
 		}
 
-		catch(Exception e1)
+		catch(Throwable ex)
 		{
-			e1.printStackTrace();
+
 		}
 	}
 
@@ -112,9 +113,9 @@ public class SmearTickController extends Controller
 			releaseWorld(e.getWorld());
 		}
 
-		catch(Exception e1)
+		catch(Throwable e1)
 		{
-			e1.printStackTrace();
+			E.t(e1);
 		}
 	}
 
@@ -396,9 +397,9 @@ public class SmearTickController extends Controller
 				return field;
 			}
 
-			catch(NoSuchFieldException ex)
+			catch(Throwable ex)
 			{
-
+				E.t(ex);
 			}
 		}
 

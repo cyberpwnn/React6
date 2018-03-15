@@ -2,6 +2,7 @@ package com.volmit.react.controller;
 
 import org.bukkit.entity.Player;
 
+import com.volmit.react.E;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
@@ -119,9 +120,9 @@ public class MessageController extends Controller
 				notes.add(Note.valueOf(i));
 			}
 
-			catch(Exception e)
+			catch(Throwable e)
 			{
-
+				E.t(e);
 			}
 		}
 

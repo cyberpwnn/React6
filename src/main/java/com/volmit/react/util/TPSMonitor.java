@@ -1,6 +1,8 @@
 package com.volmit.react.util;
 
+import com.volmit.react.E;
 import com.volmit.react.Surge;
+import com.volmit.react.controller.CrashController;
 
 public abstract class TPSMonitor extends Thread
 {
@@ -16,11 +18,18 @@ public abstract class TPSMonitor extends Thread
 	private boolean frozen;
 	private StackTraceElement[] lockedStack;
 	private double lmsx;
+	private MemoryMonitor memoryMonitor;
+	private WorldMonitor worldMonitor;
+	private long lt = 0;
+	private CoreTickThread ctt;
 
-	public TPSMonitor()
+	public TPSMonitor(MemoryMonitor memoryMonitor, WorldMonitor worldMonitor, CoreTickThread c)
 	{
 		lmsx = 0;
-		setName("Surge Tick Monitor");
+		this.ctt = c;
+		this.memoryMonitor = memoryMonitor;
+		this.worldMonitor = worldMonitor;
+		setName("React Monitor");
 		tickProfiler = new Profiler();
 		tickProfiler.begin();
 		tickTimeProfiler = new Profiler();
@@ -34,6 +43,9 @@ public abstract class TPSMonitor extends Thread
 		lastTick = M.ms();
 		lockedStack = null;
 		frozen = false;
+		lt = TICK.tick;
+		setPriority(Thread.MIN_PRIORITY);
+
 	}
 
 	public abstract void onTicked();
@@ -45,6 +57,8 @@ public abstract class TPSMonitor extends Thread
 	{
 		while(!interrupted())
 		{
+			lt++;
+
 			if(interrupted())
 			{
 				return;
@@ -93,14 +107,34 @@ public abstract class TPSMonitor extends Thread
 						onSpike();
 					}
 
-					catch(Exception e)
+					catch(Throwable e)
 					{
-
+						E.t(e);
 					}
 				}
 
 				onTicked();
+			}
 
+			try
+			{
+				memoryMonitor.run();
+
+				if(lt % 50 == 0)
+				{
+					if(CrashController.inst != null)
+					{
+						CrashController.inst.run();
+					}
+
+					worldMonitor.run();
+					ctt.run();
+				}
+			}
+
+			catch(Throwable e)
+			{
+				E.t(e);
 			}
 
 			try

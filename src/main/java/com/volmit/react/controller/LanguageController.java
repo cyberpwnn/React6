@@ -2,18 +2,17 @@ package com.volmit.react.controller;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 import com.volmit.react.Config;
+import com.volmit.react.E;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
@@ -50,9 +49,9 @@ public class LanguageController extends Controller
 			writeDefaults();
 		}
 
-		catch(IOException e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 
 		try
@@ -61,8 +60,9 @@ public class LanguageController extends Controller
 			D.s("Language: " + Config.LANGUAGE);
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
+			E.t(e);
 			Lang.PRIMARY_BUNDLE = Lang.RESOURCE_BUNDLE;
 			D.f("Failed to load language: " + Config.LANGUAGE + ".properties (in plugins/React/lang/");
 		}
@@ -142,19 +142,9 @@ public class LanguageController extends Controller
 					dl.start();
 				}
 
-				catch(MalformedURLException e)
+				catch(Throwable e)
 				{
-					e.printStackTrace();
-				}
-
-				catch(FileNotFoundException e)
-				{
-					e.printStackTrace();
-				}
-
-				catch(IOException e)
-				{
-					e.printStackTrace();
+					E.t(e);
 				}
 			}
 		};
@@ -205,9 +195,6 @@ public class LanguageController extends Controller
 						@Override
 						public void run()
 						{
-							D.v("Waiting to apply language updates...");
-							A.mgr.lock();
-
 							new TaskLater("Reload waiter", 20)
 							{
 								@Override
@@ -293,9 +280,9 @@ public class LanguageController extends Controller
 			}
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 	}
 

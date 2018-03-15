@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
+import com.volmit.react.E;
 import com.volmit.react.Main;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
@@ -118,9 +119,9 @@ public class SampleController extends Controller implements IMasterTickComponent
 					controllers.add((IController) i.get(React.instance));
 				}
 
-				catch(Exception e)
+				catch(Throwable e)
 				{
-					e.printStackTrace();
+					E.t(e);
 				}
 			}
 		}
@@ -134,37 +135,6 @@ public class SampleController extends Controller implements IMasterTickComponent
 		}
 
 		reports.put(key, reports.get(key) + d);
-	}
-
-	public boolean checkThreads()
-	{
-		GList<String> mf = new GList<String>();
-
-		for(Thread i : Thread.getAllStackTraces().keySet())
-		{
-			if(i.getName().startsWith("Surge Thread Monitor") && i.isAlive())
-			{
-				return false;
-			}
-		}
-
-		for(Thread i : Thread.getAllStackTraces().keySet())
-		{
-			if(i.getName().startsWith("Surge ") && i.isAlive())
-			{
-				if(!mf.contains(i.getName()))
-				{
-					mf.add(i.getName());
-				}
-
-				else
-				{
-					return true;
-				}
-			}
-		}
-
-		return false;
 	}
 
 	public void registerSampler(ISampler s)
@@ -318,7 +288,7 @@ public class SampleController extends Controller implements IMasterTickComponent
 
 			catch(Throwable e)
 			{
-
+				E.t(e);
 			}
 		}
 	}

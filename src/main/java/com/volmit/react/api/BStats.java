@@ -92,6 +92,7 @@ public class BStats
 			}
 			catch(IOException ignored)
 			{
+
 			}
 		}
 

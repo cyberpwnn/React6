@@ -3,6 +3,7 @@ package com.volmit.react.api;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 
+import com.volmit.react.E;
 import com.volmit.react.controller.EventController;
 import com.volmit.react.util.GMap;
 
@@ -36,9 +37,9 @@ public class LagMapChunk implements Comparable<LagMapChunk>
 			}
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		return m;

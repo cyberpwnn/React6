@@ -19,14 +19,13 @@ import org.spigotmc.SpigotWorldConfig;
 import org.spigotmc.TickLimiter;
 
 import com.volmit.react.Config;
+import com.volmit.react.E;
 import com.volmit.react.Info;
-import com.volmit.react.Lang;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.util.A;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Callback;
-import com.volmit.react.util.D;
 import com.volmit.react.util.F;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
@@ -111,7 +110,7 @@ public class Gate
 										}
 									}
 
-									catch(Exception e)
+									catch(Throwable e)
 									{
 
 									}
@@ -130,7 +129,7 @@ public class Gate
 									cb.run(total[0]);
 								}
 
-								catch(Exception e)
+								catch(Throwable e)
 								{
 
 								}
@@ -138,11 +137,9 @@ public class Gate
 						};
 					}
 
-					catch(
-
-							Exception e)
+					catch(Throwable e)
 					{
-						e.printStackTrace();
+						E.t(e);
 						prog.run(1.0);
 						cb.run(-1);
 						return;
@@ -182,9 +179,9 @@ public class Gate
 			}
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		return null;
@@ -489,9 +486,9 @@ public class Gate
 			return false;
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-			D.f(Lang.getString("message.fail.unload-chunk") + e.getMessage()); //$NON-NLS-1$
+			E.t(e);
 			return false;
 		}
 	}

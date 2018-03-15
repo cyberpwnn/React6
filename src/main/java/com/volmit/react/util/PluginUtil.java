@@ -1,7 +1,6 @@
 package com.volmit.react.util;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
@@ -9,21 +8,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.event.Event;
-import org.bukkit.plugin.InvalidDescriptionException;
-import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredListener;
 
+import com.volmit.react.E;
 import com.volmit.react.Surge;
 
 /*
@@ -367,9 +363,9 @@ public class PluginUtil
 					}
 				}
 
-				catch(InvalidDescriptionException e)
+				catch(Throwable e)
 				{
-
+					E.t(e);
 				}
 			}
 		}
@@ -394,9 +390,9 @@ public class PluginUtil
 					}
 				}
 
-				catch(InvalidDescriptionException e)
+				catch(Throwable e)
 				{
-
+					E.t(e);
 				}
 			}
 		}
@@ -440,8 +436,9 @@ public class PluginUtil
 							break;
 						}
 					}
-					catch(InvalidDescriptionException e)
+					catch(Throwable e)
 					{
+						E.t(e);
 						return;
 					}
 				}
@@ -452,14 +449,9 @@ public class PluginUtil
 		{
 			target = Bukkit.getPluginManager().loadPlugin(pluginFile);
 		}
-		catch(InvalidDescriptionException e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
-			return;
-		}
-		catch(InvalidPluginException e)
-		{
-			e.printStackTrace();
+			E.t(e);
 			return;
 		}
 
@@ -487,15 +479,9 @@ public class PluginUtil
 			target = Bukkit.getPluginManager().loadPlugin(pluginFile);
 		}
 
-		catch(InvalidDescriptionException e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
-			return;
-		}
-
-		catch(InvalidPluginException e)
-		{
-			e.printStackTrace();
+			E.t(e);
 			return;
 		}
 
@@ -577,8 +563,9 @@ public class PluginUtil
 					listenersField.setAccessible(true);
 					listeners = (Map<Event, SortedSet<RegisteredListener>>) listenersField.get(pluginManager);
 				}
-				catch(Exception e)
+				catch(Throwable e)
 				{
+					E.t(e);
 					reloadlisteners = false;
 				}
 
@@ -591,14 +578,9 @@ public class PluginUtil
 				commands = (Map<String, Command>) knownCommandsField.get(commandMap);
 
 			}
-			catch(NoSuchFieldException e)
+			catch(Throwable e)
 			{
-				e.printStackTrace();
-				return;
-			}
-			catch(IllegalAccessException e)
-			{
-				e.printStackTrace();
+				E.t(e);
 				return;
 			}
 		}
@@ -685,8 +667,9 @@ public class PluginUtil
 					listenersField.setAccessible(true);
 					listeners = (Map<Event, SortedSet<RegisteredListener>>) listenersField.get(pluginManager);
 				}
-				catch(Exception e)
+				catch(Throwable e)
 				{
+					E.t(e);
 					reloadlisteners = false;
 				}
 
@@ -699,14 +682,9 @@ public class PluginUtil
 				commands = (Map<String, Command>) knownCommandsField.get(commandMap);
 
 			}
-			catch(NoSuchFieldException e)
+			catch(Throwable e)
 			{
-				e.printStackTrace();
-			}
-
-			catch(IllegalAccessException e)
-			{
-				e.printStackTrace();
+				E.t(e);
 			}
 		}
 
@@ -765,9 +743,9 @@ public class PluginUtil
 			{
 				((URLClassLoader) cl).close();
 			}
-			catch(IOException ex)
+			catch(Throwable e)
 			{
-				Logger.getLogger(PluginUtil.class.getName()).log(Level.SEVERE, null, ex);
+				E.t(e);
 			}
 		}
 

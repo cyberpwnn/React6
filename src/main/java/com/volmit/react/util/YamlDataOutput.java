@@ -1,7 +1,8 @@
 package com.volmit.react.util;
 
 import java.io.File;
-import java.io.IOException;
+
+import com.volmit.react.E;
 
 public class YamlDataOutput implements IDataOutput
 {
@@ -13,9 +14,9 @@ public class YamlDataOutput implements IDataOutput
 			c.toFileConfiguration().save(f);
 		}
 
-		catch(IOException e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 	}
 }

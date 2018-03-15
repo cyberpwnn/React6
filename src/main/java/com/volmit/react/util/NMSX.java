@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import com.volmit.react.E;
 import com.volmit.react.api.Capability;
 
 public class NMSX
@@ -40,9 +41,9 @@ public class NMSX
 			}
 		}
 
-		catch(Exception ex)
+		catch(Throwable ex)
 		{
-
+			E.t(ex);
 		}
 	}
 
@@ -64,7 +65,7 @@ public class NMSX
 			clazz = Class.forName(fullName);
 		}
 
-		catch(final Exception e)
+		catch(Throwable e)
 		{
 
 		}
@@ -83,9 +84,9 @@ public class NMSX
 			clazz = Class.forName(fullName);
 		}
 
-		catch(final Exception e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		return clazz;
@@ -100,7 +101,7 @@ public class NMSX
 
 		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		return null;
@@ -173,9 +174,9 @@ public class NMSX
 			playerConnection.getClass().getMethod("sendPacket", Class.forName(nmsPackage() + ".Packet")).invoke(playerConnection, packet);
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 	}
 
@@ -188,9 +189,9 @@ public class NMSX
 			playerConnection.getClass().getMethod("sendPacket", NMSX.getNMSClass("Packet")).invoke(playerConnection, packet);
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 	}
 
@@ -203,9 +204,9 @@ public class NMSX
 			return Class.forName("net.minecraft.server." + version + "." + name);
 		}
 
-		catch(ClassNotFoundException e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 			return null;
 		}
 	}
@@ -275,9 +276,9 @@ public class NMSX
 			}
 		}
 
-		catch(Exception var11)
+		catch(Throwable e)
 		{
-			var11.printStackTrace();
+			E.t(e);
 		}
 	}
 
@@ -316,9 +317,9 @@ public class NMSX
 			NMSX.sendPacket(player, packet);
 		}
 
-		catch(Exception ex)
+		catch(Throwable e)
 		{
-			ex.printStackTrace();
+			E.t(e);
 		}
 	}
 
@@ -380,9 +381,9 @@ public class NMSX
 			m5.invoke(pc, ppoc);
 		}
 
-		catch(Exception ex)
+		catch(Throwable e)
 		{
-			ex.printStackTrace();
+			E.t(e);
 		}
 	}
 
@@ -451,9 +452,9 @@ public class NMSX
 			return ping.intValue();
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		return -1;

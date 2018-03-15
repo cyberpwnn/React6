@@ -7,6 +7,7 @@ import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 
+import com.volmit.react.E;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.ChunkIssue;
@@ -167,9 +168,9 @@ public class PhysicsController extends Controller implements IMasterTickComponen
 			}
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		new A()

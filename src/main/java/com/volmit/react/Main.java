@@ -77,9 +77,9 @@ public class Main extends AmpedPlugin
 				nsf = (long) nsField.get(null);
 			}
 
-			catch(Exception e)
+			catch(Throwable e)
 			{
-				e.printStackTrace();
+				E.t(e);
 				nsf = 100000;
 			}
 		}
@@ -105,9 +105,9 @@ public class Main extends AmpedPlugin
 			return (int) thField.get(null);
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 
 			return 1;
 		}
@@ -126,9 +126,9 @@ public class Main extends AmpedPlugin
 				scanForAmps();
 			}
 
-			catch(Exception e)
+			catch(Throwable e)
 			{
-				e.printStackTrace();
+				E.t(e);
 			}
 
 			ssx = new SuperSampler();
@@ -136,9 +136,9 @@ public class Main extends AmpedPlugin
 			initializeAmps();
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 		I.b("main.start");
 	}
@@ -156,9 +156,9 @@ public class Main extends AmpedPlugin
 			classes.clear();
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 	}
 
@@ -443,9 +443,9 @@ public class Main extends AmpedPlugin
 			scanForDynamicTrack();
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 
 		scanForPoolDefiners();
@@ -557,14 +557,14 @@ public class Main extends AmpedPlugin
 
 				catch(Throwable e)
 				{
-					D.f("Failed to tick " + i.getClass().getSimpleName());
+					E.t(e);
 				}
 			}
 		}
 
 		catch(Throwable e)
 		{
-			D.v("CTick Shut Down");
+			E.t(e);
 		}
 
 		I.a("main.tp.sync", 20);

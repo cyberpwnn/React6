@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import com.volmit.react.E;
+
 /**
  * GLists are Arraylists with special enhancements
  *
@@ -366,9 +368,9 @@ public class GList<T> extends ArrayList<T>
 						t.add(get(j * (factor + 1)));
 					}
 
-					catch(Exception e)
+					catch(Throwable e)
 					{
-
+						E.t(e);
 					}
 				}
 

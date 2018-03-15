@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
+import com.volmit.react.E;
 import com.volmit.react.React;
 import com.volmit.react.api.Capability;
 import com.volmit.react.api.Gate;
@@ -60,9 +61,9 @@ public class CommandDump extends ReactCommand
 					con.add((IController) j.get(React.instance));
 				}
 
-				catch(IllegalArgumentException | IllegalAccessException e)
+				catch(Throwable e)
 				{
-					e.printStackTrace();
+					E.t(e);
 				}
 			}
 		}
@@ -139,10 +140,10 @@ public class CommandDump extends ReactCommand
 					Gate.msgSuccess(sender, "Dumped: " + C.WHITE + C.UNDERLINE + s + ".json");
 				}
 
-				catch(Exception e)
+				catch(Throwable e)
 				{
+					E.t(e);
 					Gate.msgError(sender, "Failed to paste.");
-					e.printStackTrace();
 				}
 			}
 		};

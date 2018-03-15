@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.bukkit.entity.Player;
 
+import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
@@ -114,9 +115,9 @@ public class ReactPlayer implements IConfigurable
 			new ConfigurationDataOutput().write(this, new File(Surge.folder(Info.CORE_CACHE), p.getUniqueId().toString() + Info.CORE_DOTYML));
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 	}
 
@@ -127,9 +128,9 @@ public class ReactPlayer implements IConfigurable
 			new ConfigurationDataInput().read(this, new File(Surge.folder(Info.CORE_CACHE), p.getUniqueId().toString() + Info.CORE_DOTYML));
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 	}
 

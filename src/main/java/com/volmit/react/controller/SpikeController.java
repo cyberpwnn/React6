@@ -1,9 +1,8 @@
 package com.volmit.react.controller;
 
-import java.io.IOException;
-
 import org.bukkit.plugin.Plugin;
 
+import com.volmit.react.E;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
@@ -63,9 +62,9 @@ public class SpikeController extends Controller implements IMasterTickComponent
 							D.l(Lang.getString("controller.spike-manager.completed")); //$NON-NLS-1$
 						}
 
-						catch(IOException e)
+						catch(Throwable e)
 						{
-							e.printStackTrace();
+							E.t(e);
 						}
 					}
 				};
@@ -123,7 +122,7 @@ public class SpikeController extends Controller implements IMasterTickComponent
 
 				catch(Throwable e)
 				{
-
+					E.t(e);
 				}
 			}
 		};

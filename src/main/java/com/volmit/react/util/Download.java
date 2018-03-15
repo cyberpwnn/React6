@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
+import com.volmit.react.E;
+
 public class Download
 {
 	private DownloadState state;
@@ -70,8 +72,9 @@ public class Download
 			monitor.onDownloadFinished(this);
 		}
 
-		catch(IOException e)
+		catch(Throwable e)
 		{
+			E.t(e);
 			DownloadState lastState = state;
 			state = DownloadState.FAILED;
 			monitor.onDownloadStateChanged(this, lastState, state);

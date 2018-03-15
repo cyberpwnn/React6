@@ -5,6 +5,8 @@ import java.io.File;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import com.volmit.react.E;
+
 public class YamlDataInput implements IDataInput
 {
 	@Override
@@ -19,9 +21,9 @@ public class YamlDataInput implements IDataInput
 			d.fromFileConfiguration(fc);
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 
 		return d;

@@ -1,6 +1,6 @@
 package com.volmit.react.util;
 
-public abstract class MemoryMonitor extends Thread
+public abstract class MemoryMonitor
 {
 	private long memoryFree;
 	private long memoryUsed;
@@ -19,7 +19,6 @@ public abstract class MemoryMonitor extends Thread
 
 	public MemoryMonitor()
 	{
-		setName("Surge Memory Monitor");
 		memoryFree = Runtime.getRuntime().freeMemory();
 		memoryMax = Runtime.getRuntime().maxMemory();
 		memoryUsed = memoryMax - memoryFree;
@@ -38,69 +37,41 @@ public abstract class MemoryMonitor extends Thread
 
 	public abstract void onAllocationSet();
 
-	@Override
 	public void run()
 	{
-		while(!interrupted())
+		memoryMax = Runtime.getRuntime().maxMemory();
+		memoryFree = Runtime.getRuntime().freeMemory() + (memoryMax - Runtime.getRuntime().totalMemory());
+		memoryUsed = memoryMax - memoryFree;
+
+		if(memoryUsedAfterGC == 0)
 		{
-			if(interrupted())
-			{
-				return;
-			}
+			memoryUsedAfterGC = memoryUsed;
+		}
 
-			memoryMax = Runtime.getRuntime().maxMemory();
-			memoryFree = Runtime.getRuntime().freeMemory() + (memoryMax - Runtime.getRuntime().totalMemory());
-			memoryUsed = memoryMax - memoryFree;
-			if(interrupted())
-			{
-				return;
-			}
-			if(memoryUsedAfterGC == 0)
-			{
-				memoryUsedAfterGC = memoryUsed;
-			}
-			if(interrupted())
-			{
-				return;
-			}
-			if(memoryUsed >= lastMemoryUsed)
-			{
-				allocated += memoryUsed - lastMemoryUsed;
-				mah += memoryUsed - lastMemoryUsed;
-			}
+		if(memoryUsed >= lastMemoryUsed)
+		{
+			allocated += memoryUsed - lastMemoryUsed;
+			mah += memoryUsed - lastMemoryUsed;
+		}
 
-			else
-			{
-				collected = lastMemoryUsed - memoryUsed;
-				memoryUsedAfterGC = memoryUsed;
-				allocated = 0;
-			}
+		else
+		{
+			collected = lastMemoryUsed - memoryUsed;
+			memoryUsedAfterGC = memoryUsed;
+			allocated = 0;
+		}
 
-			lastMemoryUsed = memoryUsed;
-			if(interrupted())
-			{
-				return;
-			}
-			if(M.ms() - sms >= 50)
-			{
-				sms = M.ms();
-				memoryAllocatedPerTick = allocated;
-				memoryCollectedPerTick = collected;
-				memoryFullyAllocatedPerTick = Math.max(0, memoryAllocatedPerTick - memoryCollectedPerTick);
-				mahs = mah * 20;
-				mah = 0;
-				onAllocationSet();
-			}
+		lastMemoryUsed = memoryUsed;
 
-			try
-			{
-				Thread.sleep(1);
-			}
-
-			catch(InterruptedException e)
-			{
-				return;
-			}
+		if(M.ms() - sms >= 50)
+		{
+			sms = M.ms();
+			memoryAllocatedPerTick = allocated;
+			memoryCollectedPerTick = collected;
+			memoryFullyAllocatedPerTick = Math.max(0, memoryAllocatedPerTick - memoryCollectedPerTick);
+			mahs = mah * 20;
+			mah = 0;
+			onAllocationSet();
 		}
 	}
 

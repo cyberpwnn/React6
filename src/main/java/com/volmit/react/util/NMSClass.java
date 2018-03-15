@@ -92,7 +92,7 @@ public class NMSClass
 				}
 			}
 
-			catch(ClassNotFoundException e)
+			catch(Throwable e)
 			{
 
 			}
@@ -121,7 +121,7 @@ public class NMSClass
 				}
 			}
 
-			catch(ClassNotFoundException e)
+			catch(Throwable e)
 			{
 
 			}

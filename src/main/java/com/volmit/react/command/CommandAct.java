@@ -5,6 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
+import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
@@ -355,9 +356,9 @@ public class CommandAct extends ReactCommand
 				cmds.put(React.instance.actionController.getAction(i).getNodes()[0], i);
 			}
 
-			catch(Exception e)
+			catch(Throwable e)
 			{
-
+				E.t(e);
 			}
 		}
 

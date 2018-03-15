@@ -15,6 +15,7 @@ import org.bukkit.material.Leaves;
 import org.bukkit.util.Vector;
 
 import com.volmit.react.Config;
+import com.volmit.react.E;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
@@ -287,7 +288,7 @@ public class FastDecayController extends Controller
 
 		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 	}
 }

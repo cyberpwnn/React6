@@ -16,6 +16,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
+import com.volmit.react.E;
 import com.volmit.react.util.ParticleEffect.ParticleData;
 import com.volmit.react.util.ReflectionUtils.PackageType;
 
@@ -1848,9 +1849,9 @@ public enum ParticleEffect
 				sendPacket = ReflectionUtils.getMethod(playerConnection.getType(), "sendPacket", PackageType.MINECRAFT_SERVER.getClass("Packet"));
 			}
 
-			catch(Exception exception)
+			catch(Throwable e)
 			{
-
+				E.t(e);
 			}
 
 			initialized = true;
@@ -1932,9 +1933,9 @@ public enum ParticleEffect
 				ReflectionUtils.setValue(packet, true, "h", speed);
 				ReflectionUtils.setValue(packet, true, "i", amount);
 			}
-			catch(Exception exception)
+			catch(Throwable ex)
 			{
-				throw new PacketInstantiationException("Packet instantiation failed", exception);
+				E.t(ex);
 			}
 		}
 
@@ -1958,9 +1959,9 @@ public enum ParticleEffect
 			{
 				sendPacket.invoke(playerConnection.get(getHandle.invoke(player)), packet);
 			}
-			catch(Exception exception)
+			catch(Throwable e)
 			{
-				throw new PacketSendingException("Failed to send the packet to player '" + player.getName() + "'", exception);
+				E.t(e);
 			}
 		}
 

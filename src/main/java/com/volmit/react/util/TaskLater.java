@@ -1,5 +1,6 @@
 package com.volmit.react.util;
 
+import com.volmit.react.E;
 import com.volmit.react.Surge;
 import com.volmit.react.controller.SampleController;
 
@@ -47,9 +48,9 @@ public abstract class TaskLater implements ITask, ICancellable
 					profiler.begin();
 				}
 
-				catch(Exception e)
+				catch(Throwable e)
 				{
-					D.f("Failed to execute task " + id);
+					E.t(e);
 				}
 			}
 		});

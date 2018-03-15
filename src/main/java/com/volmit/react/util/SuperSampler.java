@@ -30,11 +30,13 @@ public class SuperSampler implements IMasterTickComponent
 	private WorldMonitor worldMonitor;
 	private TPSMonitor tpsMonitor;
 	private MemoryMonitor memoryMonitor;
+	private CoreTickThread c;
 	private StackTraceElement[] lockStack;
 	private GMap<Long, GList<StackTraceElement>> spikes;
 
 	public SuperSampler()
 	{
+		c = AmpedPlugin.ctt;
 		frozen = false;
 		lockStack = null;
 		running = false;
@@ -75,7 +77,20 @@ public class SuperSampler implements IMasterTickComponent
 			}
 		};
 
-		tpsMonitor = new TPSMonitor()
+		memoryMonitor = new MemoryMonitor()
+		{
+			@Override
+			public void onAllocationSet()
+			{
+				memoryUse = getMemoryUsedAfterGC();
+				memoryAllocated = getMemoryAllocatedPerTick();
+				memoryCollected = getMemoryCollectedPerTick();
+				mahL.put(getMahs());
+				mahs = (long) mahL.getAverage();
+			}
+		};
+
+		tpsMonitor = new TPSMonitor(memoryMonitor, worldMonitor, c)
 		{
 			@Override
 			public void onTicked()
@@ -98,26 +113,11 @@ public class SuperSampler implements IMasterTickComponent
 				spikes.put(M.ms(), new GList<StackTraceElement>(getLockedStack()));
 			}
 		};
-
-		memoryMonitor = new MemoryMonitor()
-		{
-			@Override
-			public void onAllocationSet()
-			{
-				memoryUse = getMemoryUsedAfterGC();
-				memoryAllocated = getMemoryAllocatedPerTick();
-				memoryCollected = getMemoryCollectedPerTick();
-				mahL.put(getMahs());
-				mahs = (long) mahL.getAverage();
-			}
-		};
 	}
 
 	public void start()
 	{
 		tpsMonitor.start();
-		memoryMonitor.start();
-		worldMonitor.start();
 		running = true;
 		Surge.registerTicked(this);
 	}
@@ -125,8 +125,6 @@ public class SuperSampler implements IMasterTickComponent
 	public void stop()
 	{
 		tpsMonitor.interrupt();
-		memoryMonitor.interrupt();
-		worldMonitor.interrupt();
 		running = false;
 		Surge.unregisterTicked(this);
 	}

@@ -1,11 +1,11 @@
 package com.volmit.react.command;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
+import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
@@ -64,9 +64,9 @@ public class CommandEnvironment extends ReactCommand
 				}
 			}
 
-			catch(IOException e)
+			catch(Throwable e)
 			{
-
+				E.t(e);
 			}
 
 			sender.sendMessage(ChatColor.GREEN + i.toString() + ": " + ChatColor.WHITE + F.memSize(Platform.STORAGE.getTotalSpace(i)) + ChatColor.GRAY + " (" + F.memSize(Platform.STORAGE.getUsedSpace(i)) + " / " + F.memSize(Platform.STORAGE.getTotalSpace(i)) + ")");

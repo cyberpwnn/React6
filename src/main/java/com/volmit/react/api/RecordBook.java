@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.volmit.react.E;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.JSONObject;
@@ -30,9 +31,9 @@ public abstract class RecordBook<T extends IRecord<?>> implements IRecordBook<T>
 				write();
 			}
 
-			catch(IOException e)
+			catch(Throwable e)
 			{
-				e.printStackTrace();
+				E.t(e);
 			}
 		}
 
@@ -41,9 +42,9 @@ public abstract class RecordBook<T extends IRecord<?>> implements IRecordBook<T>
 			read();
 		}
 
-		catch(IOException e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 	}
 
@@ -55,9 +56,9 @@ public abstract class RecordBook<T extends IRecord<?>> implements IRecordBook<T>
 			write();
 		}
 
-		catch(IOException e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 	}
 

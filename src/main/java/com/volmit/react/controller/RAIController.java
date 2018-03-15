@@ -13,6 +13,7 @@ import com.volmit.react.api.RAI;
 import com.volmit.react.util.A;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.TICK;
 
 public class RAIController extends Controller
 {
@@ -49,6 +50,11 @@ public class RAIController extends Controller
 	@Override
 	public void tick()
 	{
+		if(TICK.tick < 20)
+		{
+			return;
+		}
+
 		new A()
 		{
 			@Override

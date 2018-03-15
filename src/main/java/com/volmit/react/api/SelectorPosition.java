@@ -9,6 +9,7 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.volmit.react.E;
 import com.volmit.react.util.GSet;
 import com.volmit.react.util.W;
 
@@ -125,9 +126,10 @@ public class SelectorPosition extends Selector
 					throw new SelectorParseException("Unable to parse integer: " + input.split("+")[1]);
 				}
 
-				catch(Exception e)
+				catch(Throwable e)
 				{
-					e.printStackTrace();
+					E.t(e);
+
 					throw new SelectorParseException("Unable to parse: " + input);
 				}
 			}
@@ -178,9 +180,9 @@ public class SelectorPosition extends Selector
 					throw new SelectorParseException("Unable to parse integer: " + input.split("+")[1]);
 				}
 
-				catch(Exception e)
+				catch(Throwable e)
 				{
-					e.printStackTrace();
+					E.t(e);
 					throw new SelectorParseException("Unable to parse: " + input);
 				}
 			}

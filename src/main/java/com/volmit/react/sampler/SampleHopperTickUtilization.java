@@ -1,5 +1,6 @@
 package com.volmit.react.sampler;
 
+import com.volmit.react.E;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
 import com.volmit.react.api.IFormatter;
@@ -45,8 +46,9 @@ public class SampleHopperTickUtilization extends MSampler
 			setValue(React.instance.hopperController.getaHSMS().getAverage() / 50000000.0);
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
+			E.t(e);
 			setValue(0);
 		}
 	}

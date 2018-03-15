@@ -2,6 +2,7 @@ package com.volmit.react.api;
 
 import org.bukkit.Chunk;
 
+import com.volmit.react.E;
 import com.volmit.react.util.GMap;
 
 public class SampledChunk
@@ -32,9 +33,9 @@ public class SampledChunk
 			counts.put(issue, counts.get(issue) + weight);
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 	}
 

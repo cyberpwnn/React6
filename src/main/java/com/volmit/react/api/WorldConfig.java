@@ -7,6 +7,7 @@ import java.util.List;
 import org.bukkit.World;
 
 import com.volmit.react.Config;
+import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.Surge;
 import com.volmit.react.util.ConfigurationDataInput;
@@ -55,9 +56,9 @@ public class WorldConfig implements IConfigurable
 			new ConfigurationDataOutput().write(this, getConfigFile(world));
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 	}
 
@@ -73,9 +74,9 @@ public class WorldConfig implements IConfigurable
 			new ConfigurationDataInput().read(this, getConfigFile(world));
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 	}
 }

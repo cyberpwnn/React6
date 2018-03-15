@@ -501,6 +501,10 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean ALLOW_TEMPACCESS = true;
 
+	@Key("features.react.track-server-locks")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean TRACK_SERVER_LOCKS = true;
+
 	@Key("tweaks.fast-leaf-decay.fast-destroy")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean FAST_LEAF_NMS = true;
@@ -586,9 +590,9 @@ public class Config
 			read(fConfig, false);
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 
 		try
@@ -596,9 +600,9 @@ public class Config
 			read(fConfigExperimental, true);
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 	}
 
@@ -628,9 +632,9 @@ public class Config
 			}
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		hrld = true;
@@ -732,9 +736,9 @@ public class Config
 								}
 							}
 
-							catch(Exception e)
+							catch(Throwable e)
 							{
-
+								E.t(e);
 							}
 						}
 
@@ -1008,9 +1012,9 @@ public class Config
 			setup();
 		}
 
-		catch(IllegalArgumentException | IllegalAccessException e)
+		catch(Throwable e)
 		{
-			e.printStackTrace();
+			E.t(e);
 		}
 	}
 }

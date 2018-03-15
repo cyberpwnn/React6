@@ -1,7 +1,6 @@
 package com.volmit.react.api;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URLClassLoader;
 import java.util.Iterator;
@@ -17,6 +16,8 @@ import org.bukkit.event.Event;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredListener;
+
+import com.volmit.react.E;
 
 public class PluginSelfDeleter extends Thread
 {
@@ -66,9 +67,10 @@ public class PluginSelfDeleter extends Thread
 					listeners = (Map<Event, SortedSet<RegisteredListener>>) listenersField.get(pluginManager);
 				}
 
-				catch(Exception e)
+				catch(Throwable e)
 				{
-					reloadlisteners = false;
+					E.t(e);
+					reloadlisteners = true;
 				}
 
 				Field commandMapField = Bukkit.getPluginManager().getClass().getDeclaredField("commandMap");
@@ -79,15 +81,9 @@ public class PluginSelfDeleter extends Thread
 				commands = (Map<String, Command>) knownCommandsField.get(commandMap);
 			}
 
-			catch(NoSuchFieldException e)
+			catch(Throwable e)
 			{
-				e.printStackTrace();
-				return;
-			}
-
-			catch(IllegalAccessException e)
-			{
-				e.printStackTrace();
+				E.t(e);
 				return;
 			}
 		}
@@ -145,9 +141,9 @@ public class PluginSelfDeleter extends Thread
 				((URLClassLoader) cl).close();
 			}
 
-			catch(IOException ex)
+			catch(Throwable e)
 			{
-				ex.printStackTrace();
+				E.t(e);
 			}
 		}
 

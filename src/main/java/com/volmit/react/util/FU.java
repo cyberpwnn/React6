@@ -65,7 +65,7 @@ import java.util.List;
  */
 public class FU
 {
-	
+
 	/**
 	 * Instances should NOT be constructed in standard programming.
 	 */
@@ -73,27 +73,27 @@ public class FU
 	{
 		super();
 	}
-	
+
 	/**
 	 * The number of bytes in a kilobyte.
 	 */
 	public static final long ONE_KB = 1024;
-	
+
 	/**
 	 * The number of bytes in a megabyte.
 	 */
 	public static final long ONE_MB = ONE_KB * ONE_KB;
-	
+
 	/**
 	 * The number of bytes in a gigabyte.
 	 */
 	public static final long ONE_GB = ONE_KB * ONE_MB;
-	
+
 	/**
 	 * An empty array of type <code>File</code>.
 	 */
 	public static final File[] EMPTY_FILE_ARRAY = new File[0];
-	
+
 	// -----------------------------------------------------------------------
 	/**
 	 * Returns a human-readable version of the file size, where the input
@@ -106,7 +106,7 @@ public class FU
 	public static String byteCountToDisplaySize(long size)
 	{
 		String displaySize;
-		
+
 		if(size / ONE_GB > 0)
 		{
 			displaySize = String.valueOf(size / ONE_GB) + " GB";
@@ -122,7 +122,7 @@ public class FU
 		}
 		return displaySize;
 	}
-	
+
 	// -----------------------------------------------------------------------
 	/**
 	 * Implements the same behaviour as the "touch" utility on Unix. It creates
@@ -143,7 +143,7 @@ public class FU
 		}
 		file.setLastModified(System.currentTimeMillis());
 	}
-	
+
 	// -----------------------------------------------------------------------
 	/**
 	 * Converts a Collection containing java.io.File instanced into array
@@ -158,7 +158,7 @@ public class FU
 	{
 		return (File[]) files.toArray(new File[files.size()]);
 	}
-	
+
 	// -----------------------------------------------------------------------
 	/**
 	 * Convert from a <code>URL</code> to a <code>File</code>.
@@ -195,7 +195,7 @@ public class FU
 			return new File(filename);
 		}
 	}
-	
+
 	/**
 	 * Converts each of an array of <code>URL</code> to a <code>File</code>.
 	 * <p>
@@ -238,7 +238,7 @@ public class FU
 		}
 		return files;
 	}
-	
+
 	/**
 	 * Converts each of an array of <code>File</code> to a <code>URL</code>.
 	 * <p>
@@ -254,15 +254,15 @@ public class FU
 	public static URL[] toURLs(File[] files) throws IOException
 	{
 		URL[] urls = new URL[files.length];
-		
+
 		for(int i = 0; i < urls.length; i++)
 		{
 			urls[i] = files[i].toURL();
 		}
-		
+
 		return urls;
 	}
-	
+
 	// -----------------------------------------------------------------------
 	/**
 	 * Copies a file to a directory preserving the file date.
@@ -297,7 +297,7 @@ public class FU
 		}
 		copyFile(srcFile, new File(destDir, srcFile.getName()), true);
 	}
-	
+
 	/**
 	 * Copies a file to a new location preserving the file date.
 	 * <p>
@@ -305,12 +305,12 @@ public class FU
 	 * specified destination file. The directory holding the destination file is
 	 * created if it does not exist. If the destination file exists, then this
 	 * method will overwrite it.
-	 * 
+	 *
 	 * @param srcFile
 	 *            an existing file to copy, must not be null
 	 * @param destFile
 	 *            the new file, must not be null
-	 * 
+	 *
 	 * @throws NullPointerException
 	 *             if source or destination is null
 	 * @throws IOException
@@ -323,7 +323,7 @@ public class FU
 	{
 		copyFile(srcFile, destFile, true);
 	}
-	
+
 	/**
 	 * Copies a file to a new location.
 	 * <p>
@@ -383,10 +383,10 @@ public class FU
 		}
 		doCopyFile(srcFile, destFile, preserveFileDate);
 	}
-	
+
 	/**
 	 * Internal copy file method.
-	 * 
+	 *
 	 * @param srcFile
 	 *            the validated source file, not null
 	 * @param destFile
@@ -402,7 +402,7 @@ public class FU
 		{
 			throw new IOException("Destination '" + destFile + "' exists but is a directory");
 		}
-		
+
 		FileInputStream input = new FileInputStream(srcFile);
 		try
 		{
@@ -418,7 +418,7 @@ public class FU
 		{
 			input.close();
 		}
-		
+
 		if(srcFile.length() != destFile.length())
 		{
 			throw new IOException("Failed to copy full contents from '" + srcFile + "' to '" + destFile + "'");
@@ -428,7 +428,7 @@ public class FU
 			destFile.setLastModified(srcFile.lastModified());
 		}
 	}
-	
+
 	// -----------------------------------------------------------------------
 	/**
 	 * Copies a directory to within another directory preserving the file dates.
@@ -473,7 +473,7 @@ public class FU
 		}
 		copyDirectory(srcDir, new File(destDir, srcDir.getName()), true);
 	}
-	
+
 	/**
 	 * Copies a whole directory to a new location preserving the file dates.
 	 * <p>
@@ -502,7 +502,7 @@ public class FU
 	{
 		copyDirectory(srcDir, destDir, true);
 	}
-	
+
 	/**
 	 * Copies a whole directory to a new location.
 	 * <p>
@@ -553,10 +553,10 @@ public class FU
 		}
 		doCopyDirectory(srcDir, destDir, preserveFileDate);
 	}
-	
+
 	/**
 	 * Internal copy directory method.
-	 * 
+	 *
 	 * @param srcDir
 	 *            the validated source directory, not null
 	 * @param destDir
@@ -608,7 +608,7 @@ public class FU
 			}
 		}
 	}
-	
+
 	// -----------------------------------------------------------------------
 	/**
 	 * Copies bytes from the URL <code>source</code> to a file
@@ -637,14 +637,14 @@ public class FU
 		{
 			destination.getParentFile().mkdirs();
 		}
-		
+
 		// make sure we can write to destination
 		if(destination.exists() && !destination.canWrite())
 		{
 			String message = "Unable to open file " + destination + " for writing.";
 			throw new IOException(message);
 		}
-		
+
 		InputStream input = source.openStream();
 		try
 		{
@@ -661,7 +661,7 @@ public class FU
 			input.close();
 		}
 	}
-	
+
 	// -----------------------------------------------------------------------
 	/**
 	 * Recursively delete a directory.
@@ -677,7 +677,7 @@ public class FU
 		{
 			return;
 		}
-		
+
 		cleanDirectory(directory);
 		if(!directory.delete())
 		{
@@ -685,7 +685,7 @@ public class FU
 			throw new IOException(message);
 		}
 	}
-	
+
 	/**
 	 * Clean a directory without deleting it.
 	 *
@@ -701,19 +701,19 @@ public class FU
 			String message = directory + " does not exist";
 			throw new IllegalArgumentException(message);
 		}
-		
+
 		if(!directory.isDirectory())
 		{
 			String message = directory + " is not a directory";
 			throw new IllegalArgumentException(message);
 		}
-		
+
 		File[] files = directory.listFiles();
 		if(files == null)
 		{ // null if security restricted
 			throw new IOException("Failed to list contents of " + directory);
 		}
-		
+
 		IOException exception = null;
 		for(int i = 0; i < files.length; i++)
 		{
@@ -721,18 +721,20 @@ public class FU
 			try
 			{
 				forceDelete(file);
-			} catch(IOException ioe)
+			}
+
+			catch(IOException ioe)
 			{
 				exception = ioe;
 			}
 		}
-		
+
 		if(null != exception)
 		{
 			throw exception;
 		}
 	}
-	
+
 	// -----------------------------------------------------------------------
 	/**
 	 * Waits for NFS to propagate a file creation, imposing a timeout.
@@ -775,7 +777,7 @@ public class FU
 		}
 		return true;
 	}
-	
+
 	// -----------------------------------------------------------------------
 	/**
 	 * Reads the contents of a file into a String. The file is always closed.
@@ -806,7 +808,7 @@ public class FU
 			in.close();
 		}
 	}
-	
+
 	/**
 	 * Reads the contents of a file into a byte array. The file is always
 	 * closed.
@@ -830,7 +832,7 @@ public class FU
 			in.close();
 		}
 	}
-	
+
 	/**
 	 * Reads the contents of a file line by line to a List of Strings. The file
 	 * is always closed.
@@ -862,7 +864,7 @@ public class FU
 			in.close();
 		}
 	}
-	
+
 	/**
 	 * Writes a String to a file creating the file if it does not exist.
 	 * <p>
@@ -892,7 +894,7 @@ public class FU
 			out.close();
 		}
 	}
-	
+
 	/**
 	 * Writes a byte array to a file creating the file if it does not exist.
 	 *
@@ -915,7 +917,7 @@ public class FU
 			out.close();
 		}
 	}
-	
+
 	/**
 	 * Writes the <code>toString()</code> value of each item in a collection to
 	 * the specified <code>File</code> line by line. The specified character
@@ -941,7 +943,7 @@ public class FU
 	{
 		writeLines(file, encoding, lines, null);
 	}
-	
+
 	/**
 	 * Writes the <code>toString()</code> value of each item in a collection to
 	 * the specified <code>File</code> line by line. The specified character
@@ -976,7 +978,7 @@ public class FU
 			out.close();
 		}
 	}
-	
+
 	// -----------------------------------------------------------------------
 	/**
 	 * Delete a file. If file is a directory, delete it and all sub-directories.
@@ -1013,7 +1015,7 @@ public class FU
 			}
 		}
 	}
-	
+
 	/**
 	 * Schedule a file to be deleted when JVM exits. If file is directory delete
 	 * it and all sub-directories.
@@ -1035,7 +1037,7 @@ public class FU
 			file.deleteOnExit();
 		}
 	}
-	
+
 	/**
 	 * Recursively schedule directory for deletion on JVM exit.
 	 *
@@ -1052,11 +1054,11 @@ public class FU
 		{
 			return;
 		}
-		
+
 		cleanDirectoryOnExit(directory);
 		directory.deleteOnExit();
 	}
-	
+
 	/**
 	 * Clean a directory without deleting it.
 	 *
@@ -1074,19 +1076,19 @@ public class FU
 			String message = directory + " does not exist";
 			throw new IllegalArgumentException(message);
 		}
-		
+
 		if(!directory.isDirectory())
 		{
 			String message = directory + " is not a directory";
 			throw new IllegalArgumentException(message);
 		}
-		
+
 		File[] files = directory.listFiles();
 		if(files == null)
 		{ // null if security restricted
 			throw new IOException("Failed to list contents of " + directory);
 		}
-		
+
 		IOException exception = null;
 		for(int i = 0; i < files.length; i++)
 		{
@@ -1099,13 +1101,13 @@ public class FU
 				exception = ioe;
 			}
 		}
-		
+
 		if(null != exception)
 		{
 			throw exception;
 		}
 	}
-	
+
 	/**
 	 * Make a directory, including any necessary but nonexistent parent
 	 * directories. If there already exists a file with specified name or the
@@ -1136,7 +1138,7 @@ public class FU
 			}
 		}
 	}
-	
+
 	// -----------------------------------------------------------------------
 	/**
 	 * Recursively count size of a directory (sum of the length of all files).
@@ -1154,15 +1156,15 @@ public class FU
 			String message = directory + " does not exist";
 			throw new IllegalArgumentException(message);
 		}
-		
+
 		if(!directory.isDirectory())
 		{
 			String message = directory + " is not a directory";
 			throw new IllegalArgumentException(message);
 		}
-		
+
 		long size = 0;
-		
+
 		File[] files = directory.listFiles();
 		if(files == null)
 		{ // null if security restricted
@@ -1171,7 +1173,7 @@ public class FU
 		for(int i = 0; i < files.length; i++)
 		{
 			File file = files[i];
-			
+
 			if(file.isDirectory())
 			{
 				size += sizeOfDirectory(file);
@@ -1180,10 +1182,10 @@ public class FU
 				size += file.length();
 			}
 		}
-		
+
 		return size;
 	}
-	
+
 	// -----------------------------------------------------------------------
 	/**
 	 * Tests if the specified <code>File</code> is newer than the reference
@@ -1214,11 +1216,11 @@ public class FU
 		}
 		return isFileNewer(file, reference.lastModified());
 	}
-	
+
 	/**
 	 * Tests if the specified <code>File</code> is newer than the specified
 	 * <code>Date</code>.
-	 * 
+	 *
 	 * @param file
 	 *            the <code>File</code> of which the modification date must be
 	 *            compared, not null
@@ -1239,7 +1241,7 @@ public class FU
 		}
 		return isFileNewer(file, date.getTime());
 	}
-	
+
 	/**
 	 * Tests if the specified <code>File</code> is newer than the specified time
 	 * reference.
@@ -1267,5 +1269,5 @@ public class FU
 		}
 		return file.lastModified() > timeMillis;
 	}
-	
+
 }

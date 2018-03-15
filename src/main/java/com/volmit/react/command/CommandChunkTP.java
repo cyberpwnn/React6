@@ -6,6 +6,7 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
 import com.volmit.react.api.Permissable;
@@ -42,9 +43,9 @@ public class CommandChunkTP extends ReactCommand
 			((Player) sender).teleport(world.getHighestBlockAt(c.getBlock(0, 256, 0).getLocation()).getLocation());
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 	}
 }

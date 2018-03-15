@@ -1,5 +1,6 @@
 package com.volmit.react.api;
 
+import com.volmit.react.E;
 import com.volmit.react.Info;
 import com.volmit.react.React;
 
@@ -67,9 +68,9 @@ public enum SampledType
 			node = s;
 		}
 
-		catch(Exception e)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 	}
 

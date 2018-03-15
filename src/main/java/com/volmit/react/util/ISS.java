@@ -7,6 +7,8 @@ import java.io.InputStream;
 
 import javax.crypto.Cipher;
 
+import com.volmit.react.E;
+
 /**
  * A pretty good input stream
  *
@@ -349,9 +351,9 @@ public class ISS extends InputStream
 			}
 		}
 
-		catch(IOException ee)
+		catch(Throwable e)
 		{
-
+			E.t(e);
 		}
 
 		return i;

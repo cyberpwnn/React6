@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.volmit.react.E;
+
 public class RawText
 {
 	public static final String COLOR_BLACK = "black";
@@ -98,8 +100,9 @@ public class RawText
 			components.add(object);
 		}
 
-		catch(JSONException e)
+		catch(Throwable e)
 		{
+			E.t(e);
 			e.printStackTrace();
 		}
 
@@ -154,8 +157,9 @@ public class RawText
 			components.add(object);
 		}
 
-		catch(JSONException e)
+		catch(Throwable e)
 		{
+			E.t(e);
 			e.printStackTrace();
 		}
 
@@ -222,8 +226,9 @@ public class RawText
 			components.add(object);
 		}
 
-		catch(JSONException e)
+		catch(Throwable e)
 		{
+			E.t(e);
 			e.printStackTrace();
 		}
 
@@ -292,8 +297,9 @@ public class RawText
 			components.add(object);
 		}
 
-		catch(JSONException e)
+		catch(Throwable e)
 		{
+			E.t(e);
 			e.printStackTrace();
 		}
 
