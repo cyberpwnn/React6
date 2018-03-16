@@ -37,18 +37,6 @@ public class ReactPlugin extends JavaPlugin
 		controllers = new GList<IController>();
 		Surge.m();
 		i = this;
-		new TaskLater("del")
-		{
-			@Override
-			public void run()
-			{
-				enable();
-			}
-		};
-	}
-
-	private void enable()
-	{
 		react = new React();
 		React.instance = react;
 
@@ -136,7 +124,7 @@ public class ReactPlugin extends JavaPlugin
 					}
 				}
 
-				for(IController i : controllers.copy())
+				for(IController i : controllers)
 				{
 					try
 					{

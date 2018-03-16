@@ -29,7 +29,6 @@ import com.volmit.react.api.GraphText;
 import com.volmit.react.api.GraphingInstance;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.PointedGraph;
-import com.volmit.react.api.ReactScrollEvent;
 import com.volmit.react.api.SampledType;
 import com.volmit.react.util.A;
 import com.volmit.react.util.C;
@@ -260,13 +259,6 @@ public class GraphController extends Controller
 		if(!Capability.FAST_MAPPING.isCapable())
 		{
 			Capability.FAST_MAPPING.sendNotCapable(player);
-			Capability.DUAL_WEILD.sendNotCapable(player);
-			return;
-		}
-
-		if(!Capability.DUAL_WEILD.isCapable())
-		{
-			Capability.DUAL_WEILD.sendNotCapable(player);
 			return;
 		}
 
@@ -357,12 +349,6 @@ public class GraphController extends Controller
 		}
 	}
 
-	@EventHandler
-	public void on(ReactScrollEvent e)
-	{
-
-	}
-
 	public void stopMapping(Player p)
 	{
 		if(gr.containsKey(p))
@@ -374,12 +360,6 @@ public class GraphController extends Controller
 
 	public void toggleMapping(Player player)
 	{
-		if(!Capability.DUAL_WEILD.isCapable())
-		{
-			Capability.DUAL_WEILD.sendNotCapable(player);
-			return;
-		}
-
 		for(ItemFrame i : gra.k())
 		{
 			if(gra.get(i).getPlayer().equals(player) && gra.get(i).isMapping())

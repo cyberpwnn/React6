@@ -2,6 +2,7 @@ package com.volmit.react.api;
 
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
+import com.volmit.react.util.M;
 import com.volmit.react.util.Profiler;
 
 public class ColossalView
@@ -49,16 +50,23 @@ public class ColossalView
 		p.begin();
 		view.write(FrameColor.DARK_GRAY);
 
+		double f = 1.9;
+
+		if(!Capability.DUAL_WEILD.isCapable())
+		{
+			f = 4.5;
+		}
+
 		if(Math.abs(level - targetLevel) > 0.001)
 		{
 			if(level > targetLevel)
 			{
-				level -= Math.abs(level - targetLevel) / 1.9;
+				level -= Math.abs(level - targetLevel) / f;
 			}
 
 			if(level < targetLevel)
 			{
-				level += Math.abs(level - targetLevel) / 1.9;
+				level += Math.abs(level - targetLevel) / f;
 			}
 		}
 
@@ -94,6 +102,27 @@ public class ColossalView
 		}
 	}
 
+	public void scrollTo(double pct)
+	{
+		double pretarg = targetLevel;
+		targetLevel = maxY * M.clip(pct, 0.0, 1.0);
+		targetLevel = targetLevel > maxY ? maxY : targetLevel;
+		targetLevel = targetLevel < 0 ? 0 : targetLevel;
+
+		for(Point i : buffers.k())
+		{
+			if(!((pretarg >= i.y && pretarg < i.y + buffers.get(i).getHeight()) || (pretarg + 128 > i.y && pretarg < i.y + buffers.get(i).getHeight())) && ((targetLevel >= i.y && targetLevel < i.y + buffers.get(i).getHeight()) || (targetLevel + 128 > i.y && targetLevel < i.y + buffers.get(i).getHeight())))
+			{
+				IGraph g = graphs.get(i);
+
+				if(g instanceof GraphSampleLine)
+				{
+					((GraphSampleLine) g).ticksLeftTitle = 20;
+				}
+			}
+		}
+	}
+
 	public void recompile()
 	{
 		maxX = 0;
@@ -104,6 +133,8 @@ public class ColossalView
 			maxX = i.x + buffers.get(i).getWidth() > maxX ? i.x + buffers.get(i).getWidth() : maxX;
 			maxY = i.y + buffers.get(i).getHeight() > maxY ? i.y + buffers.get(i).getHeight() : maxY;
 		}
+
+		maxY -= 128;
 
 		level = 0;
 	}

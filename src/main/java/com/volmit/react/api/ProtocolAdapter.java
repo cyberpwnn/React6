@@ -50,8 +50,16 @@ public class ProtocolAdapter implements Listener
 			@Override
 			public void onPacketSending(PacketEvent e)
 			{
-				long id = longs ? e.getPacket().getLongs().read(0) : e.getPacket().getIntegers().read(0);
-				times.put(e.getPlayer(), new GBiset<Long, Long>(id, M.ns()));
+				try
+				{
+					long id = longs ? e.getPacket().getLongs().read(0) : e.getPacket().getIntegers().read(0);
+					times.put(e.getPlayer(), new GBiset<Long, Long>(id, M.ns()));
+				}
+
+				catch(Throwable ex)
+				{
+
+				}
 			}
 		});
 
@@ -60,17 +68,25 @@ public class ProtocolAdapter implements Listener
 			@Override
 			public void onPacketReceiving(PacketEvent e)
 			{
-				if(times.containsKey(e.getPlayer()))
+				try
 				{
-					long id = longs ? e.getPacket().getLongs().read(0) : e.getPacket().getIntegers().read(0);
-
-					if(id == times.get(e.getPlayer()).getA())
+					if(times.containsKey(e.getPlayer()))
 					{
-						long timeNS = M.ns() - times.get(e.getPlayer()).getB();
-						times.remove(e.getPlayer());
-						pings.put(e.getPlayer(), (double) timeNS / 1000000.0);
-						ago.put(e.getPlayer(), M.ms());
+						long id = longs ? e.getPacket().getLongs().read(0) : e.getPacket().getIntegers().read(0);
+
+						if(id == times.get(e.getPlayer()).getA())
+						{
+							long timeNS = M.ns() - times.get(e.getPlayer()).getB();
+							times.remove(e.getPlayer());
+							pings.put(e.getPlayer(), (double) timeNS / 1000000.0);
+							ago.put(e.getPlayer(), M.ms());
+						}
 					}
+				}
+
+				catch(Throwable ex)
+				{
+
 				}
 			}
 		});

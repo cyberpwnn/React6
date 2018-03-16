@@ -95,7 +95,11 @@ public class CrashController extends Controller implements Runnable
 
 					for(Plugin k : CPS.identify(i.getClassName()))
 					{
-						px = k;
+						if(px == null)
+						{
+							px = k;
+						}
+
 						kv += " BLAMING " + k.getName();
 					}
 

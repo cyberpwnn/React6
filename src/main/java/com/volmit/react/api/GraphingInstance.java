@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
@@ -48,57 +49,6 @@ public class GraphingInstance implements Listener
 		doScrolling = true;
 		notif = false;
 		shift = 0;
-		waiter = new Task("Chat waiter", 199)
-		{
-			@Override
-			public void run()
-			{
-				if(mapping)
-				{
-					if(!msgs.isEmpty() && notif)
-					{
-						notif = false;
-						if(msgs.size() > 1)
-						{
-							Gate.msgActing(player, msgs.size() + " chat messages. Double shift to view.");
-						}
-
-						else
-						{
-							Gate.msgActing(player, "1 message witheld. Double shift to view.");
-						}
-
-					}
-				}
-			}
-		};
-
-		waiter2 = new Task("Chat waiter2", 0)
-		{
-			@Override
-			public void run()
-			{
-				if(mapping)
-				{
-					if(shift > 0)
-					{
-						shift--;
-
-						if(shift >= 13)
-						{
-							shift = 0;
-
-							for(String i : msgs)
-							{
-								send(i);
-							}
-
-							msgs.clear();
-						}
-					}
-				}
-			}
-		};
 		msgs = new GList<String>();
 		mapping = false;
 		Surge.register(this);
@@ -112,6 +62,38 @@ public class GraphingInstance implements Listener
 				frame.write(view.getView());
 			}
 		};
+
+		if(!Capability.DUAL_WEILD.isCapable())
+		{
+			new Task("", 0)
+			{
+				@Override
+				public void run()
+				{
+					if(isMapping() && player.getLocation().getPitch() > 35)
+					{
+						double pc = (player.getLocation().getPitch() - 35f) / (90f - 35f);
+						view.scrollTo(pc);
+					}
+
+					else if(isMapping() && player.getLocation().getPitch() <= 35)
+					{
+						view.scrollTo(0);
+					}
+
+					if(!player.getInventory().contains(item))
+					{
+						disable();
+					}
+
+					if(!isMapping())
+					{
+						cancel();
+						return;
+					}
+				}
+			};
+		}
 	}
 
 	public boolean isDoScrolling()
@@ -160,7 +142,7 @@ public class GraphingInstance implements Listener
 	@EventHandler
 	public void on(ReactScrollEvent e)
 	{
-		if(mapping && e.getPlayer().equals(player))
+		if(mapping && e.getPlayer().equals(player) && Capability.DUAL_WEILD.isCapable())
 		{
 			if(Config.SOUNDS)
 			{
@@ -207,6 +189,19 @@ public class GraphingInstance implements Listener
 	}
 
 	@EventHandler
+	public void on(PlayerDropItemEvent e)
+	{
+		if(mapping && e.getPlayer().equals(player) && !Capability.DUAL_WEILD.isCapable())
+		{
+			if(e.getItemDrop().getItemStack().equals(item))
+			{
+				e.setCancelled(true);
+				disable();
+			}
+		}
+	}
+
+	@EventHandler
 	public void on(PlayerSwapHandItemsEvent e)
 	{
 		if(mapping && e.getPlayer().equals(player))
@@ -223,8 +218,25 @@ public class GraphingInstance implements Listener
 			disableNoSave();
 		}
 
-		waiter.cancel();
-		waiter2.cancel();
+		try
+		{
+			waiter.cancel();
+		}
+
+		catch(Throwable e)
+		{
+
+		}
+
+		try
+		{
+			waiter2.cancel();
+		}
+
+		catch(Throwable e)
+		{
+
+		}
 		Surge.unregister(this);
 	}
 
@@ -246,20 +258,40 @@ public class GraphingInstance implements Listener
 		graphs = g;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void enable()
 	{
-		if(player.getInventory().getItemInOffHand() == null || player.getInventory().getItemInOffHand().getType().equals(Material.AIR))
+		if(Capability.DUAL_WEILD.isCapable())
 		{
-			React.instance.playerController.getPlayer(player).setMapping(true);
-			mapping = true;
-			player.getInventory().setItemInOffHand(item);
-			Gate.msgSuccess(player, "Mapping Enabled");
-			Gate.msgSuccess(player, "Messages have been slowed while you use the map.");
+			if(player.getInventory().getItemInOffHand() == null || player.getInventory().getItemInOffHand().getType().equals(Material.AIR))
+			{
+				React.instance.playerController.getPlayer(player).setMapping(true);
+				mapping = true;
+				player.getInventory().setItemInOffHand(item);
+				Gate.msgSuccess(player, "Mapping Enabled");
+			}
+
+			else
+			{
+				Gate.msgError(player, "Cannot enable mapping. Clear your offhand.");
+			}
 		}
 
 		else
 		{
-			Gate.msgError(player, "Cannot enable mapping. Clear your offhand.");
+			if(player.getInventory().getItemInHand() == null || player.getInventory().getItemInHand().getType().equals(Material.AIR))
+			{
+				React.instance.playerController.getPlayer(player).setMapping(true);
+				mapping = true;
+				player.getInventory().setItemInHand(item);
+				Gate.msgSuccess(player, "Mapping Enabled");
+				Gate.msgSuccess(player, "Move your mouse up and down to scroll.");
+			}
+
+			else
+			{
+				Gate.msgError(player, "Cannot enable mapping. Empty your hand.");
+			}
 		}
 	}
 
@@ -271,7 +303,17 @@ public class GraphingInstance implements Listener
 	public void disable()
 	{
 		mapping = false;
-		player.getInventory().setItemInOffHand(null);
+
+		if(!Capability.DUAL_WEILD.isCapable())
+		{
+			player.getInventory().remove(item);
+		}
+
+		else
+		{
+			player.getInventory().setItemInOffHand(null);
+		}
+
 		React.instance.playerController.getPlayer(player).setMapping(false);
 		msgs.clear();
 		Gate.msgSuccess(player, "Mapping Disabled");
@@ -280,7 +322,17 @@ public class GraphingInstance implements Listener
 	public void disableNoSave()
 	{
 		mapping = false;
-		player.getInventory().setItemInOffHand(null);
+
+		if(!Capability.DUAL_WEILD.isCapable())
+		{
+			player.getInventory().remove(item);
+		}
+
+		else
+		{
+			player.getInventory().setItemInOffHand(null);
+		}
+
 		msgs.clear();
 		Gate.msgSuccess(player, "Mapping Disabled");
 	}

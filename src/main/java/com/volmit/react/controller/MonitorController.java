@@ -35,6 +35,7 @@ import com.volmit.react.util.MSound;
 import com.volmit.react.util.NMSX;
 import com.volmit.react.util.PhantomSlate;
 import com.volmit.react.util.S;
+import com.volmit.react.util.TICK;
 import com.volmit.react.util.TaskLater;
 
 @AsyncTick
@@ -649,7 +650,10 @@ public class MonitorController extends Controller
 
 	public void onTickAsync()
 	{
-		updateActionBoard();
+		if(TICK.tick % 3 == 0)
+		{
+			updateActionBoard();
+		}
 
 		for(ReactPlayer i : React.instance.playerController.getPlayers())
 		{
@@ -682,7 +686,6 @@ public class MonitorController extends Controller
 
 				new S("stop-mon")
 				{
-
 					@Override
 					public void run()
 					{
@@ -727,7 +730,7 @@ public class MonitorController extends Controller
 				total += SampledType.HOPPER_SECOND.get().getValue();
 				total += SampledType.REDSTONE_SECOND.get().getValue();
 				double use = SampledType.MEM.get().getValue() / SampledType.MAXMEM.get().getValue();
-				sb.addLine(C.BLACK + "" + C.UNDERLINE + F.repeat("/", 20));
+				sb.addLine(C.BLACK + "" + C.STRIKETHROUGH + F.repeat("-", 20));
 				sb.addLine(C.GREEN + SampledType.TPS.get().get() + " (" + SampledType.TICK.get().get() + ") " + SampledType.CPU.get().get());
 				sb.addLine(C.GOLD + SampledType.MEM.get().get() + " (" + F.pc(use, 1) + ") " + SampledType.MAHS.get().get());
 				sb.addLine(C.RED + SampledType.CHK.get().get() + " " + SampledType.CHKS.get().get() + " (" + SampledType.CHK_TIME.get().get() + ")");
