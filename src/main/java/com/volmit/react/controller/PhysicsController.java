@@ -152,13 +152,21 @@ public class PhysicsController extends Controller
 
 	public void hit(Chunk c, ChunkIssue issue, int weight)
 	{
-		if(!samples.containsKey(c))
+		try
 		{
-			samples.put(c, new SampledChunk(c));
+			if(!samples.containsKey(c))
+			{
+				samples.put(c, new SampledChunk(c));
+			}
+
+			samples.get(c).hit(issue, weight);
+			EventController.map.hit(c, issue, (double) weight);
 		}
 
-		samples.get(c).hit(issue, weight);
-		EventController.map.hit(c, issue, (double) weight);
+		catch(Throwable e)
+		{
+
+		}
 	}
 
 	public void onTickAsync()

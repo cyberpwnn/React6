@@ -8,10 +8,32 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class DataCluster
 {
 	private GMap<String, ICluster<?>> clusters;
+	private GMap<String, String> comments;
 
 	public DataCluster()
 	{
 		this.clusters = new GMap<String, ICluster<?>>();
+		this.comments = new GMap<String, String>();
+	}
+
+	public void comment(String k, String c)
+	{
+		comments.put(k, c);
+	}
+
+	public GMap<String, String> getComments()
+	{
+		return comments;
+	}
+
+	public boolean hasComment(String key)
+	{
+		return getComment(key) != null;
+	}
+
+	public String getComment(String key)
+	{
+		return comments.get(key);
 	}
 
 	public GList<String> keys()

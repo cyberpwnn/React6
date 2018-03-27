@@ -17,6 +17,8 @@ public class GraphCPUArc extends NormalGraph implements IGraph
 	private Average aay = new Average(40);
 	private Average aaz = new Average(60);
 	private long msx;
+	private long lastf = M.ms();
+	private BufferedFrame last;
 
 	public GraphCPUArc(byte fontColor)
 	{
@@ -39,6 +41,16 @@ public class GraphCPUArc extends NormalGraph implements IGraph
 	@Override
 	public void onRender(BufferedFrame frame)
 	{
+		if(M.ms() - lastf < 750.0)
+		{
+			if(last != null)
+			{
+				frame.write(last);
+				return;
+			}
+		}
+
+		lastf = M.ms();
 		sample();
 		aax.put(pct);
 		aay.put(aax.getAverage());
@@ -57,6 +69,8 @@ public class GraphCPUArc extends NormalGraph implements IGraph
 				}
 			}
 		}
+
+		last = frame;
 	}
 
 	public byte getFontColor()

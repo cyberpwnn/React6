@@ -10,7 +10,6 @@ import com.volmit.react.api.INMSBinding;
 import com.volmit.react.api.NMSBinding10;
 import com.volmit.react.api.NMSBinding11;
 import com.volmit.react.api.NMSBinding12;
-import com.volmit.react.api.NMSBinding8;
 import com.volmit.react.api.NMSBinding92;
 import com.volmit.react.api.NMSBinding94;
 import com.volmit.react.util.Controller;
@@ -39,14 +38,9 @@ public class FeatureController extends Controller implements INMSBinding
 	{
 		Surge.register(this);
 
-		if(Protocol.R1_8_8.to(Protocol.LATEST).contains(Protocol.getProtocolVersion()))
+		if(Protocol.R1_9.to(Protocol.LATEST).contains(Protocol.getProtocolVersion()))
 		{
-			if(Protocol.R1_8.to(Protocol.R1_8_9).contains(Protocol.getProtocolVersion()))
-			{
-				trueBinding = new NMSBinding8(getPackageVersion());
-			}
-
-			else if(Protocol.R1_9.to(Protocol.R1_9_2).contains(Protocol.getProtocolVersion()))
+			if(Protocol.R1_9.to(Protocol.R1_9_2).contains(Protocol.getProtocolVersion()))
 			{
 				trueBinding = new NMSBinding92(getPackageVersion());
 			}

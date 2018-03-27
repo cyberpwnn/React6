@@ -21,7 +21,6 @@ import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactPlayer;
 import com.volmit.react.api.SampledType;
 import com.volmit.react.api.TitleMonitor;
-import com.volmit.react.util.A;
 import com.volmit.react.util.AsyncTick;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Controller;
@@ -289,14 +288,7 @@ public class MonitorController extends Controller
 	@Override
 	public void tick()
 	{
-		new A()
-		{
-			@Override
-			public void run()
-			{
-				onTickAsync();
-			}
-		};
+
 	}
 
 	private void changePost(ReactPlayer i)
@@ -543,7 +535,7 @@ public class MonitorController extends Controller
 			{
 				String m = prefixFor(rp, sel, rp.getSwitchNotification());
 				String v = sel != -1 ? (rp.getSwitchNotification() > 0 ? (m + titleMonitor.getHeadFor(sel).getName()) : "  ") : "  "; //$NON-NLS-1$ //$NON-NLS-2$
-				NMSX.sendTitle(p, 0, 5, 0, v, titleMonitor.getHotbarFor(sel, rp.isShift()));
+				NMSX.sendTitle(p, 0, 5, 0, v, titleMonitor.getHotbarFor(sel, rp.isShift(), rp));
 			}
 
 			else if(sel >= 0 && high)
@@ -568,7 +560,7 @@ public class MonitorController extends Controller
 						rck = C.RESET + "" + z + "\u2193";
 					}
 
-					NMSX.sendActionBar(p, lck + " " + titleMonitor.getHotbarFor(rp.getMonitorPosted() ? -1 : sel, rp.isShift()) + " " + rck);
+					NMSX.sendActionBar(p, lck + " " + titleMonitor.getHotbarFor(rp.getMonitorPosted() ? -1 : sel, rp.isShift(), rp) + " " + rck);
 					String k = titleMonitor.getHotbarHeadFor(sel, rp.isShift() && !rp.getMonitorPosted(), this, rp, rp.getSwitchNotification());
 					String m = prefixFor(rp, rp.getMonitorPosted() ? -1 : sel, rp.getSwitchNotification());
 					String v = sel != -1 ? (rp.getSwitchNotification() > 0 ? (m + titleMonitor.getHeadFor(sel).getName()) : "  ") : "  "; //$NON-NLS-1$ //$NON-NLS-2$

@@ -10,13 +10,17 @@ import org.bukkit.Chunk;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
+import com.volmit.react.Config;
 import com.volmit.react.controller.EventController;
+import com.volmit.react.util.M;
 
 public class GraphLagMap extends Graph2D
 {
 	private int grid;
 	private Player viewer;
 	private Vector lastVector;
+	private BufferedFrame last = null;
+	private long lastf = M.ms();
 
 	public GraphLagMap(Player viewer, int gridSize)
 	{
@@ -51,6 +55,16 @@ public class GraphLagMap extends Graph2D
 	@Override
 	public void onRender(BufferedFrame aframe)
 	{
+		if(M.ms() - lastf < 1000.0 / (double) Config.GRAPH_FPS)
+		{
+			if(last != null)
+			{
+				aframe.write(last);
+				return;
+			}
+		}
+
+		lastf = M.ms();
 		BufferedFrame frame = new BufferedFrame(aframe.getWidth() * 2, aframe.getHeight() * 2);
 		frame.write(FrameColor.WHITE);
 		int cx = viewer.getLocation().getChunk().getX();
@@ -155,5 +169,6 @@ public class GraphLagMap extends Graph2D
 		g2d.drawImage(buf, at, null);
 		g2d.dispose();
 		aframe.fromBufferedImage(bu);
+		last = aframe;
 	}
 }

@@ -50,7 +50,6 @@ import com.volmit.react.sampler.SampleTicksPerSecond;
 import com.volmit.react.sampler.SampleTileDroppedTicks;
 import com.volmit.react.sampler.SampleTileTime;
 import com.volmit.react.sampler.SampleTileTimeLock;
-import com.volmit.react.util.A;
 import com.volmit.react.util.AsyncTick;
 import com.volmit.react.util.Control;
 import com.volmit.react.util.Controller;
@@ -214,6 +213,7 @@ public class SampleController extends Controller
 	@Override
 	public void tick()
 	{
+		ss.onTick();
 		I.hit++;
 
 		if(SampledType.TICK.get().getValue() == 0)
@@ -252,31 +252,25 @@ public class SampleController extends Controller
 
 		totalTime = nsv;
 		totalTaskTime = msu;
+	}
 
-		new A()
+	public void onTickAsync()
+	{
+		for(ISampler i : samplers.v())
 		{
-			@Override
-			public void run()
+			try
 			{
-				for(ISampler i : samplers.v())
+				if(TICK.tick % i.getInterval() == 0)
 				{
-					try
-					{
-						if(TICK.tick % i.getInterval() == 0)
-						{
-							i.sample();
-						}
-					}
-
-					catch(Throwable e)
-					{
-						Ex.t(e);
-					}
+					i.sample();
 				}
-
-				ss.onTickAsync();
 			}
-		};
+
+			catch(Throwable e)
+			{
+				Ex.t(e);
+			}
+		}
 	}
 
 	public SuperSampler getSuperSampler()

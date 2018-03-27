@@ -3,9 +3,9 @@ package com.volmit.react.sampler;
 import com.volmit.react.api.IFormatter;
 import com.volmit.react.api.MSampler;
 import com.volmit.react.api.SampledType;
-import com.volmit.react.controller.SampleController;
 import com.volmit.react.util.C;
 import com.volmit.react.util.F;
+import com.volmit.react.util.S;
 
 public class SampleReactTaskTime extends MSampler
 {
@@ -18,7 +18,7 @@ public class SampleReactTaskTime extends MSampler
 			@Override
 			public String from(double d)
 			{
-				return F.time(d, 2);
+				return F.f((int) d);
 			}
 		};
 	}
@@ -26,8 +26,8 @@ public class SampleReactTaskTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("React Task Time"); //$NON-NLS-1$
-		setDescription("Samples react total task time"); //$NON-NLS-1$
+		setName("React Tasks"); //$NON-NLS-1$
+		setDescription("Samples react task queue"); //$NON-NLS-1$
 		setID(SampledType.REACT_TASK_TIME.toString());
 		setValue(0);
 		setColor(C.AQUA, C.AQUA);
@@ -37,7 +37,7 @@ public class SampleReactTaskTime extends MSampler
 	@Override
 	public void sample()
 	{
-		setValue(SampleController.totalTaskTime);
+		setValue(S.mgr.getSqueue().size());
 	}
 
 	@Override

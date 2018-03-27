@@ -43,13 +43,13 @@ public class GoalStableFluidTime extends Goal
 			{
 				if(React.instance.physicsController.getSamples().get(i).getCounts().containsKey(ChunkIssue.FLUID))
 				{
-					fuf += React.instance.physicsController.getSamples().get(i).getCounts().get(ChunkIssue.FLUID);
+					fuf += React.instance.physicsController.getSamples().get(i).getCounts().copy().get(ChunkIssue.FLUID);
 				}
 			}
 
 			catch(Throwable e)
 			{
-				Ex.t(e);
+
 			}
 		}
 

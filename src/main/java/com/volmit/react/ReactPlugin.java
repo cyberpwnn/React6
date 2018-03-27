@@ -124,7 +124,7 @@ public class ReactPlugin extends JavaPlugin
 					}
 				}
 
-				for(IController i : controllers)
+				for(IController i : controllers.copy())
 				{
 					try
 					{

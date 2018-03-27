@@ -399,7 +399,7 @@ public class SmearTickController extends Controller
 
 			catch(Throwable ex)
 			{
-				Ex.t(ex);
+
 			}
 		}
 

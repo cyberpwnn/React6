@@ -8,6 +8,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 
+import com.volmit.react.Config;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
@@ -89,9 +90,12 @@ public class FluidController extends Controller
 		{
 			if(queue.containsKey(i))
 			{
-				for(Block j : queue.get(i))
+				if(Config.UNLOCKING)
 				{
-					Gate.updateFluid(j);
+					for(Block j : queue.get(i))
+					{
+						Gate.updateBlock(j);
+					}
 				}
 
 				queue.remove(i);

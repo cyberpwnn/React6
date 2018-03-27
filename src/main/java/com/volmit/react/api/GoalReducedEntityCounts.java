@@ -41,7 +41,17 @@ public class GoalReducedEntityCounts extends Goal
 		{
 			for(Chunk i : Chunks.getLoadedChunks())
 			{
-				int s = i.getEntities().length;
+				int s = 0;
+
+				try
+				{
+					s = i.getEntities().length;
+				}
+
+				catch(Throwable e)
+				{
+
+				}
 
 				if(s > max)
 				{

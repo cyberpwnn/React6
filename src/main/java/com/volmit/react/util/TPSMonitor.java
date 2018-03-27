@@ -1,5 +1,6 @@
 package com.volmit.react.util;
 
+import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.controller.CrashController;
 
@@ -20,9 +21,17 @@ public abstract class TPSMonitor extends Thread
 	private MemoryMonitor memoryMonitor;
 	private WorldMonitor worldMonitor;
 	private long lt = 0;
+	private Profiler syncTickProf;
+	public boolean running;
+	private double mms;
+	public static GList<A> run = null;
 
 	public TPSMonitor(MemoryMonitor memoryMonitor, WorldMonitor worldMonitor)
 	{
+		run = new GList<A>();
+		mms = 0;
+		syncTickProf = new Profiler();
+		syncTickProf.begin();
 		lmsx = 0;
 		this.memoryMonitor = memoryMonitor;
 		this.worldMonitor = worldMonitor;
@@ -42,6 +51,7 @@ public abstract class TPSMonitor extends Thread
 		frozen = false;
 		lt = TICK.tick;
 		setPriority(Thread.MIN_PRIORITY);
+		running = true;
 
 	}
 
@@ -52,23 +62,13 @@ public abstract class TPSMonitor extends Thread
 	@Override
 	public void run()
 	{
-		while(!interrupted())
+		while(running)
 		{
 			lt++;
-
-			if(interrupted())
-			{
-				return;
-			}
 
 			if(Surge.getServerThread() != null)
 			{
 				processState(Surge.getServerThread().getState());
-			}
-
-			if(interrupted())
-			{
-				return;
 			}
 
 			if(ticked)
@@ -82,6 +82,8 @@ public abstract class TPSMonitor extends Thread
 				ticked = false;
 				actualTickTimeMS = actualTickTimeMS == 0 ? ltt : actualTickTimeMS;
 				ltt = actualTickTimeMS > 0 ? actualTickTimeMS : ltt;
+				actualTickTimeMS += mms;
+				actualTickTimeMS /= 2.0;
 				onTicked();
 				actualTickTimeMS = 0;
 				lastTick = M.ms();
@@ -117,7 +119,7 @@ public abstract class TPSMonitor extends Thread
 			{
 				memoryMonitor.run();
 
-				if(lt % 50 == 0)
+				if(lt % 1000 == 0)
 				{
 					if(CrashController.inst != null)
 					{
@@ -126,6 +128,12 @@ public abstract class TPSMonitor extends Thread
 
 					worldMonitor.run();
 				}
+
+				if(lt % 50 == 0)
+				{
+					React.instance.sampleController.onTickAsync();
+					React.instance.monitorController.onTickAsync();
+				}
 			}
 
 			catch(Throwable e)
@@ -133,9 +141,20 @@ public abstract class TPSMonitor extends Thread
 				Ex.t(e);
 			}
 
+			long ns = M.ns();
+			boolean ran = false;
+			while(M.ns() - ns < 1000000 && !run.isEmpty())
+			{
+				ran = true;
+				run.pop().run();
+			}
+
 			try
 			{
-				Thread.sleep(1);
+				if(!ran)
+				{
+					Thread.sleep(1);
+				}
 			}
 
 			catch(InterruptedException e)
@@ -143,6 +162,12 @@ public abstract class TPSMonitor extends Thread
 				return;
 			}
 		}
+	}
+
+	public void close()
+	{
+		this.interrupt();
+		running = false;
 	}
 
 	private void processState(State state)
@@ -199,7 +224,11 @@ public abstract class TPSMonitor extends Thread
 
 	public void markTick()
 	{
+		syncTickProf.end();
+		mms = Math.abs(syncTickProf.getMilliseconds() - 50.0);
 		ticked = true;
+		syncTickProf.reset();
+		syncTickProf.begin();
 	}
 
 	public Profiler getTickTimeProfiler()

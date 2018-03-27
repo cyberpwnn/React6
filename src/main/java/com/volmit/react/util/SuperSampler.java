@@ -28,11 +28,14 @@ public class SuperSampler
 	private WorldMonitor worldMonitor;
 	private TPSMonitor tpsMonitor;
 	private MemoryMonitor memoryMonitor;
+	private RQ r;
 	private StackTraceElement[] lockStack;
 	private GMap<Long, GList<StackTraceElement>> spikes;
 
 	public SuperSampler()
 	{
+		r = new RQ();
+		r.start();
 		frozen = false;
 		lockStack = null;
 		running = false;
@@ -117,13 +120,36 @@ public class SuperSampler
 		running = true;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void stop()
 	{
 		tpsMonitor.interrupt();
+		tpsMonitor.close();
 		running = false;
+		r.interrupt();
+
+		try
+		{
+			r.stop();
+		}
+
+		catch(Throwable e)
+		{
+
+		}
+
+		try
+		{
+			r.destroy();
+		}
+
+		catch(Throwable e)
+		{
+
+		}
 	}
 
-	public void onTickAsync()
+	public void onTick()
 	{
 		if(running)
 		{

@@ -12,7 +12,7 @@ public class PlotBoard
 
 	public PlotBoard()
 	{
-		maxRecordings = 370;
+		maxRecordings = 600;
 		plots = new GMap<Long, Double>();
 	}
 

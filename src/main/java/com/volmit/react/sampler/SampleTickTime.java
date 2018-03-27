@@ -11,7 +11,7 @@ import com.volmit.react.util.F;
 public class SampleTickTime extends MSampler
 {
 	private IFormatter formatter;
-	private Average aa = new Average(50);
+	private Average aa = new Average(10);
 
 	public SampleTickTime()
 	{

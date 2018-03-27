@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
 
+import com.volmit.react.Config;
 import com.volmit.react.util.MaterialBlock;
 
 import net.minecraft.server.v1_9_R1.BlockPosition;
@@ -20,6 +21,12 @@ public class NMSBinding92 extends NMSBinding
 	@Override
 	public void setBlock(Location l, MaterialBlock m)
 	{
+		if(!Config.USE_NMS)
+		{
+			l.getBlock().setTypeIdAndData(m.getMaterial().getId(), m.getData(), false);
+			return;
+		}
+
 		int x = l.getBlockX();
 		int y = l.getBlockY();
 		int z = l.getBlockZ();
@@ -34,10 +41,15 @@ public class NMSBinding92 extends NMSBinding
 	@Override
 	public void updateBlock(Block bfg)
 	{
+		if(!Config.USE_NMS)
+		{
+			return;
+		}
+
 		net.minecraft.server.v1_9_R1.Block b = org.bukkit.craftbukkit.v1_9_R1.util.CraftMagicNumbers.getBlock((org.bukkit.craftbukkit.v1_9_R1.block.CraftBlock) bfg);
 		net.minecraft.server.v1_9_R1.BlockPosition bp = new net.minecraft.server.v1_9_R1.BlockPosition(bfg.getX(), bfg.getY(), bfg.getZ());
 		org.bukkit.craftbukkit.v1_9_R1.CraftWorld w = (org.bukkit.craftbukkit.v1_9_R1.CraftWorld) bfg.getWorld();
 		net.minecraft.server.v1_9_R1.World v = (net.minecraft.server.v1_9_R1.World) w.getHandle();
-		v.update(bp, b);
+		v.applyPhysics(bp, b);
 	}
 }

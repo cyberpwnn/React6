@@ -1,5 +1,6 @@
 package com.volmit.react.api;
 
+import com.volmit.react.Config;
 import com.volmit.react.util.Average;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
@@ -18,6 +19,8 @@ public class GraphSampleLine extends NormalGraph implements IGraph
 	public int ticksLeftTitle;
 	public int ticksOutTitle;
 	public double nextPoint;
+	private BufferedFrame last;
+	private long lastf = M.ms();
 
 	public GraphSampleLine(ISampler sampler, IFormatter formatter, long timeViewport)
 	{
@@ -41,6 +44,17 @@ public class GraphSampleLine extends NormalGraph implements IGraph
 	@Override
 	public void onRender(BufferedFrame frame)
 	{
+		if(M.ms() - lastf < 1000.0 / (double) Config.MAP_FPS)
+		{
+			if(last != null)
+			{
+				frame.write(last);
+				return;
+			}
+		}
+
+		lastf = M.ms();
+
 		byte dk = FrameColor.matchColor(FrameColor.getColor(graphColor).darker().darker().darker());
 		byte dt = FrameColor.matchColor(FrameColor.getColor(textColor).darker().darker().darker());
 		GMap<Long, Double> map = getPlotBoard().getBetween(M.ms() - getTimeViewport(), M.ms());
@@ -173,6 +187,8 @@ public class GraphSampleLine extends NormalGraph implements IGraph
 				}
 			}
 		}
+
+		last = frame;
 	}
 
 	public int getHeightForText(BufferedFrame frame)

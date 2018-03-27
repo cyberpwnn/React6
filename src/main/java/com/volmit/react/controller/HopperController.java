@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 
+import com.volmit.react.Config;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
@@ -85,9 +86,12 @@ public class HopperController extends Controller
 		{
 			if(queue.containsKey(i))
 			{
-				for(Block j : queue.get(i))
+				if(Config.UNLOCKING)
 				{
-					Gate.updateBlock(j);
+					for(Block j : queue.get(i))
+					{
+						Gate.updateBlock(j);
+					}
 				}
 
 				queue.remove(i);

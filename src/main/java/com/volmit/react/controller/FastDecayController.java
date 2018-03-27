@@ -18,6 +18,7 @@ import com.volmit.react.Config;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
+import com.volmit.react.util.A;
 import com.volmit.react.util.BlockFinder;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.Ex;
@@ -27,6 +28,7 @@ import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.M;
 import com.volmit.react.util.MSound;
 import com.volmit.react.util.MaterialBlock;
+import com.volmit.react.util.S;
 import com.volmit.react.util.TICK;
 import com.volmit.react.util.TaskLater;
 import com.volmit.react.util.W;
@@ -70,7 +72,14 @@ public class FastDecayController extends Controller
 			return;
 		}
 
-		checkBreak(e.getBlock());
+		new S("decay")
+		{
+			@Override
+			public void run()
+			{
+				checkBreak(e.getBlock());
+			}
+		};
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -81,50 +90,88 @@ public class FastDecayController extends Controller
 			return;
 		}
 
-		checkBreak(e.getBlock());
-	}
-
-	public void checkBreak(Block source)
-	{
-		new TaskLater("tleaf1", 0)
+		new S("decay")
 		{
 			@Override
 			public void run()
 			{
-				if(!Config.FASTLEAF_ENABLED)
-				{
-					return;
-				}
+				checkBreak(e.getBlock());
+			}
+		};
+	}
 
-				if(!Config.getWorldConfig(source.getWorld()).allowFastLeafDecay)
+	public void checkBreak(Block source)
+	{
+		new S("c")
+		{
+			@Override
+			public void run()
+			{
+				try
 				{
-					return;
-				}
-
-				for(Block i : W.blockFaces(source))
-				{
-					if(leaves.contains(i.getType()))
+					if(!Config.FASTLEAF_ENABLED)
 					{
-						if(!BlockFinder.follow(i, leaves, logs, 5))
-						{
-							if(Config.FASTLEAF_INSTANT)
-							{
-								decay(i);
-							}
+						return;
+					}
 
-							else
+					if(!Config.getWorldConfig(source.getWorld()).allowFastLeafDecay)
+					{
+						return;
+					}
+
+					for(Block i : W.blockFaces(source))
+					{
+						if(leaves.contains(i.getType()))
+						{
+							new A()
 							{
-								new TaskLater("dvdxleaf", (int) ((Math.random() * Config.FASTLEAF_DECAYPERIOD)))
+								@Override
+								public void run()
 								{
-									@Override
-									public void run()
+									boolean b = BlockFinder.follow(i, leaves, logs, 5);
+
+									if(!b)
 									{
-										decay(i);
+										if(Config.FASTLEAF_INSTANT)
+										{
+											new S("decayer")
+											{
+												@Override
+												public void run()
+												{
+													decay(i);
+												}
+											};
+										}
+
+										else
+										{
+											new TaskLater("dvdxleaf", (int) ((Math.random() * Config.FASTLEAF_DECAYPERIOD)))
+											{
+												@Override
+												public void run()
+												{
+													new S("decayer")
+													{
+														@Override
+														public void run()
+														{
+															decay(i);
+														}
+													};
+												}
+											};
+										}
 									}
-								};
-							}
+								}
+							};
 						}
 					}
+				}
+
+				catch(Throwable e)
+				{
+
 				}
 			}
 		};
@@ -273,7 +320,7 @@ public class FastDecayController extends Controller
 	{
 		try
 		{
-			if(TICK.tick % Config.NMS_CHUNK_UPDATE_INTERVAL == 0)
+			if(TICK.tick % 20 == 0)
 			{
 				Gate.refreshChunks();
 			}

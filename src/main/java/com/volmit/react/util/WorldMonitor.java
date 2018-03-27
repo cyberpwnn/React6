@@ -234,7 +234,15 @@ public abstract class WorldMonitor implements Listener
 
 		for(World i : Bukkit.getWorlds())
 		{
-			totalEntities += i.getEntities().size();
+			try
+			{
+				totalEntities += i.getEntities().size();
+			}
+
+			catch(Throwable e)
+			{
+
+			}
 		}
 	}
 
@@ -244,7 +252,15 @@ public abstract class WorldMonitor implements Listener
 
 		for(World i : Bukkit.getWorlds())
 		{
-			totalLiving += i.getLivingEntities().size();
+			try
+			{
+				totalLiving += i.getLivingEntities().size();
+			}
+
+			catch(Throwable e)
+			{
+
+			}
 		}
 	}
 
@@ -310,7 +326,15 @@ public abstract class WorldMonitor implements Listener
 
 		for(World i : Bukkit.getWorlds())
 		{
-			totalDrops += i.getEntitiesByClass(Item.class).size();
+			try
+			{
+				totalDrops += i.getEntitiesByClass(Item.class).size();
+			}
+
+			catch(Throwable e)
+			{
+
+			}
 		}
 	}
 

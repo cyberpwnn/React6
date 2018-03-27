@@ -132,9 +132,9 @@ public class LagMapChunk implements Comparable<LagMapChunk>
 	{
 		for(ChunkIssue i : getHits().k())
 		{
-			hits.put(i, hits.get(i) / 1.25);
+			hits.put(i, hits.get(i) / 1.01);
 
-			if(hits.get(i) < 1)
+			if(hits.get(i) < 0.5)
 			{
 				hits.remove(i);
 			}

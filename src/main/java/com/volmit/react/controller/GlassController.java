@@ -80,14 +80,6 @@ public class GlassController extends Controller
 		}
 
 		GMap<Location, Color> cc = q.copy();
-
-		while(cc.size() > 200)
-		{
-			Location n = cc.k().popRandom();
-			q.put(n, cc.get(n));
-			cc.remove(n);
-		}
-
 		q.clear();
 
 		new A()
@@ -183,6 +175,11 @@ public class GlassController extends Controller
 			return;
 		}
 
+		if(q.size() > Config.GLASS_MAX_QUEUE)
+		{
+			return;
+		}
+
 		if(g.size() > 0)
 		{
 			Location a = e.getBlock().getLocation().clone().add(0.5, 0.5, 0.5);
@@ -194,6 +191,11 @@ public class GlassController extends Controller
 	public void on(BlockFromToEvent e)
 	{
 		if(g.isEmpty())
+		{
+			return;
+		}
+
+		if(q.size() > Config.GLASS_MAX_QUEUE)
 		{
 			return;
 		}
@@ -213,6 +215,11 @@ public class GlassController extends Controller
 			return;
 		}
 
+		if(q.size() > Config.GLASS_MAX_QUEUE)
+		{
+			return;
+		}
+
 		if(g.size() > 0)
 		{
 			Location a = e.getBlock().getLocation().clone().add(0.5, 0.5, 0.5);
@@ -224,6 +231,11 @@ public class GlassController extends Controller
 	public void on(BlockFormEvent e)
 	{
 		if(g.isEmpty())
+		{
+			return;
+		}
+
+		if(q.size() > Config.GLASS_MAX_QUEUE)
 		{
 			return;
 		}
@@ -243,6 +255,11 @@ public class GlassController extends Controller
 			return;
 		}
 
+		if(q.size() > Config.GLASS_MAX_QUEUE)
+		{
+			return;
+		}
+
 		if(g.size() > 0)
 		{
 			Location a = e.getBlock().getLocation().clone().add(0.5, 0.5, 0.5);
@@ -254,6 +271,11 @@ public class GlassController extends Controller
 	public void on(InventoryMoveItemEvent e)
 	{
 		if(g.isEmpty())
+		{
+			return;
+		}
+
+		if(q.size() > Config.GLASS_MAX_QUEUE)
 		{
 			return;
 		}

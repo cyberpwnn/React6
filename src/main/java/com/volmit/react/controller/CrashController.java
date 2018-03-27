@@ -15,7 +15,7 @@ import com.volmit.react.util.M;
 
 public class CrashController extends Controller implements Runnable
 {
-	private long lastTick;
+	public static long lastTick = -1;
 	public static int cd;
 	public static CrashController inst = null;
 
@@ -70,94 +70,80 @@ public class CrashController extends Controller implements Runnable
 			return;
 		}
 
+		if(Thread.interrupted())
+		{
+			return;
+		}
+
 		boolean spiked = false;
 
-		while(!Thread.interrupted())
+		if(M.ms() - lastTick > 7000 && !spiked)
 		{
-			try
-			{
-				Thread.sleep(1000);
-			}
+			spiked = true;
+			Plugin px = null;
 
-			catch(InterruptedException e)
+			for(StackTraceElement i : Surge.getServerThread().getStackTrace())
 			{
-				return;
-			}
-
-			if(M.ms() - lastTick > 7000 && !spiked)
-			{
-				spiked = true;
-				Plugin px = null;
-
-				for(StackTraceElement i : Surge.getServerThread().getStackTrace())
+				for(Plugin k : CPS.identify(i.getClassName()))
 				{
-					String kv = "||| " + i.getClassName() + "." + i.getMethodName() + "(" + i.getLineNumber() + ")";
-
-					for(Plugin k : CPS.identify(i.getClassName()))
+					if(px == null)
 					{
-						if(px == null)
-						{
-							px = k;
-						}
-
-						kv += " BLAMING " + k.getName();
-					}
-
-					System.out.println(kv);
-				}
-
-				if(px != null)
-				{
-					System.out.println("[React]: Notifying React Players");
-					System.out.println("=====================================================");
-					System.out.println("=====================================================");
-					System.out.println("=====================================================");
-					System.out.println("PLUGIN FREEZING SERVER: " + px.getName());
-					System.out.println("=====================================================");
-					System.out.println("=====================================================");
-					System.out.println("=====================================================");
-
-					for(CommandSender i : Gate.broadcastReactUsers())
-					{
-						Gate.msgError(i, "Warning! The server has been frozen for more than 7 seconds");
-						i.sendMessage(Gate.header("Server Lock: " + px.getName(), C.RED));
-						int lim = 0;
-
-						for(StackTraceElement j : Surge.getServerThread().getStackTrace())
-						{
-							lim++;
-							String kv = C.WHITE + fcf(j.getClassName()) + C.GRAY + "." + j.getMethodName() + "(" + j.getLineNumber() + ")";
-
-							for(Plugin k : CPS.identify(j.getClassName()))
-							{
-								kv += " " + C.RED + k.getName();
-							}
-
-							i.sendMessage(kv);
-
-							if(lim > 5)
-							{
-								break;
-							}
-						}
-
-						i.sendMessage(Gate.header(C.RED));
-
-						Gate.msgError(i, "Identified Cause: " + px.getName());
+						px = k;
 					}
 				}
 			}
 
-			if(M.ms() - lastTick < 7000 && spiked)
+			if(px != null)
 			{
+				System.out.println("[React]: Notifying React Players");
+				System.out.println("=====================================================");
+				System.out.println("=====================================================");
+				System.out.println("=====================================================");
+				System.out.println("PLUGIN FREEZING SERVER: " + px.getName());
+				System.out.println("=====================================================");
+				System.out.println("=====================================================");
+				System.out.println("=====================================================");
+
 				for(CommandSender i : Gate.broadcastReactUsers())
 				{
-					Gate.msgSuccess(i, "The server has recovered from a lock!");
-				}
+					Gate.msgError(i, "Warning! The server has been frozen for more than 7 seconds");
+					i.sendMessage(Gate.header("Server Lock: " + px.getName(), C.RED));
+					int lim = 0;
 
-				System.out.println("[React]: The server has recovered and resumed ticking.");
-				spiked = false;
+					for(StackTraceElement j : Surge.getServerThread().getStackTrace())
+					{
+						lim++;
+						String kv = C.WHITE + fcf(j.getClassName()) + C.GRAY + "." + j.getMethodName() + "(" + j.getLineNumber() + ")";
+
+						for(Plugin k : CPS.identify(j.getClassName()))
+						{
+							kv += " " + C.RED + k.getName();
+						}
+
+						i.sendMessage(kv);
+
+						if(lim > 5)
+						{
+							break;
+						}
+					}
+
+					i.sendMessage(Gate.header(C.RED));
+
+					Gate.msgError(i, "Identified Cause: " + px.getName());
+				}
 			}
+		}
+
+		if(M.ms() - lastTick < 7000 && spiked)
+		{
+			for(CommandSender i : Gate.broadcastReactUsers())
+			{
+				Gate.msgSuccess(i, "The server has recovered from a lock!");
+			}
+
+			System.out.println("[React]: The server has recovered and resumed ticking.");
+			spiked = false;
 		}
 	}
 

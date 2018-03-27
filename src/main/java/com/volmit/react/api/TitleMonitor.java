@@ -77,7 +77,7 @@ public class TitleMonitor
 		return m.substring(1);
 	}
 
-	public String getHotbarFor(int sel, boolean b)
+	public String getHotbarFor(int sel, boolean b, ReactPlayer rp)
 	{
 		String m = "";
 		int sl = 0;

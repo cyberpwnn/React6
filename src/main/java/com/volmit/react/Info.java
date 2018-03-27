@@ -61,6 +61,12 @@ public class Info
 	public static String COMMAND_CTP_ALIAS_2 = "chtp"; //$NON-NLS-1$
 	public static String COMMAND_CTP_USAGE = "<world> <x> <z>"; //$NON-NLS-1$
 
+	public static String COMMAND_CHUNK_DESCRIPTION = "Chunk stats"; //$NON-NLS-1$
+	public static String COMMAND_CHUNK = "chunk"; //$NON-NLS-1$
+	public static String COMMAND_CHUNK_ALIAS_1 = "c"; //$NON-NLS-1$
+	public static String COMMAND_CHUNK_ALIAS_2 = "ch"; //$NON-NLS-1$
+	public static String COMMAND_CHUNK_USAGE = ""; //$NON-NLS-1$
+
 	public static String COMMAND_MONITOR_DESCRIPTION = Lang.getString("command.monitor.description"); //$NON-NLS-1$
 	public static String COMMAND_MONITOR = "monitor"; //$NON-NLS-1$
 	public static String COMMAND_MONITOR_ALIAS_1 = "mon"; //$NON-NLS-1$
@@ -182,6 +188,7 @@ public class Info
 	public static String NAME_MEMORY = Lang.getString("monitor.tab.memory"); //$NON-NLS-1$
 	public static String NAME_CHUNKS = Lang.getString("monitor.tab.chunks"); //$NON-NLS-1$
 	public static String NAME_ENTITIES = Lang.getString("monitor.tab.entities"); //$NON-NLS-1$
+	public static String NAME_ME = "WAILA";
 	public static String NAME_BANDWIDTH = Lang.getString("command.bandwidth"); //$NON-NLS-1$
 
 	public static String STATE_MONITORING_TAB = "monitor.tab"; //$NON-NLS-1$

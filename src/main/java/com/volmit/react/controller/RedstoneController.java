@@ -12,6 +12,7 @@ import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
 
+import com.volmit.react.Config;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
@@ -150,9 +151,12 @@ public class RedstoneController extends Controller
 		{
 			if(queue.containsKey(i))
 			{
-				for(Block j : queue.get(i))
+				if(Config.UNLOCKING)
 				{
-					Gate.updateBlock(j);
+					for(Block j : queue.get(i))
+					{
+						Gate.updateBlock(j);
+					}
 				}
 
 				queue.remove(i);

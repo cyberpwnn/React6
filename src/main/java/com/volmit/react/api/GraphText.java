@@ -2,12 +2,16 @@ package com.volmit.react.api;
 
 import java.awt.image.AffineTransformOp;
 
+import com.volmit.react.util.M;
+
 public class GraphText extends NormalGraph implements IGraph
 {
 	private String text;
 	private byte fontColor;
 	private byte backgroundColor;
 	private boolean wrote;
+	private long lastf = M.ms();
+	private BufferedFrame last;
 
 	public GraphText(String textInitial, byte fontColor)
 	{
@@ -22,6 +26,17 @@ public class GraphText extends NormalGraph implements IGraph
 	@Override
 	public void onRender(BufferedFrame frame)
 	{
+		if(M.ms() - lastf < 750.0)
+		{
+			if(last != null)
+			{
+				frame.write(last);
+				return;
+			}
+		}
+
+		lastf = M.ms();
+
 		if(!wrote)
 		{
 			int x = (frame.getWidth() / 2);
@@ -39,6 +54,7 @@ public class GraphText extends NormalGraph implements IGraph
 			frame.write(backgroundColor);
 			frame.write(presc, x - (w / 2), y - (h / 2));
 			wrote = true;
+			last = frame;
 		}
 	}
 

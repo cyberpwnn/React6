@@ -1,5 +1,6 @@
 package com.volmit.react.controller;
 
+import com.volmit.react.Config;
 import com.volmit.react.Surge;
 import com.volmit.react.api.GoalReducedEntityCounts;
 import com.volmit.react.api.GoalStableChunkTime;
@@ -10,6 +11,7 @@ import com.volmit.react.api.GoalStableTickTime;
 import com.volmit.react.api.IGoal;
 import com.volmit.react.api.IRAI;
 import com.volmit.react.api.RAI;
+import com.volmit.react.api.SampledType;
 import com.volmit.react.util.A;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.JSONObject;
@@ -51,6 +53,21 @@ public class RAIController extends Controller
 	public void tick()
 	{
 		if(TICK.tick < 20)
+		{
+			return;
+		}
+
+		if(SampledType.TPS.get().getValue() > 0 && SampledType.TPS.get().getValue() > Config.RAI_ACTIVATION)
+		{
+			return;
+		}
+
+		if(!Config.RAI)
+		{
+			return;
+		}
+
+		if(Config.MONITOR_ONLY)
 		{
 			return;
 		}

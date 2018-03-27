@@ -28,6 +28,7 @@ import com.volmit.react.command.CommandAccess;
 import com.volmit.react.command.CommandAct;
 import com.volmit.react.command.CommandCPUScore;
 import com.volmit.react.command.CommandCapabilities;
+import com.volmit.react.command.CommandChunk;
 import com.volmit.react.command.CommandChunkBlame;
 import com.volmit.react.command.CommandChunkTP;
 import com.volmit.react.command.CommandDump;
@@ -89,6 +90,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 		Surge.register(this);
 		commands = new GList<ICommand>();
 		commands.add(new CommandAccept());
+		commands.add(new CommandChunk());
 		commands.add(new CommandAccess());
 		commands.add(new CommandAct());
 		commands.add(new CommandScoreboardMonitor());

@@ -25,11 +25,6 @@ public abstract class ParallelPoolManager
 		long ns = M.ns();
 		double nsl = 0.1 * 1000000.0;
 
-		if(squeue.size() > 100)
-		{
-			nsl += (0.05 * 1000000.0) * (double) squeue.size();
-		}
-
 		while(!squeue.isEmpty() && M.ns() - ns < nsl)
 		{
 			I.a("sync-queue.rawtick", 100);
