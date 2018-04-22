@@ -6,12 +6,12 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import com.volmit.react.Surge;
-import com.volmit.react.api.INMSBinding;
-import com.volmit.react.api.NMSBinding10;
-import com.volmit.react.api.NMSBinding11;
-import com.volmit.react.api.NMSBinding12;
-import com.volmit.react.api.NMSBinding92;
-import com.volmit.react.api.NMSBinding94;
+import com.volmit.react.nms.INMSBinding;
+import com.volmit.react.nms.NMSBinding10;
+import com.volmit.react.nms.NMSBinding11;
+import com.volmit.react.nms.NMSBinding12;
+import com.volmit.react.nms.NMSBinding92;
+import com.volmit.react.nms.NMSBinding94;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.MaterialBlock;

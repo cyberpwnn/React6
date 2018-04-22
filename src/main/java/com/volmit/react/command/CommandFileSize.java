@@ -27,7 +27,7 @@ public class CommandFileSize extends ReactCommand
 	{
 		command = Info.COMMAND_FS;
 		aliases = new String[] {Info.COMMAND_FS_ALIAS_1, Info.COMMAND_FS_ALIAS_2};
-		permissions = new String[] {Permissable.ACCESS.getNode(), Permissable.MONITOR_ENVIRONMENT.getNode()};
+		permissions = new String[] {Permissable.ACCESS.getNode(), Permissable.MONITOR_ENVIRONMENT.getNode(), Permissable.SYSTEMINFO.getNode()};
 		usage = Info.COMMAND_FS_USAGE;
 		description = Info.COMMAND_FS_DESCRIPTION;
 		sideGate = SideGate.ANYTHING;

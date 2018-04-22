@@ -1,5 +1,6 @@
 package com.volmit.react.api;
 
+import com.volmit.react.Config;
 import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
@@ -8,19 +9,17 @@ import com.volmit.react.util.M;
 public class PlotBoard
 {
 	private GMap<Long, Double> plots;
-	private int maxRecordings;
 
 	public PlotBoard()
 	{
-		maxRecordings = 600;
 		plots = new GMap<Long, Double>();
 	}
 
 	public void clean()
 	{
-		if(plots.size() > maxRecordings)
+		while(plots.size() > Config.SAMPLE_POINTS)
 		{
-			reduceBefore(getMinimumAccuracyRange());
+			plots.remove(earilestRecording());
 		}
 	}
 

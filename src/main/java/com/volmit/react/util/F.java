@@ -386,12 +386,18 @@ public class F
 					{
 						d /= div;
 						sub = "TB";
+
+						if(d > div - 1)
+						{
+							d /= div;
+							sub = "PB";
+						}
 					}
 				}
 			}
 		}
 
-		return F.f(d, dec) + " " + sub;
+		return F.fd(d, dec) + " " + sub;
 	}
 
 	/**

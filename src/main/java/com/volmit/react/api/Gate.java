@@ -22,9 +22,11 @@ import com.volmit.react.Config;
 import com.volmit.react.Info;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
+import com.volmit.react.controller.EventController;
 import com.volmit.react.util.A;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Callback;
+import com.volmit.react.util.DataCluster;
 import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
 import com.volmit.react.util.GList;
@@ -38,6 +40,7 @@ import com.volmit.react.util.Protocol;
 import com.volmit.react.util.S;
 import com.volmit.react.util.TICK;
 import com.volmit.react.util.TXT;
+import com.volmit.react.util.Task;
 import com.volmit.react.util.TaskLater;
 import com.volmit.react.util.W;
 
@@ -357,6 +360,12 @@ public class Gate
 	{
 		String s = TXT.makeTag(C.AQUA, C.DARK_GRAY, C.GRAY, Info.CORE_NAME) + msg;
 
+		if(p.equals(Bukkit.getConsoleSender()))
+		{
+			console(s);
+			return s;
+		}
+
 		if(!Surge.isMainThread())
 		{
 			new S("message")
@@ -377,6 +386,33 @@ public class Gate
 		return s;
 	}
 
+	public static void console(String s)
+	{
+		if(!Config.CONSOLE_COLOR)
+		{
+			s = C.stripColor(s);
+		}
+
+		if(Surge.isMainThread())
+		{
+			Bukkit.getConsoleSender().sendMessage(s);
+		}
+
+		else
+		{
+			String v = s;
+
+			new S("log")
+			{
+				@Override
+				public void run()
+				{
+					console(v);
+				}
+			};
+		}
+	}
+
 	public static String msg(ReactPlayer p, Notification n)
 	{
 		String s = TXT.makeTag(C.AQUA, C.DARK_GRAY, C.GRAY, Info.CORE_NAME + " - " + C.WHITE + F.capitalizeWords(n.getType().toString().toLowerCase())) + n.getMessage();
@@ -388,6 +424,13 @@ public class Gate
 	public static String msgRAI(CommandSender p, String msg)
 	{
 		String s = TXT.makeTag(C.AQUA, C.DARK_GRAY, C.GRAY, "RAI") + msg; //$NON-NLS-1$
+
+		if(p.equals(Bukkit.getConsoleSender()))
+		{
+			console(s);
+			return s;
+		}
+
 		p.sendMessage(s);
 
 		return s;
@@ -659,5 +702,69 @@ public class Gate
 	public static void sendBlockChange(Location l)
 	{
 		destroy.add(l);
+	}
+
+	public static void benchmark(GSet<Object> possibilities, IActionSource source, int ticks, Runnable finished)
+	{
+		DataCluster cv = new DataCluster();
+		GList<Chunk> lax = new GList<Chunk>();
+
+		for(Object i : possibilities)
+		{
+			Chunk cc = (Chunk) i;
+			lax.add(cc);
+		}
+
+		Task t1 = new Task("chbench", 0)
+		{
+			@Override
+			public void run()
+			{
+				LagMap m = EventController.map;
+
+				for(Chunk i : lax)
+				{
+					LagMapChunk c = m.getChunks().get(i);
+					log(cv, "Total Entities", i.getEntities().length);
+
+					if(c != null)
+					{
+						for(ChunkIssue j : c.getMS().k())
+						{
+							log(cv, F.capitalizeWords(j.name().toLowerCase().replaceAll("-", " ") + " MS"), c.getMS().get(j));
+						}
+					}
+				}
+			}
+		};
+
+		new TaskLater("cdel", ticks)
+		{
+			@Override
+			public void run()
+			{
+				t1.cancel();
+
+				for(String i : cv.keys())
+				{
+					source.sendResponseSuccess(C.WHITE + i + ": " + C.GRAY + (i.endsWith("MS") ? F.time(cv.getDouble(i), 2) : F.f(cv.getDouble(i), 2)));
+				}
+
+				finished.run();
+			}
+		};
+	}
+
+	public static void log(DataCluster cc, String k, double v)
+	{
+		if(!cc.contains(k))
+		{
+			cc.set(k, v);
+		}
+
+		else
+		{
+			cc.set(k, ((cc.getDouble(k) * 19.0) + v) / 20.0);
+		}
 	}
 }

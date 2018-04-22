@@ -10,6 +10,7 @@ import com.volmit.react.util.GList;
 public enum Permissable
 {
 	ACCESS(Info.PERM_ACCESS),
+	SYSTEMINFO(Info.PERM_SYSTEMINFO),
 	TELEPORT(Info.PERM_TELEPORT),
 	MONITOR(Info.PERM_MONITOR),
 	MONITOR_TITLE(Info.PERM_MONITOR_TITLE),

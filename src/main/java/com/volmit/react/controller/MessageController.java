@@ -2,6 +2,8 @@ package com.volmit.react.controller;
 
 import org.bukkit.entity.Player;
 
+import com.volmit.react.Config;
+import com.volmit.react.Info;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
@@ -9,12 +11,15 @@ import com.volmit.react.api.Note;
 import com.volmit.react.api.Notification;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactPlayer;
+import com.volmit.react.util.C;
 import com.volmit.react.util.Callback;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.D;
 import com.volmit.react.util.Ex;
+import com.volmit.react.util.F;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.TXT;
 
 public class MessageController extends Controller
 {
@@ -178,6 +183,12 @@ public class MessageController extends Controller
 			{
 				Gate.msg(i, n);
 			}
+		}
+
+		if(Config.getSelectedChannels().contains(n.getType()) && Config.VERBOSE_CHANNEL_ENABLE)
+		{
+			String s = TXT.makeTag(C.AQUA, C.DARK_GRAY, C.GRAY, Info.CORE_NAME + " - " + C.WHITE + F.capitalizeWords(n.getType().toString().toLowerCase())) + n.getMessage();
+			Gate.console(s);
 		}
 	}
 }

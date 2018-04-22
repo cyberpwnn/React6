@@ -95,15 +95,8 @@ public class CrashController extends Controller implements Runnable
 
 			if(px != null)
 			{
-				System.out.println("[React]: Notifying React Players");
-				System.out.println("=====================================================");
-				System.out.println("=====================================================");
-				System.out.println("=====================================================");
 				System.out.println("PLUGIN FREEZING SERVER: " + px.getName());
-				System.out.println("=====================================================");
-				System.out.println("=====================================================");
-				System.out.println("=====================================================");
-
+				
 				for(CommandSender i : Gate.broadcastReactUsers())
 				{
 					Gate.msgError(i, "Warning! The server has been frozen for more than 7 seconds");

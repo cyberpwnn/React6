@@ -209,6 +209,7 @@ public class Info
 	public static String STATE_PLAYER_HEIGHT_CURRENT = "player.height-current"; //$NON-NLS-1$
 	public static String STATE_PLAYER_HEIGHT_CHANGING = "player.height-delta"; //$NON-NLS-1$
 
+	public static String PERM_SYSTEMINFO = "systeminfo"; //$NON-NLS-1$
 	public static String PERM_ACCESS = "access"; //$NON-NLS-1$
 	public static String PERM_TELEPORT = "teleport"; //$NON-NLS-1$
 	public static String PERM_PING = "ping"; //$NON-NLS-1$
@@ -258,6 +259,7 @@ public class Info
 	public static String SAMPLER_TIU = Lang.getString("sampler.name.server-tick-utilization"); //$NON-NLS-1$
 	public static String SAMPLER_MEM = Lang.getString("sampler.name.used-memory"); //$NON-NLS-1$
 	public static String SAMPLER_FREEMEM = Lang.getString("sampler.name.free-memory"); //$NON-NLS-1$
+	public static String SAMPLER_MEMTOTALS = "memtotals"; //$NON-NLS-1$
 	public static String SAMPLER_MAXMEM = Lang.getString("sampler.name.max-memory"); //$NON-NLS-1$
 	public static String SAMPLER_ALLOCMEM = Lang.getString("sampler.name.allocated-memory"); //$NON-NLS-1$
 	public static String SAMPLER_MAHS = Lang.getString("sampler.name.memory-allocated-per-second"); //$NON-NLS-1$
@@ -325,6 +327,11 @@ public class Info
 	public static String ACTION_FIX_LIGHTING_STATUS = Lang.getString("action.fix-lighting.status"); //$NON-NLS-1$
 	public static String ACTION_FIX_LIGHTING_NAME = Lang.getString("action.fix-lighting.name"); //$NON-NLS-1$
 	public static String ACTION_FIX_LIGHTING_DESCRIPTION = Lang.getString("action.fix-lighting.description"); //$NON-NLS-1$
+
+	public static String[] ACTION_CHUNK_TEST_TAGS = new String[] {"chunk-test", "ctest", "ct"}; //$NON-NLS-1$ //$NON-NLS-2$
+	public static String ACTION_CHUNK_TEST_STATUS = "Testing..."; //$NON-NLS-1$
+	public static String ACTION_CHUNK_TEST_NAME = "Chunk Test"; //$NON-NLS-1$
+	public static String ACTION_CHUNK_TEST_DESCRIPTION = "Test chunks in an area around you and record all events."; //$NON-NLS-1$
 
 	public static String[] ACTION_COLLECT_GARBAGE_TAGS = new String[] {"collect-garbage", "gc"}; //$NON-NLS-1$ //$NON-NLS-2$
 	public static String ACTION_COLLECT_GARBAGE = "Collecting Garbage"; //$NON-NLS-1$

@@ -29,7 +29,7 @@ public class CommandDump extends ReactCommand
 	{
 		command = "dump";
 		aliases = new String[] {"du"};
-		permissions = new String[] {Permissable.ACCESS.getNode(), Permissable.RELOAD.getNode()};
+		permissions = new String[] {Permissable.ACCESS.getNode(), Permissable.RELOAD.getNode(), Permissable.SYSTEMINFO.getNode()};
 		usage = "";
 		description = "Dumps server information to a pastebin";
 		sideGate = SideGate.ANYTHING;

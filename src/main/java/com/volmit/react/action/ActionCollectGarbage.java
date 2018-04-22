@@ -6,7 +6,6 @@ import com.volmit.react.api.Action;
 import com.volmit.react.api.ActionType;
 import com.volmit.react.api.IActionSource;
 import com.volmit.react.api.ISelector;
-import com.volmit.react.util.A;
 import com.volmit.react.util.F;
 import com.volmit.react.util.S;
 
@@ -24,36 +23,28 @@ public class ActionCollectGarbage extends Action
 	{
 		source.sendResponseActing(Lang.getString("react.action.collect-garbagecollecting-garbage")); //$NON-NLS-1$
 
-		new A()
-		{
+		long mbmem = Runtime.getRuntime().freeMemory();
+		System.gc();
+		long mbnex = Runtime.getRuntime().freeMemory();
 
+		new S("action.response.gc")
+		{
 			@Override
 			public void run()
 			{
-				long mbmem = Runtime.getRuntime().freeMemory();
-				System.gc();
-				long mbnex = Runtime.getRuntime().freeMemory();
+				long freed = mbnex - mbmem;
 
-				new S("action.response.gc")
+				if(freed > 0)
 				{
-					@Override
-					public void run()
-					{
-						long freed = mbnex - mbmem;
+					source.sendResponseSuccess(Lang.getString("react.action.collect-garbagecollected") + F.memSize(freed) + Lang.getString("react.action.collect-garbageof-garbage")); //$NON-NLS-1$ //$NON-NLS-2$
+				}
 
-						if(freed > 0)
-						{
-							source.sendResponseSuccess(Lang.getString("react.action.collect-garbagecollected") + F.memSize(freed) + Lang.getString("react.action.collect-garbageof-garbage")); //$NON-NLS-1$ //$NON-NLS-2$
-						}
+				else
+				{
+					source.sendResponseError(Lang.getString("react.action.collect-garbageno-free")); //$NON-NLS-1$
+				}
 
-						else
-						{
-							source.sendResponseError(Lang.getString("react.action.collect-garbageno-free")); //$NON-NLS-1$
-						}
-
-						completeAction();
-					}
-				};
+				completeAction();
 			}
 		};
 	}

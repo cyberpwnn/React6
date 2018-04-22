@@ -102,12 +102,12 @@ public class RAI implements IRAI
 		events.add(e);
 		logEvents.add(e);
 
-		while(events.size() > 100)
+		while(events.size() > 20)
 		{
 			events.remove(0);
 		}
 
-		while(logEvents.size() > 100)
+		while(logEvents.size() > 20)
 		{
 			logEvents.remove(0);
 		}

@@ -1,6 +1,7 @@
 package com.volmit.react;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 
 import org.bukkit.Bukkit;
@@ -8,8 +9,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.volmit.react.api.Capability;
 import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
+import com.volmit.react.legacy.server.ReactServer;
+import com.volmit.react.util.A;
 import com.volmit.react.util.Control;
 import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
@@ -30,7 +34,9 @@ public class ReactPlugin extends JavaPlugin
 	private React react;
 	private ParallelPoolManager pool;
 	private HotloadManager mgr;
+	private ReactServer srv;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onEnable()
 	{
@@ -110,45 +116,182 @@ public class ReactPlugin extends JavaPlugin
 			public void run()
 			{
 				TICK.tick++;
+				doTick();
+			}
+		};
 
-				if(TICK.tick % 5 == 0)
+		if(Capability.PLACEHOLDERS.isCapable())
+		{
+			PlaceholderHandler h = new PlaceholderHandler();
+			h.hook();
+
+			new TaskLater("waiter", 5)
+			{
+				@Override
+				public void run()
 				{
-					try
+					new A()
 					{
-						mgr.onTick();
-					}
+						@Override
+						public void run()
+						{
+							try
+							{
+								h.writeToFile();
+							}
 
-					catch(Throwable e)
-					{
-						Ex.t(e);
-					}
+							catch(IOException e)
+							{
+								e.printStackTrace();
+							}
+						}
+					};
 				}
+			};
+		}
 
-				for(IController i : controllers.copy())
+		if(Config.LEGACY_SERVER)
+		{
+			new TaskLater("waiter-srv", 12)
+			{
+				@Override
+				public void run()
 				{
-					try
-					{
-						Profiler p = new Profiler();
-						p.begin();
-						i.tick();
-						p.end();
-						i.setTime(p.getMilliseconds());
-					}
-
-					catch(Throwable e)
-					{
-						Ex.t(e);
-					}
+					startRLServer();
 				}
+			};
+		}
+	}
 
-				try
-				{
-					pool.tickSyncQueue();
-				}
+	private void doTick()
+	{
+		if(TICK.tick % 20 == 0)
+		{
+			try
+			{
+				mgr.onTick();
+			}
 
-				catch(Throwable e)
+			catch(Throwable e)
+			{
+				Ex.t(e);
+			}
+		}
+
+		for(IController i : controllers.copy())
+		{
+			try
+			{
+				Profiler p = new Profiler();
+				p.begin();
+				i.tick();
+				p.end();
+				i.setTime(p.getMilliseconds());
+			}
+
+			catch(Throwable e)
+			{
+				Ex.t(e);
+			}
+		}
+
+		try
+		{
+			pool.tickSyncQueue();
+		}
+
+		catch(Throwable e)
+		{
+			Ex.t(e);
+		}
+	}
+
+	public void startRLServer()
+	{
+		new TaskLater("", 12)
+		{
+			@Override
+			public void run()
+			{
+				new A()
 				{
-					Ex.t(e);
+					@Override
+					public void run()
+					{
+						try
+						{
+							srv = new ReactServer(Config.LEGACY_SERVER_PORT);
+							srv.start();
+						}
+
+						catch(IOException e)
+						{
+							System.out.println("COULD NOT START REACT REMOTE SERVER");
+							e.printStackTrace();
+						}
+					}
+				};
+			}
+		};
+	}
+
+	@SuppressWarnings("deprecation")
+	public void stopRLServer()
+	{
+		new A()
+		{
+			@Override
+			public void run()
+			{
+				if(srv != null)
+				{
+					if(srv.isAlive())
+					{
+						srv.interrupt();
+
+						try
+						{
+							srv.join(1000);
+
+							if(srv.isAlive())
+							{
+								try
+								{
+									srv.serverSocket.close();
+								}
+
+								catch(IOException e)
+								{
+
+								}
+
+								try
+								{
+									srv.stop();
+								}
+
+								catch(Throwable e)
+								{
+
+								}
+
+								try
+								{
+									srv.destroy();
+								}
+
+								catch(Throwable e)
+								{
+
+								}
+							}
+						}
+
+						catch(InterruptedException e)
+						{
+							e.printStackTrace();
+						}
+					}
 				}
 			}
 		};
@@ -173,10 +316,12 @@ public class ReactPlugin extends JavaPlugin
 		mgr.untrackall();
 		controllers.clear();
 		pool.shutdown();
+		stopRLServer();
 	}
 
 	public static void reload()
 	{
+		React.instance().stopRLServer();
 		new TaskLater("", 5)
 		{
 			@Override

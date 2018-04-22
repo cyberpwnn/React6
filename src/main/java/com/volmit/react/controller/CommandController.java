@@ -15,12 +15,16 @@ import com.volmit.react.Lang;
 import com.volmit.react.React;
 import com.volmit.react.ReactPlugin;
 import com.volmit.react.Surge;
+import com.volmit.react.action.ActionPurgeEntities;
+import com.volmit.react.api.ActionType;
 import com.volmit.react.api.Gate;
 import com.volmit.react.api.ICommand;
 import com.volmit.react.api.IGoal;
 import com.volmit.react.api.Permissable;
+import com.volmit.react.api.PlayerActionSource;
 import com.volmit.react.api.RAI;
 import com.volmit.react.api.SampledType;
+import com.volmit.react.api.SelectorPosition;
 import com.volmit.react.api.Side;
 import com.volmit.react.api.SideGate;
 import com.volmit.react.command.CommandAccept;
@@ -330,11 +334,41 @@ public class CommandController extends Controller implements Listener, CommandEx
 	@EventHandler
 	public void on(PlayerCommandPreprocessEvent e)
 	{
+		if(e.getMessage().equalsIgnoreCase("/killall all"))
+		{
+			if(!Config.COMMANDOVERRIDES_KILLALL)
+			{
+				return;
+			}
+
+			e.setCancelled(true);
+
+			SelectorPosition sel = new SelectorPosition();
+			sel.add(e.getPlayer().getWorld());
+			React.instance.actionController.fire(ActionType.PURGE_ENTITIES, new PlayerActionSource(e.getPlayer()), sel);
+		}
+
+		if(e.getMessage().equalsIgnoreCase("/killall all -f"))
+		{
+			if(!Config.COMMANDOVERRIDES_KILLALL_EVERYTHING)
+			{
+				e.setCancelled(true);
+
+				SelectorPosition sel = new SelectorPosition();
+				sel.add(e.getPlayer().getWorld());
+
+				((ActionPurgeEntities) React.instance.actionController.getAction(ActionType.PURGE_ENTITIES)).setForceful(true);
+				React.instance.actionController.fire(ActionType.PURGE_ENTITIES, new PlayerActionSource(e.getPlayer()), sel);
+
+				return;
+			}
+		}
+
 		if(e.getMessage().toLowerCase().equalsIgnoreCase("/tps") || e.getMessage().toLowerCase().equalsIgnoreCase("/lag"))
 		{
 			if(Permissable.ACCESS.has(e.getPlayer()) && Config.COMMANDOVERRIDES_TPS)
 			{
-				Gate.msgSuccess(e.getPlayer(), "Current TPS: " + C.GREEN + SampledType.TPS.get().get() + C.GRAY + " (" + C.GREEN + F.f(SampledType.TICK.get().getValue(), 1) + C.GRAY + ")");
+				Gate.msgSuccess(e.getPlayer(), "Current TPS: " + C.GREEN + SampledType.TPS.get().get() + C.GRAY + " (" + C.GREEN + F.f(SampledType.TICK.get().getValue(), 1) + "ms" + C.GRAY + ")");
 				e.setCancelled(true);
 			}
 		}
@@ -343,7 +377,12 @@ public class CommandController extends Controller implements Listener, CommandEx
 		{
 			if(Permissable.ACCESS.has(e.getPlayer()) && Config.COMMANDOVERRIDES_MEMORY)
 			{
-				Gate.msgSuccess(e.getPlayer(), "Current Memory Usage: " + C.GOLD + SampledType.MEM.get().get() + C.GRAY + " (" + C.GOLD + F.pc(SampledType.MEM.get().getValue() / SampledType.MAXMEM.get().getValue(), 0) + "ms" + C.GRAY + ")");
+				Gate.msgSuccess(e.getPlayer(), "Current Memory Usage: " + C.GOLD + SampledType.MEM.get().get() + C.GRAY + " (" + C.GOLD + F.pc(SampledType.MEM.get().getValue() / SampledType.MAXMEM.get().getValue(), 0) + C.GRAY + ")");
+				Gate.msgSuccess(e.getPlayer(), "Maximum: " + C.GOLD + SampledType.MAXMEM.get().get());
+				Gate.msgSuccess(e.getPlayer(), "Allocated: " + C.GOLD + SampledType.ALLOCMEM.get().get());
+				Gate.msgSuccess(e.getPlayer(), "Free: " + C.GOLD + SampledType.FREEMEM.get().get());
+				Gate.msgSuccess(e.getPlayer(), "Total Memory Allocated: " + C.GOLD + F.memSize(SampleController.m.getTotalAllocated(), 3));
+				Gate.msgSuccess(e.getPlayer(), "Total Memory Collected: " + C.GOLD + F.memSize(SampleController.m.getTotalCollected(), 3));
 				e.setCancelled(true);
 			}
 		}

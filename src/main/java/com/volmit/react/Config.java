@@ -14,6 +14,7 @@ import com.volmit.react.api.Experimental;
 import com.volmit.react.api.Injection;
 import com.volmit.react.api.InjectionMethod;
 import com.volmit.react.api.Key;
+import com.volmit.react.api.Note;
 import com.volmit.react.api.WorldConfig;
 import com.volmit.react.util.D;
 import com.volmit.react.util.DataCluster;
@@ -34,6 +35,31 @@ import com.volmit.react.util.YamlDataOutput;
 public class Config
 {
 	private static final GMap<World, WorldConfig> worldConfigs = new GMap<World, WorldConfig>();
+
+	@Comment("Use the legacy remote server (for react remote)")
+	@Key("features.react.legacy.remote-server.enable-react-remote-server")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean LEGACY_SERVER = false;
+
+	@Comment("Use console coloring and formatting")
+	@Key("features.console.color")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean CONSOLE_COLOR = true;
+
+	@Comment("Messaging channels to listen to and print to the console.")
+	@Key("features.console.listen-channels")
+	@Injection(InjectionMethod.SWAP)
+	public static GList<String> VERBOSE_CHANNELS = getDefaultChannels();
+
+	@Comment("Uses the listen-channels to print to the console. Channels:\n-rai\n-spikes\n-verbose\n-action\n-gc ")
+	@Key("features.console.listen-channels-enabled")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean VERBOSE_CHANNEL_ENABLE = false;
+
+	@Comment("The port to bind to when the remote server is enabled. This cannot be your server port or an already used port.")
+	@Key("features.react.legacy.remote-server.remote-port")
+	@Injection(InjectionMethod.SWAP)
+	public static int LEGACY_SERVER_PORT = 8147;
 
 	@Comment("Use Fast Async World Edit if it is installed.")
 	@Key("features.react.use-fawe")
@@ -76,11 +102,27 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean COMMANDOVERRIDES_TPS = true;
 
+	@Comment("Override the '/killall all' command to instead use react to remove entities.")
+	@Key("features.react.command-overrides.killall")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean COMMANDOVERRIDES_KILLALL = false;
+
+	@Comment("Interpret '/killall all -f' as /re a pe -f (force kill everything but players)")
+	@Key("features.react.command-overrides.killall-force")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean COMMANDOVERRIDES_KILLALL_EVERYTHING = false;
+
 	@Comment("Sample time viewport. Higher means more visible data in graphs over time. Due to lossy compression however, data may look weird near the beginning of a large graph.")
 	@Key("features.react.sampler.sample-viewport")
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 6000, max = 30000)
 	public static int SAMPLE_VIEWPORT = 12000;
+
+	@Comment("Sample points per sampler type")
+	@Key("features.react.sampler.sample-points")
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 50, max = 4000)
+	public static int SAMPLE_POINTS = 250;
 
 	@Comment("Enable or disable React AI")
 	@Key("features.react.rai.enabled")
@@ -582,7 +624,7 @@ public class Config
 	@Comment("The interval at which chunks are purged. Only chunks OUTSIDE of every player's view distance combined are purged.")
 	@Key("tweaks.chunks.purge-interval")
 	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 200, max = 12000)
+	@Clip(min = 200, max = 720000)
 	public static int PURGE_INTERVAL = 1200;
 
 	@Comment("Should chunk purging be enabled? Only chunks OUTSIDE of every player's view distance combined are purged.")
@@ -1014,6 +1056,35 @@ public class Config
 		}
 
 		return ents;
+	}
+
+	public static GList<Note> getSelectedChannels()
+	{
+		GList<Note> n = new GList<Note>();
+
+		for(String i : VERBOSE_CHANNELS)
+		{
+			Note no = Note.valueOf(i.toUpperCase());
+
+			if(no != null)
+			{
+				n.add(no);
+			}
+		}
+
+		return n;
+	}
+
+	private static GList<String> getDefaultChannels()
+	{
+		GList<String> s = new GList<String>();
+
+		for(Note i : Note.values())
+		{
+			s.add(i.name().toLowerCase());
+		}
+
+		return s;
 	}
 
 	private static GList<String> getDefaultCullRules()

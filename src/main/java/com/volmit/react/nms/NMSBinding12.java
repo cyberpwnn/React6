@@ -1,10 +1,11 @@
-package com.volmit.react.api;
+package com.volmit.react.nms;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 
 import com.volmit.react.Config;
+import com.volmit.react.api.Gate;
 import com.volmit.react.util.MaterialBlock;
 
 import net.minecraft.server.v1_12_R1.BlockPosition;

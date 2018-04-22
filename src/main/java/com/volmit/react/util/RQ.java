@@ -31,6 +31,8 @@ public class RQ extends Thread
 				}
 			}
 
+			r.clear();
+
 			try
 			{
 				Thread.sleep(50);

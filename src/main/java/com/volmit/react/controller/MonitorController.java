@@ -183,6 +183,7 @@ public class MonitorController extends Controller
 
 		MonitorHeading memory = new MonitorHeading(Info.NAME_MEMORY, React.instance.sampleController.getSampler(SampledType.MEM.toString()));
 		memory.addSampler(React.instance.sampleController.getSampler(SampledType.MAHS.toString()));
+		memory.addSampler(React.instance.sampleController.getSampler(SampledType.MEMTOTALS.toString()));
 
 		MonitorHeading chunks = new MonitorHeading(Info.NAME_CHUNKS, React.instance.sampleController.getSampler(SampledType.CHK.toString()));
 		chunks.addSampler(React.instance.sampleController.getSampler(SampledType.CHKS.toString()));

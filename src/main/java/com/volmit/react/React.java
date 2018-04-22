@@ -137,6 +137,11 @@ public class React
 		instance = this;
 	}
 
+	public static ReactPlugin instance()
+	{
+		return ReactPlugin.i;
+	}
+
 	public void enable()
 	{
 

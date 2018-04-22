@@ -116,9 +116,19 @@ public class GraphController extends Controller
 		}
 	}
 
+	public boolean shouldSampleGraphs()
+	{
+		return gr.size() + gra.size() > 0;
+	}
+
 	@Override
 	public void tick()
 	{
+		if(!shouldSampleGraphs())
+		{
+			return;
+		}
+
 		new A()
 		{
 			@Override

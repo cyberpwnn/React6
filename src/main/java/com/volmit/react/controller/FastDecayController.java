@@ -18,7 +18,6 @@ import com.volmit.react.Config;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
-import com.volmit.react.util.A;
 import com.volmit.react.util.BlockFinder;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.Ex;
@@ -123,48 +122,49 @@ public class FastDecayController extends Controller
 					{
 						if(leaves.contains(i.getType()))
 						{
-							new A()
+							try
 							{
-								@Override
-								public void run()
+								boolean b = BlockFinder.follow(i, leaves, logs, 5);
+
+								if(!b)
 								{
-									boolean b = BlockFinder.follow(i, leaves, logs, 5);
-
-									if(!b)
+									if(Config.FASTLEAF_INSTANT)
 									{
-										if(Config.FASTLEAF_INSTANT)
+										new S("decayer")
 										{
-											new S("decayer")
+											@Override
+											public void run()
 											{
-												@Override
-												public void run()
-												{
-													decay(i);
-												}
-											};
-										}
+												decay(i);
+											}
+										};
+									}
 
-										else
+									else
+									{
+										new TaskLater("dvdxleaf", (int) ((Math.random() * Config.FASTLEAF_DECAYPERIOD)))
 										{
-											new TaskLater("dvdxleaf", (int) ((Math.random() * Config.FASTLEAF_DECAYPERIOD)))
+											@Override
+											public void run()
 											{
-												@Override
-												public void run()
+												new S("decayer")
 												{
-													new S("decayer")
+													@Override
+													public void run()
 													{
-														@Override
-														public void run()
-														{
-															decay(i);
-														}
-													};
-												}
-											};
-										}
+														decay(i);
+													}
+												};
+											}
+										};
 									}
 								}
-							};
+							}
+
+							catch(Throwable e)
+							{
+
+							}
 						}
 					}
 				}
@@ -190,16 +190,9 @@ public class FastDecayController extends Controller
 			return;
 		}
 
-		if(!new Leaves(b.getType(), b.getData()).isDecayable())
-		{
-			return;
-		}
-
 		if(b.getType().equals(Material.LEAVES) || b.getType().equals(Material.LEAVES_2))
 		{
-			Leaves l = new Leaves(b.getType(), b.getData());
-
-			if(!l.isDecayable())
+			if((b.getData() & 4) != 0)
 			{
 				return;
 			}
@@ -207,7 +200,15 @@ public class FastDecayController extends Controller
 
 		if(M.r(0.09))
 		{
-			new GSound(MSound.STEP_GRASS.bukkitSound(), 0.8f, 0.1f + (float) (Math.random() / 2f)).play(b.getLocation());
+			try
+			{
+				new GSound(MSound.STEP_GRASS.bukkitSound(), 0.8f, 0.1f + (float) (Math.random() / 2f)).play(b.getLocation());
+			}
+
+			catch(Throwable e)
+			{
+
+			}
 		}
 
 		for(int i = 0; i < 1 + (4 * Math.random()); i++)
@@ -221,11 +222,21 @@ public class FastDecayController extends Controller
 
 			for(ItemStack i : getDrops(b))
 			{
-				new GSound(MSound.DIG_GRASS.bukkitSound(), 0.4f, 1.67f + (float) (Math.random() / 3f)).play(b.getLocation());
+				try
+				{
+					new GSound(MSound.DIG_GRASS.bukkitSound(), 0.4f, 1.67f + (float) (Math.random() / 3f)).play(b.getLocation());
+				}
+
+				catch(Throwable e)
+				{
+
+				}
+
 				b.getWorld().dropItemNaturally(c, i);
 			}
 
 			React.instance.featureController.setBlock(b.getLocation(), new MaterialBlock());
+
 			LeavesDecayEvent de = new LeavesDecayEvent(b);
 			Bukkit.getPluginManager().callEvent(de);
 
@@ -249,6 +260,16 @@ public class FastDecayController extends Controller
 		else
 		{
 			b.breakNaturally();
+
+			new S("ct")
+			{
+				@Override
+				public void run()
+				{
+					LeavesDecayEvent de = new LeavesDecayEvent(b);
+					Bukkit.getPluginManager().callEvent(de);
+				}
+			};
 		}
 	}
 

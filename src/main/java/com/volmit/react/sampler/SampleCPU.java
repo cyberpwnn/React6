@@ -7,12 +7,14 @@ import com.volmit.react.util.A;
 import com.volmit.react.util.Average;
 import com.volmit.react.util.C;
 import com.volmit.react.util.F;
+import com.volmit.react.util.M;
 import com.volmit.react.util.Platform;
 
 public class SampleCPU extends MSampler
 {
 	private IFormatter formatter;
 	private Average aa = new Average(20);
+	private long lastSample = M.ms();
 
 	public SampleCPU()
 	{
@@ -40,6 +42,12 @@ public class SampleCPU extends MSampler
 	@Override
 	public void sample()
 	{
+		if(M.ms() - lastSample < 750)
+		{
+			return;
+		}
+
+		lastSample = M.ms();
 		new A()
 		{
 			@Override

@@ -1,4 +1,4 @@
-package com.volmit.react.api;
+package com.volmit.react.nms;
 
 public abstract class NMSBinding implements INMSBinding
 {

@@ -226,7 +226,6 @@ public enum MSound
 
 		catch(Throwable e)
 		{
-			Ex.t(e);
 			return resolvedSound = Sound.valueOf(pre19sound);
 		}
 	}

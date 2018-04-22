@@ -10,6 +10,8 @@ import com.volmit.react.ReactPlugin;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
 import com.volmit.react.api.ISampler;
+import com.volmit.react.api.MemoryTracker;
+import com.volmit.react.api.Note;
 import com.volmit.react.api.SampledType;
 import com.volmit.react.sampler.SampleCPU;
 import com.volmit.react.sampler.SampleChunkTime;
@@ -36,6 +38,7 @@ import com.volmit.react.sampler.SampleMemoryAllocated;
 import com.volmit.react.sampler.SampleMemoryAllocationPerSecond;
 import com.volmit.react.sampler.SampleMemoryFree;
 import com.volmit.react.sampler.SampleMemoryMax;
+import com.volmit.react.sampler.SampleMemoryTotals;
 import com.volmit.react.sampler.SampleMemoryUse;
 import com.volmit.react.sampler.SamplePhysicsTickTime;
 import com.volmit.react.sampler.SampleReactTaskTime;
@@ -51,10 +54,12 @@ import com.volmit.react.sampler.SampleTileDroppedTicks;
 import com.volmit.react.sampler.SampleTileTime;
 import com.volmit.react.sampler.SampleTileTimeLock;
 import com.volmit.react.util.AsyncTick;
+import com.volmit.react.util.C;
 import com.volmit.react.util.Control;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.D;
 import com.volmit.react.util.Ex;
+import com.volmit.react.util.F;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.I;
@@ -79,6 +84,7 @@ public class SampleController extends Controller
 	public static double totalTaskTime = 0;
 	public static TimingsReport t = null;
 	private SuperSampler ss;
+	public static MemoryTracker m;
 
 	@Override
 	public void dump(JSONObject object)
@@ -105,6 +111,7 @@ public class SampleController extends Controller
 		cd = 4;
 		ss = new SuperSampler();
 		ss.start();
+		m = new MemoryTracker();
 	}
 
 	public void construct()
@@ -189,6 +196,7 @@ public class SampleController extends Controller
 		registerSampler(new SampleTileDroppedTicks());
 		registerSampler(new SampleTileTime());
 		registerSampler(new SampleTileTimeLock());
+		registerSampler(new SampleMemoryTotals());
 
 		for(ISampler i : samplers.v())
 		{
@@ -213,6 +221,15 @@ public class SampleController extends Controller
 	@Override
 	public void tick()
 	{
+		m.tick();
+
+		if(m.isGcd())
+		{
+			double pct = (double) m.getLastCol() / (double) m.getLastAll();
+			Note.GC.bake("GC " + C.WHITE + F.memSize(m.getLastCol(), 0) + C.GRAY + " -> " + C.GOLD + (F.pc(pct)) + " Effective");
+			m.setGcd(false);
+		}
+
 		ss.onTick();
 		I.hit++;
 

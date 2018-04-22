@@ -10,6 +10,7 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.world.ChunkUnloadEvent;
 
 import com.volmit.react.Surge;
 import com.volmit.react.api.ChunkIssue;
@@ -98,6 +99,12 @@ public class EventController extends Controller
 				}
 			}
 		}
+	}
+
+	@EventHandler
+	public void on(ChunkUnloadEvent e)
+	{
+		map.getChunks().remove(e.getChunk());
 	}
 
 	@EventHandler

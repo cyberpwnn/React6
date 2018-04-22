@@ -6,7 +6,7 @@ description: React is a smart performance plugin designed to automatically fix l
 load: STARTUP
 website: https://www.spigotmc.org/resources/react-smart-server-performance.21057/
 database: false
-softdepend: [ProtocolLib, FastAsyncWorldEdit]
+softdepend: [ProtocolLib, FastAsyncWorldEdit, PlaceholderAPI]
 prefix: React
 commands: 
   react: 
@@ -126,6 +126,9 @@ permissions:
     default: op
   react.teleport: 
     description: Gives access to teleport to chunks
+    default: op
+  react.systeminfo: 
+    description: Gives access to system sensitive information
     default: op
   react.tempaccess: 
     description: Grants the ability to REQUEST access from anyone with actual react access.

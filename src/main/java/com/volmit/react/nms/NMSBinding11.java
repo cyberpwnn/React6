@@ -1,4 +1,4 @@
-package com.volmit.react.api;
+package com.volmit.react.nms;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -12,6 +12,7 @@ import net.minecraft.server.v1_11_R1.IBlockData;
 
 public class NMSBinding11 extends NMSBinding
 {
+
 	public NMSBinding11(String packageVersion)
 	{
 		super(packageVersion);

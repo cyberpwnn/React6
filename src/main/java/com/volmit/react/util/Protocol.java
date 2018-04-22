@@ -59,6 +59,7 @@ public enum Protocol
 	EARLIEST(0),
 	UNKNOWN(-10000);
 
+	private static Protocol CURRENT = null;
 	private int version;
 	private String packageVersion;
 	private String versionName;
@@ -139,15 +140,21 @@ public enum Protocol
 
 	public static Protocol getProtocolVersion()
 	{
-		for(Protocol i : values())
+		if(CURRENT == null)
 		{
-			if(i.isServerVersion())
+			for(Protocol i : values())
 			{
-				return i;
+				if(i.isServerVersion())
+				{
+					CURRENT = i;
+					return i;
+				}
 			}
+
+			CURRENT = Protocol.UNKNOWN;
 		}
 
-		return Protocol.UNKNOWN;
+		return CURRENT;
 	}
 
 	public ProtocolRange to(Protocol p)

@@ -6,7 +6,6 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.util.Vector;
 
-import com.volmit.react.util.A;
 import com.volmit.react.util.Cuboid;
 import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
@@ -29,77 +28,70 @@ public abstract class SploogeCounter
 		Cuboid c = new Cuboid(a, b);
 		Iterator<Block> it = c.iterator();
 
-		new A()
+		while(it.hasNext())
+		{
+			try
+			{
+				Block bx = it.next();
+
+				if(bx.getLocation().equals(start))
+				{
+					continue;
+				}
+
+				if(isAllowedSplooge(bx.getLocation()))
+				{
+					splooge.add(bx.getLocation());
+				}
+
+				else if(isAllowedSource(bx.getLocation()))
+				{
+					sources.add(bx.getLocation());
+				}
+			}
+
+			catch(Throwable e)
+			{
+				Ex.t(e);
+			}
+		}
+
+		if(splooge.isEmpty())
+		{
+			return;
+		}
+
+		for(Location i : splooge)
+		{
+			int min = Integer.MAX_VALUE;
+
+			for(Location j : sources)
+			{
+				int dist = getManhattanDistance(i, j);
+
+				if(dist < min)
+				{
+					min = dist;
+				}
+			}
+
+			if(min > maxDistance)
+			{
+				destroy.add(i);
+			}
+		}
+
+		new S("action.splooc")
 		{
 			@Override
 			public void run()
 			{
-				while(it.hasNext())
+				for(Location i : destroy)
 				{
-					try
-					{
-						Block bx = it.next();
-
-						if(bx.getLocation().equals(start))
-						{
-							continue;
-						}
-
-						if(isAllowedSplooge(bx.getLocation()))
-						{
-							splooge.add(bx.getLocation());
-						}
-
-						else if(isAllowedSource(bx.getLocation()))
-						{
-							sources.add(bx.getLocation());
-						}
-					}
-
-					catch(Throwable e)
-					{
-						Ex.t(e);
-					}
+					clipped(i);
 				}
 
-				if(splooge.isEmpty())
-				{
-					return;
-				}
-
-				for(Location i : splooge)
-				{
-					int min = Integer.MAX_VALUE;
-
-					for(Location j : sources)
-					{
-						int dist = getManhattanDistance(i, j);
-
-						if(dist < min)
-						{
-							min = dist;
-						}
-					}
-
-					if(min > maxDistance)
-					{
-						destroy.add(i);
-					}
-				}
-
-				new S("action.splooc")
-				{
-					@Override
-					public void run()
-					{
-						for(Location i : destroy)
-						{
-							clipped(i);
-						}
-
-						finished();
-					}
-				};
+				finished();
 			}
 		};
 	}

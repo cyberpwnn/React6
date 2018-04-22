@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.volmit</groupId>
 	<artifactId>React</artifactId>
-	<version>6.3</version>
+	<version>6.3.6</version>
 	<name>React</name>
 	<description>A performance plugin</description>
 	<properties>
@@ -245,6 +245,13 @@
 			<scope>system</scope>
 			<systemPath>${react.libs}/craftbukkit-1.12.2.jar</systemPath>
 			<version>1.12.2</version>
+		</dependency>
+		<dependency>
+			<groupId>papi</groupId>
+			<artifactId>PlaceholderAPI</artifactId>
+			<scope>system</scope>
+			<systemPath>${react.libs}/PlaceholderAPI-2.8.5.jar</systemPath>
+			<version>2.8.5</version>
 		</dependency>
 		<dependency>
 			<groupId>com.boydti</groupId>

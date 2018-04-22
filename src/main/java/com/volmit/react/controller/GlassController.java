@@ -36,12 +36,14 @@ public class GlassController extends Controller
 {
 	private GMap<Location, Color> q;
 	private GList<Player> g;
+	private int d;
 
 	@Override
 	public void dump(JSONObject object)
 	{
 		object.put("viewers", g.size());
 		object.put("queue", q.size());
+		d = 0;
 	}
 
 	@Override
@@ -62,6 +64,29 @@ public class GlassController extends Controller
 	@Override
 	public void tick()
 	{
+		if(d > 0)
+		{
+			d--;
+			return;
+		}
+
+		boolean h = false;
+
+		for(ReactPlayer i : React.instance.playerController.getPlayers())
+		{
+			if(i.isGlasses())
+			{
+				h = true;
+				break;
+			}
+		}
+
+		if(!h)
+		{
+			d = 20;
+			return;
+		}
+
 		GList<Player> glasses = new GList<Player>();
 
 		for(ReactPlayer i : React.instance.playerController.getPlayers())
