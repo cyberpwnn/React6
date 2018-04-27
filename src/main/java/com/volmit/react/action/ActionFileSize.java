@@ -1,18 +1,16 @@
-package com.volmit.react.command;
+package com.volmit.react.action;
 
 import java.io.File;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 
-import com.volmit.react.Info;
 import com.volmit.react.ReactPlugin;
-import com.volmit.react.api.Gate;
-import com.volmit.react.api.Permissable;
-import com.volmit.react.api.ReactCommand;
-import com.volmit.react.api.SideGate;
+import com.volmit.react.api.Action;
+import com.volmit.react.api.ActionType;
+import com.volmit.react.api.IActionSource;
+import com.volmit.react.api.ISelector;
 import com.volmit.react.util.A;
 import com.volmit.react.util.C;
 import com.volmit.react.util.DataCluster;
@@ -21,22 +19,18 @@ import com.volmit.react.util.GMap;
 import com.volmit.react.util.Paste;
 import com.volmit.react.util.S;
 
-public class CommandFileSize extends ReactCommand
+public class ActionFileSize extends Action
 {
-	public CommandFileSize()
+	public ActionFileSize()
 	{
-		command = Info.COMMAND_FS;
-		aliases = new String[] {Info.COMMAND_FS_ALIAS_1, Info.COMMAND_FS_ALIAS_2};
-		permissions = new String[] {Permissable.ACCESS.getNode(), Permissable.MONITOR_ENVIRONMENT.getNode(), Permissable.SYSTEMINFO.getNode()};
-		usage = Info.COMMAND_FS_USAGE;
-		description = Info.COMMAND_FS_DESCRIPTION;
-		sideGate = SideGate.ANYTHING;
+		super(ActionType.DUMP);
+		setNodes(new String[] {"du", "dmp"});
 	}
 
 	@Override
-	public void fire(CommandSender sender, String[] args)
+	public void enact(IActionSource source, ISelector... selectors)
 	{
-		Gate.msgActing(sender, "Calculating File Sizes Please Wait...");
+		source.sendResponseActing("Calculating File Sizes Please Wait...");
 		GMap<String, Long> map = new GMap<String, Long>();
 
 		File f = new File(".");
@@ -48,15 +42,16 @@ public class CommandFileSize extends ReactCommand
 			{
 				long tw = 0;
 
-				Gate.msgActing(sender, "Calculating World Sizes");
+				source.sendResponseActing("Calculating World Sizes");
+
 				for(World i : Bukkit.getWorlds())
 				{
-					Gate.msgActing(sender, "  Calculating World " + i.getName() + "'s size");
+					source.sendResponseActing("  Calculating World " + i.getName() + "'s size");
 					long ws = size(i.getWorldFolder());
 					map.put("worlds.world." + i.getName().replaceAll(" ", "-"), ws);
 					tw += ws;
 				}
-				Gate.msgActing(sender, "Calculating Plugin Sizes");
+				source.sendResponseActing("Calculating Plugin Sizes");
 
 				for(Plugin i : Bukkit.getPluginManager().getPlugins())
 				{
@@ -64,14 +59,14 @@ public class CommandFileSize extends ReactCommand
 
 					if(fxx.exists() && fxx.isDirectory())
 					{
-						Gate.msgActing(sender, "  Calculating " + i.getName() + "'s data size");
+						source.sendResponseActing("  Calculating " + i.getName() + "'s data size");
 						map.put("plugins.plugin-data." + i.getName(), size(fxx));
 					}
 				}
 
-				Gate.msgActing(sender, "  Calculating Total Plugin Size");
+				source.sendResponseActing("  Calculating Total Plugin Size");
 				map.put("plugins.total", size(ReactPlugin.i.getDataFolder().getParentFile()));
-				Gate.msgActing(sender, "Calculating literally everything's size");
+				source.sendResponseActing("Calculating literally everything's size");
 				map.put("everything", size(f));
 				map.put("worlds.total", tw);
 
@@ -93,7 +88,7 @@ public class CommandFileSize extends ReactCommand
 						@Override
 						public void run()
 						{
-							Gate.msgSuccess(sender, "Ding! " + C.WHITE + C.UNDERLINE + u + ".txt");
+							source.sendResponseSuccess("Ding! " + C.WHITE + C.UNDERLINE + u + ".txt");
 						}
 					};
 				}
@@ -107,8 +102,8 @@ public class CommandFileSize extends ReactCommand
 						@Override
 						public void run()
 						{
-							Gate.msg(sender, d);
-							Gate.msgError(sender, "Failed to paste to volmit.");
+							source.sendResponseActing(d);
+							source.sendResponseError("Failed to paste to volmit.");
 						}
 					};
 				}
@@ -137,5 +132,11 @@ public class CommandFileSize extends ReactCommand
 		}
 
 		return size;
+	}
+
+	@Override
+	public String getNode()
+	{
+		return "chunk-test";
 	}
 }

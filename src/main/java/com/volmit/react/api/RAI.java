@@ -6,10 +6,11 @@ import com.volmit.react.Config;
 import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.M;
+import com.volmit.react.xrai.GoalManager;
 
 public class RAI implements IRAI
 {
-	private GList<IGoal> goals;
+	private GoalManager gm;
 	private GList<RAIEvent> events;
 	private GList<RAIEvent> logEvents;
 	private GList<IActionSource> listeners;
@@ -19,25 +20,15 @@ public class RAI implements IRAI
 
 	public RAI()
 	{
-		goals = new GList<IGoal>();
+		gm = new GoalManager();
+		gm.createDefaultGoals();
+		gm.loadGoals();
 		events = new GList<RAIEvent>();
 		logEvents = new GList<RAIEvent>();
 		listeners = new GList<IActionSource>();
 		instance = this;
 		getListeners().add(new RAIActionSource());
 		since = M.ms();
-	}
-
-	@Override
-	public GList<IGoal> getGoals()
-	{
-		return goals;
-	}
-
-	@Override
-	public void addGoal(IGoal goal)
-	{
-		getGoals().add(goal);
 	}
 
 	@Override
@@ -48,18 +39,7 @@ public class RAI implements IRAI
 			return;
 		}
 
-		for(IGoal i : getGoals())
-		{
-			try
-			{
-				i.update();
-			}
-
-			catch(Throwable e)
-			{
-				Ex.t(e);
-			}
-		}
+		gm.tick();
 
 		try
 		{
@@ -117,5 +97,11 @@ public class RAI implements IRAI
 	public GList<IActionSource> getListeners()
 	{
 		return listeners;
+	}
+
+	@Override
+	public GoalManager getGoalManager()
+	{
+		return gm;
 	}
 }

@@ -1,16 +1,15 @@
-package com.volmit.react.command;
+package com.volmit.react.action;
 
 import java.lang.reflect.Field;
 
 import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
 
 import com.volmit.react.React;
+import com.volmit.react.api.Action;
+import com.volmit.react.api.ActionType;
 import com.volmit.react.api.Capability;
-import com.volmit.react.api.Gate;
-import com.volmit.react.api.Permissable;
-import com.volmit.react.api.ReactCommand;
-import com.volmit.react.api.SideGate;
+import com.volmit.react.api.IActionSource;
+import com.volmit.react.api.ISelector;
 import com.volmit.react.util.A;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Control;
@@ -23,28 +22,22 @@ import com.volmit.react.util.JSONArray;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.Paste;
 
-public class CommandDump extends ReactCommand
+public class ActionDump extends Action
 {
-	public CommandDump()
+	public ActionDump()
 	{
-		command = "dump";
-		aliases = new String[] {"du"};
-		permissions = new String[] {Permissable.ACCESS.getNode(), Permissable.RELOAD.getNode(), Permissable.SYSTEMINFO.getNode()};
-		usage = "";
-		description = "Dumps server information to a pastebin";
-		sideGate = SideGate.ANYTHING;
+		super(ActionType.DUMP);
+		setNodes(new String[] {"du", "dmp"});
 	}
 
 	@Override
-	public void fire(CommandSender sender, String[] args)
+	public void enact(IActionSource source, ISelector... selectors)
 	{
+		source.sendResponseActing("Dumping, Please Wait...");
 		JSONObject js = new JSONObject();
-
 		JSONObject react = new JSONObject();
 		JSONObject rplugin = new JSONObject();
-
 		rplugin.put("react-version", Bukkit.getPluginManager().getPlugin("React").getDescription().getVersion());
-
 		JSONObject capabilities = new JSONObject();
 		JSONArray capable = new JSONArray();
 		JSONArray notcapable = new JSONArray();
@@ -135,15 +128,23 @@ public class CommandDump extends ReactCommand
 				try
 				{
 					String s = Paste.paste(js.toString(4));
-					Gate.msgSuccess(sender, "Dumped: " + C.WHITE + C.UNDERLINE + s + ".json");
+					source.sendResponseSuccess("Dumped: " + C.WHITE + C.UNDERLINE + s + ".json");
 				}
 
 				catch(Throwable e)
 				{
 					Ex.t(e);
-					Gate.msgError(sender, "Failed to paste.");
+					source.sendResponseError("Failed to paste.");
 				}
+
+				completeAction();
 			}
 		};
+	}
+
+	@Override
+	public String getNode()
+	{
+		return "chunk-test";
 	}
 }

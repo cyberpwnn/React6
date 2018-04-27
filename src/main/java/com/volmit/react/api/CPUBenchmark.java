@@ -8,35 +8,32 @@ import com.volmit.react.util.F;
 
 public class CPUBenchmark extends Thread
 {
-	private CommandSender sender;
+	private IActionSource sender;
 	private int score;
 	private Runnable onFinish;
 	public static int low = 1000000;
 	public static int high = 0;
+	public long ms = 0;
 
-	public CPUBenchmark(CommandSender sender)
+	public CPUBenchmark(IActionSource sender, long ms)
 	{
 		this.sender = sender;
+		this.ms = ms;
 		this.score = 0;
 		setPriority(MAX_PRIORITY);
 		onFinish = null;
 		setName("Surge CPU Benchmark"); //$NON-NLS-1$
 	}
 
-	public CPUBenchmark(CommandSender sender, Runnable callb)
+	public CPUBenchmark(IActionSource sender, long ms, Runnable callb)
 	{
-		this(sender);
+		this(sender, ms);
 		onFinish = callb;
 	}
 
 	@Override
 	public void run()
 	{
-		for(CommandSender i : Gate.broadcastReactUsers())
-		{
-			Gate.msgSuccess(i, Lang.getString("react.bench.benchmarking-for") + F.time(1000 * 30, 0)); //$NON-NLS-1$
-		}
-
 		int tt = 0;
 		int max = Integer.MIN_VALUE;
 
@@ -45,7 +42,7 @@ public class CPUBenchmark extends Thread
 			return;
 		}
 
-		for(int i = 0; i < 30; i++)
+		for(int i = 0; i < (int) ((double) ms / 1000.0); i++)
 		{
 			if(interrupted())
 			{
@@ -71,7 +68,7 @@ public class CPUBenchmark extends Thread
 			}
 		}
 
-		score += 100;
+		score += 400;
 
 		if(interrupted())
 		{
@@ -100,7 +97,7 @@ public class CPUBenchmark extends Thread
 		}
 	}
 
-	public CommandSender getSender()
+	public IActionSource getSender()
 	{
 		return sender;
 	}

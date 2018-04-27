@@ -15,6 +15,8 @@ import java.text.ParseException;
  */
 public class Paste
 {
+	public static String lastKey;
+
 	/**
 	 * Paste to throw.volmit.com/
 	 *
@@ -38,6 +40,7 @@ public class Paste
 		BufferedReader rd = new BufferedReader(new InputStreamReader(hastebin.getInputStream()));
 		JSONObject json = new JSONObject(rd.readLine());
 
+		lastKey = json.get("key") + "";
 		return "http://paste.volmit.com/" + json.get("key");
 	}
 }

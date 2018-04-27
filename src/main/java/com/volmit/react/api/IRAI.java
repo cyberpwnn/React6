@@ -1,14 +1,13 @@
 package com.volmit.react.api;
 
 import com.volmit.react.util.GList;
+import com.volmit.react.xrai.GoalManager;
 
 public interface IRAI
 {
-	public GList<IGoal> getGoals();
+	public GoalManager getGoalManager();
 
 	public void tick();
-
-	public void addGoal(IGoal goal);
 
 	public GList<RAIEvent> getEvents();
 

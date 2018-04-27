@@ -192,7 +192,6 @@ public class Config
 	@Key("features.entity-stacker.max-health")
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 1, max = 2000)
-	@Experimental
 	public static int ENTITYSTACK_MAXIMUM_HEALTH = 1600;
 
 	@Comment("The maximum amount of events to capture per tick before ignoring the rest to prevent lag from glass.")
@@ -232,178 +231,9 @@ public class Config
 
 	@Comment("DThe server is considered lagging if the tick time exeeds this value")
 	@Key("rai.tps.high-tick")
-	@Experimental
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 20.0, max = 70.0)
 	public static double RAI_TPS_HIGH_TICK = 50.0;
-
-	@Comment("Dynamic relative value to determine the minimum redstone tick for the current server tick time. Lower this to detect less intense redstone lag.")
-	@Key("rai.redstone.time-floor")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 2000000, max = 9000000)
-	public static long RAI_REDSTONE_TIME_FLOOR = 2000000;
-
-	@Comment("Dynamic relative value to determine the maximum redstone tick threshold for the current server tick time.")
-	@Key("rai.redstone.time-ceil")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 10000000, max = 50000000)
-	public static long RAI_REDSTONE_TIME_CEIL = 30000000;
-
-	@Comment("Time Multiplier for mudding the floor and ceil")
-	@Key("rai.redstone.time-mudding")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 2000000, max = 10000000)
-	public static long RAI_REDSTONE_TIME_MUDDING = 2360000;
-
-	@Comment("The function (linear) at which the ceil meets the floor")
-	@Key("rai.redstone.time-function")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 0.01, max = 1.5)
-	public static double RAI_REDSTONE_TIME_FUNCTION = 0.36;
-
-	@Comment("The threshold the final function must meet to be considered lagging")
-	@Key("rai.redstone.time-overbleed")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 0.05, max = 5.5)
-	public static double RAI_REDSTONE_TIME_OVERBLEED = 1.54;
-
-	@Comment("Radius multiplier for overbleed")
-	@Key("rai.redstone.time-radius")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 1, max = 3)
-	public static int RAI_REDSTONE_TIME_RADIUS = 1;
-
-	@Comment("How much time to randomly add to the chunk list if a specific chunk keeps causing lag.")
-	@Key("rai.redstone.time-propagation")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 500, max = 2000)
-	public static int RAI_REDSTONE_TIME_PROPIGATION = 1000;
-
-	@Comment("Minimum hopper nanos")
-	@Key("rai.hopper.time-floor")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 2000000, max = 9000000)
-	public static long RAI_HOPPER_TIME_FLOOR = 2000000;
-
-	@Comment("Max hopper nanos")
-	@Key("rai.hopper.time-ceil")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 10000000, max = 50000000)
-	public static long RAI_HOPPER_TIME_CEIL = 30000000;
-
-	@Comment("Hopper mudding for floor to ceil")
-	@Key("rai.hopper.time-mudding")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 2000000, max = 10000000)
-	public static long RAI_HOPPER_TIME_MUDDING = 2360000;
-
-	@Comment("Floor ceil function")
-	@Key("rai.hopper.time-function")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 0.01, max = 1.5)
-	public static double RAI_HOPPER_TIME_FUNCTION = 0.16;
-
-	@Comment("Threshold for function to meet to be considered lagging")
-	@Key("rai.hopper.time-overbleed")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 0.05, max = 5.5)
-	public static double RAI_HOPPER_TIME_OVERBLEED = 1.54;
-
-	@Comment("Function multiplier")
-	@Key("rai.hopper.time-radius")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 1, max = 3)
-	public static int RAI_HOPPER_TIME_RADIUS = 1;
-
-	@Comment("Time punishment for repeat lags per chunk")
-	@Key("rai.hopper.time-propagation")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 500, max = 2000)
-	public static int RAI_HOPPER_TIME_PROPIGATION = 1000;
-
-	@Comment("Chunk multiplier for entity mass checking")
-	@Key("rai.entity.chunk-multiplier")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 1, max = 5)
-	public static int RAI_ENTITY_CHUNK_MULTIPLIER = 2;
-
-	@Comment("Chunk clusterer (entities+multiplier*radius per chunk averaged)")
-	@Key("rai.entity.chunk-clusterer")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 20, max = 100)
-	public static int RAI_ENTITY_CHUNK_CLUSTERIZER = 30;
-
-	@Comment("Radius to check around for entity mass")
-	@Key("rai.entity.chunk-radius")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 1, max = 3)
-	public static int RAI_ENTITY_CHUNK_RADIUS = 2;
-
-	@Comment("Min nanos")
-	@Key("rai.fluid.time-floor")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 2000000, max = 9000000)
-	public static long RAI_FLUID_TIME_FLOOR = 2000000;
-
-	@Comment("Max nanos for fluid")
-	@Key("rai.fluid.time-ceil")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 10000000, max = 50000000)
-	public static long RAI_FLUID_TIME_CEIL = 30000000;
-
-	@Comment("Mudding for floor and ceil")
-	@Key("rai.fluid.time-mudding")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 2000000, max = 10000000)
-	public static long RAI_FLUID_TIME_MUDDING = 2360000;
-
-	@Comment("Floor ceil function fluids")
-	@Key("rai.fluid.time-function")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 0.01, max = 1.5)
-	public static double RAI_FLUID_TIME_FUNCTION = 1.36;
-
-	@Comment("Fluids function must reach this threshold to be considered lagging")
-	@Key("rai.fluid.time-overbleed")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 0.05, max = 5.5)
-	public static double RAI_FLUID_TIME_OVERBLEED = 1.54;
-
-	@Comment("Time radius for fluids")
-	@Key("rai.fluid.time-radius")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 1, max = 3)
-	public static int RAI_FLUID_TIME_RADIUS = 2;
-
-	@Comment("Added punishment for repeat fluid chunks")
-	@Key("rai.fluid.time-propagation")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 500, max = 2000)
-	public static int RAI_FLUID_TIME_PROPIGATION = 800;
 
 	@Comment("The maximum entity tick time before throttling")
 	@Key("features.tick-smearing.entities.max-time")
@@ -419,28 +249,24 @@ public class Config
 
 	@Comment("Allow the entity tick throttle to be X higher than the current time to prevent odd skipping of entities, and to allow room for error.")
 	@Key("features.tick-smearing.entities.seperation-bias")
-	@Experimental
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 0, max = 10)
 	public static double SMEAR_TICK_ENTITIES_SEPERATION_BIAS = 0.65;
 
 	@Comment("Allow the tile tick throttle to be X higher than the current time to prevent odd skipping of entities, and to allow room for error.")
 	@Key("features.tick-smearing.tiles.seperation-bias")
-	@Experimental
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 0, max = 10)
 	public static double SMEAR_TICK_TILES_SEPERATION_BIAS = 0.07;
 
 	@Comment("How many ticks should the tick time be averaged across to compute biases")
 	@Key("features.tick-smearing.entities.smear-factor")
-	@Experimental
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 5, max = 100)
 	public static double SMEAR_TICK_ENTITIES_AMOUNT = 50;
 
 	@Comment("How many ticks should the tick time be averaged across to compute biases")
 	@Key("features.tick-smearing.tiles.smear-factor")
-	@Experimental
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 5, max = 100)
 	public static double SMEAR_TICK_TILES_AMOUNT = 50;
@@ -479,85 +305,6 @@ public class Config
 	@Key("features.react.language")
 	@Injection(InjectionMethod.SWAP)
 	public static String LANGUAGE = "enUS";
-
-	@Comment("Floor nanos")
-	@Key("rai.chunk.time-floor")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 2000000, max = 9000000)
-	public static long RAI_CHUNK_TIME_FLOOR = 2000000;
-
-	@Comment("Ceil nanos")
-	@Key("rai.chunk.time-ceil")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 10000000, max = 50000000)
-	public static long RAI_CHUNK_TIME_CEIL = 30000000;
-
-	@Comment("Floor mudding")
-	@Key("rai.chunk.time-mudding")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 2000000, max = 10000000)
-	public static long RAI_CHUNK_TIME_MUDDING = 2360000;
-
-	@Comment("Floor ceil function")
-	@Key("rai.chunk.time-function")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 0.01, max = 1.5)
-	public static double RAI_CHUNK_TIME_FUNCTION = 0.96;
-
-	@Comment("Threshold chunk time needs to reach before considered lagging")
-	@Key("rai.chunk.time-overbleed")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 0.05, max = 5.5)
-	public static double RAI_CHUNK_TIME_OVERBLEED = 1.54;
-
-	@Comment("Time radius for chunks")
-	@Key("rai.chunk.time-radius")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 1, max = 3)
-	public static int RAI_CHUNK_TIME_RADIUS = 2;
-
-	@Comment("Time punishment for repeats")
-	@Key("rai.chunk.time-propagation")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 500, max = 2000)
-	public static int RAI_CHUNK_TIME_PROPIGATION = 10;
-
-	@Comment("Handle this problem by firing off actions if this goal fails")
-	@Key("rai.chunk.propagate")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	public static boolean RAI_CHUNK_TIME_PROPIGATE = true;
-
-	@Comment("Automatically freeze fluids for small amounts of time to reduce liquid physics load.")
-	@Key("rai.fluid.propagate")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	public static boolean RAI_FLUID_TIME_PROPIGATE = false;
-
-	@Comment("Remove (some) entities in areas where density is high AND the global average of entities is considered high for the amount of chunks loaded, following the cull rules.")
-	@Key("rai.entity.propagate")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	public static boolean RAI_ENTITY_PROPIGATE = true;
-
-	@Comment("Lock hoppers in regions where they are dense for periods of time.")
-	@Key("rai.hopper.propagate")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	public static boolean RAI_HOPPER_TIME_PROPIGATE = true;
-
-	@Comment("Lock redstone in regions where they are dense for periods of time.")
-	@Key("rai.redstone.propagate")
-	@Experimental
-	@Injection(InjectionMethod.SWAP)
-	public static boolean RAI_REDSTONE_TIME_PROPIGATE = true;
 
 	@Comment("Format for nametags\n%size% = Number of entities in stack\n%type% = Entity type i.e. Pig\n%hp% = Health\nColor codes and formatting supported.")
 	@Key("features.entity-stacker.options.nametag-format")
@@ -688,9 +435,7 @@ public class Config
 		Plugin main = ReactPlugin.i;
 		onRead(main);
 		File fConfig = new File(main.getDataFolder(), "config.yml"); //$NON-NLS-1$
-		File fConfigExperimental = new File(main.getDataFolder(), "config-experimental.yml"); //$NON-NLS-1$
 		new YamlDataOutput().write(defaultConfig(false), fConfig);
-		new YamlDataOutput().write(defaultConfig(true), fConfigExperimental);
 		onRead(main);
 	}
 
@@ -698,21 +443,10 @@ public class Config
 	public static void onRead(Plugin main)
 	{
 		File fConfig = new File(main.getDataFolder(), "config.yml"); //$NON-NLS-1$
-		File fConfigExperimental = new File(main.getDataFolder(), "config-experimental.yml"); //$NON-NLS-1$
 
 		try
 		{
 			read(fConfig, false);
-		}
-
-		catch(Throwable e)
-		{
-			Ex.t(e);
-		}
-
-		try
-		{
-			read(fConfigExperimental, true);
 		}
 
 		catch(Throwable e)

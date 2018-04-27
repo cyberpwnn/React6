@@ -14,7 +14,6 @@ import org.bukkit.event.entity.EntitySpawnEvent;
 import com.volmit.react.Config;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Capability;
-import com.volmit.react.api.GoalReducedEntityCounts;
 import com.volmit.react.api.StackedEntity;
 import com.volmit.react.util.Area;
 import com.volmit.react.util.Controller;
@@ -305,8 +304,6 @@ public class EntityStackController extends Controller
 	@EventHandler
 	public void on(EntitySpawnEvent e)
 	{
-		GoalReducedEntityCounts.spawned++;
-
 		if(!Config.ENTITYSTACK_ENABLED)
 		{
 			return;

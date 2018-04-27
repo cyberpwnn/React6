@@ -3,9 +3,12 @@ package com.volmit.react.controller;
 import org.bukkit.Chunk;
 
 import com.volmit.react.Config;
+import com.volmit.react.action.ActionCPUScore;
 import com.volmit.react.action.ActionChunkTest;
 import com.volmit.react.action.ActionCollectGarbage;
 import com.volmit.react.action.ActionCullEntities;
+import com.volmit.react.action.ActionDump;
+import com.volmit.react.action.ActionFileSize;
 import com.volmit.react.action.ActionFixLighting;
 import com.volmit.react.action.ActionLockFluid;
 import com.volmit.react.action.ActionLockHopper;
@@ -108,6 +111,9 @@ public class ActionController extends Controller
 		registerAction(new ActionUnlockHopper());
 		registerAction(new ActionUnlockRedstone());
 		registerAction(new ActionChunkTest());
+		registerAction(new ActionCPUScore());
+		registerAction(new ActionDump());
+		registerAction(new ActionFileSize());
 	}
 
 	public void fire(ActionType type, IActionSource source, ISelector... selectors)
@@ -223,7 +229,7 @@ public class ActionController extends Controller
 
 		Gate.snd = 3;
 
-		if(pending.isEmpty() && TICK.tick % 40 != 0)
+		if(pending.isEmpty())
 		{
 			return;
 		}

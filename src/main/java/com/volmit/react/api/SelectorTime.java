@@ -78,7 +78,7 @@ public class SelectorTime extends Selector
 
 		set(ms);
 
-		return 0;
+		return (int) get();
 	}
 
 	@Override

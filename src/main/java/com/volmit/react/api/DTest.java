@@ -13,7 +13,7 @@ public class DTest
 		double tx = 0;
 		double tc = 0;
 		double td = 0;
-		while(System.currentTimeMillis() - st < 1268)
+		while(System.currentTimeMillis() - st < 1000)
 		{
 			SimplexNoiseGenerator simplex = new SimplexNoiseGenerator(1234L);
 			PerlinNoiseGenerator perlin = new PerlinNoiseGenerator(99999999L);

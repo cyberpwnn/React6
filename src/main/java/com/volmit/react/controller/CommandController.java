@@ -19,7 +19,6 @@ import com.volmit.react.action.ActionPurgeEntities;
 import com.volmit.react.api.ActionType;
 import com.volmit.react.api.Gate;
 import com.volmit.react.api.ICommand;
-import com.volmit.react.api.IGoal;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.PlayerActionSource;
 import com.volmit.react.api.RAI;
@@ -30,14 +29,11 @@ import com.volmit.react.api.SideGate;
 import com.volmit.react.command.CommandAccept;
 import com.volmit.react.command.CommandAccess;
 import com.volmit.react.command.CommandAct;
-import com.volmit.react.command.CommandCPUScore;
 import com.volmit.react.command.CommandCapabilities;
 import com.volmit.react.command.CommandChunk;
 import com.volmit.react.command.CommandChunkBlame;
 import com.volmit.react.command.CommandChunkTP;
-import com.volmit.react.command.CommandDump;
 import com.volmit.react.command.CommandEnvironment;
-import com.volmit.react.command.CommandFileSize;
 import com.volmit.react.command.CommandFix;
 import com.volmit.react.command.CommandGlasses;
 import com.volmit.react.command.CommandHelp;
@@ -53,13 +49,14 @@ import com.volmit.react.command.CommandSubscribe;
 import com.volmit.react.command.CommandTopChunk;
 import com.volmit.react.command.CommandUnsubscribe;
 import com.volmit.react.command.CommandVersion;
+import com.volmit.react.util.A;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.JSONObject;
-import com.volmit.react.util.M;
+import com.volmit.react.xrai.RAIGoal;
 
 public class CommandController extends Controller implements Listener, CommandExecutor
 {
@@ -101,8 +98,6 @@ public class CommandController extends Controller implements Listener, CommandEx
 		commands.add(new CommandCapabilities());
 		commands.add(new CommandChunkBlame());
 		commands.add(new CommandChunkTP());
-		commands.add(new CommandCPUScore());
-		commands.add(new CommandDump());
 		commands.add(new CommandEnvironment());
 		commands.add(new CommandFix());
 		commands.add(new CommandGlasses());
@@ -118,7 +113,6 @@ public class CommandController extends Controller implements Listener, CommandEx
 		commands.add(new CommandTopChunk());
 		commands.add(new CommandUnsubscribe());
 		commands.add(new CommandVersion());
-		commands.add(new CommandFileSize());
 	}
 
 	@Override
@@ -161,7 +155,9 @@ public class CommandController extends Controller implements Listener, CommandEx
 			{
 				s.sendMessage(Gate.header(C.AQUA + "RAI", C.LIGHT_PURPLE)); //$NON-NLS-1$
 				s.sendMessage(C.LIGHT_PURPLE + "/rai " + C.WHITE + "toggle" + C.GRAY + " - Toggle RAI on or off"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				s.sendMessage(C.LIGHT_PURPLE + "/rai " + C.WHITE + "status" + C.GRAY + " - Get RAI's Status"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				s.sendMessage(C.LIGHT_PURPLE + "/rai " + C.WHITE + "goals" + C.GRAY + " - Get RAI's Status"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				s.sendMessage(C.LIGHT_PURPLE + "/rai " + C.WHITE + "goals export" + C.GRAY + " - Export Goals"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				s.sendMessage(C.LIGHT_PURPLE + "/rai " + C.WHITE + "goals import <code/url>" + C.GRAY + " - Import Goals"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				s.sendMessage(Gate.header(C.LIGHT_PURPLE));
 			}
 
@@ -177,7 +173,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 				Gate.msgRAI(s, React.instance.raiController.raiEnabled ? Lang.getString("message.rai-online") : Lang.getString("message.rai-offline")); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
-			else if(a[0].equalsIgnoreCase("status")) //$NON-NLS-1$
+			else if(a[0].equalsIgnoreCase("goals")) //$NON-NLS-1$
 			{
 				if(!Permissable.RAI_MONITOR.has(s))
 				{
@@ -185,41 +181,44 @@ public class CommandController extends Controller implements Listener, CommandEx
 					return true;
 				}
 
-				int m = 0;
-				int f = 0;
-
-				for(IGoal i : RAI.instance.getGoals())
+				if(a.length >= 2)
 				{
-					for(IGoal j : i.getSubgoals())
+					if(a[1].equalsIgnoreCase("export"))
 					{
-						m++;
-
-						if(j.isFailing())
+						new A()
 						{
-							f++;
-						}
+							@Override
+							public void run()
+							{
+								Gate.msgRAI(s, "Goals Exported: " + C.WHITE + RAI.instance.getGoalManager().saveGoalsToPaste());
+							}
+						};
+
+						return true;
 					}
 
-					m++;
-
-					if(i.isFailing())
+					if(a[1].equalsIgnoreCase("import") && a.length == 3)
 					{
-						f++;
+						String url = a[2];
+
+						new A()
+						{
+							@Override
+							public void run()
+							{
+								Gate.msgRAI(s, "Imported " + RAI.instance.getGoalManager().loadGoalsFromPaste(url) + " goals.");
+							}
+						};
+
+						return true;
 					}
 				}
 
-				s.sendMessage(Gate.header(C.AQUA + Lang.getString("message.rai-status"), C.LIGHT_PURPLE)); //$NON-NLS-1$
-				s.sendMessage(Lang.getString("message.goal.goals") + C.WHITE + (m - f) + " / " + m + C.GRAY + Lang.getString("message.goal.achieved-sp")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				s.sendMessage(F.f(RAI.instance.getEvents().size()) + Lang.getString("message.goal.interventions-in-past") + F.timeLong(M.ms() - RAI.instance.since, 0)); //$NON-NLS-1$
+				s.sendMessage(Gate.header(C.LIGHT_PURPLE + Lang.getString("message.rai-status"), C.LIGHT_PURPLE)); //$NON-NLS-1$
 
-				for(IGoal i : RAI.instance.getGoals())
+				for(RAIGoal i : RAI.instance.getGoalManager().getGoals())
 				{
-					s.sendMessage(C.WHITE + i.getTag() + C.GRAY + " -> " + (i.isFailing() ? C.RED + Lang.getString("message.goal.failing") : C.GREEN + Lang.getString("message.goal.achieved"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-
-					for(IGoal j : i.getSubgoals())
-					{
-						s.sendMessage("  " + C.WHITE + j.getTag() + C.GRAY + " -> " + (j.isFailing() ? C.RED + Lang.getString("message.goal.failing") : C.GREEN + Lang.getString("message.goal.achieved"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-					}
+					s.sendMessage((i.isEnabled() ? C.GREEN + "|" : C.RED + "|") + C.WHITE + i.getName() + C.GRAY + " (" + i.getAuthor() + ") - " + i.getDescription());
 				}
 
 				s.sendMessage(Gate.header(C.LIGHT_PURPLE));
