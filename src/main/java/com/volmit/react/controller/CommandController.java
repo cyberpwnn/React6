@@ -31,7 +31,6 @@ import com.volmit.react.command.CommandAccess;
 import com.volmit.react.command.CommandAct;
 import com.volmit.react.command.CommandCapabilities;
 import com.volmit.react.command.CommandChunk;
-import com.volmit.react.command.CommandChunkBlame;
 import com.volmit.react.command.CommandChunkTP;
 import com.volmit.react.command.CommandEnvironment;
 import com.volmit.react.command.CommandFix;
@@ -96,7 +95,6 @@ public class CommandController extends Controller implements Listener, CommandEx
 		commands.add(new CommandAct());
 		commands.add(new CommandScoreboardMonitor());
 		commands.add(new CommandCapabilities());
-		commands.add(new CommandChunkBlame());
 		commands.add(new CommandChunkTP());
 		commands.add(new CommandEnvironment());
 		commands.add(new CommandFix());

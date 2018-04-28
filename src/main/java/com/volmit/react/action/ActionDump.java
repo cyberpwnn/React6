@@ -27,7 +27,7 @@ public class ActionDump extends Action
 	public ActionDump()
 	{
 		super(ActionType.DUMP);
-		setNodes(new String[] {"du", "dmp"});
+		setNodes(new String[] {"dump", "du", "dmp"});
 	}
 
 	@Override

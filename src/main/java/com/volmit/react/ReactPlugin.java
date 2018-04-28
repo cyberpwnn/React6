@@ -335,6 +335,36 @@ public class ReactPlugin extends JavaPlugin
 		};
 	}
 
+	public static ReactPlugin getI()
+	{
+		return i;
+	}
+
+	public GList<IController> getControllers()
+	{
+		return controllers;
+	}
+
+	public React getReact()
+	{
+		return react;
+	}
+
+	public ParallelPoolManager getPool()
+	{
+		return pool;
+	}
+
+	public HotloadManager getMgr()
+	{
+		return mgr;
+	}
+
+	public ReactServer getSrv()
+	{
+		return srv;
+	}
+
 	public int startTask(int delay, Runnable r)
 	{
 		return Bukkit.getScheduler().scheduleSyncDelayedTask(this, r, delay);

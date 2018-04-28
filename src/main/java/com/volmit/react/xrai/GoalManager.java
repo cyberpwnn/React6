@@ -190,6 +190,7 @@ public class GoalManager
 		purgeChunks.setAuthor("React");
 		purgeChunks.setName("Suppress Fluids");
 		purgeChunks.setDescription("Reduces fluid flows");
+		purgeChunks.setEnabled(false);
 
 		ConditionSet cs = new ConditionSet();
 		cs.getConditions().add(new Condition(SampledType.FLUID_TICK_USAGE, ConditionOp.GREATER, 0.25));

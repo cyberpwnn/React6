@@ -1,6 +1,10 @@
 package com.volmit.react.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -28,6 +32,7 @@ import com.volmit.react.util.D;
 import com.volmit.react.util.F;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.GSound;
+import com.volmit.react.util.JSONArray;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.M;
 import com.volmit.react.util.MSound;
@@ -36,6 +41,8 @@ import com.volmit.react.util.PhantomSlate;
 import com.volmit.react.util.S;
 import com.volmit.react.util.TICK;
 import com.volmit.react.util.TaskLater;
+import com.volmit.react.xmonitor.TitleCollection;
+import com.volmit.react.xmonitor.TitleHeader;
 
 @AsyncTick
 public class MonitorController extends Controller
@@ -177,26 +184,151 @@ public class MonitorController extends Controller
 
 	public void constructMonitor()
 	{
-		MonitorHeading tick = new MonitorHeading(Info.NAME_TICK, React.instance.sampleController.getSampler(SampledType.TPS.toString()));
-		tick.addSampler(React.instance.sampleController.getSampler(SampledType.TICK.toString()));
-		tick.addSampler(React.instance.sampleController.getSampler(SampledType.CPU.toString()));
+		File f = new File(ReactPlugin.i.getDataFolder(), "monitors");
+		f.mkdirs();
+		boolean fail = false;
+		File mf = new File(f, "title-monitor.json");
+		File mfs = new File(f, "samplers.txt");
 
-		MonitorHeading memory = new MonitorHeading(Info.NAME_MEMORY, React.instance.sampleController.getSampler(SampledType.MEM.toString()));
-		memory.addSampler(React.instance.sampleController.getSampler(SampledType.MAHS.toString()));
-		memory.addSampler(React.instance.sampleController.getSampler(SampledType.MEMTOTALS.toString()));
+		if(!mf.exists())
+		{
+			try
+			{
+				PrintWriter pwx = new PrintWriter(mfs);
 
-		MonitorHeading chunks = new MonitorHeading(Info.NAME_CHUNKS, React.instance.sampleController.getSampler(SampledType.CHK.toString()));
-		chunks.addSampler(React.instance.sampleController.getSampler(SampledType.CHKS.toString()));
+				pwx.println("=== Sampler Codes ===");
 
-		MonitorHeading entities = new MonitorHeading(Info.NAME_ENTITIES, React.instance.sampleController.getSampler(SampledType.ENT.toString()));
-		entities.addSampler(React.instance.sampleController.getSampler(SampledType.ENTLIV.toString()));
-		entities.addSampler(React.instance.sampleController.getSampler(SampledType.ENTDROP.toString()));
-		entities.addSampler(React.instance.sampleController.getSampler(SampledType.ENTTILE.toString()));
+				for(SampledType i : SampledType.values())
+				{
+					pwx.println("'" + i.name().toLowerCase() + "':");
+					pwx.println("    " + i.get().getName());
+					pwx.println("    " + i.get().getDescription());
+					pwx.println("    i.e. " + i.get().getValue() + " -> " + i.get().get());
+				}
 
-		titleMonitor.addHeading(tick);
-		titleMonitor.addHeading(memory);
-		titleMonitor.addHeading(chunks);
-		titleMonitor.addHeading(entities);
+				pwx.close();
+				mf.createNewFile();
+				PrintWriter pw = new PrintWriter(mf);
+				JSONArray jf = defaultMonitor();
+				pw.println(jf.toString(4));
+				pw.close();
+			}
+
+			catch(IOException e)
+			{
+				fail = true;
+				e.printStackTrace();
+			}
+		}
+
+		try
+		{
+			BufferedReader bu = new BufferedReader(new FileReader(mf));
+			String c = "";
+			String l = "";
+
+			while((l = bu.readLine()) != null)
+			{
+				c += l + "\n";
+			}
+
+			JSONArray jo = new JSONArray(c);
+			TitleCollection tm = new TitleCollection(jo);
+
+			for(TitleHeader i : tm.getHeaders())
+			{
+				MonitorHeading v = new MonitorHeading(i.getTitle(), i.getHead().get());
+
+				for(SampledType j : i.getFields())
+				{
+					v.addSampler(j.get());
+				}
+
+				titleMonitor.addHeading(v);
+			}
+
+			bu.close();
+		}
+
+		catch(IOException e)
+		{
+			fail = true;
+			e.printStackTrace();
+		}
+
+		if(fail)
+		{
+			MonitorHeading tick = new MonitorHeading(Info.NAME_TICK, React.instance.sampleController.getSampler(SampledType.TPS.toString()));
+			tick.addSampler(React.instance.sampleController.getSampler(SampledType.TICK.toString()));
+			tick.addSampler(React.instance.sampleController.getSampler(SampledType.CPU.toString()));
+
+			MonitorHeading memory = new MonitorHeading(Info.NAME_MEMORY, React.instance.sampleController.getSampler(SampledType.MEM.toString()));
+			memory.addSampler(React.instance.sampleController.getSampler(SampledType.MAHS.toString()));
+			memory.addSampler(React.instance.sampleController.getSampler(SampledType.MEMTOTALS.toString()));
+
+			MonitorHeading chunks = new MonitorHeading(Info.NAME_CHUNKS, React.instance.sampleController.getSampler(SampledType.CHK.toString()));
+			chunks.addSampler(React.instance.sampleController.getSampler(SampledType.CHKS.toString()));
+
+			MonitorHeading entities = new MonitorHeading(Info.NAME_ENTITIES, React.instance.sampleController.getSampler(SampledType.ENT.toString()));
+			entities.addSampler(React.instance.sampleController.getSampler(SampledType.ENTLIV.toString()));
+			entities.addSampler(React.instance.sampleController.getSampler(SampledType.ENTDROP.toString()));
+			entities.addSampler(React.instance.sampleController.getSampler(SampledType.ENTTILE.toString()));
+
+			titleMonitor.addHeading(tick);
+			titleMonitor.addHeading(memory);
+			titleMonitor.addHeading(chunks);
+			titleMonitor.addHeading(entities);
+		}
+
+		new TaskLater("", 2)
+		{
+			@Override
+			public void run()
+			{
+				ReactPlugin.i.getMgr().track(mf, new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						new TaskLater("", 1)
+						{
+							@Override
+							public void run()
+							{
+								ReactPlugin.reload();
+							}
+						};
+					}
+				});
+			}
+		};
+	}
+
+	private JSONArray defaultMonitor()
+	{
+		com.volmit.react.xmonitor.TitleCollection m = new com.volmit.react.xmonitor.TitleCollection();
+		TitleHeader tick = new TitleHeader(Info.NAME_TICK, SampledType.TPS);
+		tick.f(SampledType.TICK);
+		tick.f(SampledType.CPU);
+
+		TitleHeader memory = new TitleHeader(Info.NAME_MEMORY, SampledType.MEM);
+		memory.f(SampledType.MAHS);
+		memory.f(SampledType.MEMTOTALS);
+
+		TitleHeader chunks = new TitleHeader(Info.NAME_CHUNKS, SampledType.CHK);
+		chunks.f(SampledType.CHKS);
+
+		TitleHeader entity = new TitleHeader(Info.NAME_ENTITIES, SampledType.ENT);
+		entity.f(SampledType.ENTLIV);
+		entity.f(SampledType.ENTDROP);
+		entity.f(SampledType.ENTTILE);
+
+		m.getHeaders().add(tick);
+		m.getHeaders().add(memory);
+		m.getHeaders().add(chunks);
+		m.getHeaders().add(entity);
+
+		return m.toJSON();
 	}
 
 	public float calcVolume(ReactPlayer i)

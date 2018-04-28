@@ -23,8 +23,8 @@ public class ActionFileSize extends Action
 {
 	public ActionFileSize()
 	{
-		super(ActionType.DUMP);
-		setNodes(new String[] {"du", "dmp"});
+		super(ActionType.FILE_SIZE);
+		setNodes(new String[] {"filesize", "fs", "file"});
 	}
 
 	@Override
