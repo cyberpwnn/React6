@@ -5,7 +5,6 @@ import com.volmit.react.Info;
 public enum ActionType
 {
 	FIX_LIGHTING(ActionHandle.MUTEX, ActionTargetType.POSITIONAL, Info.ACTION_FIX_LIGHTING_NAME, Info.ACTION_FIX_LIGHTING_DESCRIPTION),
-	TOP_CHUNK(ActionHandle.MUTEX, ActionTargetType.SYSTEM, "Top Chunks", "Finds heaviest chunks via lagmap"),
 	CPU_SCORE(ActionHandle.MUTEX, ActionTargetType.SYSTEM, "CPU Score", "Tempts the processor to turbo and catches the score."),
 	DUMP(ActionHandle.MUTEX, ActionTargetType.SYSTEM, "Dump", "Dumps debugging and performance information into paste."),
 	FILE_SIZE(ActionHandle.MUTEX, ActionTargetType.SYSTEM, "File Size", "Checks the server files for a size report."),

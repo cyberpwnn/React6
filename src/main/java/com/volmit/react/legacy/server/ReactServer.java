@@ -50,6 +50,8 @@ public class ReactServer extends Thread
 
 		for(ActionType i : ActionType.values())
 		{
+			System.out.print(i.name());
+
 			if(!React.instance.actionController.getAction(i).getHandleType().equals(ActionHandle.AUTOMATIC))
 			{
 				actions.add(i.getName());
