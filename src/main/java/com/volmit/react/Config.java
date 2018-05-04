@@ -346,7 +346,7 @@ public class Config
 	@Comment("Skip spawning xp orbs if the player who caused the xp to drop is known (just give them the xp). Reduces entities.")
 	@Key("tweaks.xp.fast-drop-xp")
 	@Injection(InjectionMethod.SWAP)
-	public static boolean SKIP_ORBS = true;
+	public static boolean SKIP_ORBS = false;
 
 	@Comment("Fast pickup xp (all at once not sequentially)")
 	@Key("tweaks.xp.fast-xp-pickup")

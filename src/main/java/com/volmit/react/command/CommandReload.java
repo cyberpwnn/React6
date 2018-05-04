@@ -24,7 +24,7 @@ public class CommandReload extends ReactCommand
 		usage = Info.COMMAND_RELOAD_USAGE;
 		description = Info.COMMAND_RELOAD_DESCRIPTION;
 		sideGate = SideGate.ANYTHING;
-		registerParameterDescription("[options]", "-xconf Reset Configs\n\n-xwconf Reset World Configs\n\n-xcache Wipe Cache");
+		registerParameterDescription("[options]", "-xconf Reset Configs\n\n-xwconf Reset World Configs\n\n-xcache Wipe Cache\n-xgoals Reset Rai goals");
 	}
 
 	@Override
@@ -38,6 +38,12 @@ public class CommandReload extends ReactCommand
 				{
 					Config.resetConfigs();
 					Gate.msgSuccess(sender, "Config wipe scheduled.");
+				}
+
+				if(i.equalsIgnoreCase("-xgoals"))
+				{
+					React.instance.raiController.getRai().getGoalManager().forceResetDefaults();
+					Gate.msgSuccess(sender, "Reset goals.");
 				}
 
 				if(i.equalsIgnoreCase("-xcache"))

@@ -4,6 +4,7 @@ import com.volmit.react.Lang;
 import com.volmit.react.api.IFormatter;
 import com.volmit.react.api.MSampler;
 import com.volmit.react.api.SampledType;
+import com.volmit.react.controller.SampleController;
 import com.volmit.react.util.C;
 import com.volmit.react.util.F;
 import com.volmit.react.util.M;
@@ -38,7 +39,18 @@ public class SampleTicksPerSecond extends MSampler
 	@Override
 	public void sample()
 	{
-		setValue(ss().getTicksPerSecond());
+		double v = ss().getTicksPerSecond();
+		double m = SampleController.tps;
+
+		if(v >= 0)
+		{
+			if(m > v)
+			{
+				v = m;
+			}
+		}
+
+		setValue(v);
 	}
 
 	@Override

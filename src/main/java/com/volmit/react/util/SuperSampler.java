@@ -39,9 +39,9 @@ public class SuperSampler
 		frozen = false;
 		lockStack = null;
 		running = false;
-		ticksPerSecondL = new Average(6);
+		ticksPerSecondL = new Average(10);
 		mahL = new Average(20);
-		tickTimeL = new Average(6);
+		tickTimeL = new Average(3);
 		totalChunks = 0;
 		totalEntities = 0;
 		totalDrops = 0;

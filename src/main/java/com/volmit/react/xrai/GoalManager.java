@@ -22,6 +22,7 @@ import com.volmit.react.util.JSONException;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.M;
 import com.volmit.react.util.Paste;
+import com.volmit.react.util.S;
 import com.volmit.react.util.TaskLater;
 
 public class GoalManager
@@ -72,30 +73,22 @@ public class GoalManager
 		}
 	}
 
+	public void forceResetDefaults()
+	{
+		File f = new File(ReactPlugin.i.getDataFolder(), "goals");
+
+		for(File i : new File(f, "default").listFiles())
+		{
+			i.delete();
+		}
+
+		new File(f, "default").delete();
+		resetDefaults();
+	}
+
 	public void createDefaultGoals()
 	{
-		File v = new File(f, "default");
-		boolean mf = false;
-
-		if(!v.exists())
-		{
-			mf = true;
-		}
-
-		v.mkdirs();
-
-		writeGoal(createPurgeChunks(), new File(v, "purge-chunks.json"));
-		writeGoal(createCullEntities(), new File(v, "cull-entities.json"));
-		writeGoal(createSuppressFluids(), new File(v, "suppress-fluids.json"));
-		writeGoal(createSuppressRedstone(), new File(v, "suppress-redstone.json"));
-
-		if(mf)
-		{
-			writeGoal(createPurgeChunks(), new File(f, "purge-chunks.json"));
-			writeGoal(createCullEntities(), new File(f, "cull-entities.json"));
-			writeGoal(createSuppressFluids(), new File(f, "suppress-fluids.json"));
-			writeGoal(createSuppressRedstone(), new File(f, "suppress-redstone.json"));
-		}
+		resetDefaults();
 
 		File ff = new File(f, "goals-help.txt");
 
@@ -161,22 +154,61 @@ public class GoalManager
 		}
 	}
 
+	public void resetDefaults()
+	{
+		File v = new File(f, "default");
+		boolean mf = false;
+
+		if(!v.exists())
+		{
+			mf = true;
+		}
+
+		v.mkdirs();
+
+		writeGoal(createPurgeChunks(), new File(v, "purge-chunks.json"));
+		writeGoal(createCullEntities(), new File(v, "cull-entities.json"));
+		writeGoal(createSuppressFluids(), new File(v, "suppress-fluids.json"));
+		writeGoal(createSuppressRedstone(), new File(v, "suppress-redstone.json"));
+
+		if(mf)
+		{
+			writeGoal(createPurgeChunks(), new File(f, "purge-chunks.json"));
+			writeGoal(createCullEntities(), new File(f, "cull-entities.json"));
+			writeGoal(createSuppressFluids(), new File(f, "suppress-fluids.json"));
+			writeGoal(createSuppressRedstone(), new File(f, "suppress-redstone.json"));
+		}
+
+		if(!new File(v, "new").exists())
+		{
+			new File(v, "new").mkdirs();
+
+			new S("")
+			{
+				@Override
+				public void run()
+				{
+					forceResetDefaults();
+				}
+			};
+		}
+	}
+
 	public RAIGoal createCullEntities()
 	{
 		RAIGoal purgeChunks = new RAIGoal();
-		purgeChunks.setInterval(1000);
-		purgeChunks.setSv("1s");
+		purgeChunks.setInterval(500);
+		purgeChunks.setSv("10t");
 		purgeChunks.setAuthor("React");
 		purgeChunks.setName("Cull Entities");
 		purgeChunks.setDescription("Culls Entities in entity dense areas");
 
 		ConditionSet cs = new ConditionSet();
-		cs.getConditions().add(new Condition(SampledType.ENTLIV, ConditionOp.GREATER, 1000));
+		cs.getConditions().add(new Condition(SampledType.ENTITY_TIME, ConditionOp.GREATER, 7.5));
 		purgeChunks.setConditions(cs);
 
 		VirtualAction va = new VirtualAction(ActionType.CULL_ENTITIES);
 		va.getOptions().put("near", ChunkIssue.ENTITY.name().toLowerCase());
-		va.getOptions().put("range", "2");
 		purgeChunks.setAction(va);
 
 		return purgeChunks;
@@ -198,7 +230,6 @@ public class GoalManager
 
 		VirtualAction va = new VirtualAction(ActionType.LOCK_FLUID);
 		va.getOptions().put("near", ChunkIssue.FLUID.name().toLowerCase());
-		va.getOptions().put("range", "2");
 		va.getOptions().put("time", "15t");
 		purgeChunks.setAction(va);
 
@@ -208,9 +239,10 @@ public class GoalManager
 	public RAIGoal createSuppressRedstone()
 	{
 		RAIGoal purgeChunks = new RAIGoal();
-		purgeChunks.setInterval(250);
-		purgeChunks.setSv("5t");
+		purgeChunks.setInterval(1000);
+		purgeChunks.setSv("1s");
 		purgeChunks.setAuthor("React");
+		purgeChunks.setEnabled(false);
 		purgeChunks.setName("Suppress Redstone");
 		purgeChunks.setDescription("Reduces Redstone usage");
 
@@ -220,7 +252,6 @@ public class GoalManager
 
 		VirtualAction va = new VirtualAction(ActionType.LOCK_REDSTONE);
 		va.getOptions().put("near", ChunkIssue.REDSTONE.name().toLowerCase());
-		va.getOptions().put("range", "2");
 		va.getOptions().put("time", "1s");
 		purgeChunks.setAction(va);
 

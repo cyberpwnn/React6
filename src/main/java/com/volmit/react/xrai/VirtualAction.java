@@ -5,6 +5,8 @@ import com.volmit.react.api.ActionType;
 import com.volmit.react.api.ChunkIssue;
 import com.volmit.react.api.ISelector;
 import com.volmit.react.api.RAIActionSource;
+import com.volmit.react.api.SelectionMode;
+import com.volmit.react.api.SelectorEntityType;
 import com.volmit.react.api.SelectorParseException;
 import com.volmit.react.api.SelectorPosition;
 import com.volmit.react.api.SelectorTime;
@@ -68,6 +70,22 @@ public class VirtualAction
 			try
 			{
 				st.set((long) st.parse(null, options.get("time")));
+			}
+
+			catch(SelectorParseException e)
+			{
+				e.printStackTrace();
+			}
+		}
+
+		if(options.containsKey("entity"))
+		{
+			SelectorEntityType et = new SelectorEntityType(SelectionMode.WHITELIST);
+
+			try
+			{
+				et.parse(null, options.get("entity"));
+				selectors.add(et);
 			}
 
 			catch(SelectorParseException e)

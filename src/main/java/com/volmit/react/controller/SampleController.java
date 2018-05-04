@@ -54,6 +54,7 @@ import com.volmit.react.sampler.SampleTileDroppedTicks;
 import com.volmit.react.sampler.SampleTileTime;
 import com.volmit.react.sampler.SampleTileTimeLock;
 import com.volmit.react.util.AsyncTick;
+import com.volmit.react.util.Average;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Control;
 import com.volmit.react.util.Controller;
@@ -65,6 +66,7 @@ import com.volmit.react.util.GMap;
 import com.volmit.react.util.I;
 import com.volmit.react.util.IController;
 import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.M;
 import com.volmit.react.util.PluginUtil;
 import com.volmit.react.util.SuperSampler;
 import com.volmit.react.util.TICK;
@@ -85,6 +87,19 @@ public class SampleController extends Controller
 	public static TimingsReport t = null;
 	private SuperSampler ss;
 	public static MemoryTracker m;
+	public static long lt = M.ns();
+	public static long lms = 0;
+	public static double tps = 0;
+	public static Average ta = new Average(10);
+
+	public static void t()
+	{
+		lms = M.ns() - lt;
+		lt = M.ns();
+		tps = M.clip((double) lms / (50000000.0), 0.0, 1.0) * 20.0;
+		ta.put(tps);
+		tps = ta.getAverage();
+	}
 
 	@Override
 	public void dump(JSONObject object)
@@ -221,6 +236,7 @@ public class SampleController extends Controller
 	@Override
 	public void tick()
 	{
+		t();
 		m.tick();
 
 		if(m.isGcd())
