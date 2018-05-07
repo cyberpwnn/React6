@@ -7,9 +7,10 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntitySpawnEvent;
 
 import com.volmit.react.Config;
 import com.volmit.react.Surge;
@@ -19,7 +20,7 @@ import com.volmit.react.util.Area;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.JSONObject;
-import com.volmit.react.util.Task;
+import com.volmit.react.util.S;
 
 public class EntityStackController extends Controller
 {
@@ -67,9 +68,19 @@ public class EntityStackController extends Controller
 			}
 		}
 
-		for(World i : Bukkit.getWorlds())
+		if(Config.ENTITYSTACK_ONINTERVAL)
 		{
-			checkNear(i.getLivingEntities().get((int) (Math.random() * (i.getLivingEntities().size() - 1))));
+			for(World i : Bukkit.getWorlds())
+			{
+				new S("stack-interval")
+				{
+					@Override
+					public void run()
+					{
+						checkNear(i.getLivingEntities().get((int) (Math.random() * (i.getLivingEntities().size() - 1))));
+					}
+				};
+			}
 		}
 	}
 
@@ -233,6 +244,14 @@ public class EntityStackController extends Controller
 
 	public void checkNear(LivingEntity e)
 	{
+		if(Config.USE_WORLD_CONFIGS)
+		{
+			if(!Config.getWorldConfig(e.getWorld()).allowStacking)
+			{
+				return;
+			}
+		}
+
 		if(!Config.ENTITYSTACK_ENABLED)
 		{
 			return;
@@ -302,41 +321,49 @@ public class EntityStackController extends Controller
 	}
 
 	@EventHandler
-	public void on(EntitySpawnEvent e)
+	public void on(CreatureSpawnEvent e)
 	{
 		if(!Config.ENTITYSTACK_ENABLED)
 		{
 			return;
 		}
 
+		if(!Config.ENTITYSTACK_ONSPAWN)
+		{
+			return;
+		}
+
+		SpawnReason r = e.getSpawnReason();
+
+		if(!Config.ENTITYSTACK_REASONS.contains(r.name().toLowerCase()))
+		{
+			return;
+		}
+
 		if(e.getEntity() instanceof LivingEntity)
 		{
-			new Task("entity-check", 1, 5)
+			new S("entity-check")
 			{
 				@Override
 				public void run()
 				{
 					if(e.getEntity().isDead())
 					{
-						cancel();
 						return;
 					}
 
 					if(!Config.ALLOW_STACKING.contains(e.getEntity().getType().toString()))
 					{
-						cancel();
 						return;
 					}
 
 					if(e.getEntity().getType().equals(EntityType.ARMOR_STAND))
 					{
-						cancel();
 						return;
 					}
 
 					if(e.getEntity().getType().equals(EntityType.DROPPED_ITEM))
 					{
-						cancel();
 						return;
 					}
 

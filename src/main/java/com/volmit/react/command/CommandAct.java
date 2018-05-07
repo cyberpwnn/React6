@@ -26,7 +26,6 @@ import com.volmit.react.api.SelectorParseException;
 import com.volmit.react.api.SideGate;
 import com.volmit.react.util.C;
 import com.volmit.react.util.ColoredString;
-import com.volmit.react.util.D;
 import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
 import com.volmit.react.util.GList;
@@ -75,7 +74,6 @@ public class CommandAct extends ReactCommand
 			{
 				int k = Integer.valueOf(args[0]);
 				sendPage(sender, k - 1, 8);
-				D.v(k + ":f"); //$NON-NLS-1$
 				return;
 			}
 
@@ -104,7 +102,42 @@ public class CommandAct extends ReactCommand
 
 		if(action == null)
 		{
-			Gate.msg(sender, Lang.getString("command.act.unknown-action") + C.RED + tag); //$NON-NLS-1$
+			if(args.length >= 1)
+			{
+				if(args[0].equalsIgnoreCase("queue") || args[0].equalsIgnoreCase("q") && Permissable.ACT.has(sender))
+				{
+					if(args.length > 1)
+					{
+						String cmd = args[1];
+
+						if(cmd.equalsIgnoreCase("x") || cmd.equalsIgnoreCase("s") || cmd.equalsIgnoreCase("stop") || cmd.equalsIgnoreCase("clear"))
+						{
+							React.instance.actionController.clearQueue(sender);
+						}
+					}
+
+					else
+					{
+						React.instance.actionController.displayQueue(sender);
+					}
+				}
+
+				else
+				{
+					Gate.msg(sender, Lang.getString("command.act.unknown-action") + C.RED + tag); //$NON-NLS-1$
+					return;
+				}
+			}
+
+			else
+			{
+				Gate.msg(sender, Lang.getString("command.act.unknown-action") + C.RED + tag); //$NON-NLS-1$
+				return;
+			}
+		}
+
+		if(action == null)
+		{
 			return;
 		}
 

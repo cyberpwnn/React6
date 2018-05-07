@@ -18,6 +18,7 @@ import com.volmit.react.Surge;
 import com.volmit.react.action.ActionPurgeEntities;
 import com.volmit.react.api.ActionType;
 import com.volmit.react.api.Gate;
+import com.volmit.react.api.IAction;
 import com.volmit.react.api.ICommand;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.PlayerActionSource;
@@ -37,6 +38,7 @@ import com.volmit.react.command.CommandFix;
 import com.volmit.react.command.CommandGlasses;
 import com.volmit.react.command.CommandHelp;
 import com.volmit.react.command.CommandMap;
+import com.volmit.react.command.CommandMem;
 import com.volmit.react.command.CommandMonitor;
 import com.volmit.react.command.CommandPing;
 import com.volmit.react.command.CommandReload;
@@ -111,6 +113,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 		commands.add(new CommandTopChunk());
 		commands.add(new CommandUnsubscribe());
 		commands.add(new CommandVersion());
+		commands.add(new CommandMem());
 	}
 
 	@Override
@@ -216,7 +219,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 
 				for(RAIGoal i : RAI.instance.getGoalManager().getGoals())
 				{
-					s.sendMessage((i.isEnabled() ? C.GREEN + "|" : C.RED + "|") + C.WHITE + i.getName() + C.GRAY + " (" + i.getAuthor() + ") - " + i.getDescription());
+					s.sendMessage((i.isEnabled() ? C.GREEN + "|" : C.RED + "|") + C.WHITE + i.getName() + C.GRAY + " " + F.f(i.getHealth()) + " (" + F.pc(i.getHealthUtilization(), 0) + ") " + C.WHITE + (i.getMaxUses() > 0 ? "+ " + i.getMaxUses() : ""));
 				}
 
 				s.sendMessage(Gate.header(C.LIGHT_PURPLE));
@@ -318,10 +321,53 @@ public class CommandController extends Controller implements Listener, CommandEx
 				return true;
 			}
 
+			else if(a.length > 0)
+			{
+				IAction aa = null;
+
+				for(IAction i : React.instance.actionController.getActions())
+				{
+					if(i.getName().equalsIgnoreCase(a[0]))
+					{
+						aa = i;
+						break;
+					}
+				}
+
+				if(aa == null)
+				{
+					searching: for(IAction i : React.instance.actionController.getActions())
+					{
+						for(String j : i.getNodes())
+						{
+							if(a[0].equalsIgnoreCase(j))
+							{
+								aa = i;
+								break searching;
+							}
+						}
+
+					}
+				}
+
+				if(aa != null)
+				{
+					GList<String> acts = new GList<String>();
+					acts.add("a");
+					acts.addAll(new GList<String>(a));
+
+					onCommand(plr ? px : s, c, n, acts.toArray(new String[acts.size()])); // $NON-NLS-1$
+				}
+
+				else
+				{
+					onCommand(plr ? px : s, c, n, new String[] {"?"}); //$NON-NLS-1$
+				}
+			}
+
 			else
 			{
 				onCommand(plr ? px : s, c, n, new String[] {"?"}); //$NON-NLS-1$
-				return true;
 			}
 		}
 
@@ -372,14 +418,9 @@ public class CommandController extends Controller implements Listener, CommandEx
 
 		if(e.getMessage().toLowerCase().equalsIgnoreCase("/mem") || e.getMessage().toLowerCase().equalsIgnoreCase("/memory") || e.getMessage().toLowerCase().equalsIgnoreCase("/gc"))
 		{
-			if(Permissable.ACCESS.has(e.getPlayer()) && Config.COMMANDOVERRIDES_MEMORY)
+			if(Config.COMMANDOVERRIDES_MEMORY)
 			{
-				Gate.msgSuccess(e.getPlayer(), "Current Memory Usage: " + C.GOLD + SampledType.MEM.get().get() + C.GRAY + " (" + C.GOLD + F.pc(SampledType.MEM.get().getValue() / SampledType.MAXMEM.get().getValue(), 0) + C.GRAY + ")");
-				Gate.msgSuccess(e.getPlayer(), "Maximum: " + C.GOLD + SampledType.MAXMEM.get().get());
-				Gate.msgSuccess(e.getPlayer(), "Allocated: " + C.GOLD + SampledType.ALLOCMEM.get().get());
-				Gate.msgSuccess(e.getPlayer(), "Free: " + C.GOLD + SampledType.FREEMEM.get().get());
-				Gate.msgSuccess(e.getPlayer(), "Total Memory Allocated: " + C.GOLD + F.memSize(SampleController.m.getTotalAllocated(), 3));
-				Gate.msgSuccess(e.getPlayer(), "Total Memory Collected: " + C.GOLD + F.memSize(SampleController.m.getTotalCollected(), 3));
+				CommandMem.showMem(e.getPlayer());
 				e.setCancelled(true);
 			}
 		}

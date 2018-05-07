@@ -8,6 +8,7 @@ public enum ActionType
 	CPU_SCORE(ActionHandle.MUTEX, ActionTargetType.SYSTEM, "CPU Score", "Tempts the processor to turbo and catches the score."),
 	DUMP(ActionHandle.MUTEX, ActionTargetType.SYSTEM, "Dump", "Dumps debugging and performance information into paste."),
 	FILE_SIZE(ActionHandle.MUTEX, ActionTargetType.SYSTEM, "File Size", "Checks the server files for a size report."),
+	TIMINGS(ActionHandle.MUTEX, ActionTargetType.SYSTEM, "Timings Report", "Pulls a timings report for some time."),
 	CHUNK_TEST(ActionHandle.MUTEX, ActionTargetType.POSITIONAL, Info.ACTION_CHUNK_TEST_NAME, Info.ACTION_CHUNK_TEST_DESCRIPTION),
 	UNLOCK_FLUID(ActionHandle.MUTEX, ActionTargetType.POSITIONAL, Info.ACTION_UNLOCK_FLUID_NAME, Info.ACTION_UNLOCK_FLUID_DESCRIPTION),
 	LOCK_FLUID(ActionHandle.MUTEX, ActionTargetType.POSITIONAL, Info.ACTION_LOCK_FLUID_NAME, Info.ACTION_LOCK_FLUID_DESCRIPTION),

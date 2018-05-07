@@ -270,6 +270,11 @@ public class EntityCullController extends Controller
 				continue;
 			}
 
+			if(Gate.isBasicallyDead(i))
+			{
+				continue;
+			}
+
 			if(i.isDead())
 			{
 				continue;
@@ -313,7 +318,7 @@ public class EntityCullController extends Controller
 			sample.add(i);
 		}
 
-		for(EntityGroup i : maxs.k())
+		for(EntityGroup i : maxs.k().shuffleCopy())
 		{
 			int total = 0;
 

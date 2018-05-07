@@ -18,7 +18,6 @@ import com.volmit.react.util.AccessCallback;
 import com.volmit.react.util.F;
 import com.volmit.react.util.FinalInteger;
 import com.volmit.react.util.M;
-import com.volmit.react.util.S;
 import com.volmit.react.util.Task;
 
 public class ActionCullEntities extends Action
@@ -150,15 +149,8 @@ public class ActionCullEntities extends Action
 
 	public void cull(Chunk chunk, Runnable cb, IActionSource source, ISelector... selectors)
 	{
-		new S("action.cull")
-		{
-			@Override
-			public void run()
-			{
-				lcd = React.instance.entityCullController.cull(chunk);
-				cb.run();
-			}
-		};
+		lcd = React.instance.entityCullController.cull(chunk);
+		cb.run();
 	}
 
 	@Override

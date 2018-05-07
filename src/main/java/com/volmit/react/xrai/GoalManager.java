@@ -56,6 +56,8 @@ public class GoalManager
 				continue;
 			}
 
+			i.regenHealth();
+
 			if(i.getInterval() != -1)
 			{
 				if(M.ms() - i.getLast() < i.getInterval())
@@ -64,7 +66,7 @@ public class GoalManager
 				}
 			}
 
-			if(i.getConditions().isMet())
+			if(i.getConditions().isMet() && i.damageHealth())
 			{
 				Note.RAI.bake("Reacting to goal " + i.getName());
 				i.setLast(M.ms());
@@ -202,6 +204,9 @@ public class GoalManager
 		purgeChunks.setAuthor("React");
 		purgeChunks.setName("Cull Entities");
 		purgeChunks.setDescription("Culls Entities in entity dense areas");
+		purgeChunks.setHealthRegen(1);
+		purgeChunks.setMaxHealth(295);
+		purgeChunks.setHealthDamage(126);
 
 		ConditionSet cs = new ConditionSet();
 		cs.getConditions().add(new Condition(SampledType.ENTITY_TIME, ConditionOp.GREATER, 7.5));
@@ -222,6 +227,9 @@ public class GoalManager
 		purgeChunks.setAuthor("React");
 		purgeChunks.setName("Suppress Fluids");
 		purgeChunks.setDescription("Reduces fluid flows");
+		purgeChunks.setHealthRegen(1);
+		purgeChunks.setMaxHealth(400);
+		purgeChunks.setHealthDamage(70);
 		purgeChunks.setEnabled(false);
 
 		ConditionSet cs = new ConditionSet();
@@ -245,7 +253,9 @@ public class GoalManager
 		purgeChunks.setEnabled(false);
 		purgeChunks.setName("Suppress Redstone");
 		purgeChunks.setDescription("Reduces Redstone usage");
-
+		purgeChunks.setHealthRegen(1);
+		purgeChunks.setMaxHealth(400);
+		purgeChunks.setHealthDamage(70);
 		ConditionSet cs = new ConditionSet();
 		cs.getConditions().add(new Condition(SampledType.REDSTONE_TICK_USAGE, ConditionOp.GREATER, 0.33));
 		purgeChunks.setConditions(cs);
@@ -266,7 +276,9 @@ public class GoalManager
 		purgeChunks.setAuthor("React");
 		purgeChunks.setName("Purge Chunks");
 		purgeChunks.setDescription("Purges excess chunks every minute.");
-
+		purgeChunks.setHealthRegen(3);
+		purgeChunks.setMaxHealth(6700);
+		purgeChunks.setHealthDamage(5250);
 		ConditionSet cs = new ConditionSet();
 		cs.getConditions().add(new Condition(SampledType.CHK, ConditionOp.GREATER, 1000));
 		purgeChunks.setConditions(cs);
@@ -298,6 +310,7 @@ public class GoalManager
 					JSONObject j = new JSONObject(l);
 					RAIGoal g = new RAIGoal(j);
 					goals.add(g);
+					writeGoal(g, i);
 					System.out.println("Loaded Goal: " + i.getName() + " (" + g.getName() + " - " + g.getDescription() + " by " + g.getAuthor() + ")");
 				}
 
@@ -393,7 +406,7 @@ public class GoalManager
 		try
 		{
 			String url = Paste.paste(ja.toString(4));
-			return Paste.lastKey + " " + url + "";
+			return Paste.lastKey + " " + url;
 		}
 
 		catch(JSONException | IOException | ParseException | org.json.simple.parser.ParseException e)

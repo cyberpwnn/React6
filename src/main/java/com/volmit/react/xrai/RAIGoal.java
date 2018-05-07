@@ -18,6 +18,10 @@ public class RAIGoal
 	private String author;
 	private boolean enabled;
 	private long last = M.ms();
+	private int hp;
+	private int chp;
+	private int hpt;
+	private int dmg;
 
 	public RAIGoal()
 	{
@@ -28,7 +32,63 @@ public class RAIGoal
 		description = "no description";
 		author = "React";
 		name = "goal";
+		hp = 600;
+		hpt = 1;
+		dmg = 100;
+		chp = 0;
 		enabled = true;
+	}
+
+	public void setMaxHealth(int hp)
+	{
+		this.hp = hp;
+	}
+
+	public void setHealthRegen(int hp)
+	{
+		this.hpt = hp;
+	}
+
+	public void setHealthDamage(int hp)
+	{
+		this.dmg = hp;
+	}
+
+	public int getHealth()
+	{
+		return chp;
+	}
+
+	public int getMaxHealth()
+	{
+		return hp;
+	}
+
+	public double getHealthPercent()
+	{
+		return (double) getHealth() / (double) getMaxHealth();
+	}
+
+	public double getHealthUtilization()
+	{
+		return 1.0 - getHealthPercent();
+	}
+
+	public void regenHealth()
+	{
+		chp += hpt;
+		chp = (int) M.clip(chp, 0, hp);
+	}
+
+	public boolean damageHealth()
+	{
+		if(chp - dmg >= 0)
+		{
+			chp -= dmg;
+			return true;
+		}
+
+		return false;
 	}
 
 	public long getLast()
@@ -47,6 +107,21 @@ public class RAIGoal
 
 		conditions = new ConditionSet(j.getJSONArray("conditions"));
 		action = new VirtualAction(j.getJSONObject("reaction"));
+
+		if(j.has("action-health-regen"))
+		{
+			hpt = j.getInt("action-health-regen");
+		}
+
+		if(j.has("action-health-max"))
+		{
+			hp = j.getInt("action-health-max");
+		}
+
+		if(j.has("action-health-damage"))
+		{
+			dmg = j.getInt("action-health-damage");
+		}
 
 		if(j.has("enabled"))
 		{
@@ -104,6 +179,9 @@ public class RAIGoal
 		j.put("author", author);
 		j.put("description", description);
 		j.put("enabled", enabled);
+		j.put("action-health-max", hp);
+		j.put("action-health-regen", hpt);
+		j.put("action-health-damage", dmg);
 
 		return j;
 	}
@@ -156,6 +234,11 @@ public class RAIGoal
 	public void setName(String name)
 	{
 		this.name = name;
+	}
+
+	public int getMaxUses()
+	{
+		return getHealth() / dmg;
 	}
 
 	public String getDescription()

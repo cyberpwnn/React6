@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.plugin.Plugin;
 
 import com.volmit.react.api.Clip;
@@ -45,6 +46,17 @@ public class Config
 	@Key("features.console.color")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean CONSOLE_COLOR = true;
+
+	@Comment("The time between an entity being marked for death and actually being killed.\nIn ticks. Setting this to 100 would mark an entity for death, then actually kill it 5 seconds later.")
+	@Key("features.culling.mark-for-death.death-time")
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 1, max = 600)
+	public static int ENTITY_MARK_TIME = 200;
+
+	@Comment("Use particles to indicate an entity has been marked for death, and when they are removed (village angry & explosion)")
+	@Key("features.culling.mark-for-death.particles")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean ENTITY_MARK_PARTICLES = true;
 
 	@Comment("Messaging channels to listen to and print to the console.")
 	@Key("features.console.listen-channels")
@@ -175,6 +187,21 @@ public class Config
 	@Key("features.entity-stacker.enabled")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean ENTITYSTACK_ENABLED = false;
+
+	@Comment("Try to stack entities around a newly spawned entity.")
+	@Key("features.entity-stacker.stack-on-spawn")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean ENTITYSTACK_ONSPAWN = true;
+
+	@Comment("Try to stack entities in different locations on an interval.")
+	@Key("features.entity-stacker.stack-on-interval")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean ENTITYSTACK_ONINTERVAL = true;
+
+	@Comment("Only attempt to stack entities that were spawned with the following reason.")
+	@Key("features.entity-stacker.stack-reasons")
+	@Injection(InjectionMethod.SWAP)
+	public static GList<String> ENTITYSTACK_REASONS = defaultSpawnReasons();
 
 	@Comment("The minimum number of entities required in a search radius to actually create a stack. Setting this lower will create frequent small-stacks, higher will make larger stacks less often.")
 	@Key("features.entity-stacker.minimum-group-size")
@@ -421,6 +448,18 @@ public class Config
 	{
 		defaultMain = defaultConfig(false);
 		defaultExp = defaultConfig(true);
+	}
+
+	private static GList<String> defaultSpawnReasons()
+	{
+		GList<String> s = new GList<String>();
+
+		for(SpawnReason i : SpawnReason.values())
+		{
+			s.add(i.name().toLowerCase());
+		}
+
+		return s;
 	}
 
 	public static void resetConfigs() throws IllegalArgumentException, IllegalAccessException

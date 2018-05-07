@@ -19,7 +19,6 @@ import com.volmit.react.util.AccessCallback;
 import com.volmit.react.util.F;
 import com.volmit.react.util.FinalInteger;
 import com.volmit.react.util.M;
-import com.volmit.react.util.S;
 import com.volmit.react.util.Task;
 
 public class ActionPurgeEntities extends Action
@@ -171,21 +170,14 @@ public class ActionPurgeEntities extends Action
 
 			nc = true;
 
-			new S("action.purge-entity")
-			{
-				@Override
-				public void run()
-				{
-					Gate.purgeEntity(i, force);
-					cu.add(1);
+			Gate.purgeEntity(i, force);
+			cu.add(1);
 
-					if(k == chunk.getEntities().length - 1)
-					{
-						lcd = cu.get();
-						cb.run();
-					}
-				}
-			};
+			if(k == chunk.getEntities().length - 1)
+			{
+				lcd = cu.get();
+				cb.run();
+			}
 		}
 
 		if(!nc)

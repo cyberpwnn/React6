@@ -4,6 +4,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
@@ -26,12 +28,17 @@ import com.volmit.react.controller.EventController;
 import com.volmit.react.util.A;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Callback;
+import com.volmit.react.util.Control;
 import com.volmit.react.util.DataCluster;
 import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.GSet;
+import com.volmit.react.util.I;
+import com.volmit.react.util.IController;
+import com.volmit.react.util.JSONArray;
+import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.M;
 import com.volmit.react.util.MSound;
 import com.volmit.react.util.NMSX;
@@ -46,6 +53,7 @@ import com.volmit.react.util.W;
 
 public class Gate
 {
+	public static GMap<Integer, DeadEntity> markedForDeath = new GMap<Integer, DeadEntity>();
 	public static int snd = 3;
 	private static GMap<String, Integer> defaultSettings = new GMap<String, Integer>();
 	private static GSet<Chunk> refresh = new GSet<Chunk>();
@@ -150,6 +158,25 @@ public class Gate
 				}
 			}
 		};
+	}
+
+	public static void markForDeath(Entity e, int ticks)
+	{
+		if(!markedForDeath.containsKey(e.getEntityId()))
+		{
+			markedForDeath.put(e.getEntityId(), new DeadEntity(e, (int) (ticks + (Math.random() * (ticks / 4)))));
+		}
+	}
+
+	public static void tickDeath()
+	{
+		for(Integer i : markedForDeath.k())
+		{
+			if(markedForDeath.get(i).c())
+			{
+				markedForDeath.remove(i);
+			}
+		}
 	}
 
 	public static Player whoLoaded(Chunk c)
@@ -552,6 +579,26 @@ public class Gate
 		w.unloadChunk(x, z);
 	}
 
+	private static void removeEntityQuickly(Entity e)
+	{
+		if(e.getType().equals(EntityType.ARMOR_STAND))
+		{
+			return;
+		}
+
+		if(e instanceof Player)
+		{
+			return;
+		}
+
+		if(Config.getWorldConfig(e.getWorld()).assumeNoSideEffectsEntities.contains(e.getType().toString()))
+		{
+			return;
+		}
+
+		markForDeath(e, 1);
+	}
+
 	private static void removeEntity(Entity e)
 	{
 		if(e.getType().equals(EntityType.ARMOR_STAND))
@@ -569,7 +616,7 @@ public class Gate
 			return;
 		}
 
-		e.remove();
+		markForDeath(e, Config.ENTITY_MARK_TIME);
 	}
 
 	public static void purgeEntity(Entity e)
@@ -611,7 +658,7 @@ public class Gate
 
 		else
 		{
-			removeEntity(e);
+			removeEntityQuickly(e);
 		}
 	}
 
@@ -755,6 +802,54 @@ public class Gate
 		};
 	}
 
+	public static void pullTimingsReport(long time, Callback<String> url)
+	{
+		NobodySender s = new NobodySender();
+		Bukkit.dispatchCommand(s, "timings on");
+		s.dump();
+
+		new TaskLater("timings-waiter", (int) (time / 50))
+		{
+			@Override
+			public void run()
+			{
+				Bukkit.dispatchCommand(s, "timings paste");
+
+				new TaskLater("timings-waitress", 20)
+				{
+					@Override
+					public void run()
+					{
+						String v = s.pump();
+						Bukkit.dispatchCommand(s, "timings off");
+						s.dump();
+						String m = "";
+
+						for(int i = 0; i < v.length(); i++)
+						{
+							if(v.substring(i).startsWith("http://") || v.substring(i).startsWith("https://"))
+							{
+								try
+								{
+									new URL(v.substring(i));
+									m = v.substring(i);
+								}
+
+								catch(MalformedURLException e)
+								{
+									System.out.println("ERROR: " + v.substring(i) + " is not url?");
+									return;
+								}
+							}
+						}
+
+						url.run(m);
+					}
+				};
+			}
+		};
+	}
+
 	public static void log(DataCluster cc, String k, double v)
 	{
 		if(!cc.contains(k))
@@ -766,5 +861,101 @@ public class Gate
 		{
 			cc.set(k, ((cc.getDouble(k) * 19.0) + v) / 20.0);
 		}
+	}
+
+	public static boolean isBasicallyDead(Entity i)
+	{
+		return markedForDeath.containsKey(i.getEntityId());
+	}
+
+	public static JSONObject dump()
+	{
+		JSONObject js = new JSONObject();
+		JSONObject react = new JSONObject();
+		JSONObject rplugin = new JSONObject();
+		rplugin.put("react-version", Bukkit.getPluginManager().getPlugin("React").getDescription().getVersion());
+		JSONObject capabilities = new JSONObject();
+		JSONArray capable = new JSONArray();
+		JSONArray notcapable = new JSONArray();
+		JSONObject controllers = new JSONObject();
+		GList<IController> con = new GList<IController>();
+		for(Field j : React.class.getFields())
+		{
+			if(j.isAnnotationPresent(Control.class))
+			{
+				try
+				{
+					con.add((IController) j.get(React.instance));
+				}
+
+				catch(Throwable e)
+				{
+					Ex.t(e);
+				}
+			}
+		}
+
+		controllers.put("active", con.size());
+		JSONArray activeCon = new JSONArray();
+
+		for(IController i : con)
+		{
+			JSONObject jcon = new JSONObject();
+			jcon.put("name", i.getClass().getSimpleName());
+			jcon.put("tick", F.time(i.getTime(), 5));
+			JSONObject prop = new JSONObject();
+			i.dump(prop);
+			jcon.put("properties", prop);
+			activeCon.put(jcon);
+		}
+
+		for(Capability i : Capability.capabilities)
+		{
+			if(i.isCapable())
+			{
+				capable.put(i.getName());
+			}
+
+			else
+			{
+				notcapable.put(i.getName());
+			}
+		}
+
+		capabilities.put("capable", capable);
+		capabilities.put("not-capable", notcapable);
+		react.put("plugin", rplugin);
+		react.put("controllers", activeCon);
+		react.put("capabilities", capabilities);
+		JSONObject timings = new JSONObject();
+
+		for(String i : I.m.k().sortCopy())
+		{
+			JSONObject tx = new JSONObject();
+
+			double perTick = (double) I.h.get(i) / (double) I.hit;
+			String w = "";
+
+			if(perTick > 0.3 && I.m.get(i).getAverage() > 4)
+			{
+				w = " WARNING";
+			}
+
+			tx.put("Average", F.f(I.m.get(i).getAverage(), 5) + " (over " + I.m.get(i).size() + " ticks)");
+			tx.put("Hits", F.f(I.h.get(i)) + " hits across " + F.f(I.hit) + " total ticks (about " + F.f(perTick, 2) + " per tick)");
+			tx.put("Time", F.f(I.y.get(i), 6) + " Total execution time");
+
+			if(w.length() > 0)
+			{
+				tx.put("WARNING", "Tick time and hits per tick for " + i + " is high");
+			}
+
+			timings.put(i, tx);
+		}
+
+		react.put("timings", timings);
+		js.put("react", react);
+
+		return js;
 	}
 }

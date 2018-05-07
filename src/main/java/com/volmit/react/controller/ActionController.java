@@ -1,6 +1,7 @@
 package com.volmit.react.controller;
 
 import org.bukkit.Chunk;
+import org.bukkit.command.CommandSender;
 
 import com.volmit.react.Config;
 import com.volmit.react.action.ActionCPUScore;
@@ -13,6 +14,7 @@ import com.volmit.react.action.ActionFixLighting;
 import com.volmit.react.action.ActionLockFluid;
 import com.volmit.react.action.ActionLockHopper;
 import com.volmit.react.action.ActionLockRedstone;
+import com.volmit.react.action.ActionPullTimings;
 import com.volmit.react.action.ActionPurgeChunks;
 import com.volmit.react.action.ActionPurgeEntities;
 import com.volmit.react.action.ActionUnlockFluid;
@@ -22,11 +24,13 @@ import com.volmit.react.api.ActionAlreadyRunningException;
 import com.volmit.react.api.ActionException;
 import com.volmit.react.api.ActionState;
 import com.volmit.react.api.ActionType;
+import com.volmit.react.api.ConsoleActionSource;
 import com.volmit.react.api.Gate;
 import com.volmit.react.api.IAction;
 import com.volmit.react.api.IActionSource;
 import com.volmit.react.api.ISelector;
 import com.volmit.react.api.Note;
+import com.volmit.react.api.PlayerActionSource;
 import com.volmit.react.api.SelectorPosition;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Controller;
@@ -100,6 +104,7 @@ public class ActionController extends Controller
 		rans = new GMap<String, GList<ActionType>>();
 
 		registerAction(new ActionCollectGarbage());
+		registerAction(new ActionPullTimings());
 		registerAction(new ActionCullEntities());
 		registerAction(new ActionFixLighting());
 		registerAction(new ActionLockFluid());
@@ -198,6 +203,16 @@ public class ActionController extends Controller
 	@Override
 	public void tick()
 	{
+		try
+		{
+			Gate.tickDeath();
+		}
+
+		catch(Throwable e)
+		{
+
+		}
+
 		if(TICK.tick % 100 == 0)
 		{
 			for(String i : rans.k())
@@ -333,5 +348,39 @@ public class ActionController extends Controller
 		}
 
 		return acts;
+	}
+
+	public void displayQueue(CommandSender sender)
+	{
+		int m = pending.size();
+		GMap<String, Integer> p = new GMap<String, Integer>();
+
+		for(Integer i : pending.k())
+		{
+			GTriset<ActionType, IActionSource, GList<ISelector>> v = pending.get(i);
+			ActionType t = v.getA();
+			IActionSource s = v.getB();
+			String b = s instanceof PlayerActionSource ? ((PlayerActionSource) s).getPlayer().getName() : s instanceof ConsoleActionSource ? "Console" : "React";
+			String l = t.getName() + " by " + b;
+
+			if(!p.containsKey(l))
+			{
+				p.put(l, 0);
+			}
+
+			p.put(l, p.get(l) + 1);
+		}
+
+		for(String i : p.k())
+		{
+			Gate.msgActing(sender, i + (p.get(i) > 1 ? "x" + p.get(i) : ""));
+		}
+
+		Gate.msg(sender, m + " actions are queued to run.");
+	}
+
+	public void clearQueue(CommandSender sender)
+	{
+		pending.clear();
 	}
 }

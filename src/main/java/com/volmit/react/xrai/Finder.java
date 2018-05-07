@@ -46,15 +46,23 @@ public class Finder
 
 		if(ci.equals(ChunkIssue.ENTITY))
 		{
-			for(Chunk i : Chunks.getLoadedChunks())
+			try
 			{
-				int c = i.getEntities().length;
-
-				if(c > max)
+				for(Chunk i : Chunks.getLoadedChunks())
 				{
-					max = c;
-					cx = i;
+					int c = i.getEntities().length;
+
+					if(c > max)
+					{
+						max = c;
+						cx = i;
+					}
 				}
+			}
+
+			catch(Throwable e)
+			{
+
 			}
 
 			return cx;

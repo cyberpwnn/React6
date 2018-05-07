@@ -21,6 +21,9 @@ public class WorldConfig implements IConfigurable
 	@Key("allow.rai")
 	public boolean allowRai = true;
 
+	@Key("allow.stacking")
+	public boolean allowStacking = true;
+
 	@Key("allow.actions")
 	public boolean allowActions = true;
 
