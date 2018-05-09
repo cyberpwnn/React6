@@ -152,6 +152,11 @@ public class Config
 	@Clip(min = 2, max = 256)
 	public static int ENTITY_STACK_MAX_COUNT = 16;
 
+	@Comment("Scale all damage causes except for player x entity damage with the stack size. This means a stacked pig would have the same effective health by scaling damage to that pig. Excludes player damage.")
+	@Key("features.entity-stacker.non-player-damage-normalization")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean ENTITY_STACK_NP_DAMAGE_NORMALIZATION = true;
+
 	@Comment("Should react cull entities (reduces entity counts but doesnt kill everything) based on culling rules below.")
 	@Key("features.entity-culler.enabled")
 	@Injection(InjectionMethod.SWAP)

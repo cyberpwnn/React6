@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Ageable;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.material.Colorable;
 import org.bukkit.util.Vector;
@@ -23,7 +24,7 @@ public class StackedEntity
 
 	public StackedEntity(LivingEntity entity, int count)
 	{
-		this.rmx = getMaxHealth(entity);
+		this.rmx = getMaxHealthFor(entity.getType());
 		damager = null;
 
 		if(count > getAbsoluteMaxCount())
@@ -33,6 +34,115 @@ public class StackedEntity
 
 		this.entity = entity;
 		this.count = count;
+	}
+
+	private double getMaxHealthFor(EntityType type)
+	{
+		switch(type)
+		{
+			case BAT:
+				return 6;
+			case BLAZE:
+				return 20;
+			case CAVE_SPIDER:
+				return 12;
+			case CHICKEN:
+				return 4;
+			case COW:
+				return 10;
+			case CREEPER:
+				return 20;
+			case DONKEY:
+				return 30;
+			case ELDER_GUARDIAN:
+				return 80;
+			case ENDERMAN:
+				return 40;
+			case ENDERMITE:
+				return 8;
+			case ENDER_DRAGON:
+				return 200;
+			case EVOKER:
+				return 24;
+			case GHAST:
+				return 10;
+			case GIANT:
+				return 100;
+			case GUARDIAN:
+				return 30;
+			case HORSE:
+				return 30;
+			case HUSK:
+				return 20;
+			case ILLUSIONER:
+				return 32;
+			case IRON_GOLEM:
+				return 100;
+			case LLAMA:
+				return 30;
+			case MAGMA_CUBE:
+				return 16;
+			case MULE:
+				return 30;
+			case MUSHROOM_COW:
+				return 10;
+			case OCELOT:
+				return 10;
+			case PARROT:
+				return 6;
+			case PIG:
+				return 10;
+			case PIG_ZOMBIE:
+				return 20;
+			case POLAR_BEAR:
+				return 30;
+			case RABBIT:
+				return 3;
+			case SHEEP:
+				return 8;
+			case SHULKER:
+				return 30;
+			case SILVERFISH:
+				return 8;
+			case SKELETON:
+				return 20;
+			case SKELETON_HORSE:
+				return 30;
+			case SLIME:
+				return 16;
+			case SNOWMAN:
+				return 4;
+			case SPIDER:
+				return 16;
+			case SQUID:
+				return 10;
+			case STRAY:
+				return 20;
+			case VEX:
+				return 14;
+			case VILLAGER:
+				return 20;
+			case VINDICATOR:
+				return 24;
+			case WITCH:
+				return 26;
+			case WITHER:
+				return 300;
+			case WITHER_SKELETON:
+				return 20;
+			case WOLF:
+				return 8;
+			case ZOMBIE:
+				return 20;
+			case ZOMBIE_HORSE:
+				return 15;
+			case ZOMBIE_VILLAGER:
+				return 20;
+			default:
+				break;
+		}
+
+		return 10;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -62,12 +172,14 @@ public class StackedEntity
 		signalSize();
 	}
 
+	@SuppressWarnings("deprecation")
 	public void destroy()
 	{
 		if(Config.ENTITY_STACKER_SHOW_NAME_TAG && Capability.ENTITY_NAMES.isCapable())
 		{
 			entity.setCustomNameVisible(false);
 			entity.setCustomName("");
+			entity.resetMaxHealth();
 		}
 	}
 
@@ -174,6 +286,12 @@ public class StackedEntity
 
 			setMaxHealth(getEffectiveMaxHealth(count));
 		}
+
+		if(getMaxHealth() > getEffectiveMaxHealth(getCount()))
+		{
+			setHealth(getEffectiveMaxHealth(getCount()));
+			setMaxHealth(getEffectiveMaxHealth(getCount()));
+		}
 	}
 
 	public void heal(double amt)
@@ -183,6 +301,7 @@ public class StackedEntity
 
 	public void setHealth(double hp)
 	{
+		hp = M.clip(hp, 1, 2000);
 		entity.setHealth(getMaxHealth() < hp ? getMaxHealth() : hp);
 	}
 

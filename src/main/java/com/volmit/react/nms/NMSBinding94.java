@@ -3,12 +3,17 @@ package com.volmit.react.nms;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_9_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_9_R2.entity.CraftPlayer;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 
 import com.volmit.react.Config;
 import com.volmit.react.util.MaterialBlock;
+import com.volmit.react.util.P;
 
 import net.minecraft.server.v1_9_R2.BlockPosition;
 import net.minecraft.server.v1_9_R2.IBlockData;
+import net.minecraft.server.v1_9_R2.PacketPlayOutCollect;
 
 public class NMSBinding94 extends NMSBinding
 {
@@ -51,5 +56,17 @@ public class NMSBinding94 extends NMSBinding
 		org.bukkit.craftbukkit.v1_9_R2.CraftWorld w = (org.bukkit.craftbukkit.v1_9_R2.CraftWorld) bfg.getWorld();
 		net.minecraft.server.v1_9_R2.World v = (net.minecraft.server.v1_9_R2.World) w.getHandle();
 		v.applyPhysics(bp, b);
+	}
+
+	@Override
+	public void merge(Entity drop, Entity into)
+	{
+		for(Player i : drop.getWorld().getPlayers())
+		{
+			if(P.isWithinViewDistance(i, drop.getLocation().getChunk()))
+			{
+				((CraftPlayer) i).getHandle().playerConnection.sendPacket(new PacketPlayOutCollect(drop.getEntityId(), into.getEntityId()));
+			}
+		}
 	}
 }

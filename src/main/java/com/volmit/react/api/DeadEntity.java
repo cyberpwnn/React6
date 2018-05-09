@@ -1,11 +1,14 @@
 package com.volmit.react.api;
 
+import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.util.Vector;
 
 import com.volmit.react.Config;
+import com.volmit.react.util.GSound;
 import com.volmit.react.util.M;
 import com.volmit.react.util.ParticleEffect;
+import com.volmit.react.util.TaskLater;
 
 public class DeadEntity
 {
@@ -29,13 +32,27 @@ public class DeadEntity
 
 		if(ticks <= 0)
 		{
-			if(Config.ENTITY_MARK_PARTICLES)
-			{
-				ParticleEffect.EXPLOSION_LARGE.display(0.1f, 1, e.getLocation(), 32);
-			}
 
-			e.remove();
-			e = null;
+			new TaskLater("", (int) (Math.random() * 20))
+			{
+				@Override
+				public void run()
+				{
+					if(Config.ENTITY_MARK_PARTICLES)
+					{
+						ParticleEffect.EXPLOSION_LARGE.display(0.1f, 1, e.getLocation(), 32);
+
+						GSound g = new GSound(Sound.ENTITY_SHULKER_BULLET_HIT);
+						g.setVolume(0.5f);
+						g.setPitch((float) (0.75f + (Math.random() * 1f)));
+						g.play(e.getLocation());
+					}
+
+					e.remove();
+					e = null;
+				}
+			};
+
 			return true;
 		}
 

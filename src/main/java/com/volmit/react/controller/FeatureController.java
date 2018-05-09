@@ -3,6 +3,7 @@ package com.volmit.react.controller;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import com.volmit.react.Surge;
@@ -135,6 +136,15 @@ public class FeatureController extends Controller implements INMSBinding
 		if(hasBinding())
 		{
 			trueBinding.updateBlock(b);
+		}
+	}
+
+	@Override
+	public void merge(Entity drop, Entity into)
+	{
+		if(hasBinding())
+		{
+			trueBinding.merge(drop, into);
 		}
 	}
 }

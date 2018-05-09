@@ -13,6 +13,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 import com.volmit.react.Config;
+import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Capability;
 import com.volmit.react.api.StackedEntity;
@@ -140,6 +141,7 @@ public class EntityStackController extends Controller
 		{
 			if(!i.equals(le))
 			{
+				React.instance.featureController.merge(i, le);
 				i.remove();
 			}
 		}
@@ -184,6 +186,28 @@ public class EntityStackController extends Controller
 			return;
 		}
 
+		if(Config.ENTITY_STACK_NP_DAMAGE_NORMALIZATION && isStacked((LivingEntity) e.getEntity()))
+		{
+			switch(e.getCause())
+			{
+				case DRAGON_BREATH:
+				case ENTITY_ATTACK:
+				case ENTITY_EXPLOSION:
+				case ENTITY_SWEEP_ATTACK:
+				case MAGIC:
+				case MELTING:
+				case POISON:
+				case PROJECTILE:
+				case THORNS:
+				case WITHER:
+					return;
+				default:
+					break;
+			}
+
+			e.setDamage(e.getDamage() * getStack((LivingEntity) e.getEntity()).getCount());
+		}
+
 		if(e.getEntity() instanceof LivingEntity)
 		{
 			if(isStacked((LivingEntity) e.getEntity()))
@@ -225,19 +249,25 @@ public class EntityStackController extends Controller
 
 	public void merge(StackedEntity a, StackedEntity b)
 	{
-		double max = a.getRealMaxHealth();
-
-		if(max * (a.getCount() + b.getCount()) > Config.ENTITY_STACK_MAX_COUNT)
+		if(a.equals(b))
 		{
 			return;
 		}
 
+		if(a.getCount() + b.getCount() > Config.ENTITY_STACK_MAX_COUNT)
+		{
+			return;
+		}
+
+		StackedEntity se = new StackedEntity(a.getEntity(), a.getCount() + b.getCount());
+		se.setHealth(a.getEntity().getHealth() + b.getEntity().getHealth());
+		React.instance.featureController.merge(b.getEntity(), a.getEntity());
+		se.update();
+		b.getEntity().remove();
 		stacks.remove(a);
 		stacks.remove(b);
-		StackedEntity se = new StackedEntity(a.getEntity(), a.getCount() + b.getCount());
-		se.update();
-		se.setHealth(a.getEntity().getHealth() + b.getEntity().getHealth());
-		b.getEntity().remove();
+		a.destroy();
+		b.destroy();
 		se.update();
 		stacks.add(se);
 	}

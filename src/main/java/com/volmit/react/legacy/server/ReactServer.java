@@ -37,33 +37,56 @@ public class ReactServer extends Thread
 
 	public ReactServer(int port) throws IOException
 	{
-		size = 0;
-		perc = 0;
-		System.out.println("Starting React Server @port/" + port);
-		reactData = new ReactData();
-		runnables = new GList<ReactRunnable>();
-		serverSocket = new ServerSocket(port);
-		serverSocket.setSoTimeout(500);
-		actions = new GList<String>();
-		rc = new RemoteController();
-		setName("React Legacy Remote Server");
-
-		for(ActionType i : ActionType.values())
+		try
 		{
-			System.out.print(i.name());
+			size = 0;
+			perc = 0;
+			System.out.println("Starting React Server @port/" + port);
+			reactData = new ReactData();
+			runnables = new GList<ReactRunnable>();
+			serverSocket = new ServerSocket(port);
+			serverSocket.setSoTimeout(500);
+			actions = new GList<String>();
+			rc = new RemoteController();
+			setName("React Legacy Remote Server");
 
-			if(!React.instance.actionController.getAction(i).getHandleType().equals(ActionHandle.AUTOMATIC))
+			for(ActionType i : ActionType.values())
 			{
-				actions.add(i.getName());
+				System.out.print(i.name());
+
+				if(!React.instance.actionController.getAction(i).getHandleType().equals(ActionHandle.AUTOMATIC))
+				{
+					actions.add(i.getName());
+				}
 			}
+
+			running = true;
 		}
 
-		running = true;
+		catch(Exception e)
+		{
+
+		}
 	}
 
 	@Override
 	public void run()
 	{
+		if(!running)
+		{
+			return;
+		}
+
+		try
+		{
+			Thread.sleep(1000);
+		}
+
+		catch(InterruptedException e1)
+		{
+			return;
+		}
+
 		ms = M.ms();
 
 		while(running)
