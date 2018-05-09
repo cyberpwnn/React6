@@ -37,6 +37,22 @@ public class ActionDump extends Action
 	{
 		as.sendResponseActing("Collecting Information, Please Wait.");
 
+		if(isForceful())
+		{
+			try
+			{
+				String urlDump = Paste.paste(Gate.dump().toString(4)) + ".json";
+				as.sendResponseSuccess("Cha-Ching " + C.WHITE + urlDump);
+				completeAction();
+				return;
+			}
+
+			catch(JSONException | IOException | ParseException | org.json.simple.parser.ParseException e)
+			{
+				e.printStackTrace();
+			}
+		}
+
 		new A()
 		{
 			@Override

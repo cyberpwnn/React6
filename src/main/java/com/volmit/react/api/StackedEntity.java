@@ -209,7 +209,6 @@ public class StackedEntity
 			{
 				String tag = Config.ENTITY_STACKER_NAME_TAG_FORMAT.replace("%size%", getCount() + "").replace("%type%", F.capitalizeWords(entity.getType().toString().toLowerCase().replaceAll("_", " "))).replace("%hp%", F.f(entity.getHealth() / 2.0, 1) + " \u2665");
 				entity.setCustomName(color(tag));
-				entity.setCustomNameVisible(true);
 			}
 		}
 	}

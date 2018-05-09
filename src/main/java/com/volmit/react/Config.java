@@ -53,6 +53,16 @@ public class Config
 	@Clip(min = 1, max = 600)
 	public static int ENTITY_MARK_TIME = 200;
 
+	@Comment("Use nametags for a countdown")
+	@Key("features.culling.mark-for-death.name-tags.enabled")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean ENTITY_MARK_COUNTDOWN = false;
+
+	@Comment("Use nametags for a countdown")
+	@Key("features.culling.mark-for-death.name-tags.format")
+	@Injection(InjectionMethod.SWAP)
+	public static String ENTITY_MARK_COUNTDOWN_FORMAT = "&6⚠ &7%time%";
+
 	@Comment("Use particles to indicate an entity has been marked for death, and when they are removed (village angry & explosion)")
 	@Key("features.culling.mark-for-death.particles")
 	@Injection(InjectionMethod.SWAP)
@@ -196,7 +206,27 @@ public class Config
 	@Comment("Try to stack entities around a newly spawned entity.")
 	@Key("features.entity-stacker.stack-on-spawn")
 	@Injection(InjectionMethod.SWAP)
-	public static boolean ENTITYSTACK_ONSPAWN = true;
+	public static boolean ENTITYSTACK_ONSPAWN = false;
+
+	@Comment("Speed up interval stacking by queueing each entity to stack as often as possible in a 1 second time window.")
+	@Key("features.entity-stacker.fast-intervals")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean ENTITYSTACK_FAST_INTERVAL = false;
+
+	@Comment("Change the react theme color to something else, or set it to RGB...")
+	@Key("features.react.style.theme-color")
+	@Injection(InjectionMethod.SWAP)
+	public static String STYLE_THEME_COLOR = "AQUA";
+
+	@Comment("Change the react dark color to something else.")
+	@Key("features.react.style.dark-color")
+	@Injection(InjectionMethod.SWAP)
+	public static String STYLE_DARK_COLOR = "DARK_GRAY";
+
+	@Comment("Change the react text color to something else")
+	@Key("features.react.style.text-color")
+	@Injection(InjectionMethod.SWAP)
+	public static String STYLE_TEXT_COLOR = "GRAY";
 
 	@Comment("Try to stack entities in different locations on an interval.")
 	@Key("features.entity-stacker.stack-on-interval")

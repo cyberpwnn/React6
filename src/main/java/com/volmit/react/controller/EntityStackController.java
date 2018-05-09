@@ -1,6 +1,7 @@
 package com.volmit.react.controller;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
@@ -26,6 +27,7 @@ import com.volmit.react.util.S;
 public class EntityStackController extends Controller
 {
 	private GList<StackedEntity> stacks = new GList<StackedEntity>();
+	private GList<LivingEntity> check = new GList<LivingEntity>();
 
 	@Override
 	public void dump(JSONObject object)
@@ -71,16 +73,46 @@ public class EntityStackController extends Controller
 
 		if(Config.ENTITYSTACK_ONINTERVAL)
 		{
-			for(World i : Bukkit.getWorlds())
+			if(Config.ENTITYSTACK_FAST_INTERVAL && check.isEmpty())
 			{
-				new S("stack-interval")
+				for(World i : Bukkit.getWorlds())
 				{
-					@Override
-					public void run()
+					for(Chunk j : i.getLoadedChunks())
 					{
-						checkNear(i.getLivingEntities().get((int) (Math.random() * (i.getLivingEntities().size() - 1))));
+						for(Entity k : j.getEntities())
+						{
+							if(k instanceof LivingEntity)
+							{
+								check.add((LivingEntity) k);
+							}
+						}
 					}
-				};
+				}
+			}
+
+			else if(Config.ENTITYSTACK_FAST_INTERVAL)
+			{
+				for(LivingEntity i : check)
+				{
+					checkNear(i);
+				}
+
+				check.clear();
+			}
+
+			else
+			{
+				for(World i : Bukkit.getWorlds())
+				{
+					new S("stack-interval")
+					{
+						@Override
+						public void run()
+						{
+							checkNear(i.getLivingEntities().get((int) (Math.random() * (i.getLivingEntities().size() - 1))));
+						}
+					};
+				}
 			}
 		}
 	}
@@ -186,6 +218,11 @@ public class EntityStackController extends Controller
 			return;
 		}
 
+		if(!(e.getEntity() instanceof LivingEntity))
+		{
+			return;
+		}
+
 		if(Config.ENTITY_STACK_NP_DAMAGE_NORMALIZATION && isStacked((LivingEntity) e.getEntity()))
 		{
 			switch(e.getCause())
@@ -205,7 +242,7 @@ public class EntityStackController extends Controller
 					break;
 			}
 
-			e.setDamage(e.getDamage() * getStack((LivingEntity) e.getEntity()).getCount());
+			e.setDamage(e.getDamage() * (getStack((LivingEntity) e.getEntity()).getCount() + 2));
 		}
 
 		if(e.getEntity() instanceof LivingEntity)
@@ -372,34 +409,27 @@ public class EntityStackController extends Controller
 
 		if(e.getEntity() instanceof LivingEntity)
 		{
-			new S("entity-check")
+			if(e.getEntity().isDead())
 			{
-				@Override
-				public void run()
-				{
-					if(e.getEntity().isDead())
-					{
-						return;
-					}
+				return;
+			}
 
-					if(!Config.ALLOW_STACKING.contains(e.getEntity().getType().toString()))
-					{
-						return;
-					}
+			if(!Config.ALLOW_STACKING.contains(e.getEntity().getType().toString()))
+			{
+				return;
+			}
 
-					if(e.getEntity().getType().equals(EntityType.ARMOR_STAND))
-					{
-						return;
-					}
+			if(e.getEntity().getType().equals(EntityType.ARMOR_STAND))
+			{
+				return;
+			}
 
-					if(e.getEntity().getType().equals(EntityType.DROPPED_ITEM))
-					{
-						return;
-					}
+			if(e.getEntity().getType().equals(EntityType.DROPPED_ITEM))
+			{
+				return;
+			}
 
-					checkNear((LivingEntity) e.getEntity());
-				}
-			};
+			checkNear((LivingEntity) e.getEntity());
 		}
 	}
 }

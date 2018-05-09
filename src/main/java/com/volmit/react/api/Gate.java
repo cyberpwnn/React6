@@ -59,10 +59,72 @@ public class Gate
 	private static GSet<Chunk> refresh = new GSet<Chunk>();
 	private static GSet<Location> destroy = new GSet<Location>();
 	public static int cd = 0;
+	public static C themeColor = C.AQUA;
+	public static C darkColor = C.DARK_GRAY;
+	public static C textColor = C.GRAY;
+	private static GList<C> crgb = new GList<C>();
+
+	static
+	{
+		crgb.add(C.AQUA);
+		crgb.add(C.BLUE);
+		crgb.add(C.GOLD);
+		crgb.add(C.GREEN);
+		crgb.add(C.LIGHT_PURPLE);
+		crgb.add(C.RED);
+		crgb.add(C.YELLOW);
+		crgb.add(C.DARK_AQUA);
+		crgb.add(C.DARK_BLUE);
+		crgb.add(C.DARK_GREEN);
+		crgb.add(C.DARK_PURPLE);
+		crgb.add(C.DARK_RED);
+		crgb.add(C.WHITE);
+	}
 
 	public static boolean factions()
 	{
 		return Bukkit.getServer().getPluginManager().getPlugin("Factions") != null;
+	}
+
+	public static void syncColor()
+	{
+		if(Config.STYLE_THEME_COLOR.equalsIgnoreCase("RGB"))
+		{
+			themeColor = crgb.pickRandom();
+		}
+
+		else
+		{
+			try
+			{
+				themeColor = C.valueOf(Config.STYLE_THEME_COLOR.toUpperCase());
+			}
+
+			catch(Exception e)
+			{
+
+			}
+		}
+
+		try
+		{
+			darkColor = C.valueOf(Config.STYLE_DARK_COLOR.toUpperCase());
+		}
+
+		catch(Exception e)
+		{
+
+		}
+
+		try
+		{
+			textColor = C.valueOf(Config.STYLE_TEXT_COLOR.toUpperCase());
+		}
+
+		catch(Exception e)
+		{
+
+		}
 	}
 
 	public static void fixLighting(SelectorPosition sel, Callback<Integer> cb, Callback<Double> prog)
@@ -385,7 +447,8 @@ public class Gate
 
 	public static String msg(CommandSender p, String msg)
 	{
-		String s = TXT.makeTag(C.AQUA, C.DARK_GRAY, C.GRAY, Info.CORE_NAME) + msg;
+		syncColor();
+		String s = TXT.makeTag(themeColor, darkColor, textColor, Info.CORE_NAME) + msg;
 
 		if(p.equals(Bukkit.getConsoleSender()))
 		{
@@ -442,7 +505,8 @@ public class Gate
 
 	public static String msg(ReactPlayer p, Notification n)
 	{
-		String s = TXT.makeTag(C.AQUA, C.DARK_GRAY, C.GRAY, Info.CORE_NAME + " - " + C.WHITE + F.capitalizeWords(n.getType().toString().toLowerCase())) + n.getMessage();
+		syncColor();
+		String s = TXT.makeTag(themeColor, darkColor, textColor, Info.CORE_NAME + " - " + C.WHITE + F.capitalizeWords(n.getType().toString().toLowerCase())) + n.getMessage();
 		p.getP().sendMessage(s);
 
 		return s;
@@ -450,7 +514,8 @@ public class Gate
 
 	public static String msgRAI(CommandSender p, String msg)
 	{
-		String s = TXT.makeTag(C.AQUA, C.DARK_GRAY, C.GRAY, "RAI") + msg; //$NON-NLS-1$
+		syncColor();
+		String s = TXT.makeTag(themeColor, darkColor, textColor, "RAI") + msg; //$NON-NLS-1$
 
 		if(p.equals(Bukkit.getConsoleSender()))
 		{
