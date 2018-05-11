@@ -448,7 +448,13 @@ public class Gate
 	public static String msg(CommandSender p, String msg)
 	{
 		syncColor();
+
 		String s = TXT.makeTag(themeColor, darkColor, textColor, Info.CORE_NAME) + msg;
+
+		if(Config.STYLE_STRIP_COLOR)
+		{
+			s = C.stripColor(s);
+		}
 
 		if(p.equals(Bukkit.getConsoleSender()))
 		{
@@ -458,12 +464,13 @@ public class Gate
 
 		if(!Surge.isMainThread())
 		{
+			String ss = s;
 			new S("message")
 			{
 				@Override
 				public void run()
 				{
-					p.sendMessage(s);
+					p.sendMessage(ss);
 				}
 			};
 		}
@@ -507,6 +514,12 @@ public class Gate
 	{
 		syncColor();
 		String s = TXT.makeTag(themeColor, darkColor, textColor, Info.CORE_NAME + " - " + C.WHITE + F.capitalizeWords(n.getType().toString().toLowerCase())) + n.getMessage();
+
+		if(Config.STYLE_STRIP_COLOR)
+		{
+			s = C.stripColor(s);
+		}
+
 		p.getP().sendMessage(s);
 
 		return s;
@@ -516,6 +529,11 @@ public class Gate
 	{
 		syncColor();
 		String s = TXT.makeTag(themeColor, darkColor, textColor, "RAI") + msg; //$NON-NLS-1$
+
+		if(Config.STYLE_STRIP_COLOR)
+		{
+			s = C.stripColor(s);
+		}
 
 		if(p.equals(Bukkit.getConsoleSender()))
 		{

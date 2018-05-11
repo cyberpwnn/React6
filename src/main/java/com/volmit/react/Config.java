@@ -43,7 +43,7 @@ public class Config
 	public static boolean LEGACY_SERVER = false;
 
 	@Comment("Use console coloring and formatting")
-	@Key("features.console.color")
+	@Key("features.react.style.console-strip-color")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean CONSOLE_COLOR = true;
 
@@ -217,6 +217,11 @@ public class Config
 	@Key("features.react.style.theme-color")
 	@Injection(InjectionMethod.SWAP)
 	public static String STYLE_THEME_COLOR = "AQUA";
+
+	@Comment("Strip all color in chat from react\nNOTE: Some parts of react may not respond to this setting yet.")
+	@Key("features.react.style.strip-color")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean STYLE_STRIP_COLOR = false;
 
 	@Comment("Change the react dark color to something else.")
 	@Key("features.react.style.dark-color")

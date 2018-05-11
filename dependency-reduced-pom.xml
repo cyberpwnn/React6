@@ -4,7 +4,7 @@
   <groupId>com.volmit</groupId>
   <artifactId>React</artifactId>
   <name>React</name>
-  <version>6.5.3</version>
+  <version>6.5.4</version>
   <description>A performance plugin</description>
   <build>
     <resources>
@@ -93,7 +93,7 @@
                 <configuration>
                   <executable>C:\Users\cyberpwn\Documents\development\workspace\React6\scripts\development.bat</executable>
                   <arguments>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.5.3.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.5.4.jar</argument>
                     <argument>C:\Users\cyberpwn\Documents\development\servers\dynamic\plugins\React.jar</argument>
                   </arguments>
                 </configuration>
@@ -102,7 +102,7 @@
             <configuration>
               <executable>C:\Users\cyberpwn\Documents\development\workspace\React6\scripts\development.bat</executable>
               <arguments>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.5.3.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.5.4.jar</argument>
                 <argument>C:\Users\cyberpwn\Documents\development\servers\dynamic\plugins\React.jar</argument>
               </arguments>
             </configuration>

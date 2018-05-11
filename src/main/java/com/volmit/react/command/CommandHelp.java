@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.volmit.react.Config;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
@@ -76,44 +77,52 @@ public class CommandHelp extends ReactCommand
 
 	public RTX getBeginningRTX()
 	{
+		C aq = Config.STYLE_STRIP_COLOR ? C.WHITE : C.AQUA;
+		C gr = Config.STYLE_STRIP_COLOR ? C.WHITE : C.GRAY;
 		RTX rtx = new RTX();
 		RTEX rtex = new RTEX();
-		rtex.getExtras().add(new ColoredString(C.AQUA, Lang.getString("command.help.descriptor-react"))); //$NON-NLS-1$
-		rtex.getExtras().add(new ColoredString(C.GRAY, Lang.getString("command.help.or-re"))); //$NON-NLS-1$
-		rtx.addTextHover(Lang.getString("command.help.react-cmd"), rtex, C.AQUA); //$NON-NLS-1$
+		rtex.getExtras().add(new ColoredString(aq, Lang.getString("command.help.descriptor-react"))); //$NON-NLS-1$
+		rtex.getExtras().add(new ColoredString(gr, Lang.getString("command.help.or-re"))); //$NON-NLS-1$
+		rtx.addTextHover(Lang.getString("command.help.react-cmd"), rtex, aq); //$NON-NLS-1$
 
 		return rtx;
 	}
 
 	public void sendCommand(CommandSender sender, ICommand command)
 	{
+		C aq = Config.STYLE_STRIP_COLOR ? C.WHITE : C.AQUA;
+		C gr = Config.STYLE_STRIP_COLOR ? C.WHITE : C.GRAY;
+		C re = Config.STYLE_STRIP_COLOR ? C.WHITE : C.RED;
+		C go = Config.STYLE_STRIP_COLOR ? C.WHITE : C.GOLD;
+		C gre = Config.STYLE_STRIP_COLOR ? C.WHITE : C.GREEN;
+
 		if(sender instanceof Player)
 		{
 			RTX rtx = getBeginningRTX();
 			RTEX desc = new RTEX();
-			desc.getExtras().add(new ColoredString(C.AQUA, Lang.getString("command.help.aliases"))); //$NON-NLS-1$
+			desc.getExtras().add(new ColoredString(aq, Lang.getString("command.help.aliases"))); //$NON-NLS-1$
 
 			for(String i : command.getAliases())
 			{
-				desc.getExtras().add(new ColoredString(C.GRAY, Lang.getString("command.help.nreact") + i)); //$NON-NLS-1$
+				desc.getExtras().add(new ColoredString(gr, Lang.getString("command.help.nreact") + i)); //$NON-NLS-1$
 			}
 
-			desc.getExtras().add(new ColoredString(C.AQUA, Lang.getString("command.help.ndescription"))); //$NON-NLS-1$
+			desc.getExtras().add(new ColoredString(aq, Lang.getString("command.help.ndescription"))); //$NON-NLS-1$
 
 			for(String i : F.wrapWords("\"" + command.getDescription() + "\"", 28).split("\n")) //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			{
-				desc.getExtras().add(new ColoredString(C.GRAY, "\n" + i)); //$NON-NLS-1$
+				desc.getExtras().add(new ColoredString(gr, "\n" + i)); //$NON-NLS-1$
 			}
 
-			rtx.addTextHover(" " + command.getCommand(), desc, C.GRAY); //$NON-NLS-1$
+			rtx.addTextHover(" " + command.getCommand(), desc, gr); //$NON-NLS-1$
 
 			if(command.getUsage().trim().length() > 0)
 			{
 				for(String i : command.getUsage().trim().split(" ")) //$NON-NLS-1$
 				{
 					RTEX us = new RTEX();
-					C prefix = C.AQUA;
-					ColoredString descx = new ColoredString(C.AQUA, Lang.getString("command.help.basic-par")); //$NON-NLS-1$
+					C prefix = aq;
+					ColoredString descx = new ColoredString(aq, Lang.getString("command.help.basic-par")); //$NON-NLS-1$
 					String des = Lang.getString("command.help.nondescript"); //$NON-NLS-1$
 
 					if(command.getDescriptionForParameter(i.toLowerCase().trim()) != null)
@@ -123,24 +132,24 @@ public class CommandHelp extends ReactCommand
 
 					if(i.startsWith("<")) //$NON-NLS-1$
 					{
-						prefix = C.RED;
+						prefix = re;
 						descx = new ColoredString(prefix, Lang.getString("command.help.required-par")); //$NON-NLS-1$
 					}
 
 					if(i.startsWith("[")) //$NON-NLS-1$
 					{
-						prefix = C.GOLD;
+						prefix = go;
 						descx = new ColoredString(prefix, Lang.getString("command.help.optional-par")); //$NON-NLS-1$
 					}
 
 					if(i.startsWith("(")) //$NON-NLS-1$
 					{
-						prefix = C.GREEN;
+						prefix = gre;
 						descx = new ColoredString(prefix, Lang.getString("command.help.mode-par")); //$NON-NLS-1$
 					}
 
 					us.getExtras().add(descx);
-					us.getExtras().add(new ColoredString(C.GRAY, "\n" + F.wrapWords("\"" + des + "\"", 28))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					us.getExtras().add(new ColoredString(gr, "\n" + F.wrapWords("\"" + des + "\"", 28))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 					rtx.addTextHover(" " + i, us, prefix); //$NON-NLS-1$
 				}
 			}
@@ -150,7 +159,7 @@ public class CommandHelp extends ReactCommand
 
 		else
 		{
-			Bukkit.getConsoleSender().sendMessage(C.WHITE + "/react " + C.AQUA + command.getCommand() + " " + C.RESET + command.getUsage() + C.RESET + " - " + command.getDescription());
+			Bukkit.getConsoleSender().sendMessage(C.WHITE + "/react " + aq + command.getCommand() + " " + C.RESET + command.getUsage() + C.RESET + " - " + command.getDescription());
 		}
 	}
 
@@ -159,11 +168,12 @@ public class CommandHelp extends ReactCommand
 		if(sender instanceof Player)
 		{
 			RawText rtx = new RawText();
-
-			rtx.addText(F.repeat(C.GRAY + " ", 17), RawText.COLOR_DARK_GRAY, false, false, true, true, false); //$NON-NLS-1$
-			rtx.addText(" " + (page + 1) + Lang.getString("command.help.ofs") + (getPageSize(maxEntries)) + " ", RawText.COLOR_AQUA); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-			rtx.addText(F.repeat(C.GRAY + " ", 17), RawText.COLOR_DARK_GRAY, false, false, true, true, false); //$NON-NLS-1$
-
+			C gray = Config.STYLE_STRIP_COLOR ? C.WHITE : C.GRAY;
+			String dgray = Config.STYLE_STRIP_COLOR ? RawText.COLOR_WHITE : RawText.COLOR_DARK_GRAY;
+			String daq = Config.STYLE_STRIP_COLOR ? RawText.COLOR_WHITE : RawText.COLOR_AQUA;
+			rtx.addText(F.repeat(gray + " ", 17), dgray, false, false, true, true, false); //$NON-NLS-1$
+			rtx.addText(" " + (page + 1) + Lang.getString("command.help.ofs") + (getPageSize(maxEntries)) + " ", daq); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			rtx.addText(F.repeat(gray + " ", 17), dgray, false, false, true, true, false); //$NON-NLS-1$
 			rtx.tellRawTo(ReactPlugin.i, (Player) sender);
 		}
 	}
@@ -173,28 +183,31 @@ public class CommandHelp extends ReactCommand
 		if(sender instanceof Player)
 		{
 			RawText rtx = new RawText();
+			String dgray = Config.STYLE_STRIP_COLOR ? RawText.COLOR_WHITE : RawText.COLOR_DARK_GRAY;
+			String daq = Config.STYLE_STRIP_COLOR ? RawText.COLOR_WHITE : RawText.COLOR_AQUA;
+			String dred = Config.STYLE_STRIP_COLOR ? RawText.COLOR_WHITE : RawText.COLOR_RED;
 
 			if(page > 0)
 			{
-				rtx.addTextWithHoverCommand(Lang.getString("command.help.symbol-prev"), RawText.COLOR_AQUA, Lang.getString("command.help.rehelpjumper") + (page), Lang.getString("command.help.previous-page"), RawText.COLOR_AQUA, false, false, false, false, false); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				rtx.addTextWithHoverCommand(Lang.getString("command.help.symbol-prev"), daq, Lang.getString("command.help.rehelpjumper") + (page), Lang.getString("command.help.previous-page"), daq, false, false, false, false, false); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 
 			else
 			{
-				rtx.addTextWithHover(Lang.getString("command.help.symbol-pipe"), RawText.COLOR_DARK_GRAY, Lang.getString("command.help.previous-page"), RawText.COLOR_RED, false, false, false, false, false); //$NON-NLS-1$ //$NON-NLS-2$
+				rtx.addTextWithHover(Lang.getString("command.help.symbol-pipe"), dgray, Lang.getString("command.help.previous-page"), dred, false, false, false, false, false); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
-			rtx.addText(F.repeat(C.GRAY + " ", 17), RawText.COLOR_DARK_GRAY, false, false, true, true, false); //$NON-NLS-1$
-			rtx.addText(F.repeat(C.GRAY + " ", 17), RawText.COLOR_DARK_GRAY, false, false, true, true, false); //$NON-NLS-1$
+			rtx.addText(F.repeat(C.GRAY + " ", 17), dgray, false, false, true, true, false); //$NON-NLS-1$
+			rtx.addText(F.repeat(C.GRAY + " ", 17), dgray, false, false, true, true, false); //$NON-NLS-1$
 
 			if(page < getPageSize(maxEntries) - 1)
 			{
-				rtx.addTextWithHoverCommand(Lang.getString("command.help.symbol-next"), RawText.COLOR_AQUA, Lang.getString("command.help.rehelpjumper") + (page + 2), Lang.getString("command.help.next-page"), RawText.COLOR_AQUA, false, false, false, false, false); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				rtx.addTextWithHoverCommand(Lang.getString("command.help.symbol-next"), daq, Lang.getString("command.help.rehelpjumper") + (page + 2), Lang.getString("command.help.next-page"), daq, false, false, false, false, false); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 
 			else
 			{
-				rtx.addTextWithHover(Lang.getString("command.help.symbol-pipe"), RawText.COLOR_DARK_GRAY, Lang.getString("command.help.next-page"), RawText.COLOR_RED, false, false, false, false, false); //$NON-NLS-1$ //$NON-NLS-2$
+				rtx.addTextWithHover(Lang.getString("command.help.symbol-pipe"), dgray, Lang.getString("command.help.next-page"), dred, false, false, false, false, false); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
 			rtx.tellRawTo(ReactPlugin.i, (Player) sender);
