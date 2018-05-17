@@ -1,35 +1,18 @@
 package com.volmit.react;
 
-import java.io.File;
-import java.lang.reflect.Field;
-import java.util.List;
+import java.io.*;
+import java.lang.reflect.*;
+import java.util.*;
 
-import org.bukkit.World;
-import org.bukkit.entity.EntityType;
-import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+import org.bukkit.*;
+import org.bukkit.entity.*;
+import org.bukkit.event.entity.CreatureSpawnEvent.*;
 import org.bukkit.plugin.Plugin;
 
-import com.volmit.react.api.Clip;
-import com.volmit.react.api.Comment;
-import com.volmit.react.api.Experimental;
-import com.volmit.react.api.Injection;
-import com.volmit.react.api.InjectionMethod;
+import com.volmit.react.api.*;
 import com.volmit.react.api.Key;
 import com.volmit.react.api.Note;
-import com.volmit.react.api.WorldConfig;
-import com.volmit.react.util.D;
-import com.volmit.react.util.DataCluster;
-import com.volmit.react.util.DynamicConfiguration;
-import com.volmit.react.util.Ex;
-import com.volmit.react.util.F;
-import com.volmit.react.util.GList;
-import com.volmit.react.util.GMap;
-import com.volmit.react.util.M;
-import com.volmit.react.util.PoolDescriber;
-import com.volmit.react.util.RawEvent;
-import com.volmit.react.util.TaskLater;
-import com.volmit.react.util.YamlDataInput;
-import com.volmit.react.util.YamlDataOutput;
+import com.volmit.react.util.*;
 
 @PoolDescriber
 @DynamicConfiguration
@@ -161,6 +144,11 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 2, max = 256)
 	public static int ENTITY_STACK_MAX_COUNT = 16;
+
+	@Comment("Cache stack data through reboots, unloads and reloads.")
+	@Key("features.entity-stacker.persist-stacks")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean ENTITY_STACK_CACHE = true;
 
 	@Comment("Scale all damage causes except for player x entity damage with the stack size. This means a stacked pig would have the same effective health by scaling damage to that pig. Excludes player damage.")
 	@Key("features.entity-stacker.non-player-damage-normalization")

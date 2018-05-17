@@ -143,27 +143,43 @@ public class ActionPurgeChunks extends Action
 
 	public void purge(Chunk chunk, Runnable cb, IActionSource source, ISelector... selectors)
 	{
-		new S("action.purgechunk")
+		try
 		{
-			@Override
-			public void run()
+			fail = true;
+
+			if(Gate.unloadChunk(chunk))
 			{
-				fail = true;
-
-				if(Gate.unloadChunk(chunk))
-				{
-					fail = false;
-				}
-
-				ms = M.ms();
-				cb.run();
+				fail = false;
 			}
-		};
+
+			ms = M.ms();
+			cb.run();
+		}
+
+		catch(Throwable e)
+		{
+			new S("action.purgechunk")
+			{
+				@Override
+				public void run()
+				{
+					fail = true;
+
+					if(Gate.unloadChunk(chunk))
+					{
+						fail = false;
+					}
+
+					ms = M.ms();
+					cb.run();
+				}
+			};
+		}
 	}
 
 	@Override
 	public String getNode()
 	{
-		return "react.act.purge-chunks";
+		return "purge-chunks";
 	}
 }

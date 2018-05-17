@@ -77,6 +77,6 @@ public class ActionCPUScore extends Action
 	@Override
 	public String getNode()
 	{
-		return "chunk-test";
+		return "cpu-score";
 	}
 }

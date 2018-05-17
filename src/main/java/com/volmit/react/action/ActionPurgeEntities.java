@@ -190,6 +190,6 @@ public class ActionPurgeEntities extends Action
 	@Override
 	public String getNode()
 	{
-		return "react.act.purge-entities";
+		return "purge-entities";
 	}
 }

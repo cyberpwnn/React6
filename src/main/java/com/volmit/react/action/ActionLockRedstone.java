@@ -102,6 +102,6 @@ public class ActionLockRedstone extends Action
 	@Override
 	public String getNode()
 	{
-		return "react.act.lock-redstone";
+		return "lock-redstone";
 	}
 }

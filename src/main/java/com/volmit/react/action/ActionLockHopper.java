@@ -103,6 +103,6 @@ public class ActionLockHopper extends Action
 	@Override
 	public String getNode()
 	{
-		return "react.act.lock-hopper";
+		return "lock-hopper";
 	}
 }

@@ -137,6 +137,6 @@ public class ActionFileSize extends Action
 	@Override
 	public String getNode()
 	{
-		return "chunk-test";
+		return "file-size";
 	}
 }

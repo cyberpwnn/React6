@@ -48,6 +48,11 @@ permissions:
     default: op
     children:
       react.act.gc: true
+      react.act.chunk-test: true
+      react.act.timings-report: true
+      react.act.file-size: true
+      react.act.dump: true
+      react.act.cpu-score: true
       react.act.cull-entities: true
       react.act.fix-lighting: true
       react.act.lock-fluid: true

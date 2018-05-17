@@ -103,6 +103,6 @@ public class ActionLockFluid extends Action
 	@Override
 	public String getNode()
 	{
-		return "react.act.lock-fluid";
+		return "lock-fluid";
 	}
 }

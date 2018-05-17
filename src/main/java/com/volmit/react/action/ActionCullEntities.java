@@ -156,6 +156,6 @@ public class ActionCullEntities extends Action
 	@Override
 	public String getNode()
 	{
-		return "react.act.cull-entities";
+		return "cull-entities";
 	}
 }

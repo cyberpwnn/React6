@@ -216,6 +216,9 @@ public class FastDecayController extends Controller
 			b.getWorld().playEffect(b.getLocation().clone().add(0.5, 0.5, 0.5).clone().add(Vector.getRandom().subtract(Vector.getRandom())), Effect.TILE_BREAK, b.getTypeId(), b.getData());
 		}
 
+		LeavesDecayEvent de = new LeavesDecayEvent(b);
+		Bukkit.getPluginManager().callEvent(de);
+
 		if(React.instance.featureController.hasBinding() && Config.FAST_LEAF_NMS)
 		{
 			Location c = b.getLocation().clone().add(0.5, 0.5, 0.5);
@@ -237,9 +240,6 @@ public class FastDecayController extends Controller
 
 			React.instance.featureController.setBlock(b.getLocation(), new MaterialBlock());
 
-			LeavesDecayEvent de = new LeavesDecayEvent(b);
-			Bukkit.getPluginManager().callEvent(de);
-
 			if(b.getRelative(BlockFace.UP).getType().equals(Material.SNOW))
 			{
 				if(b.getRelative(BlockFace.UP).getData() < 15)
@@ -260,16 +260,6 @@ public class FastDecayController extends Controller
 		else
 		{
 			b.breakNaturally();
-
-			new S("ct")
-			{
-				@Override
-				public void run()
-				{
-					LeavesDecayEvent de = new LeavesDecayEvent(b);
-					Bukkit.getPluginManager().callEvent(de);
-				}
-			};
 		}
 	}
 

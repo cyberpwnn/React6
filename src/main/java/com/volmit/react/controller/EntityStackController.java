@@ -1,31 +1,22 @@
 package com.volmit.react.controller;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.World;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
+import java.io.*;
+import java.util.*;
 
-import com.volmit.react.Config;
-import com.volmit.react.React;
-import com.volmit.react.Surge;
-import com.volmit.react.api.Capability;
-import com.volmit.react.api.StackedEntity;
-import com.volmit.react.util.Area;
-import com.volmit.react.util.Controller;
-import com.volmit.react.util.GList;
-import com.volmit.react.util.JSONObject;
-import com.volmit.react.util.S;
+import org.bukkit.*;
+import org.bukkit.attribute.*;
+import org.bukkit.entity.*;
+import org.bukkit.event.*;
+import org.bukkit.event.entity.*;
+import org.bukkit.event.entity.CreatureSpawnEvent.*;
+
+import com.volmit.react.*;
+import com.volmit.react.api.*;
+import com.volmit.react.util.*;
 
 public class EntityStackController extends Controller
 {
+	private StackData sd;
 	private GList<StackedEntity> stacks = new GList<StackedEntity>();
 	private GList<LivingEntity> check = new GList<LivingEntity>();
 
@@ -38,7 +29,96 @@ public class EntityStackController extends Controller
 	@Override
 	public void start()
 	{
+		sd = new StackData();
+
+		if(Config.ENTITY_STACK_CACHE && Config.ENTITYSTACK_ENABLED)
+		{
+			File ff = new File(new File(ReactPlugin.getI().getDataFolder(), "cache"), "stack-cache.ulf");
+
+			if(ff.exists())
+			{
+				new A()
+				{
+					@Override
+					public void run()
+					{
+						Profiler p = new Profiler();
+						p.begin();
+						D.v("Loading Entity Stacks from Cache...");
+
+						try
+						{
+							sd.load(ff);
+							p.end();
+							D.v("Loaded " + F.f(sd.getEmap().size()) + " existing stacks in " + F.time(p.getMilliseconds(), 2));
+						}
+
+						catch(IOException e)
+						{
+							e.printStackTrace();
+						}
+					}
+				};
+			}
+		}
+
 		Surge.register(this);
+	}
+
+	public void saveCache()
+	{
+		File ff = new File(new File(ReactPlugin.getI().getDataFolder(), "cache"), "stack-cache.ulf");
+
+		if(ff.exists())
+		{
+			new A()
+			{
+				@Override
+				public void run()
+				{
+					Profiler p = new Profiler();
+					p.begin();
+					D.v("Saving Entity Stacks to Cache...");
+
+					try
+					{
+						sd.save(ff);
+						p.end();
+						D.v("Saved " + F.f(sd.getEmap().size()) + " existing stacks in " + F.time(p.getMilliseconds(), 2));
+					}
+
+					catch(IOException e)
+					{
+						e.printStackTrace();
+					}
+				}
+			};
+		}
+	}
+
+	public void saveCacheFinal()
+	{
+		File ff = new File(new File(ReactPlugin.getI().getDataFolder(), "cache"), "stack-cache.ulf");
+		Profiler p = new Profiler();
+		p.begin();
+		D.v("Saving Entity Stacks to Cache...");
+
+		try
+		{
+			int from = sd.getEmap().size();
+			sd.clear();
+			int to = sd.getEmap().size();
+			D.v("Defragmented Stack Cache: " + F.f(from) + " -> " + F.f(to) + " (" + F.pc((double) to / (double) from, 0) + " effective.");
+
+			sd.save(ff);
+			p.end();
+			D.v("Saved " + F.f(sd.getEmap().size()) + " existing stacks in " + F.time(p.getMilliseconds(), 2));
+		}
+
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -46,10 +126,7 @@ public class EntityStackController extends Controller
 	{
 		Surge.unregister(this);
 
-		for(StackedEntity i : stacks)
-		{
-			i.destroy();
-		}
+		saveCacheFinal();
 	}
 
 	@Override
@@ -61,13 +138,47 @@ public class EntityStackController extends Controller
 			return;
 		}
 
-		for(StackedEntity i : stacks.copy())
+		if(TICK.tick % 2400 == 0 && Config.ENTITY_STACK_CACHE)
 		{
-			i.update();
+			saveCache();
+		}
 
-			if(i.getEntity().isDead())
+		if(TICK.tick % 10 == 0)
+		{
+			for(StackedEntity i : stacks.copy())
 			{
-				stacks.remove(i);
+				i.update();
+
+				if(i.getEntity().isDead())
+				{
+					stacks.remove(i);
+				}
+				sd.put(i.getEntity());
+				sd.get(i.getEntity());
+			}
+		}
+
+		if(Config.ENTITY_STACK_CACHE && TICK.tick % 20 == 0)
+		{
+			for(World i : Bukkit.getWorlds())
+			{
+				new S("fast-cache")
+				{
+					@Override
+					public void run()
+					{
+						for(Chunk j : i.getLoadedChunks())
+						{
+							for(Entity k : j.getEntities())
+							{
+								if(k instanceof LivingEntity)
+								{
+									handle((LivingEntity) k);
+								}
+							}
+						}
+					}
+				};
 			}
 		}
 
@@ -100,7 +211,7 @@ public class EntityStackController extends Controller
 				check.clear();
 			}
 
-			else
+			else if(TICK.tick % 20 == 0)
 			{
 				for(World i : Bukkit.getWorlds())
 				{
@@ -109,11 +220,23 @@ public class EntityStackController extends Controller
 						@Override
 						public void run()
 						{
-							checkNear(i.getLivingEntities().get((int) (Math.random() * (i.getLivingEntities().size() - 1))));
+							List<LivingEntity> le = i.getLivingEntities();
+							for(int j = 0; j < 20; j++)
+							{
+								checkNear(le.get((int) (Math.random() * (i.getLivingEntities().size() - 1))));
+							}
 						}
 					};
 				}
 			}
+		}
+	}
+
+	private void handle(LivingEntity k)
+	{
+		if(!isStacked(k) && sd.get(k) > 0)
+		{
+			stacks.add(new StackedEntity(k, sd.get(k)));
 		}
 	}
 

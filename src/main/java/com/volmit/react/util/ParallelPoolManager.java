@@ -5,6 +5,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public abstract class ParallelPoolManager
 {
+	private int hp = 5000;
 	private QueueMode mode;
 	private GList<ParallelThread> threads;
 	private int next;
@@ -12,26 +13,6 @@ public abstract class ParallelPoolManager
 	private Queue<Execution> squeue;
 	private String key;
 	private ThreadInformation info;
-
-	public void syncQueue(Execution e)
-	{
-		squeue.offer(e);
-	}
-
-	public abstract long getNanoGate();
-
-	public void tickSyncQueue()
-	{
-		long ns = M.ns();
-		double nsl = 0.1 * 1000000.0;
-
-		while(!squeue.isEmpty() && M.ns() - ns < nsl)
-		{
-			I.a("sync-queue.rawtick", 100);
-			squeue.poll().run();
-			I.b("sync-queue.rawtick");
-		}
-	}
 
 	public ParallelPoolManager(String key, int threadCount, QueueMode mode)
 	{
@@ -58,6 +39,44 @@ public abstract class ParallelPoolManager
 		key = "Worker Thread";
 		info = new ThreadInformation(-1);
 		squeue = new ConcurrentLinkedQueue<Execution>();
+	}
+
+	public void syncQueue(Execution e)
+	{
+		squeue.offer(e);
+	}
+
+	public abstract long getNanoGate();
+
+	public void tickSyncQueue()
+	{
+		long ns = M.ns();
+		double nsl = 0.337 * 1000000.0;
+
+		hp += 1 + (squeue.size() < 3 ? 5 : 0);
+
+		if(hp > 300)
+		{
+			nsl += 2.25 * 1000000.0;
+		}
+
+		while(!squeue.isEmpty() && M.ns() - ns < nsl)
+		{
+			I.a("sync-queue.rawtick", 100);
+			squeue.poll().run();
+			hp--;
+			I.b("sync-queue.rawtick");
+		}
+
+		if(hp < 0)
+		{
+			hp = 0;
+		}
+
+		if(hp > 5000)
+		{
+			hp = 5000;
+		}
 	}
 
 	public long lock()

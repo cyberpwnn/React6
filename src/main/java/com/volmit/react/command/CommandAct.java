@@ -141,7 +141,7 @@ public class CommandAct extends ReactCommand
 			return;
 		}
 
-		if(!sender.hasPermission(((Action) action).getNode()))
+		if(!sender.hasPermission("react.act." + ((Action) action).getNode()))
 		{
 			f(sender, Info.MSG_PERMISSION);
 			return;
@@ -173,7 +173,6 @@ public class CommandAct extends ReactCommand
 				catch(SelectorParseException e)
 				{
 					errors.add(e.getMessage());
-					e.printStackTrace();
 				}
 			}
 		}
