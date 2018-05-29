@@ -92,12 +92,20 @@ public class RedstoneController extends Controller
 	@EventHandler
 	public void on(WorldLoadEvent e)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
 		trackers.put(e.getWorld(), new RedstoneTracker(e.getWorld()));
 	}
 
 	@EventHandler
 	public void on(WorldUnloadEvent e)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
 		trackers.get(e.getWorld()).close();
 		trackers.remove(e.getWorld());
 	}
@@ -125,6 +133,10 @@ public class RedstoneController extends Controller
 	@Override
 	public void tick()
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
 		checkChunks();
 		aRST.put(redstonePerTick);
 		aRSS.put(redstonePerSecond);
@@ -238,12 +250,20 @@ public class RedstoneController extends Controller
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void on(ChunkUnloadEvent e)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
 		releaseChunk(e.getChunk());
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void on(BlockPhysicsEvent e)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
 		if(ignore.contains(e.getChangedType()))
 		{
 			tickNextTickList();

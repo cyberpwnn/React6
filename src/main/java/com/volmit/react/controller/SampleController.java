@@ -41,6 +41,7 @@ import com.volmit.react.sampler.SampleMemoryMax;
 import com.volmit.react.sampler.SampleMemoryTotals;
 import com.volmit.react.sampler.SampleMemoryUse;
 import com.volmit.react.sampler.SamplePhysicsTickTime;
+import com.volmit.react.sampler.SamplePlayerCount;
 import com.volmit.react.sampler.SampleReactTaskTime;
 import com.volmit.react.sampler.SampleReactTime;
 import com.volmit.react.sampler.SampleRedstonePerSecond;
@@ -212,6 +213,7 @@ public class SampleController extends Controller
 		registerSampler(new SampleTileTime());
 		registerSampler(new SampleTileTimeLock());
 		registerSampler(new SampleMemoryTotals());
+		registerSampler(new SamplePlayerCount());
 
 		for(ISampler i : samplers.v())
 		{

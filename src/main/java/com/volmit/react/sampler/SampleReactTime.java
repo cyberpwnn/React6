@@ -26,7 +26,7 @@ public class SampleReactTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("React Time"); //$NON-NLS-1$
+		setName("R Time"); //$NON-NLS-1$
 		setDescription("Samples react total tick time"); //$NON-NLS-1$
 		setID(SampledType.REACT_TIME.toString());
 		setValue(0);

@@ -28,7 +28,7 @@ public class SampleTickUtilization extends MSampler
 	@Override
 	public void construct()
 	{
-		setName(Lang.getString("sampler.tick-utilization.name")); //$NON-NLS-1$
+		setName("TIU"); //$NON-NLS-1$
 		setDescription(Lang.getString("sampler.tick-utilization.description")); //$NON-NLS-1$
 		setID(SampledType.TIU.toString());
 		setValue(1);

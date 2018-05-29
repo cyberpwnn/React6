@@ -27,7 +27,7 @@ public class SampleHopperTickTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName(Lang.getString("sampler.hopper-tick-time.name")); //$NON-NLS-1$
+		setName("Hopper Tick"); //$NON-NLS-1$
 		setDescription(Lang.getString("sampler.hopper-tick-time.description")); //$NON-NLS-1$
 		setID(SampledType.HOPPER_TIME.toString());
 		setValue(0);

@@ -27,7 +27,7 @@ public class SampleRedstoneTickTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName(Lang.getString("sampler.redstone-tick-time.name")); //$NON-NLS-1$
+		setName("RS Time"); //$NON-NLS-1$
 		setDescription(Lang.getString("sampler.redstone-tick-time.description")); //$NON-NLS-1$
 		setID(SampledType.REDSTONE_TIME.toString());
 		setValue(0);

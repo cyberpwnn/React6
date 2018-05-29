@@ -211,6 +211,7 @@ public class Info
 
 	public static String PERM_SYSTEMINFO = "systeminfo"; //$NON-NLS-1$
 	public static String PERM_ACCESS = "access"; //$NON-NLS-1$
+	public static String PERM_TPS = "tps"; //$NON-NLS-1$
 	public static String PERM_TELEPORT = "teleport"; //$NON-NLS-1$
 	public static String PERM_PING = "ping"; //$NON-NLS-1$
 	public static String PERM_PING_OTHERS = "ping.others"; //$NON-NLS-1$
@@ -252,6 +253,7 @@ public class Info
 	public static String SAMPLER_TPS = Lang.getString("sampler.name.ticks-per-second"); //$NON-NLS-1$
 	public static String SAMPLER_TICK = Lang.getString("sampler.name.server-tick-time"); //$NON-NLS-1$
 	public static String SAMPLER_CPU = Lang.getString("command.cpu"); //$NON-NLS-1$
+	public static String SAMPLER_PLAYERCOUNT = "playercount"; //$NON-NLS-1$
 	public static String SAMPLER_PPS = Lang.getString("command.pps"); //$NON-NLS-1$
 	public static String SAMPLER_BANDWIDTH = Lang.getString("command.bandwidth"); //$NON-NLS-1$
 	public static String SAMPLER_BANDWIDTH_UP = Lang.getString("command.bandwidth-up"); //$NON-NLS-1$

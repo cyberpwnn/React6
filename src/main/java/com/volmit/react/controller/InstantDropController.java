@@ -56,6 +56,11 @@ public class InstantDropController extends Controller
 			return;
 		}
 
+		if(!Config.getWorldConfig(e.getBlock().getWorld()).allowXPHandling)
+		{
+			return;
+		}
+
 		if(e.getPlayer() != null)
 		{
 			if(e.getExpToDrop() > 0)
@@ -74,6 +79,11 @@ public class InstantDropController extends Controller
 			return;
 		}
 
+		if(!Config.getWorldConfig(e.getPlayer().getWorld()).allowDropHandling)
+		{
+			return;
+		}
+
 		ignore.add(e.getItemDrop().getEntityId());
 	}
 
@@ -81,6 +91,11 @@ public class InstantDropController extends Controller
 	public void on(EntityDeathEvent e)
 	{
 		if(!Config.SKIP_ORBS)
+		{
+			return;
+		}
+
+		if(!Config.getWorldConfig(e.getEntity().getWorld()).allowXPHandling)
 		{
 			return;
 		}
@@ -96,6 +111,11 @@ public class InstantDropController extends Controller
 	public void on(PlayerMoveEvent e)
 	{
 		if(!Config.FAST_ORB_PICKUP)
+		{
+			return;
+		}
+
+		if(!Config.getWorldConfig(e.getPlayer().getWorld()).allowXPHandling)
 		{
 			return;
 		}
@@ -128,6 +148,11 @@ public class InstantDropController extends Controller
 			return;
 		}
 
+		if(!Config.getWorldConfig(e.getEntity().getWorld()).allowDropHandling)
+		{
+			return;
+		}
+
 		if(e.getEntityType().equals(EntityType.ARROW))
 		{
 			Arrow a = (Arrow) e.getEntity();
@@ -150,6 +175,11 @@ public class InstantDropController extends Controller
 	public void on(ItemSpawnEvent e)
 	{
 		if(!Config.DROPS_INSTADROP)
+		{
+			return;
+		}
+
+		if(!Config.getWorldConfig(e.getEntity().getWorld()).allowDropHandling)
 		{
 			return;
 		}

@@ -30,13 +30,16 @@ import com.volmit.react.api.SideGate;
 import com.volmit.react.command.CommandAccept;
 import com.volmit.react.command.CommandAccess;
 import com.volmit.react.command.CommandAct;
+import com.volmit.react.command.CommandCache;
 import com.volmit.react.command.CommandCapabilities;
 import com.volmit.react.command.CommandChunk;
 import com.volmit.react.command.CommandChunkTP;
 import com.volmit.react.command.CommandEnvironment;
 import com.volmit.react.command.CommandFix;
 import com.volmit.react.command.CommandGlasses;
+import com.volmit.react.command.CommandGraph;
 import com.volmit.react.command.CommandHelp;
+import com.volmit.react.command.CommandInstallAgent;
 import com.volmit.react.command.CommandMap;
 import com.volmit.react.command.CommandMem;
 import com.volmit.react.command.CommandMonitor;
@@ -91,6 +94,9 @@ public class CommandController extends Controller implements Listener, CommandEx
 		Bukkit.getPluginCommand(Info.COMMAND_RAI).setExecutor(this);
 		Surge.register(this);
 		commands = new GList<ICommand>();
+		commands.add(new CommandInstallAgent());
+		commands.add(new CommandGraph());
+		commands.add(new CommandCache());
 		commands.add(new CommandAccept());
 		commands.add(new CommandChunk());
 		commands.add(new CommandAccess());
@@ -409,7 +415,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 
 		if(e.getMessage().toLowerCase().equalsIgnoreCase("/tps") || e.getMessage().toLowerCase().equalsIgnoreCase("/lag"))
 		{
-			if(Permissable.ACCESS.has(e.getPlayer()) && Config.COMMANDOVERRIDES_TPS)
+			if(Permissable.TPS.has(e.getPlayer()) && Config.COMMANDOVERRIDES_TPS)
 			{
 				Gate.msgSuccess(e.getPlayer(), "Current TPS: " + C.GREEN + SampledType.TPS.get().get() + C.GRAY + " (" + C.GREEN + F.f(SampledType.TICK.get().getValue(), 1) + "ms" + C.GRAY + ")");
 				e.setCancelled(true);
@@ -425,6 +431,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 			}
 		}
 	}
+
 
 	public GList<ICommand> getCommands()
 	{

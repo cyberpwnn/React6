@@ -6,6 +6,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
+import com.volmit.react.Config;
 import com.volmit.react.Surge;
 import com.volmit.react.nms.INMSBinding;
 import com.volmit.react.nms.NMSBinding10;
@@ -103,6 +104,11 @@ public class FeatureController extends Controller implements INMSBinding
 
 	public boolean hasBinding()
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return false;
+		}
+
 		return trueBinding != null;
 	}
 

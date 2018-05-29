@@ -8,15 +8,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.WorldUnloadEvent;
 
 import com.volmit.react.Config;
-import com.volmit.react.React;
 import com.volmit.react.ReactPlugin;
 import com.volmit.react.Surge;
-import com.volmit.react.api.ActionType;
-import com.volmit.react.api.RAIActionSource;
 import com.volmit.react.util.Controller;
-import com.volmit.react.util.Ex;
 import com.volmit.react.util.JSONObject;
-import com.volmit.react.util.TICK;
 
 public class WorldController extends Controller
 {
@@ -64,18 +59,7 @@ public class WorldController extends Controller
 	@Override
 	public void tick()
 	{
-		if(TICK.tick % Config.PURGE_INTERVAL == 0 && Config.PURGE)
-		{
-			try
-			{
-				React.instance.actionController.fire(ActionType.PURGE_CHUNKS, new RAIActionSource());
-			}
 
-			catch(Throwable e)
-			{
-				Ex.t(e);
-			}
-		}
 	}
 
 	@EventHandler

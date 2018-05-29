@@ -13,10 +13,14 @@ public class DeadEntity
 {
 	private Entity e;
 	private int ticks;
+	private int vticks;
+	private long ms;
 
 	public DeadEntity(Entity e, int ticks)
 	{
+		ms = M.ms();
 		this.e = e;
+		this.vticks = ticks;
 		this.ticks = ticks;
 	}
 
@@ -25,6 +29,11 @@ public class DeadEntity
 		if(e == null || e.isDead())
 		{
 			return true;
+		}
+
+		if(M.ms() - ms > (vticks * 50))
+		{
+			ticks = 0;
 		}
 
 		ticks--;

@@ -7,6 +7,7 @@ import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 
+import com.volmit.react.Config;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.ChunkIssue;
@@ -58,6 +59,11 @@ public class PhysicsController extends Controller
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void on(BlockPhysicsEvent e)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+
 		tickNextTickList();
 		React.instance.physicsController.onPhysics(e.getBlock().getChunk());
 		redstonePerSecond++;
@@ -67,6 +73,11 @@ public class PhysicsController extends Controller
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void on(BlockFromToEvent e)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+
 		tickNextTickList();
 		React.instance.physicsController.onPhysics(e.getBlock().getChunk());
 		redstonePerSecond++;
@@ -108,6 +119,10 @@ public class PhysicsController extends Controller
 	@Override
 	public void tick()
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
 		aRST.put(redstonePerTick);
 		aRSS.put(redstonePerSecond);
 		redstonePerTick = 0;

@@ -27,7 +27,7 @@ public class SampleChunkTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName(Lang.getString("sampler.chunk-time.name")); //$NON-NLS-1$
+		setName("Chk Time"); //$NON-NLS-1$
 		setDescription(Lang.getString("sampler.chunk-time.description")); //$NON-NLS-1$
 		setID(SampledType.CHK_TIME.toString());
 		setValue(0);

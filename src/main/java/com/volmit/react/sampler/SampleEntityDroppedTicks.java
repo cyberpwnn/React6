@@ -27,7 +27,7 @@ public class SampleEntityDroppedTicks extends MSampler
 	@Override
 	public void construct()
 	{
-		setName(Lang.getString("sampler.entities-dropped-ticks.name")); //$NON-NLS-1$
+		setName("Ent Droptick"); //$NON-NLS-1$
 		setDescription(Lang.getString("sampler.entities-dropped-ticks.description")); //$NON-NLS-1$
 		setID(SampledType.ENTITY_DROPTICK.toString());
 		setValue(0);

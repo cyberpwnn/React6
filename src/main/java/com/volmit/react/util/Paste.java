@@ -8,6 +8,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
 
+import com.volmit.react.Config;
+
 /**
  * Paste to the web
  *
@@ -29,6 +31,11 @@ public class Paste
 	 */
 	public static String paste(String toPaste) throws IOException, ParseException, org.json.simple.parser.ParseException
 	{
+		if(Config.SAFE_MODE_NETWORKING)
+		{
+			return "http://SAFEMODE-NETWORKING-ENABLED";
+		}
+
 		HttpURLConnection hastebin = (HttpURLConnection) new URL("http://paste.volmit.com/documents").openConnection();
 		hastebin.setRequestMethod("POST");
 		hastebin.setDoOutput(true);

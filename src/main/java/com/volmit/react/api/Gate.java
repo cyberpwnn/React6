@@ -16,6 +16,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.spigotmc.SpigotWorldConfig;
 import org.spigotmc.TickLimiter;
@@ -129,6 +130,11 @@ public class Gate
 
 	public static void fixLighting(SelectorPosition sel, Callback<Integer> cb, Callback<Double> prog)
 	{
+		if(Config.SAFE_MODE_FAWE)
+		{
+			return;
+		}
+
 		new A()
 		{
 			@Override
@@ -210,7 +216,9 @@ public class Gate
 						};
 					}
 
-					catch(Throwable e)
+					catch(
+
+							Throwable e)
 					{
 						Ex.t(e);
 						prog.run(1.0);
@@ -224,6 +232,11 @@ public class Gate
 
 	public static void markForDeath(Entity e, int ticks)
 	{
+		if(Config.USE_COLLISION && Config.USE_COLLISION_ON_CULL && e instanceof LivingEntity)
+		{
+			React.instance.collisionController.precull((LivingEntity) e);
+		}
+
 		if(!markedForDeath.containsKey(e.getEntityId()))
 		{
 			markedForDeath.put(e.getEntityId(), new DeadEntity(e, (int) (ticks + (Math.random() * (ticks / 4)))));
@@ -291,11 +304,21 @@ public class Gate
 
 	public static boolean hasFawe()
 	{
+		if(Config.SAFE_MODE_FAWE)
+		{
+			return false;
+		}
+
 		return Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null; //$NON-NLS-1$
 	}
 
 	public static void tickEntityNextTickListTick(World world) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+
 		Class<?> cworldclass = NMSX.getCBClass("CraftWorld"); //$NON-NLS-1$
 		Object theWorld = cworldclass.getMethod("getHandle").invoke(world); //$NON-NLS-1$
 		Field f = deepFindField(theWorld, "entityLimiter"); //$NON-NLS-1$
@@ -321,6 +344,11 @@ public class Gate
 
 	public static void resetEntityMaxTick(World world) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+
 		if(defaultSettings.containsKey(world.getName() + "-entitymaxtick")) //$NON-NLS-1$
 		{
 			tweakEntityTickMax(world, defaultSettings.get(world.getName() + "-entitymaxtick")); //$NON-NLS-1$
@@ -339,6 +367,11 @@ public class Gate
 
 	public static void tweakEntityTickMax(World world, int tt) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+
 		SpigotWorldConfig wc = getSpigotConfig(world);
 
 		if(!defaultSettings.containsKey(world.getName() + "-entitymaxtick")) //$NON-NLS-1$
@@ -383,6 +416,11 @@ public class Gate
 
 	public static void forceSet(SpigotWorldConfig v, String key, Object value) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+
 		Field f = v.getClass().getDeclaredField("config"); //$NON-NLS-1$
 		f.setAccessible(true);
 		YamlConfiguration fc = (YamlConfiguration) f.get(v);
@@ -391,6 +429,11 @@ public class Gate
 
 	public static int getActivationRange(World world, ActivationRangeType type) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return -1;
+		}
+
 		switch(type)
 		{
 			case ANIMALS:
@@ -408,6 +451,11 @@ public class Gate
 
 	public static void resetActivationRange(World world, ActivationRangeType type) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+
 		if(defaultSettings.containsKey(world.getName() + "-" + type.toString())) //$NON-NLS-1$
 		{
 			tweakActivationRange(world, type, defaultSettings.get(world.getName() + "-" + type.toString())); //$NON-NLS-1$
@@ -416,6 +464,11 @@ public class Gate
 
 	public static void tweakActivationRange(World world, ActivationRangeType type, int distance) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+
 		SpigotWorldConfig conf = getSpigotConfig(world);
 
 		if(!defaultSettings.containsKey(world.getName() + "-" + type.toString())) //$NON-NLS-1$
@@ -438,6 +491,11 @@ public class Gate
 
 	public static SpigotWorldConfig getSpigotConfig(World world) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return null;
+		}
+
 		Class<?> cworldclass = NMSX.getCBClass("CraftWorld"); //$NON-NLS-1$
 		Object theWorld = cworldclass.getMethod("getHandle").invoke(world); //$NON-NLS-1$
 		SpigotWorldConfig wc = (SpigotWorldConfig) theWorld.getClass().getField("spigotConfig").get(theWorld); //$NON-NLS-1$
@@ -622,6 +680,16 @@ public class Gate
 
 	public static boolean unloadChunk(Chunk c)
 	{
+		if(Config.SAFE_MODE_CHUNK)
+		{
+			return false;
+		}
+
+		if(!Config.getWorldConfig(c.getWorld()).allowChunkPurging)
+		{
+			return false;
+		}
+
 		try
 		{
 			if(!Config.getWorldConfig(c.getWorld()).allowActions)
@@ -650,6 +718,11 @@ public class Gate
 	public static void unloadChunk(World w, int x, int z)
 	{
 		if(!canUnload(w, x, z))
+		{
+			return;
+		}
+
+		if(!Config.getWorldConfig(w).allowChunkPurging)
 		{
 			return;
 		}
@@ -812,6 +885,11 @@ public class Gate
 	{
 		refresh.clear();
 
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+
 		for(Player j : Bukkit.getOnlinePlayers())
 		{
 			for(Location i : destroy)
@@ -831,6 +909,11 @@ public class Gate
 
 	public static void sendBlockChange(Location l)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+
 		destroy.add(l);
 	}
 
@@ -887,6 +970,12 @@ public class Gate
 
 	public static void pullTimingsReport(long time, Callback<String> url)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			url.run("http://SAFE-MODE-NMS-ENABLED");
+			return;
+		}
+
 		NobodySender s = new NobodySender();
 		Bukkit.dispatchCommand(s, "timings on");
 		s.dump();

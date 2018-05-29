@@ -29,7 +29,6 @@ import com.volmit.react.util.MSound;
 import com.volmit.react.util.MaterialBlock;
 import com.volmit.react.util.S;
 import com.volmit.react.util.TICK;
-import com.volmit.react.util.TaskLater;
 import com.volmit.react.util.W;
 
 public class FastDecayController extends Controller
@@ -71,14 +70,7 @@ public class FastDecayController extends Controller
 			return;
 		}
 
-		new S("decay")
-		{
-			@Override
-			public void run()
-			{
-				checkBreak(e.getBlock());
-			}
-		};
+		checkBreak(e.getBlock());
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -89,92 +81,56 @@ public class FastDecayController extends Controller
 			return;
 		}
 
-		new S("decay")
-		{
-			@Override
-			public void run()
-			{
-				checkBreak(e.getBlock());
-			}
-		};
+		checkBreak(e.getBlock());
 	}
 
 	public void checkBreak(Block source)
 	{
-		new S("c")
+		try
 		{
-			@Override
-			public void run()
+			if(!Config.FASTLEAF_ENABLED)
 			{
-				try
+				return;
+			}
+
+			if(!Config.getWorldConfig(source.getWorld()).allowFastLeafDecay)
+			{
+				return;
+			}
+
+			for(Block i : W.blockFaces(source))
+			{
+				if(leaves.contains(i.getType()))
 				{
-					if(!Config.FASTLEAF_ENABLED)
+					try
 					{
-						return;
-					}
+						boolean b = BlockFinder.follow(i, leaves, logs, 5);
 
-					if(!Config.getWorldConfig(source.getWorld()).allowFastLeafDecay)
-					{
-						return;
-					}
-
-					for(Block i : W.blockFaces(source))
-					{
-						if(leaves.contains(i.getType()))
+						if(!b)
 						{
-							try
+							new S("decayer")
 							{
-								boolean b = BlockFinder.follow(i, leaves, logs, 5);
-
-								if(!b)
+								@Override
+								public void run()
 								{
-									if(Config.FASTLEAF_INSTANT)
-									{
-										new S("decayer")
-										{
-											@Override
-											public void run()
-											{
-												decay(i);
-											}
-										};
-									}
-
-									else
-									{
-										new TaskLater("dvdxleaf", (int) ((Math.random() * Config.FASTLEAF_DECAYPERIOD)))
-										{
-											@Override
-											public void run()
-											{
-												new S("decayer")
-												{
-													@Override
-													public void run()
-													{
-														decay(i);
-													}
-												};
-											}
-										};
-									}
+									decay(i);
 								}
-							}
-
-							catch(Throwable e)
-							{
-
-							}
+							};
 						}
 					}
-				}
 
-				catch(Throwable e)
-				{
+					catch(Throwable e)
+					{
 
+					}
 				}
 			}
-		};
+		}
+
+		catch(Throwable e)
+		{
+
+		}
 	}
 
 	public void decay(Block b)

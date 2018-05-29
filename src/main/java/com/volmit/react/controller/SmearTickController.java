@@ -35,6 +35,10 @@ public class SmearTickController extends Controller
 	@Override
 	public void start()
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
 		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
 		{
 			return;
@@ -61,6 +65,10 @@ public class SmearTickController extends Controller
 	@Override
 	public void stop()
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
 		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
 		{
 			return;
@@ -84,6 +92,10 @@ public class SmearTickController extends Controller
 	@EventHandler
 	public void on(WorldLoadEvent e)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
 		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
 		{
 			return;
@@ -103,6 +115,10 @@ public class SmearTickController extends Controller
 	@EventHandler
 	public void on(WorldUnloadEvent e)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
 		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
 		{
 			return;
@@ -127,6 +143,10 @@ public class SmearTickController extends Controller
 
 	public void witholdWorld(World w) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
 		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
 		{
 			return;
@@ -148,6 +168,10 @@ public class SmearTickController extends Controller
 
 	public void releaseWorld(World w) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
 		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
 		{
 			return;
@@ -291,6 +315,10 @@ public class SmearTickController extends Controller
 
 	public void setEntityTickLimit(World w, double lim)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
 		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
 		{
 			return;
@@ -306,6 +334,10 @@ public class SmearTickController extends Controller
 
 	public void setTileTickLimit(World w, double lim)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
 		if(!Capability.ENTITY_THROTTLING.isCapable() || !Capability.TILE_THROTTLING.isCapable())
 		{
 			return;

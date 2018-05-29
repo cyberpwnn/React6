@@ -27,7 +27,7 @@ public class SampleRedstonePerSecond extends MSampler
 	@Override
 	public void construct()
 	{
-		setName(Lang.getString("sampler.redstone-second.name")); //$NON-NLS-1$
+		setName("RS/s"); //$NON-NLS-1$
 		setDescription(Lang.getString("sampler.redstone-second.description")); //$NON-NLS-1$
 		setID(SampledType.REDSTONE_SECOND.toString());
 		setValue(0);

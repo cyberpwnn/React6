@@ -37,6 +37,11 @@ public class ProtocolController extends Controller
 			proto = new ProtocolAdapter();
 			proto.start();
 		}
+
+		if(Config.SAFE_MODE_PROTOCOL)
+		{
+			safe = false;
+		}
 	}
 
 	@Override

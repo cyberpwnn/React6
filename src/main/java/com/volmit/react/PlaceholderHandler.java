@@ -26,6 +26,23 @@ public class PlaceholderHandler extends EZPlaceholderHook
 		f.getParentFile().mkdirs();
 		PrintWriter pw = new PrintWriter(f);
 
+		pw.println("# You can use the following suffixes for samplers");
+		pw.println("_raw -> Raw digits up to 9");
+		pw.println("_raw_0 -> Raw, no decimals");
+		pw.println("_raw_1 -> Raw, 1 decimal");
+		pw.println("_raw_2 -> Raw, 2 decimals");
+		pw.println("_raw_3 -> Raw, 3 decimals");
+		pw.println("_raw_4 -> Raw, 4 decimals");
+		pw.println("_raw_force_1 -> Raw, forces 1 decimal. If the value is round, places 0.");
+		pw.println("_raw_force_2 -> Raw, forces 2 decimals. If no decial is set for any segment, zero is used. I.e. 19.00 (instead of 19)");
+
+		pw.println();
+		pw.println("# Ping does not support raw suffixes.");
+		pw.println("%react_ping%");
+		pw.println("%react_ping_raw%");
+
+		pw.println();
+		pw.println("# Samplers support suffixes");
 		for(SampledType i : SampledType.values())
 		{
 			pw.println("%react_sample_" + i.name().toLowerCase() + "%");
@@ -49,37 +66,72 @@ public class PlaceholderHandler extends EZPlaceholderHook
 						return "" + F.f(i.get().getValue(), 9);
 					}
 
+					else if(s.endsWith("_raw_force_1"))
+					{
+						return "" + F.fd(i.get().getValue(), 1);
+					}
+
+					else if(s.endsWith("_raw_force_2"))
+					{
+						return "" + F.fd(i.get().getValue(), 2);
+					}
+
+					else if(s.endsWith("_raw_1"))
+					{
+						return "" + F.f(i.get().getValue(), 1);
+					}
+
+					else if(s.endsWith("_raw_2"))
+					{
+						return "" + F.f(i.get().getValue(), 2);
+					}
+
+					else if(s.endsWith("_raw_3"))
+					{
+						return "" + F.f(i.get().getValue(), 3);
+					}
+
+					else if(s.endsWith("_raw_4"))
+					{
+						return "" + F.f(i.get().getValue(), 4);
+					}
+
+					else if(s.endsWith("_raw_0"))
+					{
+						return "" + F.f(i.get().getValue(), 0);
+					}
+
 					return i.get().get();
-				}
-			}
-
-			if(s.startsWith("ping"))
-			{
-				if(!Capability.ACCELERATED_PING.isCapable())
-				{
-					return "NCA";
-				}
-
-				if(s.equals("ping") || s.equals("ping_raw"))
-				{
-					if(p == null)
-					{
-						return "NPI";
-					}
-
-					if(s.endsWith("_raw"))
-					{
-						return "" + React.instance.protocolController.ping(p);
-					}
-
-					else
-					{
-						return F.time(React.instance.protocolController.ping(p), 1);
-					}
 				}
 			}
 		}
 
-		return s;
+		if(s.startsWith("ping"))
+		{
+			if(!Capability.ACCELERATED_PING.isCapable())
+			{
+				return "NCA";
+			}
+
+			if(s.equals("ping") || s.equals("ping_raw"))
+			{
+				if(p == null)
+				{
+					return "NPI";
+				}
+
+				if(s.endsWith("_raw"))
+				{
+					return "" + React.instance.protocolController.ping(p);
+				}
+
+				else
+				{
+					return F.time(React.instance.protocolController.ping(p), 1);
+				}
+			}
+		}
+
+		return null;
 	}
 }

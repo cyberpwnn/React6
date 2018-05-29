@@ -4,7 +4,7 @@
   <groupId>com.volmit</groupId>
   <artifactId>React</artifactId>
   <name>React</name>
-  <version>6.543</version>
+  <version>6.551</version>
   <description>A performance plugin</description>
   <build>
     <resources>
@@ -90,20 +90,13 @@
                 <goals>
                   <goal>exec</goal>
                 </goals>
-                <configuration>
-                  <executable>C:\Users\cyberpwn\Documents\development\workspace\React6\scripts\development.bat</executable>
-                  <arguments>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.543.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\servers\dynamic\plugins\React.jar</argument>
-                  </arguments>
-                </configuration>
               </execution>
             </executions>
             <configuration>
-              <executable>C:\Users\cyberpwn\Documents\development\workspace\React6\scripts\development.bat</executable>
+              <executable>${script.development}</executable>
               <arguments>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.543.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\servers\dynamic\plugins\React.jar</argument>
+                <argument>${react.release.target}</argument>
+                <argument>${react.development.location}</argument>
               </arguments>
             </configuration>
           </plugin>
@@ -125,19 +118,32 @@
                 <goals>
                   <goal>exec</goal>
                 </goals>
+                <configuration>
+                  <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
+                  <arguments>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.551.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.551/mapping.txt</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.551/React-6.551-origin.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.551/React-6.551.jar</argument>
+                  </arguments>
+                </configuration>
               </execution>
             </executions>
             <configuration>
-              <executable>${script.release}</executable>
+              <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
               <arguments>
-                <argument>${react.release.target}</argument>
-                <argument>${react.export.in}</argument>
-                <argument>${exp1}</argument>
-                <argument>${oexp1}</argument>
-                <argument>${exp2}</argument>
-                <argument>${oexp2}</argument>
-                <argument>${exp3}</argument>
-                <argument>${oexp3}</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.551.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.551/mapping.txt</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.551/React-6.551-origin.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.551/React-6.551.jar</argument>
               </arguments>
             </configuration>
           </plugin>
@@ -185,6 +191,30 @@
       <artifactId>fawe-api</artifactId>
       <version>latest</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.retrofit2</groupId>
+      <artifactId>retrofit</artifactId>
+      <version>2.0.0-beta3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.retrofit2</groupId>
+      <artifactId>converter-gson</artifactId>
+      <version>2.0.0-beta3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.scribejava</groupId>
+      <artifactId>scribejava-core</artifactId>
+      <version>2.1.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.ning</groupId>
+      <artifactId>async-http-client</artifactId>
+      <version>1.6.3</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>spigot.org</groupId>

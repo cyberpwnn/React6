@@ -1,15 +1,24 @@
 package com.volmit.react.controller;
 
+import java.util.UUID;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 import com.volmit.react.Config;
 import com.volmit.react.Lang;
+import com.volmit.react.Surge;
 import com.volmit.react.api.EntityFlag;
 import com.volmit.react.api.EntityGroup;
 import com.volmit.react.api.EntitySample;
 import com.volmit.react.api.Gate;
+import com.volmit.react.util.A;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.D;
 import com.volmit.react.util.GList;
@@ -17,13 +26,40 @@ import com.volmit.react.util.GMap;
 import com.volmit.react.util.GSet;
 import com.volmit.react.util.JSONArray;
 import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.TICK;
 
 public class EntityCullController extends Controller
 {
+	private GMap<UUID, SpawnReason> trackReasons;
 	private GSet<EntityFlag> flags;
 	private GSet<EntityFlag> defer;
 	private GSet<EntityFlag> prefer;
 	private GMap<EntityGroup, Integer> maxs;
+
+	public GMap<UUID, SpawnReason> getTrackReasons()
+	{
+		return trackReasons;
+	}
+
+	public GSet<EntityFlag> getFlags()
+	{
+		return flags;
+	}
+
+	public GSet<EntityFlag> getDefer()
+	{
+		return defer;
+	}
+
+	public GSet<EntityFlag> getPrefer()
+	{
+		return prefer;
+	}
+
+	public GMap<EntityGroup, Integer> getMaxs()
+	{
+		return maxs;
+	}
 
 	@Override
 	public void dump(JSONObject object)
@@ -69,23 +105,59 @@ public class EntityCullController extends Controller
 	@Override
 	public void start()
 	{
+		trackReasons = new GMap<UUID, SpawnReason>();
 		flags = new GSet<EntityFlag>();
 		defer = new GSet<EntityFlag>();
 		prefer = new GSet<EntityFlag>();
 		maxs = new GMap<EntityGroup, Integer>();
 		repopulateRules();
+		Surge.register(this);
 	}
 
 	@Override
 	public void stop()
 	{
-
+		Surge.unregister(this);
 	}
 
 	@Override
 	public void tick()
 	{
+		if(TICK.tick % 100 == 0)
+		{
+			GList<Entity> je = new GList<Entity>();
 
+			for(World i : Bukkit.getWorlds())
+			{
+				je.addAll(i.getEntities());
+			}
+
+			new A()
+			{
+				@Override
+				public void run()
+				{
+					searching: for(UUID i : trackReasons.k())
+					{
+						for(Entity j : je)
+						{
+							if(j.getUniqueId().equals(i))
+							{
+								continue searching;
+							}
+						}
+
+						trackReasons.remove(i);
+					}
+				}
+			};
+		}
+	}
+
+	@EventHandler
+	public void on(CreatureSpawnEvent e)
+	{
+		trackReasons.put(e.getEntity().getUniqueId(), e.getSpawnReason());
 	}
 
 	public void repopulateRules()

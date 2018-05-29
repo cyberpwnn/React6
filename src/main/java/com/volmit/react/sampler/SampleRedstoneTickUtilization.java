@@ -28,7 +28,7 @@ public class SampleRedstoneTickUtilization extends MSampler
 	@Override
 	public void construct()
 	{
-		setName(Lang.getString("sampler.redstone-tick-utilization.name")); //$NON-NLS-1$
+		setName("Red TIU"); //$NON-NLS-1$
 		setDescription(Lang.getString("sampler.redstone-tick-utilization.description")); //$NON-NLS-1$
 		setID(SampledType.REDSTONE_TICK_USAGE.toString());
 		setValue(0);

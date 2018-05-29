@@ -26,7 +26,7 @@ public class SampleGrowthTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Growth MS"); //$NON-NLS-1$
+		setName("Grow MS"); //$NON-NLS-1$
 		setDescription("Calculates milliseconds spent on growth tick"); //$NON-NLS-1$
 		setID(SampledType.GROWTH_TIME.toString());
 		setValue(0);

@@ -14,7 +14,6 @@ import com.volmit.react.util.Controller;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.M;
-import com.volmit.react.util.TICK;
 
 public class ChunkController extends Controller
 {
@@ -87,36 +86,6 @@ public class ChunkController extends Controller
 	public void tick()
 	{
 		flushTickList();
-
-		if(TICK.tick % 20 == 0)
-		{
-			for(Player i : playerLoads.k())
-			{
-				playerLoads.put(i, (int) (playerLoads.get(i) / 2));
-
-				if(playerLoads.get(i) < 2)
-				{
-					playerLoads.remove(i);
-				}
-			}
-
-			for(Plugin i : pluginLoads.k())
-			{
-				pluginLoads.put(i, (int) (pluginLoads.get(i) / 2));
-
-				if(pluginLoads.get(i) < 2)
-				{
-					pluginLoads.remove(i);
-				}
-			}
-
-			serverLoads = (int) (serverLoads / 2);
-
-			if(serverLoads < 2)
-			{
-				serverLoads = 2;
-			}
-		}
 	}
 
 	public void on(PlayerQuitEvent e)

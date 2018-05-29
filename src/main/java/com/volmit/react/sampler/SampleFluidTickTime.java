@@ -27,7 +27,7 @@ public class SampleFluidTickTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName(Lang.getString("sampler.fluid-tick-time.name")); //$NON-NLS-1$
+		setName("Fluid Tick"); //$NON-NLS-1$
 		setDescription(Lang.getString("sampler.fluid-tick-time.description")); //$NON-NLS-1$
 		setID(SampledType.FLUID_TIME.toString());
 		setValue(0);

@@ -133,6 +133,7 @@ public abstract class TPSMonitor extends Thread
 				{
 					React.instance.sampleController.onTickAsync();
 					React.instance.monitorController.onTickAsync();
+					React.instance.dataLogController.onTickAsync();
 				}
 			}
 

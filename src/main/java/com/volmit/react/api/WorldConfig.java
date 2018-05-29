@@ -39,6 +39,15 @@ public class WorldConfig implements IConfigurable
 	@Key("allow.fast-leaf-decay")
 	public boolean allowFastLeafDecay = true;
 
+	@Key("allow.chunk-purging")
+	public boolean allowChunkPurging = true;
+
+	@Key("allow.xp-handling")
+	public boolean allowXPHandling = true;
+
+	@Key("allow.drop-handling")
+	public boolean allowDropHandling = true;
+
 	@Key("entities.assume-no-side-effects")
 	public List<String> assumeNoSideEffectsEntities = new ArrayList<String>(new GList<String>().qadd("ARMOR_STAND"));
 

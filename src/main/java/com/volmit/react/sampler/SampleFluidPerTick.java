@@ -28,7 +28,7 @@ public class SampleFluidPerTick extends MSampler
 	@Override
 	public void construct()
 	{
-		setName(Lang.getString("sampler.fluid-per-tick.name")); //$NON-NLS-1$
+		setName("Fluid/t"); //$NON-NLS-1$
 		setDescription(Lang.getString("sampler.fluid-per-tick.description")); //$NON-NLS-1$
 		setID(SampledType.FLUID_TICK.toString());
 		setValue(0);

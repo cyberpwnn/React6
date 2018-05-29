@@ -1,5 +1,7 @@
 package com.volmit.react.util;
 
+import com.volmit.react.Config;
+
 public class SuperSampler
 {
 	private Average ticksPerSecondL;
@@ -39,7 +41,7 @@ public class SuperSampler
 		frozen = false;
 		lockStack = null;
 		running = false;
-		ticksPerSecondL = new Average(10);
+		ticksPerSecondL = new Average(Config.TPS_AVG_RAD);
 		mahL = new Average(20);
 		tickTimeL = new Average(3);
 		totalChunks = 0;

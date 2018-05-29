@@ -60,6 +60,29 @@ public abstract class ParallelPoolManager
 			nsl += 2.25 * 1000000.0;
 		}
 
+		if(squeue.size() > 275)
+		{
+			while(!squeue.isEmpty())
+			{
+				I.a("sync-queue.rawtick", 100);
+				squeue.poll().run();
+				hp--;
+				I.b("sync-queue.rawtick");
+			}
+
+			if(hp < 0)
+			{
+				hp = 0;
+			}
+
+			if(hp > 5000)
+			{
+				hp = 5000;
+			}
+
+			return;
+		}
+
 		while(!squeue.isEmpty() && M.ns() - ns < nsl)
 		{
 			I.a("sync-queue.rawtick", 100);

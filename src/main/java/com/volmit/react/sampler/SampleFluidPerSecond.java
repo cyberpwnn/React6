@@ -27,7 +27,7 @@ public class SampleFluidPerSecond extends MSampler
 	@Override
 	public void construct()
 	{
-		setName(Lang.getString("sampler.fluid-per-second.name")); //$NON-NLS-1$
+		setName("Fluid/s"); //$NON-NLS-1$
 		setDescription(Lang.getString("sampler.fluid-per-second.description")); //$NON-NLS-1$
 		setID(SampledType.FLUID_SECOND.toString());
 		setValue(0);

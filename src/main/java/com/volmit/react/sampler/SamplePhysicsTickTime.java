@@ -26,7 +26,7 @@ public class SamplePhysicsTickTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("Physics Tick Time"); //$NON-NLS-1$
+		setName("Phy Tick"); //$NON-NLS-1$
 		setDescription("Samples Physics Tick Time"); //$NON-NLS-1$
 		setID(SampledType.PHYSICS_TIME.toString());
 		setValue(0);

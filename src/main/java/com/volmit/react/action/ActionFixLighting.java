@@ -2,6 +2,7 @@ package com.volmit.react.action;
 
 import org.bukkit.Chunk;
 
+import com.volmit.react.Config;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
 import com.volmit.react.api.Action;
@@ -39,6 +40,12 @@ public class ActionFixLighting extends Action
 	@Override
 	public void enact(IActionSource source, ISelector... selectors)
 	{
+		if(Config.SAFE_MODE_PROTOCOL || Config.SAFE_MODE_NMS || Config.SAFE_MODE_FAWE)
+		{
+			completeAction();
+			return;
+		}
+
 		int tchu = 0;
 
 		if(!Capability.CHUNK_RELIGHTING.isCapable())

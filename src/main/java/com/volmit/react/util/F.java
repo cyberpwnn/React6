@@ -215,10 +215,25 @@ public class F
 
 		if(ms / 1000.0 / 60.0 / 60.0 < 24.0)
 		{
-			return F.f(ms / 1000.0 / 60.0, prec) + " hours";
+			return F.f(ms / 1000.0 / 60.0 / 60.0, prec) + " hours";
 		}
 
-		return F.f(ms, prec) + "ms";
+		if(ms / 1000.0 / 60.0 / 60.0 / 24.0 < 7.0)
+		{
+			return F.f(ms / 1000.0 / 60.0 / 60.0 / 24.0, prec) + " days";
+		}
+
+		if(ms / 1000.0 / 60.0 / 60.0 / 24.0 / 7.0 < 4.3)
+		{
+			return F.f(ms / 1000.0 / 60.0 / 60.0 / 24.0 / 7.0, prec) + " weeks";
+		}
+
+		if(ms / 1000.0 / 60.0 / 60.0 / 24.0 / 7.0 / 4.3 < 12)
+		{
+			return F.f(ms / 1000.0 / 60.0 / 60.0 / 24.0 / 7.0 / 4.3, prec) + " months";
+		}
+
+		return F.f(ms / 1000.0 / 60.0 / 60.0 / 24.0 / 7.0 / 4.3 / 12, prec) + " years";
 	}
 
 	public static String b(int i)
@@ -274,9 +289,14 @@ public class F
 	 *            the size (in bytes)
 	 * @return the string
 	 */
+	public static String fileSize(long s, int dec)
+	{
+		return ofSized(s, 1000, dec);
+	}
+
 	public static String fileSize(long s)
 	{
-		return ofSize(s, 1000);
+		return ofSize(s, 1000, 1);
 	}
 
 	/**
@@ -351,7 +371,7 @@ public class F
 			}
 		}
 
-		if(sub.equals("GB") || sub.equals("TB"))
+		if(sub.equals("g") || sub.equals("t"))
 		{
 			return F.f(d, 1) + sub;
 		}
@@ -359,6 +379,46 @@ public class F
 		else
 		{
 			return F.f(d, 0) + sub;
+		}
+	}
+
+	public static String ofSized(long s, int div, int dec)
+	{
+		Double d = (double) s;
+		String sub = "b";
+
+		if(d > div - 1)
+		{
+			d /= div;
+			sub = "k";
+
+			if(d > div - 1)
+			{
+				d /= div;
+				sub = "m";
+
+				if(d > div - 1)
+				{
+					d /= div;
+					sub = "g";
+
+					if(d > div - 1)
+					{
+						d /= div;
+						sub = "t";
+					}
+				}
+			}
+		}
+
+		if(sub.equals("g") || sub.equals("t"))
+		{
+			return F.f(d, dec) + sub;
+		}
+
+		else
+		{
+			return F.f(d, dec) + sub;
 		}
 	}
 

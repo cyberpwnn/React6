@@ -28,7 +28,7 @@ public class SampleFluidTickUtilization extends MSampler
 	@Override
 	public void construct()
 	{
-		setName(Lang.getString("sampler.fluid-tick-utilization.name")); //$NON-NLS-1$
+		setName("Fluid TIU"); //$NON-NLS-1$
 		setDescription(Lang.getString("sampler.fluid-tick-utilization.description")); //$NON-NLS-1$
 		setID(SampledType.FLUID_TICK_USAGE.toString());
 		setValue(0);

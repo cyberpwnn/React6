@@ -196,6 +196,11 @@ public class FluidController extends Controller
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void on(BlockPhysicsEvent e)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+
 		if(ignore.contains(e.getBlock().getType()))
 		{
 			if(isFrozen(e.getBlock().getChunk()))
@@ -218,6 +223,11 @@ public class FluidController extends Controller
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void on(BlockFromToEvent e)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+
 		if(ignore.contains(e.getToBlock().getType()))
 		{
 			if(isFrozen(e.getToBlock().getChunk()))

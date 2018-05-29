@@ -1,24 +1,107 @@
 package com.volmit.react;
 
-import java.io.*;
-import java.lang.reflect.*;
-import java.util.*;
+import java.io.File;
+import java.lang.reflect.Field;
+import java.util.List;
 
-import org.bukkit.*;
-import org.bukkit.entity.*;
-import org.bukkit.event.entity.CreatureSpawnEvent.*;
+import org.bukkit.World;
+import org.bukkit.entity.EntityType;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.plugin.Plugin;
 
-import com.volmit.react.api.*;
+import com.volmit.react.api.Clip;
+import com.volmit.react.api.Comment;
+import com.volmit.react.api.Experimental;
+import com.volmit.react.api.Injection;
+import com.volmit.react.api.InjectionMethod;
 import com.volmit.react.api.Key;
 import com.volmit.react.api.Note;
-import com.volmit.react.util.*;
+import com.volmit.react.api.WorldConfig;
+import com.volmit.react.util.D;
+import com.volmit.react.util.DataCluster;
+import com.volmit.react.util.DynamicConfiguration;
+import com.volmit.react.util.Ex;
+import com.volmit.react.util.F;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GMap;
+import com.volmit.react.util.M;
+import com.volmit.react.util.PoolDescriber;
+import com.volmit.react.util.RawEvent;
+import com.volmit.react.util.TaskLater;
+import com.volmit.react.util.YamlDataInput;
+import com.volmit.react.util.YamlDataOutput;
 
 @PoolDescriber
 @DynamicConfiguration
 public class Config
 {
 	private static final GMap<World, WorldConfig> worldConfigs = new GMap<World, WorldConfig>();
+
+	@Comment("Disables collision for certain entities based on lag and conditions.")
+	@Key("features.react.collision.collision-tweaks-enabled")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean USE_COLLISION = true;
+
+	@Comment("Disables collision for entities about to be culled.")
+	@Key("features.react.collision.disable-collide-on-pre-cull")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean USE_COLLISION_ON_CULL = true;
+
+	@Comment("Always disables entities in this list from colliding.")
+	@Key("features.react.collision.disable-collide-always")
+	@Injection(InjectionMethod.SWAP)
+	public static GList<String> ALWAYS_DISABLE = getDefaultEntitiesForAlwaysCollide();
+
+	@Comment("Disables these entity types from colliding on spawn.")
+	@Key("features.react.collision.disable-collide-spawner")
+	@Injection(InjectionMethod.SWAP)
+	public static GList<String> SPAWNER_DISABLE = getDefaultEntitiesForSpawnerCollide();
+
+	@Comment("Disable all capabilities for react to communicate to the internet. I.e. Cant create pastebin reports, or use stats.")
+	@Key("features.react.modes.safemode-networking")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean SAFE_MODE_NETWORKING = false;
+
+	@Comment("Modify the average radius of the server tps sampler")
+	@Key("features.react.sampler.tps-average-radius")
+	@Injection(InjectionMethod.SWAP)
+	public static int TPS_AVG_RAD = 7;
+
+	@Comment("Modify the average radius of server tick time sampler")
+	@Key("features.react.sampler.tick-time-average-radius")
+	@Injection(InjectionMethod.SWAP)
+	public static int TICK_AVG_RAD = 3;
+
+	@Comment("Disables all capabilities for react to utilize NMS classes in creaftbukkit. Use this if either you are having serious problems, or are using Sponge,MCPC+,KCauldron, or even Glowkit")
+	@Key("features.react.modes.safemode-nms")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean SAFE_MODE_NMS = false;
+
+	@Comment("Disable all capabilities for react to interact with the game's protocol. I.e. Sending & intercepting packets, Ping and other features.")
+	@Key("features.react.modes.safemode-protocol")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean SAFE_MODE_PROTOCOL = false;
+
+	@Comment("The maximum amount of data (in megabytes) to keep.")
+	@Key("features.react.datalogging.max-mb")
+	@Injection(InjectionMethod.SWAP)
+	@Clip(min = 5, max = 8192)
+	public static int DLG_MAX_MB = 100;
+
+	@Comment("Should Datalogging be enabled? React will monitor samplers and save them to the cache.")
+	@Key("features.react.datalogging.enabled")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean DATALOG_ENABLED = true;
+
+	@Comment("Disable all capabilities for react to interact with FastAstncWorldEdit.")
+	@Key("features.react.modes.safemode-fawe")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean SAFE_MODE_FAWE = false;
+
+	@Comment("Disable all capabilities for react to unload chunks")
+	@Key("features.react.modes.safemode-unload-chunks")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean SAFE_MODE_CHUNK = false;
 
 	@Comment("Use the legacy remote server (for react remote)")
 	@Key("features.react.legacy.remote-server.enable-react-remote-server")
@@ -710,6 +793,99 @@ public class Config
 	}
 
 	private static GList<String> getDefaultEntitiesForStacking()
+	{
+		GList<String> ents = new GList<String>();
+		GList<String> entx = new GList<String>();
+
+		for(EntityType i : EntityType.values())
+		{
+			entx.add(i.name());
+		}
+
+		for(String i : entx)
+		{
+			switch(i)
+			{
+				case "PLAYER":
+					continue;
+				case "ARMOR_STAND":
+					continue;
+				case "AREA_EFFECT_CLOUD":
+					continue;
+				case "BOAT":
+					continue;
+				case "ARROW":
+					continue;
+				case "ITEM_FRAME":
+					continue;
+				case "DROPPED_ITEM":
+					continue;
+				case "COMPLEX_PART":
+					continue;
+				case "DRAGON_FIREBALL":
+					continue;
+				case "EGG":
+					continue;
+				case "ENDER_CRYSTAL":
+					continue;
+				case "WITHER_SKULL":
+					continue;
+				case "ENDER_PEARL":
+					continue;
+				case "ENDER_SIGNAL":
+					continue;
+				case "WEATHER":
+					continue;
+				case "UNKNOWN":
+					continue;
+				case "TIPPED_ARROW":
+					continue;
+				case "THROWN_EXP_BOTTLE":
+					continue;
+				case "SPLASH_POTION":
+					continue;
+				case "SPECTRAL_ARROW":
+					continue;
+				case "SHULKER_BULLET":
+					continue;
+				case "EVOKER_FANGS":
+					continue;
+				case "EXPERIENCE_ORB":
+					continue;
+				case "SNOWBALL":
+					continue;
+				case "FIREBALL":
+					continue;
+				case "SMALL_FIREBALL":
+					continue;
+				case "FIREWORK":
+					continue;
+				case "PRIMED_TNT":
+					continue;
+				case "LIGHTNING":
+					continue;
+				case "LINGERING_POTION":
+					continue;
+				case "LEASH_HITCH":
+					continue;
+				default:
+					ents.add(i);
+			}
+		}
+
+		return ents;
+	}
+
+	private static GList<String> getDefaultEntitiesForAlwaysCollide()
+	{
+		GList<String> ents = new GList<String>();
+
+		ents.add(EntityType.BAT.name());
+
+		return ents;
+	}
+
+	private static GList<String> getDefaultEntitiesForSpawnerCollide()
 	{
 		GList<String> ents = new GList<String>();
 		GList<String> entx = new GList<String>();

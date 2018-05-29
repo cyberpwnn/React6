@@ -64,6 +64,11 @@ public class GlassController extends Controller
 	@Override
 	public void tick()
 	{
+		if(Config.SAFE_MODE_NMS || Config.SAFE_MODE_PROTOCOL)
+		{
+			return;
+		}
+
 		if(d > 0)
 		{
 			d--;
@@ -195,6 +200,15 @@ public class GlassController extends Controller
 	@EventHandler
 	public void on(BlockPhysicsEvent e)
 	{
+		if(!Config.GLASS_SHOW_PARTICLES && !Config.GLASS_SHOW_BLOCKS)
+		{
+			return;
+		}
+		if(Config.SAFE_MODE_NMS || Config.SAFE_MODE_PROTOCOL)
+		{
+			return;
+		}
+
 		if(g.isEmpty())
 		{
 			return;
@@ -215,6 +229,15 @@ public class GlassController extends Controller
 	@EventHandler
 	public void on(BlockFromToEvent e)
 	{
+		if(!Config.GLASS_SHOW_PARTICLES && !Config.GLASS_SHOW_BLOCKS)
+		{
+			return;
+		}
+		if(Config.SAFE_MODE_NMS || Config.SAFE_MODE_PROTOCOL)
+		{
+			return;
+		}
+
 		if(g.isEmpty())
 		{
 			return;
@@ -235,6 +258,15 @@ public class GlassController extends Controller
 	@EventHandler
 	public void on(BlockBurnEvent e)
 	{
+		if(!Config.GLASS_SHOW_PARTICLES && !Config.GLASS_SHOW_BLOCKS)
+		{
+			return;
+		}
+		if(Config.SAFE_MODE_NMS || Config.SAFE_MODE_PROTOCOL)
+		{
+			return;
+		}
+
 		if(g.isEmpty())
 		{
 			return;
@@ -255,6 +287,15 @@ public class GlassController extends Controller
 	@EventHandler
 	public void on(BlockFormEvent e)
 	{
+		if(!Config.GLASS_SHOW_PARTICLES && !Config.GLASS_SHOW_BLOCKS)
+		{
+			return;
+		}
+		if(Config.SAFE_MODE_NMS || Config.SAFE_MODE_PROTOCOL)
+		{
+			return;
+		}
+
 		if(g.isEmpty())
 		{
 			return;
@@ -275,6 +316,15 @@ public class GlassController extends Controller
 	@EventHandler
 	public void on(BlockFadeEvent e)
 	{
+		if(!Config.GLASS_SHOW_PARTICLES && !Config.GLASS_SHOW_BLOCKS)
+		{
+			return;
+		}
+		if(Config.SAFE_MODE_NMS || Config.SAFE_MODE_PROTOCOL)
+		{
+			return;
+		}
+
 		if(g.isEmpty())
 		{
 			return;
@@ -295,6 +345,16 @@ public class GlassController extends Controller
 	@EventHandler
 	public void on(InventoryMoveItemEvent e)
 	{
+		if(!Config.GLASS_SHOW_PARTICLES && !Config.GLASS_SHOW_BLOCKS)
+		{
+			return;
+		}
+
+		if(Config.SAFE_MODE_NMS || Config.SAFE_MODE_PROTOCOL)
+		{
+			return;
+		}
+
 		if(g.isEmpty())
 		{
 			return;

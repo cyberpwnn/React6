@@ -26,7 +26,7 @@ public class SampleMemoryAllocationPerSecond extends MSampler
 	@Override
 	public void construct()
 	{
-		setName(Lang.getString("sampler.mahs.name")); //$NON-NLS-1$
+		setName("MAH/s"); //$NON-NLS-1$
 		setDescription(Lang.getString("sampler.mahs.description")); //$NON-NLS-1$
 		setID(SampledType.MAHS.toString());
 		setValue(1);

@@ -40,6 +40,7 @@ public class HopperController extends Controller
 		object.put("frozen", frozen.size() + " Chunks");
 		object.put("queue", queue.size() + " Chunks");
 	}
+
 	@Override
 	public void start()
 	{
@@ -154,6 +155,11 @@ public class HopperController extends Controller
 	@Override
 	public void tick()
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+
 		checkChunks();
 		aHST.put(transfersPerTick);
 		aHSS.put(transfersPerSecond);
@@ -192,6 +198,11 @@ public class HopperController extends Controller
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void on(InventoryMoveItemEvent e)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+
 		if(e.getDestination().getHolder() instanceof BlockState)
 		{
 			if(ignore.contains(((BlockState) e.getDestination().getHolder()).getBlock().getType()))

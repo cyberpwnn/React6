@@ -2,6 +2,7 @@ package com.volmit.react.controller;
 
 import org.bukkit.command.CommandSender;
 
+import com.volmit.react.Config;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
 import com.volmit.react.api.IFix;
@@ -40,6 +41,12 @@ public class FixController extends Controller
 
 	public void runFix(CommandSender sender, String name, String[] args)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			Gate.msgError(sender, "SAFE MODE NMS ENABLED.");
+			return;
+		}
+
 		for(IFix i : fixes)
 		{
 			if(i.getId().equalsIgnoreCase(name))

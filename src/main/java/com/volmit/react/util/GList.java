@@ -29,6 +29,14 @@ public class GList<T> extends ArrayList<T>
 		super();
 	}
 
+	public void fill(T t, int amt)
+	{
+		for(int i = 0; i < amt; i++)
+		{
+			add(t);
+		}
+	}
+
 	public GList<T> grepExplicit(int startIndex, int endIndex)
 	{
 		GList<T> f = new GList<T>();

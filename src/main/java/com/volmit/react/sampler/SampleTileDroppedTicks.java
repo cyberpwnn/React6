@@ -27,7 +27,7 @@ public class SampleTileDroppedTicks extends MSampler
 	@Override
 	public void construct()
 	{
-		setName(Lang.getString("sampler.tile.dropped-ticks.name")); //$NON-NLS-1$
+		setName("Tile Droptick"); //$NON-NLS-1$
 		setDescription(Lang.getString("sampler.tile.dropped-ticks.description")); //$NON-NLS-1$
 		setID(SampledType.TILE_DROPTICK.toString());
 		setValue(0);

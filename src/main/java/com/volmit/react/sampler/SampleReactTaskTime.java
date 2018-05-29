@@ -26,7 +26,7 @@ public class SampleReactTaskTime extends MSampler
 	@Override
 	public void construct()
 	{
-		setName("React Tasks"); //$NON-NLS-1$
+		setName("RTT"); //$NON-NLS-1$
 		setDescription("Samples react task queue"); //$NON-NLS-1$
 		setID(SampledType.REACT_TASK_TIME.toString());
 		setValue(0);

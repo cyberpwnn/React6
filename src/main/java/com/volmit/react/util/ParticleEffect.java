@@ -16,6 +16,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
+import com.volmit.react.Config;
 import com.volmit.react.util.ParticleEffect.ParticleData;
 import com.volmit.react.util.ReflectionUtils.PackageType;
 
@@ -518,6 +519,15 @@ public enum ParticleEffect
 	 */
 	public boolean isSupported()
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return false;
+		}
+		if(Config.SAFE_MODE_PROTOCOL)
+		{
+			return false;
+		}
+
 		if(requiredVersion == -1)
 		{
 			return true;

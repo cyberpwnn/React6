@@ -25,6 +25,11 @@ public class MetricsController extends Controller
 	@Override
 	public void start()
 	{
+		if(Config.SAFE_MODE_NETWORKING)
+		{
+			return;
+		}
+
 		stats = new BStats(ReactPlugin.i);
 
 		stats.addCustomChart(new BStats.SimplePie("max_memory", new Callable<String>()

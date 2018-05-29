@@ -112,6 +112,11 @@ public class ExplosiveController extends Controller
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onLoad(EntityExplodeEvent e)
 	{
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+
 		if(Config.FACTIONS && Gate.factions())
 		{
 			return;
