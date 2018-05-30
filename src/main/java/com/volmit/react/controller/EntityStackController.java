@@ -1,18 +1,39 @@
 package com.volmit.react.controller;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
-import org.bukkit.*;
-import org.bukkit.attribute.*;
-import org.bukkit.entity.*;
-import org.bukkit.event.*;
-import org.bukkit.event.entity.*;
-import org.bukkit.event.entity.CreatureSpawnEvent.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
+import org.bukkit.World;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 
-import com.volmit.react.*;
-import com.volmit.react.api.*;
-import com.volmit.react.util.*;
+import com.volmit.react.Config;
+import com.volmit.react.React;
+import com.volmit.react.ReactPlugin;
+import com.volmit.react.Surge;
+import com.volmit.react.api.Capability;
+import com.volmit.react.api.StackData;
+import com.volmit.react.api.StackedEntity;
+import com.volmit.react.util.A;
+import com.volmit.react.util.Area;
+import com.volmit.react.util.Controller;
+import com.volmit.react.util.D;
+import com.volmit.react.util.F;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.Profiler;
+import com.volmit.react.util.S;
+import com.volmit.react.util.TICK;
 
 public class EntityStackController extends Controller
 {

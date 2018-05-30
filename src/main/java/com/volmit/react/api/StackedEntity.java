@@ -1,13 +1,19 @@
 package com.volmit.react.api;
 
-import org.bukkit.*;
-import org.bukkit.attribute.*;
-import org.bukkit.entity.*;
-import org.bukkit.material.*;
-import org.bukkit.util.*;
+import org.bukkit.ChatColor;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.Ageable;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.material.Colorable;
+import org.bukkit.util.Vector;
 
-import com.volmit.react.*;
-import com.volmit.react.util.*;
+import com.volmit.react.Config;
+import com.volmit.react.util.F;
+import com.volmit.react.util.M;
+import com.volmit.react.util.PE;
+import com.volmit.react.util.ParticleEffect;
 
 public class StackedEntity
 {
@@ -287,7 +293,11 @@ public class StackedEntity
 
 		if(getMaxHealth() > getEffectiveMaxHealth(getCount()))
 		{
-			setHealth(getEffectiveMaxHealth(getCount()));
+			if(getHealth() > getEffectiveMaxHealth(getCount()))
+			{
+				setHealth(getEffectiveMaxHealth(getCount()));
+			}
+
 			setMaxHealth(getEffectiveMaxHealth(getCount()));
 		}
 	}
