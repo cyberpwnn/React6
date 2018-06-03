@@ -18,6 +18,7 @@ import com.volmit.react.Config;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Gate;
+import com.volmit.react.api.SampledType;
 import com.volmit.react.util.BlockFinder;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.Ex;
@@ -287,16 +288,20 @@ public class FastDecayController extends Controller
 	{
 		try
 		{
-			if(TICK.tick % 20 == 0)
+			if(SampledType.TPS.get().getValue() > 0 && SampledType.TPS.get().getValue() > 19.5)
 			{
-				Gate.refreshChunks();
-			}
+				if(TICK.tick % 20 == 0)
+				{
+					Gate.refreshChunks();
+				}
 
-			long ns = M.ns();
-
-			while(!queue.isEmpty() && M.ns() - ns < Config.FAST_LEAF_MAX_MS * 1000000)
-			{
-				doDecay(queue.popRandom());
+				long ns = M.ns();
+				int dv = 0;
+				while(!queue.isEmpty() && M.ns() - ns < Config.FAST_LEAF_MAX_MS * 1000000 && dv < 11)
+				{
+					dv++;
+					doDecay(queue.popRandom());
+				}
 			}
 		}
 

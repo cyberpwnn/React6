@@ -238,7 +238,7 @@ public class ReactPlugin extends JavaPlugin
 	@SuppressWarnings("deprecation")
 	public void stopRLServer()
 	{
-		new A()
+		new Thread("React Remote Killer")
 		{
 			@Override
 			public void run()
@@ -294,7 +294,7 @@ public class ReactPlugin extends JavaPlugin
 					}
 				}
 			}
-		};
+		}.start();
 	}
 
 	@Override
