@@ -9,9 +9,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockRedstoneEvent;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.SampledType;
 import com.volmit.react.controller.FeatureController;
 

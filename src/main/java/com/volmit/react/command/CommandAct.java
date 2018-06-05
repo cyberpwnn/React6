@@ -1,10 +1,14 @@
 package com.volmit.react.command;
 
+import java.util.List;
+
 import org.bukkit.Chunk;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
@@ -14,7 +18,6 @@ import com.volmit.react.api.ActionHandle;
 import com.volmit.react.api.ActionState;
 import com.volmit.react.api.ActionType;
 import com.volmit.react.api.ConsoleActionSource;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.IAction;
 import com.volmit.react.api.IActionSource;
 import com.volmit.react.api.ISelector;
@@ -47,6 +50,25 @@ public class CommandAct extends ReactCommand
 		registerParameterDescription("<action>", Lang.getString("command.act.action-par-desc")); //$NON-NLS-1$ //$NON-NLS-2$
 		registerParameterDescription("[options]", Lang.getString("command.act.options-par-desc")); //$NON-NLS-1$ //$NON-NLS-2$
 		registerParameterDescription("[force]", Lang.getString("command.act.force-par-desc") + C.RED + Lang.getString("command.act.force-against-conf-rules")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3)
+	{
+		GList<String> l = new GList<String>();
+
+		for(ActionType i : ActionType.values())
+		{
+			for(String j : React.instance.actionController.getAction(i).getNodes())
+			{
+				if(j.toLowerCase().toLowerCase().startsWith(arg3[1]))
+				{
+					l.add(j);
+				}
+			}
+		}
+
+		return l;
 	}
 
 	@Override

@@ -1,6 +1,9 @@
 package com.volmit.react.command;
 
+import java.util.List;
+
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -33,6 +36,14 @@ public class CommandHelp extends ReactCommand
 		description = Info.COMMAND_HELP_DESCRIPTION;
 		sideGate = SideGate.ANYTHING;
 		registerParameterDescription(Lang.getString("command.help.page"), Lang.getString("command.help.descriptor-page")); //$NON-NLS-1$ //$NON-NLS-2$
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3)
+	{
+		GList<String> l = new GList<String>();
+
+		return l;
 	}
 
 	@Override

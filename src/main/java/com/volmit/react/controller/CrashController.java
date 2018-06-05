@@ -4,8 +4,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.Surge;
-import com.volmit.react.api.Gate;
 import com.volmit.react.util.C;
 import com.volmit.react.util.CPS;
 import com.volmit.react.util.Controller;
@@ -52,9 +52,9 @@ public class CrashController extends Controller implements Runnable
 
 		if(cd > 0)
 		{
-			cd--;
+			cd -= 118;
 
-			if(cd == 0)
+			if(cd <= 0)
 			{
 				D.v("Watchdog Thread Started!");
 				inst = this;
@@ -96,7 +96,7 @@ public class CrashController extends Controller implements Runnable
 			if(px != null)
 			{
 				System.out.println("PLUGIN FREEZING SERVER: " + px.getName());
-				
+
 				for(CommandSender i : Gate.broadcastReactUsers())
 				{
 					Gate.msgError(i, "Warning! The server has been frozen for more than 7 seconds");
@@ -143,5 +143,17 @@ public class CrashController extends Controller implements Runnable
 	private String fcf(String className)
 	{
 		return className.split("\\.")[className.split("\\.").length - 1];
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 20;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return true;
 	}
 }

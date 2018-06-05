@@ -103,4 +103,16 @@ public class MemoryController extends Controller
 	{
 
 	}
+
+	@Override
+	public int getInterval()
+	{
+		return 948;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
+	}
 }

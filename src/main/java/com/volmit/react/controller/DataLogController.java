@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.React;
 import com.volmit.react.ReactPlugin;
 import com.volmit.react.api.DataLogArray;
@@ -69,6 +70,11 @@ public class DataLogController extends Controller
 
 	public void onTickAsync()
 	{
+		if(Gate.isLowMemory())
+		{
+			return;
+		}
+
 		if(!Config.DATALOG_ENABLED)
 		{
 			return;
@@ -83,7 +89,6 @@ public class DataLogController extends Controller
 		if(dla == null)
 		{
 			dla = new DataLogArray(new File(ReactPlugin.i.getDataFolder(), "cache"));
-
 		}
 
 		try
@@ -119,5 +124,17 @@ public class DataLogController extends Controller
 	public long getOldest()
 	{
 		return getDla().getLogs().get(React.instance.dataLogController.getDla().oldest());
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1305;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
 	}
 }

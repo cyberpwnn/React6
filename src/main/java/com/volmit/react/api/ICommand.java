@@ -1,8 +1,9 @@
 package com.volmit.react.api;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 
-public interface ICommand
+public interface ICommand extends TabCompleter
 {
 	public String getCommand();
 

@@ -1,14 +1,16 @@
 package com.volmit.react.command;
 
 import java.util.Collections;
+import java.util.List;
 
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.React;
 import com.volmit.react.api.Capability;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
@@ -32,6 +34,14 @@ public class CommandPing extends ReactCommand
 		sideGate = SideGate.ANYTHING;
 		registerParameterDescription("[player]", "the player to ping (or multiple)");
 		registerParameterDescription("[opts]", "-t or --top to view totals");
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3)
+	{
+		GList<String> l = new GList<String>();
+
+		return l;
 	}
 
 	@Override

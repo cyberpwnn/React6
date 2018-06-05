@@ -19,7 +19,7 @@ import com.volmit.react.util.GList;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.M;
 import com.volmit.react.util.Platform;
-import com.volmit.react.util.TaskLater;
+import com.volmit.react.util.S;
 
 public class ReactServer extends Thread
 {
@@ -220,7 +220,7 @@ public class ReactServer extends Thread
 
 					if(u.canUseConsole())
 					{
-						new TaskLater("tcommand-server", 2)
+						new S("tcommand-server")
 						{
 							@Override
 							public void run()

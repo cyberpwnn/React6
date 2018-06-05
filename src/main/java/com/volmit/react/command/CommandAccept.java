@@ -1,16 +1,20 @@
 package com.volmit.react.command;
 
+import java.util.List;
+
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
 import com.volmit.react.api.TemporaryAccessor;
+import com.volmit.react.util.GList;
 import com.volmit.react.util.P;
 
 public class CommandAccept extends ReactCommand
@@ -23,6 +27,22 @@ public class CommandAccept extends ReactCommand
 		usage = Info.COMMAND_ACCEPT_USAGE;
 		description = Info.COMMAND_ACCEPT_DESCRIPTION;
 		sideGate = SideGate.ANYTHING;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3)
+	{
+		GList<String> l = new GList<String>();
+
+		for(Player i : CommandAccess.req)
+		{
+			if(i.getName().toLowerCase().toLowerCase().startsWith(arg3[1]))
+			{
+				l.add(i.getName());
+			}
+		}
+
+		return l;
 	}
 
 	@Override

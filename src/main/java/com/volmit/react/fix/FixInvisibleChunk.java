@@ -5,13 +5,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
+import com.volmit.react.Gate;
 import com.volmit.react.React;
 import com.volmit.react.api.ActionType;
 import com.volmit.react.api.Capability;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.PlayerActionSource;
 import com.volmit.react.api.SelectorPosition;
-import com.volmit.react.util.TaskLater;
+import com.volmit.react.util.S;
 
 public class FixInvisibleChunk extends Fix implements Listener
 {
@@ -52,7 +52,7 @@ public class FixInvisibleChunk extends Fix implements Listener
 				}
 			}
 
-			new TaskLater("kdel", 5)
+			new S("kdel")
 			{
 				@Override
 				public void run()

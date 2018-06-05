@@ -133,4 +133,16 @@ public class ChunkController extends Controller
 	{
 		return serverLoads;
 	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return true;
+	}
 }

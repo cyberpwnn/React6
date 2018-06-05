@@ -101,4 +101,16 @@ public class ProtocolController extends Controller
 	{
 		return proto.getTimes();
 	}
+
+	@Override
+	public int getInterval()
+	{
+		return 4;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
+	}
 }

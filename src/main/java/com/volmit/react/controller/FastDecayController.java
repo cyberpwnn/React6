@@ -15,10 +15,9 @@ import org.bukkit.material.Leaves;
 import org.bukkit.util.Vector;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
-import com.volmit.react.api.Gate;
-import com.volmit.react.api.SampledType;
 import com.volmit.react.util.BlockFinder;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.Ex;
@@ -70,7 +69,6 @@ public class FastDecayController extends Controller
 		{
 			return;
 		}
-
 		checkBreak(e.getBlock());
 	}
 
@@ -99,6 +97,8 @@ public class FastDecayController extends Controller
 				return;
 			}
 
+			Gate.pulse();
+
 			for(Block i : W.blockFaces(source))
 			{
 				if(leaves.contains(i.getType()))
@@ -109,7 +109,7 @@ public class FastDecayController extends Controller
 
 						if(!b)
 						{
-							new S("decayer")
+							new S("decayqueue")
 							{
 								@Override
 								public void run()
@@ -288,20 +288,25 @@ public class FastDecayController extends Controller
 	{
 		try
 		{
-			if(SampledType.TPS.get().getValue() > 0 && SampledType.TPS.get().getValue() > 19.5)
+			if(TICK.tick % 20 == 0)
 			{
-				if(TICK.tick % 20 == 0)
-				{
-					Gate.refreshChunks();
-				}
+				Gate.refreshChunks();
+			}
 
-				long ns = M.ns();
-				int dv = 0;
-				while(!queue.isEmpty() && M.ns() - ns < Config.FAST_LEAF_MAX_MS * 1000000 && dv < 11)
+			long ns = M.ns();
+			int dv = 0;
+			while(!queue.isEmpty() && M.ns() - ns < Config.FAST_LEAF_MAX_MS * 1000000 && dv < 25)
+			{
+				Block b = queue.pop();
+				dv++;
+				new S("sdecay")
 				{
-					dv++;
-					doDecay(queue.popRandom());
-				}
+					@Override
+					public void run()
+					{
+						doDecay(b);
+					}
+				};
 			}
 		}
 
@@ -309,5 +314,17 @@ public class FastDecayController extends Controller
 		{
 			Ex.t(e);
 		}
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 3;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
 	}
 }

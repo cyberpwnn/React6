@@ -3,11 +3,12 @@ package com.volmit.react.controller;
 import org.bukkit.command.CommandSender;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.Surge;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.IFix;
 import com.volmit.react.fix.FixEntityAI;
 import com.volmit.react.fix.FixInvisibleChunk;
+import com.volmit.react.fix.FixLowMM;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.GList;
@@ -29,6 +30,7 @@ public class FixController extends Controller
 		fixes = new GList<IFix>();
 
 		fixes.add(new FixEntityAI());
+		fixes.add(new FixLowMM());
 		fixes.add(new FixInvisibleChunk());
 
 		Surge.register(this);
@@ -81,5 +83,17 @@ public class FixController extends Controller
 	public void tick()
 	{
 
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1612;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
 	}
 }

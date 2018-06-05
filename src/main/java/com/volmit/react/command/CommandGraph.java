@@ -1,11 +1,13 @@
 package com.volmit.react.command;
 
 import java.io.File;
+import java.util.List;
 
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import com.volmit.react.Config;
-import com.volmit.react.api.Gate;
+import com.volmit.react.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SampledType;
@@ -30,6 +32,14 @@ public class CommandGraph extends ReactCommand
 		sideGate = SideGate.ANYTHING;
 		registerParameterDescription("<duration>", "Duration of time back, 2m, 4h 1d, 30s etc.");
 		registerParameterDescription("[samplers...]", "List of samplers to graph across this time.\nFor example /re graph 30m tps mem");
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3)
+	{
+		GList<String> l = new GList<String>();
+
+		return l;
 	}
 
 	public long parseTime(String input)

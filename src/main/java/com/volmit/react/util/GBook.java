@@ -5,7 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 
-import com.volmit.react.api.Gate;
+import com.volmit.react.Gate;
 
 public class GBook
 {

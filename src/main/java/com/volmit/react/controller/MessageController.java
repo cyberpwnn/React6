@@ -3,10 +3,10 @@ package com.volmit.react.controller;
 import org.bukkit.entity.Player;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.Note;
 import com.volmit.react.api.Notification;
 import com.volmit.react.api.Permissable;
@@ -190,5 +190,17 @@ public class MessageController extends Controller
 			String s = TXT.makeTag(C.AQUA, C.DARK_GRAY, C.GRAY, Info.CORE_NAME + " - " + C.WHITE + F.capitalizeWords(n.getType().toString().toLowerCase())) + n.getMessage();
 			Gate.console(s);
 		}
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 19;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
 	}
 }

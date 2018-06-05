@@ -13,9 +13,9 @@ import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
-import com.volmit.react.api.Gate;
 import com.volmit.react.util.Average;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.GList;
@@ -133,10 +133,16 @@ public class RedstoneController extends Controller
 	@Override
 	public void tick()
 	{
+		if(Gate.lowMemoryMode)
+		{
+			return;
+		}
+
 		if(Config.SAFE_MODE_NMS)
 		{
 			return;
 		}
+
 		checkChunks();
 		aRST.put(redstonePerTick);
 		aRSS.put(redstonePerSecond);
@@ -183,6 +189,10 @@ public class RedstoneController extends Controller
 
 	public void queue(Block b)
 	{
+		if(Gate.lowMemoryMode)
+		{
+			return;
+		}
 		if(!queue.containsKey(b.getChunk()))
 		{
 			queue.put(b.getChunk(), new GSet<Block>());
@@ -250,33 +260,41 @@ public class RedstoneController extends Controller
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void on(ChunkUnloadEvent e)
 	{
-		if(Config.SAFE_MODE_NMS)
-		{
+		if(Gate.lowMemoryMode)
+	{
 			return;
 		}
-		releaseChunk(e.getChunk());
+	if(Config.SAFE_MODE_NMS)
+	{
+		return;
+	}
+	releaseChunk(e.getChunk());
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void on(BlockPhysicsEvent e)
 	{
-		if(Config.SAFE_MODE_NMS)
-		{
+		if(Gate.lowMemoryMode)
+	{
 			return;
 		}
-		if(ignore.contains(e.getChangedType()))
-		{
-			tickNextTickList();
-			React.instance.physicsController.onRedstone(e.getBlock().getChunk());
-			redstonePerSecond++;
-			redstonePerTick++;
+	if(Config.SAFE_MODE_NMS)
+	{
+		return;
+	}
+	if(ignore.contains(e.getChangedType()))
+	{
+		tickNextTickList();
+		React.instance.physicsController.onRedstone(e.getBlock().getChunk());
+		redstonePerSecond++;
+		redstonePerTick++;
 
-			if(isFrozen(e.getBlock().getChunk()))
-			{
-				queue(e.getBlock());
-				e.setCancelled(true);
-			}
+		if(isFrozen(e.getBlock().getChunk()))
+		{
+			queue(e.getBlock());
+			e.setCancelled(true);
 		}
+	}
 	}
 
 	public GSet<Material> getIgnore()
@@ -337,5 +355,17 @@ public class RedstoneController extends Controller
 	public long getLastTick()
 	{
 		return lastTick;
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return true;
 	}
 }

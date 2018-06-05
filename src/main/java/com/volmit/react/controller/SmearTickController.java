@@ -11,9 +11,9 @@ import org.bukkit.event.world.WorldUnloadEvent;
 import org.spigotmc.TickLimiter;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Capability;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.SpecializedTickLimiter;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.Ex;
@@ -436,5 +436,17 @@ public class SmearTickController extends Controller
 		}
 
 		return null;
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1234;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
 	}
 }

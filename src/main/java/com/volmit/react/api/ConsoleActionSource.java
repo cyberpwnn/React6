@@ -2,6 +2,7 @@ package com.volmit.react.api;
 
 import org.bukkit.Bukkit;
 
+import com.volmit.react.Gate;
 import com.volmit.react.Lang;
 
 public class ConsoleActionSource implements IActionSource

@@ -1,10 +1,13 @@
 package com.volmit.react.command;
 
+import java.util.List;
+
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.React;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.IFix;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
@@ -22,6 +25,33 @@ public class CommandFix extends ReactCommand
 		usage = Info.COMMAND_FIX_USAGE;
 		description = Info.COMMAND_FIX_DESCRIPTION;
 		sideGate = SideGate.ANYTHING;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3)
+	{
+		GList<String> l = new GList<String>();
+
+		for(IFix i : React.instance.fixController.getFixes())
+		{
+			if(i.getId().toLowerCase().startsWith(arg3[1]))
+			{
+				l.add(i.getId());
+			}
+		}
+
+		for(IFix i : React.instance.fixController.getFixes())
+		{
+			for(String j : i.getAliases())
+			{
+				if(j.toLowerCase().startsWith(arg3[1]))
+				{
+					l.add(j);
+				}
+			}
+		}
+
+		return l;
 	}
 
 	@Override

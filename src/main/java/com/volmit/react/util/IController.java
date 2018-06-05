@@ -8,6 +8,10 @@ public interface IController
 
 	public void tick();
 
+	public int getInterval();
+
+	public boolean isUrgent();
+
 	public void setTime(double ms);
 
 	public double getTime();

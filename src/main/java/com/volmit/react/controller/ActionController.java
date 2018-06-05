@@ -4,6 +4,7 @@ import org.bukkit.Chunk;
 import org.bukkit.command.CommandSender;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.action.ActionCPUScore;
 import com.volmit.react.action.ActionChunkTest;
 import com.volmit.react.action.ActionCollectGarbage;
@@ -25,7 +26,6 @@ import com.volmit.react.api.ActionException;
 import com.volmit.react.api.ActionState;
 import com.volmit.react.api.ActionType;
 import com.volmit.react.api.ConsoleActionSource;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.IAction;
 import com.volmit.react.api.IActionSource;
 import com.volmit.react.api.ISelector;
@@ -382,5 +382,17 @@ public class ActionController extends Controller
 	public void clearQueue(CommandSender sender)
 	{
 		pending.clear();
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 7;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
 	}
 }

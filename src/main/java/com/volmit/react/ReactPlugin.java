@@ -10,7 +10,6 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.volmit.react.api.Capability;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.legacy.server.ReactServer;
 import com.volmit.react.util.A;
@@ -180,24 +179,54 @@ public class ReactPlugin extends JavaPlugin
 
 		for(IController i : controllers.copy())
 		{
-			try
-			{
-				Profiler p = new Profiler();
-				p.begin();
-				i.tick();
-				p.end();
-				i.setTime(p.getMilliseconds());
-			}
-
-			catch(Throwable e)
-			{
-				Ex.t(e);
-			}
+			doTick(i);
 		}
 
 		try
 		{
 			pool.tickSyncQueue();
+		}
+
+		catch(Throwable e)
+		{
+			Ex.t(e);
+		}
+	}
+
+	private void doTick(IController i)
+	{
+		if(TICK.tick % (i.getInterval() < 1 ? 1 : i.getInterval()) != 0)
+		{
+			return;
+		}
+
+		if(i.isUrgent())
+		{
+			handle(i);
+		}
+
+		else
+		{
+			new S("tick-task-" + i.getClass().getSimpleName())
+			{
+				@Override
+				public void run()
+				{
+					handle(i);
+				}
+			};
+		}
+	}
+
+	private void handle(IController i)
+	{
+		try
+		{
+			Profiler p = new Profiler();
+			p.begin();
+			i.tick();
+			p.end();
+			i.setTime(p.getMilliseconds());
 		}
 
 		catch(Throwable e)

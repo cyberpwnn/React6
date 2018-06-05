@@ -90,13 +90,20 @@
                 <goals>
                   <goal>exec</goal>
                 </goals>
+                <configuration>
+                  <executable>C:\Users\cyberpwn\Documents\development\workspace\React6\scripts\development.bat</executable>
+                  <arguments>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.554.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\servers\dynamic\plugins\React.jar</argument>
+                  </arguments>
+                </configuration>
               </execution>
             </executions>
             <configuration>
-              <executable>${script.development}</executable>
+              <executable>C:\Users\cyberpwn\Documents\development\workspace\React6\scripts\development.bat</executable>
               <arguments>
-                <argument>${react.release.target}</argument>
-                <argument>${react.development.location}</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.554.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\servers\dynamic\plugins\React.jar</argument>
               </arguments>
             </configuration>
           </plugin>
@@ -118,32 +125,19 @@
                 <goals>
                   <goal>exec</goal>
                 </goals>
-                <configuration>
-                  <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
-                  <arguments>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.554.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.554/mapping.txt</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.554/React-6.554-origin.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.554/React-6.554.jar</argument>
-                  </arguments>
-                </configuration>
               </execution>
             </executions>
             <configuration>
-              <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
+              <executable>${script.release}</executable>
               <arguments>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.554.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.554/mapping.txt</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.554/React-6.554-origin.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.554/React-6.554.jar</argument>
+                <argument>${react.release.target}</argument>
+                <argument>${react.export.in}</argument>
+                <argument>${exp1}</argument>
+                <argument>${oexp1}</argument>
+                <argument>${exp2}</argument>
+                <argument>${oexp2}</argument>
+                <argument>${exp3}</argument>
+                <argument>${oexp3}</argument>
               </arguments>
             </configuration>
           </plugin>
@@ -215,6 +209,13 @@
       <artifactId>async-http-client</artifactId>
       <version>1.6.3</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.mm</groupId>
+      <artifactId>myth</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${react.libs}/MythicMobs-4.3.2-SNAPSHOT.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>spigot.org</groupId>

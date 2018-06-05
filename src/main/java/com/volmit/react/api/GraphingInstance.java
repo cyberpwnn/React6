@@ -1,16 +1,32 @@
 package com.volmit.react.api;
 
-import org.bukkit.*;
-import org.bukkit.enchantments.*;
-import org.bukkit.entity.*;
-import org.bukkit.event.*;
-import org.bukkit.event.player.*;
-import org.bukkit.inventory.*;
-import org.bukkit.inventory.meta.*;
-import org.bukkit.map.*;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.map.MapCanvas;
+import org.bukkit.map.MapView;
 
-import com.volmit.react.*;
-import com.volmit.react.util.*;
+import com.volmit.react.Config;
+import com.volmit.react.Gate;
+import com.volmit.react.React;
+import com.volmit.react.Surge;
+import com.volmit.react.util.C;
+import com.volmit.react.util.F;
+import com.volmit.react.util.GList;
+import com.volmit.react.util.GSound;
+import com.volmit.react.util.M;
+import com.volmit.react.util.MSound;
+import com.volmit.react.util.Task;
 
 public class GraphingInstance implements Listener
 {
@@ -38,6 +54,7 @@ public class GraphingInstance implements Listener
 		mapping = false;
 		Surge.register(this);
 		this.player = player;
+		graphs = new GList<PointedGraph>();
 		renderer = new IRenderer()
 		{
 			@Override

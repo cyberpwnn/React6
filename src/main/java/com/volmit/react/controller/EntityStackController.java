@@ -18,6 +18,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.React;
 import com.volmit.react.ReactPlugin;
 import com.volmit.react.Surge;
@@ -472,7 +473,10 @@ public class EntityStackController extends Controller
 		{
 			return;
 		}
-
+		if(Gate.isMythic(e) && !Config.STACK_MYTHIC_MOBS)
+		{
+			return;
+		}
 		Area a = new Area(e.getLocation().clone(), Config.ENTITYSTACK_GROUP_SEARCH_RADIUS);
 		GList<LivingEntity> le = new GList<LivingEntity>();
 		GList<StackedEntity> fullStacks = new GList<StackedEntity>();
@@ -505,6 +509,11 @@ public class EntityStackController extends Controller
 			}
 
 			if(i.getType().equals(EntityType.DROPPED_ITEM))
+			{
+				continue;
+			}
+
+			if(Gate.isMythic(i) && !Config.STACK_MYTHIC_MOBS)
 			{
 				continue;
 			}
@@ -575,5 +584,17 @@ public class EntityStackController extends Controller
 
 			checkNear((LivingEntity) e.getEntity());
 		}
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 5;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
 	}
 }

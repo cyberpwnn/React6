@@ -1,14 +1,18 @@
 package com.volmit.react.command;
 
+import java.util.List;
+
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
+import com.volmit.react.util.GList;
 import com.volmit.react.util.P;
 
 public class CommandRevoke extends ReactCommand
@@ -21,6 +25,13 @@ public class CommandRevoke extends ReactCommand
 		usage = Info.COMMAND_REVOKE_USAGE;
 		description = Info.COMMAND_REVOKE_DESCRIPTION;
 		sideGate = SideGate.ANYTHING;
+	}
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3)
+	{
+		GList<String> l = new GList<String>();
+
+		return l;
 	}
 
 	@Override

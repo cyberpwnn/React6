@@ -3,6 +3,7 @@ package com.volmit.react.api;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.util.Ex;
 import com.volmit.react.util.GList;

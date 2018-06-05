@@ -10,9 +10,9 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.inventory.ItemStack;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.Unused;
 import com.volmit.react.util.Average;
 import com.volmit.react.util.Controller;
@@ -177,5 +177,17 @@ public class ExplosiveController extends Controller
 	public Average getaCSMS()
 	{
 		return aCSMS;
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 0;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return true;
 	}
 }

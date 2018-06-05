@@ -4,12 +4,12 @@ import org.bukkit.Chunk;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
 import com.volmit.react.api.Action;
 import com.volmit.react.api.ActionState;
 import com.volmit.react.api.ActionType;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.IActionSource;
 import com.volmit.react.api.ISelector;
 import com.volmit.react.api.SelectionMode;

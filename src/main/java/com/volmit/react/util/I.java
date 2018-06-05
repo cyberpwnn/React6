@@ -35,7 +35,7 @@ public class I
 		v.put(name, pr);
 	}
 
-	public static void b(String name)
+	public static double b(String name)
 	{
 		if(v.containsKey(name) && m.containsKey(name) && y.containsKey(name) && h.containsKey(name))
 		{
@@ -44,6 +44,10 @@ public class I
 			pr.end();
 			y.put(name, y.get(name) + pr.getMilliseconds());
 			m.get(name).put(pr.getMilliseconds());
+
+			return pr.getMilliseconds();
 		}
+
+		return 0;
 	}
 }

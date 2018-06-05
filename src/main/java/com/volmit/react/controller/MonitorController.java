@@ -13,13 +13,13 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
 import com.volmit.react.ReactPlugin;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Capability;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.MonitorHeading;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactPlayer;
@@ -97,7 +97,7 @@ public class MonitorController extends Controller
 
 		D.v("Setup Monitor and Action Log"); //$NON-NLS-1$
 
-		new TaskLater("waiter-sb") //$NON-NLS-1$
+		new S("waiter-sb") //$NON-NLS-1$
 		{
 			@Override
 			public void run()
@@ -878,5 +878,17 @@ public class MonitorController extends Controller
 		{
 			changePost(React.instance.playerController.getPlayer(p));
 		}
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return true;
 	}
 }

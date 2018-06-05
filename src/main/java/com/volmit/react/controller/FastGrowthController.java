@@ -136,4 +136,16 @@ public class FastGrowthController extends Controller
 	{
 		return aCSMS;
 	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
+	}
 }

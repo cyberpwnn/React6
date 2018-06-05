@@ -2,6 +2,8 @@ package com.volmit.react.api;
 
 import org.bukkit.command.CommandSender;
 
+import com.volmit.react.Gate;
+
 public class CommandSenderActionSource implements IActionSource
 {
 	private CommandSender sender;

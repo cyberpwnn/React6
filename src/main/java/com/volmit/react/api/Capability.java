@@ -3,6 +3,7 @@ package com.volmit.react.api;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
+import com.volmit.react.Gate;
 import com.volmit.react.Lang;
 import com.volmit.react.util.C;
 import com.volmit.react.util.GList;
@@ -10,6 +11,7 @@ import com.volmit.react.util.Protocol;
 
 public class Capability
 {
+	public static final Capability MYTHIC_MOBS = new Capability("Mythic Mobs Support", Protocol.R1_8, "MythicMobs");
 	public static final Capability DUAL_WEILD = new Capability(Lang.getString("react.capabilities.dual-wield"), Protocol.R1_9); //$NON-NLS-1$
 	public static final Capability PLACEHOLDERS = new Capability("Placeholders", Protocol.R1_7_10, "PlaceholderAPI"); //$NON-NLS-1$
 	public static final Capability SCOREBOARD = new Capability(Lang.getString("react.capabilities.scoreboard"), Protocol.B1_5); //$NON-NLS-1$
@@ -52,6 +54,7 @@ public class Capability
 		capabilities.add(PASSENGERS);
 		capabilities.add(ARROW_OWNER);
 		capabilities.add(FAST_MAPPING);
+		capabilities.add(MYTHIC_MOBS);
 	}
 
 	private final Protocol version;

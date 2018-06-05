@@ -1,12 +1,14 @@
 package com.volmit.react.controller;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.Surge;
 import com.volmit.react.api.IRAI;
 import com.volmit.react.api.RAI;
 import com.volmit.react.util.A;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.TICK;
 
 public class RAIController extends Controller
 {
@@ -46,6 +48,11 @@ public class RAIController extends Controller
 			return;
 		}
 
+		if(Gate.isLowMemory() && TICK.tick % 5 != 0)
+		{
+			return;
+		}
+
 		new A()
 		{
 			@Override
@@ -59,5 +66,17 @@ public class RAIController extends Controller
 	public IRAI getRai()
 	{
 		return rai;
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return true;
 	}
 }

@@ -2,6 +2,7 @@ package com.volmit.react.api;
 
 import org.bukkit.entity.Player;
 
+import com.volmit.react.Gate;
 import com.volmit.react.util.P;
 
 public class AccessActionSource implements IActionSource

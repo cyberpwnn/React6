@@ -9,9 +9,9 @@ import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
-import com.volmit.react.api.Gate;
 import com.volmit.react.util.Average;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.GMap;
@@ -323,5 +323,17 @@ public class FluidController extends Controller
 	public GMap<Chunk, Long> getFreezeTimes()
 	{
 		return freezeTimes;
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return true;
 	}
 }

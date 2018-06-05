@@ -1,17 +1,21 @@
 package com.volmit.react.command;
 
+import java.util.List;
+
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.React;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.Note;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Ex;
+import com.volmit.react.util.GList;
 
 public class CommandSubscribe extends ReactCommand
 {
@@ -32,6 +36,20 @@ public class CommandSubscribe extends ReactCommand
 		}
 
 		registerParameterDescription("[channel]", "The channel to subscribe to. " + ch + C.GRAY);
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3)
+	{
+		GList<String> l = new GList<String>();
+		for(Note i : Note.values())
+		{
+			if(i.name().toLowerCase().startsWith(arg3[1]))
+			{
+				l.add(i.name().toLowerCase());
+			}
+		}
+		return l;
 	}
 
 	@Override

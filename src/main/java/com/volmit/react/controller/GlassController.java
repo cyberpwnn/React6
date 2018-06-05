@@ -16,10 +16,10 @@ import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.Inventory;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactPlayer;
 import com.volmit.react.util.A;
@@ -377,5 +377,17 @@ public class GlassController extends Controller
 				q.put(a, Info.COLOR_HOPPER);
 			}
 		}
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 6;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
 	}
 }

@@ -4,6 +4,7 @@ public abstract class Execution implements Runnable
 {
 	public static int id = 0;
 	public int idx = id++;
+	public String idv;
 
 	@Override
 	public int hashCode()

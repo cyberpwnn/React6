@@ -1,12 +1,15 @@
 package com.volmit.react.command;
 
+import java.util.List;
+
 import org.bukkit.Chunk;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.api.ChunkIssue;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.LagMap;
 import com.volmit.react.api.LagMapChunk;
 import com.volmit.react.api.Permissable;
@@ -15,6 +18,7 @@ import com.volmit.react.api.SideGate;
 import com.volmit.react.controller.EventController;
 import com.volmit.react.util.C;
 import com.volmit.react.util.F;
+import com.volmit.react.util.GList;
 
 public class CommandChunk extends ReactCommand
 {
@@ -26,6 +30,14 @@ public class CommandChunk extends ReactCommand
 		usage = Info.COMMAND_CHUNK_USAGE;
 		description = Info.COMMAND_CHUNK_DESCRIPTION;
 		sideGate = SideGate.PLAYERS_ONLY;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3)
+	{
+		GList<String> l = new GList<String>();
+
+		return l;
 	}
 
 	@Override

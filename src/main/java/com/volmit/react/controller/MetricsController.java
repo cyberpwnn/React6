@@ -90,4 +90,16 @@ public class MetricsController extends Controller
 	{
 
 	}
+
+	@Override
+	public int getInterval()
+	{
+		return 2016;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
+	}
 }

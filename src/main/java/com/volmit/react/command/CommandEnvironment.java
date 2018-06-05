@@ -1,13 +1,15 @@
 package com.volmit.react.command;
 
 import java.io.File;
+import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.ReactPlugin;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
@@ -15,6 +17,7 @@ import com.volmit.react.util.Amounts;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
+import com.volmit.react.util.GList;
 import com.volmit.react.util.Platform;
 
 public class CommandEnvironment extends ReactCommand
@@ -27,6 +30,14 @@ public class CommandEnvironment extends ReactCommand
 		usage = Info.COMMAND_ENV_USAGE;
 		description = Info.COMMAND_ENV_DESCRIPTION;
 		sideGate = SideGate.ANYTHING;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3)
+	{
+		GList<String> l = new GList<String>();
+
+		return l;
 	}
 
 	@Override

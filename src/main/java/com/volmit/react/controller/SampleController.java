@@ -5,10 +5,10 @@ import java.lang.reflect.Field;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
+import com.volmit.react.Gate;
 import com.volmit.react.React;
 import com.volmit.react.ReactPlugin;
 import com.volmit.react.Surge;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.ISampler;
 import com.volmit.react.api.MemoryTracker;
 import com.volmit.react.api.Note;
@@ -153,6 +153,11 @@ public class SampleController extends Controller
 
 	public void report(String key, double d)
 	{
+		if(Gate.lowMemoryMode)
+		{
+			return;
+		}
+
 		if(!reports.containsKey(key))
 		{
 			reports.put(key, 0.0);
@@ -422,5 +427,17 @@ public class SampleController extends Controller
 
 			e.setCancelled(true);
 		}
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return true;
 	}
 }

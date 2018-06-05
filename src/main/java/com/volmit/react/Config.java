@@ -42,6 +42,11 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean USE_COLLISION = true;
 
+	@Comment("Learns the 'gist' of repeated executions and attempts to grab low cpu tasks and burn through them to improve low ms latency.")
+	@Key("features.react.queue.group-suppression")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean QUEUE_SUPPRESSION = true;
+
 	@Comment("Disables collision for entities about to be culled.")
 	@Key("features.react.collision.disable-collide-on-pre-cull")
 	@Injection(InjectionMethod.SWAP)
@@ -118,6 +123,21 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 1, max = 600)
 	public static int ENTITY_MARK_TIME = 200;
+
+	@Comment("If mythic mobs is enabled, allow purging of them with /re a pe")
+	@Key("features.mythic-mobs.allow-purging")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean PURGE_MYTHIC_MOBS = true;
+
+	@Comment("If mythic mobs is enabled, allow culling of them with /re a ce")
+	@Key("features.mythic-mobs.allow-culling")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean CULL_MYTHIC_MOBS = true;
+
+	@Comment("If mythic mobs is enabled, use mob stacking on them")
+	@Key("features.mythic-mobs.allow-stacking")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean STACK_MYTHIC_MOBS = false;
 
 	@Comment("Use nametags for a countdown")
 	@Key("features.culling.mark-for-death.name-tags.enabled")
@@ -1074,6 +1094,7 @@ public class Config
 		scrs.add("@Defer Leashed"); //$NON-NLS-1$
 		scrs.add("@Defer Stacked"); //$NON-NLS-1$
 		scrs.add("@Defer Ridden"); //$NON-NLS-1$
+		scrs.add("@Defer Mythic");
 		scrs.add("@Defer Young");
 		scrs.add("@Defer Non-Living");
 		scrs.add("@Defer Grounded");

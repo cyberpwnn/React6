@@ -1,18 +1,21 @@
 package com.volmit.react.command;
 
 import java.io.File;
+import java.util.List;
 
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.React;
 import com.volmit.react.ReactPlugin;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
 import com.volmit.react.util.Ex;
+import com.volmit.react.util.GList;
 
 public class CommandReload extends ReactCommand
 {
@@ -25,6 +28,13 @@ public class CommandReload extends ReactCommand
 		description = Info.COMMAND_RELOAD_DESCRIPTION;
 		sideGate = SideGate.ANYTHING;
 		registerParameterDescription("[options]", "-xconf Reset Configs\n\n-xwconf Reset World Configs\n\n-xcache Wipe Cache\n-xgoals Reset Rai goals");
+	}
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3)
+	{
+		GList<String> l = new GList<String>();
+
+		return l;
 	}
 
 	@Override

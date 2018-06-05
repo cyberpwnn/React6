@@ -123,4 +123,16 @@ public class CollisionController extends Controller
 	{
 
 	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1200;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
+	}
 }

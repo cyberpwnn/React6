@@ -6,7 +6,7 @@ public abstract class S extends Execution
 
 	public S(String s)
 	{
-		mgr.syncQueue(new Execution()
+		Execution e = new Execution()
 		{
 			@Override
 			public void run()
@@ -15,6 +15,8 @@ public abstract class S extends Execution
 				S.this.run();
 				I.b("sync." + s);
 			}
-		});
+		};
+		e.idv = s;
+		mgr.syncQueue(e);
 	}
 }

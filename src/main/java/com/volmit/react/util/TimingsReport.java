@@ -3,7 +3,7 @@ package com.volmit.react.util;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.volmit.react.api.Gate;
+import com.volmit.react.Gate;
 import com.volmit.react.api.SampledType;
 
 public class TimingsReport

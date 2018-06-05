@@ -6,10 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 
+import com.volmit.react.Gate;
 import com.volmit.react.ReactPlugin;
 import com.volmit.react.api.Action;
 import com.volmit.react.api.ActionType;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.IActionSource;
 import com.volmit.react.api.ISelector;
 import com.volmit.react.api.RAI;

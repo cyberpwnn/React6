@@ -1,6 +1,7 @@
 package com.volmit.react.api;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.util.Average;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
@@ -44,7 +45,7 @@ public class GraphSampleLine extends NormalGraph implements IGraph
 	@Override
 	public void onRender(BufferedFrame frame)
 	{
-		if(M.ms() - lastf < 1000.0 / (double) Config.MAP_FPS)
+		if(M.ms() - lastf < 1000.0 / (double) (Gate.isLowMemory() ? Config.MAP_FPS / 10 : Config.MAP_FPS))
 		{
 			if(last != null)
 			{

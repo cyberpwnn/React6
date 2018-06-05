@@ -1,16 +1,20 @@
 package com.volmit.react.command;
 
+import java.util.List;
+
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.React;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.Note;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
 import com.volmit.react.util.Ex;
+import com.volmit.react.util.GList;
 
 public class CommandUnsubscribe extends ReactCommand
 {
@@ -23,6 +27,13 @@ public class CommandUnsubscribe extends ReactCommand
 		description = Info.COMMAND_USUB_DESCRIPTION;
 		sideGate = SideGate.PLAYERS_ONLY;
 		registerParameterDescription("[channel]", "The channel to unsubscribe from");
+	}
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3)
+	{
+		GList<String> l = new GList<String>();
+
+		return l;
 	}
 
 	@Override

@@ -227,4 +227,16 @@ public class InstantDropController extends Controller
 	{
 
 	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1115;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
+	}
 }

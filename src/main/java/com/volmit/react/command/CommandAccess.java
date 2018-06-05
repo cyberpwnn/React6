@@ -1,16 +1,20 @@
 package com.volmit.react.command;
 
+import java.util.List;
+
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
 import com.volmit.react.util.F;
+import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.GSet;
 import com.volmit.react.util.M;
@@ -29,6 +33,14 @@ public class CommandAccess extends ReactCommand
 		description = Info.COMMAND_TEMPACCESS_DESCRIPTION;
 		sideGate = SideGate.PLAYERS_ONLY;
 		last = new GMap<Player, Long>();
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3)
+	{
+		GList<String> l = new GList<String>();
+
+		return l;
 	}
 
 	@Override

@@ -148,4 +148,16 @@ public class EventController extends Controller
 	{
 		slots.remove(e.getPlayer());
 	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return true;
+	}
 }

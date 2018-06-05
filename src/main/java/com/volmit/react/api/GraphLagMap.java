@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.controller.EventController;
 import com.volmit.react.util.M;
 
@@ -55,7 +56,7 @@ public class GraphLagMap extends Graph2D
 	@Override
 	public void onRender(BufferedFrame aframe)
 	{
-		if(M.ms() - lastf < 1000.0 / (double) Config.GRAPH_FPS)
+		if(M.ms() - lastf < 1000.0 / (double) (Gate.isLowMemory() ? Config.GRAPH_FPS / 7 : Config.GRAPH_FPS))
 		{
 			if(last != null)
 			{

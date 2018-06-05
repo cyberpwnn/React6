@@ -1,15 +1,19 @@
 package com.volmit.react.controller;
 
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
@@ -17,7 +21,6 @@ import com.volmit.react.ReactPlugin;
 import com.volmit.react.Surge;
 import com.volmit.react.action.ActionPurgeEntities;
 import com.volmit.react.api.ActionType;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.IAction;
 import com.volmit.react.api.ICommand;
 import com.volmit.react.api.Permissable;
@@ -62,9 +65,9 @@ import com.volmit.react.util.GList;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.xrai.RAIGoal;
 
-public class CommandController extends Controller implements Listener, CommandExecutor
+public class CommandController extends Controller implements Listener, CommandExecutor, TabCompleter
 {
-	private GList<ICommand> commands;
+	private GList<ICommand> commands = new GList<ICommand>();
 	private boolean k;
 
 	@Override
@@ -76,7 +79,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 	@Override
 	public void start()
 	{
-		k = false;
+		begin();
 	}
 
 	@Override
@@ -92,6 +95,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 		k = true;
 		Bukkit.getPluginCommand(Info.COMMAND_REACT).setExecutor(this);
 		Bukkit.getPluginCommand(Info.COMMAND_RAI).setExecutor(this);
+		Bukkit.getPluginCommand(Info.COMMAND_REACT).setTabCompleter(this);
 		Surge.register(this);
 		commands = new GList<ICommand>();
 		commands.add(new CommandInstallAgent());
@@ -125,10 +129,7 @@ public class CommandController extends Controller implements Listener, CommandEx
 	@Override
 	public void tick()
 	{
-		if(!k)
-		{
-			begin();
-		}
+
 	}
 
 	public void msg(CommandSender s, String msg)
@@ -234,6 +235,8 @@ public class CommandController extends Controller implements Listener, CommandEx
 
 		else if(c.getName().equalsIgnoreCase(Info.COMMAND_REACT))
 		{
+			Gate.pulse();
+
 			boolean plr = s instanceof Player;
 			Player px = plr ? (Player) s : null;
 
@@ -432,7 +435,6 @@ public class CommandController extends Controller implements Listener, CommandEx
 		}
 	}
 
-
 	public GList<ICommand> getCommands()
 	{
 		return commands;
@@ -451,5 +453,73 @@ public class CommandController extends Controller implements Listener, CommandEx
 	public void setK(boolean k)
 	{
 		this.k = k;
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1224;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args)
+	{
+		GList<String> o = new GList<String>();
+
+		if(args.length == 0)
+		{
+			for(ICommand i : getCommands())
+			{
+				o.add(i.getCommand());
+			}
+		}
+
+		else if(args.length == 1)
+		{
+			for(ICommand i : getCommands())
+			{
+				if(i.getCommand().startsWith(args[0].toLowerCase()))
+				{
+					o.add(i.getCommand());
+				}
+
+				for(String j : i.getAliases())
+				{
+					if(j.startsWith(args[0].toLowerCase()))
+					{
+						o.add(j);
+					}
+				}
+			}
+		}
+
+		else if(args.length == 2)
+		{
+			String cmdc = args[0];
+
+			for(ICommand i : getCommands())
+			{
+				if(i.getCommand().equalsIgnoreCase(cmdc))
+				{
+					o.addAll(i.onTabComplete(sender, command, alias, args));
+				}
+
+				for(String j : i.getAliases())
+				{
+					if(j.equalsIgnoreCase(cmdc))
+					{
+						o.addAll(i.onTabComplete(sender, command, alias, args));
+					}
+				}
+			}
+		}
+
+		return o;
 	}
 }

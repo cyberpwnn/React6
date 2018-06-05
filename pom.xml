@@ -198,6 +198,13 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.mm</groupId>
+			<artifactId>myth</artifactId>
+			<scope>system</scope>
+			<systemPath>${react.libs}/MythicMobs-4.3.2-SNAPSHOT.jar</systemPath>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
 			<groupId>spigot.org</groupId>
 			<artifactId>spigot-1.12.2</artifactId>
 			<scope>system</scope>

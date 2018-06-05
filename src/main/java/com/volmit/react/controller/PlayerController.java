@@ -11,7 +11,6 @@ import com.volmit.react.util.Controller;
 import com.volmit.react.util.GList;
 import com.volmit.react.util.GSet;
 import com.volmit.react.util.JSONObject;
-import com.volmit.react.util.TICK;
 
 public class PlayerController extends Controller
 {
@@ -50,23 +49,20 @@ public class PlayerController extends Controller
 	@Override
 	public void tick()
 	{
-		if(TICK.tick % 20 == 0)
-		{
-			GList<ReactPlayer> toSave = new GList<ReactPlayer>(save);
-			save.clear();
+		GList<ReactPlayer> toSave = new GList<ReactPlayer>(save);
+		save.clear();
 
-			new A()
+		new A()
+		{
+			@Override
+			public void run()
 			{
-				@Override
-				public void run()
+				for(ReactPlayer i : toSave)
 				{
-					for(ReactPlayer i : toSave)
-					{
-						requestSave(i.getP(), true);
-					}
+					requestSave(i.getP(), true);
 				}
-			};
-		}
+			}
+		};
 	}
 
 	public boolean has(Player p)
@@ -128,5 +124,17 @@ public class PlayerController extends Controller
 			getPlayer(e.getPlayer()).save();
 			players.remove(getPlayer(e.getPlayer()));
 		}
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 25;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
 	}
 }

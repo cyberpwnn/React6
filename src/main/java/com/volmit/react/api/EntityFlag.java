@@ -10,12 +10,14 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.entity.Tameable;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
+import com.volmit.react.Gate;
 import com.volmit.react.React;
 import com.volmit.react.util.GSet;
 
 public enum EntityFlag
 {
 	BREEDING("breeding"),
+	MYTHIC("mythic"),
 	BUILD_IRONGOLEM("build-irongolem"),
 	BUILD_SNOWMAN("build-snowman"),
 	BUILD_WITHER("build-wither"),
@@ -113,6 +115,11 @@ public enum EntityFlag
 
 	public boolean is(Entity e)
 	{
+		if(this.equals(EntityFlag.MYTHIC))
+		{
+			return Gate.isMythic(e);
+		}
+
 		if(this.equals(EntityFlag.UNDERWATER))
 		{
 			return e.getLocation().getBlock().isLiquid();

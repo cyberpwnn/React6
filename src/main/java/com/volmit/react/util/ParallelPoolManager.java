@@ -3,9 +3,12 @@ package com.volmit.react.util;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import com.volmit.react.Config;
+import com.volmit.react.Gate;
+import com.volmit.react.api.SampledType;
+
 public abstract class ParallelPoolManager
 {
-	private int hp = 5000;
 	private QueueMode mode;
 	private GList<ParallelThread> threads;
 	private int next;
@@ -13,6 +16,9 @@ public abstract class ParallelPoolManager
 	private Queue<Execution> squeue;
 	private String key;
 	private ThreadInformation info;
+	private long lpulse = M.ms();
+	private int scd = 50;
+	private GMap<String, Average> spikeSuppressor = new GMap<String, Average>();
 
 	public ParallelPoolManager(String key, int threadCount, QueueMode mode)
 	{
@@ -50,56 +56,162 @@ public abstract class ParallelPoolManager
 
 	public void tickSyncQueue()
 	{
-		long ns = M.ns();
-		double nsl = 0.337 * 1000000.0;
+		tickSyncQueue(false);
+	}
 
-		hp += 1 + (squeue.size() < 3 ? 5 : 0);
-
-		if(hp > 300)
+	public void tickSyncQueue(boolean force)
+	{
+		try
 		{
-			nsl += 2.25 * 1000000.0;
+			if(scd > 0)
+			{
+				scd--;
+
+				long ns = M.ns();
+				double nsl = (0.237) * 1000000.0;
+
+				while(!squeue.isEmpty() && M.ns() - ns < nsl)
+				{
+					burn();
+				}
+
+				return;
+			}
+
+			if(!squeue.isEmpty())
+			{
+				burn();
+			}
+
+			if(force && M.ms() - lpulse < 337)
+			{
+				force = false;
+			}
+
+			else
+			{
+				lpulse = M.ms();
+			}
+
+			if(squeue.size() > (79))
+			{
+				burnSection(0.25);
+			}
+
+			else if(squeue.size() > (30))
+			{
+				if(Gate.isLowMemory())
+				{
+					if(TICK.tick % 20 == 0)
+					{
+						burnSection(0.01);
+					}
+				}
+
+				else
+				{
+					burnSection(0.01);
+				}
+			}
+
+			if(SampledType.TPS.get().getValue() < 19.59)
+			{
+				return;
+			}
+
+			if(squeue.size() > (30) && TICK.tick % 5 == 0)
+			{
+				long ns = M.ns();
+				double nsl = (force ? 0.26 : 0.008) * 1000000.0;
+
+				while(!squeue.isEmpty() && M.ns() - ns < nsl)
+				{
+					burn();
+				}
+			}
 		}
 
-		if(squeue.size() > 275)
+		catch(Throwable e)
 		{
-			while(!squeue.isEmpty())
-			{
-				I.a("sync-queue.rawtick", 100);
-				squeue.poll().run();
-				hp--;
-				I.b("sync-queue.rawtick");
-			}
 
-			if(hp < 0)
-			{
-				hp = 0;
-			}
+		}
+	}
 
-			if(hp > 5000)
-			{
-				hp = 5000;
-			}
-
+	private void burnSection(double maxEstimatedMS)
+	{
+		if(!Config.QUEUE_SUPPRESSION)
+		{
 			return;
 		}
 
-		while(!squeue.isEmpty() && M.ns() - ns < nsl)
+		double estimatedTime = 0;
+		double consumed = 0;
+
+		GList<Execution> poll = new GList<Execution>();
+
+		for(Execution i : squeue)
 		{
-			I.a("sync-queue.rawtick", 100);
-			squeue.poll().run();
-			hp--;
-			I.b("sync-queue.rawtick");
+			if(i.idv != null && spikeSuppressor.containsKey(i.idv))
+			{
+				if(estimatedTime + spikeSuppressor.get(i.idv).getAverage() < maxEstimatedMS)
+				{
+					poll.add(i);
+					estimatedTime += spikeSuppressor.get(i.idv).getAverage();
+				}
+			}
 		}
 
-		if(hp < 0)
+		for(Execution i : poll)
 		{
-			hp = 0;
+			consumed += burn(i);
+			squeue.remove(i);
+
+			if(consumed > maxEstimatedMS)
+			{
+				return;
+			}
+		}
+	}
+
+	private void burn()
+	{
+		burn(squeue.poll());
+	}
+
+	private double burn(Execution ee)
+	{
+		I.a("sync-queue.rawtick", 100);
+		Profiler pr = new Profiler();
+		pr.begin();
+
+		try
+		{
+			ee.run();
+			pr.end();
+
+			if(ee.idv != null)
+			{
+				if(!spikeSuppressor.containsKey(ee.idv))
+				{
+					spikeSuppressor.put(ee.idv, new Average(200));
+				}
+
+				spikeSuppressor.get(ee.idv).put(pr.getMilliseconds());
+			}
 		}
 
-		if(hp > 5000)
+		catch(Throwable e)
 		{
-			hp = 5000;
+
 		}
+
+		if(pr.isProfiling())
+		{
+			pr.end();
+		}
+
+		I.b("sync-queue.rawtick");
+		return pr.getMilliseconds();
 	}
 
 	public long lock()

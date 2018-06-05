@@ -153,4 +153,16 @@ public class FeatureController extends Controller implements INMSBinding
 			trueBinding.merge(drop, into);
 		}
 	}
+
+	@Override
+	public int getInterval()
+	{
+		return 2212;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
+	}
 }

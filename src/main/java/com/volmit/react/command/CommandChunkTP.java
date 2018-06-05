@@ -1,8 +1,11 @@
 package com.volmit.react.command;
 
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -12,6 +15,7 @@ import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
 import com.volmit.react.util.Ex;
+import com.volmit.react.util.GList;
 
 public class CommandChunkTP extends ReactCommand
 {
@@ -27,6 +31,14 @@ public class CommandChunkTP extends ReactCommand
 		registerParameterDescription("<x>", Lang.getString("react.command.chunktp.x")); //$NON-NLS-1$ //$NON-NLS-2$
 		registerParameterDescription("<y>", Lang.getString("react.command.chunktp.y")); //$NON-NLS-1$ //$NON-NLS-2$
 		registerParameterDescription("<z>", Lang.getString("react.command.chunktp.z")); //$NON-NLS-1$ //$NON-NLS-2$
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3)
+	{
+		GList<String> l = new GList<String>();
+
+		return l;
 	}
 
 	@Override

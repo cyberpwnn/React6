@@ -1,5 +1,6 @@
 package com.volmit.react.util;
 
+import com.volmit.react.Gate;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.controller.CrashController;
@@ -52,7 +53,6 @@ public abstract class TPSMonitor extends Thread
 		lt = TICK.tick;
 		setPriority(Thread.MIN_PRIORITY);
 		running = true;
-
 	}
 
 	public abstract void onTicked();
@@ -154,7 +154,7 @@ public abstract class TPSMonitor extends Thread
 			{
 				if(!ran)
 				{
-					Thread.sleep(1);
+					Thread.sleep(Gate.isLowMemory() ? 4 : 1);
 				}
 			}
 

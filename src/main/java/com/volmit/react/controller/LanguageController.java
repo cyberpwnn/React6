@@ -317,4 +317,16 @@ public class LanguageController extends Controller
 	{
 
 	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1923;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
+	}
 }

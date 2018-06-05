@@ -13,12 +13,12 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Capability;
 import com.volmit.react.api.FrameColor;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.GraphCPUArc;
 import com.volmit.react.api.GraphLagMap;
 import com.volmit.react.api.GraphMemoryArc;
@@ -38,7 +38,7 @@ import com.volmit.react.util.GList;
 import com.volmit.react.util.GMap;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.P;
-import com.volmit.react.util.TaskLater;
+import com.volmit.react.util.S;
 
 public class GraphController extends Controller
 {
@@ -83,7 +83,7 @@ public class GraphController extends Controller
 			g.put(i, graph);
 		}
 
-		new TaskLater("waiter2")
+		new S("waiter2")
 		{
 			@Override
 			public void run()
@@ -170,7 +170,7 @@ public class GraphController extends Controller
 	@EventHandler
 	public void on(PlayerJoinEvent e)
 	{
-		new TaskLater("waiter2")
+		new S("waiter2")
 		{
 			@Override
 			public void run()
@@ -260,8 +260,7 @@ public class GraphController extends Controller
 	public void addReact(Player p, GList<PointedGraph> pg)
 	{
 		pg.add(new PointedGraph(new GraphText(Lang.getString("map.graph-text.react"), g.get(SampledType.REACT_TIME).getGraphColor()), GraphSize.WIDE)); //$NON-NLS-1$
-		pg.add(new PointedGraph(g.get(SampledType.REACT_TIME), GraphSize.SQUARE));
-		pg.add(new PointedGraph(g.get(SampledType.REACT_TASK_TIME), GraphSize.SQUARE));
+		pg.add(new PointedGraph(g.get(SampledType.REACT_TASK_TIME), GraphSize.WIDE));
 	}
 
 	public void toggleMapping(Player player, String[] args)
@@ -282,6 +281,72 @@ public class GraphController extends Controller
 		{
 			toggleMappingEod(player);
 			return;
+		}
+
+		if(args[0].equalsIgnoreCase("-x"))
+		{
+			if(args.length == 1)
+			{
+				Gate.msgError(player, "Specify one or more samplers.");
+				return;
+			}
+
+			GMap<SampledType, GraphSize> sv = new GMap<SampledType, GraphSize>();
+
+			searching: for(int i = 1; i < args.length; i++)
+			{
+				String vv = args[i];
+				String l = "w";
+
+				if(vv.contains(":"))
+				{
+					l = args[i].split(":")[0];
+					vv = args[i].split(":")[1];
+				}
+
+				GraphSize s = l.equalsIgnoreCase("w") ? GraphSize.WIDE : l.equalsIgnoreCase("q") ? GraphSize.SQUARE : l.equalsIgnoreCase("f") ? GraphSize.FULL : GraphSize.WIDE;
+
+				for(SampledType j : SampledType.values())
+				{
+					if(j.name().equalsIgnoreCase(vv))
+					{
+						sv.put(j, s);
+						continue searching;
+					}
+				}
+
+				Gate.msgError(player, "Unable to find sampler: " + C.WHITE + args[i]);
+			}
+
+			if(sv.isEmpty())
+			{
+				Gate.msgError(player, "Specify one or more samplers. (failed to find)");
+				return;
+			}
+
+			if(gr.containsKey(player))
+			{
+				toggleMapping(player);
+			}
+
+			GraphingInstance gi = new GraphingInstance(player);
+
+			for(SampledType i : sv.k())
+			{
+				if(!g.containsKey(i))
+				{
+					Gate.msgError(player, "Unable to find " + i.name());
+				}
+
+				else
+				{
+					gi.getGraphs().add(new PointedGraph(g.get(i), sv.get(i)));
+				}
+			}
+
+			gi.compile();
+			gi.toggle();
+			gr.put(player, gi);
 		}
 
 		if(args[0].equalsIgnoreCase("-i"))
@@ -441,5 +506,17 @@ public class GraphController extends Controller
 	public GMap<Player, GraphingInstance> getGr()
 	{
 		return gr;
+	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return true;
 	}
 }

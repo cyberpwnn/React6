@@ -92,4 +92,16 @@ public class HopperOvertickController extends Controller
 
 		e.setCancelled(tc || td);
 	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return true;
+	}
 }

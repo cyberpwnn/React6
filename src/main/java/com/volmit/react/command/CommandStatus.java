@@ -1,18 +1,20 @@
 package com.volmit.react.command;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 
+import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
 import com.volmit.react.React;
-import com.volmit.react.api.Gate;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SampledType;
@@ -31,6 +33,14 @@ public class CommandStatus extends ReactCommand
 		usage = Info.COMMAND_STATUS_USAGE;
 		description = Info.COMMAND_STATUS_DESCRIPTION;
 		sideGate = SideGate.PLAYERS_ONLY;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3)
+	{
+		GList<String> l = new GList<String>();
+
+		return l;
 	}
 
 	@Override

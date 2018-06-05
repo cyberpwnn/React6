@@ -2,6 +2,8 @@ package com.volmit.react.api;
 
 import org.bukkit.entity.Player;
 
+import com.volmit.react.Gate;
+
 public class PlayerActionSource implements IActionSource
 {
 	private final Player p;

@@ -72,4 +72,16 @@ public class WorldController extends Controller
 	{
 		aboutToWipe = true;
 	}
+
+	@Override
+	public int getInterval()
+	{
+		return 1256;
+	}
+
+	@Override
+	public boolean isUrgent()
+	{
+		return false;
+	}
 }
