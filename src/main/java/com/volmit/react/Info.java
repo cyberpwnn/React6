@@ -197,6 +197,8 @@ public class Info
 	public static String STATE_CHANNELS = "player.channels"; //$NON-NLS-1$
 	public static String STATE_ACTIONLOGGING_ENABLED = "actionlogging.enabled"; //$NON-NLS-1$
 	public static String STATE_MAPPING_ENABLED = "map.enabled"; //$NON-NLS-1$
+	public static String STATE_MAPPING_SCROLLPOS = "map.scrollpos"; //$NON-NLS-1$
+	public static String STATE_MAPPING_ARGS = "map.args"; //$NON-NLS-1$
 	public static String STATE_SOUND_PLAYS = "player.sound-buffer"; //$NON-NLS-1$
 	public static String STATE_MONITORING_POSTED = "monitor.posted"; //$NON-NLS-1$
 	public static String STATE_MONITORING_LASTTAB = "monitor.last-tab"; //$NON-NLS-1$

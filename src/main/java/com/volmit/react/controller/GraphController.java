@@ -29,6 +29,7 @@ import com.volmit.react.api.GraphText;
 import com.volmit.react.api.GraphingInstance;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.PointedGraph;
+import com.volmit.react.api.ReactPlayer;
 import com.volmit.react.api.SampledType;
 import com.volmit.react.util.A;
 import com.volmit.react.util.C;
@@ -96,7 +97,14 @@ public class GraphController extends Controller
 						{
 							if(!gr.containsKey(i))
 							{
-								toggleMapping(i);
+								new S("map-launch")
+								{
+									@Override
+									public void run()
+									{
+										toggleMapping(i, new String[] {});
+									}
+								};
 							}
 						}
 					}
@@ -181,7 +189,7 @@ public class GraphController extends Controller
 					{
 						if(!gr.containsKey(e.getPlayer()))
 						{
-							toggleMapping(e.getPlayer());
+							toggleMapping(e.getPlayer(), new String[] {});
 						}
 					}
 				}
@@ -271,19 +279,44 @@ public class GraphController extends Controller
 			return;
 		}
 
+		ReactPlayer rp = React.instance.playerController.getPlayer(player);
+
 		if(args.length == 0)
 		{
-			toggleMapping(player);
+			GList<String> r = new GList<String>();
+
+			if(rp.pargs.contains(","))
+			{
+				for(String i : rp.pargs.split(","))
+				{
+					r.add(i);
+				}
+			}
+
+			else
+			{
+				r.add(rp.pargs);
+			}
+
+			toggleMapping(player, r.toArray(new String[r.size()]));
 			return;
 		}
 
-		if(args[0].equalsIgnoreCase("-e"))
+		else if(args[0].equalsIgnoreCase("-d"))
+		{
+			toggleMapping(player);
+			rp.pargs = new GList<String>(args).toString(",");
+			React.instance.playerController.requestSave(player, false);
+		}
+
+		else if(args[0].equalsIgnoreCase("-e"))
 		{
 			toggleMappingEod(player);
-			return;
+			rp.pargs = new GList<String>(args).toString(",");
+			React.instance.playerController.requestSave(player, false);
 		}
 
-		if(args[0].equalsIgnoreCase("-x"))
+		else if(args[0].equalsIgnoreCase("-x"))
 		{
 			if(args.length == 1)
 			{
@@ -324,6 +357,9 @@ public class GraphController extends Controller
 				return;
 			}
 
+			rp.pargs = new GList<String>(args).toString(",");
+			React.instance.playerController.requestSave(player, false);
+
 			if(gr.containsKey(player))
 			{
 				toggleMapping(player);
@@ -349,7 +385,7 @@ public class GraphController extends Controller
 			gr.put(player, gi);
 		}
 
-		if(args[0].equalsIgnoreCase("-i"))
+		else if(args[0].equalsIgnoreCase("-i"))
 		{
 			Entity e = P.targetEntity(player, 7);
 
@@ -377,6 +413,23 @@ public class GraphController extends Controller
 				Gate.msgError(player, "You must be looking at an item frame to apply a map to it.");
 			}
 		}
+
+		else
+		{
+			toggleMapping(player, new String[] {"-d"});
+		}
+
+		new S("wscroll")
+		{
+			@Override
+			public void run()
+			{
+				if(gr.containsKey(player) && gr.get(player).isMapping())
+				{
+					gr.get(player).getView().scrollTo((double) rp.mapScroll / (double) gr.get(player).getView().getMaxY());
+				}
+			}
+		};
 	}
 
 	@EventHandler

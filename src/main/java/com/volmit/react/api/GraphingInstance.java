@@ -187,6 +187,10 @@ public class GraphingInstance implements Listener
 			{
 				view.scroll(-32 * e.getAmount());
 			}
+
+			ReactPlayer rp = React.instance.playerController.getPlayer(player);
+			rp.mapScroll = (int) view.getTargetLevel();
+			React.instance.playerController.requestSave(player, false);
 		}
 	}
 
@@ -267,7 +271,8 @@ public class GraphingInstance implements Listener
 		{
 			if(player.getInventory().getItemInOffHand() == null || player.getInventory().getItemInOffHand().getType().equals(Material.AIR))
 			{
-				React.instance.playerController.getPlayer(player).setMapping(true);
+				ReactPlayer rp = React.instance.playerController.getPlayer(player);
+				rp.setMapping(true);
 				mapping = true;
 				player.getInventory().setItemInOffHand(item);
 				Gate.msgSuccess(player, "Mapping Enabled");

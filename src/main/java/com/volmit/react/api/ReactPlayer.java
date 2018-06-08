@@ -28,6 +28,8 @@ public class ReactPlayer implements IConfigurable
 		keystore.put(-175, Info.STATE_MONITORING_ENABLED);
 		keystore.put(-172, Info.STATE_ACTIONLOGGING_ENABLED);
 		keystore.put(234, Info.STATE_MAPPING_ENABLED);
+		keystore.put(235, Info.STATE_MAPPING_SCROLLPOS);
+		keystore.put(844, Info.STATE_MAPPING_ARGS);
 		keystore.put(-885, Info.STATE_MONITORING_TAB);
 		keystore.put(343, Info.STATE_SOUND_PLAYS);
 		keystore.put(765, Info.STATE_MONITORING_POSTED);
@@ -62,6 +64,9 @@ public class ReactPlayer implements IConfigurable
 	@KeyPointer(234)
 	public boolean mapping = false;
 
+	@KeyPointer(235)
+	public int mapScroll = 0;
+
 	@KeyPointer(-885)
 	public int monitorSelection = -1;
 
@@ -88,6 +93,9 @@ public class ReactPlayer implements IConfigurable
 
 	@KeyPointer(841)
 	public double lastHeight = 0;
+
+	@KeyPointer(844)
+	public String pargs = "";
 
 	@KeyPointer(-845)
 	public List<String> channels = new ArrayList<String>();

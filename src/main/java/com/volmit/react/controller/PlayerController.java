@@ -129,7 +129,7 @@ public class PlayerController extends Controller
 	@Override
 	public int getInterval()
 	{
-		return 25;
+		return 65;
 	}
 
 	@Override
