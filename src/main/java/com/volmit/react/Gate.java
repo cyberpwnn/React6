@@ -16,6 +16,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.spigotmc.SpigotWorldConfig;
@@ -25,6 +26,7 @@ import com.volmit.react.api.ActivationRangeType;
 import com.volmit.react.api.Capability;
 import com.volmit.react.api.ChunkIssue;
 import com.volmit.react.api.DeadEntity;
+import com.volmit.react.api.EntityFlag;
 import com.volmit.react.api.Flavor;
 import com.volmit.react.api.IActionSource;
 import com.volmit.react.api.LagMap;
@@ -77,6 +79,7 @@ public class Gate
 	public static C darkColor = C.DARK_GRAY;
 	public static C textColor = C.GRAY;
 	private static GList<C> crgb = new GList<C>();
+	private static GList<EntityType> ed;
 
 	public static boolean isLowMemory()
 	{
@@ -818,7 +821,6 @@ public class Gate
 
 	private static void removeEntityQuickly(Entity e)
 	{
-
 		if(e.getType().equals(EntityType.ARMOR_STAND))
 		{
 			return;
@@ -862,20 +864,45 @@ public class Gate
 		purgeEntity(e, false);
 	}
 
+	public static boolean isDangerous(EntityType e)
+	{
+		if(ed == null)
+		{
+			ed = new GList<EntityType>();
+			ed.add(EntityType.PLAYER);
+			ed.add(EntityType.ARMOR_STAND);
+			ed.add(EntityType.ITEM_FRAME);
+		}
+
+		return ed.contains(e);
+	}
+
 	public static void purgeEntity(Entity e, boolean b)
 	{
+		if(b && !(e instanceof Player))
+		{
+			removeEntityQuickly(e);
+			return;
+		}
+
+		if(e instanceof Item && !Config.PURGE_DROPS)
+		{
+			return;
+		}
+
+		if(EntityFlag.NAMED.is(e) && !Config.PURGE_NAMED)
+		{
+			return;
+		}
+
+		if(EntityFlag.TAMED.is(e) && !Config.PURGE_TAMED)
+		{
+			return;
+		}
+
 		if(isMythic(e) && Config.PURGE_MYTHIC_MOBS)
 		{
-			if(b)
-			{
-				e.remove();
-			}
-
-			else
-			{
-				removeEntityQuickly(e);
-			}
-
+			removeEntityQuickly(e);
 			return;
 		}
 
@@ -894,7 +921,7 @@ public class Gate
 			return;
 		}
 
-		if(!Config.ALLOW_PURGE.contains(e.getType().toString()) && !b)
+		if(!Config.ALLOW_PURGE.contains(e.getType().toString()))
 		{
 			return;
 		}
@@ -904,15 +931,7 @@ public class Gate
 			return;
 		}
 
-		if(b)
-		{
-			e.remove();
-		}
-
-		else
-		{
-			removeEntityQuickly(e);
-		}
+		removeEntityQuickly(e);
 	}
 
 	public static void cullEntity(Entity e)

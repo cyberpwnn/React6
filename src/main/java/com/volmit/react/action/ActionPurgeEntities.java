@@ -4,6 +4,7 @@ import org.bukkit.Chunk;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
+import com.volmit.react.Config;
 import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.Lang;
@@ -51,6 +52,19 @@ public class ActionPurgeEntities extends Action
 			{
 				SelectorEntityType sel = new SelectorEntityType(SelectionMode.BLACKLIST);
 				sel.add(EntityType.PLAYER);
+
+				searching: for(EntityType i : EntityType.values())
+				{
+					for(String j : Config.ALLOW_PURGE)
+					{
+						if(i.name().equalsIgnoreCase(j))
+						{
+							continue searching;
+						}
+					}
+
+					sel.add(i);
+				}
 
 				return sel;
 			}
@@ -108,9 +122,9 @@ public class ActionPurgeEntities extends Action
 								completed.add(1);
 								String s = Info.ACTION_PURGE_ENTITIES_STATUS;
 								setProgress((double) completed.get() / (double) total.get());
-								s = s.replace("$c", F.f(completed.get())); //$NON-NLS-1$
-								s = s.replace("$t", F.f(total.get())); //$NON-NLS-1$
-								s = s.replace("$p", F.pc(getProgress(), 0)); //$NON-NLS-1$
+								s = s.replace("$c", F.f(completed.get()));
+								s = s.replace("$t", F.f(total.get()));
+								s = s.replace("$p", F.pc(getProgress(), 0));
 								setStatus(s);
 								ms = M.ms();
 								totalCulled.add(lcd);
@@ -132,7 +146,7 @@ public class ActionPurgeEntities extends Action
 			}
 		}
 
-		new Task("purger-monitor-callback", 2) //$NON-NLS-1$
+		new Task("purger-monitor-callback", 2)
 		{
 			@Override
 			public void run()
@@ -169,7 +183,6 @@ public class ActionPurgeEntities extends Action
 			}
 
 			nc = true;
-
 			Gate.purgeEntity(i, force);
 			cu.add(1);
 

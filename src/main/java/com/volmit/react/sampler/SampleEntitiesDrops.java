@@ -31,7 +31,7 @@ public class SampleEntitiesDrops extends MSampler
 		setID(SampledType.ENTDROP.toString());
 		setValue(0);
 		setColor(C.AQUA, C.AQUA);
-		setInterval(1);
+		setInterval(40);
 	}
 
 	@Override

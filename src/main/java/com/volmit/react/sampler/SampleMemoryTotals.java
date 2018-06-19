@@ -31,7 +31,7 @@ public class SampleMemoryTotals extends MSampler
 		setID(SampledType.MEMTOTALS.toString());
 		setValue(1);
 		setColor(C.GOLD, C.GOLD);
-		setInterval(1);
+		setInterval(40);
 	}
 
 	@Override

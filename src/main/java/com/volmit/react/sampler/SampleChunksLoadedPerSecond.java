@@ -10,7 +10,7 @@ import com.volmit.react.util.F;
 
 public class SampleChunksLoadedPerSecond extends MSampler
 {
-	private Average a = new Average(19);
+	private Average a = new Average(2);
 	private IFormatter formatter;
 
 	public SampleChunksLoadedPerSecond()
@@ -33,7 +33,7 @@ public class SampleChunksLoadedPerSecond extends MSampler
 		setID(SampledType.CHKS.toString());
 		setValue(1);
 		setColor(C.RED, C.RED);
-		setInterval(0);
+		setInterval(15);
 	}
 
 	@Override

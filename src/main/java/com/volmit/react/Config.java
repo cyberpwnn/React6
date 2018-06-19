@@ -232,6 +232,21 @@ public class Config
 	@Clip(min = 50, max = 4000)
 	public static int SAMPLE_POINTS = 250;
 
+	@Comment("Allow the purger to purge tamed entities")
+	@Key("features.react.purge.allow-purge-tamed")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean PURGE_TAMED = false;
+
+	@Comment("Allow the purger to purge named entities")
+	@Key("features.react.purge.allow-purge-named")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean PURGE_NAMED = false;
+
+	@Comment("Allow the purger to purge item drops")
+	@Key("features.react.purge.allow-purge-drops")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean PURGE_DROPS = false;
+
 	@Comment("Enable or disable React AI")
 	@Key("features.react.rai.enabled")
 	@Injection(InjectionMethod.SWAP)

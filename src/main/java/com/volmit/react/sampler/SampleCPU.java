@@ -13,7 +13,7 @@ import com.volmit.react.util.Platform;
 public class SampleCPU extends MSampler
 {
 	private IFormatter formatter;
-	private Average aa = new Average(20);
+	private Average aa = new Average(3);
 	private long lastSample = M.ms();
 
 	public SampleCPU()
@@ -36,7 +36,7 @@ public class SampleCPU extends MSampler
 		setID(SampledType.CPU.toString());
 		setValue(0);
 		setColor(C.GREEN, C.GREEN);
-		setInterval(1);
+		setInterval(20);
 	}
 
 	@Override

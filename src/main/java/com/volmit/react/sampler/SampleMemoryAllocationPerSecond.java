@@ -31,7 +31,7 @@ public class SampleMemoryAllocationPerSecond extends MSampler
 		setID(SampledType.MAHS.toString());
 		setValue(1);
 		setColor(C.GOLD, C.GOLD);
-		setInterval(1);
+		setInterval(10);
 	}
 
 	@Override

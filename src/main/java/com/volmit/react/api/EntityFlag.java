@@ -200,7 +200,7 @@ public enum EntityFlag
 				return false;
 			}
 
-			return e.isCustomNameVisible();
+			return e.isCustomNameVisible() || e.getCustomName() != null;
 		}
 
 		if(this.equals(EntityFlag.RIDDEN) || this.equals(EntityFlag.STACKED))

@@ -31,6 +31,7 @@ import com.volmit.react.api.IActionSource;
 import com.volmit.react.api.ISelector;
 import com.volmit.react.api.Note;
 import com.volmit.react.api.PlayerActionSource;
+import com.volmit.react.api.RAIActionSource;
 import com.volmit.react.api.SelectorPosition;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Controller;
@@ -95,6 +96,19 @@ public class ActionController extends Controller
 		object.put("loaded-actions", acts);
 	}
 
+	public boolean isAlreadyQueued(ActionType a)
+	{
+		for(Integer i : pending.k())
+		{
+			if(pending.get(i).getA().equals(a))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	@Override
 	public void start()
 	{
@@ -123,6 +137,11 @@ public class ActionController extends Controller
 
 	public void fire(ActionType type, IActionSource source, ISelector... selectors)
 	{
+		if(source instanceof RAIActionSource && isAlreadyQueued(type))
+		{
+			return;
+		}
+
 		pending.put(kiv++, new GTriset<ActionType, IActionSource, GList<ISelector>>(type, source, new GList<ISelector>(selectors)));
 	}
 

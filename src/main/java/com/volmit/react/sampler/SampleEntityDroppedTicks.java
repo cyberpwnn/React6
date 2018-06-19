@@ -32,7 +32,7 @@ public class SampleEntityDroppedTicks extends MSampler
 		setID(SampledType.ENTITY_DROPTICK.toString());
 		setValue(0);
 		setColor(C.LIGHT_PURPLE, C.LIGHT_PURPLE);
-		setInterval(1);
+		setInterval(20);
 	}
 
 	@Override

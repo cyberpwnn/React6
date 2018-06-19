@@ -31,7 +31,7 @@ public class SampleEntitiesLiving extends MSampler
 		setID(SampledType.ENTLIV.toString());
 		setValue(0);
 		setColor(C.AQUA, C.AQUA);
-		setInterval(1);
+		setInterval(40);
 	}
 
 	@Override

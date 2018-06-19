@@ -31,7 +31,7 @@ public class SampleMemoryUse extends MSampler
 		setID(SampledType.MEM.toString());
 		setValue(1);
 		setColor(C.GOLD, C.GOLD);
-		setInterval(1);
+		setInterval(20);
 	}
 
 	@Override

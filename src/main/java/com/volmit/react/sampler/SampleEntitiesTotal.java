@@ -31,7 +31,7 @@ public class SampleEntitiesTotal extends MSampler
 		setID(SampledType.ENT.toString());
 		setValue(0);
 		setColor(C.AQUA, C.AQUA);
-		setInterval(1);
+		setInterval(40);
 	}
 
 	@Override
