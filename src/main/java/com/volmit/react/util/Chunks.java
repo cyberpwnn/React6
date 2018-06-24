@@ -3,6 +3,8 @@ package com.volmit.react.util;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 
+import com.volmit.volume.lang.collections.GList;
+
 /**
  * Chunk utils
  *

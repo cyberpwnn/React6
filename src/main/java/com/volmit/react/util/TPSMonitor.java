@@ -4,6 +4,7 @@ import com.volmit.react.Gate;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.controller.CrashController;
+import com.volmit.volume.lang.collections.GList;
 
 public abstract class TPSMonitor extends Thread
 {
@@ -119,7 +120,7 @@ public abstract class TPSMonitor extends Thread
 			{
 				memoryMonitor.run();
 
-				if(lt % 1000 == 0)
+				if(lt % 250 == 0)
 				{
 					if(CrashController.inst != null)
 					{

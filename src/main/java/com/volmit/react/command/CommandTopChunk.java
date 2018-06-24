@@ -19,9 +19,9 @@ import com.volmit.react.controller.EventController;
 import com.volmit.react.util.C;
 import com.volmit.react.util.ColoredString;
 import com.volmit.react.util.F;
-import com.volmit.react.util.GList;
 import com.volmit.react.util.RTEX;
 import com.volmit.react.util.RTX;
+import com.volmit.volume.lang.collections.GList;
 
 public class CommandTopChunk extends ReactCommand
 {

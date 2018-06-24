@@ -3,9 +3,9 @@ package com.volmit.react.api;
 import com.volmit.react.Config;
 import com.volmit.react.Gate;
 import com.volmit.react.util.Average;
-import com.volmit.react.util.GList;
-import com.volmit.react.util.GMap;
 import com.volmit.react.util.M;
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GMap;
 
 public class GraphSampleLine extends NormalGraph implements IGraph
 {

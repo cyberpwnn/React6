@@ -16,11 +16,11 @@ import com.volmit.react.Surge;
 import com.volmit.react.api.Unused;
 import com.volmit.react.util.Average;
 import com.volmit.react.util.Controller;
-import com.volmit.react.util.GList;
-import com.volmit.react.util.GSet;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.M;
 import com.volmit.react.util.MaterialBlock;
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GSet;
 
 public class ExplosiveController extends Controller
 {

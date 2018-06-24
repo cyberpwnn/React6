@@ -14,9 +14,17 @@ import java.util.zip.ZipInputStream;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GMap;
+
 public class CPS
 {
 	private static GMap<String, GList<String>> keys = new GMap<String, GList<String>>();
+
+	public static String format(StackTraceElement e)
+	{
+		return C.GRAY + e.getClassName() + "." + C.WHITE + e.getMethodName() + C.GRAY + "(" + C.RED + e.getLineNumber() + C.GRAY + ")";
+	}
 
 	public static GList<Plugin> identify(String clazz)
 	{

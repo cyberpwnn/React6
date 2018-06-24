@@ -8,9 +8,9 @@ import org.bukkit.util.Vector;
 
 import com.volmit.react.util.Cuboid;
 import com.volmit.react.util.Ex;
-import com.volmit.react.util.GList;
-import com.volmit.react.util.GSet;
 import com.volmit.react.util.S;
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GSet;
 
 public abstract class SploogeCounter
 {

@@ -1,5 +1,7 @@
 package com.volmit.react.util;
 
+import com.volmit.volume.lang.collections.GList;
+
 /**
  * Raw Text EXTRA
  *

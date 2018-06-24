@@ -12,10 +12,10 @@ import com.volmit.react.Surge;
 import com.volmit.react.util.ConfigurationDataInput;
 import com.volmit.react.util.ConfigurationDataOutput;
 import com.volmit.react.util.Ex;
-import com.volmit.react.util.GMap;
 import com.volmit.react.util.IConfigurable;
 import com.volmit.react.util.KeyPointer;
 import com.volmit.react.util.KeyStore;
+import com.volmit.volume.lang.collections.GMap;
 
 public class ReactPlayer implements IConfigurable
 {

@@ -21,8 +21,6 @@ import com.volmit.react.Surge;
 import com.volmit.react.util.BlockFinder;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.Ex;
-import com.volmit.react.util.GList;
-import com.volmit.react.util.GSound;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.M;
 import com.volmit.react.util.MSound;
@@ -30,6 +28,8 @@ import com.volmit.react.util.MaterialBlock;
 import com.volmit.react.util.S;
 import com.volmit.react.util.TICK;
 import com.volmit.react.util.W;
+import com.volmit.volume.bukkit.util.sound.GSound;
+import com.volmit.volume.lang.collections.GList;
 
 public class FastDecayController extends Controller
 {

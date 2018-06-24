@@ -1,8 +1,8 @@
 package com.volmit.react.api;
 
-import com.volmit.react.util.GList;
-import com.volmit.react.util.GMap;
-import com.volmit.react.util.GSet;
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GMap;
+import com.volmit.volume.lang.collections.GSet;
 
 public class CacheBase<K, V> implements ICache<K, V>
 {

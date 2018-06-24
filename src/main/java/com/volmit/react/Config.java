@@ -22,14 +22,14 @@ import com.volmit.react.util.DataCluster;
 import com.volmit.react.util.DynamicConfiguration;
 import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
-import com.volmit.react.util.GList;
-import com.volmit.react.util.GMap;
 import com.volmit.react.util.M;
 import com.volmit.react.util.PoolDescriber;
 import com.volmit.react.util.RawEvent;
 import com.volmit.react.util.TaskLater;
 import com.volmit.react.util.YamlDataInput;
 import com.volmit.react.util.YamlDataOutput;
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GMap;
 
 @PoolDescriber
 @DynamicConfiguration
@@ -563,9 +563,14 @@ public class Config
 	public static boolean ALLOW_TEMPACCESS = true;
 
 	@Comment("Monitor the main thread and warn the chat AND console if the server is locked. Please note that there is no way of knowing if the server is during a garbage collection. This means there WILL BE false positives. Especially with react.")
-	@Key("features.react.track-server-locks")
+	@Key("features.react.spikes.report-spikes")
 	@Injection(InjectionMethod.SWAP)
-	public static boolean TRACK_SERVER_LOCKS = true;
+	public static boolean TRACK_SERVER_SPIKES = true;
+
+	@Comment("Due to word wrapping and hover elements, react hides the full package names by default.\nFor example net.minecraft.server.V1_12R2 would be converted to n.m.s.V")
+	@Key("features.react.spikes.show-fully-qualified-names")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean FULL_PACKAGES = false;
 
 	@Comment("Use fast block destruction for fast leaf decay. Turn this on if you dont like snow floating above leaves, though you loose most of the performance benefits of fast decay.")
 	@Key("tweaks.fast-leaf-decay.fast-destroy")

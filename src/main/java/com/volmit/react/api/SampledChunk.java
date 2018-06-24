@@ -3,7 +3,7 @@ package com.volmit.react.api;
 import org.bukkit.Chunk;
 
 import com.volmit.react.util.Ex;
-import com.volmit.react.util.GMap;
+import com.volmit.volume.lang.collections.GMap;
 
 public class SampledChunk
 {

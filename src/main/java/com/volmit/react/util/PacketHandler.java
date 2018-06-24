@@ -1,5 +1,7 @@
 package com.volmit.react.util;
 
+import com.volmit.volume.lang.collections.GList;
+
 public class PacketHandler
 {
 	private GList<IPacket> accept;

@@ -7,6 +7,8 @@ import java.io.OutputStream;
 
 import javax.crypto.Cipher;
 
+import com.volmit.volume.lang.collections.GList;
+
 public class OSS extends OutputStream
 {
 	private OutputStream out;

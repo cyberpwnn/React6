@@ -7,9 +7,9 @@ import com.volmit.react.Config;
 import com.volmit.react.api.Capability;
 import com.volmit.react.api.ProtocolAdapter;
 import com.volmit.react.util.Controller;
-import com.volmit.react.util.GBiset;
-import com.volmit.react.util.GMap;
 import com.volmit.react.util.JSONObject;
+import com.volmit.volume.lang.collections.GBiset;
+import com.volmit.volume.lang.collections.GMap;
 
 public class ProtocolController extends Controller
 {

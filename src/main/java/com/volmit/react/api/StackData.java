@@ -1,13 +1,20 @@
 package com.volmit.react.api;
 
-import java.io.*;
-import java.util.*;
-import java.util.zip.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.UUID;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
-import org.bukkit.entity.*;
+import org.bukkit.entity.LivingEntity;
 
-import com.volmit.react.*;
-import com.volmit.react.util.*;
+import com.volmit.react.React;
+import com.volmit.volume.lang.collections.GMap;
+import com.volmit.volume.lang.collections.GSet;
 
 public class StackData
 {

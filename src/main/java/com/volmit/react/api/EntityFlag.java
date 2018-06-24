@@ -12,7 +12,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 import com.volmit.react.Gate;
 import com.volmit.react.React;
-import com.volmit.react.util.GSet;
+import com.volmit.volume.lang.collections.GSet;
 
 public enum EntityFlag
 {

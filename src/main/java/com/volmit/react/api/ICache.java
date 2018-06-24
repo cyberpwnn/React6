@@ -1,7 +1,7 @@
 package com.volmit.react.api;
 
-import com.volmit.react.util.GList;
-import com.volmit.react.util.GSet;
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GSet;
 
 public interface ICache<K, V>
 {

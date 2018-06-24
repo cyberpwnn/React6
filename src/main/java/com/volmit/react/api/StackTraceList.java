@@ -1,6 +1,6 @@
 package com.volmit.react.api;
 
-import com.volmit.react.util.GList;
+import com.volmit.volume.lang.collections.GList;
 
 public class StackTraceList extends GList<StackTraceElement>
 {

@@ -12,7 +12,7 @@ import com.volmit.react.api.Capability;
 import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
-import com.volmit.react.util.GList;
+import com.volmit.volume.lang.collections.GList;
 
 public class CommandScoreboardMonitor extends ReactCommand
 {

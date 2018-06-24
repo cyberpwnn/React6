@@ -62,8 +62,6 @@ import com.volmit.react.util.Controller;
 import com.volmit.react.util.D;
 import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
-import com.volmit.react.util.GList;
-import com.volmit.react.util.GMap;
 import com.volmit.react.util.I;
 import com.volmit.react.util.IController;
 import com.volmit.react.util.JSONObject;
@@ -73,6 +71,8 @@ import com.volmit.react.util.SuperSampler;
 import com.volmit.react.util.TICK;
 import com.volmit.react.util.TaskLater;
 import com.volmit.react.util.TimingsReport;
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GMap;
 
 @AsyncTick
 public class SampleController extends Controller
@@ -92,6 +92,7 @@ public class SampleController extends Controller
 	public static long lms = 0;
 	public static double tps = 0;
 	public static Average ta = new Average(10);
+	public static long lastGC = M.ms();
 
 	public static void t()
 	{
@@ -248,6 +249,7 @@ public class SampleController extends Controller
 
 		if(m.isGcd())
 		{
+			lastGC = M.ms();
 			double pct = (double) m.getLastCol() / (double) m.getLastAll();
 			Note.GC.bake("GC " + C.WHITE + F.memSize(m.getLastCol(), 0) + C.GRAY + " -> " + C.GOLD + (F.pc(pct)) + " Effective");
 			m.setGcd(false);

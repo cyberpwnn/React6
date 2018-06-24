@@ -9,8 +9,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.zip.GZIPInputStream;
 
-import com.volmit.react.util.GList;
 import com.volmit.react.util.M;
+import com.volmit.volume.lang.collections.GList;
 
 public class Datalog
 {

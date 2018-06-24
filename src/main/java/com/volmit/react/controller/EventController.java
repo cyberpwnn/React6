@@ -18,8 +18,8 @@ import com.volmit.react.api.LagMap;
 import com.volmit.react.api.ReactScrollEvent;
 import com.volmit.react.api.ScrollDirection;
 import com.volmit.react.util.Controller;
-import com.volmit.react.util.GMap;
 import com.volmit.react.util.JSONObject;
+import com.volmit.volume.lang.collections.GMap;
 
 public class EventController extends Controller
 {

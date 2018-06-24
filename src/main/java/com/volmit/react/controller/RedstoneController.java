@@ -18,12 +18,12 @@ import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.util.Average;
 import com.volmit.react.util.Controller;
-import com.volmit.react.util.GList;
-import com.volmit.react.util.GMap;
-import com.volmit.react.util.GSet;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.M;
 import com.volmit.react.util.RedstoneTracker;
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GMap;
+import com.volmit.volume.lang.collections.GSet;
 
 public class RedstoneController extends Controller
 {
@@ -261,40 +261,40 @@ public class RedstoneController extends Controller
 	public void on(ChunkUnloadEvent e)
 	{
 		if(Gate.lowMemoryMode)
-	{
+		{
 			return;
 		}
-	if(Config.SAFE_MODE_NMS)
-	{
-		return;
-	}
-	releaseChunk(e.getChunk());
+		if(Config.SAFE_MODE_NMS)
+		{
+			return;
+		}
+		releaseChunk(e.getChunk());
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void on(BlockPhysicsEvent e)
 	{
 		if(Gate.lowMemoryMode)
-	{
+		{
 			return;
 		}
-	if(Config.SAFE_MODE_NMS)
-	{
-		return;
-	}
-	if(ignore.contains(e.getChangedType()))
-	{
-		tickNextTickList();
-		React.instance.physicsController.onRedstone(e.getBlock().getChunk());
-		redstonePerSecond++;
-		redstonePerTick++;
-
-		if(isFrozen(e.getBlock().getChunk()))
+		if(Config.SAFE_MODE_NMS)
 		{
-			queue(e.getBlock());
-			e.setCancelled(true);
+			return;
 		}
-	}
+		if(ignore.contains(e.getChangedType()))
+		{
+			tickNextTickList();
+			React.instance.physicsController.onRedstone(e.getBlock().getChunk());
+			redstonePerSecond++;
+			redstonePerTick++;
+
+			if(isFrozen(e.getBlock().getChunk()))
+			{
+				queue(e.getBlock());
+				e.setCancelled(true);
+			}
+		}
 	}
 
 	public GSet<Material> getIgnore()

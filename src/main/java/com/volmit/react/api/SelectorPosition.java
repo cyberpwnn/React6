@@ -10,8 +10,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.volmit.react.util.Ex;
-import com.volmit.react.util.GSet;
 import com.volmit.react.util.W;
+import com.volmit.volume.lang.collections.GSet;
 
 public class SelectorPosition extends Selector
 {

@@ -16,7 +16,6 @@ import com.volmit.react.api.ActionType;
 import com.volmit.react.api.ChunkIssue;
 import com.volmit.react.api.Note;
 import com.volmit.react.api.SampledType;
-import com.volmit.react.util.GList;
 import com.volmit.react.util.JSONArray;
 import com.volmit.react.util.JSONException;
 import com.volmit.react.util.JSONObject;
@@ -24,6 +23,7 @@ import com.volmit.react.util.M;
 import com.volmit.react.util.Paste;
 import com.volmit.react.util.S;
 import com.volmit.react.util.TaskLater;
+import com.volmit.volume.lang.collections.GList;
 
 public class GoalManager
 {

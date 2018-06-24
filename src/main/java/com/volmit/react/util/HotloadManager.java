@@ -2,6 +2,8 @@ package com.volmit.react.util;
 
 import java.io.File;
 
+import com.volmit.volume.lang.collections.GMap;
+
 public class HotloadManager
 {
 	private GMap<File, Long> filemods;

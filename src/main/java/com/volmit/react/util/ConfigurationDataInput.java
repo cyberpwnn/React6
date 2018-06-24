@@ -5,6 +5,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 
+import com.volmit.volume.lang.collections.GMap;
+
 public class ConfigurationDataInput
 {
 	@SuppressWarnings("unchecked")

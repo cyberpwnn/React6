@@ -1,7 +1,7 @@
 package com.volmit.react.api;
 
 import com.volmit.react.util.AccessCallback;
-import com.volmit.react.util.GMap;
+import com.volmit.volume.lang.collections.GMap;
 
 public interface IAction
 {

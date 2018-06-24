@@ -16,8 +16,8 @@ import com.volmit.react.api.SideGate;
 import com.volmit.react.util.A;
 import com.volmit.react.util.C;
 import com.volmit.react.util.F;
-import com.volmit.react.util.GList;
 import com.volmit.react.util.S;
+import com.volmit.volume.lang.collections.GList;
 
 public class CommandCache extends ReactCommand
 {
@@ -88,16 +88,7 @@ public class CommandCache extends ReactCommand
 
 					catch(Exception e)
 					{
-						e.printStackTrace();
 
-						new S("")
-						{
-							@Override
-							public void run()
-							{
-								Gate.msgError(sender, "Error reading cache. Use /re cache fix");
-							}
-						};
 					}
 				}
 			}

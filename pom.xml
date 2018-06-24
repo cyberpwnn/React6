@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.volmit</groupId>
 	<artifactId>React</artifactId>
-	<version>6.559</version>
+	<version>6.563</version>
 	<name>React</name>
 	<description>A performance plugin</description>
 	<properties>
@@ -66,40 +66,45 @@
 							<artifactSet>
 								<includes>
 									<include>org.cyberpwn:*</include>
+									<include>com.volmit:*</include>
 								</includes>
 							</artifactSet>
 							<relocations>
 								<relocation>
 									<pattern>org.cyberpwn.gbench</pattern>
-									<shadedPattern>react.gbench</shadedPattern>
+									<shadedPattern>com.volmit.react.gbench</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>com.volmit.volume</pattern>
+									<shadedPattern>com.volmit.react.volume</shadedPattern>
 								</relocation>
 								<relocation>
 									<pattern>org.cyberpwn.gconcurrent</pattern>
-									<shadedPattern>react.gconcurrent</shadedPattern>
+									<shadedPattern>com.volmit.react.gconcurrent</shadedPattern>
 								</relocation>
 								<relocation>
 									<pattern>org.cyberpwn.reactlink</pattern>
-									<shadedPattern>react.remote</shadedPattern>
+									<shadedPattern>com.volmit.react.remote</shadedPattern>
 								</relocation>
 								<relocation>
 									<pattern>org.cyberpwn.gformat</pattern>
-									<shadedPattern>react.gformat</shadedPattern>
+									<shadedPattern>com.volmit.react.gformat</shadedPattern>
 								</relocation>
 								<relocation>
 									<pattern>org.cyberpwn.glang</pattern>
-									<shadedPattern>react.glang</shadedPattern>
+									<shadedPattern>com.volmit.react.glang</shadedPattern>
 								</relocation>
 								<relocation>
 									<pattern>org.cyberpwn.gmath</pattern>
-									<shadedPattern>react.gmath</shadedPattern>
+									<shadedPattern>com.volmit.react.gmath</shadedPattern>
 								</relocation>
 								<relocation>
 									<pattern>org.cyberpwn.json</pattern>
-									<shadedPattern>react.json</shadedPattern>
+									<shadedPattern>com.volmit.react.json</shadedPattern>
 								</relocation>
 								<relocation>
 									<pattern>org.cyberpwn.gnet</pattern>
-									<shadedPattern>react.gnet</shadedPattern>
+									<shadedPattern>com.volmit.react.gnet</shadedPattern>
 								</relocation>
 							</relocations>
 						</configuration>
@@ -285,6 +290,11 @@
 			<groupId>com.ning</groupId>
 			<artifactId>async-http-client</artifactId>
 			<version>1.6.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.volmit</groupId>
+			<artifactId>VolumePlugin</artifactId>
+			<version>latest</version>
 		</dependency>
 	</dependencies>
 </project>

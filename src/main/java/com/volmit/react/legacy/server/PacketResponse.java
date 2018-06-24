@@ -1,8 +1,8 @@
 package com.volmit.react.legacy.server;
 
-import com.volmit.react.util.GList;
 import com.volmit.react.util.JSONArray;
 import com.volmit.react.util.JSONObject;
+import com.volmit.volume.lang.collections.GList;
 
 public class PacketResponse
 {

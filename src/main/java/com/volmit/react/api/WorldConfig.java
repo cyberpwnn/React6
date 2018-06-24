@@ -12,9 +12,9 @@ import com.volmit.react.Surge;
 import com.volmit.react.util.ConfigurationDataInput;
 import com.volmit.react.util.ConfigurationDataOutput;
 import com.volmit.react.util.Ex;
-import com.volmit.react.util.GList;
 import com.volmit.react.util.IConfigurable;
 import com.volmit.react.util.Key;
+import com.volmit.volume.lang.collections.GList;
 
 public class WorldConfig implements IConfigurable
 {

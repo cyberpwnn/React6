@@ -6,6 +6,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import com.volmit.react.Config;
 import com.volmit.react.Gate;
 import com.volmit.react.api.SampledType;
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GMap;
 
 public abstract class ParallelPoolManager
 {

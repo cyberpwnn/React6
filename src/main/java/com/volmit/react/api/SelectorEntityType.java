@@ -3,7 +3,7 @@ package com.volmit.react.api;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 
-import com.volmit.react.util.GSet;
+import com.volmit.volume.lang.collections.GSet;
 
 public class SelectorEntityType extends Selector
 {

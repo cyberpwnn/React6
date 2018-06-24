@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
+import com.volmit.volume.lang.collections.GList;
+
 public class YamlDataOutput implements IDataOutput
 {
 	@Override

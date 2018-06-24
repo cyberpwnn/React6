@@ -30,11 +30,11 @@ import com.volmit.react.util.Area;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.D;
 import com.volmit.react.util.F;
-import com.volmit.react.util.GList;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.Profiler;
 import com.volmit.react.util.S;
 import com.volmit.react.util.TICK;
+import com.volmit.volume.lang.collections.GList;
 
 public class EntityStackController extends Controller
 {
@@ -334,12 +334,22 @@ public class EntityStackController extends Controller
 			return false;
 		}
 
+		if(e.getType().equals(EntityType.ARMOR_STAND))
+		{
+			return false;
+		}
+
 		return getStack(e) != null;
 	}
 
 	public StackedEntity getStack(LivingEntity e)
 	{
 		if(!Config.ENTITYSTACK_ENABLED)
+		{
+			return null;
+		}
+
+		if(e.getType().equals(EntityType.ARMOR_STAND))
 		{
 			return null;
 		}

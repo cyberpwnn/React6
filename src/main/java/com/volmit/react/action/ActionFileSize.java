@@ -15,9 +15,9 @@ import com.volmit.react.util.A;
 import com.volmit.react.util.C;
 import com.volmit.react.util.DataCluster;
 import com.volmit.react.util.F;
-import com.volmit.react.util.GMap;
 import com.volmit.react.util.Paste;
 import com.volmit.react.util.S;
+import com.volmit.volume.lang.collections.GMap;
 
 public class ActionFileSize extends Action
 {

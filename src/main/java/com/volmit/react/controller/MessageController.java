@@ -17,9 +17,9 @@ import com.volmit.react.util.Controller;
 import com.volmit.react.util.D;
 import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
-import com.volmit.react.util.GList;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.TXT;
+import com.volmit.volume.lang.collections.GList;
 
 public class MessageController extends Controller
 {

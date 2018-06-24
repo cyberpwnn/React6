@@ -5,8 +5,8 @@ import org.bukkit.Chunk;
 import com.volmit.react.Config;
 import com.volmit.react.Lang;
 import com.volmit.react.util.AccessCallback;
-import com.volmit.react.util.GList;
-import com.volmit.react.util.GMap;
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GMap;
 
 public abstract class Action implements IAction
 {

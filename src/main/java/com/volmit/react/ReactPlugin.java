@@ -15,7 +15,6 @@ import com.volmit.react.legacy.server.ReactServer;
 import com.volmit.react.util.A;
 import com.volmit.react.util.Control;
 import com.volmit.react.util.Ex;
-import com.volmit.react.util.GList;
 import com.volmit.react.util.HotloadManager;
 import com.volmit.react.util.IController;
 import com.volmit.react.util.P;
@@ -25,6 +24,7 @@ import com.volmit.react.util.S;
 import com.volmit.react.util.TICK;
 import com.volmit.react.util.Task;
 import com.volmit.react.util.TaskLater;
+import com.volmit.volume.lang.collections.GList;
 
 public class ReactPlugin extends JavaPlugin
 {

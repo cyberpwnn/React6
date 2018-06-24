@@ -12,11 +12,11 @@ import com.comphenix.protocol.events.PacketEvent;
 import com.volmit.react.ReactPlugin;
 import com.volmit.react.Surge;
 import com.volmit.react.util.Average;
-import com.volmit.react.util.GBiset;
-import com.volmit.react.util.GMap;
 import com.volmit.react.util.M;
 import com.volmit.react.util.Protocol;
 import com.volmit.react.util.ProtocolRange;
+import com.volmit.volume.lang.collections.GBiset;
+import com.volmit.volume.lang.collections.GMap;
 
 public class ProtocolAdapter implements Listener
 {

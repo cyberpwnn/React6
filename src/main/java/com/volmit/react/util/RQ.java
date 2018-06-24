@@ -2,6 +2,8 @@ package com.volmit.react.util;
 
 import org.bukkit.Bukkit;
 
+import com.volmit.volume.lang.collections.GList;
+
 public class RQ extends Thread
 {
 	private static GList<A> r = null;

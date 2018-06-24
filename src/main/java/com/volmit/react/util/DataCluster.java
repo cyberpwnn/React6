@@ -5,6 +5,9 @@ import java.util.List;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GMap;
+
 public class DataCluster
 {
 	private GMap<String, ICluster<?>> clusters;

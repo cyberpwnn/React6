@@ -7,6 +7,8 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
+import com.volmit.volume.lang.collections.GList;
+
 /**
  * Scoreboard & Tab utilities
  *

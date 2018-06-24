@@ -17,8 +17,8 @@ import com.volmit.react.util.Download;
 import com.volmit.react.util.DownloadMonitor;
 import com.volmit.react.util.DownloadState;
 import com.volmit.react.util.F;
-import com.volmit.react.util.GList;
 import com.volmit.react.util.S;
+import com.volmit.volume.lang.collections.GList;
 
 public class CommandInstallAgent extends ReactCommand
 {

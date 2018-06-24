@@ -17,9 +17,9 @@ import com.volmit.react.api.Capability;
 import com.volmit.react.api.SpecializedTickLimiter;
 import com.volmit.react.util.Controller;
 import com.volmit.react.util.Ex;
-import com.volmit.react.util.GMap;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.NMSX;
+import com.volmit.volume.lang.collections.GMap;
 
 public class SmearTickController extends Controller
 {

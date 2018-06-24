@@ -337,6 +337,11 @@ public class Info
 	public static String ACTION_CHUNK_TEST_NAME = "Chunk Test"; //$NON-NLS-1$
 	public static String ACTION_CHUNK_TEST_DESCRIPTION = "Test chunks in an area around you and record all events."; //$NON-NLS-1$
 
+	public static String[] ACTION_TILL_LAND_TAGS = new String[] {"till-land", "tl", "till", "tland"}; //$NON-NLS-1$ //$NON-NLS-2$
+	public static String ACTION_TILL_LAND_STATUS = "Tilling $c / $t ($p)"; //$NON-NLS-1$
+	public static String ACTION_TILL_LAND_NAME = "Till Land"; //$NON-NLS-1$
+	public static String ACTION_TILL_LAND_DESCRIPTION = "Tills land"; //$NON-NLS-1$
+
 	public static String[] ACTION_COLLECT_GARBAGE_TAGS = new String[] {"collect-garbage", "gc"}; //$NON-NLS-1$ //$NON-NLS-2$
 	public static String ACTION_COLLECT_GARBAGE = "Collecting Garbage"; //$NON-NLS-1$
 	public static String ACTION_COLLECT_GARBAGE_NAME = "Collect Garbage"; //$NON-NLS-1$

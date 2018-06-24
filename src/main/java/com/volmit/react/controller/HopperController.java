@@ -14,10 +14,10 @@ import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.util.Average;
 import com.volmit.react.util.Controller;
-import com.volmit.react.util.GMap;
-import com.volmit.react.util.GSet;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.M;
+import com.volmit.volume.lang.collections.GMap;
+import com.volmit.volume.lang.collections.GSet;
 
 public class HopperController extends Controller
 {

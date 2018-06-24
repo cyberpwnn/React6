@@ -15,10 +15,10 @@ import com.volmit.react.api.SideGate;
 import com.volmit.react.api.Whiteboard;
 import com.volmit.react.util.A;
 import com.volmit.react.util.C;
-import com.volmit.react.util.GList;
 import com.volmit.react.util.M;
 import com.volmit.react.util.Profiler;
 import com.volmit.react.util.S;
+import com.volmit.volume.lang.collections.GList;
 
 public class CommandGraph extends ReactCommand
 {

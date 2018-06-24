@@ -12,6 +12,8 @@ import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.CreatureSpawner;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
@@ -44,9 +46,6 @@ import com.volmit.react.util.Control;
 import com.volmit.react.util.DataCluster;
 import com.volmit.react.util.Ex;
 import com.volmit.react.util.F;
-import com.volmit.react.util.GList;
-import com.volmit.react.util.GMap;
-import com.volmit.react.util.GSet;
 import com.volmit.react.util.I;
 import com.volmit.react.util.IController;
 import com.volmit.react.util.JSONArray;
@@ -62,6 +61,9 @@ import com.volmit.react.util.TXT;
 import com.volmit.react.util.Task;
 import com.volmit.react.util.TaskLater;
 import com.volmit.react.util.W;
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GMap;
+import com.volmit.volume.lang.collections.GSet;
 
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.mobs.MythicMob;
@@ -80,6 +82,21 @@ public class Gate
 	public static C textColor = C.GRAY;
 	private static GList<C> crgb = new GList<C>();
 	private static GList<EntityType> ed;
+
+	public static GList<CreatureSpawner> getSpawners(Chunk c)
+	{
+		GList<CreatureSpawner> sp = new GList<CreatureSpawner>();
+
+		for(BlockState i : c.getTileEntities())
+		{
+			if(i instanceof CreatureSpawner)
+			{
+				sp.add((CreatureSpawner) i);
+			}
+		}
+
+		return sp;
+	}
 
 	public static boolean isLowMemory()
 	{

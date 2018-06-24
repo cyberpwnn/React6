@@ -10,7 +10,7 @@ import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
-import com.volmit.react.util.GList;
+import com.volmit.volume.lang.collections.GList;
 
 public class NobodySender implements CommandSender
 {

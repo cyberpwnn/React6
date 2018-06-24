@@ -4,7 +4,7 @@ import java.io.File;
 
 import com.volmit.react.React;
 import com.volmit.react.util.A;
-import com.volmit.react.util.GList;
+import com.volmit.volume.lang.collections.GList;
 
 public class RemoteController
 {

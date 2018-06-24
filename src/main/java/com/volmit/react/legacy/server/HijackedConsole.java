@@ -6,7 +6,7 @@ import java.io.PrintStream;
 import org.bukkit.ChatColor;
 
 import com.volmit.react.util.DataCluster;
-import com.volmit.react.util.GList;
+import com.volmit.volume.lang.collections.GList;
 
 public class HijackedConsole extends Thread
 {

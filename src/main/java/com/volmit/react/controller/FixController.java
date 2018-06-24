@@ -11,8 +11,8 @@ import com.volmit.react.fix.FixInvisibleChunk;
 import com.volmit.react.fix.FixLowMM;
 import com.volmit.react.util.C;
 import com.volmit.react.util.Controller;
-import com.volmit.react.util.GList;
 import com.volmit.react.util.JSONObject;
+import com.volmit.volume.lang.collections.GList;
 
 public class FixController extends Controller
 {

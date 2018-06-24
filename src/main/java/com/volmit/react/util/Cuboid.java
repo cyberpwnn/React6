@@ -17,6 +17,9 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.material.MaterialData;
 
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GListAdapter;
+
 /**
  * Cuboids
  *

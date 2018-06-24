@@ -8,9 +8,9 @@ import com.volmit.react.Surge;
 import com.volmit.react.api.ReactPlayer;
 import com.volmit.react.util.A;
 import com.volmit.react.util.Controller;
-import com.volmit.react.util.GList;
-import com.volmit.react.util.GSet;
 import com.volmit.react.util.JSONObject;
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GSet;
 
 public class PlayerController extends Controller
 {

@@ -1,5 +1,7 @@
 package com.volmit.react.util;
 
+import com.volmit.volume.lang.collections.GList;
+
 /**
  * An embedded interface which can hold meta instances of itself, or only
  * itself, executions of the interface should execute the sub-interfaced

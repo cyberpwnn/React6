@@ -10,7 +10,7 @@ import org.bukkit.map.MapRenderer;
 import org.bukkit.map.MapView;
 
 import com.volmit.react.util.A;
-import com.volmit.react.util.GList;
+import com.volmit.volume.lang.collections.GList;
 
 public class Papyrus extends MapRenderer implements IPapyrus
 {

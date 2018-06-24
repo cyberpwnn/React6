@@ -19,11 +19,11 @@ import com.volmit.react.api.SideGate;
 import com.volmit.react.util.C;
 import com.volmit.react.util.ColoredString;
 import com.volmit.react.util.F;
-import com.volmit.react.util.GList;
-import com.volmit.react.util.GMap;
 import com.volmit.react.util.RTEX;
 import com.volmit.react.util.RTX;
 import com.volmit.react.util.RawText;
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GMap;
 
 public class CommandHelp extends ReactCommand
 {

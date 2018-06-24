@@ -76,6 +76,10 @@ public class ActionLockRedstone extends Action
 				{
 					if(i.can(j))
 					{
+						if(timeFor > 10000)
+						{
+							timeFor = 10000;
+						}
 						React.instance.redstoneController.freeze(((Chunk) j), timeFor);
 						completed.add(1);
 						String s = Info.ACTION_LOCK_REDSTONE_STATUS;

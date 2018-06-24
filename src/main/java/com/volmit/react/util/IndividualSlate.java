@@ -2,6 +2,8 @@ package com.volmit.react.util;
 
 import org.bukkit.entity.Player;
 
+import com.volmit.volume.lang.collections.GList;
+
 public class IndividualSlate extends PhantomSlate
 {
 	public IndividualSlate(String name, Player viewer)

@@ -6,6 +6,8 @@ import java.io.OutputStream;
 
 import javax.crypto.Cipher;
 
+import com.volmit.volume.lang.collections.GList;
+
 public class StreamBuilder
 {
 	public GList<StreamConstructor<?, ?>> constructors;

@@ -4,7 +4,7 @@
   <groupId>com.volmit</groupId>
   <artifactId>React</artifactId>
   <name>React</name>
-  <version>6.559</version>
+  <version>6.563</version>
   <description>A performance plugin</description>
   <build>
     <resources>
@@ -32,40 +32,45 @@
               <artifactSet>
                 <includes>
                   <include>org.cyberpwn:*</include>
+                  <include>com.volmit:*</include>
                 </includes>
               </artifactSet>
               <relocations>
                 <relocation>
                   <pattern>org.cyberpwn.gbench</pattern>
-                  <shadedPattern>react.gbench</shadedPattern>
+                  <shadedPattern>com.volmit.react.gbench</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>com.volmit.volume</pattern>
+                  <shadedPattern>com.volmit.react.volume</shadedPattern>
                 </relocation>
                 <relocation>
                   <pattern>org.cyberpwn.gconcurrent</pattern>
-                  <shadedPattern>react.gconcurrent</shadedPattern>
+                  <shadedPattern>com.volmit.react.gconcurrent</shadedPattern>
                 </relocation>
                 <relocation>
                   <pattern>org.cyberpwn.reactlink</pattern>
-                  <shadedPattern>react.remote</shadedPattern>
+                  <shadedPattern>com.volmit.react.remote</shadedPattern>
                 </relocation>
                 <relocation>
                   <pattern>org.cyberpwn.gformat</pattern>
-                  <shadedPattern>react.gformat</shadedPattern>
+                  <shadedPattern>com.volmit.react.gformat</shadedPattern>
                 </relocation>
                 <relocation>
                   <pattern>org.cyberpwn.glang</pattern>
-                  <shadedPattern>react.glang</shadedPattern>
+                  <shadedPattern>com.volmit.react.glang</shadedPattern>
                 </relocation>
                 <relocation>
                   <pattern>org.cyberpwn.gmath</pattern>
-                  <shadedPattern>react.gmath</shadedPattern>
+                  <shadedPattern>com.volmit.react.gmath</shadedPattern>
                 </relocation>
                 <relocation>
                   <pattern>org.cyberpwn.json</pattern>
-                  <shadedPattern>react.json</shadedPattern>
+                  <shadedPattern>com.volmit.react.json</shadedPattern>
                 </relocation>
                 <relocation>
                   <pattern>org.cyberpwn.gnet</pattern>
-                  <shadedPattern>react.gnet</shadedPattern>
+                  <shadedPattern>com.volmit.react.gnet</shadedPattern>
                 </relocation>
               </relocations>
             </configuration>
@@ -121,14 +126,14 @@
                 <configuration>
                   <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
                   <arguments>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.559.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.563.jar</argument>
                     <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
                     <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.559/mapping.txt</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.563/mapping.txt</argument>
                     <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.559/React-6.559-origin.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.563/React-6.563-origin.jar</argument>
                     <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.559/React-6.559.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.563/React-6.563.jar</argument>
                   </arguments>
                 </configuration>
               </execution>
@@ -136,14 +141,14 @@
             <configuration>
               <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
               <arguments>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.559.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.563.jar</argument>
                 <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
                 <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.559/mapping.txt</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.563/mapping.txt</argument>
                 <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.559/React-6.559-origin.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.563/React-6.563-origin.jar</argument>
                 <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.559/React-6.559.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.563/React-6.563.jar</argument>
               </arguments>
             </configuration>
           </plugin>

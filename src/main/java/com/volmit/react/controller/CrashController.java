@@ -1,6 +1,8 @@
 package com.volmit.react.controller;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import com.volmit.react.Config;
@@ -8,28 +10,34 @@ import com.volmit.react.Gate;
 import com.volmit.react.Surge;
 import com.volmit.react.util.C;
 import com.volmit.react.util.CPS;
+import com.volmit.react.util.ColoredString;
 import com.volmit.react.util.Controller;
-import com.volmit.react.util.D;
 import com.volmit.react.util.JSONObject;
 import com.volmit.react.util.M;
+import com.volmit.react.util.RTEX;
+import com.volmit.react.util.RTX;
+import com.volmit.react.util.S;
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GMap;
 
-public class CrashController extends Controller implements Runnable
+public class CrashController extends Controller
 {
 	public static long lastTick = -1;
-	public static int cd;
+	public static boolean online = false;
 	public static CrashController inst = null;
+	public static GMap<String, Integer> nag;
 
 	@Override
 	public void dump(JSONObject object)
 	{
 		object.put("last-tick", lastTick);
-		object.put("cooldown", cd);
+		object.put("online", online);
 	}
 
 	@Override
 	public void start()
 	{
-		cd = 1200;
+		nag = new GMap<String, Integer>();
 		Surge.register(this);
 		lastTick = M.ms();
 	}
@@ -43,29 +51,34 @@ public class CrashController extends Controller implements Runnable
 	@Override
 	public void tick()
 	{
-		if(!Config.TRACK_SERVER_LOCKS)
+		if(!Config.TRACK_SERVER_SPIKES)
 		{
 			return;
 		}
 
 		lastTick = M.ms();
 
-		if(cd > 0)
+		if(!online && !Bukkit.getOnlinePlayers().isEmpty())
 		{
-			cd -= 118;
+			online = true;
+			inst = this;
+			System.out.println("Plugin Watchdog thread started.");
+		}
 
-			if(cd <= 0)
+		for(String i : nag.k())
+		{
+			if(nag.get(i) < 20)
 			{
-				D.v("Watchdog Thread Started!");
-				inst = this;
+				nag.remove(i);
 			}
+
+			nag.put(i, nag.get(i) - 20);
 		}
 	}
 
-	@Override
 	public void run()
 	{
-		if(!Config.TRACK_SERVER_LOCKS)
+		if(!Config.TRACK_SERVER_SPIKES)
 		{
 			return;
 		}
@@ -77,58 +90,122 @@ public class CrashController extends Controller implements Runnable
 
 		boolean spiked = false;
 
-		if(M.ms() - lastTick > 7000 && !spiked)
+		if(M.ms() - lastTick > 1200 && !spiked)
 		{
+			boolean gc = false;
 			spiked = true;
-			Plugin px = null;
+			GMap<Plugin, String> pxv = new GMap<Plugin, String>();
+			StackTraceElement[] stt = Surge.getServerThread().getStackTrace();
 
-			for(StackTraceElement i : Surge.getServerThread().getStackTrace())
+			for(StackTraceElement i : stt)
 			{
 				for(Plugin k : CPS.identify(i.getClassName()))
 				{
-					if(px == null)
+					if(pxv.containsKey(k))
 					{
-						px = k;
+						continue;
 					}
+
+					if(nag.containsKey(k.getName()))
+					{
+						continue;
+					}
+
+					nag.put(k.getName(), 200);
+
+					pxv.put(k, CPS.format(i));
 				}
 			}
 
-			if(px != null)
+			if(SampleController.lastGC > lastTick)
 			{
-				System.out.println("PLUGIN FREEZING SERVER: " + px.getName());
+				gc = true;
+			}
 
-				for(CommandSender i : Gate.broadcastReactUsers())
+			RTX rt = new RTX();
+			rt.addText("[", Gate.darkColor);
+			rt.addText("React", Gate.themeColor);
+			rt.addText(" - ", Gate.darkColor);
+			rt.addText("Alert", C.RED);
+			rt.addText("]", Gate.darkColor);
+			rt.addText(": ", Gate.textColor);
+			rt.addText("Server Lock ", C.GRAY);
+			rt.addText("-> ", C.WHITE);
+
+			if(gc)
+			{
+				return;
+			}
+
+			else if(!pxv.isEmpty())
+			{
+				for(Plugin pi : pxv.k())
 				{
-					Gate.msgError(i, "Warning! The server has been frozen for more than 7 seconds");
-					i.sendMessage(Gate.header("Server Lock: " + px.getName(), C.RED));
-					int lim = 0;
-
-					for(StackTraceElement j : Surge.getServerThread().getStackTrace())
+					RTEX rtx = new RTEX();
+					rtx.getExtras().add(new ColoredString(C.GRAY, pi.getName() + " may be responsible for freezing the server.\n\n"));
+					int max = 11;
+					for(StackTraceElement i : stt)
 					{
-						lim++;
-						String kv = C.WHITE + fcf(j.getClassName()) + C.GRAY + "." + j.getMethodName() + "(" + j.getLineNumber() + ")";
-
-						for(Plugin k : CPS.identify(j.getClassName()))
+						if(pxv.get(pi).equals(CPS.format(i)))
 						{
-							kv += " " + C.RED + k.getName();
+							rtx.getExtras().add(new ColoredString(C.YELLOW, trim(i.getClassName()) + "."));
+							rtx.getExtras().add(new ColoredString(C.GOLD, i.getMethodName()));
+							rtx.getExtras().add(new ColoredString(C.GRAY, "("));
+							rtx.getExtras().add(new ColoredString(C.RED, i.getLineNumber() + ""));
+							rtx.getExtras().add(new ColoredString(C.GRAY, ")\n"));
 						}
 
-						i.sendMessage(kv);
+						else
+						{
+							rtx.getExtras().add(new ColoredString(C.GRAY, trim(i.getClassName()) + "."));
+							rtx.getExtras().add(new ColoredString(C.WHITE, i.getMethodName()));
+							rtx.getExtras().add(new ColoredString(C.GRAY, "("));
+							rtx.getExtras().add(new ColoredString(C.RED, i.getLineNumber() + ""));
+							rtx.getExtras().add(new ColoredString(C.GRAY, ")\n"));
+						}
 
-						if(lim > 5)
+						max--;
+
+						if(max <= 0)
 						{
 							break;
 						}
 					}
 
-					i.sendMessage(Gate.header(C.RED));
+					rt.addTextHover("[" + pi.getName() + "] ", rtx, C.RED);
+				}
+			}
 
-					Gate.msgError(i, "Identified Cause: " + px.getName());
+			else
+			{
+				return;
+			}
+
+			for(CommandSender i : Gate.broadcastReactUsers())
+			{
+				if(i instanceof Player)
+				{
+					try
+					{
+						rt.tellRawTo((Player) i);
+					}
+
+					catch(Throwable e)
+					{
+						new S("tr-fix")
+						{
+							@Override
+							public void run()
+							{
+								rt.tellRawTo((Player) i);
+							}
+						};
+					}
 				}
 			}
 		}
 
-		if(M.ms() - lastTick < 7000 && spiked)
+		if(M.ms() - lastTick < 1200 && spiked)
 		{
 			for(CommandSender i : Gate.broadcastReactUsers())
 			{
@@ -140,7 +217,33 @@ public class CrashController extends Controller implements Runnable
 		}
 	}
 
-	private String fcf(String className)
+	public String trim(String cls)
+	{
+		if(Config.FULL_PACKAGES)
+		{
+			return cls;
+		}
+
+		if(!cls.contains("."))
+		{
+			return cls;
+		}
+
+		String m = "";
+		GList<String> v = new GList<String>(cls.split("\\."));
+		String l = v.popLast();
+
+		for(String i : v)
+		{
+			m += i.charAt(0) + ".";
+		}
+
+		m += l;
+
+		return m;
+	}
+
+	public String fcf(String className)
 	{
 		return className.split("\\.")[className.split("\\.").length - 1];
 	}

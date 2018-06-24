@@ -1,5 +1,7 @@
 package com.volmit.react.util;
 
+import com.volmit.volume.lang.collections.GMap;
+
 public class I
 {
 	public static GMap<String, Average> m = new GMap<String, Average>();

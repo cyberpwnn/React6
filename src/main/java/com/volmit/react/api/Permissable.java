@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import com.volmit.react.Gate;
 import com.volmit.react.Info;
 import com.volmit.react.util.Ex;
-import com.volmit.react.util.GList;
+import com.volmit.volume.lang.collections.GList;
 
 public enum Permissable
 {

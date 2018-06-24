@@ -17,9 +17,9 @@ import javax.swing.JPanel;
 import com.volmit.react.React;
 import com.volmit.react.ReactPlugin;
 import com.volmit.react.util.F;
-import com.volmit.react.util.GList;
-import com.volmit.react.util.GMap;
 import com.volmit.react.util.M;
+import com.volmit.volume.lang.collections.GList;
+import com.volmit.volume.lang.collections.GMap;
 
 public class Whiteboard
 {

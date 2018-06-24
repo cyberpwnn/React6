@@ -14,7 +14,7 @@ import com.volmit.react.api.ReactCommand;
 import com.volmit.react.api.SideGate;
 import com.volmit.react.api.TemporaryAccessor;
 import com.volmit.react.util.C;
-import com.volmit.react.util.GList;
+import com.volmit.volume.lang.collections.GList;
 
 public class CommandRequests extends ReactCommand
 {
