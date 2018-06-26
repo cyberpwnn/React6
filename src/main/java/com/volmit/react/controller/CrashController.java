@@ -8,6 +8,7 @@ import org.bukkit.plugin.Plugin;
 import com.volmit.react.Config;
 import com.volmit.react.Gate;
 import com.volmit.react.Surge;
+import com.volmit.react.api.Flavor;
 import com.volmit.react.util.C;
 import com.volmit.react.util.CPS;
 import com.volmit.react.util.ColoredString;
@@ -51,6 +52,11 @@ public class CrashController extends Controller
 	@Override
 	public void tick()
 	{
+		if(Flavor.getHostFlavor().equals(Flavor.PAPER_SPIGOT))
+		{
+			return;
+		}
+
 		if(!Config.TRACK_SERVER_SPIKES)
 		{
 			return;
@@ -78,6 +84,11 @@ public class CrashController extends Controller
 
 	public void run()
 	{
+		if(Flavor.getHostFlavor().equals(Flavor.PAPER_SPIGOT))
+		{
+			return;
+		}
+
 		if(!Config.TRACK_SERVER_SPIKES)
 		{
 			return;
@@ -90,7 +101,7 @@ public class CrashController extends Controller
 
 		boolean spiked = false;
 
-		if(M.ms() - lastTick > 1200 && !spiked)
+		if(M.ms() - lastTick > Config.TIME_SENS && !spiked)
 		{
 			boolean gc = false;
 			spiked = true;
@@ -111,7 +122,7 @@ public class CrashController extends Controller
 						continue;
 					}
 
-					nag.put(k.getName(), 200);
+					nag.put(k.getName(), Config.TIME_NAG);
 
 					pxv.put(k, CPS.format(i));
 				}
@@ -205,7 +216,7 @@ public class CrashController extends Controller
 			}
 		}
 
-		if(M.ms() - lastTick < 1200 && spiked)
+		if(M.ms() - lastTick < Config.TIME_SENS && spiked)
 		{
 			for(CommandSender i : Gate.broadcastReactUsers())
 			{

@@ -6,16 +6,21 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Sheep;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.PlayerShearEntityEvent;
+import org.bukkit.inventory.ItemStack;
 
 import com.volmit.react.Config;
 import com.volmit.react.Gate;
@@ -31,9 +36,11 @@ import com.volmit.react.util.Controller;
 import com.volmit.react.util.D;
 import com.volmit.react.util.F;
 import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.MSound;
 import com.volmit.react.util.Profiler;
 import com.volmit.react.util.S;
 import com.volmit.react.util.TICK;
+import com.volmit.volume.bukkit.util.sound.GSound;
 import com.volmit.volume.lang.collections.GList;
 
 public class EntityStackController extends Controller
@@ -363,6 +370,50 @@ public class EntityStackController extends Controller
 		}
 
 		return null;
+	}
+
+	@SuppressWarnings("deprecation")
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	public void on(PlayerShearEntityEvent e)
+	{
+		if(!Config.ENTITY_STACKER_SHEEP)
+		{
+			return;
+		}
+
+		if(e.isCancelled())
+		{
+			return;
+		}
+
+		if(e.getEntity() instanceof LivingEntity && isStacked((LivingEntity) e.getEntity()))
+		{
+			if(e.getEntity() instanceof Sheep)
+			{
+				Sheep s = (Sheep) e.getEntity();
+
+				if(s.isAdult() && !s.isSheared())
+				{
+					e.setCancelled(true);
+					Material m = Material.WOOL;
+					byte d = s.getColor().getWoolData();
+					ItemStack is = new ItemStack(m, 1, (short) 0, d);
+					int c = getStack(s).getCount();
+
+					for(int i = 0; i < c; i++)
+					{
+						is.setAmount((int) (is.getAmount() + (Math.random() * 2)));
+					}
+
+					s.setSheared(true);
+					s.getLocation().getWorld().dropItemNaturally(s.getLocation().clone().add(0, 1, 0), is);
+					new GSound(MSound.SHEEP_SHEAR.bukkitSound(), 1f, (float) (0.5f + (1.25f * Math.random()))).play(s.getLocation());
+				}
+			}
+
+			e.setCancelled(true);
+
+		}
 	}
 
 	@EventHandler

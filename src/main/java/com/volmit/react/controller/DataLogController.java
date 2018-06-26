@@ -49,7 +49,7 @@ public class DataLogController extends Controller
 			}
 		}
 
-		catch(IOException e)
+		catch(Throwable e)
 		{
 
 		}

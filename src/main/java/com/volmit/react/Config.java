@@ -474,6 +474,11 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean ENTITY_STACKER_SHOW_NAME_TAG = false;
 
+	@Comment("Increase sheep wool drops depending on stack size")
+	@Key("features.entity-stacker.options.sheep-wool-drops")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean ENTITY_STACKER_SHEEP = true;
+
 	@Comment("Language to use. Languages are downloaded from https://github.com/VolmitSoftware/React/tree/master/language")
 	@Key("features.react.language")
 	@Injection(InjectionMethod.SWAP)
@@ -566,6 +571,16 @@ public class Config
 	@Key("features.react.spikes.report-spikes")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean TRACK_SERVER_SPIKES = true;
+
+	@Comment("The average time in milliseconds a spike must make to trigger the spike message.")
+	@Key("features.react.spikes.time-radius")
+	@Injection(InjectionMethod.SWAP)
+	public static int TIME_SENS = 2500;
+
+	@Comment("The time a report will not show again for (in ticks) after it was just shown")
+	@Key("features.react.spikes.time-nag")
+	@Injection(InjectionMethod.SWAP)
+	public static int TIME_NAG = 200;
 
 	@Comment("Due to word wrapping and hover elements, react hides the full package names by default.\nFor example net.minecraft.server.V1_12R2 would be converted to n.m.s.V")
 	@Key("features.react.spikes.show-fully-qualified-names")
