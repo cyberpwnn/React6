@@ -194,6 +194,10 @@
 			<id>dmulloy2-repo</id>
 			<url>http://repo.dmulloy2.net/nexus/repository/public/</url>
 		</repository>
+		<repository>
+			<id>volmit</id>
+			<url>http://nexus.volmit.com/content/repositories/volmit</url>
+		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -294,7 +298,7 @@
 		<dependency>
 			<groupId>com.volmit</groupId>
 			<artifactId>VolumePlugin</artifactId>
-			<version>latest</version>
+			<version>1.1</version>
 		</dependency>
 	</dependencies>
 </project>
