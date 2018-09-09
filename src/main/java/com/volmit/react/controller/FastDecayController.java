@@ -155,11 +155,11 @@ public class FastDecayController extends Controller
 			}
 		}
 
-		if(M.r(0.09))
+		if(M.r(0.09) && !Gate.safe)
 		{
 			try
 			{
-				new GSound(MSound.STEP_GRASS.bukkitSound(), 0.8f, 0.1f + (float) (Math.random() / 2f)).play(b.getLocation());
+				new GSound(MSound.STEP_GRASS.bs(), 0.8f, 0.1f + (float) (Math.random() / 2f)).play(b.getLocation());
 			}
 
 			catch(Throwable e)
@@ -184,7 +184,10 @@ public class FastDecayController extends Controller
 			{
 				try
 				{
-					new GSound(MSound.DIG_GRASS.bukkitSound(), 0.4f, 1.67f + (float) (Math.random() / 3f)).play(b.getLocation());
+					if(!Gate.safe)
+					{
+						new GSound(MSound.DIG_GRASS.bs(), 0.4f, 1.67f + (float) (Math.random() / 3f)).play(b.getLocation());
+					}
 				}
 
 				catch(Throwable e)
@@ -199,10 +202,7 @@ public class FastDecayController extends Controller
 
 			if(b.getRelative(BlockFace.UP).getType().equals(Material.SNOW))
 			{
-				if(b.getRelative(BlockFace.UP).getData() < 15)
-				{
-					b.breakNaturally();
-				}
+				b.getRelative(BlockFace.UP).breakNaturally();
 			}
 
 			for(Block i : W.blockFaces(b))

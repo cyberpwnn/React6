@@ -247,7 +247,6 @@ public class NMSX
 				subtitleConstructor = NMSX.getNMSClass("PacketPlayOutTitle").getConstructor(NMSX.getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0], NMSX.getNMSClass("IChatBaseComponent"), Integer.TYPE, Integer.TYPE, Integer.TYPE);
 				Object titlePacket = subtitleConstructor.newInstance(e, chatTitle, fadeIn, stay, fadeOut);
 				NMSX.sendPacket(player, titlePacket);
-
 				e = eTitle;
 				chatTitle = NMSX.getNMSClass("IChatBaseComponent").getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\":\"" + title + "\"}");
 				subtitleConstructor = NMSX.getNMSClass("PacketPlayOutTitle").getConstructor(NMSX.getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0], NMSX.getNMSClass("IChatBaseComponent"));
@@ -359,7 +358,14 @@ public class NMSX
 				c3 = Class.forName("net.minecraft.server." + nmsver + ".IChatBaseComponent");
 				Object o = c2.getConstructor(String.class).newInstance(message);
 
-				if(VersionBukkit.get().equals(VersionBukkit.V112))
+				if(VersionBukkit.get().equals(VersionBukkit.V113))
+				{
+					Class<?> c6 = Class.forName("net.minecraft.server." + nmsver + ".ChatMessageType");
+					Object type = c6.getMethod("valueOf", String.class).invoke(null, "GAME_INFO");
+					ppoc = c4.getConstructor(c3, c6).newInstance(o, type);
+				}
+
+				else if(VersionBukkit.get().equals(VersionBukkit.V112))
 				{
 					Class<?> c6 = Class.forName("net.minecraft.server." + nmsver + ".ChatMessageType");
 					Object type = c6.getMethod("valueOf", String.class).invoke(null, "GAME_INFO");

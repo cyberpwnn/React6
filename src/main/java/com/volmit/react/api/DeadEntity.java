@@ -15,6 +15,7 @@ public class DeadEntity
 	private int ticks;
 	private int vticks;
 	private long ms;
+	private long lt;
 
 	public DeadEntity(Entity e, int ticks)
 	{
@@ -22,6 +23,7 @@ public class DeadEntity
 		this.e = e;
 		this.vticks = ticks;
 		this.ticks = ticks;
+		lt = TICK.tick;
 	}
 
 	public boolean c()
@@ -36,7 +38,7 @@ public class DeadEntity
 			ticks = 0;
 		}
 
-		ticks--;
+		ticks = vticks - ((int) (TICK.tick - lt));
 
 		if(ticks <= 0)
 		{
@@ -57,7 +59,7 @@ public class DeadEntity
 				ParticleEffect.VILLAGER_ANGRY.display(0.1f, 1, e.getLocation().clone().add(Vector.getRandom().subtract(Vector.getRandom().clone().multiply(1.89))), 32);
 			}
 
-			if(Config.ENTITY_MARK_COUNTDOWN && TICK.tick % 6 == 0)
+			if(Config.ENTITY_MARK_COUNTDOWN)
 			{
 				String time = F.time(ticks * 50, 1);
 				String n = Config.ENTITY_MARK_COUNTDOWN_FORMAT.replaceAll("%time%", time).replaceAll("\\Q&\\E", "§");

@@ -37,9 +37,9 @@ public class PlaceholderHandler extends EZPlaceholderHook
 		pw.println("_raw_force_2 -> Raw, forces 2 decimals. If no decial is set for any segment, zero is used. I.e. 19.00 (instead of 19)");
 
 		pw.println();
-		pw.println("# Ping does not support raw suffixes.");
 		pw.println("%react_ping%");
 		pw.println("%react_ping_raw%");
+		pw.println("%react_ping_flat%");
 
 		pw.println();
 		pw.println("# Samplers support suffixes");
@@ -113,7 +113,7 @@ public class PlaceholderHandler extends EZPlaceholderHook
 				return "NCA";
 			}
 
-			if(s.equals("ping") || s.equals("ping_raw"))
+			if(s.equals("ping") || s.equals("ping_raw") || s.equals("ping_flat"))
 			{
 				if(p == null)
 				{
@@ -125,9 +125,14 @@ public class PlaceholderHandler extends EZPlaceholderHook
 					return "" + React.instance.protocolController.ping(p);
 				}
 
+				else if(s.endsWith("_flat"))
+				{
+					return F.time(React.instance.protocolController.ping(p), 0);
+				}
+
 				else
 				{
-					return F.time(React.instance.protocolController.ping(p), 1);
+					return F.time(React.instance.protocolController.ping(p), 2);
 				}
 			}
 		}

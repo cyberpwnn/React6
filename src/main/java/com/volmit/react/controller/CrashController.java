@@ -1,5 +1,8 @@
 package com.volmit.react.controller;
 
+import java.io.File;
+import java.io.PrintWriter;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -7,6 +10,7 @@ import org.bukkit.plugin.Plugin;
 
 import com.volmit.react.Config;
 import com.volmit.react.Gate;
+import com.volmit.react.ReactPlugin;
 import com.volmit.react.Surge;
 import com.volmit.react.api.Flavor;
 import com.volmit.react.util.C;
@@ -20,6 +24,7 @@ import com.volmit.react.util.RTX;
 import com.volmit.react.util.S;
 import com.volmit.volume.lang.collections.GList;
 import com.volmit.volume.lang.collections.GMap;
+import com.volmit.volume.lang.format.F;
 
 public class CrashController extends Controller
 {
@@ -155,6 +160,31 @@ public class CrashController extends Controller
 					RTEX rtx = new RTEX();
 					rtx.getExtras().add(new ColoredString(C.GRAY, pi.getName() + " may be responsible for freezing the server.\n\n"));
 					int max = 11;
+
+					if(Config.SAVE_SERVER_SPIKES)
+					{
+						try
+						{
+							String n = pi.getName() + "-" + F.stamp(M.ms()) + "-" + M.ms();
+							File f = new File(ReactPlugin.i.getDataFolder(), "spikes");
+							f.mkdirs();
+							File ff = new File(f, n + ".txt");
+							PrintWriter pw = new PrintWriter(ff);
+
+							for(StackTraceElement i : stt)
+							{
+								pw.println(i.getClassName() + "." + i.getMethodName() + "(" + i.getLineNumber() + ")");
+							}
+
+							pw.close();
+						}
+
+						catch(Exception e)
+						{
+							e.printStackTrace();
+						}
+					}
+
 					for(StackTraceElement i : stt)
 					{
 						if(pxv.get(pi).equals(CPS.format(i)))

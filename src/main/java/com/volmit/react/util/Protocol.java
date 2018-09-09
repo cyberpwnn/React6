@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 public enum Protocol
 {
 	LATEST(10000, "Latest"),
+	R1_13(393, "1.13", "v1_13_R1"),
 	R1_12_2(340, "1.12.2", "v1_12_R1"),
 	R1_12_2_PRE(339, "1.12.2-PRE", "v1_12_R1"),
 	R1_12_1(338, "1.12.1", "v1_12_R1"),

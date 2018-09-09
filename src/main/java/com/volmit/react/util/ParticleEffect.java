@@ -17,6 +17,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.util.ParticleEffect.ParticleData;
 import com.volmit.react.util.ReflectionUtils.PackageType;
 
@@ -519,6 +520,10 @@ public enum ParticleEffect
 	 */
 	public boolean isSupported()
 	{
+		if(Gate.safe)
+		{
+			return false;
+		}
 		if(Config.SAFE_MODE_NMS)
 		{
 			return false;
@@ -672,6 +677,11 @@ public enum ParticleEffect
 	 */
 	public void display(float speed, int amount, Location center, double range) throws ParticleVersionException, ParticleDataException, IllegalArgumentException
 	{
+		if(Gate.safe)
+		{
+			return;
+		}
+
 		if(!isSupported())
 		{
 			return;
@@ -722,6 +732,10 @@ public enum ParticleEffect
 	 */
 	public void display(float speed, int amount, Location center, List<Player> players) throws ParticleVersionException, ParticleDataException, IllegalArgumentException
 	{
+		if(Gate.safe)
+		{
+			return;
+		}
 		if(!isSupported())
 		{
 			throw new ParticleVersionException("This particle effect is not supported by your server version");
@@ -768,6 +782,10 @@ public enum ParticleEffect
 	 */
 	public void display(float speed, int amount, Location center, Player... players) throws ParticleVersionException, ParticleDataException, IllegalArgumentException
 	{
+		if(Gate.safe)
+		{
+			return;
+		}
 		display(speed, amount, center, Arrays.asList(players));
 	}
 
@@ -797,6 +815,10 @@ public enum ParticleEffect
 	 */
 	public void display(Vector direction, float speed, Location center, double range) throws ParticleVersionException, ParticleDataException, IllegalArgumentException
 	{
+		if(Gate.safe)
+		{
+			return;
+		}
 		if(!isSupported())
 		{
 			throw new ParticleVersionException("This particle effect is not supported by your server version");
@@ -841,6 +863,10 @@ public enum ParticleEffect
 	 */
 	public void display(Vector direction, float speed, Location center, List<Player> players) throws ParticleVersionException, ParticleDataException, IllegalArgumentException
 	{
+		if(Gate.safe)
+		{
+			return;
+		}
 		if(!isSupported())
 		{
 			throw new ParticleVersionException("This particle effect is not supported by your server version");
@@ -883,6 +909,10 @@ public enum ParticleEffect
 	 */
 	public void display(Vector direction, float speed, Location center, Player... players) throws ParticleVersionException, ParticleDataException, IllegalArgumentException
 	{
+		if(Gate.safe)
+		{
+			return;
+		}
 		display(direction, speed, center, Arrays.asList(players));
 	}
 
@@ -906,6 +936,10 @@ public enum ParticleEffect
 	 */
 	public void display(ParticleColor color, Location center, double range) throws ParticleVersionException, ParticleColorException
 	{
+		if(Gate.safe)
+		{
+			return;
+		}
 		if(!isSupported())
 		{
 			throw new ParticleVersionException("This particle effect is not supported by your server version");
@@ -941,6 +975,10 @@ public enum ParticleEffect
 	 */
 	public void display(ParticleColor color, Location center, List<Player> players) throws ParticleVersionException, ParticleColorException
 	{
+		if(Gate.safe)
+		{
+			return;
+		}
 		if(!isSupported())
 		{
 			throw new ParticleVersionException("This particle effect is not supported by your server version");
@@ -975,6 +1013,10 @@ public enum ParticleEffect
 	 */
 	public void display(ParticleColor color, Location center, Player... players) throws ParticleVersionException, ParticleColorException
 	{
+		if(Gate.safe)
+		{
+			return;
+		}
 		display(color, center, Arrays.asList(players));
 	}
 
@@ -1011,6 +1053,10 @@ public enum ParticleEffect
 	 */
 	public void display(ParticleData data, float speed, int amount, Location center, double range) throws ParticleVersionException, ParticleDataException
 	{
+		if(Gate.safe)
+		{
+			return;
+		}
 		if(!isSupported())
 		{
 			throw new ParticleVersionException("This particle effect is not supported by your server version");
@@ -1062,6 +1108,10 @@ public enum ParticleEffect
 	 */
 	public void display(ParticleData data, float speed, int amount, Location center, List<Player> players) throws ParticleVersionException, ParticleDataException
 	{
+		if(Gate.safe)
+		{
+			return;
+		}
 		if(!isSupported())
 		{
 			throw new ParticleVersionException("This particle effect is not supported by your server version");
@@ -1109,6 +1159,10 @@ public enum ParticleEffect
 	 */
 	public void display(ParticleData data, float speed, int amount, Location center, Player... players) throws ParticleVersionException, ParticleDataException
 	{
+		if(Gate.safe)
+		{
+			return;
+		}
 		display(data, speed, amount, center, Arrays.asList(players));
 	}
 
@@ -1137,6 +1191,10 @@ public enum ParticleEffect
 	 */
 	public void display(ParticleData data, Vector direction, float speed, Location center, double range) throws ParticleVersionException, ParticleDataException
 	{
+		if(Gate.safe)
+		{
+			return;
+		}
 		if(!isSupported())
 		{
 			throw new ParticleVersionException("This particle effect is not supported by your server version");
@@ -1176,6 +1234,10 @@ public enum ParticleEffect
 	 */
 	public void display(ParticleData data, Vector direction, float speed, Location center, List<Player> players) throws ParticleVersionException, ParticleDataException
 	{
+		if(Gate.safe)
+		{
+			return;
+		}
 		if(!isSupported())
 		{
 			throw new ParticleVersionException("This particle effect is not supported by your server version");
@@ -1214,6 +1276,10 @@ public enum ParticleEffect
 	 */
 	public void display(ParticleData data, Vector direction, float speed, Location center, Player... players) throws ParticleVersionException, ParticleDataException
 	{
+		if(Gate.safe)
+		{
+			return;
+		}
 		display(data, direction, speed, center, Arrays.asList(players));
 	}
 

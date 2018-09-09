@@ -87,12 +87,14 @@ public class SampleController extends Controller
 	public static double totalTaskTime = 0;
 	public static TimingsReport t = null;
 	private SuperSampler ss;
+	public long lastTick = M.ms();
 	public static MemoryTracker m;
 	public static long lt = M.ns();
 	public static long lms = 0;
 	public static double tps = 0;
 	public static Average ta = new Average(10);
 	public static long lastGC = M.ms();
+	private boolean crashed = false;
 
 	public static void t()
 	{
@@ -120,6 +122,7 @@ public class SampleController extends Controller
 
 	public SampleController()
 	{
+		crashed = false;
 		controllers = new GList<IController>();
 		reports = new GMap<String, Double>();
 		sct = 0;
@@ -129,6 +132,7 @@ public class SampleController extends Controller
 		ss = new SuperSampler();
 		ss.start();
 		m = new MemoryTracker();
+		lastTick = M.ms();
 	}
 
 	public void construct()
@@ -244,8 +248,17 @@ public class SampleController extends Controller
 	@Override
 	public void tick()
 	{
+		if(React.instance.sampleController == null && !crashed)
+		{
+			crashed = true;
+			System.out.println("React Supersampler has crashed. Reloading React.");
+			ReactPlugin.reload();
+			return;
+		}
+
 		t();
 		m.tick();
+		lastTick = M.ms();
 
 		if(m.isGcd())
 		{
@@ -294,6 +307,14 @@ public class SampleController extends Controller
 
 		totalTime = nsv;
 		totalTaskTime = msu;
+
+		if(!crashed && ss.getTpsMonitor().getLastTick() < lastTick && (3 + lastTick) - ss.getTpsMonitor().getLastTick() > 15000)
+		{
+			crashed = true;
+			System.out.println("React Supersampler has crashed. Reloading React.");
+			System.out.println("SS has not responded for over " + F.time(lastTick - ss.getTpsMonitor().getLastTick(), 2));
+			ReactPlugin.reload();
+		}
 	}
 
 	public void onTickAsync()

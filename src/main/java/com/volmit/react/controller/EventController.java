@@ -12,9 +12,11 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 
+import com.volmit.react.Gate;
 import com.volmit.react.Surge;
 import com.volmit.react.api.ChunkIssue;
 import com.volmit.react.api.LagMap;
+import com.volmit.react.api.Permissable;
 import com.volmit.react.api.ReactScrollEvent;
 import com.volmit.react.api.ScrollDirection;
 import com.volmit.react.util.Controller;
@@ -116,7 +118,15 @@ public class EventController extends Controller
 	@EventHandler
 	public void on(BlockPhysicsEvent e)
 	{
-		map.hit(e.getBlock().getChunk(), ChunkIssue.PHYSICS, 20);
+		try
+		{
+			map.hit(e.getBlock().getChunk(), ChunkIssue.PHYSICS, 20);
+		}
+
+		catch(Throwable ex)
+		{
+
+		}
 	}
 
 	@EventHandler
@@ -140,6 +150,12 @@ public class EventController extends Controller
 	@EventHandler
 	public void on(PlayerJoinEvent e)
 	{
+		if(Gate.safe && Permissable.ACCESS.has(e.getPlayer()) || e.getPlayer().isOp())
+		{
+			Gate.msgError(e.getPlayer(), "Warning! You are using a pre-build of spigot 1.13!");
+			Gate.msgError(e.getPlayer(), "React is running in 1.13 safe-mode. Please report any issues to https://github.com/VolmitSoftware/React/issues");
+		}
+
 		slots.put(e.getPlayer(), e.getPlayer().getInventory().getHeldItemSlot());
 	}
 

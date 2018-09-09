@@ -77,10 +77,6 @@ public class ActionLockHopper extends Action
 				{
 					if(i.can(j))
 					{
-						if(timeFor > 10000)
-						{
-							timeFor = 10000;
-						}
 						React.instance.hopperController.freeze(((Chunk) j), timeFor);
 						completed.add(1);
 						String s = Info.ACTION_LOCK_HOPPER_STATUS;

@@ -131,6 +131,8 @@ public abstract class ParallelPoolManager
 					burn();
 				}
 			}
+
+			Gate.stable = squeue.size() < 75;
 		}
 
 		catch(Throwable e)

@@ -77,28 +77,27 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static int TICK_AVG_RAD = 3;
 
-	@Comment("Disables all capabilities for react to utilize NMS classes in creaftbukkit. Use this if either you are having serious problems, or are using Sponge,MCPC+,KCauldron, or even Glowkit")
+	@Comment("Disables all capabilities for react to utilize NMS classes in craftbukkit. Use this if either you are having serious problems, or are using Sponge,MCPC+,KCauldron, or even Glowkit")
 	@Key("features.react.modes.safemode-nms")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean SAFE_MODE_NMS = false;
+
+	@Comment("Treats itemframes as dangerous, and prevents react from killing them, or culling them. Set this to false to allow culling them with rules, or purging them.")
+	@Key("features.react.saftey.treat-itemframes-dangerous")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean ITEMFRAME_DANGER = true;
+
+	@Comment("Treats armorstands as dangerous, and prevents react from killing them, or culling them. Set this to false to allow culling them with rules, or purging them.")
+	@Key("features.react.saftey.treat-armorstands-dangerous")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean ARMORSTAND_DANGER = true;
 
 	@Comment("Disable all capabilities for react to interact with the game's protocol. I.e. Sending & intercepting packets, Ping and other features.")
 	@Key("features.react.modes.safemode-protocol")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean SAFE_MODE_PROTOCOL = false;
 
-	@Comment("The maximum amount of data (in megabytes) to keep.")
-	@Key("features.react.datalogging.max-mb")
-	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 5, max = 8192)
-	public static int DLG_MAX_MB = 100;
-
-	@Comment("Should Datalogging be enabled? React will monitor samplers and save them to the cache.")
-	@Key("features.react.datalogging.enabled")
-	@Injection(InjectionMethod.SWAP)
-	public static boolean DATALOG_ENABLED = true;
-
-	@Comment("Disable all capabilities for react to interact with FastAstncWorldEdit.")
+	@Comment("Disable all capabilities for react to interact with FastAsyncWorldEdit.")
 	@Key("features.react.modes.safemode-fawe")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean SAFE_MODE_FAWE = false;
@@ -277,6 +276,11 @@ public class Config
 	@Key("features.entity-culler.enabled")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean CULLING_ENABLED = true;
+
+	@Comment("Should react autocull near players (in their view distances) constantly to enforce entity limits in the culling rules? Please keep in mind that there may be a performance comprimise here.React AI only culls what is causing lag. This abolishes that idea.")
+	@Key("features.entity-culler.auto-cull")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean CULLING_AUTO = false;
 
 	@Comment("Enable fast leaf decay, uses nms adapters to skip most block updates.")
 	@Key("tweaks.fast-leaf-decay.enabled")
@@ -571,6 +575,11 @@ public class Config
 	@Key("features.react.spikes.report-spikes")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean TRACK_SERVER_SPIKES = true;
+
+	@Comment("Save tracked spikes to React/spikes")
+	@Key("features.react.spikes.save-spikes")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean SAVE_SERVER_SPIKES = false;
 
 	@Comment("The average time in milliseconds a spike must make to trigger the spike message.")
 	@Key("features.react.spikes.time-radius")
