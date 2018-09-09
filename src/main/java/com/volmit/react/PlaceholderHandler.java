@@ -34,7 +34,7 @@ public class PlaceholderHandler extends EZPlaceholderHook
 		pw.println("_raw_3 -> Raw, 3 decimals");
 		pw.println("_raw_4 -> Raw, 4 decimals");
 		pw.println("_raw_force_1 -> Raw, forces 1 decimal. If the value is round, places 0.");
-		pw.println("_raw_force_2 -> Raw, forces 2 decimals. If no decial is set for any segment, zero is used. I.e. 19.00 (instead of 19)");
+		pw.println("_raw_force_2 -> Raw, forces 2 decimals. If no decimal is set for any segment, zero is used. I.e. 19.00 (instead of 19)");
 
 		pw.println();
 		pw.println("%react_ping%");

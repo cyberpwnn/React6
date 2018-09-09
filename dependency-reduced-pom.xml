@@ -4,7 +4,7 @@
   <groupId>com.volmit</groupId>
   <artifactId>React</artifactId>
   <name>React</name>
-  <version>6.574</version>
+  <version>6.575</version>
   <description>A performance plugin</description>
   <build>
     <resources>
@@ -95,13 +95,20 @@
                 <goals>
                   <goal>exec</goal>
                 </goals>
+                <configuration>
+                  <executable>D:\Java\Eclipse\React6\scripts\development.bat</executable>
+                  <arguments>
+                    <argument>D:\Java\Eclipse\React6/target/React-6.575.jar</argument>
+                    <argument>C:\Users\brian\Documents\development\servers\dynamic\plugins\React.jar</argument>
+                  </arguments>
+                </configuration>
               </execution>
             </executions>
             <configuration>
-              <executable>${script.development}</executable>
+              <executable>D:\Java\Eclipse\React6\scripts\development.bat</executable>
               <arguments>
-                <argument>${react.release.target}</argument>
-                <argument>${react.development.location}</argument>
+                <argument>D:\Java\Eclipse\React6/target/React-6.575.jar</argument>
+                <argument>C:\Users\brian\Documents\development\servers\dynamic\plugins\React.jar</argument>
               </arguments>
             </configuration>
           </plugin>
@@ -123,32 +130,19 @@
                 <goals>
                   <goal>exec</goal>
                 </goals>
-                <configuration>
-                  <executable>D:\Java\Eclipse\React6/compile\release.bat</executable>
-                  <arguments>
-                    <argument>D:\Java\Eclipse\React6/target/React-6.574.jar</argument>
-                    <argument>D:\Java\Eclipse\React6/compile/in.jar</argument>
-                    <argument>D:\Java\Eclipse\React6/compile/mapping.txt</argument>
-                    <argument>D:\Java\Eclipse\React6/release/6.574/mapping.txt</argument>
-                    <argument>D:\Java\Eclipse\React6/compile/in.jar</argument>
-                    <argument>D:\Java\Eclipse\React6/release/6.574/React-6.574-origin.jar</argument>
-                    <argument>D:\Java\Eclipse\React6/compile/out.jar</argument>
-                    <argument>D:\Java\Eclipse\React6/release/6.574/React-6.574.jar</argument>
-                  </arguments>
-                </configuration>
               </execution>
             </executions>
             <configuration>
-              <executable>D:\Java\Eclipse\React6/compile\release.bat</executable>
+              <executable>${script.release}</executable>
               <arguments>
-                <argument>D:\Java\Eclipse\React6/target/React-6.574.jar</argument>
-                <argument>D:\Java\Eclipse\React6/compile/in.jar</argument>
-                <argument>D:\Java\Eclipse\React6/compile/mapping.txt</argument>
-                <argument>D:\Java\Eclipse\React6/release/6.574/mapping.txt</argument>
-                <argument>D:\Java\Eclipse\React6/compile/in.jar</argument>
-                <argument>D:\Java\Eclipse\React6/release/6.574/React-6.574-origin.jar</argument>
-                <argument>D:\Java\Eclipse\React6/compile/out.jar</argument>
-                <argument>D:\Java\Eclipse\React6/release/6.574/React-6.574.jar</argument>
+                <argument>${react.release.target}</argument>
+                <argument>${react.export.in}</argument>
+                <argument>${exp1}</argument>
+                <argument>${oexp1}</argument>
+                <argument>${exp2}</argument>
+                <argument>${oexp2}</argument>
+                <argument>${exp3}</argument>
+                <argument>${oexp3}</argument>
               </arguments>
             </configuration>
           </plugin>

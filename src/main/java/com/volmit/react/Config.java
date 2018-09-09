@@ -406,7 +406,7 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static GList<String> CULL_RULES = getDefaultCullRules();
 
-	@Comment("DThe server is considered lagging if the tick time exeeds this value")
+	@Comment("The server is considered lagging if the tick time exeeds this value")
 	@Key("rai.tps.high-tick")
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 20.0, max = 70.0)
@@ -596,7 +596,7 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean FULL_PACKAGES = false;
 
-	@Comment("Use fast block destruction for fast leaf decay. Turn this on if you dont like snow floating above leaves, though you loose most of the performance benefits of fast decay.")
+	@Comment("Use fast block destruction for fast leaf decay. Turn this on if you dont like snow floating above leaves, though you lose most of the performance benefits of fast decay.")
 	@Key("tweaks.fast-leaf-decay.fast-destroy")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean FAST_LEAF_NMS = true;
