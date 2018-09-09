@@ -152,8 +152,10 @@ public class EventController extends Controller
 	{
 		if(Gate.safe && Permissable.ACCESS.has(e.getPlayer()) || e.getPlayer().isOp())
 		{
-			Gate.msgError(e.getPlayer(), "Warning! You are using a pre-build of spigot 1.13!");
-			Gate.msgError(e.getPlayer(), "React is running in 1.13 safe-mode. Please report any issues to https://github.com/VolmitSoftware/React/issues");
+			// Gate.msgError(e.getPlayer(), "Warning! You are using a pre-build of spigot
+			// 1.13!");
+			// Gate.msgError(e.getPlayer(), "React is running in 1.13 safe-mode. Please
+			// report any issues to https://github.com/VolmitSoftware/React/issues");
 		}
 
 		slots.put(e.getPlayer(), e.getPlayer().getInventory().getHeldItemSlot());

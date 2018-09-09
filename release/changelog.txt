@@ -1,0 +1,8 @@
+6.574
+<changes>
+Fixed 1.13 detection on non 1.13 servers
+</changes>
+
+Hi, I'm Psycho, I'll be working on react for a bit please spam me with your errors on the volmit discord server!
+
+@NextdoorPsycho
