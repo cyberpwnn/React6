@@ -23,6 +23,9 @@ import com.volmit.react.util.Controller;
 import com.volmit.react.util.D;
 import com.volmit.react.util.JSONArray;
 import com.volmit.react.util.JSONObject;
+import com.volmit.react.util.M;
+import com.volmit.react.util.S;
+import com.volmit.volume.bukkit.util.world.Players;
 import com.volmit.volume.lang.collections.GList;
 import com.volmit.volume.lang.collections.GMap;
 import com.volmit.volume.lang.collections.GSet;
@@ -34,6 +37,8 @@ public class EntityCullController extends Controller
 	private GSet<EntityFlag> defer;
 	private GSet<EntityFlag> prefer;
 	private GMap<EntityGroup, Integer> maxs;
+	private GSet<Chunk> q;
+	private long lc = M.ms();
 
 	public GMap<UUID, SpawnReason> getTrackReasons()
 	{
@@ -104,6 +109,7 @@ public class EntityCullController extends Controller
 	@Override
 	public void start()
 	{
+		q = new GSet<Chunk>();
 		trackReasons = new GMap<UUID, SpawnReason>();
 		flags = new GSet<EntityFlag>();
 		defer = new GSet<EntityFlag>();
@@ -122,7 +128,6 @@ public class EntityCullController extends Controller
 	@Override
 	public void tick()
 	{
-
 		GList<Entity> je = new GList<Entity>();
 
 		for(World i : Bukkit.getWorlds())
@@ -155,6 +160,33 @@ public class EntityCullController extends Controller
 	public void on(CreatureSpawnEvent e)
 	{
 		trackReasons.put(e.getEntity().getUniqueId(), e.getSpawnReason());
+
+		if(Config.CULLING_AUTO)
+		{
+			q.add(e.getLocation().getChunk());
+
+			if(M.ms() - lc > 1000 && q.size() > 0)
+			{
+				lc = M.ms();
+
+				for(Chunk j : new GList<Chunk>(q))
+				{
+					if(Players.isWithinViewDistance(j))
+					{
+						new S("autocull")
+						{
+							@Override
+							public void run()
+							{
+								cull(j);
+							}
+						};
+					}
+				}
+
+				q.clear();
+			}
+		}
 	}
 
 	public void repopulateRules()

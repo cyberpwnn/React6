@@ -407,7 +407,11 @@ public class EntityStackController extends Controller
 
 					s.setSheared(true);
 					s.getLocation().getWorld().dropItemNaturally(s.getLocation().clone().add(0, 1, 0), is);
-					new GSound(MSound.SHEEP_SHEAR.bukkitSound(), 1f, (float) (0.5f + (1.25f * Math.random()))).play(s.getLocation());
+
+					if(!Gate.safe)
+					{
+						new GSound(MSound.SHEEP_SHEAR.bs(), 1f, (float) (0.5f + (1.25f * Math.random()))).play(s.getLocation());
+					}
 				}
 			}
 

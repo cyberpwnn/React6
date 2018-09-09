@@ -146,9 +146,9 @@ public class GraphingInstance implements Listener
 	{
 		if(mapping && e.getPlayer().equals(player) && Capability.DUAL_WEILD.isCapable())
 		{
-			if(Config.SOUNDS)
+			if(Config.SOUNDS && !Gate.safe)
 			{
-				new GSound(MSound.STEP_GRASS.bukkitSound(), 0.05f, 1.8f).play(e.getPlayer().getLocation());
+				new GSound(MSound.STEP_GRASS.bs(), 0.05f, 1.8f).play(e.getPlayer().getLocation());
 			}
 
 			if(!isDoScrolling())

@@ -50,7 +50,7 @@ public class RQ extends Thread
 	@SuppressWarnings("deprecation")
 	public static void run(A a)
 	{
-		if(r == null || r.size() > 20)
+		if(r == null || r.size() > 35)
 		{
 			Bukkit.getScheduler().scheduleAsyncDelayedTask(Bukkit.getPluginManager().getPlugin("React"), a);
 		}

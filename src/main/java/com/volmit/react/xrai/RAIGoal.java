@@ -148,7 +148,6 @@ public class RAIGoal
 			try
 			{
 				interval = new SelectorTime().parse(null, sv = j.getString("interval"));
-				System.out.println("Parsed " + sv + " -> " + interval);
 			}
 
 			catch(SelectorParseException e)

@@ -433,12 +433,18 @@ public class MonitorController extends Controller
 		{
 			if(i.getMonitorPosted())
 			{
-				new GSound(MSound.FALL_SMALL.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+				if(!Gate.safe)
+				{
+					new GSound(MSound.FALL_SMALL.bs(), calcVolume(i), 1.9f).play(i.getP());
+				}
 			}
 
 			else
 			{
-				new GSound(MSound.FALL_SMALL.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+				if(!Gate.safe)
+				{
+					new GSound(MSound.FALL_SMALL.bs(), calcVolume(i), 1.9f).play(i.getP());
+				}
 			}
 		}
 
@@ -487,9 +493,9 @@ public class MonitorController extends Controller
 			{
 				i.setSwitchNotification(maxCooldown);
 
-				if(Config.SOUNDS)
+				if(Config.SOUNDS && !Gate.safe)
 				{
-					new GSound(MSound.HORSE_WOOD.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+					new GSound(MSound.HORSE_WOOD.bs(), calcVolume(i), 1.9f).play(i.getP());
 				}
 
 				i.setPlays(i.getPlays() + 3);
@@ -562,9 +568,9 @@ public class MonitorController extends Controller
 				i.setMonitorSelection(i.getMonitorLastSelection());
 				i.setSwitchNotification(maxCooldown);
 
-				if(Config.SOUNDS)
+				if(Config.SOUNDS && !Gate.safe)
 				{
-					new GSound(MSound.DIG_WOOL.bukkitSound(), calcVolume(i), 1.9f).play(i.getP());
+					new GSound(MSound.DIG_WOOL.bs(), calcVolume(i), 1.9f).play(i.getP());
 				}
 
 				i.setPlays(i.getPlays() + 3);
@@ -575,9 +581,9 @@ public class MonitorController extends Controller
 				i.setMonitorLastSelection(i.getMonitorSelection());
 				i.setMonitorSelection(-1);
 
-				if(Config.SOUNDS)
+				if(Config.SOUNDS && !Gate.safe)
 				{
-					new GSound(MSound.DIG_WOOL.bukkitSound(), calcVolume(i), 1.5f).play(i.getP());
+					new GSound(MSound.DIG_WOOL.bs(), calcVolume(i), 1.5f).play(i.getP());
 				}
 
 				i.setPlays(i.getPlays() + 3);

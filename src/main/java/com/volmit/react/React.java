@@ -5,7 +5,6 @@ import com.volmit.react.controller.ChunkController;
 import com.volmit.react.controller.CollisionController;
 import com.volmit.react.controller.CommandController;
 import com.volmit.react.controller.CrashController;
-import com.volmit.react.controller.DataLogController;
 import com.volmit.react.controller.EntityCullController;
 import com.volmit.react.controller.EntityStackController;
 import com.volmit.react.controller.EventController;
@@ -141,9 +140,6 @@ public class React
 
 	@Control
 	public MemoryController memoryController;
-
-	@Control
-	public DataLogController dataLogController;
 
 	public React()
 	{

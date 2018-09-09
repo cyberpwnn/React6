@@ -70,6 +70,7 @@ import io.lumine.xikage.mythicmobs.mobs.MythicMob;
 
 public class Gate
 {
+	public static boolean safe = false;
 	public static boolean lowMemoryMode = false;
 	public static GMap<Integer, DeadEntity> markedForDeath = new GMap<Integer, DeadEntity>();
 	public static int snd = 3;
@@ -82,6 +83,7 @@ public class Gate
 	public static C textColor = C.GRAY;
 	private static GList<C> crgb = new GList<C>();
 	private static GList<EntityType> ed;
+	public static boolean stable = true;
 
 	public static GList<CreatureSpawner> getSpawners(Chunk c)
 	{
@@ -727,9 +729,9 @@ public class Gate
 		String s = msg(p, C.GREEN + "\u2714 " + C.GRAY + msg); //$NON-NLS-1$
 		if(p instanceof Player)
 		{
-			if(snd > 0 && Config.SOUNDS)
+			if(snd > 0 && Config.SOUNDS && !Gate.safe)
 			{
-				((Player) p).playSound(((Player) p).getLocation(), MSound.SUCCESSFUL_HIT.bukkitSound(), 0.25f, 1.9f);
+				((Player) p).playSound(((Player) p).getLocation(), MSound.SUCCESSFUL_HIT.bs(), 0.25f, 1.9f);
 				snd--;
 			}
 		}
@@ -743,9 +745,9 @@ public class Gate
 
 		if(p instanceof Player)
 		{
-			if(snd > 0 && Config.SOUNDS)
+			if(snd > 0 && Config.SOUNDS && !Gate.safe)
 			{
-				((Player) p).playSound(((Player) p).getLocation(), MSound.ENDERDRAGON_HIT.bukkitSound(), 0.25f, 1.9f);
+				((Player) p).playSound(((Player) p).getLocation(), MSound.ENDERDRAGON_HIT.bs(), 0.25f, 1.9f);
 				snd--;
 			}
 		}
@@ -759,9 +761,9 @@ public class Gate
 
 		if(p instanceof Player)
 		{
-			if(snd > 0 && Config.SOUNDS)
+			if(snd > 0 && Config.SOUNDS && !Gate.safe)
 			{
-				((Player) p).playSound(((Player) p).getLocation(), MSound.CHICKEN_EGG_POP.bukkitSound(), 0.15f, 1.9f);
+				((Player) p).playSound(((Player) p).getLocation(), MSound.CHICKEN_EGG_POP.bs(), 0.15f, 1.9f);
 				snd--;
 			}
 		}
@@ -838,7 +840,7 @@ public class Gate
 
 	private static void removeEntityQuickly(Entity e)
 	{
-		if(e.getType().equals(EntityType.ARMOR_STAND))
+		if(e.getType().equals(EntityType.ARMOR_STAND) && Config.ARMORSTAND_DANGER)
 		{
 			return;
 		}
@@ -858,7 +860,7 @@ public class Gate
 
 	private static void removeEntity(Entity e)
 	{
-		if(e.getType().equals(EntityType.ARMOR_STAND))
+		if(e.getType().equals(EntityType.ARMOR_STAND) && Config.ARMORSTAND_DANGER)
 		{
 			return;
 		}
@@ -887,8 +889,16 @@ public class Gate
 		{
 			ed = new GList<EntityType>();
 			ed.add(EntityType.PLAYER);
-			ed.add(EntityType.ARMOR_STAND);
-			ed.add(EntityType.ITEM_FRAME);
+
+			if(Config.ARMORSTAND_DANGER)
+			{
+				ed.add(EntityType.ARMOR_STAND);
+			}
+
+			if(Config.ITEMFRAME_DANGER)
+			{
+				ed.add(EntityType.ITEM_FRAME);
+			}
 		}
 
 		return ed.contains(e);
@@ -923,12 +933,12 @@ public class Gate
 			return;
 		}
 
-		if(e.getType().equals(EntityType.ARMOR_STAND) && !b)
+		if(e.getType().equals(EntityType.ARMOR_STAND) && !b && Config.ARMORSTAND_DANGER)
 		{
 			return;
 		}
 
-		if(e.getType().equals(EntityType.ITEM_FRAME) && !b)
+		if(e.getType().equals(EntityType.ITEM_FRAME) && !b && Config.ITEMFRAME_DANGER)
 		{
 			return;
 		}
@@ -964,12 +974,12 @@ public class Gate
 			return;
 		}
 
-		if(e.getType().equals(EntityType.ITEM_FRAME))
+		if(e.getType().equals(EntityType.ITEM_FRAME) && Config.ITEMFRAME_DANGER)
 		{
 			return;
 		}
 
-		if(e.getType().equals(EntityType.ARMOR_STAND))
+		if(e.getType().equals(EntityType.ARMOR_STAND) && Config.ARMORSTAND_DANGER)
 		{
 			return;
 		}
@@ -984,7 +994,15 @@ public class Gate
 			return;
 		}
 
-		removeEntity(e);
+		if(Config.CULLING_AUTO)
+		{
+			removeEntityQuickly(e);
+		}
+
+		else
+		{
+			removeEntity(e);
+		}
 	}
 
 	public static void updateBlock(Block block)

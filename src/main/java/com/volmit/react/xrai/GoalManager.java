@@ -311,7 +311,6 @@ public class GoalManager
 					RAIGoal g = new RAIGoal(j);
 					goals.add(g);
 					writeGoal(g, i);
-					System.out.println("Loaded Goal: " + i.getName() + " (" + g.getName() + " - " + g.getDescription() + " by " + g.getAuthor() + ")");
 				}
 
 				catch(FileNotFoundException e1)
@@ -379,7 +378,7 @@ public class GoalManager
 				v++;
 				JSONObject j = ja.getJSONObject(i);
 				RAIGoal g = new RAIGoal(j);
-				System.out.println("Imported Goal: " + code + " (" + g.getName() + " - " + g.getDescription() + " by " + g.getAuthor() + ")");
+				goals.add(g);
 			}
 		}
 
@@ -388,7 +387,6 @@ public class GoalManager
 			e.printStackTrace();
 		}
 
-		System.out.println("Saving Goals...");
 		saveGoals();
 
 		return v;

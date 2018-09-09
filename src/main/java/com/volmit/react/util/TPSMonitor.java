@@ -1,6 +1,5 @@
 package com.volmit.react.util;
 
-import com.volmit.react.Gate;
 import com.volmit.react.React;
 import com.volmit.react.Surge;
 import com.volmit.react.controller.CrashController;
@@ -16,8 +15,8 @@ public abstract class TPSMonitor extends Thread
 	private State lastState;
 	private double actualTickTimeMS;
 	private double ltt;
-	private long lastTick;
-	private boolean frozen;
+	public long lastTick;
+	public boolean frozen;
 	private StackTraceElement[] lockedStack;
 	private double lmsx;
 	private MemoryMonitor memoryMonitor;
@@ -63,13 +62,23 @@ public abstract class TPSMonitor extends Thread
 	@Override
 	public void run()
 	{
-		while(running)
+		while(running && !interrupted())
 		{
 			lt++;
 
 			if(Surge.getServerThread() != null)
 			{
 				processState(Surge.getServerThread().getState());
+			}
+
+			try
+			{
+				lastTick = React.instance.sampleController.lastTick > lastTick ? React.instance.sampleController.lastTick : lastTick;
+			}
+
+			catch(Exception e)
+			{
+
 			}
 
 			if(ticked)
@@ -122,19 +131,32 @@ public abstract class TPSMonitor extends Thread
 
 				if(lt % 250 == 0)
 				{
-					if(CrashController.inst != null)
+					new A()
 					{
-						CrashController.inst.run();
-					}
+						@Override
+						public void run()
+						{
+							if(CrashController.inst != null)
+							{
+								CrashController.inst.run();
+							}
 
-					worldMonitor.run();
+							worldMonitor.run();
+						}
+					};
 				}
 
 				if(lt % 50 == 0)
 				{
-					React.instance.sampleController.onTickAsync();
-					React.instance.monitorController.onTickAsync();
-					React.instance.dataLogController.onTickAsync();
+					new A()
+					{
+						@Override
+						public void run()
+						{
+							React.instance.sampleController.onTickAsync();
+							React.instance.monitorController.onTickAsync();
+						}
+					};
 				}
 			}
 
@@ -143,20 +165,25 @@ public abstract class TPSMonitor extends Thread
 				Ex.t(e);
 			}
 
-			long ns = M.ns();
-			boolean ran = false;
-			while(M.ns() - ns < 1000000 && !run.isEmpty())
+			long[] ns = {M.ns()};
+			boolean[] ran = {false};
+
+			new A()
 			{
-				ran = true;
-				run.pop().run();
-			}
+				@Override
+				public void run()
+				{
+					while(M.ns() - ns[0] < 1000000 && !run.isEmpty())
+					{
+						ran[0] = true;
+						run.pop().run();
+					}
+				}
+			};
 
 			try
 			{
-				if(!ran)
-				{
-					Thread.sleep(Gate.isLowMemory() ? 4 : 1);
-				}
+				Thread.sleep(1);
 			}
 
 			catch(InterruptedException e)

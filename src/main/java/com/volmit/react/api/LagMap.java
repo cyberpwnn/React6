@@ -106,7 +106,15 @@ public class LagMap
 			chunks.put(c, new LagMapChunk(c));
 		}
 
-		chunks.get(c).hit(type, amt);
+		try
+		{
+			chunks.get(c).hit(type, amt);
+		}
+
+		catch(Exception e)
+		{
+
+		}
 	}
 
 	public GMap<Chunk, LagMapChunk> getChunks()

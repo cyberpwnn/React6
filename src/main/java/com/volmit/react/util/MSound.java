@@ -2,6 +2,8 @@ package com.volmit.react.util;
 
 import org.bukkit.Sound;
 
+import com.volmit.react.Gate;
+
 /**
  * Version independent spigot sounds.
  */
@@ -212,7 +214,7 @@ public enum MSound
 		this.post19sound = post19sound;
 	}
 
-	public Sound bukkitSound()
+	public Sound bs()
 	{
 		if(resolvedSound != null)
 		{
@@ -226,6 +228,11 @@ public enum MSound
 
 		catch(Throwable e)
 		{
+			if(Gate.safe)
+			{
+				return null;
+			}
+
 			return resolvedSound = Sound.valueOf(pre19sound);
 		}
 	}

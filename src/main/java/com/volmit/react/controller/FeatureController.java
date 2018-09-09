@@ -12,6 +12,7 @@ import com.volmit.react.nms.INMSBinding;
 import com.volmit.react.nms.NMSBinding10;
 import com.volmit.react.nms.NMSBinding11;
 import com.volmit.react.nms.NMSBinding12;
+import com.volmit.react.nms.NMSBinding13;
 import com.volmit.react.nms.NMSBinding92;
 import com.volmit.react.nms.NMSBinding94;
 import com.volmit.react.util.Controller;
@@ -65,6 +66,11 @@ public class FeatureController extends Controller implements INMSBinding
 			else if(Protocol.R1_12.to(Protocol.R1_12_2).contains(Protocol.getProtocolVersion()))
 			{
 				trueBinding = new NMSBinding12(getPackageVersion());
+			}
+
+			else if(Protocol.R1_13.to(Protocol.R1_13).contains(Protocol.getProtocolVersion()))
+			{
+				trueBinding = new NMSBinding13(getPackageVersion());
 			}
 
 			else
