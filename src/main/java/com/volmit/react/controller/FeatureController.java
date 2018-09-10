@@ -7,6 +7,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import com.volmit.react.Config;
+import com.volmit.react.Gate;
 import com.volmit.react.Surge;
 import com.volmit.react.nms.INMSBinding;
 import com.volmit.react.nms.NMSBinding10;
@@ -72,6 +73,8 @@ public class FeatureController extends Controller implements INMSBinding
 				{
 					// trueBinding = new NMSBinding13(getPackageVersion());
 					// TODO Needs a bind
+					Gate.safe = true;
+					Config.SAFE_MODE_NMS = true;
 					trueBinding = null;
 				}
 				else
