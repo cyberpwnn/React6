@@ -763,8 +763,9 @@ public class Gate
 		{
 			if(snd > 0 && Config.SOUNDS && !Gate.safe)
 			{
-				((Player) p).playSound(((Player) p).getLocation(), MSound.CHICKEN_EGG_POP.bs(), 0.15f, 1.9f);
+				((Player) p).playSound(((Player) p).getLocation(), Config.USE_MEOW ? MSound.CAT_MEOW.bs() : MSound.CHICKEN_EGG_POP.bs(), 0.15f, 1.9f);
 				snd--;
+//Java7-BS
 			}
 		}
 

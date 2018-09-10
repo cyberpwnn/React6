@@ -41,6 +41,11 @@ public class Config
 	@Key("features.react.collision.collision-tweaks-enabled")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean USE_COLLISION = true;
+	
+	@Comment("'Meow' instead of 'Plop'")
+	@Key("features.react.sound.meow")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean USE_MEOW = false;
 
 	@Comment("Learns the 'gist' of repeated executions and attempts to grab low cpu tasks and burn through them to improve low ms latency.")
 	@Key("features.react.queue.group-suppression")
