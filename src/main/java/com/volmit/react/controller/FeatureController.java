@@ -12,7 +12,6 @@ import com.volmit.react.nms.INMSBinding;
 import com.volmit.react.nms.NMSBinding10;
 import com.volmit.react.nms.NMSBinding11;
 import com.volmit.react.nms.NMSBinding12;
-import com.volmit.react.nms.NMSBinding13;
 import com.volmit.react.nms.NMSBinding92;
 import com.volmit.react.nms.NMSBinding94;
 import com.volmit.react.util.Controller;
@@ -40,37 +39,45 @@ public class FeatureController extends Controller implements INMSBinding
 	public void start()
 	{
 		Surge.register(this);
-
-		if(Protocol.R1_9.to(Protocol.LATEST).contains(Protocol.getProtocolVersion()))
+		try
 		{
-			if(Protocol.R1_9.to(Protocol.R1_9_2).contains(Protocol.getProtocolVersion()))
+			if(Protocol.R1_9.to(Protocol.LATEST).contains(Protocol.getProtocolVersion()))
 			{
-				trueBinding = new NMSBinding92(getPackageVersion());
-			}
+				if(Protocol.R1_9.to(Protocol.R1_9_2).contains(Protocol.getProtocolVersion()))
+				{
+					trueBinding = new NMSBinding92(getPackageVersion());
+				}
 
-			else if(Protocol.R1_9_3.to(Protocol.R1_9_4).contains(Protocol.getProtocolVersion()))
-			{
-				trueBinding = new NMSBinding94(getPackageVersion());
-			}
+				else if(Protocol.R1_9_3.to(Protocol.R1_9_4).contains(Protocol.getProtocolVersion()))
+				{
+					trueBinding = new NMSBinding94(getPackageVersion());
+				}
 
-			else if(Protocol.R1_10.to(Protocol.R1_10_2).contains(Protocol.getProtocolVersion()))
-			{
-				trueBinding = new NMSBinding10(getPackageVersion());
-			}
+				else if(Protocol.R1_10.to(Protocol.R1_10_2).contains(Protocol.getProtocolVersion()))
+				{
+					trueBinding = new NMSBinding10(getPackageVersion());
+				}
 
-			else if(Protocol.R1_11.to(Protocol.R1_11_2).contains(Protocol.getProtocolVersion()))
-			{
-				trueBinding = new NMSBinding11(getPackageVersion());
-			}
+				else if(Protocol.R1_11.to(Protocol.R1_11_2).contains(Protocol.getProtocolVersion()))
+				{
+					trueBinding = new NMSBinding11(getPackageVersion());
+				}
 
-			else if(Protocol.R1_12.to(Protocol.R1_12_2).contains(Protocol.getProtocolVersion()))
-			{
-				trueBinding = new NMSBinding12(getPackageVersion());
-			}
+				else if(Protocol.R1_12.to(Protocol.R1_12_2).contains(Protocol.getProtocolVersion()))
+				{
+					trueBinding = new NMSBinding12(getPackageVersion());
+				}
 
-			else if(Protocol.R1_13.to(Protocol.R1_13).contains(Protocol.getProtocolVersion()))
-			{
-				trueBinding = new NMSBinding13(getPackageVersion());
+				else if(Protocol.R1_13.to(Protocol.LATEST).contains(Protocol.getProtocolVersion()))
+				{
+					// trueBinding = new NMSBinding13(getPackageVersion());
+					// TODO Needs a bind
+					trueBinding = null;
+				}
+				else
+				{
+					trueBinding = null;
+				}
 			}
 
 			else
@@ -78,10 +85,9 @@ public class FeatureController extends Controller implements INMSBinding
 				trueBinding = null;
 			}
 		}
-
-		else
+		catch(Throwable e)
 		{
-			trueBinding = null;
+			System.out.println("No NMS Binder Found i cri 1.13");
 		}
 	}
 
