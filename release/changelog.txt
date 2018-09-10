@@ -1,8 +1,10 @@
 Title: Correction
 Version: 6.575
 <changes>
-Fixed https://github.com/VolmitSoftware/React/issues/450 a small few confusing typos in react's Config, and Placeholder File.
+Fixed: The java.lang.NoClassDefFoundError on startup for versions 1.13-1.13+ (Causing Console Spam) https://pastebin.com/zgTyfKc5
+Fixed: NMS for the NoClassDefFoundError
+Adding new key in config: features.react.sound.meow
 
 </changes>
-Proofreading to Perfection!
+When you can get a meow over a plop ;)
 @NextdoorPsycho
