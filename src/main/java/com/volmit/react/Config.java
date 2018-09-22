@@ -47,6 +47,11 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean USE_MEOW = false;
 
+	@Comment("Try some beta stuff [NOT RECCOMENDED] use at your own risk")
+	@Key("features.react.beta.junk")
+	@Injection(InjectionMethod.SWAP)
+	public static boolean USE_BETA = false;
+	
 	@Comment("Learns the 'gist' of repeated executions and attempts to grab low cpu tasks and burn through them to improve low ms latency.")
 	@Key("features.react.queue.group-suppression")
 	@Injection(InjectionMethod.SWAP)
