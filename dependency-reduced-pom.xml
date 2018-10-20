@@ -4,7 +4,7 @@
   <groupId>com.volmit</groupId>
   <artifactId>React</artifactId>
   <name>React</name>
-  <version>6.577</version>
+  <version>6.578</version>
   <description>A performance plugin</description>
   <build>
     <resources>
@@ -109,6 +109,34 @@
       </build>
     </profile>
     <profile>
+      <id>tim</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.2</version>
+            <executions>
+              <execution>
+                <id>runbatchfile</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <executable>${script.development}</executable>
+              <arguments>
+                <argument>${react.release.target}</argument>
+                <argument>${tim.development.location}</argument>
+              </arguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>release</id>
       <build>
         <plugins>
@@ -124,31 +152,31 @@
                   <goal>exec</goal>
                 </goals>
                 <configuration>
-                  <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
+                  <executable>C:\Users\Tim\Development\Workspace\React6/compile\release.bat</executable>
                   <arguments>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.577.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.577/mapping.txt</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.577/React-6.577-origin.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
-                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.577/React-6.577.jar</argument>
+                    <argument>C:\Users\Tim\Development\Workspace\React6/target/React-6.578.jar</argument>
+                    <argument>C:\Users\Tim\Development\Workspace\React6/compile/in.jar</argument>
+                    <argument>C:\Users\Tim\Development\Workspace\React6/compile/mapping.txt</argument>
+                    <argument>C:\Users\Tim\Development\Workspace\React6/release/6.578/mapping.txt</argument>
+                    <argument>C:\Users\Tim\Development\Workspace\React6/compile/in.jar</argument>
+                    <argument>C:\Users\Tim\Development\Workspace\React6/release/6.578/React-6.578-origin.jar</argument>
+                    <argument>C:\Users\Tim\Development\Workspace\React6/compile/out.jar</argument>
+                    <argument>C:\Users\Tim\Development\Workspace\React6/release/6.578/React-6.578.jar</argument>
                   </arguments>
                 </configuration>
               </execution>
             </executions>
             <configuration>
-              <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
+              <executable>C:\Users\Tim\Development\Workspace\React6/compile\release.bat</executable>
               <arguments>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.577.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.577/mapping.txt</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.577/React-6.577-origin.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
-                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.577/React-6.577.jar</argument>
+                <argument>C:\Users\Tim\Development\Workspace\React6/target/React-6.578.jar</argument>
+                <argument>C:\Users\Tim\Development\Workspace\React6/compile/in.jar</argument>
+                <argument>C:\Users\Tim\Development\Workspace\React6/compile/mapping.txt</argument>
+                <argument>C:\Users\Tim\Development\Workspace\React6/release/6.578/mapping.txt</argument>
+                <argument>C:\Users\Tim\Development\Workspace\React6/compile/in.jar</argument>
+                <argument>C:\Users\Tim\Development\Workspace\React6/release/6.578/React-6.578-origin.jar</argument>
+                <argument>C:\Users\Tim\Development\Workspace\React6/compile/out.jar</argument>
+                <argument>C:\Users\Tim\Development\Workspace\React6/release/6.578/React-6.578.jar</argument>
               </arguments>
             </configuration>
           </plugin>
@@ -314,6 +342,7 @@
     <exp1>${react.compile}/mapping.txt</exp1>
     <react.plugin.description>${project.description}</react.plugin.description>
     <react.release.name>${project.name}-${project.version}</react.release.name>
+    <tim.development.location>${user.home}\Development\Server\plugins\${project.name}.jar</tim.development.location>
     <react.plugin.main>com.volmit.react.ReactPlugin</react.plugin.main>
     <maven.compiler.target>1.8</maven.compiler.target>
     <react.scripts>${project.basedir}\scripts</react.scripts>

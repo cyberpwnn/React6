@@ -52,7 +52,7 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean USE_BETA = false;
 	
-	@Comment("Learns the 'gist' of repeated executions and attempts to grab low cpu tasks and burn through them to improve low ms latency.")
+	@Comment("Learns the patterns of repeated executions and attempts to grab low cpu tasks and burn through them to improve low ms latency.")
 	@Key("features.react.queue.group-suppression")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean QUEUE_SUPPRESSION = true;
@@ -87,17 +87,17 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static int TICK_AVG_RAD = 3;
 
-	@Comment("Disables all capabilities for react to utilize NMS classes in craftbukkit. Use this if either you are having serious problems, or are using Sponge,MCPC+,KCauldron, or even Glowkit")
+	@Comment("Disables all capabilities for react to utilize NMS classes in CraftBukkit. Use this if either you are having serious problems, or are using Sponge,MCPC+,KCauldron, or even Glowkit")
 	@Key("features.react.modes.safemode-nms")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean SAFE_MODE_NMS = false;
 
-	@Comment("Treats itemframes as dangerous, and prevents react from killing them, or culling them. Set this to false to allow culling them with rules, or purging them.")
+	@Comment("Treats item frames as dangerous, and prevents react from killing them, or culling them. Set this to false to allow culling them with rules, or purging them.")
 	@Key("features.react.saftey.treat-itemframes-dangerous")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean ITEMFRAME_DANGER = true;
 
-	@Comment("Treats armorstands as dangerous, and prevents react from killing them, or culling them. Set this to false to allow culling them with rules, or purging them.")
+	@Comment("Treats armor stands as dangerous, and prevents react from killing them, or culling them. Set this to false to allow culling them with rules, or purging them.")
 	@Key("features.react.saftey.treat-armorstands-dangerous")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean ARMORSTAND_DANGER = true;
@@ -107,7 +107,7 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean SAFE_MODE_PROTOCOL = false;
 
-	@Comment("Disable all capabilities for react to interact with FastAsyncWorldEdit.")
+	@Comment("Disable all capabilities for react to interact with FastAsyncWorldEdit (FAWE).")
 	@Key("features.react.modes.safemode-fawe")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean SAFE_MODE_FAWE = false;

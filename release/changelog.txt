@@ -1,10 +1,9 @@
-Title: Correction
-Version: 6.575
+Title: Facelift
+Version: 6.578
 <changes>
-Fixed: The java.lang.NoClassDefFoundError on startup for versions 1.13-1.13+ (Causing Console Spam) https://pastebin.com/zgTyfKc5
-Fixed: NMS for the NoClassDefFoundError
-Adding new key in config: features.react.sound.meow
+Corrected various typos and minor errors.
+General bugfixes
 
 </changes>
-When you can get a meow over a plop ;)
-@NextdoorPsycho
+More to come.
+@Puretie

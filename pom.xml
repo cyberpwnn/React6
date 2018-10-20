@@ -1,10 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.volmit</groupId>
 	<artifactId>React</artifactId>
-	<version>6.577</version>
+	<version>6.578</version>
 	<name>React</name>
 	<description>A performance plugin</description>
 	<properties>
@@ -26,6 +25,7 @@
 		<react.release.target>${react.target}/${react.release.name}.jar</react.release.target>
 		<react.release.compile>${react.compile}/in.jar</react.release.compile>
 		<react.development.location>${user.home}\Documents\development\servers\dynamic\plugins\${project.name}.jar</react.development.location>
+		<tim.development.location>${user.home}\Development\Server\plugins\${project.name}.jar</tim.development.location>
 		<react.export.out>${project.basedir}/compile/out.jar</react.export.out>
 		<react.export.in>${project.basedir}/compile/in.jar</react.export.in>
 		<react.export.mapping>${project.basedir}/compile/mapping.txt</react.export.mapping>
@@ -137,6 +137,34 @@
 							<arguments>
 								<argument>${react.release.target}</argument>
 								<argument>${react.development.location}</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>tim</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2</version>
+						<executions>
+							<execution>
+								<id>runbatchfile</id>
+								<phase>package</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<executable>${script.development}</executable>
+							<arguments>
+								<argument>${react.release.target}</argument>
+								<argument>${tim.development.location}</argument>
 							</arguments>
 						</configuration>
 					</plugin>
