@@ -4,7 +4,7 @@
   <groupId>com.volmit</groupId>
   <artifactId>React</artifactId>
   <name>React</name>
-  <version>6.576</version>
+  <version>6.577</version>
   <description>A performance plugin</description>
   <build>
     <resources>
@@ -124,31 +124,31 @@
                   <goal>exec</goal>
                 </goals>
                 <configuration>
-                  <executable>D:\Java\Eclipse\React6/compile\release.bat</executable>
+                  <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
                   <arguments>
-                    <argument>D:\Java\Eclipse\React6/target/React-6.576.jar</argument>
-                    <argument>D:\Java\Eclipse\React6/compile/in.jar</argument>
-                    <argument>D:\Java\Eclipse\React6/compile/mapping.txt</argument>
-                    <argument>D:\Java\Eclipse\React6/release/6.576/mapping.txt</argument>
-                    <argument>D:\Java\Eclipse\React6/compile/in.jar</argument>
-                    <argument>D:\Java\Eclipse\React6/release/6.576/React-6.576-origin.jar</argument>
-                    <argument>D:\Java\Eclipse\React6/compile/out.jar</argument>
-                    <argument>D:\Java\Eclipse\React6/release/6.576/React-6.576.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.577.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.577/mapping.txt</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.577/React-6.577-origin.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
+                    <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.577/React-6.577.jar</argument>
                   </arguments>
                 </configuration>
               </execution>
             </executions>
             <configuration>
-              <executable>D:\Java\Eclipse\React6/compile\release.bat</executable>
+              <executable>C:\Users\cyberpwn\Documents\development\workspace\React6/compile\release.bat</executable>
               <arguments>
-                <argument>D:\Java\Eclipse\React6/target/React-6.576.jar</argument>
-                <argument>D:\Java\Eclipse\React6/compile/in.jar</argument>
-                <argument>D:\Java\Eclipse\React6/compile/mapping.txt</argument>
-                <argument>D:\Java\Eclipse\React6/release/6.576/mapping.txt</argument>
-                <argument>D:\Java\Eclipse\React6/compile/in.jar</argument>
-                <argument>D:\Java\Eclipse\React6/release/6.576/React-6.576-origin.jar</argument>
-                <argument>D:\Java\Eclipse\React6/compile/out.jar</argument>
-                <argument>D:\Java\Eclipse\React6/release/6.576/React-6.576.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/target/React-6.577.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/mapping.txt</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.577/mapping.txt</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/in.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.577/React-6.577-origin.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/compile/out.jar</argument>
+                <argument>C:\Users\cyberpwn\Documents\development\workspace\React6/release/6.577/React-6.577.jar</argument>
               </arguments>
             </configuration>
           </plugin>
