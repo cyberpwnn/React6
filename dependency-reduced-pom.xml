@@ -4,7 +4,7 @@
   <groupId>com.volmit</groupId>
   <artifactId>React</artifactId>
   <name>React</name>
-  <version>6.578</version>
+  <version>6.579</version>
   <description>A performance plugin</description>
   <build>
     <resources>
@@ -154,14 +154,14 @@
                 <configuration>
                   <executable>C:\Users\Tim\Development\Workspace\React6/compile\release.bat</executable>
                   <arguments>
-                    <argument>C:\Users\Tim\Development\Workspace\React6/target/React-6.578.jar</argument>
+                    <argument>C:\Users\Tim\Development\Workspace\React6/target/React-6.579.jar</argument>
                     <argument>C:\Users\Tim\Development\Workspace\React6/compile/in.jar</argument>
                     <argument>C:\Users\Tim\Development\Workspace\React6/compile/mapping.txt</argument>
-                    <argument>C:\Users\Tim\Development\Workspace\React6/release/6.578/mapping.txt</argument>
+                    <argument>C:\Users\Tim\Development\Workspace\React6/release/6.579/mapping.txt</argument>
                     <argument>C:\Users\Tim\Development\Workspace\React6/compile/in.jar</argument>
-                    <argument>C:\Users\Tim\Development\Workspace\React6/release/6.578/React-6.578-origin.jar</argument>
+                    <argument>C:\Users\Tim\Development\Workspace\React6/release/6.579/React-6.579-origin.jar</argument>
                     <argument>C:\Users\Tim\Development\Workspace\React6/compile/out.jar</argument>
-                    <argument>C:\Users\Tim\Development\Workspace\React6/release/6.578/React-6.578.jar</argument>
+                    <argument>C:\Users\Tim\Development\Workspace\React6/release/6.579/React-6.579.jar</argument>
                   </arguments>
                 </configuration>
               </execution>
@@ -169,14 +169,14 @@
             <configuration>
               <executable>C:\Users\Tim\Development\Workspace\React6/compile\release.bat</executable>
               <arguments>
-                <argument>C:\Users\Tim\Development\Workspace\React6/target/React-6.578.jar</argument>
+                <argument>C:\Users\Tim\Development\Workspace\React6/target/React-6.579.jar</argument>
                 <argument>C:\Users\Tim\Development\Workspace\React6/compile/in.jar</argument>
                 <argument>C:\Users\Tim\Development\Workspace\React6/compile/mapping.txt</argument>
-                <argument>C:\Users\Tim\Development\Workspace\React6/release/6.578/mapping.txt</argument>
+                <argument>C:\Users\Tim\Development\Workspace\React6/release/6.579/mapping.txt</argument>
                 <argument>C:\Users\Tim\Development\Workspace\React6/compile/in.jar</argument>
-                <argument>C:\Users\Tim\Development\Workspace\React6/release/6.578/React-6.578-origin.jar</argument>
+                <argument>C:\Users\Tim\Development\Workspace\React6/release/6.579/React-6.579-origin.jar</argument>
                 <argument>C:\Users\Tim\Development\Workspace\React6/compile/out.jar</argument>
-                <argument>C:\Users\Tim\Development\Workspace\React6/release/6.578/React-6.578.jar</argument>
+                <argument>C:\Users\Tim\Development\Workspace\React6/release/6.579/React-6.579.jar</argument>
               </arguments>
             </configuration>
           </plugin>

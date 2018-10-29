@@ -1,9 +1,7 @@
-Title: Facelift
-Version: 6.578
+Title: Config stuff
+Version: 6.579
 <changes>
-Corrected various typos and minor errors.
-General bugfixes
-
+Minor fixes and changes to the config, it's wording, and the default values of cornerstones of React (still configurable).
 </changes>
-More to come.
+Entaro Adun.
 @Puretie

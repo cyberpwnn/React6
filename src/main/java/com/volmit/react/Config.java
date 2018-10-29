@@ -206,7 +206,7 @@ public class Config
 	@Comment("Throttle explosions to a maximum tick time per tick")
 	@Key("tweaks.explosions.max-explosions-milliseconds")
 	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 0.01, max = 10000)
+	@Clip(min = 0.01, max = 9500)
 	public static double MAX_EXPLOSION_MS = 5;
 
 	@Comment("Dynamically change the redstone tick speed depending on redstone tick time (may cause issues with large contraptions)")
@@ -232,13 +232,13 @@ public class Config
 	@Comment("Sample time viewport. Higher means more visible data in graphs over time. Due to lossy compression however, data may look weird near the beginning of a large graph.")
 	@Key("features.react.sampler.sample-viewport")
 	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 6000, max = 30000)
+	@Clip(min = 5000, max = 30000)
 	public static int SAMPLE_VIEWPORT = 12000;
 
 	@Comment("Sample points per sampler type")
 	@Key("features.react.sampler.sample-points")
 	@Injection(InjectionMethod.SWAP)
-	@Clip(min = 50, max = 4000)
+	@Clip(min = 50, max = 4500)
 	public static int SAMPLE_POINTS = 250;
 
 	@Comment("Allow the purger to purge tamed entities")
@@ -307,11 +307,11 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean FASTLEAF_INSTANT = false;
 
-	@Comment("The period of time (in ticks) which a leaf block that is marked for decay will actually decay. If 10 blocks are set to be destroyed, they will be destroyed randomly within 5 ticks (by default)")
+	@Comment("The period of time (in ticks) which a leaf block that is marked for decay will actually decay. If 10 blocks are set to be destroyed, they will be destroyed randomly within 7 ticks (by default)")
 	@Key("tweaks.fast-leaf-decay.decay-period")
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 2, max = 200)
-	public static int FASTLEAF_DECAYPERIOD = 5;
+	public static int FASTLEAF_DECAYPERIOD = 7;
 
 	@Comment("Override /mem with additional information")
 	@Key("features.react.command-overrides.memory")
@@ -358,7 +358,7 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean ENTITYSTACK_ONINTERVAL = true;
 
-	@Comment("Only attempt to stack entities that were spawned with the following reason.")
+	@Comment("Only attempt to stack entities that were spawned with the following reason(s).")
 	@Key("features.entity-stacker.stack-reasons")
 	@Injection(InjectionMethod.SWAP)
 	public static GList<String> ENTITYSTACK_REASONS = defaultSpawnReasons();
@@ -426,7 +426,7 @@ public class Config
 	@Key("features.tick-smearing.entities.max-time")
 	@Injection(InjectionMethod.SWAP)
 	@Clip(min = 0.01, max = 100)
-	public static double SMEAR_TICK_ENTITIES_MAX_TICK = 25;
+	public static double SMEAR_TICK_ENTITIES_MAX_TICK = 30;
 
 	@Comment("The maximum tile tick time before throttling")
 	@Key("features.tick-smearing.tiles.max-time")
@@ -468,12 +468,12 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean SMEAR_TICK_TILES_ENABLE = true;
 
-	@Comment("Full hoppers for some reason spamtick and cause a ton of lag. React helps by preventing this from happening.")
+	@Comment("Full hoppers for some reason spam-tick and cause a ton of lag. React helps by preventing this from happening.")
 	@Key("tweaks.hoppers.reduce-overtick-hoppers")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean HOPPER_OVERTICK_ENABLE = true;
 
-	@Comment("Generate configurations for each world (disable this if you have over 100 worlds)")
+	@Comment("Generate seperate configurations for each world (disable this if you have over 100 worlds)")
 	@Key("features.react.worlds.world-configs")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean USE_WORLD_CONFIGS = true;
@@ -540,7 +540,7 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean SKIP_ORBS = false;
 
-	@Comment("Fast pickup xp (all at once not sequentially)")
+	@Comment("Fast pickup xp (pick up all xp orbs at once.)")
 	@Key("tweaks.xp.fast-xp-pickup")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean FAST_ORB_PICKUP = false;
@@ -550,7 +550,7 @@ public class Config
 	@Injection(InjectionMethod.SWAP)
 	public static boolean DROPS_TELEPORT = false;
 
-	@Comment("Despawn arrows that cannot be picked up by players anyways. Think skeleton arrow landed entities.")
+	@Comment("Despawn arrows that cannot be picked up by players anyways. (Think skeleton arrow landed entities).")
 	@Key("tweaks.drops.despawn-useless-arrows")
 	@Injection(InjectionMethod.SWAP)
 	public static boolean DESPAWN_USELESS_ARROWS = true;
@@ -594,7 +594,7 @@ public class Config
 	@Comment("The average time in milliseconds a spike must make to trigger the spike message.")
 	@Key("features.react.spikes.time-radius")
 	@Injection(InjectionMethod.SWAP)
-	public static int TIME_SENS = 2500;
+	public static int TIME_SENS = 2000;
 
 	@Comment("The time a report will not show again for (in ticks) after it was just shown")
 	@Key("features.react.spikes.time-nag")
