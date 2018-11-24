@@ -52,7 +52,15 @@ public class RQ extends Thread
 	{
 		if(r == null || r.size() > 35)
 		{
-			Bukkit.getScheduler().scheduleAsyncDelayedTask(Bukkit.getPluginManager().getPlugin("React"), a);
+			try
+			{
+				Bukkit.getScheduler().scheduleAsyncDelayedTask(Bukkit.getPluginManager().getPlugin("React"), a);
+			}
+			
+			catch(Throwable e)
+			{
+				// Hush
+			}
 		}
 
 		else
